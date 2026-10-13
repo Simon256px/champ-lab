@@ -255,3 +255,10 @@ Deno.test("cdragon : objet — calcul conditionnel mêlée / distance, stats en 
   assertEquals(at(true), 2);
   assertEquals(itemExtraStats(HYDRA), { critDamage: 0.3, tenacity: 0.3 });
 });
+
+Deno.test("infobulle : une attraction comble l'écart (Darius E), pas un orbe qui revient", () => {
+  const dariusE =
+    "Active: Darius hooks with his axe, <status>Pulling</status>, and <status>Knocking Up</status>.";
+  assert(parseTooltip(dariusE).mobility);
+  assert(!parseTooltip(AHRI_Q).mobility);
+});

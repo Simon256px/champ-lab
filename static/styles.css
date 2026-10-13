@@ -1433,7 +1433,7 @@ input[type=range].en::-moz-range-thumb {
 }
 .mu-lane {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 0 18px;
   border-top: 1px dashed var(--line);
 }

@@ -287,6 +287,15 @@ export function ccDuration(
   maxRank: number,
   allowed: (kind: CcKind | null) => boolean = () => true,
 ): Formula | null {
+  return ccPick(spell, maxRank, allowed)?.formula ?? null;
+}
+
+/** Comme ccDuration, avec la famille du contrôle retenu (projection et suppression ignorent la ténacité). */
+export function ccPick(
+  spell: Json,
+  maxRank: number,
+  allowed: (kind: CcKind | null) => boolean = () => true,
+): { formula: Formula; kind: CcKind | null } | null {
   const dvs: Json[] = (spell?.DataValues ?? []).filter((d: Json) =>
     /duration/i.test(d.name) && HARD_CC.test(d.name) && !CC_VARIANT.test(d.name) && d.values?.length &&
     allowed(ccKind(d.name))
@@ -295,7 +304,7 @@ export function ccDuration(
   const atMax = (d: Json) => d.values[Math.min(maxRank, d.values.length - 1)] ?? 0;
   const longest = dvs.reduce((a, d) => (atMax(d) > atMax(a) ? d : a), dvs[0]);
   const f = rankValues(longest.values, maxRank);
-  return f.op === "num" && f.n <= 0 ? null : f;
+  return f.op === "num" && f.n <= 0 ? null : { formula: f, kind: ccKind(longest.name) };
 }
 
 // ---------------------------------------------------------------------------
@@ -397,7 +406,16 @@ export function parseTooltip(text: string): TooltipFacts {
     }
   }
   const plain = text.replace(/<[^>]+>/g, " ");
-  return { damageTypes, damageCalcs, ccUnconditional, ccConditional, mobility: MOBILITY.test(plain) };
+  // Un sort qui attire la cible (<status>Pulling</status> : Darius E, Blitzcrank Q) comble
+  // l'écart autant qu'un dash. « pulls back her orb » (Ahri Q) n'est pas une attraction.
+  const pulls = /<status>[^<]*\bpull/i.test(text);
+  return {
+    damageTypes,
+    damageCalcs,
+    ccUnconditional,
+    ccConditional,
+    mobility: MOBILITY.test(plain) || pulls,
+  };
 }
 
 /** Sort à viser (esquivable) d'après son type de ciblage dans les fichiers du jeu. */

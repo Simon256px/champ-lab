@@ -372,6 +372,11 @@ export interface ComboInput {
    * sorts relancés selon leur cooldown + auto-attaques.
    */
   window?: number;
+  /**
+   * Part des sorts à viser (skillshots, zones) qui touchent, 0..1. Défaut 1 : tout
+   * touche. Pondère leurs dégâts et leurs contrôles (espérance).
+   */
+  accuracy?: number;
 }
 
 export interface ComboResult {
@@ -393,6 +398,9 @@ export interface ComboResult {
   /** contrôles infligés sur la fenêtre (s cumulées) et le plus long d'entre eux */
   ccDuration: number;
   ccLongest: number;
+  /** part des contrôles réduite par la ténacité, et part qui l'ignore (projections, suppressions) */
+  ccReducible: number;
+  ccIrreducible: number;
   /** parades (Fiora W) et secondes d'esquive des autos (Jax E) sur la fenêtre */
   parries: number;
   dodgeAutosSeconds: number;
@@ -403,6 +411,7 @@ export function computeCombo(input: ComboInput): ComboResult {
   const { champion, level, itemIds, items, runes, runeOn, target, bleedStacks, include, ranks, window } =
     input;
   const keystoneId = input.keystoneId ?? champion.keystone;
+  const accuracy = Math.max(0, Math.min(1, input.accuracy ?? 1));
   const stats = computeStats(champion, level, itemIds, items, runes, runeOn, keystoneId);
   const lines: DamageLine[] = [];
 
@@ -452,6 +461,7 @@ export function computeCombo(input: ComboInput): ComboResult {
     let dmg = raw * damageMultiplier(ability.type, stats, target);
     // L'ultime de Darius gagne +20 % de dégâts par stack d'hémorragie (max +100 %).
     if (key === "R" && champion.hasBleed) dmg *= 1 + BLEED_ULT_AMP_PER_STACK * bleedStacks;
+    if (ability.aimed) dmg *= accuracy;
     const casts = window === undefined ? 1 : castsIn(
       window,
       cooldownOf(champion, key, resolveRank(champion, key, level, ranks), stats.abilityHaste),
@@ -635,6 +645,8 @@ export function computeCombo(input: ComboInput): ComboResult {
   // t = 0 et le duel n'en tient pas compte).
   let ccDuration = 0;
   let ccLongest = 0;
+  let ccReducible = 0;
+  let ccIrreducible = 0;
   let parries = 0;
   let dodgeAutosSeconds = 0;
   for (const key of keys) {
@@ -643,7 +655,11 @@ export function computeCombo(input: ComboInput): ComboResult {
     const { rank, casts } = castsOf(key);
     if (casts < 1) continue;
     const d = formulaAt(cc, rank, level, stats);
-    ccDuration += casts * d;
+    // Un sort à viser ne contrôle que s'il touche : espérance.
+    const total = casts * d * (champion.abilities[key].aimed ? accuracy : 1);
+    ccDuration += total;
+    if (champion.abilities[key].ccIgnoresTenacity) ccIrreducible += total;
+    else ccReducible += total;
     ccLongest = Math.max(ccLongest, d);
   }
   for (const m of mechanics) {
@@ -664,6 +680,8 @@ export function computeCombo(input: ComboInput): ComboResult {
     missingHpHealRatio,
     ccDuration,
     ccLongest,
+    ccReducible,
+    ccIrreducible,
     parries,
     dodgeAutosSeconds,
   };
@@ -777,6 +795,8 @@ export interface DuelSide {
 export interface DuelOptions {
   /** fenêtre de trade (s). Absent = burst. Ignoré si allIn. */
   window?: number;
+  /** part des sorts à viser qui touchent (0..1, défaut 1) */
+  accuracy?: number;
   /**
    * All-in jusqu'à la mort : le duel s'arrête au premier kill (ou à TTK_LIMIT).
    * killPct est alors mesuré à cet instant et plafonné à 1.
@@ -805,9 +825,12 @@ export interface DuelResult {
   /** PV que chaque camp se rend sur la fenêtre (boucliers + soins plafonnés aux dégâts reçus) */
   sustainA: number;
   sustainB: number;
-  /** secondes pendant lesquelles chaque camp est contrôlé (après parade) */
+  /** secondes pendant lesquelles chaque camp est contrôlé (après parade et ténacité) */
   ccOnA: number;
   ccOnB: number;
+  /** secondes perdues par chaque camp à combler l'écart de portée (0 avec un dash) */
+  approachA: number;
+  approachB: number;
   /** dégâts adverses annulés par chaque camp (parade, esquive) */
   blockedByA: number;
   blockedByB: number;
@@ -841,18 +864,32 @@ export function computeDuel(
     include: atk.include ?? ALL_IN,
     ranks: atk.ranks,
     keystoneId: atk.keystoneId,
+    accuracy: opts.accuracy,
   });
   const inA = inputOf(a, targetB);
+  // Portée : le camp qui a moins de portée perd le temps de combler l'écart, sauf s'il
+  // a un sort de mobilité appris. Seulement en trade / all-in (en burst, tout est à t = 0).
+  const approachA = approachTime(b, a);
+  const approachB = approachTime(a, b);
   const inB = inputOf(b, targetA);
   const at = (w: number | undefined) => {
     const pa = computeCombo({ ...inA, window: w });
     const pb = computeCombo({ ...inB, window: w });
     // Contrôles : le camp contrôlé perd ce temps d'action (une parade en absorbe un).
     // Burst : tout tombe à t = 0, les contrôles ne changent rien.
-    const ccOnA = w === undefined ? 0 : Math.max(0, pb.ccDuration - pa.parries * pb.ccLongest);
-    const ccOnB = w === undefined ? 0 : Math.max(0, pa.ccDuration - pb.parries * pa.ccLongest);
-    const ab = ccOnA > 0 ? computeCombo({ ...inA, window: Math.max(0, w! - ccOnA) }) : pa;
-    const ba = ccOnB > 0 ? computeCombo({ ...inB, window: Math.max(0, w! - ccOnB) }) : pb;
+    // Ténacité : réduit les contrôles subis, sauf projections et suppressions.
+    const ccOn = (victim: ComboResult, caster: ComboResult) =>
+      Math.max(
+        0,
+        caster.ccReducible * (1 - victim.stats.tenacity) + caster.ccIrreducible -
+          victim.parries * caster.ccLongest,
+      );
+    const ccOnA = w === undefined ? 0 : ccOn(pa, pb);
+    const ccOnB = w === undefined ? 0 : ccOn(pb, pa);
+    const lostA = w === undefined ? 0 : ccOnA + approachA;
+    const lostB = w === undefined ? 0 : ccOnB + approachB;
+    const ab = lostA > 0 ? computeCombo({ ...inA, window: Math.max(0, w! - lostA) }) : pa;
+    const ba = lostB > 0 ? computeCombo({ ...inB, window: Math.max(0, w! - lostB) }) : pb;
     const blockedByB = blockedDamage(ab, ba);
     const blockedByA = blockedDamage(ba, ab);
     const dmgA = Math.max(0, ab.total - blockedByB);
@@ -893,11 +930,34 @@ export function computeDuel(
     sustainB: ehpB - targetB.hpMax,
     ccOnA,
     ccOnB,
+    approachA: timed ? approachA : 0,
+    approachB: timed ? approachB : 0,
     blockedByA,
     blockedByB,
   };
   if (timed) Object.assign(result, { ttkA, ttkB, window });
   return result;
+}
+
+/** Temps de rapprochement plafonné (s) : au-delà, le modèle sans déplacement n'a plus de sens. */
+export const MAX_APPROACH = 2;
+
+/**
+ * Secondes que `chaser` perd à rejoindre `ranged` quand ce dernier a plus de portée :
+ * (portée de l'un − portée de l'autre) / vitesse de déplacement, plafonné. Zéro si
+ * `chaser` a un sort de mobilité appris (dash, saut, téléportation).
+ */
+export function approachTime(ranged: DuelSide, chaser: DuelSide): number {
+  const gap = (ranged.champion.base.attackRange ?? 0) - (chaser.champion.base.attackRange ?? 0);
+  if (gap <= 0) return 0;
+  const keys: AbilityKey[] = ["Q", "W", "E", "R"];
+  const canDash = keys.some((k) =>
+    chaser.champion.abilities[k].mobility &&
+    resolveRank(chaser.champion, k, chaser.level, chaser.ranks) >= 1 &&
+    chaser.include?.[k] !== false
+  );
+  if (canDash) return 0;
+  return Math.min(MAX_APPROACH, gap / (chaser.champion.base.moveSpeed ?? 335));
 }
 
 /**

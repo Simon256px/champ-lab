@@ -66,6 +66,7 @@ export default function Matchup({ initialA, initialB }: Props) {
   const [csA, setCsA] = useState(DEFAULT_LANE.csPerMin);
   const [csB, setCsB] = useState(DEFAULT_LANE.csPerMin);
   const [xpGapB, setXpGapB] = useState(0);
+  const [accuracy, setAccuracy] = useState(100);
   const [hover, setHover] = useState<number | null>(null);
   const [mode, setMode] = useState<Mode>("allin");
 
@@ -77,7 +78,7 @@ export default function Matchup({ initialA, initialB }: Props) {
     { champion: b, lane: { csPerMin: csB, xpPerMin: DEFAULT_LANE.xpPerMin * (1 - xpGapB / 100) } },
     ITEMS,
     RUNES,
-    MODES[mode].opts,
+    { ...MODES[mode].opts, accuracy: accuracy / 100 },
   );
   const timed = mode !== "burst";
   const spikes = findSpikes(points, a, b, ITEMS);
@@ -138,6 +139,15 @@ export default function Matchup({ initialA, initialB }: Props) {
             unit="%"
             onInput={setXpGapB}
           />
+          <Slider
+            label="PRÉCISION DES SORTS À VISER"
+            value={accuracy}
+            min={30}
+            max={100}
+            step={5}
+            unit="%"
+            onInput={setAccuracy}
+          />
         </div>
       </div>
 
@@ -180,6 +190,11 @@ export default function Matchup({ initialA, initialB }: Props) {
                   {(focus.ccOnA > 0 || focus.ccOnB > 0) && (
                     <>
                       {" "}· contrôlé <b>{secs(focus.ccOnA)}</b> / <b>{secs(focus.ccOnB)}</b>
+                    </>
+                  )}
+                  {(focus.approachA > 0 || focus.approachB > 0) && (
+                    <>
+                      {" "}· rapprochement <b>{secs(focus.approachA)}</b> / <b>{secs(focus.approachB)}</b>
                     </>
                   )}
                 </>
@@ -231,13 +246,16 @@ export default function Matchup({ initialA, initialB }: Props) {
             </p>
             <p class="dim">
               Interactions : les contrôles (étourdissement, projection, peur, charme…) lus dans les fichiers
-              du jeu font perdre ce temps d'action à la cible ; la parade de Fiora bloque le plus gros coup et
-              le plus long contrôle ; l'esquive de Jax annule les autos pendant sa durée.
+              du jeu font perdre ce temps d'action à la cible (la ténacité les réduit, sauf projections et
+              suppressions) ; la parade de Fiora bloque le plus gros coup et le plus long contrôle ; l'esquive
+              de Jax annule les autos pendant sa durée. Le camp à moins de portée perd le temps de combler
+              l'écart, sauf s'il a un dash ou une attraction. Les sorts à viser sont pondérés par la
+              précision.
             </p>
             <p class="dim">
-              Pas encore modélisé : les autres passifs, les effets d'objets, la ténacité, portée, déplacements
-              et enracinements, animations. Les autos et les sorts s'enchaînent sans temps mort : c'est un
-              plafond de dégâts, pas un replay.
+              Pas encore modélisé : les autres passifs, les runes hors Électrocution et Conquérant, le kite
+              (reculer en tirant), les enracinements et ralentissements, les animations. Les autos et les
+              sorts s'enchaînent sans temps mort : c'est un plafond de dégâts, pas un replay.
             </p>
           </div>
         </div>
@@ -366,6 +384,8 @@ function EdgeChart(
     const r = svg.getBoundingClientRect();
     const px = ((e.clientX - r.left) / r.width) * W;
     const i = Math.round(((px - PAD.l) / (W - PAD.l - PAD.r)) * (n - 1));
+    // Graphique sans taille (onglet masqué, rendu en cours) : pas de survol plutôt qu'un index NaN.
+    if (!Number.isFinite(i)) return onHover(null);
     onHover(Math.max(0, Math.min(n - 1, i)));
   };
 
