@@ -17,6 +17,23 @@ export interface AbilityRatios {
   totalAd?: number;
   /** ratio sur l'AD bonus (objets/runes uniquement) */
   bonusAd?: number;
+  /** fraction des PV max de la CIBLE (0,06 = 6 %) */
+  targetMaxHp?: number;
+  /** fraction des PV manquants de la cible */
+  targetMissingHp?: number;
+  /** fraction des PV actuels de la cible */
+  targetCurrentHp?: number;
+  /** fraction des PV bonus du LANCEUR (objets) */
+  bonusHp?: number;
+  /** fraction des PV max du lanceur */
+  maxHp?: number;
+}
+
+/** Valeur d'un effet chiffré par rang : base[rang] + Σ ratios. Sert aux boucliers et aux soins. */
+export interface ScaledValue {
+  base: number[];
+  ratios: AbilityRatios;
+  rankRatios?: Partial<Record<keyof AbilityRatios, number[]>>;
 }
 
 export interface Ability {
@@ -27,8 +44,17 @@ export interface Ability {
   /** dégâts de base par rang. base[0] = rang 1. Un sort utilitaire peut valoir [0]. */
   base: number[];
   ratios: AbilityRatios;
+  /**
+   * Ratios qui changent avec le rang (Darius Q 100→140 % AD, Vayne W 6→10 % PV max).
+   * Prioritaire sur `ratios` pour les clés présentes. Index 0 = rang 1.
+   */
+  rankRatios?: Partial<Record<keyof AbilityRatios, number[]>>;
   /** temps de recharge par rang, en secondes (avant ability haste). Absent = inconnu. */
   cooldown?: number[];
+  /** bouclier posé sur le lanceur à chaque lancer */
+  shield?: ScaledValue;
+  /** soin du lanceur à chaque lancer */
+  heal?: ScaledValue;
 }
 
 export interface ChampionBaseStats {
@@ -52,6 +78,53 @@ export interface ChampionBaseStats {
   critDamage?: number;
 }
 
+/** Valeur qui croît linéairement du niveau 1 (`from`) au niveau 18 (`to`). */
+export interface ByLevel {
+  from: number;
+  to: number;
+}
+
+/**
+ * Mécanique de kit que Meraki n'expose pas en chiffres (passifs surtout), saisie
+ * dans data/mechanics.ts et appliquée par le moteur en mode trade / all-in.
+ */
+export type Mechanic =
+  | {
+    /** dégâts en plus tous les `every` coups d'auto (1 = chaque coup) */
+    kind: "onHit";
+    name: string;
+    type: DamageType;
+    every?: number;
+    base?: ByLevel;
+    ratios?: AbilityRatios;
+  }
+  | {
+    /** un sort dont les dégâts tombent tous les `every` coups d'auto au lieu d'être lancés (Vayne W) */
+    kind: "abilityOnHit";
+    key: AbilityKey;
+    every: number;
+  }
+  | {
+    /** dégâts toutes les `interval` secondes à partir de t = 0 (points vitaux de Fiora) */
+    kind: "periodic";
+    name: string;
+    type: DamageType;
+    interval: number;
+    base?: ByLevel;
+    ratios?: AbilityRatios;
+    /** fraction des PV max de la cible gagnée par point d'AD bonus (Fiora : 0,04 / 100 AD) */
+    targetMaxHpPerBonusAd?: number;
+    /** soin du lanceur à chaque déclenchement */
+    heal?: ByLevel;
+  }
+  | {
+    /** VA bonus qui s'empile à chaque auto (Jax) */
+    kind: "stackingAttackSpeed";
+    name: string;
+    perStack: ByLevel;
+    maxStacks: number;
+  };
+
 export interface Champion {
   id: string;
   name: string;
@@ -69,6 +142,8 @@ export interface Champion {
   shelf: string[];
   /** rune keystone par défaut (id référençant data/runes.ts) */
   keystone: string;
+  /** passifs et effets de kit modélisés à la main (data/mechanics.ts) */
+  mechanics?: Mechanic[];
 }
 
 export interface ItemStats {
@@ -92,6 +167,10 @@ export interface ItemStats {
   attackSpeed?: number;
   /** chance de coup critique en fraction, ex. 0.25 */
   critChance?: number;
+  /** vol de vie en fraction (soigne d'une part des dégâts d'auto-attaque) */
+  lifeSteal?: number;
+  /** omnivampirisme en fraction (soigne d'une part de tous les dégâts) */
+  omnivamp?: number;
 }
 
 /** Place d'un objet dans l'arbre de craft. Les composants servent à la timeline de build. */
