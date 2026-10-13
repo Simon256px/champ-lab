@@ -18,6 +18,8 @@ if [[ "${1:-}" == "--if-changed" && "$(run git rev-parse HEAD)" == "$(run git re
 fi
 
 run git merge --ff-only --quiet origin/main
+# Le script lui-même suit le dépôt : sa nouvelle version sert dès le prochain passage.
+install -m 755 deploy/champ-lab-deploy /usr/local/bin/champ-lab-deploy
 run /usr/local/bin/deno task build
 run /usr/local/bin/deno cache _fresh/server.js
 systemctl restart champ-lab
