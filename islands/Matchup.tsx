@@ -5,7 +5,7 @@
  * choisir les camps, régler la lane et dessiner. Le choix est reflété dans l'URL
  * (?a=…&b=…) pour pouvoir partager un matchup.
  */
-import { useState } from "preact/hooks";
+import { useMemo, useState } from "preact/hooks";
 import { CHAMPION_LIST, CHAMPIONS } from "@/data/champions.ts";
 import { ITEMS } from "@/data/items.ts";
 import { RUNES } from "@/data/runes.ts";
@@ -20,6 +20,33 @@ const secs = (n?: number) =>
   n === undefined || !Number.isFinite(n) ? "—" : `${n.toFixed(1).replace(".", ",")} s`;
 
 type Mode = "burst" | "trade" | "allin";
+
+interface Timeline {
+  points: MatchupPoint[];
+  spikes: Spike[];
+}
+
+/**
+ * Timelines déjà calculées pour les mêmes champions et réglages. Le calcul est
+ * déterministe (données figées par patch) : le serveur ne refait pas celui d'une
+ * page déjà rendue, le navigateur pas celui d'un réglage déjà essayé. Les plus
+ * anciennes sortent au-delà de CACHE_MAX.
+ */
+const CACHE = new Map<string, Timeline>();
+const CACHE_MAX = 64;
+
+function cachedTimeline(key: string, compute: () => Timeline): Timeline {
+  const hit = CACHE.get(key);
+  if (hit) {
+    CACHE.delete(key);
+    CACHE.set(key, hit);
+    return hit;
+  }
+  const value = compute();
+  CACHE.set(key, value);
+  if (CACHE.size > CACHE_MAX) CACHE.delete(CACHE.keys().next().value!);
+  return value;
+}
 
 /** Les trois façons de faire l'échange, et comment lire l'edge dans chacune. */
 const MODES: Record<Mode, { label: string; hint: string; edge: string; opts: TimelineOptions }> = {
@@ -73,15 +100,23 @@ export default function Matchup({ initialA, initialB }: Props) {
   const a = CHAMPIONS[aId];
   const b = CHAMPIONS[bId];
 
-  const points = matchupTimeline(
-    { champion: a, lane: { csPerMin: csA } },
-    { champion: b, lane: { csPerMin: csB, xpPerMin: DEFAULT_LANE.xpPerMin * (1 - xpGapB / 100) } },
-    ITEMS,
-    RUNES,
-    { ...MODES[mode].opts, accuracy: accuracy / 100 },
+  // Recalculé seulement quand un réglage change — pas quand la souris survole la courbe.
+  const key = JSON.stringify([aId, bId, csA, csB, xpGapB, accuracy, mode]);
+  const { points, spikes } = useMemo(
+    () =>
+      cachedTimeline(key, () => {
+        const points = matchupTimeline(
+          { champion: a, lane: { csPerMin: csA } },
+          { champion: b, lane: { csPerMin: csB, xpPerMin: DEFAULT_LANE.xpPerMin * (1 - xpGapB / 100) } },
+          ITEMS,
+          RUNES,
+          { ...MODES[mode].opts, accuracy: accuracy / 100 },
+        );
+        return { points, spikes: findSpikes(points, a, b, ITEMS) };
+      }),
+    [key],
   );
   const timed = mode !== "burst";
-  const spikes = findSpikes(points, a, b, ITEMS);
 
   const pick = (side: "a" | "b", id: string) => {
     const nextA = side === "a" ? id : aId;

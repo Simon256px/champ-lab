@@ -30,3 +30,7 @@ for _ in $(seq 1 15); do
 done
 echo "champ-lab : $(run git log --oneline -1) — HTTP $code"
 [[ "$code" == 200 ]]
+
+# Préchauffe les pages les plus lourdes (timeline de matchup mise en cache côté serveur) :
+# le premier visiteur n'attend pas le calcul.
+for page in ivern matchup; do curl -s -o /dev/null "${URL}${page}" || true; done
