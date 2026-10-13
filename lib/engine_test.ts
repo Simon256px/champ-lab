@@ -12,6 +12,7 @@ import {
   attackSpeedOf,
   autoCount,
   autosIn,
+  blockedDamage,
   castsIn,
   computeCombo,
   computeDefenses,
@@ -88,6 +89,7 @@ Deno.test("mitigation: l'armure réduit les dégâts physiques", () => {
     critDamage: 1.75,
     abilityHaste: 0,
     itemAttackSpeed: 0,
+    bonusAttackSpeed: 0,
     maxHp: 1000,
     bonusHp: 0,
     lifeSteal: 0,
@@ -554,4 +556,54 @@ Deno.test("fichiers du jeu : chaque formule de sort s'évalue en un nombre fini 
       }
     }
   }
+});
+
+// --- Interactions : contrôles, parade, esquive ---
+
+Deno.test("contrôles : lus dans les fichiers du jeu, les conditionnels ignorés", () => {
+  assert(CHAMPIONS.jax.abilities.E.cc, "Jax E étourdit");
+  assert(CHAMPIONS.ahri.abilities.E.cc, "Ahri E charme");
+  assertEquals(CHAMPIONS.fiora.abilities.W.cc, undefined, "Fiora W : étourdit seulement si la parade bloque");
+  assertEquals(CHAMPIONS.vayne.abilities.E.cc, undefined, "Vayne E : étourdit seulement contre un mur");
+});
+
+Deno.test("contrôles : la cible contrôlée perd du temps d'action et frappe moins", () => {
+  const leona = (include: IncludeMap) => side("leona", [], { include });
+  const darius = side("darius", ["stridebreaker"]);
+  const withCc = computeDuel(leona(ALL_IN), darius, ITEMS, RUNES, { window: 6 });
+  const noCc = computeDuel(leona({ ...ALL_IN, Q: false, E: false, R: false }), darius, ITEMS, RUNES, {
+    window: 6,
+  });
+  assert(withCc.ccOnB > 0 && noCc.ccOnB === 0);
+  assert(withCc.bToA.total < noCc.bToA.total, "Darius contrôlé doit placer moins de dégâts");
+});
+
+Deno.test("contrôles : en burst, tout tombe à t = 0, aucun temps perdu", () => {
+  const res = computeDuel(side("leona", []), side("darius", []), ITEMS, RUNES);
+  assertEquals(res.ccOnB, 0);
+});
+
+Deno.test("parade : Fiora W bloque le plus gros coup de sort adverse", () => {
+  const res = computeDuel(side("darius", ["stridebreaker"]), side("fiora", []), ITEMS, RUNES, { window: 6 });
+  assert(res.bToA.parries >= 1);
+  const biggest = Math.max(
+    ...res.aToB.lines.filter((l) => ["Q", "W", "E", "R"].includes(l.key)).map((l) =>
+      l.damage / (l.hits ?? 1)
+    ),
+  );
+  assertAlmostEquals(res.blockedByB, biggest, 0.001);
+});
+
+Deno.test("esquive : Jax E annule les autos adverses pendant sa durée", () => {
+  const res = computeDuel(side("darius", ["stridebreaker"]), side("jax", []), ITEMS, RUNES, { window: 6 });
+  assert(res.bToA.dodgeAutosSeconds > 0);
+  assert(res.blockedByB > 0, "des autos de Darius doivent être esquivées");
+  const aa = res.aToB.lines.find((l) => l.key === "AA")!;
+  assert(res.blockedByB <= aa.damage, "on n'esquive pas plus que les autos reçues");
+});
+
+Deno.test("parade et esquive : rien à bloquer sans le sort", () => {
+  const attacker = computeCombo(input("darius", ["stridebreaker"], { window: 6 }));
+  const defender = computeCombo(input("garen", [], { window: 6 }));
+  assertEquals(blockedDamage(attacker, defender), 0);
 });

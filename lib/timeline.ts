@@ -168,6 +168,9 @@ export interface MatchupPoint {
   /** PV que chaque camp se rend (boucliers + soins) sur la fenêtre */
   sustainA: number;
   sustainB: number;
+  /** secondes de contrôle subies par chaque camp */
+  ccOnA: number;
+  ccOnB: number;
   /** mode trade : secondes pour que A tue B (Infinity = pas de kill) */
   ttkA?: number;
   /** mode trade : secondes pour que B tue A */
@@ -216,6 +219,8 @@ export function matchupTimeline(
       edge: duel.edge,
       sustainA: duel.sustainA,
       sustainB: duel.sustainB,
+      ccOnA: duel.ccOnA,
+      ccOnB: duel.ccOnB,
       ...(duel.ttkA !== undefined ? { ttkA: duel.ttkA, ttkB: duel.ttkB } : {}),
     });
   }

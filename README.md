@@ -141,8 +141,12 @@ vie et omnivampirisme, qui s'ajoutent aux PV effectifs du camp qui les porte (un
 perdu). Les passifs absents de Meraki se décrivent dans `data/mechanics.ts` (voir
 `docs/adding-a-champion.md`).
 
-Indicateur théorique : pas d'effets d'objets, de portée, de déplacements, de contrôles, d'esquives ni
-d'animations. Autos et sorts s'enchaînent sans temps mort : c'est un plafond de dégâts.
+Interactions : les contrôles lus dans les fichiers du jeu (118 sorts) font perdre ce temps d'action à la cible
+; la parade de Fiora bloque le plus gros coup et le plus long contrôle adverses ; l'esquive de Jax annule les
+autos pendant sa durée.
+
+Indicateur théorique : pas d'effets d'objets, de ténacité, de portée, de déplacements ni d'animations. Autos
+et sorts s'enchaînent sans temps mort : c'est un plafond de dégâts.
 
 ## Ajouter / affiner un champion
 

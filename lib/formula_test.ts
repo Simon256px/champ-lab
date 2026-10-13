@@ -18,6 +18,11 @@ const stats = {
   bonusArmor: 30,
   mr: 50,
   bonusMr: 10,
+  attackSpeed: 1,
+  bonusAttackSpeed: 0.4,
+  critChance: 0.25,
+  critDamage: 1.75,
+  lethality: 10,
 } satisfies Record<StatRef, number>;
 const at = (f: Formula, rank = 1, level = 1) => evalFormula(f, { rank, level, stats });
 

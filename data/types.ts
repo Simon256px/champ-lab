@@ -58,7 +58,14 @@ export type StatRef =
   | "armor"
   | "bonusArmor"
   | "mr"
-  | "bonusMr";
+  | "bonusMr"
+  /** vitesse d'attaque totale (attaques/s) et bonus (fraction : 0,4 = +40 %) */
+  | "attackSpeed"
+  | "bonusAttackSpeed"
+  /** chance de crit (0..1) et multiplicateur de crit (1,75) */
+  | "critChance"
+  | "critDamage"
+  | "lethality";
 
 /** Ce que multiplie une formule exprimée en fraction de PV (Vayne W : 4–10 % des PV max de la cible). */
 export type HpScale = "targetMaxHp" | "targetMissingHp" | "targetCurrentHp";
@@ -98,6 +105,12 @@ export interface Ability {
   /** bouclier et soin tirés des fichiers du jeu (prioritaires sur shield / heal) */
   shieldFormula?: Formula;
   healFormula?: Formula;
+  /**
+   * Contrôle qui empêche d'agir (étourdissement, projection, peur, charme…), en
+   * secondes par lancer, tiré des fichiers du jeu. Les immobilisations seules
+   * (enracinement) n'en font pas partie : le duel est sans déplacement.
+   */
+  cc?: Formula;
 }
 
 export interface ChampionBaseStats {
@@ -176,6 +189,17 @@ export type Mechanic<A = Formula> =
     kind: "missingHpHeal";
     key: AbilityKey;
     pct: A;
+  }
+  | {
+    /** parade : chaque lancer de `key` bloque le plus gros coup et le plus long contrôle adverses (Fiora W) */
+    kind: "parry";
+    key: AbilityKey;
+  }
+  | {
+    /** esquive : chaque lancer de `key` annule les autos adverses pendant `duration` s (Jax E) */
+    kind: "dodgeAutos";
+    key: AbilityKey;
+    duration: A;
   }
   | {
     /** donne des dégâts à un sort que Meraki laisse utilitaire (Fiora R : 4 points vitaux) */
@@ -278,6 +302,8 @@ export interface DamageLine {
   name: string;
   type: DamageType;
   damage: number;
+  /** nombre de coups dans la ligne (lancers, autos, déclenchements). Absent = 1. */
+  hits?: number;
 }
 
 /** Ce qui est inclus dans le combo. */

@@ -78,6 +78,14 @@ dans `data/mechanics.ts`, appliqué par le moteur en mode trade / all-in :
 | `stackingAttackSpeed` | VA bonus qui s'empile à chaque auto                   | Jax                        |
 | `missingHpHeal`       | soin en % des PV manquants à chaque lancer            | Darius Q                   |
 | `abilityDamage`       | dégâts d'un sort que Meraki laisse utilitaire         | Fiora R                    |
+| `parry`               | bloque le plus gros coup et le plus long contrôle     | Fiora W                    |
+| `dodgeAutos`          | esquive les autos adverses pendant X secondes         | Jax E                      |
+
+**Contrôles.** Leur durée est lue automatiquement dans les fichiers du jeu (`StunDuration`, `KnockupDuration`,
+`CharmDuration`…) : seuls ceux qui empêchent d'agir comptent, pas les enracinements ni les variantes (sbires,
+contre un mur, charge max). Le jeu donne la durée, **pas la condition** : si un contrôle n'arrive que dans
+certains cas (contre un mur, cible enflammée, parade réussie), marque-le `conditionalCc: true` dans
+`data/overrides.ts` pour qu'il soit ignoré.
 
 **On ne saisit pas de chiffres.** Chaque valeur est une référence aux fichiers du jeu (CommunityDragon),
 résolue au patch courant par `deno task data` dans `data/generated/mechanics.gen.ts` :

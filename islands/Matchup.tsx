@@ -177,6 +177,11 @@ export default function Matchup({ initialA, initialB }: Props) {
                       <b>+{Math.round(focus.sustainB)}</b> PV
                     </>
                   )}
+                  {(focus.ccOnA > 0 || focus.ccOnB > 0) && (
+                    <>
+                      {" "}· contrôlé <b>{secs(focus.ccOnA)}</b> / <b>{secs(focus.ccOnB)}</b>
+                    </>
+                  )}
                 </>
               )
               : <span class="dim">Survole la courbe pour le détail d'une minute.</span>}
@@ -225,8 +230,13 @@ export default function Matchup({ initialA, initialB }: Props) {
               Vayne tirés des fichiers du jeu (CommunityDragon), au patch près, comme les cooldowns.
             </p>
             <p class="dim">
-              Pas encore modélisé : les autres passifs, les effets d'objets, portée, déplacements, contrôles,
-              esquives et parades, animations. Les autos et les sorts s'enchaînent sans temps mort : c'est un
+              Interactions : les contrôles (étourdissement, projection, peur, charme…) lus dans les fichiers
+              du jeu font perdre ce temps d'action à la cible ; la parade de Fiora bloque le plus gros coup et
+              le plus long contrôle ; l'esquive de Jax annule les autos pendant sa durée.
+            </p>
+            <p class="dim">
+              Pas encore modélisé : les autres passifs, les effets d'objets, la ténacité, portée, déplacements
+              et enracinements, animations. Les autos et les sorts s'enchaînent sans temps mort : c'est un
               plafond de dégâts, pas un replay.
             </p>
           </div>

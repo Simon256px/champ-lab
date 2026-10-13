@@ -45,6 +45,7 @@ import { MECHANICS } from "../data/mechanics.ts";
 import { evalFormula } from "../lib/formula.ts";
 import {
   candidateCalcs,
+  ccDuration,
   cdragonVersion,
   cooldowns,
   fetchChampionBin,
@@ -375,7 +376,8 @@ function applyAbilityOverrides(id: string, abilities: Record<AbilityKey, Ability
   for (const key of ABILITY_KEYS) {
     const o = ov[key];
     if (!o) continue;
-    const merged = { ...abilities[key], ...o };
+    const { conditionalCc: _conditional, ...patch } = o;
+    const merged = { ...abilities[key], ...patch };
     // Un ratio corrigé à la main remplace aussi sa série par rang générée.
     if (o.ratios && merged.rankRatios) {
       const rr = { ...merged.rankRatios };
@@ -597,6 +599,11 @@ const NOMINAL: Record<StatRef, number> = {
   bonusArmor: 30,
   mr: 60,
   bonusMr: 20,
+  attackSpeed: 1,
+  bonusAttackSpeed: 0.4,
+  critChance: 0.25,
+  critDamage: 1.75,
+  lethality: 10,
 };
 const META_STATS: Record<keyof AbilityRatios, StatRef | null> = {
   ap: "ap",
@@ -891,6 +898,21 @@ async function main() {
   console.log(
     `  cooldowns : ${cdTotal} sorts au patch ${cdVersion}, dont ${cdChanged} différents de Meraki.`,
   );
+
+  // Contrôles (étourdissement, projection, peur…) : durée lue dans les fichiers du jeu.
+  let ccCount = 0;
+  for (const c of champions) {
+    const slots = slotsById.get(c.id);
+    if (!slots) continue;
+    for (const key of ABILITY_KEYS) {
+      if (CHAMPION_OVERRIDES[c.id]?.abilities?.[key]?.conditionalCc) continue;
+      const cc = ccDuration(slots[key], c.abilities[key].maxRank);
+      if (!cc) continue;
+      c.abilities[key].cc = cc;
+      ccCount++;
+    }
+  }
+  console.log(`  contrôles : ${ccCount} sorts (étourdissement, projection, peur, charme…).`);
 
   // Passifs (data/mechanics.ts) : références résolues en formules du patch.
   const mechanics = resolveMechanics(champions, slotsById);

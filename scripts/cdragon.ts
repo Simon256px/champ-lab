@@ -68,8 +68,12 @@ export function cooldowns(spell: Json, maxRank: number): number[] | undefined {
 }
 
 /**
- * Stats vérifiées sur des sorts connus (Garen W = PV bonus, Malphite = PV max,
- * Ahri = AP, Sejuani = armure / RM…). mStatFormula : 0 total, 1 base, 2 bonus.
+ * Stats vérifiées sur des sorts connus, recoupées avec les unités Meraki :
+ *   0 AP (Ahri) · 1 armure (Malphite E) · 2 AD · 4 VA (Akshan E « par 100 % de VA
+ *   bonus », passif de Jhin) · 6 RM (Sejuani) · 8 chance de crit (passif de Jhin,
+ *   Caitlyn) · 9 dégâts critiques (Aphelios R) · 12 PV (Garen W, Malphite) ·
+ *   29 létalité (Pyke R).
+ * mStatFormula : 0 total, 1 base, 2 bonus.
  */
 function statRef(stat = 0, formula = 0): StatRef | null {
   switch (stat) {
@@ -83,8 +87,16 @@ function statRef(stat = 0, formula = 0): StatRef | null {
       return formula === 2 ? "bonusMr" : formula === 0 ? "mr" : null;
     case 12:
       return formula === 2 ? "bonusHp" : formula === 1 ? "baseHp" : "maxHp";
+    case 4:
+      return formula === 2 ? "bonusAttackSpeed" : formula === 0 ? "attackSpeed" : null;
+    case 8:
+      return "critChance";
+    case 9:
+      return "critDamage";
+    case 29:
+      return "lethality";
     default:
-      return null; // VA, crit, vitesse… : sens non vérifié
+      return null; // vitesse de déplacement, portée, PV manquants… : non modélisé
   }
 }
 
@@ -219,6 +231,27 @@ export function candidateCalcs(spell: Json, effect: "damage" | "shield" | "heal"
 /** Vrai si le calcul est affiché en % (fraction de quelque chose : PV de la cible…) — sens inconnu. */
 export function isPercentCalc(spell: Json, calcName: string): boolean {
   return !!spell?.mSpellCalculations?.[calcName]?.mDisplayAsPercent;
+}
+
+/** Contrôles qui empêchent d'agir. Les enracinements (root, snare) n'en font pas partie. */
+const HARD_CC = /(stun|knock|airborne|fear|flee|charm|taunt|suppress|sleep|polymorph|cc)/i;
+/** Variantes écartées : sur sbires/monstres, contre un mur, durée max d'une charge, effet sur soi… */
+const CC_VARIANT = /(minion|monster|wall|berserk|slow|noncharm|self|outer|bonus|max|root|snare)/i;
+
+/**
+ * Durée de contrôle d'un sort (s, par rang), lue dans ses DataValues. Si le sort en
+ * porte plusieurs (Alistar W : étourdissement et projection simultanés), on garde
+ * la plus longue — elles se chevauchent, elles ne s'additionnent pas.
+ */
+export function ccDuration(spell: Json, maxRank: number): Formula | null {
+  const dvs: Json[] = (spell?.DataValues ?? []).filter((d: Json) =>
+    /duration/i.test(d.name) && HARD_CC.test(d.name) && !CC_VARIANT.test(d.name) && d.values?.length
+  );
+  if (!dvs.length) return null;
+  const atMax = (d: Json) => d.values[Math.min(maxRank, d.values.length - 1)] ?? 0;
+  const longest = dvs.reduce((a, d) => (atMax(d) > atMax(a) ? d : a), dvs[0]);
+  const f = rankValues(longest.values, maxRank);
+  return f.op === "num" && f.n <= 0 ? null : f;
 }
 
 /** Résout une GameRef sur les sorts d'un champion. Null si introuvable ou non convertible. */
