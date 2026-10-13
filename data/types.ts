@@ -95,6 +95,9 @@ export interface Ability {
   shield?: ScaledValue;
   /** soin du lanceur à chaque lancer */
   heal?: ScaledValue;
+  /** bouclier et soin tirés des fichiers du jeu (prioritaires sur shield / heal) */
+  shieldFormula?: Formula;
+  healFormula?: Formula;
 }
 
 export interface ChampionBaseStats {

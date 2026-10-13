@@ -79,6 +79,35 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           8,
           6,
         ],
+        "formula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                10,
+                25,
+                40,
+                55,
+                70,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "ad",
+              "f": {
+                "op": "rank",
+                "v": [
+                  0.6,
+                  0.675,
+                  0.75,
+                  0.825,
+                  0.9,
+                ],
+              },
+            },
+          ],
+        },
       },
       "W": {
         "name": "Infernal Chains",
@@ -101,6 +130,29 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           13.5,
           12,
         ],
+        "formula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                30,
+                40,
+                50,
+                60,
+                70,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "ad",
+              "f": {
+                "op": "num",
+                "n": 0.4,
+              },
+            },
+          ],
+        },
       },
       "E": {
         "name": "Umbral Dash",
@@ -228,6 +280,29 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           6,
           5,
         ],
+        "formula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                40,
+                60,
+                80,
+                100,
+                120,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "ap",
+              "f": {
+                "op": "num",
+                "n": 0.4,
+              },
+            },
+          ],
+        },
       },
       "E": {
         "name": "Charm",
@@ -250,6 +325,29 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           12,
           12,
         ],
+        "formula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                80,
+                120,
+                160,
+                200,
+                240,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "ap",
+              "f": {
+                "op": "num",
+                "n": 0.85,
+              },
+            },
+          ],
+        },
       },
       "R": {
         "name": "Spirit Rush",
@@ -344,6 +442,37 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           1.5,
           1.5,
         ],
+        "formula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                45,
+                70,
+                95,
+                120,
+                145,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "ad",
+              "f": {
+                "op": "num",
+                "n": 0.65,
+              },
+            },
+            {
+              "op": "stat",
+              "stat": "ap",
+              "f": {
+                "op": "num",
+                "n": 0.6,
+              },
+            },
+          ],
+        },
       },
       "W": {
         "name": "Twilight Shroud",
@@ -383,6 +512,46 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           11.5,
           10,
         ],
+        "formula": {
+          "op": "mul",
+          "of": [
+            {
+              "op": "sum",
+              "of": [
+                {
+                  "op": "rank",
+                  "v": [
+                    70,
+                    140,
+                    210,
+                    280,
+                    350,
+                  ],
+                },
+                {
+                  "op": "stat",
+                  "stat": "ad",
+                  "f": {
+                    "op": "num",
+                    "n": 1,
+                  },
+                },
+                {
+                  "op": "stat",
+                  "stat": "ap",
+                  "f": {
+                    "op": "num",
+                    "n": 1.1,
+                  },
+                },
+              ],
+            },
+            {
+              "op": "num",
+              "n": 0.3,
+            },
+          ],
+        },
       },
       "R": {
         "name": "Perfect Execution",
@@ -402,6 +571,35 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           90,
           60,
         ],
+        "formula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                110,
+                220,
+                330,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "bonusAd",
+              "f": {
+                "op": "num",
+                "n": 0.5,
+              },
+            },
+            {
+              "op": "stat",
+              "stat": "ap",
+              "f": {
+                "op": "num",
+                "n": 0.3,
+              },
+            },
+          ],
+        },
       },
     },
     "shelf": [
@@ -609,6 +807,29 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           11,
           10,
         ],
+        "formula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                60,
+                100,
+                140,
+                180,
+                220,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "ap",
+              "f": {
+                "op": "num",
+                "n": 0.8,
+              },
+            },
+          ],
+        },
       },
       "W": {
         "name": "Headbutt",
@@ -631,6 +852,29 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           11,
           10,
         ],
+        "formula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                55,
+                110,
+                165,
+                220,
+                275,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "ap",
+              "f": {
+                "op": "num",
+                "n": 1,
+              },
+            },
+          ],
+        },
       },
       "E": {
         "name": "Trample",
@@ -774,6 +1018,29 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           15,
           14,
         ],
+        "formula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                50,
+                75,
+                100,
+                125,
+                150,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "bonusAd",
+              "f": {
+                "op": "num",
+                "n": 0.5,
+              },
+            },
+          ],
+        },
       },
       "E": {
         "name": "Lacerate",
@@ -805,6 +1072,29 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           10,
           9,
         ],
+        "formula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                40,
+                60,
+                80,
+                100,
+                120,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "bonusAd",
+              "f": {
+                "op": "num",
+                "n": 0.5,
+              },
+            },
+          ],
+        },
       },
       "R": {
         "name": "Public Execution",
@@ -823,6 +1113,27 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           115,
           100,
         ],
+        "formula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                150,
+                250,
+                350,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "bonusAd",
+              "f": {
+                "op": "num",
+                "n": 0.8,
+              },
+            },
+          ],
+        },
       },
     },
     "shelf": [
@@ -898,6 +1209,29 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           3,
           3,
         ],
+        "formula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                70,
+                95,
+                120,
+                145,
+                170,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "ap",
+              "f": {
+                "op": "num",
+                "n": 0.85,
+              },
+            },
+          ],
+        },
       },
       "W": {
         "name": "Despair",
@@ -951,6 +1285,29 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           6,
           5,
         ],
+        "formula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                65,
+                95,
+                125,
+                155,
+                185,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "ap",
+              "f": {
+                "op": "num",
+                "n": 0.5,
+              },
+            },
+          ],
+        },
       },
       "R": {
         "name": "Curse of the Sad Mummy",
@@ -969,6 +1326,27 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           125,
           100,
         ],
+        "formula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                200,
+                300,
+                400,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "ap",
+              "f": {
+                "op": "num",
+                "n": 0.8,
+              },
+            },
+          ],
+        },
       },
     },
     "shelf": [
@@ -1044,6 +1422,29 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           8,
           7,
         ],
+        "formula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                50,
+                70,
+                90,
+                110,
+                130,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "ap",
+              "f": {
+                "op": "num",
+                "n": 0.25,
+              },
+            },
+          ],
+        },
       },
       "W": {
         "name": "Crystallize",
@@ -1082,6 +1483,29 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           4,
           4,
         ],
+        "formula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                55,
+                80,
+                105,
+                130,
+                155,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "ap",
+              "f": {
+                "op": "num",
+                "n": 0.55,
+              },
+            },
+          ],
+        },
       },
       "R": {
         "name": "Glacial Storm",
@@ -1175,6 +1599,29 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           4,
           4,
         ],
+        "formula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                80,
+                125,
+                170,
+                215,
+                260,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "ap",
+              "f": {
+                "op": "num",
+                "n": 0.8,
+              },
+            },
+          ],
+        },
       },
       "W": {
         "name": "Incinerate",
@@ -1197,6 +1644,29 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           7,
           7,
         ],
+        "formula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                70,
+                110,
+                150,
+                190,
+                230,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "ap",
+              "f": {
+                "op": "num",
+                "n": 0.8,
+              },
+            },
+          ],
+        },
       },
       "E": {
         "name": "Molten Shield",
@@ -1231,6 +1701,52 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
             "ap": 0.4,
           },
         },
+        "formula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                25,
+                35,
+                45,
+                55,
+                65,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "ap",
+              "f": {
+                "op": "num",
+                "n": 0.4,
+              },
+            },
+          ],
+        },
+        "shieldFormula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                60,
+                95,
+                130,
+                165,
+                200,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "ap",
+              "f": {
+                "op": "num",
+                "n": 0.4,
+              },
+            },
+          ],
+        },
       },
       "R": {
         "name": "Summon: Tibbers",
@@ -1249,6 +1765,27 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           115,
           100,
         ],
+        "formula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                150,
+                275,
+                400,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "ap",
+              "f": {
+                "op": "num",
+                "n": 0.75,
+              },
+            },
+          ],
+        },
       },
     },
     "shelf": [
@@ -1452,6 +1989,29 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           7.5,
           4,
         ],
+        "formula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                60,
+                95,
+                130,
+                165,
+                200,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "bonusAd",
+              "f": {
+                "op": "num",
+                "n": 1,
+              },
+            },
+          ],
+        },
       },
       "E": {
         "name": "Hawkshot",
@@ -1486,6 +2046,27 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           80,
           60,
         ],
+        "formula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                200,
+                400,
+                600,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "ap",
+              "f": {
+                "op": "num",
+                "n": 1.2,
+              },
+            },
+          ],
+        },
       },
     },
     "shelf": [
@@ -1617,6 +2198,36 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           110,
           100,
         ],
+        "formula": {
+          "op": "mul",
+          "of": [
+            {
+              "op": "sum",
+              "of": [
+                {
+                  "op": "rank",
+                  "v": [
+                    150,
+                    250,
+                    350,
+                  ],
+                },
+                {
+                  "op": "stat",
+                  "stat": "ap",
+                  "f": {
+                    "op": "num",
+                    "n": 0.75,
+                  },
+                },
+              ],
+            },
+            {
+              "op": "num",
+              "n": 1.25,
+            },
+          ],
+        },
       },
     },
     "shelf": [
@@ -1692,6 +2303,29 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           7.5,
           7,
         ],
+        "formula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                45,
+                70,
+                95,
+                120,
+                145,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "ap",
+              "f": {
+                "op": "num",
+                "n": 0.4,
+              },
+            },
+          ],
+        },
       },
       "W": {
         "name": "Across the Veil",
@@ -1730,6 +2364,29 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           12,
           11,
         ],
+        "formula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                80,
+                120,
+                160,
+                200,
+                240,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "ap",
+              "f": {
+                "op": "num",
+                "n": 0.7,
+              },
+            },
+          ],
+        },
       },
       "R": {
         "name": "Between Worlds",
@@ -1748,6 +2405,27 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           120,
           100,
         ],
+        "formula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                175,
+                275,
+                375,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "ap",
+              "f": {
+                "op": "num",
+                "n": 0.7,
+              },
+            },
+          ],
+        },
       },
     },
     "shelf": [
@@ -1823,6 +2501,35 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           8,
           6,
         ],
+        "formula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                75,
+                95,
+                115,
+                135,
+                155,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "ap",
+              "f": {
+                "op": "rank",
+                "v": [
+                  0.35,
+                  0.4,
+                  0.45,
+                  0.5,
+                  0.55,
+                ],
+              },
+            },
+          ],
+        },
       },
       "W": {
         "name": "Arise!",
@@ -1901,6 +2608,29 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
             "ap": 0.6,
           },
         },
+        "shieldFormula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                70,
+                110,
+                150,
+                190,
+                230,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "ap",
+              "f": {
+                "op": "num",
+                "n": 0.6,
+              },
+            },
+          ],
+        },
       },
       "R": {
         "name": "Emperor's Divide",
@@ -1919,6 +2649,27 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           105,
           90,
         ],
+        "formula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                200,
+                400,
+                600,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "ap",
+              "f": {
+                "op": "num",
+                "n": 0.75,
+              },
+            },
+          ],
+        },
       },
     },
     "shelf": [
@@ -1994,6 +2745,29 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           8,
           7,
         ],
+        "formula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                80,
+                120,
+                160,
+                200,
+                240,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "ap",
+              "f": {
+                "op": "num",
+                "n": 0.8,
+              },
+            },
+          ],
+        },
       },
       "W": {
         "name": "Caretaker's Shrine",
@@ -2014,6 +2788,29 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           "ratios": {
             "ap": 0.3,
           },
+        },
+        "healFormula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                25,
+                50,
+                75,
+                100,
+                125,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "ap",
+              "f": {
+                "op": "num",
+                "n": 0.4,
+              },
+            },
+          ],
         },
       },
       "E": {
@@ -2120,6 +2917,29 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           1.75,
           1,
         ],
+        "formula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                12,
+                14,
+                16,
+                18,
+                20,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "ad",
+              "f": {
+                "op": "num",
+                "n": 1.05,
+              },
+            },
+          ],
+        },
       },
       "W": {
         "name": "Above and Below",
@@ -2143,6 +2963,29 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           9,
           8,
         ],
+        "formula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                80,
+                140,
+                200,
+                260,
+                320,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "ap",
+              "f": {
+                "op": "num",
+                "n": 1.5,
+              },
+            },
+          ],
+        },
       },
       "E": {
         "name": "Royal Maelstrom",
@@ -2270,6 +3113,29 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           17,
           16,
         ],
+        "formula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                110,
+                160,
+                210,
+                260,
+                310,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "ap",
+              "f": {
+                "op": "num",
+                "n": 1.2,
+              },
+            },
+          ],
+        },
       },
       "W": {
         "name": "Overdrive",
@@ -2402,6 +3268,29 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           6.5,
           6,
         ],
+        "formula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                70,
+                100,
+                130,
+                160,
+                190,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "ap",
+              "f": {
+                "op": "num",
+                "n": 0.65,
+              },
+            },
+          ],
+        },
       },
       "W": {
         "name": "Pillar of Flame",
@@ -2424,6 +3313,29 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           8.5,
           8,
         ],
+        "formula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                75,
+                120,
+                165,
+                210,
+                255,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "ap",
+              "f": {
+                "op": "num",
+                "n": 0.7,
+              },
+            },
+          ],
+        },
       },
       "E": {
         "name": "Conflagration",
@@ -2446,6 +3358,29 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           10,
           9,
         ],
+        "formula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                55,
+                80,
+                105,
+                130,
+                155,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "ap",
+              "f": {
+                "op": "num",
+                "n": 0.6,
+              },
+            },
+          ],
+        },
       },
       "R": {
         "name": "Pyroclasm",
@@ -2464,6 +3399,27 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           90,
           80,
         ],
+        "formula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                100,
+                175,
+                250,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "ap",
+              "f": {
+                "op": "num",
+                "n": 0.3,
+              },
+            },
+          ],
+        },
       },
     },
     "shelf": [
@@ -2587,6 +3543,27 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           115,
           100,
         ],
+        "formula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                150,
+                250,
+                350,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "ap",
+              "f": {
+                "op": "num",
+                "n": 0.6,
+              },
+            },
+          ],
+        },
       },
     },
     "shelf": [
@@ -2663,6 +3640,37 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           10,
           9,
         ],
+        "formula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                60,
+                85,
+                110,
+                135,
+                160,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "ap",
+              "f": {
+                "op": "num",
+                "n": 0.6,
+              },
+            },
+            {
+              "op": "stat",
+              "stat": "bonusAd",
+              "f": {
+                "op": "num",
+                "n": 0.8,
+              },
+            },
+          ],
+        },
       },
       "W": {
         "name": "Blood Frenzy",
@@ -2690,6 +3698,20 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           11,
           10,
         ],
+        "formula": {
+          "op": "stat",
+          "stat": "ad",
+          "f": {
+            "op": "rank",
+            "v": [
+              0.6,
+              0.7,
+              0.8,
+              0.9,
+              1,
+            ],
+          },
+        },
       },
       "E": {
         "name": "Chilling Scream",
@@ -2730,6 +3752,37 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
             ],
           },
         },
+        "formula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                80,
+                115,
+                150,
+                185,
+                220,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "bonusAd",
+              "f": {
+                "op": "num",
+                "n": 1,
+              },
+            },
+            {
+              "op": "stat",
+              "stat": "ap",
+              "f": {
+                "op": "num",
+                "n": 1,
+              },
+            },
+          ],
+        },
       },
       "R": {
         "name": "Certain Death",
@@ -2749,6 +3802,27 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           100,
           80,
         ],
+        "formula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                150,
+                250,
+                350,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "ap",
+              "f": {
+                "op": "num",
+                "n": 1.3,
+              },
+            },
+          ],
+        },
       },
     },
     "shelf": [
@@ -2833,6 +3907,35 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           7,
           6,
         ],
+        "formula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                50,
+                90,
+                130,
+                170,
+                210,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "ad",
+              "f": {
+                "op": "rank",
+                "v": [
+                  1.25,
+                  1.45,
+                  1.65,
+                  1.85,
+                  2.05,
+                ],
+              },
+            },
+          ],
+        },
       },
       "W": {
         "name": "Yordle Snap Trap",
@@ -2877,6 +3980,29 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           10,
           8,
         ],
+        "formula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                80,
+                130,
+                180,
+                230,
+                280,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "ap",
+              "f": {
+                "op": "num",
+                "n": 0.8,
+              },
+            },
+          ],
+        },
       },
       "R": {
         "name": "Ace in the Hole",
@@ -2997,6 +4123,29 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           12,
           11,
         ],
+        "formula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                60,
+                85,
+                110,
+                135,
+                160,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "bonusAd",
+              "f": {
+                "op": "num",
+                "n": 0.6,
+              },
+            },
+          ],
+        },
       },
       "E": {
         "name": "Hookshot",
@@ -3172,6 +4321,20 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
             ],
           },
         },
+        "healFormula": {
+          "op": "stat",
+          "stat": "ap",
+          "f": {
+            "op": "rank",
+            "v": [
+              0.1,
+              0.115,
+              0.13,
+              0.145,
+              0.16,
+            ],
+          },
+        },
       },
       "R": {
         "name": "Petrifying Gaze",
@@ -3190,6 +4353,27 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           100,
           80,
         ],
+        "formula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                125,
+                225,
+                325,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "ap",
+              "f": {
+                "op": "num",
+                "n": 0.75,
+              },
+            },
+          ],
+        },
       },
     },
     "shelf": [
@@ -3346,6 +4530,35 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           ],
           "ratios": {},
         },
+        "formula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                300,
+                475,
+                650,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "ap",
+              "f": {
+                "op": "num",
+                "n": 0.5,
+              },
+            },
+            {
+              "op": "stat",
+              "stat": "bonusHp",
+              "f": {
+                "op": "num",
+                "n": 0.1,
+              },
+            },
+          ],
+        },
       },
     },
     "shelf": [
@@ -3422,6 +4635,37 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           7.5,
           7,
         ],
+        "formula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                60,
+                105,
+                150,
+                195,
+                240,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "bonusAd",
+              "f": {
+                "op": "num",
+                "n": 1.25,
+              },
+            },
+            {
+              "op": "stat",
+              "stat": "ap",
+              "f": {
+                "op": "num",
+                "n": 1,
+              },
+            },
+          ],
+        },
       },
       "W": {
         "name": "Valkyrie",
@@ -3485,6 +4729,27 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           2,
           2,
         ],
+        "formula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                90,
+                170,
+                250,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "bonusAd",
+              "f": {
+                "op": "num",
+                "n": 0.85,
+              },
+            },
+          ],
+        },
       },
     },
     "shelf": [
@@ -3570,6 +4835,44 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           6,
           5,
         ],
+        "formula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                50,
+                80,
+                110,
+                140,
+                170,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "ad",
+              "f": {
+                "op": "mul",
+                "of": [
+                  {
+                    "op": "rank",
+                    "v": [
+                      100,
+                      110,
+                      120,
+                      130,
+                      140,
+                    ],
+                  },
+                  {
+                    "op": "num",
+                    "n": 0.01,
+                  },
+                ],
+              },
+            },
+          ],
+        },
       },
       "W": {
         "name": "Crippling Strike",
@@ -3631,6 +4934,27 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           100,
           80,
         ],
+        "formula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                125,
+                250,
+                375,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "bonusAd",
+              "f": {
+                "op": "num",
+                "n": 0.75,
+              },
+            },
+          ],
+        },
       },
     },
     "shelf": [
@@ -3706,6 +5030,29 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           6.5,
           6,
         ],
+        "formula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                70,
+                105,
+                140,
+                175,
+                210,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "ap",
+              "f": {
+                "op": "num",
+                "n": 0.7,
+              },
+            },
+          ],
+        },
       },
       "W": {
         "name": "Pale Cascade",
@@ -3741,6 +5088,60 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
             "bonusHp": 0.09,
           },
         },
+        "formula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                20,
+                32,
+                44,
+                56,
+                68,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "ap",
+              "f": {
+                "op": "num",
+                "n": 0.18,
+              },
+            },
+          ],
+        },
+        "shieldFormula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                45,
+                60,
+                75,
+                90,
+                105,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "ap",
+              "f": {
+                "op": "num",
+                "n": 0.3,
+              },
+            },
+            {
+              "op": "stat",
+              "stat": "bonusHp",
+              "f": {
+                "op": "num",
+                "n": 0.14,
+              },
+            },
+          ],
+        },
       },
       "E": {
         "name": "Lunar Rush",
@@ -3763,6 +5164,29 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           16,
           14,
         ],
+        "formula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                50,
+                70,
+                90,
+                110,
+                130,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "ap",
+              "f": {
+                "op": "num",
+                "n": 0.6,
+              },
+            },
+          ],
+        },
       },
       "R": {
         "name": "Moonfall",
@@ -3781,6 +5205,27 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           90,
           80,
         ],
+        "formula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                200,
+                300,
+                400,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "ap",
+              "f": {
+                "op": "num",
+                "n": 0.6,
+              },
+            },
+          ],
+        },
       },
     },
     "shelf": [
@@ -4016,6 +5461,35 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           9,
           8,
         ],
+        "formula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                40,
+                45,
+                50,
+                55,
+                60,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "bonusAd",
+              "f": {
+                "op": "rank",
+                "v": [
+                  0.75,
+                  0.85,
+                  0.95,
+                  1.05,
+                  1.15,
+                ],
+              },
+            },
+          ],
+        },
       },
       "W": {
         "name": "Blood Rush",
@@ -4054,6 +5528,29 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           15,
           14,
         ],
+        "formula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                75,
+                110,
+                145,
+                180,
+                215,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "bonusAd",
+              "f": {
+                "op": "num",
+                "n": 0.5,
+              },
+            },
+          ],
+        },
       },
       "R": {
         "name": "Whirling Death",
@@ -4079,6 +5576,31 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           90,
           80,
         ],
+        "formula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                200,
+                300,
+                400,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "bonusAd",
+              "f": {
+                "op": "rank",
+                "v": [
+                  1.1,
+                  1.3,
+                  1.5,
+                ],
+              },
+            },
+          ],
+        },
       },
     },
     "shelf": [
@@ -4154,6 +5676,29 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           7.5,
           7,
         ],
+        "formula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                80,
+                95,
+                110,
+                125,
+                140,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "ap",
+              "f": {
+                "op": "num",
+                "n": 0.3,
+              },
+            },
+          ],
+        },
       },
       "W": {
         "name": "Parallel Convergence",
@@ -4182,6 +5727,29 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
             "ap": 1.5,
           },
         },
+        "shieldFormula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                100,
+                120,
+                140,
+                160,
+                180,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "ap",
+              "f": {
+                "op": "num",
+                "n": 1.5,
+              },
+            },
+          ],
+        },
       },
       "E": {
         "name": "Phase Dive",
@@ -4204,6 +5772,29 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           7.5,
           7,
         ],
+        "formula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                50,
+                75,
+                100,
+                125,
+                150,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "ap",
+              "f": {
+                "op": "num",
+                "n": 0.4,
+              },
+            },
+          ],
+        },
       },
       "R": {
         "name": "Chronobreak",
@@ -4231,6 +5822,48 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           "ratios": {
             "ap": 0.6,
           },
+        },
+        "formula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                200,
+                350,
+                500,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "ap",
+              "f": {
+                "op": "num",
+                "n": 1.75,
+              },
+            },
+          ],
+        },
+        "healFormula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                100,
+                150,
+                200,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "ap",
+              "f": {
+                "op": "num",
+                "n": 0.6,
+              },
+            },
+          ],
         },
       },
     },
@@ -4329,6 +5962,29 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           12,
           12,
         ],
+        "formula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                60,
+                100,
+                140,
+                180,
+                220,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "ap",
+              "f": {
+                "op": "num",
+                "n": 0.75,
+              },
+            },
+          ],
+        },
       },
       "E": {
         "name": "Cocoon",
@@ -4434,6 +6090,29 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           4,
           4,
         ],
+        "formula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                25,
+                30,
+                35,
+                40,
+                45,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "ap",
+              "f": {
+                "op": "num",
+                "n": 0.25,
+              },
+            },
+          ],
+        },
       },
       "W": {
         "name": "Allure",
@@ -4496,6 +6175,27 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           100,
           80,
         ],
+        "formula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                125,
+                250,
+                375,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "ap",
+              "f": {
+                "op": "num",
+                "n": 0.75,
+              },
+            },
+          ],
+        },
       },
     },
     "shelf": [
@@ -4572,6 +6272,37 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           4.75,
           4.5,
         ],
+        "formula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                20,
+                45,
+                70,
+                95,
+                120,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "ad",
+              "f": {
+                "op": "num",
+                "n": 1.3,
+              },
+            },
+            {
+              "op": "stat",
+              "stat": "ap",
+              "f": {
+                "op": "num",
+                "n": 0.4,
+              },
+            },
+          ],
+        },
       },
       "W": {
         "name": "Essence Flux",
@@ -4604,6 +6335,37 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           8,
           8,
         ],
+        "formula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                80,
+                135,
+                190,
+                245,
+                300,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "bonusAd",
+              "f": {
+                "op": "num",
+                "n": 1,
+              },
+            },
+            {
+              "op": "stat",
+              "stat": "ap",
+              "f": {
+                "op": "num",
+                "n": 0.9,
+              },
+            },
+          ],
+        },
       },
       "E": {
         "name": "Arcane Shift",
@@ -4627,6 +6389,37 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           17,
           14,
         ],
+        "formula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                80,
+                130,
+                180,
+                230,
+                280,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "bonusAd",
+              "f": {
+                "op": "num",
+                "n": 0.6,
+              },
+            },
+            {
+              "op": "stat",
+              "stat": "ap",
+              "f": {
+                "op": "num",
+                "n": 0.75,
+              },
+            },
+          ],
+        },
       },
       "R": {
         "name": "Trueshot Barrage",
@@ -4646,6 +6439,35 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           105,
           90,
         ],
+        "formula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                350,
+                550,
+                750,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "bonusAd",
+              "f": {
+                "op": "num",
+                "n": 1,
+              },
+            },
+            {
+              "op": "stat",
+              "stat": "ap",
+              "f": {
+                "op": "num",
+                "n": 1.1,
+              },
+            },
+          ],
+        },
       },
     },
     "shelf": [
@@ -4894,6 +6716,29 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           18,
           16,
         ],
+        "formula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                110,
+                150,
+                190,
+                230,
+                270,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "ap",
+              "f": {
+                "op": "num",
+                "n": 1,
+              },
+            },
+          ],
+        },
       },
       "E": {
         "name": "Bladework",
@@ -5009,6 +6854,29 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           6.5,
           6,
         ],
+        "formula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                10,
+                25,
+                40,
+                55,
+                70,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "ap",
+              "f": {
+                "op": "num",
+                "n": 0.55,
+              },
+            },
+          ],
+        },
       },
       "W": {
         "name": "Seastone Trident",
@@ -5053,6 +6921,29 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           10,
           8,
         ],
+        "formula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                80,
+                130,
+                180,
+                230,
+                280,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "ap",
+              "f": {
+                "op": "num",
+                "n": 0.95,
+              },
+            },
+          ],
+        },
       },
       "R": {
         "name": "Chum the Waters",
@@ -5071,6 +6962,27 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           100,
           80,
         ],
+        "formula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                180,
+                300,
+                420,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "ap",
+              "f": {
+                "op": "num",
+                "n": 0.6,
+              },
+            },
+          ],
+        },
       },
     },
     "shelf": [
@@ -5146,6 +7058,29 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           8,
           7,
         ],
+        "formula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                70,
+                105,
+                140,
+                175,
+                210,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "ap",
+              "f": {
+                "op": "num",
+                "n": 0.7,
+              },
+            },
+          ],
+        },
       },
       "W": {
         "name": "Shield of Durand",
@@ -5190,6 +7125,29 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           8,
           7,
         ],
+        "formula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                100,
+                135,
+                170,
+                205,
+                240,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "ap",
+              "f": {
+                "op": "num",
+                "n": 1,
+              },
+            },
+          ],
+        },
       },
       "R": {
         "name": "Hero's Entrance",
@@ -5208,6 +7166,35 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           160,
           140,
         ],
+        "formula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                150,
+                250,
+                350,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "ap",
+              "f": {
+                "op": "num",
+                "n": 0.7,
+              },
+            },
+            {
+              "op": "stat",
+              "stat": "bonusMr",
+              "f": {
+                "op": "num",
+                "n": 1,
+              },
+            },
+          ],
+        },
       },
     },
     "shelf": [
@@ -5283,6 +7270,29 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           4.5,
           4.5,
         ],
+        "formula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                10,
+                40,
+                70,
+                100,
+                130,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "ad",
+              "f": {
+                "op": "num",
+                "n": 1,
+              },
+            },
+          ],
+        },
       },
       "W": {
         "name": "Remove Scurvy",
@@ -5310,6 +7320,29 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           "ratios": {
             "ap": 0.9,
           },
+        },
+        "healFormula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                45,
+                70,
+                95,
+                120,
+                145,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "ap",
+              "f": {
+                "op": "num",
+                "n": 0.9,
+              },
+            },
+          ],
         },
       },
       "E": {
@@ -5349,6 +7382,27 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           140,
           120,
         ],
+        "formula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                40,
+                70,
+                100,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "ap",
+              "f": {
+                "op": "num",
+                "n": 0.1,
+              },
+            },
+          ],
+        },
       },
     },
     "shelf": [
@@ -5452,6 +7506,29 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
             "bonusHp": 0.18,
           },
         },
+        "shieldFormula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                65,
+                85,
+                105,
+                125,
+                145,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "bonusHp",
+              "f": {
+                "op": "num",
+                "n": 0.18,
+              },
+            },
+          ],
+        },
       },
       "E": {
         "name": "Judgment",
@@ -5483,6 +7560,35 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           6.75,
           6,
         ],
+        "formula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                4,
+                7,
+                10,
+                13,
+                16,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "ad",
+              "f": {
+                "op": "rank",
+                "v": [
+                  0.4,
+                  0.43,
+                  0.46,
+                  0.49,
+                  0.52,
+                ],
+              },
+            },
+          ],
+        },
       },
       "R": {
         "name": "Demacian Justice",
@@ -5583,6 +7689,29 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           11.5,
           10,
         ],
+        "formula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                45,
+                90,
+                135,
+                180,
+                225,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "ad",
+              "f": {
+                "op": "num",
+                "n": 1.4,
+              },
+            },
+          ],
+        },
       },
       "W": {
         "name": "Hyper",
@@ -5637,6 +7766,29 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           14.5,
           12,
         ],
+        "formula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                80,
+                115,
+                150,
+                185,
+                220,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "maxHp",
+              "f": {
+                "op": "num",
+                "n": 0.06,
+              },
+            },
+          ],
+        },
       },
       "R": {
         "name": "GNAR!",
@@ -5656,6 +7808,35 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           60,
           30,
         ],
+        "formula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                200,
+                300,
+                400,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "ap",
+              "f": {
+                "op": "num",
+                "n": 1,
+              },
+            },
+            {
+              "op": "stat",
+              "stat": "bonusAd",
+              "f": {
+                "op": "num",
+                "n": 0.5,
+              },
+            },
+          ],
+        },
       },
     },
     "shelf": [
@@ -5776,6 +7957,29 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           12.5,
           12,
         ],
+        "formula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                80,
+                125,
+                170,
+                215,
+                260,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "ap",
+              "f": {
+                "op": "num",
+                "n": 0.6,
+              },
+            },
+          ],
+        },
       },
       "R": {
         "name": "Explosive Cask",
@@ -5794,6 +7998,27 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           85,
           70,
         ],
+        "formula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                200,
+                300,
+                400,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "ap",
+              "f": {
+                "op": "num",
+                "n": 0.8,
+              },
+            },
+          ],
+        },
       },
     },
     "shelf": [
@@ -5869,6 +8094,29 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           7.75,
           6,
         ],
+        "formula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                50,
+                75,
+                100,
+                125,
+                150,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "bonusAd",
+              "f": {
+                "op": "num",
+                "n": 0.55,
+              },
+            },
+          ],
+        },
       },
       "W": {
         "name": "Smoke Screen",
@@ -5891,6 +8139,29 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           20,
           18,
         ],
+        "formula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                60,
+                110,
+                160,
+                210,
+                260,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "ap",
+              "f": {
+                "op": "num",
+                "n": 0.6,
+              },
+            },
+          ],
+        },
       },
       "E": {
         "name": "Quickdraw",
@@ -5925,6 +8196,27 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           80,
           60,
         ],
+        "formula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                275,
+                425,
+                575,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "bonusAd",
+              "f": {
+                "op": "num",
+                "n": 1.5,
+              },
+            },
+          ],
+        },
       },
     },
     "shelf": [
@@ -6038,6 +8330,23 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           11.5,
           11,
         ],
+        "formula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "num",
+              "n": 15,
+            },
+            {
+              "op": "stat",
+              "stat": "ap",
+              "f": {
+                "op": "num",
+                "n": 0.2,
+              },
+            },
+          ],
+        },
       },
       "R": {
         "name": "Needlework",
@@ -6056,6 +8365,27 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           100,
           80,
         ],
+        "formula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                30,
+                50,
+                70,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "ap",
+              "f": {
+                "op": "num",
+                "n": 0.1,
+              },
+            },
+          ],
+        },
       },
     },
     "shelf": [
@@ -6131,6 +8461,29 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           4,
           4,
         ],
+        "formula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                60,
+                90,
+                120,
+                150,
+                180,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "bonusAd",
+              "f": {
+                "op": "num",
+                "n": 0.9,
+              },
+            },
+          ],
+        },
       },
       "W": {
         "name": "Spirit of Dread",
@@ -6203,6 +8556,27 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           120,
           100,
         ],
+        "formula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                150,
+                250,
+                350,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "ap",
+              "f": {
+                "op": "num",
+                "n": 1,
+              },
+            },
+          ],
+        },
       },
     },
     "shelf": [
@@ -6294,6 +8668,29 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           8,
           7,
         ],
+        "formula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                50,
+                75,
+                100,
+                125,
+                150,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "ap",
+              "f": {
+                "op": "num",
+                "n": 0.55,
+              },
+            },
+          ],
+        },
       },
       "E": {
         "name": "CH-2 Electron Storm Grenade",
@@ -6316,6 +8713,29 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           11,
           11,
         ],
+        "formula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                60,
+                100,
+                140,
+                180,
+                220,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "ap",
+              "f": {
+                "op": "num",
+                "n": 0.6,
+              },
+            },
+          ],
+        },
       },
       "R": {
         "name": "UPGRADE!!!",
@@ -6579,6 +8999,27 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           95,
           70,
         ],
+        "formula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                150,
+                250,
+                350,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "bonusAd",
+              "f": {
+                "op": "num",
+                "n": 0.5,
+              },
+            },
+          ],
+        },
       },
     },
     "shelf": [
@@ -6671,6 +9112,20 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
             ],
           },
         },
+        "healFormula": {
+          "op": "stat",
+          "stat": "ad",
+          "f": {
+            "op": "rank",
+            "v": [
+              0.09,
+              0.1,
+              0.11,
+              0.12,
+              0.13,
+            ],
+          },
+        },
       },
       "W": {
         "name": "Defiant Dance",
@@ -6716,6 +9171,29 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           11.5,
           10,
         ],
+        "formula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                70,
+                110,
+                150,
+                190,
+                230,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "ap",
+              "f": {
+                "op": "num",
+                "n": 1,
+              },
+            },
+          ],
+        },
       },
       "R": {
         "name": "Vanguard's Edge",
@@ -6734,6 +9212,27 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           105,
           85,
         ],
+        "formula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                125,
+                200,
+                275,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "ap",
+              "f": {
+                "op": "num",
+                "n": 1,
+              },
+            },
+          ],
+        },
       },
     },
     "shelf": [
@@ -6809,6 +9308,29 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           11,
           10,
         ],
+        "formula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                80,
+                125,
+                170,
+                215,
+                260,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "ap",
+              "f": {
+                "op": "num",
+                "n": 0.7,
+              },
+            },
+          ],
+        },
       },
       "W": {
         "name": "Brushmaker",
@@ -6831,6 +9353,29 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           0.5,
           0.5,
         ],
+        "formula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                20,
+                27.5,
+                35,
+                42.5,
+                50,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "ap",
+              "f": {
+                "op": "num",
+                "n": 0.2,
+              },
+            },
+          ],
+        },
       },
       "E": {
         "name": "Triggerseed",
@@ -6864,6 +9409,52 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           "ratios": {
             "ap": 0.5,
           },
+        },
+        "formula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                70,
+                90,
+                110,
+                130,
+                150,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "ap",
+              "f": {
+                "op": "num",
+                "n": 0.8,
+              },
+            },
+          ],
+        },
+        "shieldFormula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                75,
+                115,
+                155,
+                195,
+                235,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "ap",
+              "f": {
+                "op": "num",
+                "n": 0.5,
+              },
+            },
+          ],
         },
       },
       "R": {
@@ -6976,6 +9567,29 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           6.5,
           6,
         ],
+        "formula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                55,
+                85,
+                115,
+                145,
+                175,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "ap",
+              "f": {
+                "op": "num",
+                "n": 0.5,
+              },
+            },
+          ],
+        },
       },
       "E": {
         "name": "Eye of the Storm",
@@ -7003,6 +9617,29 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           "ratios": {
             "ap": 0.55,
           },
+        },
+        "shieldFormula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                80,
+                120,
+                160,
+                200,
+                240,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "ap",
+              "f": {
+                "op": "num",
+                "n": 0.55,
+              },
+            },
+          ],
         },
       },
       "R": {
@@ -7103,6 +9740,29 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           7,
           6,
         ],
+        "formula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                90,
+                130,
+                170,
+                210,
+                250,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "bonusAd",
+              "f": {
+                "op": "num",
+                "n": 1.45,
+              },
+            },
+          ],
+        },
       },
       "W": {
         "name": "Golden Aegis",
@@ -7131,6 +9791,29 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
             "bonusAd": 0.7,
           },
         },
+        "shieldFormula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                60,
+                80,
+                100,
+                120,
+                140,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "bonusAd",
+              "f": {
+                "op": "num",
+                "n": 0.7,
+              },
+            },
+          ],
+        },
       },
       "E": {
         "name": "Demacian Standard",
@@ -7153,6 +9836,29 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           10.5,
           10,
         ],
+        "formula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                80,
+                120,
+                160,
+                200,
+                240,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "ap",
+              "f": {
+                "op": "num",
+                "n": 0.8,
+              },
+            },
+          ],
+        },
       },
       "R": {
         "name": "Cataclysm",
@@ -7171,6 +9877,27 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           105,
           90,
         ],
+        "formula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                200,
+                325,
+                450,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "bonusAd",
+              "f": {
+                "op": "num",
+                "n": 1.8,
+              },
+            },
+          ],
+        },
       },
     },
     "shelf": [
@@ -7246,6 +9973,29 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           6.5,
           6,
         ],
+        "formula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                65,
+                105,
+                145,
+                185,
+                225,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "bonusAd",
+              "f": {
+                "op": "num",
+                "n": 1,
+              },
+            },
+          ],
+        },
       },
       "W": {
         "name": "Empower",
@@ -7268,6 +10018,29 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           4,
           3,
         ],
+        "formula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                50,
+                85,
+                120,
+                155,
+                190,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "ap",
+              "f": {
+                "op": "num",
+                "n": 0.6,
+              },
+            },
+          ],
+        },
       },
       "E": {
         "name": "Counter Strike",
@@ -7309,6 +10082,27 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           100,
           90,
         ],
+        "formula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                100,
+                175,
+                250,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "ap",
+              "f": {
+                "op": "num",
+                "n": 1,
+              },
+            },
+          ],
+        },
       },
     },
     "shelf": [
@@ -7385,6 +10179,29 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           10,
           8,
         ],
+        "formula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                60,
+                110,
+                160,
+                210,
+                260,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "bonusAd",
+              "f": {
+                "op": "num",
+                "n": 1.35,
+              },
+            },
+          ],
+        },
       },
       "W": {
         "name": "Lightning Field",
@@ -7537,6 +10354,43 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           5.5,
           5,
         ],
+        "formula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                44,
+                69,
+                94,
+                119,
+                144,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "ad",
+              "f": {
+                "op": "rank",
+                "v": [
+                  0.44,
+                  0.515,
+                  0.59,
+                  0.665,
+                  0.74,
+                ],
+              },
+            },
+            {
+              "op": "stat",
+              "stat": "ap",
+              "f": {
+                "op": "num",
+                "n": 0.6,
+              },
+            },
+          ],
+        },
       },
       "W": {
         "name": "Deadly Flourish",
@@ -7559,6 +10413,29 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           12,
           12,
         ],
+        "formula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                70,
+                105,
+                140,
+                175,
+                210,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "ad",
+              "f": {
+                "op": "num",
+                "n": 0.5,
+              },
+            },
+          ],
+        },
       },
       "E": {
         "name": "Captive Audience",
@@ -7582,6 +10459,37 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           2,
           2,
         ],
+        "formula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                20,
+                80,
+                140,
+                200,
+                260,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "ad",
+              "f": {
+                "op": "num",
+                "n": 1.2,
+              },
+            },
+            {
+              "op": "stat",
+              "stat": "ap",
+              "f": {
+                "op": "num",
+                "n": 1,
+              },
+            },
+          ],
+        },
       },
       "R": {
         "name": "Curtain Call",
@@ -7600,6 +10508,27 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           105,
           90,
         ],
+        "formula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                64,
+                128,
+                192,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "ad",
+              "f": {
+                "op": "num",
+                "n": 0.25,
+              },
+            },
+          ],
+        },
       },
     },
     "shelf": [
@@ -7691,6 +10620,29 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           5,
           4,
         ],
+        "formula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                10,
+                60,
+                110,
+                160,
+                210,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "ad",
+              "f": {
+                "op": "num",
+                "n": 1.4,
+              },
+            },
+          ],
+        },
       },
       "E": {
         "name": "Flame Chompers!",
@@ -7713,6 +10665,29 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           13.5,
           10,
         ],
+        "formula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                90,
+                140,
+                190,
+                240,
+                290,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "ap",
+              "f": {
+                "op": "num",
+                "n": 1,
+              },
+            },
+          ],
+        },
       },
       "R": {
         "name": "Super Mega Death Rocket!",
@@ -7812,6 +10787,37 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           3.5,
           3.5,
         ],
+        "formula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                70,
+                100,
+                130,
+                160,
+                190,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "bonusArmor",
+              "f": {
+                "op": "num",
+                "n": 0.4,
+              },
+            },
+            {
+              "op": "stat",
+              "stat": "bonusMr",
+              "f": {
+                "op": "num",
+                "n": 0.4,
+              },
+            },
+          ],
+        },
       },
       "W": {
         "name": "Path Maker",
@@ -7862,6 +10868,29 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
             "bonusHp": 0.15,
           },
         },
+        "shieldFormula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                70,
+                112.5,
+                155,
+                197.5,
+                240,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "bonusHp",
+              "f": {
+                "op": "num",
+                "n": 0.135,
+              },
+            },
+          ],
+        },
       },
       "R": {
         "name": "All Out",
@@ -7878,6 +10907,27 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           100,
           80,
         ],
+        "formula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                80,
+                115,
+                150,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "bonusHp",
+              "f": {
+                "op": "num",
+                "n": 0.05,
+              },
+            },
+          ],
+        },
       },
     },
     "shelf": [
@@ -7954,6 +11004,37 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           7,
           6,
         ],
+        "formula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                40,
+                55,
+                70,
+                85,
+                100,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "bonusAd",
+              "f": {
+                "op": "num",
+                "n": 0.55,
+              },
+            },
+            {
+              "op": "stat",
+              "stat": "ap",
+              "f": {
+                "op": "num",
+                "n": 0.2,
+              },
+            },
+          ],
+        },
       },
       "W": {
         "name": "Void Seeker",
@@ -7977,6 +11058,37 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           16,
           14,
         ],
+        "formula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                30,
+                55,
+                80,
+                105,
+                130,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "ad",
+              "f": {
+                "op": "num",
+                "n": 1.3,
+              },
+            },
+            {
+              "op": "stat",
+              "stat": "ap",
+              "f": {
+                "op": "num",
+                "n": 0.45,
+              },
+            },
+          ],
+        },
       },
       "E": {
         "name": "Supercharge",
@@ -8024,6 +11136,39 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
               1.8,
             ],
           },
+        },
+        "shieldFormula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                100,
+                150,
+                200,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "ad",
+              "f": {
+                "op": "rank",
+                "v": [
+                  0.9,
+                  1.35,
+                  1.8,
+                ],
+              },
+            },
+            {
+              "op": "stat",
+              "stat": "ap",
+              "f": {
+                "op": "num",
+                "n": 1.2,
+              },
+            },
+          ],
         },
       },
     },
@@ -8100,6 +11245,29 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           9,
           9,
         ],
+        "formula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                10,
+                75,
+                140,
+                205,
+                270,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "ad",
+              "f": {
+                "op": "num",
+                "n": 1.05,
+              },
+            },
+          ],
+        },
       },
       "W": {
         "name": "Sentinel",
@@ -8239,6 +11407,29 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           6,
           5,
         ],
+        "formula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                60,
+                110,
+                160,
+                210,
+                260,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "ap",
+              "f": {
+                "op": "num",
+                "n": 0.7,
+              },
+            },
+          ],
+        },
       },
       "W": {
         "name": "Focused Resolve",
@@ -8261,6 +11452,29 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           12,
           12,
         ],
+        "formula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                40,
+                65,
+                90,
+                115,
+                140,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "ap",
+              "f": {
+                "op": "num",
+                "n": 0.45,
+              },
+            },
+          ],
+        },
       },
       "E": {
         "name": "Inspire",
@@ -8288,6 +11502,29 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           "ratios": {
             "ap": 0.6,
           },
+        },
+        "shieldFormula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                80,
+                130,
+                180,
+                230,
+                280,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "ap",
+              "f": {
+                "op": "num",
+                "n": 0.6,
+              },
+            },
+          ],
         },
       },
       "R": {
@@ -8378,6 +11615,29 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           1,
           1,
         ],
+        "formula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                40,
+                59,
+                78,
+                97,
+                116,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "ap",
+              "f": {
+                "op": "num",
+                "n": 0.35,
+              },
+            },
+          ],
+        },
       },
       "W": {
         "name": "Wall of Pain",
@@ -8434,6 +11694,27 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           180,
           160,
         ],
+        "formula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                200,
+                350,
+                500,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "ap",
+              "f": {
+                "op": "num",
+                "n": 0.7,
+              },
+            },
+          ],
+        },
       },
     },
     "shelf": [
@@ -8521,6 +11802,52 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
             "ap": 0.3,
           },
         },
+        "formula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                65,
+                95,
+                125,
+                155,
+                185,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "ap",
+              "f": {
+                "op": "num",
+                "n": 0.8,
+              },
+            },
+          ],
+        },
+        "shieldFormula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                80,
+                110,
+                140,
+                170,
+                200,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "ap",
+              "f": {
+                "op": "num",
+                "n": 0.3,
+              },
+            },
+          ],
+        },
       },
       "W": {
         "name": "Nether Blade",
@@ -8543,6 +11870,29 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           7,
           7,
         ],
+        "formula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                50,
+                75,
+                100,
+                125,
+                150,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "ap",
+              "f": {
+                "op": "num",
+                "n": 0.8,
+              },
+            },
+          ],
+        },
       },
       "E": {
         "name": "Force Pulse",
@@ -8565,6 +11915,29 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           18,
           17,
         ],
+        "formula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                70,
+                100,
+                130,
+                160,
+                190,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "ap",
+              "f": {
+                "op": "num",
+                "n": 0.7,
+              },
+            },
+          ],
+        },
       },
       "R": {
         "name": "Riftwalk",
@@ -8658,6 +12031,29 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           8,
           7,
         ],
+        "formula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                80,
+                115,
+                150,
+                185,
+                220,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "ap",
+              "f": {
+                "op": "num",
+                "n": 0.4,
+              },
+            },
+          ],
+        },
       },
       "W": {
         "name": "Preparation",
@@ -8697,6 +12093,37 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           9,
           8,
         ],
+        "formula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                20,
+                30,
+                40,
+                50,
+                60,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "ap",
+              "f": {
+                "op": "num",
+                "n": 0.25,
+              },
+            },
+            {
+              "op": "stat",
+              "stat": "ad",
+              "f": {
+                "op": "num",
+                "n": 0.4,
+              },
+            },
+          ],
+        },
       },
       "R": {
         "name": "Death Lotus",
@@ -8789,6 +12216,37 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           9,
           8,
         ],
+        "formula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                60,
+                90,
+                120,
+                150,
+                180,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "ap",
+              "f": {
+                "op": "num",
+                "n": 0.5,
+              },
+            },
+            {
+              "op": "stat",
+              "stat": "bonusAd",
+              "f": {
+                "op": "num",
+                "n": 0.6,
+              },
+            },
+          ],
+        },
       },
       "W": {
         "name": "Celestial Blessing",
@@ -8817,6 +12275,29 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
             "ap": 0.25,
           },
         },
+        "healFormula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                55,
+                80,
+                105,
+                130,
+                155,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "ap",
+              "f": {
+                "op": "num",
+                "n": 0.25,
+              },
+            },
+          ],
+        },
       },
       "E": {
         "name": "Starfire Spellblade",
@@ -8840,6 +12321,37 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           6.5,
           6,
         ],
+        "formula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                15,
+                20,
+                25,
+                30,
+                35,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "ap",
+              "f": {
+                "op": "num",
+                "n": 0.2,
+              },
+            },
+            {
+              "op": "stat",
+              "stat": "bonusAd",
+              "f": {
+                "op": "num",
+                "n": 0.1,
+              },
+            },
+          ],
+        },
       },
       "R": {
         "name": "Divine Judgment",
@@ -8859,6 +12371,35 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           120,
           80,
         ],
+        "formula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                200,
+                300,
+                400,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "ap",
+              "f": {
+                "op": "num",
+                "n": 0.7,
+              },
+            },
+            {
+              "op": "stat",
+              "stat": "bonusAd",
+              "f": {
+                "op": "num",
+                "n": 1,
+              },
+            },
+          ],
+        },
       },
     },
     "shelf": [
@@ -8934,6 +12475,29 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           5.5,
           5,
         ],
+        "formula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                75,
+                105,
+                135,
+                165,
+                195,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "bonusAd",
+              "f": {
+                "op": "num",
+                "n": 0.85,
+              },
+            },
+          ],
+        },
       },
       "W": {
         "name": "Blade's Reach",
@@ -8956,6 +12520,29 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           10,
           9,
         ],
+        "formula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                85,
+                130,
+                175,
+                220,
+                265,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "bonusAd",
+              "f": {
+                "op": "num",
+                "n": 1.1,
+              },
+            },
+          ],
+        },
       },
       "E": {
         "name": "Shadow Step",
@@ -8984,6 +12571,29 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
             "bonusAd": 0.45,
           },
         },
+        "healFormula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                90,
+                100,
+                110,
+                120,
+                130,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "bonusAd",
+              "f": {
+                "op": "num",
+                "n": 0.45,
+              },
+            },
+          ],
+        },
       },
       "R": {
         "name": "Umbral Trespass",
@@ -9002,6 +12612,27 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           100,
           80,
         ],
+        "formula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                150,
+                250,
+                350,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "bonusAd",
+              "f": {
+                "op": "num",
+                "n": 1.5,
+              },
+            },
+          ],
+        },
       },
     },
     "shelf": [
@@ -9077,6 +12708,29 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           4.75,
           4,
         ],
+        "formula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                75,
+                125,
+                175,
+                225,
+                275,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "ap",
+              "f": {
+                "op": "num",
+                "n": 0.75,
+              },
+            },
+          ],
+        },
       },
       "W": {
         "name": "Electrical Surge",
@@ -9099,6 +12753,29 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           7.75,
           6,
         ],
+        "formula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                70,
+                95,
+                120,
+                145,
+                170,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "ap",
+              "f": {
+                "op": "num",
+                "n": 0.8,
+              },
+            },
+          ],
+        },
       },
       "E": {
         "name": "Lightning Rush",
@@ -9121,6 +12798,29 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           7,
           6,
         ],
+        "formula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                80,
+                120,
+                160,
+                200,
+                240,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "ap",
+              "f": {
+                "op": "num",
+                "n": 0.8,
+              },
+            },
+          ],
+        },
       },
       "R": {
         "name": "Slicing Maelstrom",
@@ -9214,6 +12914,29 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           4,
           4,
         ],
+        "formula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                80,
+                105,
+                130,
+                155,
+                180,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "bonusAd",
+              "f": {
+                "op": "num",
+                "n": 1.05,
+              },
+            },
+          ],
+        },
       },
       "W": {
         "name": "Void Spike",
@@ -9248,6 +12971,52 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
             "ap": 0.5,
           },
         },
+        "formula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                75,
+                105,
+                135,
+                165,
+                195,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "bonusAd",
+              "f": {
+                "op": "num",
+                "n": 1,
+              },
+            },
+          ],
+        },
+        "healFormula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                55,
+                75,
+                95,
+                115,
+                135,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "ap",
+              "f": {
+                "op": "num",
+                "n": 0.5,
+              },
+            },
+          ],
+        },
       },
       "E": {
         "name": "Leap",
@@ -9270,6 +13039,29 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           14,
           12,
         ],
+        "formula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                65,
+                100,
+                135,
+                170,
+                205,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "bonusAd",
+              "f": {
+                "op": "num",
+                "n": 0.4,
+              },
+            },
+          ],
+        },
       },
       "R": {
         "name": "Void Assault",
@@ -9359,6 +13151,29 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           9,
           9,
         ],
+        "formula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                40,
+                65,
+                90,
+                115,
+                140,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "bonusAd",
+              "f": {
+                "op": "num",
+                "n": 0.75,
+              },
+            },
+          ],
+        },
       },
       "W": {
         "name": "Wolf's Frenzy",
@@ -9503,6 +13318,29 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           8,
           7,
         ],
+        "formula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                30,
+                55,
+                80,
+                105,
+                130,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "bonusAd",
+              "f": {
+                "op": "num",
+                "n": 0.6,
+              },
+            },
+          ],
+        },
       },
       "W": {
         "name": "Violent Tendencies",
@@ -9556,6 +13394,29 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           10,
           9,
         ],
+        "formula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                35,
+                60,
+                85,
+                110,
+                135,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "bonusAd",
+              "f": {
+                "op": "num",
+                "n": 0.55,
+              },
+            },
+          ],
+        },
       },
       "R": {
         "name": "Chaaaaaaaarge!!!",
@@ -9664,6 +13525,29 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           7,
           7,
         ],
+        "formula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                80,
+                125,
+                170,
+                215,
+                260,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "ap",
+              "f": {
+                "op": "num",
+                "n": 0.9,
+              },
+            },
+          ],
+        },
       },
       "W": {
         "name": "Bio-Arcane Barrage",
@@ -9713,6 +13597,29 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           12,
           12,
         ],
+        "formula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                70,
+                110,
+                150,
+                190,
+                230,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "ap",
+              "f": {
+                "op": "num",
+                "n": 0.65,
+              },
+            },
+          ],
+        },
       },
       "R": {
         "name": "Living Artillery",
@@ -9732,6 +13639,39 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           1.5,
           1,
         ],
+        "formula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                100,
+                140,
+                180,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "ap",
+              "f": {
+                "op": "rank",
+                "v": [
+                  0.35,
+                  0.4,
+                  0.45,
+                ],
+              },
+            },
+            {
+              "op": "stat",
+              "stat": "bonusAd",
+              "f": {
+                "op": "num",
+                "n": 0.75,
+              },
+            },
+          ],
+        },
       },
     },
     "shelf": [
@@ -9807,6 +13747,29 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           6,
           6,
         ],
+        "formula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                65,
+                90,
+                115,
+                140,
+                165,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "ap",
+              "f": {
+                "op": "num",
+                "n": 0.4,
+              },
+            },
+          ],
+        },
       },
       "W": {
         "name": "Distortion",
@@ -9829,6 +13792,29 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           11.25,
           10,
         ],
+        "formula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                75,
+                115,
+                155,
+                195,
+                235,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "ap",
+              "f": {
+                "op": "num",
+                "n": 0.9,
+              },
+            },
+          ],
+        },
       },
       "E": {
         "name": "Ethereal Chains",
@@ -9851,6 +13837,29 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           11.75,
           11,
         ],
+        "formula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                50,
+                70,
+                90,
+                110,
+                130,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "ap",
+              "f": {
+                "op": "num",
+                "n": 0.4,
+              },
+            },
+          ],
+        },
       },
       "R": {
         "name": "Mimic",
@@ -9869,6 +13878,27 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           35,
           25,
         ],
+        "formula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                70,
+                150,
+                230,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "ap",
+              "f": {
+                "op": "num",
+                "n": 0.4,
+              },
+            },
+          ],
+        },
       },
     },
     "shelf": [
@@ -9944,6 +13974,29 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           7,
           6,
         ],
+        "formula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                60,
+                90,
+                120,
+                150,
+                180,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "bonusAd",
+              "f": {
+                "op": "num",
+                "n": 0.9,
+              },
+            },
+          ],
+        },
       },
       "W": {
         "name": "Safeguard",
@@ -9972,6 +14025,29 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
             "ap": 0.8,
           },
         },
+        "shieldFormula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                60,
+                105,
+                150,
+                195,
+                240,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "ap",
+              "f": {
+                "op": "num",
+                "n": 0.8,
+              },
+            },
+          ],
+        },
       },
       "E": {
         "name": "Tempest",
@@ -9994,6 +14070,29 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           8,
           8,
         ],
+        "formula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                35,
+                60,
+                85,
+                110,
+                135,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "ad",
+              "f": {
+                "op": "num",
+                "n": 0.9,
+              },
+            },
+          ],
+        },
       },
       "R": {
         "name": "Dragon's Rage",
@@ -10012,6 +14111,27 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           85,
           60,
         ],
+        "formula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                175,
+                400,
+                625,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "bonusAd",
+              "f": {
+                "op": "num",
+                "n": 2,
+              },
+            },
+          ],
+        },
       },
     },
     "shelf": [
@@ -10149,6 +14269,27 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           75,
           60,
         ],
+        "formula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                150,
+                225,
+                300,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "ap",
+              "f": {
+                "op": "num",
+                "n": 0.8,
+              },
+            },
+          ],
+        },
       },
     },
     "shelf": [
@@ -10224,6 +14365,29 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           4.5,
           4,
         ],
+        "formula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                35,
+                45,
+                55,
+                65,
+                75,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "ap",
+              "f": {
+                "op": "num",
+                "n": 0.35,
+              },
+            },
+          ],
+        },
       },
       "W": {
         "name": "Watch Out! Eep!",
@@ -10246,6 +14410,29 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           11,
           10,
         ],
+        "formula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                80,
+                100,
+                120,
+                140,
+                160,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "ap",
+              "f": {
+                "op": "num",
+                "n": 0.35,
+              },
+            },
+          ],
+        },
       },
       "E": {
         "name": "Swirlseed",
@@ -10268,6 +14455,29 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           12,
           12,
         ],
+        "formula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                60,
+                85,
+                110,
+                135,
+                160,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "ap",
+              "f": {
+                "op": "num",
+                "n": 0.5,
+              },
+            },
+          ],
+        },
       },
       "R": {
         "name": "Lilting Lullaby",
@@ -10286,6 +14496,27 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           130,
           110,
         ],
+        "formula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                100,
+                150,
+                200,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "ap",
+              "f": {
+                "op": "num",
+                "n": 0.4,
+              },
+            },
+          ],
+        },
       },
     },
     "shelf": [
@@ -10383,6 +14614,29 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           8.5,
           8,
         ],
+        "formula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                70,
+                105,
+                140,
+                175,
+                210,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "ap",
+              "f": {
+                "op": "num",
+                "n": 0.7,
+              },
+            },
+          ],
+        },
       },
       "E": {
         "name": "Glacial Path",
@@ -10405,6 +14659,29 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           15,
           12,
         ],
+        "formula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                70,
+                105,
+                140,
+                175,
+                210,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "ap",
+              "f": {
+                "op": "num",
+                "n": 0.6,
+              },
+            },
+          ],
+        },
       },
       "R": {
         "name": "Frozen Tomb",
@@ -10432,6 +14709,27 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           "ratios": {
             "ap": 0.055,
           },
+        },
+        "formula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                150,
+                250,
+                350,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "ap",
+              "f": {
+                "op": "num",
+                "n": 0.75,
+              },
+            },
+          ],
         },
       },
     },
@@ -10517,6 +14815,29 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           6,
           5,
         ],
+        "formula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                90,
+                130,
+                170,
+                210,
+                250,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "bonusAd",
+              "f": {
+                "op": "num",
+                "n": 1,
+              },
+            },
+          ],
+        },
       },
       "W": {
         "name": "Ardent Blaze",
@@ -10539,6 +14860,29 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           11,
           10,
         ],
+        "formula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                75,
+                110,
+                145,
+                180,
+                215,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "ap",
+              "f": {
+                "op": "num",
+                "n": 0.9,
+              },
+            },
+          ],
+        },
       },
       "E": {
         "name": "Relentless Pursuit",
@@ -10574,6 +14918,35 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           100,
           90,
         ],
+        "formula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                15,
+                30,
+                45,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "ad",
+              "f": {
+                "op": "num",
+                "n": 0.25,
+              },
+            },
+            {
+              "op": "stat",
+              "stat": "ap",
+              "f": {
+                "op": "num",
+                "n": 0.15,
+              },
+            },
+          ],
+        },
       },
     },
     "shelf": [
@@ -10649,6 +15022,29 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           7,
           7,
         ],
+        "formula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                60,
+                95,
+                130,
+                165,
+                200,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "ap",
+              "f": {
+                "op": "num",
+                "n": 0.5,
+              },
+            },
+          ],
+        },
       },
       "W": {
         "name": "Whimsy",
@@ -10698,6 +15094,52 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           "ratios": {
             "ap": 0.55,
           },
+        },
+        "formula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                70,
+                110,
+                150,
+                190,
+                230,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "ap",
+              "f": {
+                "op": "num",
+                "n": 0.5,
+              },
+            },
+          ],
+        },
+        "shieldFormula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                70,
+                110,
+                150,
+                190,
+                230,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "ap",
+              "f": {
+                "op": "num",
+                "n": 0.5,
+              },
+            },
+          ],
         },
       },
       "R": {
@@ -10798,6 +15240,29 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           9.5,
           9,
         ],
+        "formula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                80,
+                120,
+                160,
+                200,
+                240,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "ap",
+              "f": {
+                "op": "num",
+                "n": 0.75,
+              },
+            },
+          ],
+        },
       },
       "W": {
         "name": "Prismatic Barrier",
@@ -10826,6 +15291,29 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
             "ap": 0.4,
           },
         },
+        "shieldFormula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                40,
+                55,
+                70,
+                85,
+                100,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "ap",
+              "f": {
+                "op": "num",
+                "n": 0.4,
+              },
+            },
+          ],
+        },
       },
       "E": {
         "name": "Lucent Singularity",
@@ -10848,6 +15336,29 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           8.5,
           8,
         ],
+        "formula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                65,
+                115,
+                165,
+                215,
+                265,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "ap",
+              "f": {
+                "op": "num",
+                "n": 0.8,
+              },
+            },
+          ],
+        },
       },
       "R": {
         "name": "Final Spark",
@@ -10866,6 +15377,27 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           50,
           40,
         ],
+        "formula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                300,
+                400,
+                500,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "ap",
+              "f": {
+                "op": "num",
+                "n": 1.2,
+              },
+            },
+          ],
+        },
       },
     },
     "shelf": [
@@ -10941,6 +15473,29 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           8,
           8,
         ],
+        "formula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                70,
+                120,
+                170,
+                220,
+                270,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "ap",
+              "f": {
+                "op": "num",
+                "n": 0.6,
+              },
+            },
+          ],
+        },
       },
       "W": {
         "name": "Thunderclap",
@@ -10985,6 +15540,37 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           7,
           7,
         ],
+        "formula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                60,
+                95,
+                130,
+                165,
+                200,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "armor",
+              "f": {
+                "op": "num",
+                "n": 0.4,
+              },
+            },
+            {
+              "op": "stat",
+              "stat": "ap",
+              "f": {
+                "op": "num",
+                "n": 0.6,
+              },
+            },
+          ],
+        },
       },
       "R": {
         "name": "Unstoppable Force",
@@ -11003,6 +15589,27 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           115,
           100,
         ],
+        "formula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                200,
+                300,
+                400,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "ap",
+              "f": {
+                "op": "num",
+                "n": 0.9,
+              },
+            },
+          ],
+        },
       },
     },
     "shelf": [
@@ -11261,6 +15868,29 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           11,
           10,
         ],
+        "formula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                60,
+                85,
+                110,
+                135,
+                160,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "ap",
+              "f": {
+                "op": "num",
+                "n": 0.4,
+              },
+            },
+          ],
+        },
       },
       "E": {
         "name": "Sapling Toss",
@@ -11302,6 +15932,27 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           110,
           90,
         ],
+        "formula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                150,
+                225,
+                300,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "ap",
+              "f": {
+                "op": "num",
+                "n": 0.75,
+              },
+            },
+          ],
+        },
       },
     },
     "shelf": [
@@ -11377,6 +16028,29 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           18.5,
           18,
         ],
+        "formula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                20,
+                40,
+                60,
+                80,
+                100,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "ad",
+              "f": {
+                "op": "num",
+                "n": 0.7,
+              },
+            },
+          ],
+        },
       },
       "W": {
         "name": "Meditate",
@@ -11427,6 +16101,29 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           14,
           14,
         ],
+        "formula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                20,
+                25,
+                30,
+                35,
+                40,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "bonusAd",
+              "f": {
+                "op": "num",
+                "n": 0.35,
+              },
+            },
+          ],
+        },
       },
       "R": {
         "name": "Highlander",
@@ -11554,6 +16251,29 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           9.5,
           9,
         ],
+        "formula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                60,
+                105,
+                150,
+                195,
+                240,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "ap",
+              "f": {
+                "op": "num",
+                "n": 0.7,
+              },
+            },
+          ],
+        },
       },
       "R": {
         "name": "Golden Eclipse",
@@ -11647,6 +16367,29 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           10,
           10,
         ],
+        "formula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                80,
+                140,
+                200,
+                260,
+                320,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "ap",
+              "f": {
+                "op": "num",
+                "n": 1.2,
+              },
+            },
+          ],
+        },
       },
       "W": {
         "name": "Cozy Campfire",
@@ -11703,6 +16446,29 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
             "ap": 0.45,
           },
         },
+        "shieldFormula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                45,
+                75,
+                105,
+                135,
+                165,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "ap",
+              "f": {
+                "op": "num",
+                "n": 0.45,
+              },
+            },
+          ],
+        },
       },
       "R": {
         "name": "Breath of Life",
@@ -11726,6 +16492,27 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           "ratios": {
             "ap": 0.5,
           },
+        },
+        "healFormula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                150,
+                250,
+                350,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "ap",
+              "f": {
+                "op": "num",
+                "n": 0.5,
+              },
+            },
+          ],
         },
       },
     },
@@ -11870,6 +16657,48 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           110,
           100,
         ],
+        "formula": {
+          "op": "mul",
+          "of": [
+            {
+              "op": "sum",
+              "of": [
+                {
+                  "op": "rank",
+                  "v": [
+                    20,
+                    30,
+                    40,
+                  ],
+                },
+                {
+                  "op": "stat",
+                  "stat": "ad",
+                  "f": {
+                    "op": "num",
+                    "n": 0.6,
+                  },
+                },
+                {
+                  "op": "stat",
+                  "stat": "ap",
+                  "f": {
+                    "op": "num",
+                    "n": 0.25,
+                  },
+                },
+              ],
+            },
+            {
+              "op": "rank",
+              "v": [
+                14,
+                16,
+                18,
+              ],
+            },
+          ],
+        },
       },
     },
     "shelf": [
@@ -11996,6 +16825,29 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           12,
           10,
         ],
+        "formula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                60,
+                80,
+                100,
+                120,
+                140,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "ap",
+              "f": {
+                "op": "num",
+                "n": 0.45,
+              },
+            },
+          ],
+        },
       },
       "R": {
         "name": "Realm of Death",
@@ -12085,6 +16937,29 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           10,
           10,
         ],
+        "formula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                80,
+                135,
+                190,
+                245,
+                300,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "ap",
+              "f": {
+                "op": "num",
+                "n": 0.9,
+              },
+            },
+          ],
+        },
       },
       "W": {
         "name": "Tormented Shadow",
@@ -12135,6 +17010,29 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
             "ap": 0.7,
           },
         },
+        "shieldFormula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                100,
+                155,
+                210,
+                265,
+                320,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "ap",
+              "f": {
+                "op": "num",
+                "n": 0.7,
+              },
+            },
+          ],
+        },
       },
       "R": {
         "name": "Soul Shackles",
@@ -12153,6 +17051,27 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           110,
           100,
         ],
+        "formula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                200,
+                275,
+                350,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "ap",
+              "f": {
+                "op": "num",
+                "n": 0.8,
+              },
+            },
+          ],
+        },
       },
     },
     "shelf": [
@@ -12240,6 +17159,29 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
             "bonusAd": 0.4,
           },
         },
+        "formula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                35,
+                40,
+                45,
+                50,
+                55,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "bonusAd",
+              "f": {
+                "op": "num",
+                "n": 0.2,
+              },
+            },
+          ],
+        },
       },
       "W": {
         "name": "The Call of the Pack",
@@ -12278,6 +17220,29 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           8,
           7,
         ],
+        "formula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                15,
+                25,
+                35,
+                45,
+                55,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "bonusAd",
+              "f": {
+                "op": "num",
+                "n": 0.4,
+              },
+            },
+          ],
+        },
       },
       "R": {
         "name": "Hounds' Pursuit",
@@ -12381,6 +17346,29 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           9,
           8,
         ],
+        "formula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                90,
+                145,
+                200,
+                255,
+                310,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "ap",
+              "f": {
+                "op": "num",
+                "n": 0.5,
+              },
+            },
+          ],
+        },
       },
       "W": {
         "name": "Ebb and Flow",
@@ -12415,6 +17403,52 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
             "ap": 0.4,
           },
         },
+        "formula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                60,
+                95,
+                130,
+                165,
+                200,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "ap",
+              "f": {
+                "op": "num",
+                "n": 0.5,
+              },
+            },
+          ],
+        },
+        "healFormula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                55,
+                80,
+                105,
+                130,
+                155,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "ap",
+              "f": {
+                "op": "num",
+                "n": 0.4,
+              },
+            },
+          ],
+        },
       },
       "E": {
         "name": "Tidecaller's Blessing",
@@ -12437,6 +17471,29 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           11,
           11,
         ],
+        "formula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                20,
+                35,
+                50,
+                65,
+                80,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "ap",
+              "f": {
+                "op": "num",
+                "n": 0.2,
+              },
+            },
+          ],
+        },
       },
       "R": {
         "name": "Tidal Wave",
@@ -12455,6 +17512,27 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           110,
           100,
         ],
+        "formula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                150,
+                250,
+                350,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "ap",
+              "f": {
+                "op": "num",
+                "n": 0.6,
+              },
+            },
+          ],
+        },
       },
     },
     "shelf": [
@@ -12566,6 +17644,29 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           12,
           12,
         ],
+        "formula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                50,
+                80,
+                110,
+                140,
+                170,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "ap",
+              "f": {
+                "op": "num",
+                "n": 0.6,
+              },
+            },
+          ],
+        },
       },
       "R": {
         "name": "Fury of the Sands",
@@ -12672,6 +17773,29 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           11,
           10,
         ],
+        "formula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                85,
+                125,
+                165,
+                205,
+                245,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "ap",
+              "f": {
+                "op": "num",
+                "n": 0.9,
+              },
+            },
+          ],
+        },
       },
       "W": {
         "name": "Titan's Wrath",
@@ -12715,6 +17839,58 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
             ],
           },
         },
+        "formula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                30,
+                40,
+                50,
+                60,
+                70,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "ap",
+              "f": {
+                "op": "num",
+                "n": 0.4,
+              },
+            },
+          ],
+        },
+        "shieldFormula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                50,
+                60,
+                70,
+                80,
+                90,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "maxHp",
+              "f": {
+                "op": "rank",
+                "v": [
+                  0.08,
+                  0.09,
+                  0.1,
+                  0.11,
+                  0.12,
+                ],
+              },
+            },
+          ],
+        },
       },
       "E": {
         "name": "Riptide",
@@ -12737,6 +17913,29 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           5.5,
           5,
         ],
+        "formula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                55,
+                90,
+                125,
+                160,
+                195,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "ap",
+              "f": {
+                "op": "num",
+                "n": 0.5,
+              },
+            },
+          ],
+        },
       },
       "R": {
         "name": "Depth Charge",
@@ -12830,6 +18029,29 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           7.5,
           7,
         ],
+        "formula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                60,
+                110,
+                160,
+                210,
+                260,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "ap",
+              "f": {
+                "op": "num",
+                "n": 0.6,
+              },
+            },
+          ],
+        },
       },
       "W": {
         "name": "Shapesplitter",
@@ -12874,6 +18096,29 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           10.5,
           10,
         ],
+        "formula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                80,
+                115,
+                150,
+                185,
+                220,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "ap",
+              "f": {
+                "op": "num",
+                "n": 0.65,
+              },
+            },
+          ],
+        },
       },
       "R": {
         "name": "Pop Blossom",
@@ -12892,6 +18137,27 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           105,
           90,
         ],
+        "formula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                150,
+                350,
+                550,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "ap",
+              "f": {
+                "op": "num",
+                "n": 1.2,
+              },
+            },
+          ],
+        },
       },
     },
     "shelf": [
@@ -13016,6 +18282,29 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           "ratios": {
             "ap": 0.35,
           },
+        },
+        "healFormula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                50,
+                75,
+                100,
+                125,
+                150,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "ap",
+              "f": {
+                "op": "num",
+                "n": 0.35,
+              },
+            },
+          ],
         },
       },
       "R": {
@@ -13153,6 +18442,29 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           0.5,
           0.5,
         ],
+        "formula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                60,
+                70,
+                80,
+                90,
+                100,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "bonusAd",
+              "f": {
+                "op": "num",
+                "n": 0.2,
+              },
+            },
+          ],
+        },
       },
       "R": {
         "name": "Apotheosis",
@@ -13246,6 +18558,29 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           8,
           8,
         ],
+        "formula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                65,
+                105,
+                145,
+                185,
+                225,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "bonusAd",
+              "f": {
+                "op": "num",
+                "n": 0.85,
+              },
+            },
+          ],
+        },
       },
       "W": {
         "name": "Shroud of Darkness",
@@ -13302,6 +18637,27 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           115,
           90,
         ],
+        "formula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                150,
+                275,
+                400,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "bonusAd",
+              "f": {
+                "op": "num",
+                "n": 1.2,
+              },
+            },
+          ],
+        },
       },
     },
     "shelf": [
@@ -13432,6 +18788,29 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           11,
           10,
         ],
+        "formula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                15,
+                22.5,
+                30,
+                37.5,
+                45,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "ap",
+              "f": {
+                "op": "num",
+                "n": 0.12,
+              },
+            },
+          ],
+        },
       },
       "R": {
         "name": "Absolute Zero",
@@ -13467,6 +18846,39 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
               0.5,
             ],
           },
+        },
+        "shieldFormula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                65,
+                75,
+                85,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "bonusHp",
+              "f": {
+                "op": "rank",
+                "v": [
+                  0.3,
+                  0.4,
+                  0.5,
+                ],
+              },
+            },
+            {
+              "op": "stat",
+              "stat": "ap",
+              "f": {
+                "op": "num",
+                "n": 1.5,
+              },
+            },
+          ],
         },
       },
     },
@@ -13543,6 +18955,29 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           9,
           9,
         ],
+        "formula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                70,
+                120,
+                170,
+                220,
+                270,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "bonusAd",
+              "f": {
+                "op": "num",
+                "n": 1,
+              },
+            },
+          ],
+        },
       },
       "W": {
         "name": "Tough It Out",
@@ -13591,6 +19026,29 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           8,
           7,
         ],
+        "formula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                70,
+                115,
+                160,
+                205,
+                250,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "ad",
+              "f": {
+                "op": "num",
+                "n": 0.5,
+              },
+            },
+          ],
+        },
       },
       "R": {
         "name": "Ragnarok",
@@ -13702,6 +19160,29 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           7,
           7,
         ],
+        "formula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                70,
+                110,
+                150,
+                190,
+                230,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "ap",
+              "f": {
+                "op": "num",
+                "n": 0.8,
+              },
+            },
+          ],
+        },
       },
       "E": {
         "name": "Command: Protect",
@@ -13754,6 +19235,27 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           95,
           80,
         ],
+        "formula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                225,
+                350,
+                475,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "ap",
+              "f": {
+                "op": "num",
+                "n": 1.1,
+              },
+            },
+          ],
+        },
       },
     },
     "shelf": [
@@ -13829,6 +19331,29 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           7.5,
           7,
         ],
+        "formula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                20,
+                45,
+                70,
+                95,
+                120,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "ad",
+              "f": {
+                "op": "num",
+                "n": 1.1,
+              },
+            },
+          ],
+        },
       },
       "W": {
         "name": "Bellows Breath",
@@ -13876,6 +19401,37 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           12.5,
           12,
         ],
+        "formula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                80,
+                125,
+                170,
+                215,
+                260,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "bonusArmor",
+              "f": {
+                "op": "num",
+                "n": 0.4,
+              },
+            },
+            {
+              "op": "stat",
+              "stat": "bonusMr",
+              "f": {
+                "op": "num",
+                "n": 0.4,
+              },
+            },
+          ],
+        },
       },
       "R": {
         "name": "Call of the Forge God",
@@ -13894,6 +19450,27 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           120,
           100,
         ],
+        "formula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                125,
+                175,
+                225,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "ap",
+              "f": {
+                "op": "num",
+                "n": 0.2,
+              },
+            },
+          ],
+        },
       },
     },
     "shelf": [
@@ -13970,6 +19547,37 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           8.75,
           8,
         ],
+        "formula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                70,
+                100,
+                130,
+                160,
+                190,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "bonusAd",
+              "f": {
+                "op": "num",
+                "n": 1.15,
+              },
+            },
+            {
+              "op": "stat",
+              "stat": "ap",
+              "f": {
+                "op": "num",
+                "n": 0.5,
+              },
+            },
+          ],
+        },
       },
       "W": {
         "name": "Shield Vault",
@@ -14019,6 +19627,29 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           19,
           18,
         ],
+        "formula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                55,
+                105,
+                155,
+                205,
+                255,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "bonusAd",
+              "f": {
+                "op": "num",
+                "n": 1.5,
+              },
+            },
+          ],
+        },
       },
       "R": {
         "name": "Grand Starfall",
@@ -14037,6 +19668,27 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           165,
           150,
         ],
+        "formula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                300,
+                500,
+                700,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "ap",
+              "f": {
+                "op": "num",
+                "n": 1,
+              },
+            },
+          ],
+        },
       },
     },
     "shelf": [
@@ -14145,6 +19797,29 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           14,
           12,
         ],
+        "formula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                70,
+                110,
+                150,
+                190,
+                230,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "ap",
+              "f": {
+                "op": "num",
+                "n": 0.7,
+              },
+            },
+          ],
+        },
       },
       "E": {
         "name": "Heroic Charge",
@@ -14167,6 +19842,29 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           11,
           10,
         ],
+        "formula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                40,
+                60,
+                80,
+                100,
+                120,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "bonusAd",
+              "f": {
+                "op": "num",
+                "n": 0.6,
+              },
+            },
+          ],
+        },
       },
       "R": {
         "name": "Keeper's Verdict",
@@ -14185,6 +19883,36 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           120,
           100,
         ],
+        "formula": {
+          "op": "mul",
+          "of": [
+            {
+              "op": "sum",
+              "of": [
+                {
+                  "op": "rank",
+                  "v": [
+                    200,
+                    300,
+                    400,
+                  ],
+                },
+                {
+                  "op": "stat",
+                  "stat": "bonusAd",
+                  "f": {
+                    "op": "num",
+                    "n": 0.9,
+                  },
+                },
+              ],
+            },
+            {
+              "op": "num",
+              "n": 0.5,
+            },
+          ],
+        },
       },
     },
     "shelf": [
@@ -14260,6 +19988,29 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           8.5,
           8,
         ],
+        "formula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                100,
+                150,
+                200,
+                250,
+                300,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "bonusAd",
+              "f": {
+                "op": "num",
+                "n": 0.75,
+              },
+            },
+          ],
+        },
       },
       "W": {
         "name": "Ghostwater Dive",
@@ -14298,6 +20049,29 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           12,
           11,
         ],
+        "formula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                100,
+                150,
+                200,
+                250,
+                300,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "bonusAd",
+              "f": {
+                "op": "num",
+                "n": 1,
+              },
+            },
+          ],
+        },
       },
       "R": {
         "name": "Death from Below",
@@ -14387,6 +20161,29 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           7,
           7,
         ],
+        "formula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                80,
+                110,
+                140,
+                170,
+                200,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "bonusAd",
+              "f": {
+                "op": "num",
+                "n": 0.9,
+              },
+            },
+          ],
+        },
       },
       "W": {
         "name": "Terrashape",
@@ -14410,6 +20207,37 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           7,
           7,
         ],
+        "formula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                8,
+                16,
+                24,
+                32,
+                40,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "ap",
+              "f": {
+                "op": "num",
+                "n": 0.45,
+              },
+            },
+            {
+              "op": "stat",
+              "stat": "bonusAd",
+              "f": {
+                "op": "num",
+                "n": 0.2,
+              },
+            },
+          ],
+        },
       },
       "E": {
         "name": "Audacity",
@@ -14432,6 +20260,29 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           8,
           7,
         ],
+        "formula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                50,
+                90,
+                130,
+                170,
+                210,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "bonusAd",
+              "f": {
+                "op": "num",
+                "n": 0.5,
+              },
+            },
+          ],
+        },
       },
       "R": {
         "name": "Supreme Display of Talent",
@@ -14546,6 +20397,43 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           9.5,
           9,
         ],
+        "formula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                65,
+                100,
+                135,
+                170,
+                205,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "bonusAd",
+              "f": {
+                "op": "rank",
+                "v": [
+                  0.8,
+                  0.85,
+                  0.9,
+                  0.95,
+                  1,
+                ],
+              },
+            },
+            {
+              "op": "stat",
+              "stat": "ap",
+              "f": {
+                "op": "num",
+                "n": 0.5,
+              },
+            },
+          ],
+        },
       },
       "W": {
         "name": "Heightened Senses",
@@ -14584,6 +20472,29 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           9,
           8,
         ],
+        "formula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                40,
+                65,
+                90,
+                115,
+                140,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "bonusAd",
+              "f": {
+                "op": "num",
+                "n": 0.2,
+              },
+            },
+          ],
+        },
       },
       "R": {
         "name": "Behind Enemy Lines",
@@ -14673,6 +20584,29 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           8,
           7,
         ],
+        "formula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                70,
+                115,
+                160,
+                205,
+                250,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "ap",
+              "f": {
+                "op": "num",
+                "n": 0.7,
+              },
+            },
+          ],
+        },
       },
       "W": {
         "name": "Grand Entrance",
@@ -14695,6 +20629,29 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           11,
           10,
         ],
+        "formula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                70,
+                120,
+                170,
+                220,
+                270,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "ap",
+              "f": {
+                "op": "num",
+                "n": 0.8,
+              },
+            },
+          ],
+        },
       },
       "E": {
         "name": "Battle Dance",
@@ -14722,6 +20679,29 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           "ratios": {
             "ap": 0.7,
           },
+        },
+        "shieldFormula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                50,
+                75,
+                100,
+                125,
+                150,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "ap",
+              "f": {
+                "op": "num",
+                "n": 0.7,
+              },
+            },
+          ],
         },
       },
       "R": {
@@ -14816,6 +20796,29 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           7.5,
           6,
         ],
+        "formula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                80,
+                120,
+                160,
+                200,
+                240,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "ap",
+              "f": {
+                "op": "num",
+                "n": 1,
+              },
+            },
+          ],
+        },
       },
       "W": {
         "name": "Defensive Ball Curl",
@@ -14866,6 +20869,27 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           105,
           90,
         ],
+        "formula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                150,
+                250,
+                350,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "ap",
+              "f": {
+                "op": "num",
+                "n": 0.6,
+              },
+            },
+          ],
+        },
       },
     },
     "shelf": [
@@ -15090,6 +21114,29 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           9.5,
           9,
         ],
+        "formula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                60,
+                100,
+                140,
+                180,
+                220,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "ap",
+              "f": {
+                "op": "num",
+                "n": 0.6,
+              },
+            },
+          ],
+        },
       },
       "W": {
         "name": "Ferromancy: Crash Down",
@@ -15121,6 +21168,29 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
             125,
           ],
           "ratios": {},
+        },
+        "formula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                60,
+                90,
+                120,
+                150,
+                180,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "ap",
+              "f": {
+                "op": "num",
+                "n": 0.6,
+              },
+            },
+          ],
         },
       },
       "E": {
@@ -15242,6 +21312,29 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           16,
           16,
         ],
+        "formula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                80,
+                125,
+                170,
+                215,
+                260,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "ap",
+              "f": {
+                "op": "num",
+                "n": 0.8,
+              },
+            },
+          ],
+        },
       },
       "W": {
         "name": "Bailout",
@@ -15291,6 +21384,52 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           "ratios": {
             "ap": 0.5,
           },
+        },
+        "formula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                65,
+                95,
+                125,
+                155,
+                185,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "ap",
+              "f": {
+                "op": "num",
+                "n": 0.55,
+              },
+            },
+          ],
+        },
+        "shieldFormula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                50,
+                65,
+                80,
+                95,
+                110,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "ap",
+              "f": {
+                "op": "num",
+                "n": 0.5,
+              },
+            },
+          ],
         },
       },
       "R": {
@@ -15391,6 +21530,29 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           ],
           "ratios": {},
         },
+        "formula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                60,
+                90,
+                120,
+                150,
+                180,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "bonusAd",
+              "f": {
+                "op": "num",
+                "n": 1,
+              },
+            },
+          ],
+        },
       },
       "W": {
         "name": "Ruthless Predator",
@@ -15413,6 +21575,29 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           10,
           8,
         ],
+        "formula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                5,
+                20,
+                35,
+                50,
+                65,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "ad",
+              "f": {
+                "op": "num",
+                "n": 0.75,
+              },
+            },
+          ],
+        },
       },
       "E": {
         "name": "Slice",
@@ -15435,6 +21620,29 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           11.5,
           10,
         ],
+        "formula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                40,
+                70,
+                100,
+                130,
+                160,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "bonusAd",
+              "f": {
+                "op": "num",
+                "n": 0.9,
+              },
+            },
+          ],
+        },
       },
       "R": {
         "name": "Dominus",
@@ -15568,6 +21776,29 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           0.25,
           0.25,
         ],
+        "formula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                50,
+                80,
+                110,
+                140,
+                170,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "ap",
+              "f": {
+                "op": "num",
+                "n": 0.8,
+              },
+            },
+          ],
+        },
       },
       "E": {
         "name": "Bola Strike",
@@ -15590,6 +21821,29 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           0.25,
           0.25,
         ],
+        "formula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                55,
+                100,
+                145,
+                190,
+                235,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "bonusAd",
+              "f": {
+                "op": "num",
+                "n": 0.8,
+              },
+            },
+          ],
+        },
       },
       "R": {
         "name": "Thrill of the Hunt",
@@ -15688,6 +21942,35 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           13,
           13,
         ],
+        "formula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                45,
+                75,
+                105,
+                135,
+                165,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "bonusAd",
+              "f": {
+                "op": "rank",
+                "v": [
+                  0.6,
+                  0.65,
+                  0.7,
+                  0.75,
+                  0.8,
+                ],
+              },
+            },
+          ],
+        },
       },
       "W": {
         "name": "Ki Burst",
@@ -15710,6 +21993,29 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           8,
           7,
         ],
+        "formula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                65,
+                95,
+                125,
+                155,
+                185,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "bonusAd",
+              "f": {
+                "op": "num",
+                "n": 1,
+              },
+            },
+          ],
+        },
       },
       "E": {
         "name": "Valor",
@@ -15737,6 +22043,29 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           "ratios": {
             "bonusAd": 1.1,
           },
+        },
+        "shieldFormula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                70,
+                95,
+                120,
+                145,
+                170,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "bonusAd",
+              "f": {
+                "op": "num",
+                "n": 1.1,
+              },
+            },
+          ],
         },
       },
       "R": {
@@ -15887,6 +22216,29 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           0.5,
           0.5,
         ],
+        "formula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                55,
+                80,
+                105,
+                130,
+                155,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "ap",
+              "f": {
+                "op": "num",
+                "n": 0.5,
+              },
+            },
+          ],
+        },
       },
       "R": {
         "name": "The Equalizer",
@@ -16122,6 +22474,29 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           3,
           2,
         ],
+        "formula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                0,
+                5,
+                10,
+                15,
+                20,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "ad",
+              "f": {
+                "op": "num",
+                "n": 1.1,
+              },
+            },
+          ],
+        },
       },
       "W": {
         "name": "Blade Whirl",
@@ -16144,6 +22519,29 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           24,
           22,
         ],
+        "formula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                20,
+                35,
+                50,
+                65,
+                80,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "bonusAd",
+              "f": {
+                "op": "num",
+                "n": 0.5,
+              },
+            },
+          ],
+        },
       },
       "E": {
         "name": "Wild Rush",
@@ -16166,6 +22564,29 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           14,
           12,
         ],
+        "formula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                50,
+                60,
+                70,
+                80,
+                90,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "bonusAd",
+              "f": {
+                "op": "num",
+                "n": 0.2,
+              },
+            },
+          ],
+        },
       },
       "R": {
         "name": "Inferno Trigger",
@@ -16184,6 +22605,27 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           5,
           5,
         ],
+        "formula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                20,
+                40,
+                60,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "ad",
+              "f": {
+                "op": "num",
+                "n": 0.3,
+              },
+            },
+          ],
+        },
       },
     },
     "shelf": [
@@ -16304,6 +22746,29 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           1.5,
           1.5,
         ],
+        "formula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                55,
+                105,
+                155,
+                205,
+                255,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "ap",
+              "f": {
+                "op": "num",
+                "n": 0.7,
+              },
+            },
+          ],
+        },
       },
       "R": {
         "name": "Glacial Prison",
@@ -16410,6 +22875,29 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
             "ap": 0.6,
           },
         },
+        "formula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                30,
+                55,
+                80,
+                105,
+                130,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "bonusAd",
+              "f": {
+                "op": "num",
+                "n": 0.6,
+              },
+            },
+          ],
+        },
       },
       "W": {
         "name": "Last Embrace",
@@ -16432,6 +22920,29 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           11,
           11,
         ],
+        "formula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                70,
+                110,
+                150,
+                190,
+                230,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "bonusAd",
+              "f": {
+                "op": "num",
+                "n": 0.9,
+              },
+            },
+          ],
+        },
       },
       "E": {
         "name": "Curse of the Black Mist",
@@ -16476,6 +22987,35 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           "ratios": {
             "ap": 0.5,
           },
+        },
+        "formula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                250,
+                400,
+                550,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "ap",
+              "f": {
+                "op": "num",
+                "n": 0.7,
+              },
+            },
+            {
+              "op": "stat",
+              "stat": "bonusAd",
+              "f": {
+                "op": "num",
+                "n": 1.15,
+              },
+            },
+          ],
         },
       },
     },
@@ -16552,6 +23092,29 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           6.5,
           6,
         ],
+        "formula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                60,
+                85,
+                110,
+                135,
+                160,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "ap",
+              "f": {
+                "op": "num",
+                "n": 0.4,
+              },
+            },
+          ],
+        },
       },
       "W": {
         "name": "Surround Sound",
@@ -16597,6 +23160,29 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
             ],
           },
         },
+        "shieldFormula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                60,
+                80,
+                100,
+                120,
+                140,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "ap",
+              "f": {
+                "op": "num",
+                "n": 0.2,
+              },
+            },
+          ],
+        },
       },
       "E": {
         "name": "Beat Drop",
@@ -16619,6 +23205,29 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           9.5,
           9,
         ],
+        "formula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                70,
+                100,
+                130,
+                160,
+                190,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "ap",
+              "f": {
+                "op": "num",
+                "n": 0.5,
+              },
+            },
+          ],
+        },
       },
       "R": {
         "name": "Encore",
@@ -16637,6 +23246,27 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           140,
           120,
         ],
+        "formula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                150,
+                200,
+                250,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "ap",
+              "f": {
+                "op": "num",
+                "n": 0.4,
+              },
+            },
+          ],
+        },
       },
     },
     "shelf": [
@@ -16732,6 +23362,16 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           13.5,
           12,
         ],
+        "formula": {
+          "op": "rank",
+          "v": [
+            80,
+            100,
+            120,
+            140,
+            160,
+          ],
+        },
       },
       "E": {
         "name": "Facebreaker",
@@ -16754,6 +23394,29 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           11.5,
           10,
         ],
+        "formula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                50,
+                70,
+                90,
+                110,
+                130,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "ad",
+              "f": {
+                "op": "num",
+                "n": 0.6,
+              },
+            },
+          ],
+        },
       },
       "R": {
         "name": "The Show Stopper",
@@ -16772,6 +23435,27 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           100,
           80,
         ],
+        "formula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                200,
+                300,
+                400,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "bonusAd",
+              "f": {
+                "op": "num",
+                "n": 1.2,
+              },
+            },
+          ],
+        },
       },
     },
     "shelf": [
@@ -16847,6 +23531,29 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           11.5,
           11,
         ],
+        "formula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                25,
+                35,
+                45,
+                55,
+                65,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "bonusAd",
+              "f": {
+                "op": "num",
+                "n": 0.6,
+              },
+            },
+          ],
+        },
       },
       "W": {
         "name": "Jack in the Box",
@@ -16869,6 +23576,29 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           15,
           15,
         ],
+        "formula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                10,
+                15,
+                20,
+                25,
+                30,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "ap",
+              "f": {
+                "op": "num",
+                "n": 0.12,
+              },
+            },
+          ],
+        },
       },
       "E": {
         "name": "Two-Shiv Poison",
@@ -16892,6 +23622,37 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           8,
           8,
         ],
+        "formula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                70,
+                95,
+                120,
+                145,
+                170,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "bonusAd",
+              "f": {
+                "op": "num",
+                "n": 0.8,
+              },
+            },
+            {
+              "op": "stat",
+              "stat": "ap",
+              "f": {
+                "op": "num",
+                "n": 0.6,
+              },
+            },
+          ],
+        },
       },
       "R": {
         "name": "Hallucinate",
@@ -16910,6 +23671,27 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           90,
           80,
         ],
+        "formula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                150,
+                225,
+                300,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "ap",
+              "f": {
+                "op": "num",
+                "n": 0.7,
+              },
+            },
+          ],
+        },
       },
     },
     "shelf": [
@@ -17045,6 +23827,29 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           12,
           10,
         ],
+        "formula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                60,
+                85,
+                110,
+                135,
+                160,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "bonusHp",
+              "f": {
+                "op": "num",
+                "n": 0.11,
+              },
+            },
+          ],
+        },
       },
       "R": {
         "name": "Stand United",
@@ -17069,6 +23874,35 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
             "ap": 1.35,
             "bonusHp": 0.15,
           },
+        },
+        "shieldFormula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                120,
+                220,
+                320,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "bonusHp",
+              "f": {
+                "op": "num",
+                "n": 0.15,
+              },
+            },
+            {
+              "op": "stat",
+              "stat": "ap",
+              "f": {
+                "op": "num",
+                "n": 1.35,
+              },
+            },
+          ],
         },
       },
     },
@@ -17216,6 +24050,27 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
             350,
           ],
           "ratios": {},
+        },
+        "formula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                150,
+                250,
+                350,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "ap",
+              "f": {
+                "op": "num",
+                "n": 1,
+              },
+            },
+          ],
         },
       },
     },
@@ -17468,6 +24323,43 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
             ],
           },
         },
+        "shieldFormula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                60,
+                75,
+                90,
+                105,
+                120,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "ap",
+              "f": {
+                "op": "num",
+                "n": 0.4,
+              },
+            },
+            {
+              "op": "stat",
+              "stat": "maxHp",
+              "f": {
+                "op": "rank",
+                "v": [
+                  0.08,
+                  0.1,
+                  0.12,
+                  0.14,
+                  0.16,
+                ],
+              },
+            },
+          ],
+        },
       },
       "E": {
         "name": "Roar of the Slayer",
@@ -17490,6 +24382,29 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           9,
           8,
         ],
+        "formula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                65,
+                100,
+                135,
+                170,
+                205,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "ap",
+              "f": {
+                "op": "num",
+                "n": 0.55,
+              },
+            },
+          ],
+        },
       },
       "R": {
         "name": "Unstoppable Onslaught",
@@ -17645,6 +24560,33 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
             ],
           },
         },
+        "healFormula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "stat",
+              "stat": "ad",
+              "f": {
+                "op": "rank",
+                "v": [
+                  0.6,
+                  0.65,
+                  0.7,
+                  0.75,
+                  0.8,
+                ],
+              },
+            },
+            {
+              "op": "stat",
+              "stat": "ap",
+              "f": {
+                "op": "num",
+                "n": 0.5,
+              },
+            },
+          ],
+        },
       },
       "R": {
         "name": "On the Hunt",
@@ -17745,6 +24687,37 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           ],
           "ratios": {},
         },
+        "formula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                10,
+                20,
+                30,
+                40,
+                50,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "bonusAd",
+              "f": {
+                "op": "num",
+                "n": 0.9,
+              },
+            },
+            {
+              "op": "stat",
+              "stat": "bonusHp",
+              "f": {
+                "op": "num",
+                "n": 0.03,
+              },
+            },
+          ],
+        },
       },
       "W": {
         "name": "Seismic Bastion",
@@ -17767,6 +24740,29 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           7,
           6,
         ],
+        "formula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                50,
+                70,
+                90,
+                110,
+                130,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "ap",
+              "f": {
+                "op": "num",
+                "n": 0.8,
+              },
+            },
+          ],
+        },
       },
       "E": {
         "name": "Ixtal's Impact",
@@ -17807,6 +24803,27 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           105,
           90,
         ],
+        "formula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                150,
+                250,
+                350,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "ap",
+              "f": {
+                "op": "num",
+                "n": 1,
+              },
+            },
+          ],
+        },
       },
     },
     "shelf": [
@@ -17904,6 +24921,29 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           11,
           10,
         ],
+        "formula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                60,
+                70,
+                80,
+                90,
+                100,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "bonusAd",
+              "f": {
+                "op": "num",
+                "n": 0.6,
+              },
+            },
+          ],
+        },
       },
       "E": {
         "name": "Flap, Flap, Flap",
@@ -17926,6 +24966,29 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           18,
           16,
         ],
+        "formula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                10,
+                15,
+                20,
+                25,
+                30,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "ad",
+              "f": {
+                "op": "num",
+                "n": 0.3,
+              },
+            },
+          ],
+        },
       },
       "R": {
         "name": "MMOOOMMMM!",
@@ -17955,6 +25018,35 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
             "bonusAd": 0.5,
             "ap": 0.75,
           },
+        },
+        "formula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                150,
+                250,
+                350,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "bonusAd",
+              "f": {
+                "op": "num",
+                "n": 1,
+              },
+            },
+            {
+              "op": "stat",
+              "stat": "ap",
+              "f": {
+                "op": "num",
+                "n": 1,
+              },
+            },
+          ],
         },
       },
     },
@@ -18031,6 +25123,29 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           8,
           8,
         ],
+        "formula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                50,
+                85,
+                120,
+                155,
+                190,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "ap",
+              "f": {
+                "op": "num",
+                "n": 0.4,
+              },
+            },
+          ],
+        },
       },
       "W": {
         "name": "Aria of Perseverance",
@@ -18069,6 +25184,29 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
             "ap": 0.3,
           },
         },
+        "healFormula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                30,
+                45,
+                60,
+                75,
+                90,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "ap",
+              "f": {
+                "op": "num",
+                "n": 0.3,
+              },
+            },
+          ],
+        },
       },
       "E": {
         "name": "Song of Celerity",
@@ -18103,6 +25241,27 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           120,
           100,
         ],
+        "formula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                150,
+                250,
+                350,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "ap",
+              "f": {
+                "op": "num",
+                "n": 0.5,
+              },
+            },
+          ],
+        },
       },
     },
     "shelf": [
@@ -18190,6 +25349,29 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
             "ap": 0.06,
           },
         },
+        "formula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                85,
+                120,
+                155,
+                190,
+                225,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "ap",
+              "f": {
+                "op": "num",
+                "n": 0.35,
+              },
+            },
+          ],
+        },
       },
       "W": {
         "name": "Astral Infusion",
@@ -18218,6 +25400,29 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
             "ap": 0.5,
           },
         },
+        "healFormula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                90,
+                110,
+                130,
+                150,
+                170,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "ap",
+              "f": {
+                "op": "num",
+                "n": 0.5,
+              },
+            },
+          ],
+        },
       },
       "E": {
         "name": "Equinox",
@@ -18240,6 +25445,29 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           17,
           16,
         ],
+        "formula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                70,
+                95,
+                120,
+                145,
+                170,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "ap",
+              "f": {
+                "op": "num",
+                "n": 0.4,
+              },
+            },
+          ],
+        },
       },
       "R": {
         "name": "Wish",
@@ -18263,6 +25491,27 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           "ratios": {
             "ap": 0.5,
           },
+        },
+        "healFormula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                150,
+                250,
+                350,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "ap",
+              "f": {
+                "op": "num",
+                "n": 0.5,
+              },
+            },
+          ],
         },
       },
     },
@@ -18339,6 +25588,29 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           4,
           3,
         ],
+        "formula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                60,
+                90,
+                120,
+                150,
+                180,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "ap",
+              "f": {
+                "op": "num",
+                "n": 0.45,
+              },
+            },
+          ],
+        },
       },
       "W": {
         "name": "Vision of Empire",
@@ -18361,6 +25633,29 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           19,
           18,
         ],
+        "formula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                70,
+                115,
+                160,
+                205,
+                250,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "ap",
+              "f": {
+                "op": "num",
+                "n": 0.6,
+              },
+            },
+          ],
+        },
       },
       "E": {
         "name": "Nevermove",
@@ -18487,6 +25782,29 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           7,
           6,
         ],
+        "formula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                40,
+                60,
+                80,
+                100,
+                120,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "ap",
+              "f": {
+                "op": "num",
+                "n": 0.4,
+              },
+            },
+          ],
+        },
       },
       "W": {
         "name": "Kingslayer",
@@ -18627,6 +25945,29 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           7,
           7,
         ],
+        "formula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                90,
+                125,
+                160,
+                195,
+                230,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "ap",
+              "f": {
+                "op": "num",
+                "n": 0.7,
+              },
+            },
+          ],
+        },
       },
       "W": {
         "name": "Force of Will",
@@ -18649,6 +25990,29 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           9,
           8,
         ],
+        "formula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                70,
+                100,
+                130,
+                160,
+                190,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "ap",
+              "f": {
+                "op": "num",
+                "n": 0.65,
+              },
+            },
+          ],
+        },
       },
       "E": {
         "name": "Scatter the Weak",
@@ -18671,6 +26035,29 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           15,
           15,
         ],
+        "formula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                60,
+                95,
+                130,
+                165,
+                200,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "ap",
+              "f": {
+                "op": "num",
+                "n": 0.6,
+              },
+            },
+          ],
+        },
       },
       "R": {
         "name": "Unleashed Power",
@@ -18689,6 +26076,27 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           100,
           80,
         ],
+        "formula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                80,
+                120,
+                160,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "ap",
+              "f": {
+                "op": "num",
+                "n": 0.2,
+              },
+            },
+          ],
+        },
       },
     },
     "shelf": [
@@ -18775,6 +26183,29 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           ],
           "ratios": {},
         },
+        "formula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                75,
+                120,
+                165,
+                210,
+                255,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "ap",
+              "f": {
+                "op": "num",
+                "n": 1,
+              },
+            },
+          ],
+        },
       },
       "W": {
         "name": "Abyssal Dive",
@@ -18797,6 +26228,29 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           18,
           17,
         ],
+        "formula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                100,
+                135,
+                170,
+                205,
+                240,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "ap",
+              "f": {
+                "op": "num",
+                "n": 1.5,
+              },
+            },
+          ],
+        },
       },
       "E": {
         "name": "Thick Skin",
@@ -18836,6 +26290,27 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           "ratios": {
             "ap": 1,
           },
+        },
+        "shieldFormula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                650,
+                800,
+                950,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "ap",
+              "f": {
+                "op": "num",
+                "n": 1,
+              },
+            },
+          ],
         },
       },
     },
@@ -18912,6 +26387,29 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           4,
           3,
         ],
+        "formula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                55,
+                72.5,
+                90,
+                107.5,
+                125,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "ap",
+              "f": {
+                "op": "num",
+                "n": 0.5,
+              },
+            },
+          ],
+        },
       },
       "W": {
         "name": "Seismic Shove",
@@ -18950,6 +26448,29 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           14,
           14,
         ],
+        "formula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                60,
+                105,
+                150,
+                195,
+                240,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "ap",
+              "f": {
+                "op": "num",
+                "n": 0.6,
+              },
+            },
+          ],
+        },
       },
       "R": {
         "name": "Weaver's Wall",
@@ -19039,6 +26560,29 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           6.5,
           6,
         ],
+        "formula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                65,
+                85,
+                105,
+                125,
+                145,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "bonusAd",
+              "f": {
+                "op": "num",
+                "n": 1,
+              },
+            },
+          ],
+        },
       },
       "W": {
         "name": "Rake",
@@ -19061,6 +26605,29 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           7.5,
           7,
         ],
+        "formula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                50,
+                60,
+                70,
+                80,
+                90,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "bonusAd",
+              "f": {
+                "op": "num",
+                "n": 0.4,
+              },
+            },
+          ],
+        },
       },
       "E": {
         "name": "Assassin's Path",
@@ -19095,6 +26662,27 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           80,
           60,
         ],
+        "formula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                90,
+                135,
+                180,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "bonusAd",
+              "f": {
+                "op": "num",
+                "n": 1,
+              },
+            },
+          ],
+        },
       },
     },
     "shelf": [
@@ -19219,6 +26807,37 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           13,
           12,
         ],
+        "formula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                90,
+                130,
+                170,
+                210,
+                250,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "ap",
+              "f": {
+                "op": "num",
+                "n": 0.5,
+              },
+            },
+            {
+              "op": "stat",
+              "stat": "bonusArmor",
+              "f": {
+                "op": "num",
+                "n": 0.5,
+              },
+            },
+          ],
+        },
       },
       "R": {
         "name": "Cosmic Radiance",
@@ -19308,6 +26927,29 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           7,
           7,
         ],
+        "formula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                80,
+                125,
+                170,
+                215,
+                260,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "ap",
+              "f": {
+                "op": "num",
+                "n": 0.7,
+              },
+            },
+          ],
+        },
       },
       "W": {
         "name": "Move Quick",
@@ -19338,6 +26980,37 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         ],
         "ratios": {
           "ap": 0.3,
+        },
+        "formula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                9,
+                23,
+                37,
+                51,
+                65,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "ap",
+              "f": {
+                "op": "num",
+                "n": 0.3,
+              },
+            },
+            {
+              "op": "stat",
+              "stat": "bonusAd",
+              "f": {
+                "op": "num",
+                "n": 0.05,
+              },
+            },
+          ],
         },
       },
       "R": {
@@ -19432,6 +27105,29 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           11.5,
           9,
         ],
+        "formula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                100,
+                150,
+                200,
+                250,
+                300,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "ap",
+              "f": {
+                "op": "num",
+                "n": 0.9,
+              },
+            },
+          ],
+        },
       },
       "W": {
         "name": "Dark Passage",
@@ -19480,6 +27176,29 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           10.75,
           10,
         ],
+        "formula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                65,
+                110,
+                155,
+                200,
+                245,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "ap",
+              "f": {
+                "op": "num",
+                "n": 0.6,
+              },
+            },
+          ],
+        },
       },
       "R": {
         "name": "The Box",
@@ -19498,6 +27217,27 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           100,
           80,
         ],
+        "formula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                250,
+                400,
+                550,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "ap",
+              "f": {
+                "op": "num",
+                "n": 1,
+              },
+            },
+          ],
+        },
       },
     },
     "shelf": [
@@ -19590,6 +27330,37 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           16,
           14,
         ],
+        "formula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                70,
+                105,
+                140,
+                175,
+                210,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "bonusAd",
+              "f": {
+                "op": "num",
+                "n": 1,
+              },
+            },
+            {
+              "op": "stat",
+              "stat": "ap",
+              "f": {
+                "op": "num",
+                "n": 0.5,
+              },
+            },
+          ],
+        },
       },
       "E": {
         "name": "Explosive Charge",
@@ -19612,6 +27383,29 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           14.5,
           14,
         ],
+        "formula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                45,
+                60,
+                75,
+                90,
+                105,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "ap",
+              "f": {
+                "op": "num",
+                "n": 0.25,
+              },
+            },
+          ],
+        },
       },
       "R": {
         "name": "Buster Shot",
@@ -19631,6 +27425,35 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           100,
           100,
         ],
+        "formula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                225,
+                275,
+                325,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "bonusAd",
+              "f": {
+                "op": "num",
+                "n": 0.7,
+              },
+            },
+            {
+              "op": "stat",
+              "stat": "ap",
+              "f": {
+                "op": "num",
+                "n": 1,
+              },
+            },
+          ],
+        },
       },
     },
     "shelf": [
@@ -19851,6 +27674,29 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
             "ap": 0.012,
           },
         },
+        "healFormula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                0.5,
+                0.95,
+                1.4,
+                1.85,
+                2.3,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "ap",
+              "f": {
+                "op": "num",
+                "n": 0.012,
+              },
+            },
+          ],
+        },
       },
       "W": {
         "name": "Mocking Shout",
@@ -19890,6 +27736,37 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           9,
           8,
         ],
+        "formula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                80,
+                120,
+                160,
+                200,
+                240,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "bonusAd",
+              "f": {
+                "op": "num",
+                "n": 1,
+              },
+            },
+            {
+              "op": "stat",
+              "stat": "ap",
+              "f": {
+                "op": "num",
+                "n": 0.8,
+              },
+            },
+          ],
+        },
       },
       "R": {
         "name": "Undying Rage",
@@ -19988,6 +27865,37 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           5.25,
           5,
         ],
+        "formula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                60,
+                105,
+                150,
+                195,
+                240,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "bonusAd",
+              "f": {
+                "op": "num",
+                "n": 0.5,
+              },
+            },
+            {
+              "op": "stat",
+              "stat": "ap",
+              "f": {
+                "op": "num",
+                "n": 0.85,
+              },
+            },
+          ],
+        },
       },
       "W": {
         "name": "Pick a Card",
@@ -20307,6 +28215,51 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
             "maxHp": 0.0025,
           },
         },
+        "shieldFormula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                45,
+                65,
+                85,
+                105,
+                125,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "maxHp",
+              "f": {
+                "op": "rank",
+                "v": [
+                  0.02,
+                  0.023,
+                  0.026,
+                  0.029,
+                  0.032,
+                ],
+              },
+            },
+            {
+              "op": "stat",
+              "stat": "ap",
+              "f": {
+                "op": "num",
+                "n": 0.4,
+              },
+            },
+            {
+              "op": "stat",
+              "stat": "bonusAd",
+              "f": {
+                "op": "num",
+                "n": 0.5,
+              },
+            },
+          ],
+        },
       },
       "E": {
         "name": "Blazing Stampede",
@@ -20419,6 +28372,29 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           8.5,
           8,
         ],
+        "formula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                25,
+                70,
+                115,
+                160,
+                205,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "ad",
+              "f": {
+                "op": "num",
+                "n": 0.7,
+              },
+            },
+          ],
+        },
       },
       "W": {
         "name": "Purge",
@@ -20450,6 +28426,29 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           3,
           0,
         ],
+        "formula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "num",
+              "n": 12,
+            },
+            {
+              "op": "stat",
+              "stat": "ad",
+              "f": {
+                "op": "rank",
+                "v": [
+                  0.2,
+                  0.235,
+                  0.27,
+                  0.305,
+                  0.34,
+                ],
+              },
+            },
+          ],
+        },
       },
       "E": {
         "name": "Disdain",
@@ -20485,6 +28484,60 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
             "bonusHp": 0.135,
           },
         },
+        "formula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                90,
+                120,
+                150,
+                180,
+                210,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "bonusAd",
+              "f": {
+                "op": "num",
+                "n": 1,
+              },
+            },
+          ],
+        },
+        "shieldFormula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                55,
+                75,
+                95,
+                115,
+                135,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "bonusAd",
+              "f": {
+                "op": "num",
+                "n": 1.35,
+              },
+            },
+            {
+              "op": "stat",
+              "stat": "bonusHp",
+              "f": {
+                "op": "num",
+                "n": 0.135,
+              },
+            },
+          ],
+        },
       },
       "R": {
         "name": "Fear Beyond Death",
@@ -20503,6 +28556,27 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           85,
           70,
         ],
+        "formula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                100,
+                225,
+                350,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "bonusAd",
+              "f": {
+                "op": "num",
+                "n": 0.5,
+              },
+            },
+          ],
+        },
       },
     },
     "shelf": [
@@ -20609,6 +28683,37 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           40,
           40,
         ],
+        "formula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                4,
+                13,
+                22,
+                31,
+                40,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "ap",
+              "f": {
+                "op": "num",
+                "n": 0.25,
+              },
+            },
+            {
+              "op": "stat",
+              "stat": "bonusAd",
+              "f": {
+                "op": "num",
+                "n": 0.15,
+              },
+            },
+          ],
+        },
       },
       "E": {
         "name": "Hail of Arrows",
@@ -20631,6 +28736,29 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           12,
           10,
         ],
+        "formula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                60,
+                90,
+                120,
+                150,
+                180,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "bonusAd",
+              "f": {
+                "op": "num",
+                "n": 0.9,
+              },
+            },
+          ],
+        },
       },
       "R": {
         "name": "Chain of Corruption",
@@ -20649,6 +28777,27 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           80,
           60,
         ],
+        "formula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                150,
+                250,
+                350,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "ap",
+              "f": {
+                "op": "num",
+                "n": 1,
+              },
+            },
+          ],
+        },
       },
     },
     "shelf": [
@@ -20772,6 +28921,29 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           14,
           12,
         ],
+        "formula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                50,
+                85,
+                120,
+                155,
+                190,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "bonusAd",
+              "f": {
+                "op": "num",
+                "n": 0.5,
+              },
+            },
+          ],
+        },
       },
       "R": {
         "name": "Final Hour",
@@ -20870,6 +29042,35 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           4.5,
           4,
         ],
+        "formula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                80,
+                120,
+                160,
+                200,
+                240,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "ap",
+              "f": {
+                "op": "rank",
+                "v": [
+                  0.5,
+                  0.55,
+                  0.6,
+                  0.65,
+                  0.7,
+                ],
+              },
+            },
+          ],
+        },
       },
       "W": {
         "name": "Dark Matter",
@@ -20901,6 +29102,35 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           8,
           8,
         ],
+        "formula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                85,
+                140,
+                195,
+                250,
+                305,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "ap",
+              "f": {
+                "op": "rank",
+                "v": [
+                  0.7,
+                  0.8,
+                  0.9,
+                  1,
+                  1.1,
+                ],
+              },
+            },
+          ],
+        },
       },
       "E": {
         "name": "Event Horizon",
@@ -21017,6 +29247,29 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           7,
           7,
         ],
+        "formula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                80,
+                120,
+                160,
+                200,
+                240,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "ap",
+              "f": {
+                "op": "num",
+                "n": 0.9,
+              },
+            },
+          ],
+        },
       },
       "W": {
         "name": "Void Rift",
@@ -21039,6 +29292,29 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           1.5,
           1.5,
         ],
+        "formula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                30,
+                50,
+                70,
+                90,
+                110,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "ap",
+              "f": {
+                "op": "num",
+                "n": 0.2,
+              },
+            },
+          ],
+        },
       },
       "E": {
         "name": "Tectonic Disruption",
@@ -21061,6 +29337,29 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           10.5,
           10,
         ],
+        "formula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                70,
+                100,
+                130,
+                160,
+                190,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "ap",
+              "f": {
+                "op": "num",
+                "n": 0.3,
+              },
+            },
+          ],
+        },
       },
       "R": {
         "name": "Life Form Disintegration Ray",
@@ -21154,6 +29453,29 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           5,
           4,
         ],
+        "formula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                70,
+                115,
+                160,
+                205,
+                250,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "ap",
+              "f": {
+                "op": "num",
+                "n": 0.7,
+              },
+            },
+          ],
+        },
       },
       "W": {
         "name": "Personal Space",
@@ -21188,6 +29510,52 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
             "ap": 0.75,
           },
         },
+        "formula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                80,
+                120,
+                160,
+                200,
+                240,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "ap",
+              "f": {
+                "op": "num",
+                "n": 0.3,
+              },
+            },
+          ],
+        },
+        "shieldFormula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                50,
+                75,
+                100,
+                125,
+                150,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "ap",
+              "f": {
+                "op": "num",
+                "n": 0.75,
+              },
+            },
+          ],
+        },
       },
       "E": {
         "name": "Looming Darkness",
@@ -21219,6 +29587,35 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           13,
           13,
         ],
+        "formula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                50,
+                70,
+                90,
+                110,
+                130,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "ap",
+              "f": {
+                "op": "rank",
+                "v": [
+                  0.4,
+                  0.45,
+                  0.5,
+                  0.55,
+                  0.6,
+                ],
+              },
+            },
+          ],
+        },
       },
       "R": {
         "name": "Shadow Surge",
@@ -21237,6 +29634,27 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           120,
           100,
         ],
+        "formula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                75,
+                125,
+                175,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "ap",
+              "f": {
+                "op": "num",
+                "n": 0.2,
+              },
+            },
+          ],
+        },
       },
     },
     "shelf": [
@@ -21312,6 +29730,29 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           7.5,
           6,
         ],
+        "formula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                40,
+                60,
+                80,
+                100,
+                120,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "bonusAd",
+              "f": {
+                "op": "num",
+                "n": 0.6,
+              },
+            },
+          ],
+        },
       },
       "W": {
         "name": "Denting Blows",
@@ -21373,6 +29814,27 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           115,
           90,
         ],
+        "formula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                150,
+                250,
+                350,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "bonusAd",
+              "f": {
+                "op": "num",
+                "n": 0.9,
+              },
+            },
+          ],
+        },
       },
     },
     "shelf": [
@@ -21475,6 +29937,29 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           8,
           8,
         ],
+        "formula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                80,
+                135,
+                190,
+                245,
+                300,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "ap",
+              "f": {
+                "op": "num",
+                "n": 1,
+              },
+            },
+          ],
+        },
       },
       "E": {
         "name": "Harrowed Path",
@@ -21589,6 +30074,29 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           6,
           5,
         ],
+        "formula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                60,
+                75,
+                90,
+                105,
+                120,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "ap",
+              "f": {
+                "op": "num",
+                "n": 0.4,
+              },
+            },
+          ],
+        },
       },
       "W": {
         "name": "Gravity Field",
@@ -21627,6 +30135,29 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           9,
           8,
         ],
+        "formula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                70,
+                110,
+                150,
+                190,
+                230,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "ap",
+              "f": {
+                "op": "num",
+                "n": 0.5,
+              },
+            },
+          ],
+        },
       },
       "R": {
         "name": "Arcane Storm",
@@ -21645,6 +30176,27 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           100,
           80,
         ],
+        "formula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                100,
+                175,
+                250,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "ap",
+              "f": {
+                "op": "num",
+                "n": 0.5,
+              },
+            },
+          ],
+        },
       },
     },
     "shelf": [
@@ -21805,6 +30357,27 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
             "ap": 0.7,
           },
         },
+        "formula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                150,
+                250,
+                350,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "ap",
+              "f": {
+                "op": "num",
+                "n": 0.7,
+              },
+            },
+          ],
+        },
       },
     },
     "shelf": [
@@ -21912,6 +30485,37 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
             80,
           ],
           "ratios": {},
+        },
+        "formula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                5,
+                30,
+                55,
+                80,
+                105,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "ad",
+              "f": {
+                "op": "num",
+                "n": 1.1,
+              },
+            },
+            {
+              "op": "stat",
+              "stat": "bonusHp",
+              "f": {
+                "op": "num",
+                "n": 0.06,
+              },
+            },
+          ],
         },
       },
       "E": {
@@ -22104,6 +30708,27 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           90,
           70,
         ],
+        "formula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                175,
+                350,
+                525,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "bonusAd",
+              "f": {
+                "op": "num",
+                "n": 1.67,
+              },
+            },
+          ],
+        },
       },
     },
     "shelf": [
@@ -22179,6 +30804,29 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           6.5,
           6,
         ],
+        "formula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                20,
+                45,
+                70,
+                95,
+                120,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "bonusAd",
+              "f": {
+                "op": "num",
+                "n": 0.5,
+              },
+            },
+          ],
+        },
       },
       "W": {
         "name": "Warrior Trickster",
@@ -22217,6 +30865,29 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           7.75,
           7,
         ],
+        "formula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                80,
+                120,
+                160,
+                200,
+                240,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "ap",
+              "f": {
+                "op": "num",
+                "n": 1,
+              },
+            },
+          ],
+        },
       },
       "R": {
         "name": "Cyclone",
@@ -22316,6 +30987,29 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           8.5,
           8,
         ],
+        "formula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                45,
+                60,
+                75,
+                90,
+                105,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "bonusAd",
+              "f": {
+                "op": "num",
+                "n": 0.5,
+              },
+            },
+          ],
+        },
       },
       "W": {
         "name": "Deadly Plumage",
@@ -22372,6 +31066,27 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           120,
           100,
         ],
+        "formula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                200,
+                300,
+                400,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "bonusAd",
+              "f": {
+                "op": "num",
+                "n": 1,
+              },
+            },
+          ],
+        },
       },
     },
     "shelf": [
@@ -22469,6 +31184,29 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           11,
           10,
         ],
+        "formula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                50,
+                85,
+                120,
+                155,
+                190,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "ap",
+              "f": {
+                "op": "num",
+                "n": 0.65,
+              },
+            },
+          ],
+        },
       },
       "E": {
         "name": "Shocking Orb",
@@ -22606,6 +31344,29 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           9,
           8,
         ],
+        "formula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                30,
+                40,
+                50,
+                60,
+                70,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "ad",
+              "f": {
+                "op": "num",
+                "n": 0.3,
+              },
+            },
+          ],
+        },
       },
       "E": {
         "name": "Audacious Charge",
@@ -22723,6 +31484,29 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           4,
           4,
         ],
+        "formula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                20,
+                45,
+                70,
+                95,
+                120,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "ad",
+              "f": {
+                "op": "num",
+                "n": 1.05,
+              },
+            },
+          ],
+        },
       },
       "W": {
         "name": "Wind Wall",
@@ -22762,6 +31546,37 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           0.2,
           0.1,
         ],
+        "formula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                70,
+                85,
+                100,
+                115,
+                130,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "bonusAd",
+              "f": {
+                "op": "num",
+                "n": 0.2,
+              },
+            },
+            {
+              "op": "stat",
+              "stat": "ap",
+              "f": {
+                "op": "num",
+                "n": 0.6,
+              },
+            },
+          ],
+        },
       },
       "R": {
         "name": "Last Breath",
@@ -22780,6 +31595,27 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           50,
           30,
         ],
+        "formula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                200,
+                350,
+                500,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "bonusAd",
+              "f": {
+                "op": "num",
+                "n": 1.5,
+              },
+            },
+          ],
+        },
       },
     },
     "shelf": [
@@ -22855,6 +31691,29 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           4,
           4,
         ],
+        "formula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                25,
+                50,
+                75,
+                100,
+                125,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "ad",
+              "f": {
+                "op": "num",
+                "n": 1.1,
+              },
+            },
+          ],
+        },
       },
       "W": {
         "name": "Spirit Cleave",
@@ -23161,6 +32020,29 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           6.5,
           6.5,
         ],
+        "formula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                60,
+                95,
+                130,
+                165,
+                200,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "ap",
+              "f": {
+                "op": "num",
+                "n": 0.2,
+              },
+            },
+          ],
+        },
       },
       "W": {
         "name": "You and Me!",
@@ -23203,6 +32085,29 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
             "ap": 0.3,
           },
         },
+        "shieldFormula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                65,
+                90,
+                115,
+                140,
+                165,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "ap",
+              "f": {
+                "op": "num",
+                "n": 0.4,
+              },
+            },
+          ],
+        },
       },
       "R": {
         "name": "Final Chapter",
@@ -23230,6 +32135,48 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           "ratios": {
             "ap": 0.15,
           },
+        },
+        "formula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                75,
+                125,
+                175,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "ap",
+              "f": {
+                "op": "num",
+                "n": 0.25,
+              },
+            },
+          ],
+        },
+        "healFormula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                30,
+                50,
+                70,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "ap",
+              "f": {
+                "op": "num",
+                "n": 0.12,
+              },
+            },
+          ],
         },
       },
     },
@@ -23359,6 +32306,29 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           13,
           10,
         ],
+        "formula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                60,
+                105,
+                150,
+                195,
+                240,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "ap",
+              "f": {
+                "op": "num",
+                "n": 0.8,
+              },
+            },
+          ],
+        },
       },
       "R": {
         "name": "Let's Bounce!",
@@ -23377,6 +32347,27 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           105,
           90,
         ],
+        "formula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                120,
+                190,
+                260,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "ap",
+              "f": {
+                "op": "num",
+                "n": 0.4,
+              },
+            },
+          ],
+        },
       },
     },
     "shelf": [
@@ -23452,6 +32443,29 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           6,
           6,
         ],
+        "formula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                80,
+                120,
+                160,
+                200,
+                240,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "bonusAd",
+              "f": {
+                "op": "num",
+                "n": 1,
+              },
+            },
+          ],
+        },
       },
       "W": {
         "name": "Living Shadow",
@@ -23490,6 +32504,29 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           3.5,
           3,
         ],
+        "formula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                70,
+                92.5,
+                115,
+                137.5,
+                160,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "bonusAd",
+              "f": {
+                "op": "num",
+                "n": 0.7,
+              },
+            },
+          ],
+        },
       },
       "R": {
         "name": "Death Mark",
@@ -23506,6 +32543,14 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           110,
           100,
         ],
+        "formula": {
+          "op": "stat",
+          "stat": "ad",
+          "f": {
+            "op": "num",
+            "n": 1,
+          },
+        },
       },
     },
     "shelf": [
@@ -23613,6 +32658,37 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           9,
           8,
         ],
+        "formula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                30,
+                70,
+                110,
+                150,
+                190,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "ad",
+              "f": {
+                "op": "num",
+                "n": 1,
+              },
+            },
+            {
+              "op": "stat",
+              "stat": "ap",
+              "f": {
+                "op": "num",
+                "n": 0.5,
+              },
+            },
+          ],
+        },
       },
       "E": {
         "name": "Spark Surge",
@@ -23648,6 +32724,35 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           75,
           70,
         ],
+        "formula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                150,
+                250,
+                350,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "ap",
+              "f": {
+                "op": "num",
+                "n": 1.1,
+              },
+            },
+            {
+              "op": "stat",
+              "stat": "bonusAd",
+              "f": {
+                "op": "num",
+                "n": 0.6,
+              },
+            },
+          ],
+        },
       },
     },
     "shelf": [
@@ -23723,6 +32828,35 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           4.5,
           4,
         ],
+        "formula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                80,
+                130,
+                180,
+                230,
+                280,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "ap",
+              "f": {
+                "op": "rank",
+                "v": [
+                  0.6,
+                  0.65,
+                  0.7,
+                  0.75,
+                  0.8,
+                ],
+              },
+            },
+          ],
+        },
       },
       "W": {
         "name": "Satchel Charge",
@@ -23745,6 +32879,29 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           14,
           12,
         ],
+        "formula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                70,
+                105,
+                140,
+                175,
+                210,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "ap",
+              "f": {
+                "op": "num",
+                "n": 0.5,
+              },
+            },
+          ],
+        },
       },
       "E": {
         "name": "Hexplosive Minefield",
@@ -23767,6 +32924,35 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           16,
           16,
         ],
+        "formula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                30,
+                70,
+                110,
+                150,
+                190,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "ap",
+              "f": {
+                "op": "rank",
+                "v": [
+                  0.25,
+                  0.3,
+                  0.35,
+                  0.4,
+                  0.45,
+                ],
+              },
+            },
+          ],
+        },
       },
       "R": {
         "name": "Mega Inferno Bomb",
@@ -23785,6 +32971,36 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           95,
           70,
         ],
+        "formula": {
+          "op": "mul",
+          "of": [
+            {
+              "op": "sum",
+              "of": [
+                {
+                  "op": "rank",
+                  "v": [
+                    300,
+                    500,
+                    700,
+                  ],
+                },
+                {
+                  "op": "stat",
+                  "stat": "ap",
+                  "f": {
+                    "op": "num",
+                    "n": 1,
+                  },
+                },
+              ],
+            },
+            {
+              "op": "num",
+              "n": 0.65,
+            },
+          ],
+        },
       },
     },
     "shelf": [
@@ -23860,6 +33076,29 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           8.5,
           8,
         ],
+        "formula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                75,
+                115,
+                165,
+                230,
+                300,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "ap",
+              "f": {
+                "op": "num",
+                "n": 0.9,
+              },
+            },
+          ],
+        },
       },
       "W": {
         "name": "Rewind",
@@ -23915,6 +33154,27 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           "ratios": {
             "ap": 2,
           },
+        },
+        "healFormula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                600,
+                850,
+                1100,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "ap",
+              "f": {
+                "op": "num",
+                "n": 2,
+              },
+            },
+          ],
         },
       },
     },
@@ -24137,6 +33397,29 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           5.5,
           5,
         ],
+        "formula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                60,
+                100,
+                140,
+                180,
+                220,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "ap",
+              "f": {
+                "op": "num",
+                "n": 0.65,
+              },
+            },
+          ],
+        },
       },
       "W": {
         "name": "Rampant Growth",
@@ -24168,6 +33451,29 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           11,
           11,
         ],
+        "formula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                60,
+                95,
+                130,
+                165,
+                200,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "ap",
+              "f": {
+                "op": "num",
+                "n": 0.6,
+              },
+            },
+          ],
+        },
       },
       "R": {
         "name": "Stranglethorns",
@@ -24186,6 +33492,27 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           100,
           90,
         ],
+        "formula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                200,
+                300,
+                400,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "ap",
+              "f": {
+                "op": "num",
+                "n": 0.7,
+              },
+            },
+          ],
+        },
       },
     },
     "shelf": [

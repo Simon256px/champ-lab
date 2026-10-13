@@ -48,6 +48,20 @@ export default define.page(function Methode() {
               </code>) mesure la concordance avec Data Dragon et signale les écarts.
             </p>
             <p>
+              <b>Valeurs du jeu.</b>{" "}
+              Pour rattraper ce retard, les nombres des sorts viennent des fichiers du jeu (CommunityDragon,
+              patch {DATA_META.patch}) quand leur formule concorde avec Meraki à ×/÷ 1,3 près :{" "}
+              <b>{DATA_META.gameFormulas.damage} sorts de dégâts</b> (dont {DATA_META.gameFormulas.changed}
+              {" "}
+              qui avaient bougé depuis Meraki), {DATA_META.gameFormulas.shield} boucliers et{" "}
+              {DATA_META.gameFormulas.heal} soins. Restent sur Meraki : {DATA_META.gameFormulas.keptPercent}
+              {" "}
+              sorts en % des PV (le sens du pourcentage n'est pas dans la formule),{" "}
+              {DATA_META.gameFormulas.keptNone} sans calcul exploitable et{" "}
+              {DATA_META.gameFormulas.keptMismatch}{" "}
+              dont l'écart trahit un autre calcul (deux passages, charge max, par seconde…).
+            </p>
+            <p>
               ⚠ Le pipeline n'extrait que ce que le moteur sait modéliser : stats de base, ratios AP / AD / AD
               bonus et par rang, dégâts en % des PV, boucliers et soins des sorts, cooldowns, stats plates
               d'objets (dont VA, crit, vol de vie). Les passifs et mécaniques conditionnelles ne sont{" "}

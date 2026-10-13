@@ -14,4 +14,14 @@ export const DATA_META = {
   champions: 170,
   items: 199,
   runes: 17,
+  /** sorts dont les nombres viennent des fichiers du jeu (CommunityDragon) au patch près */
+  gameFormulas: {
+    "damage": 342,
+    "changed": 107,
+    "shield": 30,
+    "heal": 18,
+    "keptPercent": 31,
+    "keptNone": 94,
+    "keptMismatch": 54,
+  },
 } as const;
