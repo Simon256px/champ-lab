@@ -1356,6 +1356,204 @@ input[type=range].en::-moz-range-thumb {
     flex-wrap: wrap;
   }
 }
+/* ---------- MATCHUP ---------- */
+.mu {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+.mu-pickrow {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+.mu-side {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex: 1 1 220px;
+}
+.mu-sidelabel {
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  color: var(--bg);
+  padding: 2px 7px;
+}
+.mu-side-a .mu-sidelabel {
+  background: var(--green);
+}
+.mu-side-b .mu-sidelabel {
+  background: var(--enemy);
+}
+.mu-side select {
+  flex: 1;
+  min-width: 0;
+  font-family: inherit;
+  font-size: 13px;
+  color: var(--cream);
+  background: var(--bg2);
+  border: 1px solid var(--line2);
+  padding: 6px 8px;
+}
+.mu-lane {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0 18px;
+  border-top: 1px dashed var(--line);
+}
+.mu-summary {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 6px 18px;
+  margin-bottom: 8px;
+}
+.mu-summary b,
+.mu-focus b {
+  color: var(--cream);
+}
+.mu-a,
+.mu-summary b.mu-a {
+  color: var(--green);
+}
+.mu-b,
+.mu-summary b.mu-b {
+  color: var(--enemy);
+}
+.dim {
+  color: var(--dim);
+}
+.mu-chart {
+  display: block;
+  width: 100%;
+  height: auto;
+  touch-action: none;
+}
+.mu-grid {
+  stroke: var(--line);
+  stroke-width: 1;
+  stroke-dasharray: 2 4;
+}
+.mu-zero {
+  stroke: var(--dim);
+  stroke-width: 1;
+}
+.mu-tick {
+  fill: var(--dim);
+  font-size: 10px;
+  font-family: var(--f);
+}
+.mu-zone {
+  font-size: 10px;
+  font-family: var(--f);
+  letter-spacing: 0.12em;
+}
+text.mu-a {
+  fill: var(--green);
+}
+text.mu-b {
+  fill: var(--enemy);
+}
+.mu-area-a {
+  fill: var(--green);
+  opacity: 0.16;
+}
+.mu-area-b {
+  fill: var(--enemy);
+  opacity: 0.2;
+}
+.mu-line {
+  fill: none;
+  stroke: var(--cream);
+  stroke-width: 2;
+  stroke-linejoin: round;
+}
+.mu-dot {
+  stroke: var(--panel);
+  stroke-width: 2;
+}
+.mu-dot.a {
+  fill: var(--green);
+}
+.mu-dot.b {
+  fill: var(--enemy);
+}
+.mu-cross {
+  stroke: var(--dim2);
+  stroke-width: 1;
+}
+.mu-hoverdot {
+  fill: var(--cream);
+  stroke: var(--panel);
+  stroke-width: 2;
+}
+.mu-focus {
+  min-height: 1.45em;
+  margin-top: 6px;
+}
+.mu-cols {
+  display: grid;
+  grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr);
+  gap: 14px;
+}
+.mu-spike {
+  display: grid;
+  grid-template-columns: 36px 120px minmax(0, 1fr);
+  gap: 8px;
+  padding: 5px 0;
+  border-bottom: 1px dashed var(--line);
+}
+.mu-spike:last-child {
+  border-bottom: 0;
+}
+.mu-min {
+  color: var(--cream);
+}
+.mu-notes p + p {
+  margin-top: 8px;
+}
+.mu-tablewrap {
+  overflow-x: auto;
+}
+.mu-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 12px;
+}
+.mu-table th,
+.mu-table td {
+  text-align: left;
+  padding: 4px 8px;
+  border-bottom: 1px dashed var(--line);
+  white-space: nowrap;
+}
+.mu-table th {
+  color: var(--dim);
+  font-weight: normal;
+  letter-spacing: 0.1em;
+}
+.mu-table td.mu-build {
+  white-space: normal;
+  min-width: 180px;
+  color: var(--dim);
+}
+.mu-table tr.on td {
+  background: #14200a;
+}
+@media (max-width: 940px) {
+  .mu-lane,
+  .mu-cols {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .mu-spike {
+    grid-template-columns: 36px minmax(0, 1fr);
+  }
+  .mu-causes {
+    grid-column: 2;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   * {
     transition: none !important;

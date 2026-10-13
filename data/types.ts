@@ -66,6 +66,8 @@ export interface ItemStats {
   apAmp?: number;
   hp?: number;
   armor?: number;
+  /** résistance magique */
+  mr?: number;
   abilityHaste?: number;
   magicPenFlat?: number;
   /** pénétration magique en %, ex. 0.40 */
@@ -76,12 +78,20 @@ export interface ItemStats {
   lethality?: number;
 }
 
+/** Place d'un objet dans l'arbre de craft. Les composants servent à la timeline de build. */
+export type ItemTier = "starter" | "basic" | "epic" | "legendary" | "boots";
+
 export interface Item {
   id: string;
   name: string;
   /** libellé court affiché dans les slots */
   short: string;
   stats: ItemStats;
+  tier?: ItemTier;
+  /** prix total en or (composants compris) */
+  cost?: number;
+  /** recette : ids des composants directs (un id peut apparaître deux fois) */
+  from?: string[];
   /** URL de l'icône officielle de l'objet (Data Dragon). */
   icon?: string;
 }

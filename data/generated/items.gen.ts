@@ -1,8 +1,8 @@
 // ⚠ FICHIER GÉNÉRÉ — ne pas éditer à la main.
 // Source : Meraki (lolstaticdata) + Data Dragon.
 // Régénérer : deno task data
-// Patch de référence : 16.13.1
-// Généré le : 2026-07-08
+// Patch de référence : 16.20.1
+// Généré le : 2026-10-13
 
 import type { Item } from "../types.ts";
 
@@ -13,9 +13,16 @@ export const GENERATED_ITEMS: Record<string, Item> = {
     "short": "ABYSSAL",
     "stats": {
       "hp": 350,
+      "mr": 45,
       "abilityHaste": 15,
     },
-    "icon": "https://ddragon.leagueoflegends.com/cdn/16.13.1/img/item/8020.png",
+    "tier": "legendary",
+    "cost": 2650,
+    "from": [
+      "kindlegem",
+      "negatroncloak",
+    ],
+    "icon": "https://ddragon.leagueoflegends.com/cdn/16.20.1/img/item/8020.png",
   },
   "actualizer": {
     "id": "actualizer",
@@ -25,7 +32,38 @@ export const GENERATED_ITEMS: Record<string, Item> = {
       "ap": 90,
       "abilityHaste": 10,
     },
-    "icon": "https://ddragon.leagueoflegends.com/cdn/16.13.1/img/item/2522.png",
+    "tier": "legendary",
+    "cost": 2800,
+    "from": [
+      "lostchapter",
+      "blastingwand",
+    ],
+    "icon": "https://ddragon.leagueoflegends.com/cdn/16.20.1/img/item/2522.png",
+  },
+  "aetherwisp": {
+    "id": "aetherwisp",
+    "name": "Aether Wisp",
+    "short": "AETHER",
+    "stats": {
+      "ap": 30,
+    },
+    "tier": "epic",
+    "cost": 900,
+    "from": [
+      "amplifyingtome",
+    ],
+    "icon": "https://ddragon.leagueoflegends.com/cdn/16.20.1/img/item/3113.png",
+  },
+  "amplifyingtome": {
+    "id": "amplifyingtome",
+    "name": "Amplifying Tome",
+    "short": "AMPLIFYI",
+    "stats": {
+      "ap": 20,
+    },
+    "tier": "basic",
+    "cost": 400,
+    "icon": "https://ddragon.leagueoflegends.com/cdn/16.20.1/img/item/1052.png",
   },
   "archangelsstaff": {
     "id": "archangelsstaff",
@@ -35,7 +73,14 @@ export const GENERATED_ITEMS: Record<string, Item> = {
       "ap": 70,
       "abilityHaste": 25,
     },
-    "icon": "https://ddragon.leagueoflegends.com/cdn/16.13.1/img/item/3003.png",
+    "tier": "legendary",
+    "cost": 2900,
+    "from": [
+      "tearofthegoddess",
+      "lostchapter",
+      "fiendishcodex",
+    ],
+    "icon": "https://ddragon.leagueoflegends.com/cdn/16.20.1/img/item/3003.png",
   },
   "ardentcenser": {
     "id": "ardentcenser",
@@ -44,7 +89,13 @@ export const GENERATED_ITEMS: Record<string, Item> = {
     "stats": {
       "ap": 45,
     },
-    "icon": "https://ddragon.leagueoflegends.com/cdn/16.13.1/img/item/3504.png",
+    "tier": "legendary",
+    "cost": 2200,
+    "from": [
+      "aetherwisp",
+      "forbiddenidol",
+    ],
+    "icon": "https://ddragon.leagueoflegends.com/cdn/16.20.1/img/item/3504.png",
   },
   "armoredadvance": {
     "id": "armoredadvance",
@@ -53,7 +104,12 @@ export const GENERATED_ITEMS: Record<string, Item> = {
     "stats": {
       "armor": 35,
     },
-    "icon": "https://ddragon.leagueoflegends.com/cdn/16.13.1/img/item/3174.png",
+    "tier": "boots",
+    "cost": 1200,
+    "from": [
+      "platedsteelcaps",
+    ],
+    "icon": "https://ddragon.leagueoflegends.com/cdn/16.20.1/img/item/3174.png",
   },
   "axiomarc": {
     "id": "axiomarc",
@@ -64,7 +120,57 @@ export const GENERATED_ITEMS: Record<string, Item> = {
       "abilityHaste": 20,
       "lethality": 18,
     },
-    "icon": "https://ddragon.leagueoflegends.com/cdn/16.13.1/img/item/6696.png",
+    "tier": "legendary",
+    "cost": 2750,
+    "from": [
+      "thebrutalizer",
+      "caulfieldswarhammer",
+    ],
+    "icon": "https://ddragon.leagueoflegends.com/cdn/16.20.1/img/item/6696.png",
+  },
+  "bfsword": {
+    "id": "bfsword",
+    "name": "B. F. Sword",
+    "short": "B.F.SWOR",
+    "stats": {
+      "ad": 40,
+    },
+    "tier": "basic",
+    "cost": 1300,
+    "icon": "https://ddragon.leagueoflegends.com/cdn/16.20.1/img/item/1038.png",
+  },
+  "bamiscinder": {
+    "id": "bamiscinder",
+    "name": "Bami's Cinder",
+    "short": "BAMIS",
+    "stats": {
+      "hp": 150,
+      "abilityHaste": 5,
+    },
+    "tier": "epic",
+    "cost": 900,
+    "from": [
+      "rubycrystal",
+      "glowingmote",
+    ],
+    "icon": "https://ddragon.leagueoflegends.com/cdn/16.20.1/img/item/6660.png",
+  },
+  "bandleglassmirror": {
+    "id": "bandleglassmirror",
+    "name": "Bandleglass Mirror",
+    "short": "BANDLEGL",
+    "stats": {
+      "ap": 20,
+      "abilityHaste": 10,
+    },
+    "tier": "epic",
+    "cost": 900,
+    "from": [
+      "faeriecharm",
+      "amplifyingtome",
+      "glowingmote",
+    ],
+    "icon": "https://ddragon.leagueoflegends.com/cdn/16.20.1/img/item/4642.png",
   },
   "bandlepipes": {
     "id": "bandlepipes",
@@ -73,9 +179,17 @@ export const GENERATED_ITEMS: Record<string, Item> = {
     "stats": {
       "hp": 200,
       "armor": 20,
+      "mr": 20,
       "abilityHaste": 15,
     },
-    "icon": "https://ddragon.leagueoflegends.com/cdn/16.13.1/img/item/2524.png",
+    "tier": "legendary",
+    "cost": 2300,
+    "from": [
+      "kindlegem",
+      "clotharmor",
+      "nullmagicmantle",
+    ],
+    "icon": "https://ddragon.leagueoflegends.com/cdn/16.20.1/img/item/2524.png",
   },
   "bansheesveil": {
     "id": "bansheesveil",
@@ -83,8 +197,15 @@ export const GENERATED_ITEMS: Record<string, Item> = {
     "short": "BANSHEES",
     "stats": {
       "ap": 105,
+      "mr": 40,
     },
-    "icon": "https://ddragon.leagueoflegends.com/cdn/16.13.1/img/item/3102.png",
+    "tier": "legendary",
+    "cost": 3000,
+    "from": [
+      "needlesslylargerod",
+      "verdantbarrier",
+    ],
+    "icon": "https://ddragon.leagueoflegends.com/cdn/16.20.1/img/item/3102.png",
   },
   "bastionbreaker": {
     "id": "bastionbreaker",
@@ -95,19 +216,46 @@ export const GENERATED_ITEMS: Record<string, Item> = {
       "abilityHaste": 15,
       "lethality": 22,
     },
-    "icon": "https://ddragon.leagueoflegends.com/cdn/16.13.1/img/item/2520.png",
+    "tier": "legendary",
+    "cost": 3000,
+    "from": [
+      "thebrutalizer",
+      "serrateddirk",
+    ],
+    "icon": "https://ddragon.leagueoflegends.com/cdn/16.20.1/img/item/2520.png",
+  },
+  "berserkersgreaves": {
+    "id": "berserkersgreaves",
+    "name": "Berserker's Greaves",
+    "short": "BERSERKE",
+    "stats": {},
+    "tier": "boots",
+    "cost": 1100,
+    "from": [
+      "boots",
+      "dagger",
+      "dagger",
+    ],
+    "icon": "https://ddragon.leagueoflegends.com/cdn/16.20.1/img/item/3006.png",
   },
   "blackcleaver": {
     "id": "blackcleaver",
     "name": "Black Cleaver",
     "short": "CLEAVER",
     "stats": {
-      "ad": 40,
+      "ad": 45,
       "hp": 400,
       "abilityHaste": 20,
       "armorPenPercent": 0.3,
     },
-    "icon": "https://ddragon.leagueoflegends.com/cdn/16.13.1/img/item/3071.png",
+    "tier": "legendary",
+    "cost": 3000,
+    "from": [
+      "phage",
+      "kindlegem",
+      "pickaxe",
+    ],
+    "icon": "https://ddragon.leagueoflegends.com/cdn/16.20.1/img/item/3071.png",
   },
   "blackfiretorch": {
     "id": "blackfiretorch",
@@ -117,7 +265,13 @@ export const GENERATED_ITEMS: Record<string, Item> = {
       "ap": 80,
       "abilityHaste": 20,
     },
-    "icon": "https://ddragon.leagueoflegends.com/cdn/16.13.1/img/item/2503.png",
+    "tier": "legendary",
+    "cost": 2800,
+    "from": [
+      "lostchapter",
+      "fatedashes",
+    ],
+    "icon": "https://ddragon.leagueoflegends.com/cdn/16.20.1/img/item/2503.png",
   },
   "bladeoftheruinedking": {
     "id": "bladeoftheruinedking",
@@ -126,7 +280,40 @@ export const GENERATED_ITEMS: Record<string, Item> = {
     "stats": {
       "ad": 40,
     },
-    "icon": "https://ddragon.leagueoflegends.com/cdn/16.13.1/img/item/3153.png",
+    "tier": "legendary",
+    "cost": 3200,
+    "from": [
+      "vampiricscepter",
+      "recurvebow",
+      "pickaxe",
+    ],
+    "icon": "https://ddragon.leagueoflegends.com/cdn/16.20.1/img/item/3153.png",
+  },
+  "blastingwand": {
+    "id": "blastingwand",
+    "name": "Blasting Wand",
+    "short": "BLASTING",
+    "stats": {
+      "ap": 45,
+    },
+    "tier": "basic",
+    "cost": 850,
+    "icon": "https://ddragon.leagueoflegends.com/cdn/16.20.1/img/item/1026.png",
+  },
+  "blightingjewel": {
+    "id": "blightingjewel",
+    "name": "Blighting Jewel",
+    "short": "BLIGHTIN",
+    "stats": {
+      "ap": 25,
+      "magicPenPercent": 0.13,
+    },
+    "tier": "epic",
+    "cost": 1100,
+    "from": [
+      "amplifyingtome",
+    ],
+    "icon": "https://ddragon.leagueoflegends.com/cdn/16.20.1/img/item/4630.png",
   },
   "bloodletterscurse": {
     "id": "bloodletterscurse",
@@ -137,7 +324,13 @@ export const GENERATED_ITEMS: Record<string, Item> = {
       "hp": 400,
       "abilityHaste": 15,
     },
-    "icon": "https://ddragon.leagueoflegends.com/cdn/16.13.1/img/item/8010.png",
+    "tier": "legendary",
+    "cost": 2900,
+    "from": [
+      "hauntingguise",
+      "fiendishcodex",
+    ],
+    "icon": "https://ddragon.leagueoflegends.com/cdn/16.20.1/img/item/8010.png",
   },
   "bloodsong": {
     "id": "bloodsong",
@@ -146,7 +339,10 @@ export const GENERATED_ITEMS: Record<string, Item> = {
     "stats": {
       "hp": 200,
     },
-    "icon": "https://ddragon.leagueoflegends.com/cdn/16.13.1/img/item/3877.png",
+    "tier": "legendary",
+    "cost": 400,
+    "from": [],
+    "icon": "https://ddragon.leagueoflegends.com/cdn/16.20.1/img/item/3877.png",
   },
   "bloodthirster": {
     "id": "bloodthirster",
@@ -155,7 +351,83 @@ export const GENERATED_ITEMS: Record<string, Item> = {
     "stats": {
       "ad": 80,
     },
-    "icon": "https://ddragon.leagueoflegends.com/cdn/16.13.1/img/item/3072.png",
+    "tier": "legendary",
+    "cost": 3400,
+    "from": [
+      "bfsword",
+      "pickaxe",
+      "vampiricscepter",
+    ],
+    "icon": "https://ddragon.leagueoflegends.com/cdn/16.20.1/img/item/3072.png",
+  },
+  "boots": {
+    "id": "boots",
+    "name": "Boots",
+    "short": "BOOTS",
+    "stats": {},
+    "tier": "boots",
+    "cost": 300,
+    "icon": "https://ddragon.leagueoflegends.com/cdn/16.20.1/img/item/1001.png",
+  },
+  "bootsofswiftness": {
+    "id": "bootsofswiftness",
+    "name": "Boots of Swiftness",
+    "short": "BOOTS",
+    "stats": {},
+    "tier": "boots",
+    "cost": 1000,
+    "from": [
+      "boots",
+    ],
+    "icon": "https://ddragon.leagueoflegends.com/cdn/16.20.1/img/item/3009.png",
+  },
+  "bramblevest": {
+    "id": "bramblevest",
+    "name": "Bramble Vest",
+    "short": "BRAMBLE",
+    "stats": {
+      "armor": 30,
+    },
+    "tier": "epic",
+    "cost": 800,
+    "from": [
+      "clotharmor",
+      "clotharmor",
+    ],
+    "icon": "https://ddragon.leagueoflegends.com/cdn/16.20.1/img/item/3076.png",
+  },
+  "catalystofaeons": {
+    "id": "catalystofaeons",
+    "name": "Catalyst of Aeons",
+    "short": "CATALYST",
+    "stats": {
+      "hp": 300,
+    },
+    "tier": "epic",
+    "cost": 1300,
+    "from": [
+      "rubycrystal",
+      "rubycrystal",
+      "sapphirecrystal",
+    ],
+    "icon": "https://ddragon.leagueoflegends.com/cdn/16.20.1/img/item/3803.png",
+  },
+  "caulfieldswarhammer": {
+    "id": "caulfieldswarhammer",
+    "name": "Caulfield's Warhammer",
+    "short": "CAULFIEL",
+    "stats": {
+      "ad": 20,
+      "abilityHaste": 10,
+    },
+    "tier": "epic",
+    "cost": 1050,
+    "from": [
+      "longsword",
+      "glowingmote",
+      "longsword",
+    ],
+    "icon": "https://ddragon.leagueoflegends.com/cdn/16.20.1/img/item/3133.png",
   },
   "celestialopposition": {
     "id": "celestialopposition",
@@ -164,7 +436,38 @@ export const GENERATED_ITEMS: Record<string, Item> = {
     "stats": {
       "hp": 200,
     },
-    "icon": "https://ddragon.leagueoflegends.com/cdn/16.13.1/img/item/3869.png",
+    "tier": "legendary",
+    "cost": 400,
+    "from": [],
+    "icon": "https://ddragon.leagueoflegends.com/cdn/16.20.1/img/item/3869.png",
+  },
+  "chainvest": {
+    "id": "chainvest",
+    "name": "Chain Vest",
+    "short": "CHAIN",
+    "stats": {
+      "armor": 40,
+    },
+    "tier": "epic",
+    "cost": 800,
+    "from": [
+      "clotharmor",
+    ],
+    "icon": "https://ddragon.leagueoflegends.com/cdn/16.20.1/img/item/1031.png",
+  },
+  "chainlacedcrushers": {
+    "id": "chainlacedcrushers",
+    "name": "Chainlaced Crushers",
+    "short": "CHAINLAC",
+    "stats": {
+      "mr": 25,
+    },
+    "tier": "boots",
+    "cost": 1250,
+    "from": [
+      "mercurystreads",
+    ],
+    "icon": "https://ddragon.leagueoflegends.com/cdn/16.20.1/img/item/3173.png",
   },
   "chempunkchainsword": {
     "id": "chempunkchainsword",
@@ -175,7 +478,34 @@ export const GENERATED_ITEMS: Record<string, Item> = {
       "hp": 450,
       "abilityHaste": 15,
     },
-    "icon": "https://ddragon.leagueoflegends.com/cdn/16.13.1/img/item/6609.png",
+    "tier": "legendary",
+    "cost": 3000,
+    "from": [
+      "executionerscalling",
+      "giantsbelt",
+      "caulfieldswarhammer",
+    ],
+    "icon": "https://ddragon.leagueoflegends.com/cdn/16.20.1/img/item/6609.png",
+  },
+  "cloakofagility": {
+    "id": "cloakofagility",
+    "name": "Cloak of Agility",
+    "short": "CLOAK",
+    "stats": {},
+    "tier": "basic",
+    "cost": 600,
+    "icon": "https://ddragon.leagueoflegends.com/cdn/16.20.1/img/item/1018.png",
+  },
+  "clotharmor": {
+    "id": "clotharmor",
+    "name": "Cloth Armor",
+    "short": "CLOTH",
+    "stats": {
+      "armor": 15,
+    },
+    "tier": "basic",
+    "cost": 300,
+    "icon": "https://ddragon.leagueoflegends.com/cdn/16.20.1/img/item/1029.png",
   },
   "cosmicdrive": {
     "id": "cosmicdrive",
@@ -186,7 +516,14 @@ export const GENERATED_ITEMS: Record<string, Item> = {
       "hp": 350,
       "abilityHaste": 25,
     },
-    "icon": "https://ddragon.leagueoflegends.com/cdn/16.13.1/img/item/4629.png",
+    "tier": "legendary",
+    "cost": 3000,
+    "from": [
+      "kindlegem",
+      "aetherwisp",
+      "fiendishcodex",
+    ],
+    "icon": "https://ddragon.leagueoflegends.com/cdn/16.20.1/img/item/4629.png",
   },
   "crimsonlucidity": {
     "id": "crimsonlucidity",
@@ -195,7 +532,12 @@ export const GENERATED_ITEMS: Record<string, Item> = {
     "stats": {
       "abilityHaste": 20,
     },
-    "icon": "https://ddragon.leagueoflegends.com/cdn/16.13.1/img/item/3171.png",
+    "tier": "boots",
+    "cost": 900,
+    "from": [
+      "ionianbootsoflucidity",
+    ],
+    "icon": "https://ddragon.leagueoflegends.com/cdn/16.20.1/img/item/3171.png",
   },
   "cryptbloom": {
     "id": "cryptbloom",
@@ -206,7 +548,61 @@ export const GENERATED_ITEMS: Record<string, Item> = {
       "abilityHaste": 20,
       "magicPenPercent": 0.3,
     },
-    "icon": "https://ddragon.leagueoflegends.com/cdn/16.13.1/img/item/3137.png",
+    "tier": "legendary",
+    "cost": 3000,
+    "from": [
+      "blightingjewel",
+      "fiendishcodex",
+      "fiendishcodex",
+    ],
+    "icon": "https://ddragon.leagueoflegends.com/cdn/16.20.1/img/item/3137.png",
+  },
+  "crystallinebracer": {
+    "id": "crystallinebracer",
+    "name": "Crystalline Bracer",
+    "short": "CRYSTALL",
+    "stats": {
+      "hp": 200,
+    },
+    "tier": "epic",
+    "cost": 800,
+    "from": [
+      "rubycrystal",
+      "rejuvenationbead",
+    ],
+    "icon": "https://ddragon.leagueoflegends.com/cdn/16.20.1/img/item/3801.png",
+  },
+  "cull": {
+    "id": "cull",
+    "name": "Cull",
+    "short": "CULL",
+    "stats": {
+      "ad": 7,
+    },
+    "tier": "starter",
+    "cost": 450,
+    "icon": "https://ddragon.leagueoflegends.com/cdn/16.20.1/img/item/1083.png",
+  },
+  "dagger": {
+    "id": "dagger",
+    "name": "Dagger",
+    "short": "DAGGER",
+    "stats": {},
+    "tier": "basic",
+    "cost": 250,
+    "icon": "https://ddragon.leagueoflegends.com/cdn/16.20.1/img/item/1042.png",
+  },
+  "darkseal": {
+    "id": "darkseal",
+    "name": "Dark Seal",
+    "short": "DARK",
+    "stats": {
+      "ap": 15,
+      "hp": 50,
+    },
+    "tier": "starter",
+    "cost": 350,
+    "icon": "https://ddragon.leagueoflegends.com/cdn/16.20.1/img/item/1082.png",
   },
   "dawncore": {
     "id": "dawncore",
@@ -215,7 +611,14 @@ export const GENERATED_ITEMS: Record<string, Item> = {
     "stats": {
       "ap": 45,
     },
-    "icon": "https://ddragon.leagueoflegends.com/cdn/16.13.1/img/item/6621.png",
+    "tier": "legendary",
+    "cost": 2500,
+    "from": [
+      "blastingwand",
+      "forbiddenidol",
+      "forbiddenidol",
+    ],
+    "icon": "https://ddragon.leagueoflegends.com/cdn/16.20.1/img/item/6621.png",
   },
   "deadmansplate": {
     "id": "deadmansplate",
@@ -225,7 +628,14 @@ export const GENERATED_ITEMS: Record<string, Item> = {
       "hp": 350,
       "armor": 55,
     },
-    "icon": "https://ddragon.leagueoflegends.com/cdn/16.13.1/img/item/3742.png",
+    "tier": "legendary",
+    "cost": 2900,
+    "from": [
+      "wingedmoonplate",
+      "rubycrystal",
+      "chainvest",
+    ],
+    "icon": "https://ddragon.leagueoflegends.com/cdn/16.20.1/img/item/3742.png",
   },
   "deathsdance": {
     "id": "deathsdance",
@@ -236,7 +646,49 @@ export const GENERATED_ITEMS: Record<string, Item> = {
       "armor": 50,
       "abilityHaste": 15,
     },
-    "icon": "https://ddragon.leagueoflegends.com/cdn/16.13.1/img/item/6333.png",
+    "tier": "legendary",
+    "cost": 3300,
+    "from": [
+      "steelsigil",
+      "pickaxe",
+      "caulfieldswarhammer",
+    ],
+    "icon": "https://ddragon.leagueoflegends.com/cdn/16.20.1/img/item/6333.png",
+  },
+  "doransblade": {
+    "id": "doransblade",
+    "name": "Doran's Blade",
+    "short": "DORANS",
+    "stats": {
+      "ad": 10,
+      "hp": 80,
+    },
+    "tier": "starter",
+    "cost": 450,
+    "icon": "https://ddragon.leagueoflegends.com/cdn/16.20.1/img/item/1055.png",
+  },
+  "doransring": {
+    "id": "doransring",
+    "name": "Doran's Ring",
+    "short": "DORANS",
+    "stats": {
+      "ap": 18,
+      "hp": 90,
+    },
+    "tier": "starter",
+    "cost": 400,
+    "icon": "https://ddragon.leagueoflegends.com/cdn/16.20.1/img/item/1056.png",
+  },
+  "doransshield": {
+    "id": "doransshield",
+    "name": "Doran's Shield",
+    "short": "DORANS",
+    "stats": {
+      "hp": 110,
+    },
+    "tier": "starter",
+    "cost": 450,
+    "icon": "https://ddragon.leagueoflegends.com/cdn/16.20.1/img/item/1054.png",
   },
   "dreammaker": {
     "id": "dreammaker",
@@ -245,7 +697,10 @@ export const GENERATED_ITEMS: Record<string, Item> = {
     "stats": {
       "hp": 200,
     },
-    "icon": "https://ddragon.leagueoflegends.com/cdn/16.13.1/img/item/3870.png",
+    "tier": "legendary",
+    "cost": 400,
+    "from": [],
+    "icon": "https://ddragon.leagueoflegends.com/cdn/16.20.1/img/item/3870.png",
   },
   "duskanddawn": {
     "id": "duskanddawn",
@@ -256,7 +711,15 @@ export const GENERATED_ITEMS: Record<string, Item> = {
       "hp": 300,
       "abilityHaste": 20,
     },
-    "icon": "https://ddragon.leagueoflegends.com/cdn/16.13.1/img/item/2510.png",
+    "tier": "legendary",
+    "cost": 3100,
+    "from": [
+      "sheen",
+      "blastingwand",
+      "kindlegem",
+      "dagger",
+    ],
+    "icon": "https://ddragon.leagueoflegends.com/cdn/16.20.1/img/item/2510.png",
   },
   "echoesofhelia": {
     "id": "echoesofhelia",
@@ -267,7 +730,13 @@ export const GENERATED_ITEMS: Record<string, Item> = {
       "hp": 200,
       "abilityHaste": 20,
     },
-    "icon": "https://ddragon.leagueoflegends.com/cdn/16.13.1/img/item/6620.png",
+    "tier": "legendary",
+    "cost": 2200,
+    "from": [
+      "kindlegem",
+      "bandleglassmirror",
+    ],
+    "icon": "https://ddragon.leagueoflegends.com/cdn/16.20.1/img/item/6620.png",
   },
   "eclipse": {
     "id": "eclipse",
@@ -277,7 +746,14 @@ export const GENERATED_ITEMS: Record<string, Item> = {
       "ad": 60,
       "abilityHaste": 15,
     },
-    "icon": "https://ddragon.leagueoflegends.com/cdn/16.13.1/img/item/6692.png",
+    "tier": "legendary",
+    "cost": 2900,
+    "from": [
+      "caulfieldswarhammer",
+      "pickaxe",
+      "longsword",
+    ],
+    "icon": "https://ddragon.leagueoflegends.com/cdn/16.20.1/img/item/6692.png",
   },
   "edgeofnight": {
     "id": "edgeofnight",
@@ -288,7 +764,13 @@ export const GENERATED_ITEMS: Record<string, Item> = {
       "hp": 250,
       "lethality": 15,
     },
-    "icon": "https://ddragon.leagueoflegends.com/cdn/16.13.1/img/item/3814.png",
+    "tier": "legendary",
+    "cost": 3000,
+    "from": [
+      "serrateddirk",
+      "tunneler",
+    ],
+    "icon": "https://ddragon.leagueoflegends.com/cdn/16.20.1/img/item/3814.png",
   },
   "endlesshunger": {
     "id": "endlesshunger",
@@ -297,7 +779,14 @@ export const GENERATED_ITEMS: Record<string, Item> = {
     "stats": {
       "ad": 65,
     },
-    "icon": "https://ddragon.leagueoflegends.com/cdn/16.13.1/img/item/2517.png",
+    "tier": "legendary",
+    "cost": 3100,
+    "from": [
+      "caulfieldswarhammer",
+      "pickaxe",
+      "longsword",
+    ],
+    "icon": "https://ddragon.leagueoflegends.com/cdn/16.20.1/img/item/2517.png",
   },
   "essencereaver": {
     "id": "essencereaver",
@@ -307,7 +796,28 @@ export const GENERATED_ITEMS: Record<string, Item> = {
       "ad": 50,
       "abilityHaste": 20,
     },
-    "icon": "https://ddragon.leagueoflegends.com/cdn/16.13.1/img/item/3508.png",
+    "tier": "legendary",
+    "cost": 3050,
+    "from": [
+      "sheen",
+      "caulfieldswarhammer",
+      "cloakofagility",
+    ],
+    "icon": "https://ddragon.leagueoflegends.com/cdn/16.20.1/img/item/3508.png",
+  },
+  "executionerscalling": {
+    "id": "executionerscalling",
+    "name": "Executioner's Calling",
+    "short": "EXECUTIO",
+    "stats": {
+      "ad": 15,
+    },
+    "tier": "epic",
+    "cost": 800,
+    "from": [
+      "longsword",
+    ],
+    "icon": "https://ddragon.leagueoflegends.com/cdn/16.20.1/img/item/3123.png",
   },
   "experimentalhexplate": {
     "id": "experimentalhexplate",
@@ -317,7 +827,65 @@ export const GENERATED_ITEMS: Record<string, Item> = {
       "ad": 40,
       "hp": 450,
     },
-    "icon": "https://ddragon.leagueoflegends.com/cdn/16.13.1/img/item/3073.png",
+    "tier": "legendary",
+    "cost": 3000,
+    "from": [
+      "tunneler",
+      "dagger",
+      "phage",
+    ],
+    "icon": "https://ddragon.leagueoflegends.com/cdn/16.20.1/img/item/3073.png",
+  },
+  "faeriecharm": {
+    "id": "faeriecharm",
+    "name": "Faerie Charm",
+    "short": "FAERIE",
+    "stats": {},
+    "tier": "basic",
+    "cost": 200,
+    "icon": "https://ddragon.leagueoflegends.com/cdn/16.20.1/img/item/1004.png",
+  },
+  "fatedashes": {
+    "id": "fatedashes",
+    "name": "Fated Ashes",
+    "short": "FATED",
+    "stats": {
+      "ap": 30,
+    },
+    "tier": "epic",
+    "cost": 900,
+    "from": [
+      "amplifyingtome",
+    ],
+    "icon": "https://ddragon.leagueoflegends.com/cdn/16.20.1/img/item/2508.png",
+  },
+  "fiendishcodex": {
+    "id": "fiendishcodex",
+    "name": "Fiendish Codex",
+    "short": "FIENDISH",
+    "stats": {
+      "ap": 25,
+      "abilityHaste": 10,
+    },
+    "tier": "epic",
+    "cost": 850,
+    "from": [
+      "amplifyingtome",
+      "glowingmote",
+    ],
+    "icon": "https://ddragon.leagueoflegends.com/cdn/16.20.1/img/item/3108.png",
+  },
+  "forbiddenidol": {
+    "id": "forbiddenidol",
+    "name": "Forbidden Idol",
+    "short": "FORBIDDE",
+    "stats": {},
+    "tier": "epic",
+    "cost": 600,
+    "from": [
+      "faeriecharm",
+    ],
+    "icon": "https://ddragon.leagueoflegends.com/cdn/16.20.1/img/item/3114.png",
   },
   "forceofnature": {
     "id": "forceofnature",
@@ -325,8 +893,16 @@ export const GENERATED_ITEMS: Record<string, Item> = {
     "short": "FORCE",
     "stats": {
       "hp": 400,
+      "mr": 55,
     },
-    "icon": "https://ddragon.leagueoflegends.com/cdn/16.13.1/img/item/4401.png",
+    "tier": "legendary",
+    "cost": 2800,
+    "from": [
+      "negatroncloak",
+      "rubycrystal",
+      "wingedmoonplate",
+    ],
+    "icon": "https://ddragon.leagueoflegends.com/cdn/16.20.1/img/item/4401.png",
   },
   "frozenheart": {
     "id": "frozenheart",
@@ -336,7 +912,55 @@ export const GENERATED_ITEMS: Record<string, Item> = {
       "armor": 75,
       "abilityHaste": 20,
     },
-    "icon": "https://ddragon.leagueoflegends.com/cdn/16.13.1/img/item/3110.png",
+    "tier": "legendary",
+    "cost": 2500,
+    "from": [
+      "wardensmail",
+      "glacialbuckler",
+    ],
+    "icon": "https://ddragon.leagueoflegends.com/cdn/16.20.1/img/item/3110.png",
+  },
+  "giantsbelt": {
+    "id": "giantsbelt",
+    "name": "Giant's Belt",
+    "short": "GIANTS",
+    "stats": {
+      "hp": 350,
+    },
+    "tier": "epic",
+    "cost": 900,
+    "from": [
+      "rubycrystal",
+    ],
+    "icon": "https://ddragon.leagueoflegends.com/cdn/16.20.1/img/item/1011.png",
+  },
+  "glacialbuckler": {
+    "id": "glacialbuckler",
+    "name": "Glacial Buckler",
+    "short": "GLACIAL",
+    "stats": {
+      "armor": 25,
+      "abilityHaste": 10,
+    },
+    "tier": "epic",
+    "cost": 900,
+    "from": [
+      "clotharmor",
+      "sapphirecrystal",
+      "glowingmote",
+    ],
+    "icon": "https://ddragon.leagueoflegends.com/cdn/16.20.1/img/item/3024.png",
+  },
+  "glowingmote": {
+    "id": "glowingmote",
+    "name": "Glowing Mote",
+    "short": "GLOWING",
+    "stats": {
+      "abilityHaste": 5,
+    },
+    "tier": "basic",
+    "cost": 250,
+    "icon": "https://ddragon.leagueoflegends.com/cdn/16.20.1/img/item/2022.png",
   },
   "guardianangel": {
     "id": "guardianangel",
@@ -346,7 +970,61 @@ export const GENERATED_ITEMS: Record<string, Item> = {
       "ad": 55,
       "armor": 45,
     },
-    "icon": "https://ddragon.leagueoflegends.com/cdn/16.13.1/img/item/3026.png",
+    "tier": "legendary",
+    "cost": 3200,
+    "from": [
+      "steelsigil",
+      "bfsword",
+    ],
+    "icon": "https://ddragon.leagueoflegends.com/cdn/16.20.1/img/item/3026.png",
+  },
+  "guardiansblade": {
+    "id": "guardiansblade",
+    "name": "Guardian's Blade",
+    "short": "GUARDIAN",
+    "stats": {
+      "ad": 30,
+      "hp": 150,
+      "abilityHaste": 15,
+    },
+    "tier": "starter",
+    "cost": 950,
+    "icon": "https://ddragon.leagueoflegends.com/cdn/16.20.1/img/item/3177.png",
+  },
+  "guardianshammer": {
+    "id": "guardianshammer",
+    "name": "Guardian's Hammer",
+    "short": "GUARDIAN",
+    "stats": {
+      "ad": 25,
+      "hp": 150,
+    },
+    "tier": "starter",
+    "cost": 950,
+    "icon": "https://ddragon.leagueoflegends.com/cdn/16.20.1/img/item/3184.png",
+  },
+  "guardianshorn": {
+    "id": "guardianshorn",
+    "name": "Guardian's Horn",
+    "short": "GUARDIAN",
+    "stats": {
+      "hp": 150,
+    },
+    "tier": "starter",
+    "cost": 950,
+    "icon": "https://ddragon.leagueoflegends.com/cdn/16.20.1/img/item/2051.png",
+  },
+  "guardiansorb": {
+    "id": "guardiansorb",
+    "name": "Guardian's Orb",
+    "short": "GUARDIAN",
+    "stats": {
+      "ap": 50,
+      "hp": 150,
+    },
+    "tier": "starter",
+    "cost": 950,
+    "icon": "https://ddragon.leagueoflegends.com/cdn/16.20.1/img/item/3112.png",
   },
   "guinsoosrageblade": {
     "id": "guinsoosrageblade",
@@ -356,7 +1034,55 @@ export const GENERATED_ITEMS: Record<string, Item> = {
       "ad": 30,
       "ap": 30,
     },
-    "icon": "https://ddragon.leagueoflegends.com/cdn/16.13.1/img/item/3124.png",
+    "tier": "legendary",
+    "cost": 3000,
+    "from": [
+      "amplifyingtome",
+      "recurvebow",
+      "pickaxe",
+    ],
+    "icon": "https://ddragon.leagueoflegends.com/cdn/16.20.1/img/item/3124.png",
+  },
+  "gustwalkerhatchling": {
+    "id": "gustwalkerhatchling",
+    "name": "Gustwalker Hatchling",
+    "short": "GUSTWALK",
+    "stats": {},
+    "tier": "starter",
+    "cost": 450,
+    "icon": "https://ddragon.leagueoflegends.com/cdn/16.20.1/img/item/1102.png",
+  },
+  "hauntingguise": {
+    "id": "hauntingguise",
+    "name": "Haunting Guise",
+    "short": "HAUNTING",
+    "stats": {
+      "ap": 30,
+      "hp": 200,
+    },
+    "tier": "epic",
+    "cost": 1300,
+    "from": [
+      "amplifyingtome",
+      "rubycrystal",
+    ],
+    "icon": "https://ddragon.leagueoflegends.com/cdn/16.20.1/img/item/3147.png",
+  },
+  "hearthboundaxe": {
+    "id": "hearthboundaxe",
+    "name": "Hearthbound Axe",
+    "short": "HEARTHBO",
+    "stats": {
+      "ad": 20,
+    },
+    "tier": "epic",
+    "cost": 1200,
+    "from": [
+      "longsword",
+      "dagger",
+      "longsword",
+    ],
+    "icon": "https://ddragon.leagueoflegends.com/cdn/16.20.1/img/item/3051.png",
   },
   "heartsteel": {
     "id": "heartsteel",
@@ -365,7 +1091,31 @@ export const GENERATED_ITEMS: Record<string, Item> = {
     "stats": {
       "hp": 900,
     },
-    "icon": "https://ddragon.leagueoflegends.com/cdn/16.13.1/img/item/3084.png",
+    "tier": "legendary",
+    "cost": 3000,
+    "from": [
+      "giantsbelt",
+      "crystallinebracer",
+      "giantsbelt",
+    ],
+    "icon": "https://ddragon.leagueoflegends.com/cdn/16.20.1/img/item/3084.png",
+  },
+  "hexdrinker": {
+    "id": "hexdrinker",
+    "name": "Hexdrinker",
+    "short": "HEXDRINK",
+    "stats": {
+      "ad": 25,
+      "mr": 25,
+    },
+    "tier": "epic",
+    "cost": 1300,
+    "from": [
+      "longsword",
+      "nullmagicmantle",
+      "longsword",
+    ],
+    "icon": "https://ddragon.leagueoflegends.com/cdn/16.20.1/img/item/3155.png",
   },
   "hexopticsc44": {
     "id": "hexopticsc44",
@@ -374,7 +1124,29 @@ export const GENERATED_ITEMS: Record<string, Item> = {
     "stats": {
       "ad": 55,
     },
-    "icon": "https://ddragon.leagueoflegends.com/cdn/16.13.1/img/item/2523.png",
+    "tier": "legendary",
+    "cost": 2800,
+    "from": [
+      "pickaxe",
+      "noonquiver",
+      "longsword",
+    ],
+    "icon": "https://ddragon.leagueoflegends.com/cdn/16.20.1/img/item/2523.png",
+  },
+  "hextechalternator": {
+    "id": "hextechalternator",
+    "name": "Hextech Alternator",
+    "short": "HEXTECH",
+    "stats": {
+      "ap": 45,
+    },
+    "tier": "epic",
+    "cost": 1100,
+    "from": [
+      "amplifyingtome",
+      "amplifyingtome",
+    ],
+    "icon": "https://ddragon.leagueoflegends.com/cdn/16.20.1/img/item/3145.png",
   },
   "hextechgunblade": {
     "id": "hextechgunblade",
@@ -384,18 +1156,32 @@ export const GENERATED_ITEMS: Record<string, Item> = {
       "ad": 40,
       "ap": 80,
     },
-    "icon": "https://ddragon.leagueoflegends.com/cdn/16.13.1/img/item/3146.png",
+    "tier": "legendary",
+    "cost": 3000,
+    "from": [
+      "vampiricscepter",
+      "hextechalternator",
+      "amplifyingtome",
+    ],
+    "icon": "https://ddragon.leagueoflegends.com/cdn/16.20.1/img/item/3146.png",
   },
   "hextechrocketbelt": {
     "id": "hextechrocketbelt",
     "name": "Hextech Rocketbelt",
     "short": "HEXTECH",
     "stats": {
-      "ap": 70,
-      "hp": 300,
+      "ap": 60,
+      "hp": 350,
       "abilityHaste": 20,
     },
-    "icon": "https://ddragon.leagueoflegends.com/cdn/16.13.1/img/item/3152.png",
+    "tier": "legendary",
+    "cost": 2650,
+    "from": [
+      "hextechalternator",
+      "kindlegem",
+      "rubycrystal",
+    ],
+    "icon": "https://ddragon.leagueoflegends.com/cdn/16.20.1/img/item/3152.png",
   },
   "hollowradiance": {
     "id": "hollowradiance",
@@ -403,9 +1189,16 @@ export const GENERATED_ITEMS: Record<string, Item> = {
     "short": "HOLLOW",
     "stats": {
       "hp": 400,
+      "mr": 40,
       "abilityHaste": 10,
     },
-    "icon": "https://ddragon.leagueoflegends.com/cdn/16.13.1/img/item/6664.png",
+    "tier": "legendary",
+    "cost": 2800,
+    "from": [
+      "bamiscinder",
+      "spectrescowl",
+    ],
+    "icon": "https://ddragon.leagueoflegends.com/cdn/16.20.1/img/item/6664.png",
   },
   "horizonfocus": {
     "id": "horizonfocus",
@@ -415,7 +1208,14 @@ export const GENERATED_ITEMS: Record<string, Item> = {
       "ap": 75,
       "abilityHaste": 25,
     },
-    "icon": "https://ddragon.leagueoflegends.com/cdn/16.13.1/img/item/4628.png",
+    "tier": "legendary",
+    "cost": 2700,
+    "from": [
+      "fiendishcodex",
+      "fiendishcodex",
+      "amplifyingtome",
+    ],
+    "icon": "https://ddragon.leagueoflegends.com/cdn/16.20.1/img/item/4628.png",
   },
   "hubris": {
     "id": "hubris",
@@ -426,7 +1226,13 @@ export const GENERATED_ITEMS: Record<string, Item> = {
       "abilityHaste": 10,
       "lethality": 18,
     },
-    "icon": "https://ddragon.leagueoflegends.com/cdn/16.13.1/img/item/6697.png",
+    "tier": "legendary",
+    "cost": 2800,
+    "from": [
+      "serrateddirk",
+      "caulfieldswarhammer",
+    ],
+    "icon": "https://ddragon.leagueoflegends.com/cdn/16.20.1/img/item/6697.png",
   },
   "hullbreaker": {
     "id": "hullbreaker",
@@ -436,7 +1242,14 @@ export const GENERATED_ITEMS: Record<string, Item> = {
       "ad": 40,
       "hp": 500,
     },
-    "icon": "https://ddragon.leagueoflegends.com/cdn/16.13.1/img/item/3181.png",
+    "tier": "legendary",
+    "cost": 3000,
+    "from": [
+      "tunneler",
+      "wingedmoonplate",
+      "pickaxe",
+    ],
+    "icon": "https://ddragon.leagueoflegends.com/cdn/16.20.1/img/item/3181.png",
   },
   "iceborngauntlet": {
     "id": "iceborngauntlet",
@@ -447,7 +1260,14 @@ export const GENERATED_ITEMS: Record<string, Item> = {
       "armor": 50,
       "abilityHaste": 15,
     },
-    "icon": "https://ddragon.leagueoflegends.com/cdn/16.13.1/img/item/6662.png",
+    "tier": "legendary",
+    "cost": 2900,
+    "from": [
+      "sheen",
+      "rubycrystal",
+      "chainvest",
+    ],
+    "icon": "https://ddragon.leagueoflegends.com/cdn/16.20.1/img/item/6662.png",
   },
   "immortalshieldbow": {
     "id": "immortalshieldbow",
@@ -456,7 +1276,13 @@ export const GENERATED_ITEMS: Record<string, Item> = {
     "stats": {
       "ad": 55,
     },
-    "icon": "https://ddragon.leagueoflegends.com/cdn/16.13.1/img/item/6673.png",
+    "tier": "legendary",
+    "cost": 3000,
+    "from": [
+      "pickaxe",
+      "noonquiver",
+    ],
+    "icon": "https://ddragon.leagueoflegends.com/cdn/16.20.1/img/item/6673.png",
   },
   "imperialmandate": {
     "id": "imperialmandate",
@@ -466,7 +1292,14 @@ export const GENERATED_ITEMS: Record<string, Item> = {
       "ap": 60,
       "abilityHaste": 20,
     },
-    "icon": "https://ddragon.leagueoflegends.com/cdn/16.13.1/img/item/4005.png",
+    "tier": "legendary",
+    "cost": 2400,
+    "from": [
+      "amplifyingtome",
+      "bandleglassmirror",
+      "amplifyingtome",
+    ],
+    "icon": "https://ddragon.leagueoflegends.com/cdn/16.20.1/img/item/4005.png",
   },
   "infinityedge": {
     "id": "infinityedge",
@@ -475,7 +1308,14 @@ export const GENERATED_ITEMS: Record<string, Item> = {
     "stats": {
       "ad": 75,
     },
-    "icon": "https://ddragon.leagueoflegends.com/cdn/16.13.1/img/item/3031.png",
+    "tier": "legendary",
+    "cost": 3500,
+    "from": [
+      "bfsword",
+      "pickaxe",
+      "cloakofagility",
+    ],
+    "icon": "https://ddragon.leagueoflegends.com/cdn/16.20.1/img/item/3031.png",
   },
   "ionianbootsoflucidity": {
     "id": "ionianbootsoflucidity",
@@ -484,7 +1324,13 @@ export const GENERATED_ITEMS: Record<string, Item> = {
     "stats": {
       "abilityHaste": 10,
     },
-    "icon": "https://ddragon.leagueoflegends.com/cdn/16.13.1/img/item/3158.png",
+    "tier": "boots",
+    "cost": 900,
+    "from": [
+      "boots",
+      "glowingmote",
+    ],
+    "icon": "https://ddragon.leagueoflegends.com/cdn/16.20.1/img/item/3158.png",
   },
   "jakshotheprotean": {
     "id": "jakshotheprotean",
@@ -493,8 +1339,16 @@ export const GENERATED_ITEMS: Record<string, Item> = {
     "stats": {
       "hp": 350,
       "armor": 45,
+      "mr": 45,
     },
-    "icon": "https://ddragon.leagueoflegends.com/cdn/16.13.1/img/item/6665.png",
+    "tier": "legendary",
+    "cost": 3200,
+    "from": [
+      "giantsbelt",
+      "chainvest",
+      "negatroncloak",
+    ],
+    "icon": "https://ddragon.leagueoflegends.com/cdn/16.20.1/img/item/6665.png",
   },
   "kaenicrookern": {
     "id": "kaenicrookern",
@@ -502,8 +1356,31 @@ export const GENERATED_ITEMS: Record<string, Item> = {
     "short": "KAENIC",
     "stats": {
       "hp": 400,
+      "mr": 80,
     },
-    "icon": "https://ddragon.leagueoflegends.com/cdn/16.13.1/img/item/2504.png",
+    "tier": "legendary",
+    "cost": 2900,
+    "from": [
+      "spectrescowl",
+      "negatroncloak",
+    ],
+    "icon": "https://ddragon.leagueoflegends.com/cdn/16.20.1/img/item/2504.png",
+  },
+  "kindlegem": {
+    "id": "kindlegem",
+    "name": "Kindlegem",
+    "short": "KINDLEGE",
+    "stats": {
+      "hp": 200,
+      "abilityHaste": 10,
+    },
+    "tier": "epic",
+    "cost": 800,
+    "from": [
+      "rubycrystal",
+      "glowingmote",
+    ],
+    "icon": "https://ddragon.leagueoflegends.com/cdn/16.20.1/img/item/3067.png",
   },
   "knightsvow": {
     "id": "knightsvow",
@@ -514,7 +1391,14 @@ export const GENERATED_ITEMS: Record<string, Item> = {
       "armor": 40,
       "abilityHaste": 10,
     },
-    "icon": "https://ddragon.leagueoflegends.com/cdn/16.13.1/img/item/3109.png",
+    "tier": "legendary",
+    "cost": 2300,
+    "from": [
+      "kindlegem",
+      "chainvest",
+      "rejuvenationbead",
+    ],
+    "icon": "https://ddragon.leagueoflegends.com/cdn/16.20.1/img/item/3109.png",
   },
   "krakenslayer": {
     "id": "krakenslayer",
@@ -523,7 +1407,30 @@ export const GENERATED_ITEMS: Record<string, Item> = {
     "stats": {
       "ad": 45,
     },
-    "icon": "https://ddragon.leagueoflegends.com/cdn/16.13.1/img/item/6672.png",
+    "tier": "legendary",
+    "cost": 3000,
+    "from": [
+      "rectrix",
+      "hearthboundaxe",
+      "recurvebow",
+    ],
+    "icon": "https://ddragon.leagueoflegends.com/cdn/16.20.1/img/item/6672.png",
+  },
+  "lastwhisper": {
+    "id": "lastwhisper",
+    "name": "Last Whisper",
+    "short": "LAST",
+    "stats": {
+      "ad": 20,
+      "armorPenPercent": 0.18,
+    },
+    "tier": "epic",
+    "cost": 1450,
+    "from": [
+      "longsword",
+      "longsword",
+    ],
+    "icon": "https://ddragon.leagueoflegends.com/cdn/16.20.1/img/item/3035.png",
   },
   "liandrystorment": {
     "id": "liandrystorment",
@@ -533,7 +1440,13 @@ export const GENERATED_ITEMS: Record<string, Item> = {
       "ap": 60,
       "hp": 300,
     },
-    "icon": "https://ddragon.leagueoflegends.com/cdn/16.13.1/img/item/6653.png",
+    "tier": "legendary",
+    "cost": 3000,
+    "from": [
+      "hauntingguise",
+      "fatedashes",
+    ],
+    "icon": "https://ddragon.leagueoflegends.com/cdn/16.20.1/img/item/6653.png",
   },
   "lichbane": {
     "id": "lichbane",
@@ -543,7 +1456,14 @@ export const GENERATED_ITEMS: Record<string, Item> = {
       "ap": 100,
       "abilityHaste": 10,
     },
-    "icon": "https://ddragon.leagueoflegends.com/cdn/16.13.1/img/item/3100.png",
+    "tier": "legendary",
+    "cost": 2900,
+    "from": [
+      "sheen",
+      "aetherwisp",
+      "blastingwand",
+    ],
+    "icon": "https://ddragon.leagueoflegends.com/cdn/16.20.1/img/item/3100.png",
   },
   "locketoftheironsolari": {
     "id": "locketoftheironsolari",
@@ -552,9 +1472,28 @@ export const GENERATED_ITEMS: Record<string, Item> = {
     "stats": {
       "hp": 200,
       "armor": 30,
+      "mr": 30,
       "abilityHaste": 10,
     },
-    "icon": "https://ddragon.leagueoflegends.com/cdn/16.13.1/img/item/3190.png",
+    "tier": "legendary",
+    "cost": 2200,
+    "from": [
+      "kindlegem",
+      "clotharmor",
+      "nullmagicmantle",
+    ],
+    "icon": "https://ddragon.leagueoflegends.com/cdn/16.20.1/img/item/3190.png",
+  },
+  "longsword": {
+    "id": "longsword",
+    "name": "Long Sword",
+    "short": "LONG",
+    "stats": {
+      "ad": 10,
+    },
+    "tier": "basic",
+    "cost": 350,
+    "icon": "https://ddragon.leagueoflegends.com/cdn/16.20.1/img/item/1036.png",
   },
   "lorddominiksregards": {
     "id": "lorddominiksregards",
@@ -564,7 +1503,30 @@ export const GENERATED_ITEMS: Record<string, Item> = {
       "ad": 35,
       "armorPenPercent": 0.35,
     },
-    "icon": "https://ddragon.leagueoflegends.com/cdn/16.13.1/img/item/3036.png",
+    "tier": "legendary",
+    "cost": 3300,
+    "from": [
+      "lastwhisper",
+      "noonquiver",
+    ],
+    "icon": "https://ddragon.leagueoflegends.com/cdn/16.20.1/img/item/3036.png",
+  },
+  "lostchapter": {
+    "id": "lostchapter",
+    "name": "Lost Chapter",
+    "short": "LOST",
+    "stats": {
+      "ap": 40,
+      "abilityHaste": 10,
+    },
+    "tier": "epic",
+    "cost": 1200,
+    "from": [
+      "amplifyingtome",
+      "sapphirecrystal",
+      "glowingmote",
+    ],
+    "icon": "https://ddragon.leagueoflegends.com/cdn/16.20.1/img/item/3802.png",
   },
   "ludensecho": {
     "id": "ludensecho",
@@ -574,7 +1536,13 @@ export const GENERATED_ITEMS: Record<string, Item> = {
       "ap": 100,
       "abilityHaste": 10,
     },
-    "icon": "https://ddragon.leagueoflegends.com/cdn/16.13.1/img/item/6655.png",
+    "tier": "legendary",
+    "cost": 2750,
+    "from": [
+      "lostchapter",
+      "hextechalternator",
+    ],
+    "icon": "https://ddragon.leagueoflegends.com/cdn/16.20.1/img/item/6655.png",
   },
   "malignance": {
     "id": "malignance",
@@ -584,7 +1552,13 @@ export const GENERATED_ITEMS: Record<string, Item> = {
       "ap": 90,
       "abilityHaste": 15,
     },
-    "icon": "https://ddragon.leagueoflegends.com/cdn/16.13.1/img/item/3118.png",
+    "tier": "legendary",
+    "cost": 2700,
+    "from": [
+      "lostchapter",
+      "blastingwand",
+    ],
+    "icon": "https://ddragon.leagueoflegends.com/cdn/16.20.1/img/item/3118.png",
   },
   "manamune": {
     "id": "manamune",
@@ -594,7 +1568,14 @@ export const GENERATED_ITEMS: Record<string, Item> = {
       "ad": 35,
       "abilityHaste": 15,
     },
-    "icon": "https://ddragon.leagueoflegends.com/cdn/16.13.1/img/item/3004.png",
+    "tier": "legendary",
+    "cost": 2900,
+    "from": [
+      "tearofthegoddess",
+      "caulfieldswarhammer",
+      "longsword",
+    ],
+    "icon": "https://ddragon.leagueoflegends.com/cdn/16.20.1/img/item/3004.png",
   },
   "mawofmalmortius": {
     "id": "mawofmalmortius",
@@ -602,9 +1583,16 @@ export const GENERATED_ITEMS: Record<string, Item> = {
     "short": "MAWOFMAL",
     "stats": {
       "ad": 60,
+      "mr": 40,
       "abilityHaste": 15,
     },
-    "icon": "https://ddragon.leagueoflegends.com/cdn/16.13.1/img/item/3156.png",
+    "tier": "legendary",
+    "cost": 3100,
+    "from": [
+      "hexdrinker",
+      "caulfieldswarhammer",
+    ],
+    "icon": "https://ddragon.leagueoflegends.com/cdn/16.20.1/img/item/3156.png",
   },
   "mejaissoulstealer": {
     "id": "mejaissoulstealer",
@@ -614,7 +1602,12 @@ export const GENERATED_ITEMS: Record<string, Item> = {
       "ap": 20,
       "hp": 100,
     },
-    "icon": "https://ddragon.leagueoflegends.com/cdn/16.13.1/img/item/3041.png",
+    "tier": "legendary",
+    "cost": 1500,
+    "from": [
+      "darkseal",
+    ],
+    "icon": "https://ddragon.leagueoflegends.com/cdn/16.20.1/img/item/3041.png",
   },
   "mercurialscimitar": {
     "id": "mercurialscimitar",
@@ -622,8 +1615,31 @@ export const GENERATED_ITEMS: Record<string, Item> = {
     "short": "MERCURIA",
     "stats": {
       "ad": 50,
+      "mr": 35,
     },
-    "icon": "https://ddragon.leagueoflegends.com/cdn/16.13.1/img/item/3139.png",
+    "tier": "legendary",
+    "cost": 3200,
+    "from": [
+      "quicksilversash",
+      "pickaxe",
+      "vampiricscepter",
+    ],
+    "icon": "https://ddragon.leagueoflegends.com/cdn/16.20.1/img/item/3139.png",
+  },
+  "mercurystreads": {
+    "id": "mercurystreads",
+    "name": "Mercury's Treads",
+    "short": "MERCURYS",
+    "stats": {
+      "mr": 20,
+    },
+    "tier": "boots",
+    "cost": 1250,
+    "from": [
+      "boots",
+      "nullmagicmantle",
+    ],
+    "icon": "https://ddragon.leagueoflegends.com/cdn/16.20.1/img/item/3111.png",
   },
   "mikaelsblessing": {
     "id": "mikaelsblessing",
@@ -633,7 +1649,13 @@ export const GENERATED_ITEMS: Record<string, Item> = {
       "hp": 250,
       "abilityHaste": 15,
     },
-    "icon": "https://ddragon.leagueoflegends.com/cdn/16.13.1/img/item/3222.png",
+    "tier": "legendary",
+    "cost": 2300,
+    "from": [
+      "kindlegem",
+      "forbiddenidol",
+    ],
+    "icon": "https://ddragon.leagueoflegends.com/cdn/16.20.1/img/item/3222.png",
   },
   "moonstonerenewer": {
     "id": "moonstonerenewer",
@@ -644,7 +1666,13 @@ export const GENERATED_ITEMS: Record<string, Item> = {
       "hp": 200,
       "abilityHaste": 20,
     },
-    "icon": "https://ddragon.leagueoflegends.com/cdn/16.13.1/img/item/6617.png",
+    "tier": "legendary",
+    "cost": 2200,
+    "from": [
+      "kindlegem",
+      "bandleglassmirror",
+    ],
+    "icon": "https://ddragon.leagueoflegends.com/cdn/16.20.1/img/item/6617.png",
   },
   "morellonomicon": {
     "id": "morellonomicon",
@@ -655,7 +1683,14 @@ export const GENERATED_ITEMS: Record<string, Item> = {
       "hp": 350,
       "abilityHaste": 15,
     },
-    "icon": "https://ddragon.leagueoflegends.com/cdn/16.13.1/img/item/3165.png",
+    "tier": "legendary",
+    "cost": 2850,
+    "from": [
+      "oblivionorb",
+      "blastingwand",
+      "kindlegem",
+    ],
+    "icon": "https://ddragon.leagueoflegends.com/cdn/16.20.1/img/item/3165.png",
   },
   "mortalreminder": {
     "id": "mortalreminder",
@@ -665,7 +1700,23 @@ export const GENERATED_ITEMS: Record<string, Item> = {
       "ad": 35,
       "armorPenPercent": 0.3,
     },
-    "icon": "https://ddragon.leagueoflegends.com/cdn/16.13.1/img/item/3033.png",
+    "tier": "legendary",
+    "cost": 3000,
+    "from": [
+      "executionerscalling",
+      "lastwhisper",
+      "cloakofagility",
+    ],
+    "icon": "https://ddragon.leagueoflegends.com/cdn/16.20.1/img/item/3033.png",
+  },
+  "mosstomperseedling": {
+    "id": "mosstomperseedling",
+    "name": "Mosstomper Seedling",
+    "short": "MOSSTOMP",
+    "stats": {},
+    "tier": "starter",
+    "cost": 450,
+    "icon": "https://ddragon.leagueoflegends.com/cdn/16.20.1/img/item/1103.png",
   },
   "nashorstooth": {
     "id": "nashorstooth",
@@ -675,7 +1726,79 @@ export const GENERATED_ITEMS: Record<string, Item> = {
       "ap": 80,
       "abilityHaste": 15,
     },
-    "icon": "https://ddragon.leagueoflegends.com/cdn/16.13.1/img/item/3115.png",
+    "tier": "legendary",
+    "cost": 2900,
+    "from": [
+      "recurvebow",
+      "blastingwand",
+      "fiendishcodex",
+    ],
+    "icon": "https://ddragon.leagueoflegends.com/cdn/16.20.1/img/item/3115.png",
+  },
+  "needlesslylargerod": {
+    "id": "needlesslylargerod",
+    "name": "Needlessly Large Rod",
+    "short": "NEEDLESS",
+    "stats": {
+      "ap": 65,
+    },
+    "tier": "basic",
+    "cost": 1200,
+    "icon": "https://ddragon.leagueoflegends.com/cdn/16.20.1/img/item/1058.png",
+  },
+  "negatroncloak": {
+    "id": "negatroncloak",
+    "name": "Negatron Cloak",
+    "short": "NEGATRON",
+    "stats": {
+      "mr": 45,
+    },
+    "tier": "epic",
+    "cost": 850,
+    "from": [
+      "nullmagicmantle",
+    ],
+    "icon": "https://ddragon.leagueoflegends.com/cdn/16.20.1/img/item/1057.png",
+  },
+  "noonquiver": {
+    "id": "noonquiver",
+    "name": "Noonquiver",
+    "short": "NOONQUIV",
+    "stats": {
+      "ad": 15,
+    },
+    "tier": "epic",
+    "cost": 1300,
+    "from": [
+      "longsword",
+      "cloakofagility",
+    ],
+    "icon": "https://ddragon.leagueoflegends.com/cdn/16.20.1/img/item/6670.png",
+  },
+  "nullmagicmantle": {
+    "id": "nullmagicmantle",
+    "name": "Null-Magic Mantle",
+    "short": "NULL-MAG",
+    "stats": {
+      "mr": 20,
+    },
+    "tier": "basic",
+    "cost": 400,
+    "icon": "https://ddragon.leagueoflegends.com/cdn/16.20.1/img/item/1033.png",
+  },
+  "oblivionorb": {
+    "id": "oblivionorb",
+    "name": "Oblivion Orb",
+    "short": "OBLIVION",
+    "stats": {
+      "ap": 25,
+    },
+    "tier": "epic",
+    "cost": 800,
+    "from": [
+      "amplifyingtome",
+    ],
+    "icon": "https://ddragon.leagueoflegends.com/cdn/16.20.1/img/item/3916.png",
   },
   "opportunity": {
     "id": "opportunity",
@@ -685,7 +1808,14 @@ export const GENERATED_ITEMS: Record<string, Item> = {
       "ad": 55,
       "lethality": 18,
     },
-    "icon": "https://ddragon.leagueoflegends.com/cdn/16.13.1/img/item/6701.png",
+    "tier": "legendary",
+    "cost": 2700,
+    "from": [
+      "pickaxe",
+      "serrateddirk",
+      "longsword",
+    ],
+    "icon": "https://ddragon.leagueoflegends.com/cdn/16.20.1/img/item/6701.png",
   },
   "overlordsbloodmail": {
     "id": "overlordsbloodmail",
@@ -695,7 +1825,40 @@ export const GENERATED_ITEMS: Record<string, Item> = {
       "ad": 30,
       "hp": 550,
     },
-    "icon": "https://ddragon.leagueoflegends.com/cdn/16.13.1/img/item/2501.png",
+    "tier": "legendary",
+    "cost": 3300,
+    "from": [
+      "tunneler",
+      "tunneler",
+    ],
+    "icon": "https://ddragon.leagueoflegends.com/cdn/16.20.1/img/item/2501.png",
+  },
+  "phage": {
+    "id": "phage",
+    "name": "Phage",
+    "short": "PHAGE",
+    "stats": {
+      "ad": 15,
+      "hp": 200,
+    },
+    "tier": "epic",
+    "cost": 1100,
+    "from": [
+      "rubycrystal",
+      "longsword",
+    ],
+    "icon": "https://ddragon.leagueoflegends.com/cdn/16.20.1/img/item/3044.png",
+  },
+  "pickaxe": {
+    "id": "pickaxe",
+    "name": "Pickaxe",
+    "short": "PICKAXE",
+    "stats": {
+      "ad": 25,
+    },
+    "tier": "basic",
+    "cost": 875,
+    "icon": "https://ddragon.leagueoflegends.com/cdn/16.20.1/img/item/1037.png",
   },
   "platedsteelcaps": {
     "id": "platedsteelcaps",
@@ -704,7 +1867,13 @@ export const GENERATED_ITEMS: Record<string, Item> = {
     "stats": {
       "armor": 25,
     },
-    "icon": "https://ddragon.leagueoflegends.com/cdn/16.13.1/img/item/3047.png",
+    "tier": "boots",
+    "cost": 1200,
+    "from": [
+      "boots",
+      "clotharmor",
+    ],
+    "icon": "https://ddragon.leagueoflegends.com/cdn/16.20.1/img/item/3047.png",
   },
   "profanehydra": {
     "id": "profanehydra",
@@ -715,7 +1884,13 @@ export const GENERATED_ITEMS: Record<string, Item> = {
       "abilityHaste": 10,
       "lethality": 18,
     },
-    "icon": "https://ddragon.leagueoflegends.com/cdn/16.13.1/img/item/6698.png",
+    "tier": "legendary",
+    "cost": 2850,
+    "from": [
+      "tiamat",
+      "thebrutalizer",
+    ],
+    "icon": "https://ddragon.leagueoflegends.com/cdn/16.20.1/img/item/6698.png",
   },
   "protoplasmharness": {
     "id": "protoplasmharness",
@@ -725,7 +1900,27 @@ export const GENERATED_ITEMS: Record<string, Item> = {
       "hp": 600,
       "abilityHaste": 20,
     },
-    "icon": "https://ddragon.leagueoflegends.com/cdn/16.13.1/img/item/2525.png",
+    "tier": "legendary",
+    "cost": 2600,
+    "from": [
+      "kindlegem",
+      "giantsbelt",
+    ],
+    "icon": "https://ddragon.leagueoflegends.com/cdn/16.20.1/img/item/2525.png",
+  },
+  "quicksilversash": {
+    "id": "quicksilversash",
+    "name": "Quicksilver Sash",
+    "short": "QUICKSIL",
+    "stats": {
+      "mr": 30,
+    },
+    "tier": "epic",
+    "cost": 1300,
+    "from": [
+      "nullmagicmantle",
+    ],
+    "icon": "https://ddragon.leagueoflegends.com/cdn/16.20.1/img/item/3140.png",
   },
   "rabadonsdeathcap": {
     "id": "rabadonsdeathcap",
@@ -735,7 +1930,13 @@ export const GENERATED_ITEMS: Record<string, Item> = {
       "ap": 130,
       "apAmp": 0.3,
     },
-    "icon": "https://ddragon.leagueoflegends.com/cdn/16.13.1/img/item/3089.png",
+    "tier": "legendary",
+    "cost": 3500,
+    "from": [
+      "needlesslylargerod",
+      "needlesslylargerod",
+    ],
+    "icon": "https://ddragon.leagueoflegends.com/cdn/16.20.1/img/item/3089.png",
   },
   "randuinsomen": {
     "id": "randuinsomen",
@@ -745,7 +1946,13 @@ export const GENERATED_ITEMS: Record<string, Item> = {
       "hp": 350,
       "armor": 75,
     },
-    "icon": "https://ddragon.leagueoflegends.com/cdn/16.13.1/img/item/3143.png",
+    "tier": "legendary",
+    "cost": 2700,
+    "from": [
+      "wardensmail",
+      "giantsbelt",
+    ],
+    "icon": "https://ddragon.leagueoflegends.com/cdn/16.20.1/img/item/3143.png",
   },
   "ravenoushydra": {
     "id": "ravenoushydra",
@@ -755,7 +1962,40 @@ export const GENERATED_ITEMS: Record<string, Item> = {
       "ad": 65,
       "abilityHaste": 15,
     },
-    "icon": "https://ddragon.leagueoflegends.com/cdn/16.13.1/img/item/3074.png",
+    "tier": "legendary",
+    "cost": 3300,
+    "from": [
+      "tiamat",
+      "vampiricscepter",
+      "caulfieldswarhammer",
+    ],
+    "icon": "https://ddragon.leagueoflegends.com/cdn/16.20.1/img/item/3074.png",
+  },
+  "rectrix": {
+    "id": "rectrix",
+    "name": "Rectrix",
+    "short": "RECTRIX",
+    "stats": {
+      "ad": 15,
+    },
+    "tier": "epic",
+    "cost": 775,
+    "from": [
+      "longsword",
+    ],
+    "icon": "https://ddragon.leagueoflegends.com/cdn/16.20.1/img/item/6690.png",
+  },
+  "recurvebow": {
+    "id": "recurvebow",
+    "name": "Recurve Bow",
+    "short": "RECURVE",
+    "stats": {},
+    "tier": "epic",
+    "cost": 700,
+    "from": [
+      "dagger",
+    ],
+    "icon": "https://ddragon.leagueoflegends.com/cdn/16.20.1/img/item/1043.png",
   },
   "redemption": {
     "id": "redemption",
@@ -765,7 +2005,22 @@ export const GENERATED_ITEMS: Record<string, Item> = {
       "ap": 30,
       "abilityHaste": 15,
     },
-    "icon": "https://ddragon.leagueoflegends.com/cdn/16.13.1/img/item/3107.png",
+    "tier": "legendary",
+    "cost": 2300,
+    "from": [
+      "fiendishcodex",
+      "forbiddenidol",
+    ],
+    "icon": "https://ddragon.leagueoflegends.com/cdn/16.20.1/img/item/3107.png",
+  },
+  "rejuvenationbead": {
+    "id": "rejuvenationbead",
+    "name": "Rejuvenation Bead",
+    "short": "REJUVENA",
+    "stats": {},
+    "tier": "basic",
+    "cost": 300,
+    "icon": "https://ddragon.leagueoflegends.com/cdn/16.20.1/img/item/1006.png",
   },
   "riftmaker": {
     "id": "riftmaker",
@@ -776,7 +2031,13 @@ export const GENERATED_ITEMS: Record<string, Item> = {
       "hp": 350,
       "abilityHaste": 15,
     },
-    "icon": "https://ddragon.leagueoflegends.com/cdn/16.13.1/img/item/4633.png",
+    "tier": "legendary",
+    "cost": 3100,
+    "from": [
+      "hauntingguise",
+      "fiendishcodex",
+    ],
+    "icon": "https://ddragon.leagueoflegends.com/cdn/16.20.1/img/item/4633.png",
   },
   "rodofages": {
     "id": "rodofages",
@@ -786,7 +2047,24 @@ export const GENERATED_ITEMS: Record<string, Item> = {
       "ap": 45,
       "hp": 350,
     },
-    "icon": "https://ddragon.leagueoflegends.com/cdn/16.13.1/img/item/6657.png",
+    "tier": "legendary",
+    "cost": 2600,
+    "from": [
+      "blastingwand",
+      "catalystofaeons",
+    ],
+    "icon": "https://ddragon.leagueoflegends.com/cdn/16.20.1/img/item/6657.png",
+  },
+  "rubycrystal": {
+    "id": "rubycrystal",
+    "name": "Ruby Crystal",
+    "short": "RUBY",
+    "stats": {
+      "hp": 150,
+    },
+    "tier": "basic",
+    "cost": 400,
+    "icon": "https://ddragon.leagueoflegends.com/cdn/16.20.1/img/item/1028.png",
   },
   "rylaiscrystalscepter": {
     "id": "rylaiscrystalscepter",
@@ -796,7 +2074,62 @@ export const GENERATED_ITEMS: Record<string, Item> = {
       "ap": 65,
       "hp": 400,
     },
-    "icon": "https://ddragon.leagueoflegends.com/cdn/16.13.1/img/item/3116.png",
+    "tier": "legendary",
+    "cost": 2600,
+    "from": [
+      "blastingwand",
+      "giantsbelt",
+      "amplifyingtome",
+    ],
+    "icon": "https://ddragon.leagueoflegends.com/cdn/16.20.1/img/item/3116.png",
+  },
+  "sapphirecrystal": {
+    "id": "sapphirecrystal",
+    "name": "Sapphire Crystal",
+    "short": "SAPPHIRE",
+    "stats": {},
+    "tier": "basic",
+    "cost": 300,
+    "icon": "https://ddragon.leagueoflegends.com/cdn/16.20.1/img/item/1027.png",
+  },
+  "scorchclawpup": {
+    "id": "scorchclawpup",
+    "name": "Scorchclaw Pup",
+    "short": "SCORCHCL",
+    "stats": {},
+    "tier": "starter",
+    "cost": 450,
+    "icon": "https://ddragon.leagueoflegends.com/cdn/16.20.1/img/item/1101.png",
+  },
+  "scoutsslingshot": {
+    "id": "scoutsslingshot",
+    "name": "Scout's Slingshot",
+    "short": "SCOUTS",
+    "stats": {},
+    "tier": "epic",
+    "cost": 600,
+    "from": [
+      "dagger",
+      "dagger",
+    ],
+    "icon": "https://ddragon.leagueoflegends.com/cdn/16.20.1/img/item/3144.png",
+  },
+  "seekersarmguard": {
+    "id": "seekersarmguard",
+    "name": "Seeker's Armguard",
+    "short": "SEEKERS",
+    "stats": {
+      "ap": 40,
+      "armor": 25,
+    },
+    "tier": "epic",
+    "cost": 1600,
+    "from": [
+      "amplifyingtome",
+      "clotharmor",
+      "amplifyingtome",
+    ],
+    "icon": "https://ddragon.leagueoflegends.com/cdn/16.20.1/img/item/2420.png",
   },
   "serpentsfang": {
     "id": "serpentsfang",
@@ -806,7 +2139,29 @@ export const GENERATED_ITEMS: Record<string, Item> = {
       "ad": 55,
       "lethality": 15,
     },
-    "icon": "https://ddragon.leagueoflegends.com/cdn/16.13.1/img/item/6695.png",
+    "tier": "legendary",
+    "cost": 2500,
+    "from": [
+      "serrateddirk",
+      "pickaxe",
+    ],
+    "icon": "https://ddragon.leagueoflegends.com/cdn/16.20.1/img/item/6695.png",
+  },
+  "serrateddirk": {
+    "id": "serrateddirk",
+    "name": "Serrated Dirk",
+    "short": "SERRATED",
+    "stats": {
+      "ad": 20,
+      "lethality": 10,
+    },
+    "tier": "epic",
+    "cost": 1000,
+    "from": [
+      "longsword",
+      "longsword",
+    ],
+    "icon": "https://ddragon.leagueoflegends.com/cdn/16.20.1/img/item/3134.png",
   },
   "seryldasgrudge": {
     "id": "seryldasgrudge",
@@ -817,7 +2172,13 @@ export const GENERATED_ITEMS: Record<string, Item> = {
       "abilityHaste": 15,
       "armorPenPercent": 0.35,
     },
-    "icon": "https://ddragon.leagueoflegends.com/cdn/16.13.1/img/item/6694.png",
+    "tier": "legendary",
+    "cost": 3000,
+    "from": [
+      "caulfieldswarhammer",
+      "lastwhisper",
+    ],
+    "icon": "https://ddragon.leagueoflegends.com/cdn/16.20.1/img/item/6694.png",
   },
   "shadowflame": {
     "id": "shadowflame",
@@ -827,7 +2188,44 @@ export const GENERATED_ITEMS: Record<string, Item> = {
       "ap": 110,
       "magicPenFlat": 15,
     },
-    "icon": "https://ddragon.leagueoflegends.com/cdn/16.13.1/img/item/4645.png",
+    "tier": "legendary",
+    "cost": 3200,
+    "from": [
+      "hextechalternator",
+      "needlesslylargerod",
+    ],
+    "icon": "https://ddragon.leagueoflegends.com/cdn/16.20.1/img/item/4645.png",
+  },
+  "shatteredarmguard": {
+    "id": "shatteredarmguard",
+    "name": "Shattered Armguard",
+    "short": "SHATTERE",
+    "stats": {
+      "ap": 40,
+      "armor": 25,
+    },
+    "tier": "epic",
+    "cost": 1600,
+    "from": [
+      "amplifyingtome",
+      "clotharmor",
+      "amplifyingtome",
+    ],
+    "icon": "https://ddragon.leagueoflegends.com/cdn/16.20.1/img/item/2421.png",
+  },
+  "sheen": {
+    "id": "sheen",
+    "name": "Sheen",
+    "short": "SHEEN",
+    "stats": {
+      "abilityHaste": 10,
+    },
+    "tier": "epic",
+    "cost": 900,
+    "from": [
+      "glowingmote",
+    ],
+    "icon": "https://ddragon.leagueoflegends.com/cdn/16.20.1/img/item/3057.png",
   },
   "shurelyasbattlesong": {
     "id": "shurelyasbattlesong",
@@ -837,7 +2235,13 @@ export const GENERATED_ITEMS: Record<string, Item> = {
       "ap": 50,
       "abilityHaste": 15,
     },
-    "icon": "https://ddragon.leagueoflegends.com/cdn/16.13.1/img/item/2065.png",
+    "tier": "legendary",
+    "cost": 2200,
+    "from": [
+      "aetherwisp",
+      "bandleglassmirror",
+    ],
+    "icon": "https://ddragon.leagueoflegends.com/cdn/16.20.1/img/item/2065.png",
   },
   "solsticesleigh": {
     "id": "solsticesleigh",
@@ -846,7 +2250,10 @@ export const GENERATED_ITEMS: Record<string, Item> = {
     "stats": {
       "hp": 200,
     },
-    "icon": "https://ddragon.leagueoflegends.com/cdn/16.13.1/img/item/3876.png",
+    "tier": "legendary",
+    "cost": 400,
+    "from": [],
+    "icon": "https://ddragon.leagueoflegends.com/cdn/16.20.1/img/item/3876.png",
   },
   "sorcerersshoes": {
     "id": "sorcerersshoes",
@@ -855,7 +2262,12 @@ export const GENERATED_ITEMS: Record<string, Item> = {
     "stats": {
       "magicPenFlat": 12,
     },
-    "icon": "https://ddragon.leagueoflegends.com/cdn/16.13.1/img/item/3020.png",
+    "tier": "boots",
+    "cost": 1100,
+    "from": [
+      "boots",
+    ],
+    "icon": "https://ddragon.leagueoflegends.com/cdn/16.20.1/img/item/3020.png",
   },
   "spearofshojin": {
     "id": "spearofshojin",
@@ -865,7 +2277,31 @@ export const GENERATED_ITEMS: Record<string, Item> = {
       "ad": 45,
       "hp": 450,
     },
-    "icon": "https://ddragon.leagueoflegends.com/cdn/16.13.1/img/item/3161.png",
+    "tier": "legendary",
+    "cost": 3100,
+    "from": [
+      "pickaxe",
+      "tunneler",
+      "rubycrystal",
+    ],
+    "icon": "https://ddragon.leagueoflegends.com/cdn/16.20.1/img/item/3161.png",
+  },
+  "spectrescowl": {
+    "id": "spectrescowl",
+    "name": "Spectre's Cowl",
+    "short": "SPECTRES",
+    "stats": {
+      "hp": 200,
+      "mr": 35,
+    },
+    "tier": "epic",
+    "cost": 1250,
+    "from": [
+      "rubycrystal",
+      "nullmagicmantle",
+      "rejuvenationbead",
+    ],
+    "icon": "https://ddragon.leagueoflegends.com/cdn/16.20.1/img/item/3211.png",
   },
   "spellslingersshoes": {
     "id": "spellslingersshoes",
@@ -875,7 +2311,12 @@ export const GENERATED_ITEMS: Record<string, Item> = {
       "magicPenFlat": 18,
       "magicPenPercent": 0.08,
     },
-    "icon": "https://ddragon.leagueoflegends.com/cdn/16.13.1/img/item/3175.png",
+    "tier": "boots",
+    "cost": 1100,
+    "from": [
+      "sorcerersshoes",
+    ],
+    "icon": "https://ddragon.leagueoflegends.com/cdn/16.20.1/img/item/3175.png",
   },
   "spiritvisage": {
     "id": "spiritvisage",
@@ -883,9 +2324,16 @@ export const GENERATED_ITEMS: Record<string, Item> = {
     "short": "SPIRIT",
     "stats": {
       "hp": 400,
+      "mr": 50,
       "abilityHaste": 10,
     },
-    "icon": "https://ddragon.leagueoflegends.com/cdn/16.13.1/img/item/3065.png",
+    "tier": "legendary",
+    "cost": 2700,
+    "from": [
+      "spectrescowl",
+      "kindlegem",
+    ],
+    "icon": "https://ddragon.leagueoflegends.com/cdn/16.20.1/img/item/3065.png",
   },
   "staffofflowingwater": {
     "id": "staffofflowingwater",
@@ -895,7 +2343,13 @@ export const GENERATED_ITEMS: Record<string, Item> = {
       "ap": 35,
       "abilityHaste": 15,
     },
-    "icon": "https://ddragon.leagueoflegends.com/cdn/16.13.1/img/item/6616.png",
+    "tier": "legendary",
+    "cost": 2250,
+    "from": [
+      "fiendishcodex",
+      "forbiddenidol",
+    ],
+    "icon": "https://ddragon.leagueoflegends.com/cdn/16.20.1/img/item/6616.png",
   },
   "statikkshiv": {
     "id": "statikkshiv",
@@ -905,7 +2359,31 @@ export const GENERATED_ITEMS: Record<string, Item> = {
       "ad": 45,
       "ap": 45,
     },
-    "icon": "https://ddragon.leagueoflegends.com/cdn/16.13.1/img/item/3087.png",
+    "tier": "legendary",
+    "cost": 3000,
+    "from": [
+      "scoutsslingshot",
+      "aetherwisp",
+      "pickaxe",
+    ],
+    "icon": "https://ddragon.leagueoflegends.com/cdn/16.20.1/img/item/3087.png",
+  },
+  "steelsigil": {
+    "id": "steelsigil",
+    "name": "Steel Sigil",
+    "short": "STEEL",
+    "stats": {
+      "ad": 15,
+      "armor": 30,
+    },
+    "tier": "epic",
+    "cost": 1100,
+    "from": [
+      "clotharmor",
+      "longsword",
+      "clotharmor",
+    ],
+    "icon": "https://ddragon.leagueoflegends.com/cdn/16.20.1/img/item/2019.png",
   },
   "steraksgage": {
     "id": "steraksgage",
@@ -914,16 +2392,14 @@ export const GENERATED_ITEMS: Record<string, Item> = {
     "stats": {
       "hp": 400,
     },
-    "icon": "https://ddragon.leagueoflegends.com/cdn/16.13.1/img/item/3053.png",
-  },
-  "stormrazor": {
-    "id": "stormrazor",
-    "name": "Stormrazor",
-    "short": "STORMRAZ",
-    "stats": {
-      "ad": 50,
-    },
-    "icon": "https://ddragon.leagueoflegends.com/cdn/16.13.1/img/item/3097.png",
+    "tier": "legendary",
+    "cost": 3200,
+    "from": [
+      "pickaxe",
+      "tunneler",
+      "rubycrystal",
+    ],
+    "icon": "https://ddragon.leagueoflegends.com/cdn/16.20.1/img/item/3053.png",
   },
   "stormsurge": {
     "id": "stormsurge",
@@ -933,7 +2409,13 @@ export const GENERATED_ITEMS: Record<string, Item> = {
       "ap": 90,
       "magicPenFlat": 15,
     },
-    "icon": "https://ddragon.leagueoflegends.com/cdn/16.13.1/img/item/4646.png",
+    "tier": "legendary",
+    "cost": 2800,
+    "from": [
+      "hextechalternator",
+      "aetherwisp",
+    ],
+    "icon": "https://ddragon.leagueoflegends.com/cdn/16.20.1/img/item/4646.png",
   },
   "stridebreaker": {
     "id": "stridebreaker",
@@ -943,18 +2425,31 @@ export const GENERATED_ITEMS: Record<string, Item> = {
       "ad": 40,
       "hp": 450,
     },
-    "icon": "https://ddragon.leagueoflegends.com/cdn/16.13.1/img/item/6631.png",
+    "tier": "legendary",
+    "cost": 3300,
+    "from": [
+      "tiamat",
+      "phage",
+      "dagger",
+    ],
+    "icon": "https://ddragon.leagueoflegends.com/cdn/16.20.1/img/item/6631.png",
   },
   "sunderedsky": {
     "id": "sunderedsky",
     "name": "Sundered Sky",
     "short": "SUNDERED",
     "stats": {
-      "ad": 45,
+      "ad": 40,
       "hp": 400,
       "abilityHaste": 10,
     },
-    "icon": "https://ddragon.leagueoflegends.com/cdn/16.13.1/img/item/6610.png",
+    "tier": "legendary",
+    "cost": 3100,
+    "from": [
+      "tunneler",
+      "caulfieldswarhammer",
+    ],
+    "icon": "https://ddragon.leagueoflegends.com/cdn/16.20.1/img/item/6610.png",
   },
   "sunfireaegis": {
     "id": "sunfireaegis",
@@ -965,7 +2460,35 @@ export const GENERATED_ITEMS: Record<string, Item> = {
       "armor": 50,
       "abilityHaste": 10,
     },
-    "icon": "https://ddragon.leagueoflegends.com/cdn/16.13.1/img/item/3068.png",
+    "tier": "legendary",
+    "cost": 2800,
+    "from": [
+      "bamiscinder",
+      "chainvest",
+      "rubycrystal",
+    ],
+    "icon": "https://ddragon.leagueoflegends.com/cdn/16.20.1/img/item/3068.png",
+  },
+  "swiftmarch": {
+    "id": "swiftmarch",
+    "name": "Swiftmarch",
+    "short": "SWIFTMAR",
+    "stats": {},
+    "tier": "boots",
+    "cost": 1000,
+    "from": [
+      "bootsofswiftness",
+    ],
+    "icon": "https://ddragon.leagueoflegends.com/cdn/16.20.1/img/item/3170.png",
+  },
+  "tearofthegoddess": {
+    "id": "tearofthegoddess",
+    "name": "Tear of the Goddess",
+    "short": "TEAR",
+    "stats": {},
+    "tier": "starter",
+    "cost": 400,
+    "icon": "https://ddragon.leagueoflegends.com/cdn/16.20.1/img/item/3070.png",
   },
   "terminus": {
     "id": "terminus",
@@ -974,7 +2497,30 @@ export const GENERATED_ITEMS: Record<string, Item> = {
     "stats": {
       "ad": 30,
     },
-    "icon": "https://ddragon.leagueoflegends.com/cdn/16.13.1/img/item/3302.png",
+    "tier": "legendary",
+    "cost": 3000,
+    "from": [
+      "hearthboundaxe",
+      "recurvebow",
+    ],
+    "icon": "https://ddragon.leagueoflegends.com/cdn/16.20.1/img/item/3302.png",
+  },
+  "thebrutalizer": {
+    "id": "thebrutalizer",
+    "name": "The Brutalizer",
+    "short": "THEBRUTA",
+    "stats": {
+      "ad": 25,
+      "abilityHaste": 10,
+      "lethality": 5,
+    },
+    "tier": "epic",
+    "cost": 1337,
+    "from": [
+      "glowingmote",
+      "pickaxe",
+    ],
+    "icon": "https://ddragon.leagueoflegends.com/cdn/16.20.1/img/item/2020.png",
   },
   "thecollector": {
     "id": "thecollector",
@@ -984,7 +2530,14 @@ export const GENERATED_ITEMS: Record<string, Item> = {
       "ad": 50,
       "lethality": 10,
     },
-    "icon": "https://ddragon.leagueoflegends.com/cdn/16.13.1/img/item/6676.png",
+    "tier": "legendary",
+    "cost": 3000,
+    "from": [
+      "pickaxe",
+      "serrateddirk",
+      "cloakofagility",
+    ],
+    "icon": "https://ddragon.leagueoflegends.com/cdn/16.20.1/img/item/6676.png",
   },
   "thornmail": {
     "id": "thornmail",
@@ -994,7 +2547,29 @@ export const GENERATED_ITEMS: Record<string, Item> = {
       "hp": 150,
       "armor": 75,
     },
-    "icon": "https://ddragon.leagueoflegends.com/cdn/16.13.1/img/item/3075.png",
+    "tier": "legendary",
+    "cost": 2450,
+    "from": [
+      "bramblevest",
+      "chainvest",
+      "rubycrystal",
+    ],
+    "icon": "https://ddragon.leagueoflegends.com/cdn/16.20.1/img/item/3075.png",
+  },
+  "tiamat": {
+    "id": "tiamat",
+    "name": "Tiamat",
+    "short": "TIAMAT",
+    "stats": {
+      "ad": 25,
+    },
+    "tier": "epic",
+    "cost": 1200,
+    "from": [
+      "longsword",
+      "longsword",
+    ],
+    "icon": "https://ddragon.leagueoflegends.com/cdn/16.20.1/img/item/3077.png",
   },
   "titanichydra": {
     "id": "titanichydra",
@@ -1004,7 +2579,14 @@ export const GENERATED_ITEMS: Record<string, Item> = {
       "ad": 40,
       "hp": 600,
     },
-    "icon": "https://ddragon.leagueoflegends.com/cdn/16.13.1/img/item/3748.png",
+    "tier": "legendary",
+    "cost": 3300,
+    "from": [
+      "tiamat",
+      "tunneler",
+      "giantsbelt",
+    ],
+    "icon": "https://ddragon.leagueoflegends.com/cdn/16.20.1/img/item/3748.png",
   },
   "trailblazer": {
     "id": "trailblazer",
@@ -1014,7 +2596,13 @@ export const GENERATED_ITEMS: Record<string, Item> = {
       "hp": 250,
       "armor": 40,
     },
-    "icon": "https://ddragon.leagueoflegends.com/cdn/16.13.1/img/item/3002.png",
+    "tier": "legendary",
+    "cost": 2400,
+    "from": [
+      "wingedmoonplate",
+      "chainvest",
+    ],
+    "icon": "https://ddragon.leagueoflegends.com/cdn/16.20.1/img/item/3002.png",
   },
   "trinityforce": {
     "id": "trinityforce",
@@ -1025,7 +2613,30 @@ export const GENERATED_ITEMS: Record<string, Item> = {
       "hp": 333,
       "abilityHaste": 15,
     },
-    "icon": "https://ddragon.leagueoflegends.com/cdn/16.13.1/img/item/3078.png",
+    "tier": "legendary",
+    "cost": 3333,
+    "from": [
+      "sheen",
+      "phage",
+      "hearthboundaxe",
+    ],
+    "icon": "https://ddragon.leagueoflegends.com/cdn/16.20.1/img/item/3078.png",
+  },
+  "tunneler": {
+    "id": "tunneler",
+    "name": "Tunneler",
+    "short": "TUNNELER",
+    "stats": {
+      "ad": 15,
+      "hp": 250,
+    },
+    "tier": "epic",
+    "cost": 1150,
+    "from": [
+      "longsword",
+      "rubycrystal",
+    ],
+    "icon": "https://ddragon.leagueoflegends.com/cdn/16.20.1/img/item/2021.png",
   },
   "umbralglaive": {
     "id": "umbralglaive",
@@ -1036,7 +2647,13 @@ export const GENERATED_ITEMS: Record<string, Item> = {
       "abilityHaste": 15,
       "lethality": 18,
     },
-    "icon": "https://ddragon.leagueoflegends.com/cdn/16.13.1/img/item/3179.png",
+    "tier": "legendary",
+    "cost": 2800,
+    "from": [
+      "serrateddirk",
+      "caulfieldswarhammer",
+    ],
+    "icon": "https://ddragon.leagueoflegends.com/cdn/16.20.1/img/item/3179.png",
   },
   "unendingdespair": {
     "id": "unendingdespair",
@@ -1047,7 +2664,45 @@ export const GENERATED_ITEMS: Record<string, Item> = {
       "armor": 50,
       "abilityHaste": 15,
     },
-    "icon": "https://ddragon.leagueoflegends.com/cdn/16.13.1/img/item/2502.png",
+    "tier": "legendary",
+    "cost": 2800,
+    "from": [
+      "chainvest",
+      "kindlegem",
+      "rubycrystal",
+    ],
+    "icon": "https://ddragon.leagueoflegends.com/cdn/16.20.1/img/item/2502.png",
+  },
+  "vampiricscepter": {
+    "id": "vampiricscepter",
+    "name": "Vampiric Scepter",
+    "short": "VAMPIRIC",
+    "stats": {
+      "ad": 15,
+    },
+    "tier": "epic",
+    "cost": 900,
+    "from": [
+      "longsword",
+    ],
+    "icon": "https://ddragon.leagueoflegends.com/cdn/16.20.1/img/item/1053.png",
+  },
+  "verdantbarrier": {
+    "id": "verdantbarrier",
+    "name": "Verdant Barrier",
+    "short": "VERDANT",
+    "stats": {
+      "ap": 40,
+      "mr": 25,
+    },
+    "tier": "epic",
+    "cost": 1600,
+    "from": [
+      "amplifyingtome",
+      "nullmagicmantle",
+      "amplifyingtome",
+    ],
+    "icon": "https://ddragon.leagueoflegends.com/cdn/16.20.1/img/item/4632.png",
   },
   "voidstaff": {
     "id": "voidstaff",
@@ -1057,7 +2712,13 @@ export const GENERATED_ITEMS: Record<string, Item> = {
       "ap": 95,
       "magicPenPercent": 0.4,
     },
-    "icon": "https://ddragon.leagueoflegends.com/cdn/16.13.1/img/item/3135.png",
+    "tier": "legendary",
+    "cost": 3000,
+    "from": [
+      "blightingjewel",
+      "blastingwand",
+    ],
+    "icon": "https://ddragon.leagueoflegends.com/cdn/16.20.1/img/item/3135.png",
   },
   "voltaiccyclosword": {
     "id": "voltaiccyclosword",
@@ -1068,7 +2729,29 @@ export const GENERATED_ITEMS: Record<string, Item> = {
       "abilityHaste": 10,
       "lethality": 18,
     },
-    "icon": "https://ddragon.leagueoflegends.com/cdn/16.13.1/img/item/6699.png",
+    "tier": "legendary",
+    "cost": 3000,
+    "from": [
+      "thebrutalizer",
+      "longsword",
+      "longsword",
+    ],
+    "icon": "https://ddragon.leagueoflegends.com/cdn/16.20.1/img/item/6699.png",
+  },
+  "wardensmail": {
+    "id": "wardensmail",
+    "name": "Warden's Mail",
+    "short": "WARDENS",
+    "stats": {
+      "armor": 40,
+    },
+    "tier": "epic",
+    "cost": 1000,
+    "from": [
+      "clotharmor",
+      "clotharmor",
+    ],
+    "icon": "https://ddragon.leagueoflegends.com/cdn/16.20.1/img/item/3082.png",
   },
   "warmogsarmor": {
     "id": "warmogsarmor",
@@ -1077,7 +2760,14 @@ export const GENERATED_ITEMS: Record<string, Item> = {
     "stats": {
       "hp": 1000,
     },
-    "icon": "https://ddragon.leagueoflegends.com/cdn/16.13.1/img/item/3083.png",
+    "tier": "legendary",
+    "cost": 3100,
+    "from": [
+      "giantsbelt",
+      "giantsbelt",
+      "crystallinebracer",
+    ],
+    "icon": "https://ddragon.leagueoflegends.com/cdn/16.20.1/img/item/3083.png",
   },
   "whisperingcirclet": {
     "id": "whisperingcirclet",
@@ -1086,7 +2776,28 @@ export const GENERATED_ITEMS: Record<string, Item> = {
     "stats": {
       "hp": 200,
     },
-    "icon": "https://ddragon.leagueoflegends.com/cdn/16.13.1/img/item/2526.png",
+    "tier": "legendary",
+    "cost": 2250,
+    "from": [
+      "forbiddenidol",
+      "rubycrystal",
+      "tearofthegoddess",
+    ],
+    "icon": "https://ddragon.leagueoflegends.com/cdn/16.20.1/img/item/2526.png",
+  },
+  "wingedmoonplate": {
+    "id": "wingedmoonplate",
+    "name": "Winged Moonplate",
+    "short": "WINGED",
+    "stats": {
+      "hp": 200,
+    },
+    "tier": "epic",
+    "cost": 800,
+    "from": [
+      "rubycrystal",
+    ],
+    "icon": "https://ddragon.leagueoflegends.com/cdn/16.20.1/img/item/3066.png",
   },
   "wintersapproach": {
     "id": "wintersapproach",
@@ -1096,7 +2807,41 @@ export const GENERATED_ITEMS: Record<string, Item> = {
       "hp": 550,
       "abilityHaste": 15,
     },
-    "icon": "https://ddragon.leagueoflegends.com/cdn/16.13.1/img/item/3119.png",
+    "tier": "legendary",
+    "cost": 2400,
+    "from": [
+      "tearofthegoddess",
+      "giantsbelt",
+      "kindlegem",
+    ],
+    "icon": "https://ddragon.leagueoflegends.com/cdn/16.20.1/img/item/3119.png",
+  },
+  "witsend": {
+    "id": "witsend",
+    "name": "Wit's End",
+    "short": "WITS",
+    "stats": {
+      "mr": 45,
+    },
+    "tier": "legendary",
+    "cost": 2800,
+    "from": [
+      "recurvebow",
+      "negatroncloak",
+      "recurvebow",
+    ],
+    "icon": "https://ddragon.leagueoflegends.com/cdn/16.20.1/img/item/3091.png",
+  },
+  "worldatlas": {
+    "id": "worldatlas",
+    "name": "World Atlas",
+    "short": "WORLD",
+    "stats": {
+      "hp": 30,
+    },
+    "tier": "starter",
+    "cost": 400,
+    "icon": "https://ddragon.leagueoflegends.com/cdn/16.20.1/img/item/3865.png",
   },
   "youmuusghostblade": {
     "id": "youmuusghostblade",
@@ -1106,7 +2851,14 @@ export const GENERATED_ITEMS: Record<string, Item> = {
       "ad": 55,
       "lethality": 18,
     },
-    "icon": "https://ddragon.leagueoflegends.com/cdn/16.13.1/img/item/3142.png",
+    "tier": "legendary",
+    "cost": 2800,
+    "from": [
+      "serrateddirk",
+      "rectrix",
+      "longsword",
+    ],
+    "icon": "https://ddragon.leagueoflegends.com/cdn/16.20.1/img/item/3142.png",
   },
   "yuntalwildarrows": {
     "id": "yuntalwildarrows",
@@ -1115,7 +2867,14 @@ export const GENERATED_ITEMS: Record<string, Item> = {
     "stats": {
       "ad": 50,
     },
-    "icon": "https://ddragon.leagueoflegends.com/cdn/16.13.1/img/item/3032.png",
+    "tier": "legendary",
+    "cost": 3000,
+    "from": [
+      "bfsword",
+      "scoutsslingshot",
+      "longsword",
+    ],
+    "icon": "https://ddragon.leagueoflegends.com/cdn/16.20.1/img/item/3032.png",
   },
   "zazzaksrealmspike": {
     "id": "zazzaksrealmspike",
@@ -1124,7 +2883,23 @@ export const GENERATED_ITEMS: Record<string, Item> = {
     "stats": {
       "hp": 200,
     },
-    "icon": "https://ddragon.leagueoflegends.com/cdn/16.13.1/img/item/3871.png",
+    "tier": "legendary",
+    "cost": 400,
+    "from": [],
+    "icon": "https://ddragon.leagueoflegends.com/cdn/16.20.1/img/item/3871.png",
+  },
+  "zeal": {
+    "id": "zeal",
+    "name": "Zeal",
+    "short": "ZEAL",
+    "stats": {},
+    "tier": "epic",
+    "cost": 1200,
+    "from": [
+      "cloakofagility",
+      "dagger",
+    ],
+    "icon": "https://ddragon.leagueoflegends.com/cdn/16.20.1/img/item/3086.png",
   },
   "zekesconvergence": {
     "id": "zekesconvergence",
@@ -1133,9 +2908,17 @@ export const GENERATED_ITEMS: Record<string, Item> = {
     "stats": {
       "hp": 300,
       "armor": 25,
+      "mr": 25,
       "abilityHaste": 10,
     },
-    "icon": "https://ddragon.leagueoflegends.com/cdn/16.13.1/img/item/3050.png",
+    "tier": "legendary",
+    "cost": 2200,
+    "from": [
+      "kindlegem",
+      "clotharmor",
+      "nullmagicmantle",
+    ],
+    "icon": "https://ddragon.leagueoflegends.com/cdn/16.20.1/img/item/3050.png",
   },
   "zephyr": {
     "id": "zephyr",
@@ -1144,7 +2927,12 @@ export const GENERATED_ITEMS: Record<string, Item> = {
     "stats": {
       "abilityHaste": 30,
     },
-    "icon": "https://ddragon.leagueoflegends.com/cdn/16.13.1/img/item/3172.png",
+    "tier": "legendary",
+    "cost": 1100,
+    "from": [
+      "berserkersgreaves",
+    ],
+    "icon": "https://ddragon.leagueoflegends.com/cdn/16.20.1/img/item/3172.png",
   },
   "zhonyashourglass": {
     "id": "zhonyashourglass",
@@ -1154,6 +2942,12 @@ export const GENERATED_ITEMS: Record<string, Item> = {
       "ap": 105,
       "armor": 50,
     },
-    "icon": "https://ddragon.leagueoflegends.com/cdn/16.13.1/img/item/3157.png",
+    "tier": "legendary",
+    "cost": 3250,
+    "from": [
+      "needlesslylargerod",
+      "seekersarmguard",
+    ],
+    "icon": "https://ddragon.leagueoflegends.com/cdn/16.20.1/img/item/3157.png",
   },
 };

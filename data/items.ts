@@ -5,12 +5,22 @@ import { GENERATED_ITEMS } from "@/data/generated/items.gen.ts";
  * Objets — générés depuis Meraki à chaque patch (`deno task data`).
  *
  * Les stats plates viennent de Meraki ; les passifs que le moteur sait modéliser
- * (Rabadon %AP, Fendoir %pén.) sont réinjectés via data/overrides.ts. On ne
- * garde que les objets légendaires + bottes portant une stat exploitable.
+ * (Rabadon %AP, Fendoir %pén.) sont réinjectés via data/overrides.ts. On garde
+ * les légendaires + bottes portant une stat exploitable, plus les starters,
+ * composants et objets épiques (prix + recette) pour la timeline de build.
  *
  * >>> Ne pas éditer à la main : data/generated/items.gen.ts est régénéré. <<<
  */
 export const ITEMS: Record<string, Item> = GENERATED_ITEMS;
+
+/**
+ * Objet proposé dans le catalogue du labo : légendaire ou bottes portant au
+ * moins une stat modélisée. Starters et composants servent à la timeline de build.
+ */
+export function isLabItem(it: Item): boolean {
+  const complete = !it.tier || it.tier === "legendary" || it.tier === "boots";
+  return complete && Object.keys(it.stats).length > 0;
+}
 
 /** Résumé lisible des stats d'un objet, pour l'affichage. */
 export function itemStatLine(id: string): string {
@@ -25,6 +35,7 @@ export function itemStatLine(id: string): string {
   if (s.lethality) parts.push(`${s.lethality} létal.`);
   if (s.hp) parts.push(`${s.hp} PV`);
   if (s.armor) parts.push(`${s.armor} arm`);
+  if (s.mr) parts.push(`${s.mr} RM`);
   if (s.abilityHaste) parts.push(`${s.abilityHaste} AH`);
   return parts.join(" · ");
 }
