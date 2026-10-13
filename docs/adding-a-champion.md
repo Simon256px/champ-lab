@@ -68,7 +68,7 @@ automatiquement dès que Meraki les publie (retire alors l'entrée).
 
 Le pipeline extrait déjà les dégâts en % des PV (cible ou lanceur), les ratios qui changent avec le rang, les
 boucliers et les soins des sorts. Ce que Meraki n'expose pas en chiffres — surtout les **passifs** — se décrit
-dans `data/mechanics.ts` avec quatre briques, appliquées par le moteur en mode trade / all-in :
+dans `data/mechanics.ts`, appliqué par le moteur en mode trade / all-in :
 
 | `kind`                | Pour                                                  | Exemple                    |
 | --------------------- | ----------------------------------------------------- | -------------------------- |
@@ -76,10 +76,22 @@ dans `data/mechanics.ts` avec quatre briques, appliquées par le moteur en mode 
 | `abilityOnHit`        | un sort qui frappe sur les autos au lieu d'être lancé | Vayne W (tous les 3 coups) |
 | `periodic`            | dégâts (et soin) toutes les X secondes                | points vitaux de Fiora     |
 | `stackingAttackSpeed` | VA bonus qui s'empile à chaque auto                   | Jax                        |
+| `missingHpHeal`       | soin en % des PV manquants à chaque lancer            | Darius Q                   |
+| `abilityDamage`       | dégâts d'un sort que Meraki laisse utilitaire         | Fiora R                    |
 
-Les valeurs « selon le niveau » s'écrivent `{ from, to }` (niveau 1 → 18). Reprends les chiffres de la
-description officielle du kit, cite-les en commentaire, et ajoute un test qui vérifie que la mécanique
-s'applique (voir les tests « passif » de `lib/engine_test.ts`).
+**On ne saisit pas de chiffres.** Chaque valeur est une référence aux fichiers du jeu (CommunityDragon),
+résolue au patch courant par `deno task data` dans `data/generated/mechanics.gen.ts` :
+
+```ts
+damage: { slot: "P", calc: "PassiveDamageTotal" },             // un calcul du passif
+maxStacks: { slot: "P", value: "MaxStacks" },                  // une valeur brute
+pct: { slot: "Q", value: "MissingHealthHeal", times: 0.01 },   // une valeur en %, ramenée en fraction
+```
+
+Pour trouver les noms : ouvre `https://raw.communitydragon.org/latest/game/data/characters/<id>/<id>.bin.json`
+et cherche le sort (`mSpell` → `mSpellCalculations` pour les calculs, `DataValues` pour les valeurs). Si une
+référence ne se résout pas (sort renommé, formule non convertible), le pipeline le signale et écarte la
+mécanique. Ajoute un test qui vérifie qu'elle s'applique (voir les tests « passif » de `lib/engine_test.ts`).
 
 ## 3. Cas complexes → moteur
 

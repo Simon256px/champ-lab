@@ -28,16 +28,19 @@ import type {
   AbilityKey,
   AbilityRatios,
   Adaptive,
-  ByLevel,
   Champion,
   DamageLine,
   DamageType,
+  Formula,
+  HpScale,
   IncludeMap,
   Item,
   RuneDef,
   ScaledValue,
+  StatRef,
   TargetProfile,
 } from "@/data/types.ts";
+import { evalFormula } from "@/lib/formula.ts";
 
 /** Amplification de l'ultime par stack d'hémorragie : +20 %/stack, +100 % max à 5. */
 export const BLEED_ULT_AMP_PER_STACK = 0.2;
@@ -62,11 +65,6 @@ export const ATTACK_SPEED_CAP = 2.5;
  * Jinx…) : on ne le compte qu'une fois au lieu de le relancer en boucle.
  */
 export const MIN_REAL_COOLDOWN = 1;
-
-/** Valeur interpolée linéairement entre le niveau 1 et le niveau 18. */
-export function byLevel(v: ByLevel, level: number): number {
-  return v.from + ((v.to - v.from) * (level - 1)) / 17;
-}
 
 /** Croissance d'une stat par niveau (formule officielle de League). */
 export function growth(base: number, perLevel: number, level: number): number {
@@ -109,6 +107,11 @@ export interface DerivedStats {
   /** PV max et PV bonus (objets) du lanceur */
   maxHp: number;
   bonusHp: number;
+  /** armure et RM du lanceur (totales et bonus des objets), pour les formules qui en dépendent */
+  armor: number;
+  bonusArmor: number;
+  mr: number;
+  bonusMr: number;
   lifeSteal: number;
   omnivamp: number;
 }
@@ -128,6 +131,8 @@ export function computeStats(
     stats.reduce((a, s) => a + (pick(s) ?? 0), 0);
   const itemAttackSpeed = sum((s) => s.attackSpeed);
   const bonusHp = sum((s) => s.hp);
+  const bonusArmor = sum((s) => s.armor);
+  const bonusMr = sum((s) => s.mr);
 
   let bonusAD = stats.reduce((a, s) => a + (s.ad ?? 0), 0);
   let flatAP = stats.reduce((a, s) => a + (s.ap ?? 0), 0);
@@ -158,6 +163,10 @@ export function computeStats(
     itemAttackSpeed,
     maxHp: growth(champion.base.hp, champion.base.hpPerLevel, level) + bonusHp,
     bonusHp,
+    armor: growth(champion.base.armor, champion.base.armorPerLevel, level) + bonusArmor,
+    bonusArmor,
+    mr: growth(champion.base.mr, champion.base.mrPerLevel, level) + bonusMr,
+    bonusMr,
     lifeSteal: sum((s) => s.lifeSteal),
     omnivamp: sum((s) => s.omnivamp),
   };
@@ -206,11 +215,12 @@ export function autosIn(window: number, attackSpeed: number): number {
 export function autoCount(window: number, champion: Champion, level: number, s: DerivedStats): number {
   const stacking = champion.mechanics?.find((m) => m.kind === "stackingAttackSpeed");
   if (!stacking || stacking.kind !== "stackingAttackSpeed") return autosIn(window, s.attackSpeed);
-  const perStack = byLevel(stacking.perStack, level);
+  const perStack = formulaAt(stacking.perStack, 1, level, s);
+  const maxStacks = formulaAt(stacking.maxStacks, 1, level, s);
   let t = 0;
   let n = 1; // premier coup à t = 0
   while (true) {
-    const stacks = Math.min(n, stacking.maxStacks);
+    const stacks = Math.min(n, maxStacks);
     t += 1 / attackSpeedOf(champion, level, s.itemAttackSpeed + perStack * stacks);
     if (t > window + 1e-9) return n;
     n++;
@@ -244,6 +254,40 @@ export function resolveRank(
     return Math.max(0, Math.min(explicit, champion.abilities[key].maxRank));
   }
   return rankOf(champion, key, level);
+}
+
+/** Stats du lanceur sous la forme attendue par les formules de jeu. */
+export function formulaStats(s: DerivedStats): Record<StatRef, number> {
+  return {
+    ap: s.ap,
+    ad: s.totalAD,
+    baseAd: s.baseAD,
+    bonusAd: s.bonusAD,
+    maxHp: s.maxHp,
+    baseHp: s.maxHp - s.bonusHp,
+    bonusHp: s.bonusHp,
+    armor: s.armor,
+    bonusArmor: s.bonusArmor,
+    mr: s.mr,
+    bonusMr: s.bonusMr,
+  };
+}
+
+/** Évalue une formule de jeu pour ce lanceur, à ce rang et ce niveau. */
+export function formulaAt(f: Formula, rank: number, level: number, s: DerivedStats): number {
+  return evalFormula(f, { rank, level, stats: formulaStats(s) });
+}
+
+/** Une fraction de PV de la cible (Vayne W, points vitaux) convertie en PV. */
+export function hpScaled(value: number, scale: HpScale | undefined, target?: TargetProfile): number {
+  if (!scale) return value;
+  if (!target) return 0;
+  const hp = scale === "targetMaxHp"
+    ? target.hpMax
+    : scale === "targetCurrentHp"
+    ? target.hpCur
+    : Math.max(0, target.hpMax - target.hpCur);
+  return value * hp;
 }
 
 /** Ratios effectifs au rang donné : la série par rang l'emporte sur la valeur fixe. */
@@ -291,6 +335,10 @@ export function abilityRaw(
   if (ability.type === "util") return 0;
   const rank = resolveRank(champion, key, level, ranks);
   if (rank < 1) return 0; // sort pas encore appris
+  // Formule des fichiers du jeu si on l'a (à jour au patch), sinon base + ratios Meraki.
+  if (ability.formula) {
+    return hpScaled(formulaAt(ability.formula, rank, level, s), ability.formulaScale, target);
+  }
   return scaledAt(ability, rank, s, target);
 }
 
@@ -326,6 +374,11 @@ export interface ComboResult {
   shield: number;
   /** soins du lanceur sur la fenêtre (sorts, passifs, vol de vie, omnivampirisme) */
   heal: number;
+  /**
+   * Soins en % des PV manquants (Darius Q), exprimés en fraction des dégâts reçus :
+   * le duel les multiplie par ce que le lanceur a encaissé.
+   */
+  missingHpHealRatio: number;
 }
 
 /** Calcule le combo complet : lignes de dégâts, total, seuil d'exécution. */
@@ -389,7 +442,7 @@ export function computeCombo(input: ComboInput): ComboResult {
     } else if (m.kind === "onHit") {
       const procs = Math.floor(autos / (m.every ?? 1));
       if (procs < 1 || m.type === "util") continue;
-      const raw = (m.base ? byLevel(m.base, level) : 0) + ratioSum(m.ratios ?? {}, stats, target);
+      const raw = hpScaled(formulaAt(m.damage, 1, level, stats), m.scale, target);
       lines.push({
         key: "P",
         name: `${m.name} ×${procs}`,
@@ -400,16 +453,14 @@ export function computeCombo(input: ComboInput): ComboResult {
       // Burst : un déclenchement. Trade : un toutes les `interval` s depuis t = 0.
       const procs = window === undefined ? 1 : 1 + Math.floor(window / m.interval + 1e-9);
       if (m.type === "util") continue;
-      const pctMax = (m.ratios?.targetMaxHp ?? 0) + (m.targetMaxHpPerBonusAd ?? 0) * stats.bonusAD;
-      const raw = (m.base ? byLevel(m.base, level) : 0) +
-        ratioSum({ ...m.ratios, targetMaxHp: pctMax }, stats, target);
+      const raw = hpScaled(formulaAt(m.damage, 1, level, stats), m.scale, target);
       lines.push({
         key: "P",
         name: procs > 1 ? `${m.name} ×${procs}` : m.name,
         type: m.type,
         damage: procs * raw * damageMultiplier(m.type, stats, target),
       });
-      if (m.heal) mechanicHeal += procs * byLevel(m.heal, level);
+      if (m.heal) mechanicHeal += procs * formulaAt(m.heal, 1, level, stats);
     }
   }
 
@@ -466,7 +517,23 @@ export function computeCombo(input: ComboInput): ComboResult {
   const autoDamage = lines.find((l) => l.key === "AA")?.damage ?? 0;
   heal += stats.lifeSteal * autoDamage + stats.omnivamp * total;
 
-  return { stats, lines, total, execHP, shield, heal };
+  // Soins en % des PV manquants : à chaque lancer (t = 0, cd, 2·cd…), on suppose que
+  // les dégâts reçus arrivent régulièrement sur la fenêtre — les PV manquants à
+  // l'instant t valent donc (t / fenêtre) × dégâts reçus. Burst : lancé à t = 0, rien à soigner.
+  let missingHpHealRatio = 0;
+  if (window !== undefined && window > 0) {
+    for (const m of mechanics) {
+      if (m.kind !== "missingHpHeal" || include[m.key] === false) continue;
+      const rank = resolveRank(champion, m.key, level, ranks);
+      if (rank < 1) continue;
+      const pct = formulaAt(m.pct, rank, level, stats);
+      const cd = cooldownOf(champion, m.key, rank, stats.abilityHaste);
+      const casts = castsIn(window, cd);
+      for (let i = 0; i < casts; i++) missingHpHealRatio += (pct * i * (cd ?? 0)) / window;
+    }
+  }
+
+  return { stats, lines, total, execHP, shield, heal, missingHpHealRatio };
 }
 
 /** Répartition des dégâts par type (pour la barre du readout). */
@@ -653,8 +720,13 @@ export function computeDuel(
  * PV effectifs d'un camp sur la fenêtre : PV max + boucliers + soins. Un soin ne
  * rend que ce qui a été perdu : il est plafonné aux dégâts reçus.
  */
-export function effectiveHp(hpMax: number, own: ComboResult, damageTaken: number): number {
-  return hpMax + own.shield + Math.min(own.heal, damageTaken);
+export function effectiveHp(
+  hpMax: number,
+  own: Pick<ComboResult, "shield" | "heal" | "missingHpHealRatio">,
+  damageTaken: number,
+): number {
+  const heal = own.heal + own.missingHpHealRatio * damageTaken;
+  return hpMax + own.shield + Math.min(heal, damageTaken);
 }
 
 /** Limite de recherche du temps pour tuer (s). Au-delà, le duel est considéré sans kill. */

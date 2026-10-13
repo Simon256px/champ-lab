@@ -29,6 +29,40 @@ export interface AbilityRatios {
   maxHp?: number;
 }
 
+/**
+ * Formule de jeu, convertie depuis les fichiers du jeu (CommunityDragon) par le
+ * pipeline et évaluée par le moteur (lib/formula.ts). Petit arbre typé :
+ */
+export type Formula =
+  | { op: "num"; n: number }
+  /** valeur par rang (index 0 = rang 1) */
+  | { op: "rank"; v: number[] }
+  /** interpolation linéaire du niveau 1 au niveau 18 */
+  | { op: "lerp"; from: number; to: number }
+  /** valeur au niveau 1, +perLevel par niveau, paliers qui ajoutent `add` et fixent le gain par niveau */
+  | { op: "steps"; l1: number; perLevel: number; bp: { level: number; add: number; perLevel: number }[] }
+  /** stat du lanceur × sous-formule */
+  | { op: "stat"; stat: StatRef; f: Formula }
+  | { op: "sum"; of: Formula[] }
+  | { op: "mul"; of: Formula[] };
+
+/** Stats du lanceur qu'une formule peut lire. */
+export type StatRef =
+  | "ap"
+  | "ad"
+  | "baseAd"
+  | "bonusAd"
+  | "maxHp"
+  | "baseHp"
+  | "bonusHp"
+  | "armor"
+  | "bonusArmor"
+  | "mr"
+  | "bonusMr";
+
+/** Ce que multiplie une formule exprimée en fraction de PV (Vayne W : 4–10 % des PV max de la cible). */
+export type HpScale = "targetMaxHp" | "targetMissingHp" | "targetCurrentHp";
+
 /** Valeur d'un effet chiffré par rang : base[rang] + Σ ratios. Sert aux boucliers et aux soins. */
 export interface ScaledValue {
   base: number[];
@@ -51,6 +85,12 @@ export interface Ability {
   rankRatios?: Partial<Record<keyof AbilityRatios, number[]>>;
   /** temps de recharge par rang, en secondes (avant ability haste). Absent = inconnu. */
   cooldown?: number[];
+  /**
+   * Dégâts tirés des fichiers du jeu (prioritaires sur base/ratios). `formulaScale` :
+   * la formule est une fraction des PV de la cible.
+   */
+  formula?: Formula;
+  formulaScale?: HpScale;
   /** bouclier posé sur le lanceur à chaque lancer */
   shield?: ScaledValue;
   /** soin du lanceur à chaque lancer */
@@ -78,25 +118,32 @@ export interface ChampionBaseStats {
   critDamage?: number;
 }
 
-/** Valeur qui croît linéairement du niveau 1 (`from`) au niveau 18 (`to`). */
-export interface ByLevel {
-  from: number;
-  to: number;
+/**
+ * Référence à une valeur des fichiers du jeu (CommunityDragon), résolue en
+ * Formula par le pipeline : un calcul (`calc`) ou une valeur brute (`value`) du
+ * sort placé sur `slot` (P = passif). `times` multiplie (ex. 0,01 pour des %).
+ */
+export interface GameRef {
+  slot: "P" | AbilityKey;
+  calc?: string;
+  value?: string;
+  times?: number;
 }
 
 /**
- * Mécanique de kit que Meraki n'expose pas en chiffres (passifs surtout), saisie
- * dans data/mechanics.ts et appliquée par le moteur en mode trade / all-in.
+ * Mécanique de kit absente de Meraki (passifs surtout). Saisie dans
+ * data/mechanics.ts avec des GameRef, résolue en Formula dans
+ * data/generated/mechanics.gen.ts, appliquée par le moteur en mode trade / all-in.
  */
-export type Mechanic =
+export type Mechanic<A = Formula> =
   | {
     /** dégâts en plus tous les `every` coups d'auto (1 = chaque coup) */
     kind: "onHit";
     name: string;
     type: DamageType;
     every?: number;
-    base?: ByLevel;
-    ratios?: AbilityRatios;
+    damage: A;
+    scale?: HpScale;
   }
   | {
     /** un sort dont les dégâts tombent tous les `every` coups d'auto au lieu d'être lancés (Vayne W) */
@@ -105,24 +152,35 @@ export type Mechanic =
     every: number;
   }
   | {
-    /** dégâts toutes les `interval` secondes à partir de t = 0 (points vitaux de Fiora) */
+    /** dégâts (et soin) toutes les `interval` secondes à partir de t = 0 (points vitaux de Fiora) */
     kind: "periodic";
     name: string;
     type: DamageType;
     interval: number;
-    base?: ByLevel;
-    ratios?: AbilityRatios;
-    /** fraction des PV max de la cible gagnée par point d'AD bonus (Fiora : 0,04 / 100 AD) */
-    targetMaxHpPerBonusAd?: number;
-    /** soin du lanceur à chaque déclenchement */
-    heal?: ByLevel;
+    damage: A;
+    scale?: HpScale;
+    heal?: A;
   }
   | {
     /** VA bonus qui s'empile à chaque auto (Jax) */
     kind: "stackingAttackSpeed";
     name: string;
-    perStack: ByLevel;
-    maxStacks: number;
+    perStack: A;
+    maxStacks: A;
+  }
+  | {
+    /** à chaque lancer de `key`, soin d'une fraction des PV manquants (Darius Q) */
+    kind: "missingHpHeal";
+    key: AbilityKey;
+    pct: A;
+  }
+  | {
+    /** donne des dégâts à un sort que Meraki laisse utilitaire (Fiora R : 4 points vitaux) */
+    kind: "abilityDamage";
+    key: AbilityKey;
+    type: DamageType;
+    damage: A;
+    scale?: HpScale;
   };
 
 export interface Champion {

@@ -22,7 +22,9 @@ export default define.page(function Methode() {
                 <b>images officielles</b>. Fiable pour les stats plates.
               </li>
               <li>
-                <b>Community Dragon</b> — assets et ressources graphiques supplémentaires.
+                <b>Community Dragon</b>{" "}
+                — les fichiers du jeu convertis en JSON, au patch près : cooldowns et valeurs des passifs
+                (formules du jeu évaluées par le moteur), plus des assets graphiques.
               </li>
               <li>
                 <b>Meraki (lolstaticdata)</b>{" "}

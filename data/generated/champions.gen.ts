@@ -95,10 +95,10 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           "totalAd": 0.4,
         },
         "cooldown": [
-          20,
           18,
-          16,
-          14,
+          16.5,
+          15,
+          13.5,
           12,
         ],
       },
@@ -222,11 +222,11 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           "ap": 0.4,
         },
         "cooldown": [
-          10,
           9,
           8,
           7,
           6,
+          5,
         ],
       },
       "E": {
@@ -264,8 +264,8 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           "ap": 0.35,
         },
         "cooldown": [
-          130,
-          115,
+          140,
+          120,
           100,
         ],
       },
@@ -471,10 +471,10 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           "totalAd": 0.8,
         },
         "cooldown": [
+          9,
           8,
-          7.25,
-          6.5,
-          5.75,
+          7,
+          6,
           5,
         ],
       },
@@ -1038,11 +1038,11 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           "ap": 0.25,
         },
         "cooldown": [
-          12,
           11,
           10,
           9,
           8,
+          7,
         ],
       },
       "W": {
@@ -1311,6 +1311,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           0,
         ],
         "ratios": {},
+        "cooldown": [
+          9,
+          9,
+          9,
+          9,
+          9,
+        ],
       },
       "W": {
         "name": "Phase",
@@ -2107,10 +2114,10 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           "totalAd": 1,
         },
         "cooldown": [
-          1,
-          1,
-          1,
-          1,
+          4,
+          3.25,
+          2.5,
+          1.75,
           1,
         ],
       },
@@ -2152,11 +2159,11 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           "totalAd": 0.08,
         },
         "cooldown": [
-          20,
-          19,
+          24,
+          21,
           18,
-          17,
-          16,
+          15,
+          12,
         ],
       },
       "R": {
@@ -2289,10 +2296,10 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         ],
         "ratios": {},
         "cooldown": [
-          9,
-          8,
           7,
+          6.5,
           6,
+          5.5,
           5,
         ],
       },
@@ -2453,9 +2460,9 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           "ap": 0.25,
         },
         "cooldown": [
-          110,
           100,
           90,
+          80,
         ],
       },
     },
@@ -2576,9 +2583,9 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           "ap": 0.6,
         },
         "cooldown": [
-          120,
+          130,
+          115,
           100,
-          80,
         ],
       },
     },
@@ -2984,10 +2991,10 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           "bonusAd": 0.6,
         },
         "cooldown": [
-          17,
-          15.5,
+          15,
           14,
-          12.5,
+          13,
+          12,
           11,
         ],
       },
@@ -5019,10 +5026,10 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         },
         "cooldown": [
           7,
-          6.5,
           6,
-          5.5,
           5,
+          4,
+          3,
         ],
       },
       "E": {
@@ -5060,9 +5067,9 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           "ap": 0.8,
         },
         "cooldown": [
+          120,
           100,
-          85,
-          70,
+          80,
         ],
       },
     },
@@ -5338,9 +5345,9 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           "ap": 0.1,
         },
         "cooldown": [
-          170,
-          150,
-          130,
+          160,
+          140,
+          120,
         ],
       },
     },
@@ -5427,11 +5434,11 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         ],
         "ratios": {},
         "cooldown": [
-          23,
-          21,
-          19,
+          22,
+          19.5,
           17,
-          15,
+          14.5,
+          12,
         ],
         "shield": {
           "base": [
@@ -5471,10 +5478,10 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         },
         "cooldown": [
           9,
-          9,
-          9,
-          9,
-          9,
+          8.25,
+          7.5,
+          6.75,
+          6,
         ],
       },
       "R": {
@@ -5570,10 +5577,10 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           "totalAd": 1.25,
         },
         "cooldown": [
-          20,
-          17.5,
-          15,
-          12.5,
+          16,
+          14.5,
+          13,
+          11.5,
           10,
         ],
       },
@@ -5601,6 +5608,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
             0.14,
           ],
         },
+        "cooldown": [
+          7,
+          7,
+          7,
+          7,
+          7,
+        ],
       },
       "E": {
         "name": "Hop",
@@ -6018,11 +6032,11 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           "ap": 0.25,
         },
         "cooldown": [
+          13,
+          12.5,
           12,
+          11.5,
           11,
-          10,
-          9,
-          8,
         ],
       },
       "R": {
@@ -6253,6 +6267,10 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {},
         "cooldown": [
           1,
+          1,
+          1,
+          1,
+          1,
         ],
       },
       "W": {
@@ -6293,6 +6311,10 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         },
         "cooldown": [
           11,
+          11,
+          11,
+          11,
+          11,
         ],
       },
       "R": {
@@ -6305,9 +6327,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {},
         "cooldown": [
           100,
-          92.5,
           85,
-          77.5,
           70,
         ],
       },
@@ -6425,8 +6445,8 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           "ap": 0.0125,
         },
         "cooldown": [
-          140,
-          115,
+          120,
+          100,
           80,
         ],
       },
@@ -6691,10 +6711,10 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         },
         "cooldown": [
           16,
-          15,
-          14,
+          14.5,
           13,
-          12,
+          11.5,
+          10,
         ],
       },
       "R": {
@@ -7364,7 +7384,6 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           12,
           10,
           8,
-          6,
         ],
       },
       "W": {
@@ -7418,7 +7437,6 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           16,
           14,
           12,
-          10,
         ],
       },
       "R": {
@@ -7430,9 +7448,6 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         ],
         "ratios": {},
         "cooldown": [
-          6,
-          6,
-          6,
           6,
           6,
           6,
@@ -7988,9 +8003,9 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         ],
         "ratios": {},
         "cooldown": [
-          120,
-          90,
-          60,
+          130,
+          100,
+          70,
         ],
         "shield": {
           "base": [
@@ -8079,11 +8094,11 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           "totalAd": 1.05,
         },
         "cooldown": [
-          8,
-          8,
-          8,
-          8,
-          8,
+          9,
+          9,
+          9,
+          9,
+          9,
         ],
       },
       "W": {
@@ -8241,6 +8256,10 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         },
         "cooldown": [
           12,
+          12,
+          12,
+          12,
+          12,
         ],
       },
       "E": {
@@ -8283,7 +8302,6 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           40,
           38,
           36,
-          34,
         ],
       },
     },
@@ -8485,11 +8503,11 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           "ap": 0.6,
         },
         "cooldown": [
-          10,
-          9.5,
           9,
           8.5,
           8,
+          7.5,
+          7,
         ],
         "shield": {
           "base": [
@@ -9118,8 +9136,8 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         },
         "cooldown": [
           120,
-          100,
-          80,
+          120,
+          120,
         ],
       },
     },
@@ -9398,8 +9416,8 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         ],
         "ratios": {},
         "cooldown": [
-          180,
-          150,
+          160,
+          140,
           120,
         ],
         "heal": {
@@ -9510,11 +9528,11 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           ],
         },
         "cooldown": [
+          13,
+          12,
           11,
-          9.5,
-          8,
-          6.5,
-          5,
+          10,
+          9,
         ],
       },
       "E": {
@@ -9847,9 +9865,9 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           "ap": 0.4,
         },
         "cooldown": [
-          50,
-          40,
-          30,
+          45,
+          35,
+          25,
         ],
       },
     },
@@ -9936,11 +9954,11 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         ],
         "ratios": {},
         "cooldown": [
-          12,
-          12,
-          12,
-          12,
-          12,
+          7,
+          7,
+          7,
+          7,
+          7,
         ],
         "shield": {
           "base": [
@@ -9970,11 +9988,11 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           "totalAd": 1,
         },
         "cooldown": [
-          9,
-          9,
-          9,
-          9,
-          9,
+          8,
+          8,
+          8,
+          8,
+          8,
         ],
       },
       "R": {
@@ -10337,11 +10355,11 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           "ap": 0.75,
         },
         "cooldown": [
-          8,
           7,
           6,
           5,
           4,
+          3,
         ],
       },
       "W": {
@@ -10663,10 +10681,10 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           "ap": 0.5,
         },
         "cooldown": [
-          8,
-          8,
-          8,
-          8,
+          10,
+          9.5,
+          9,
+          8.5,
           8,
         ],
         "shield": {
@@ -10691,8 +10709,8 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         ],
         "ratios": {},
         "cooldown": [
+          120,
           100,
-          90,
           80,
         ],
         "heal": {
@@ -10790,10 +10808,10 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         ],
         "ratios": {},
         "cooldown": [
-          14,
-          13,
           12,
+          11.5,
           11,
+          10.5,
           10,
         ],
         "shield": {
@@ -10982,8 +11000,8 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         },
         "cooldown": [
           130,
-          105,
-          80,
+          115,
+          100,
         ],
       },
     },
@@ -11508,11 +11526,11 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         ],
         "ratios": {},
         "cooldown": [
+          38,
           35,
-          32,
+          33,
           29,
           26,
-          23,
         ],
       },
       "E": {
@@ -11530,11 +11548,11 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           "ap": 0.6,
         },
         "cooldown": [
-          12,
-          11.5,
           11,
           10.5,
           10,
+          9.5,
+          9,
         ],
       },
       "R": {
@@ -12944,6 +12962,10 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         },
         "cooldown": [
           6,
+          6,
+          6,
+          6,
+          6,
         ],
       },
       "W": {
@@ -12978,6 +13000,10 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {},
         "cooldown": [
           12,
+          12,
+          12,
+          12,
+          12,
         ],
         "heal": {
           "base": [
@@ -13001,6 +13027,8 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         ],
         "ratios": {},
         "cooldown": [
+          3,
+          3,
           3,
         ],
       },
@@ -13341,11 +13369,11 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         ],
         "ratios": {},
         "cooldown": [
+          13,
           12,
           11,
           10,
           9,
-          8,
         ],
         "heal": {
           "base": [
@@ -13646,10 +13674,10 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           "ap": 0.55,
         },
         "cooldown": [
+          7,
           6,
-          5.25,
-          4.5,
-          3.75,
+          5,
+          4,
           3,
         ],
       },
@@ -14264,11 +14292,11 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           "bonusAd": 1,
         },
         "cooldown": [
+          15,
           14,
           13,
           12,
           11,
-          10,
         ],
       },
       "R": {
@@ -14834,8 +14862,8 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           "ap": 0.6,
         },
         "cooldown": [
-          90,
-          90,
+          120,
+          105,
           90,
         ],
       },
@@ -14955,11 +14983,11 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           ],
         },
         "cooldown": [
-          10,
-          10,
-          10,
-          10,
-          10,
+          6,
+          6,
+          6,
+          6,
+          6,
         ],
       },
       "R": {
@@ -14983,8 +15011,8 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           ],
         },
         "cooldown": [
+          120,
           100,
-          90,
           80,
         ],
       },
@@ -15512,11 +15540,11 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           ],
         },
         "cooldown": [
-          6,
-          5.5,
-          5,
-          4.5,
-          4,
+          0.25,
+          0.25,
+          0.25,
+          0.25,
+          0.25,
         ],
       },
       "W": {
@@ -15534,11 +15562,11 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           "ap": 0.8,
         },
         "cooldown": [
-          16,
-          14.5,
-          13,
-          11.5,
-          10,
+          0.25,
+          0.25,
+          0.25,
+          0.25,
+          0.25,
         ],
       },
       "E": {
@@ -15556,11 +15584,11 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           "bonusAd": 0.8,
         },
         "cooldown": [
-          10,
-          10,
-          10,
-          10,
-          10,
+          0.25,
+          0.25,
+          0.25,
+          0.25,
+          0.25,
         ],
       },
       "R": {
@@ -15572,9 +15600,9 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         ],
         "ratios": {},
         "cooldown": [
-          110,
           100,
           90,
+          80,
         ],
       },
     },
@@ -16225,11 +16253,11 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           "ap": 0.6,
         },
         "cooldown": [
-          19,
-          17.5,
-          16,
-          14.5,
-          13,
+          18,
+          16.5,
+          15,
+          13.5,
+          12,
         ],
       },
       "W": {
@@ -16290,8 +16318,8 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           "ap": 0.4,
         },
         "cooldown": [
-          130,
-          110,
+          120,
+          105,
           90,
         ],
       },
@@ -16813,11 +16841,11 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           "bonusAd": 0.65,
         },
         "cooldown": [
+          13,
+          12.5,
           12,
           11.5,
           11,
-          10.5,
-          10,
         ],
       },
       "W": {
@@ -17117,10 +17145,10 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           ],
         },
         "cooldown": [
+          10,
+          9,
           8,
-          7.5,
           7,
-          6.5,
           6,
         ],
       },
@@ -17139,11 +17167,11 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           "bonusAd": 0.1,
         },
         "cooldown": [
-          12,
-          12,
-          12,
-          12,
-          12,
+          13,
+          12.25,
+          11.5,
+          10.75,
+          10,
         ],
       },
       "E": {
@@ -17701,11 +17729,11 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           "bonusHp": 0.03,
         },
         "cooldown": [
-          13,
-          11.5,
-          10,
-          8.5,
-          7,
+          8,
+          6.75,
+          5.5,
+          4.25,
+          3,
         ],
         "heal": {
           "base": [
@@ -17998,6 +18026,10 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         },
         "cooldown": [
           8,
+          8,
+          8,
+          8,
+          8,
         ],
       },
       "W": {
@@ -18047,6 +18079,10 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         ],
         "ratios": {},
         "cooldown": [
+          14,
+          14,
+          14,
+          14,
           14,
         ],
       },
@@ -18629,11 +18665,11 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           "ap": 0.6,
         },
         "cooldown": [
-          17,
-          17,
-          17,
-          17,
-          17,
+          15,
+          15,
+          15,
+          15,
+          15,
         ],
       },
       "R": {
@@ -19689,11 +19725,11 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         ],
         "ratios": {},
         "cooldown": [
+          18,
+          17,
           16,
           15,
           14,
-          13,
-          12,
         ],
       },
       "E": {
@@ -20001,9 +20037,9 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         ],
         "ratios": {},
         "cooldown": [
-          180,
-          150,
-          120,
+          170,
+          140,
+          110,
         ],
       },
     },
@@ -20204,7 +20240,6 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           6,
           6,
           6,
-          6,
         ],
       },
       "W": {
@@ -20216,7 +20251,6 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         ],
         "ratios": {},
         "cooldown": [
-          6,
           6,
           6,
           6,
@@ -20288,7 +20322,6 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           6,
           6,
           6,
-          6,
         ],
       },
       "R": {
@@ -20307,9 +20340,6 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           "ap": 0.175,
         },
         "cooldown": [
-          6,
-          6,
-          6,
           6,
           6,
           6,
@@ -20908,8 +20938,8 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           ],
         },
         "cooldown": [
-          100,
-          80,
+          120,
+          90,
           60,
         ],
       },
@@ -21025,11 +21055,11 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           "ap": 0.3,
         },
         "cooldown": [
-          14,
-          13.5,
-          13,
-          12.5,
           12,
+          11.5,
+          11,
+          10.5,
+          10,
         ],
       },
       "R": {
@@ -21909,11 +21939,11 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           ],
         },
         "cooldown": [
-          14,
-          14,
-          14,
-          14,
-          14,
+          16,
+          16,
+          16,
+          16,
+          16,
         ],
       },
       "R": {
@@ -22159,11 +22189,11 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         ],
         "ratios": {},
         "cooldown": [
+          22,
+          21,
           20,
           19,
           18,
-          17,
-          16,
         ],
       },
       "E": {
@@ -22296,11 +22326,11 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         ],
         "ratios": {},
         "cooldown": [
-          20,
-          19,
           18,
           17,
           16,
+          15,
+          14,
         ],
       },
       "E": {
@@ -23130,7 +23160,6 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           6.5,
           6.5,
           6.5,
-          6.5,
         ],
       },
       "W": {
@@ -23594,10 +23623,10 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         ],
         "ratios": {},
         "cooldown": [
-          22,
+          24,
+          22.5,
           21,
-          20,
-          19,
+          19.5,
           18,
         ],
       },
@@ -24013,11 +24042,11 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           "ap": 0.45,
         },
         "cooldown": [
+          18,
+          17,
           16,
           15,
           14,
-          13,
-          12,
         ],
       },
       "R": {
@@ -24133,11 +24162,11 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           "ap": 0.6,
         },
         "cooldown": [
-          12,
-          12,
-          12,
-          12,
-          12,
+          11,
+          11,
+          11,
+          11,
+          11,
         ],
       },
       "R": {

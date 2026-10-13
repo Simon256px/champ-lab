@@ -15,7 +15,9 @@
  *   4. fusionne des "overrides" écrits à la main (data/overrides.ts) pour les
  *      passifs complexes (Rabadon %AP, Fendoir %pén.), les étagères d'objets
  *      recommandés et la rune par défaut de chaque champion ;
- *   5. écrit data/generated/champions.gen.ts, items.gen.ts, meta.gen.ts.
+ *   5. lit les fichiers du jeu (CommunityDragon, au patch près) : cooldowns, et
+ *      valeurs des passifs décrits dans data/mechanics.ts ;
+ *   6. écrit data/generated/champions.gen.ts, items.gen.ts, mechanics.gen.ts, meta.gen.ts.
  *
  * Honnêteté : les mécaniques non-plates (dégâts % PV, passifs conditionnels…)
  * ne sont PAS inventées. Elles restent à modéliser au cas par cas dans
@@ -30,11 +32,23 @@ import type {
   Champion,
   ChampionBaseStats,
   DamageType,
+  Formula,
+  GameRef,
   Item,
   ItemStats,
   ItemTier,
+  Mechanic,
   ScaledValue,
 } from "../data/types.ts";
+import { MECHANICS } from "../data/mechanics.ts";
+import {
+  cdragonVersion,
+  cooldowns,
+  fetchChampionBin,
+  resolveRef,
+  type SpellSlots,
+  spellSlots,
+} from "./cdragon.ts";
 import {
   CHAMPION_OVERRIDES,
   DEFAULT_AD_SHELF,
@@ -543,6 +557,62 @@ ${body}
 `;
 }
 
+function renderMechanics(mechanics: Record<string, Mechanic[]>, patch: string): string {
+  const body = Object.entries(mechanics)
+    .map(([id, list]) => `  ${JSON.stringify(id)}: ${JSON.stringify(list, null, 2).replace(/\n/g, "\n  ")},`)
+    .join("\n");
+  return `${header(patch)}
+// Passifs décrits dans data/mechanics.ts, valeurs résolues depuis les fichiers du jeu.
+import type { Mechanic } from "../types.ts";
+
+export const GENERATED_MECHANICS: Record<string, Mechanic[]> = {
+${body}
+};
+`;
+}
+
+/**
+ * Résout les GameRef de data/mechanics.ts en formules. Une mécanique dont une
+ * référence est introuvable (sort renommé, calcul non convertible) est écartée
+ * et signalée — on n'invente pas de valeur.
+ */
+function resolveMechanics(
+  champions: Champion[],
+  slotsById: Map<string, SpellSlots>,
+): Record<string, Mechanic[]> {
+  const out: Record<string, Mechanic[]> = {};
+  let ok = 0;
+  for (const [id, list] of Object.entries(MECHANICS)) {
+    const champ = champions.find((c) => c.id === id);
+    const slots = slotsById.get(id);
+    if (!champ || !slots) {
+      console.warn(`  ⚠ mécaniques de ${id} : champion ou fichiers du jeu introuvables.`);
+      continue;
+    }
+    const maxRank = (ref: GameRef) => (ref.slot === "P" ? 1 : champ.abilities[ref.slot].maxRank);
+    for (const m of list) {
+      const resolved: Record<string, unknown> = {};
+      let failed: string | null = null;
+      for (const [k, v] of Object.entries(m)) {
+        if (v && typeof v === "object" && "slot" in v) {
+          const ref = v as GameRef;
+          const f: Formula | null = resolveRef(slots, ref, maxRank(ref));
+          if (!f) failed = `${ref.slot}/${ref.calc ?? ref.value}`;
+          resolved[k] = f;
+        } else resolved[k] = v;
+      }
+      if (failed) {
+        console.warn(`  ⚠ mécanique ${id} ${m.kind} : référence ${failed} non résolue, écartée.`);
+        continue;
+      }
+      (out[id] ??= []).push(resolved as Mechanic);
+      ok++;
+    }
+  }
+  console.log(`  mécaniques : ${ok} résolues depuis les fichiers du jeu.`);
+  return out;
+}
+
 function renderMeta(
   patch: string,
   counts: { champions: number; items: number; runes: number; statsPatch: string },
@@ -627,6 +697,40 @@ async function main() {
         `les stats champions peuvent être en retard (voir deno task audit).`,
     );
   }
+
+  // --- Fichiers du jeu (CommunityDragon) : à jour au patch, contrairement à Meraki ---
+  const cdVersion = cdragonVersion(patch);
+  console.log(`▶ Fichiers du jeu (CommunityDragon ${cdVersion})…`);
+  const slotsById = new Map<string, SpellSlots>();
+  for (let i = 0; i < champions.length; i += BATCH) {
+    const slice = champions.slice(i, i + BATCH);
+    const bins = await Promise.all(slice.map((c) => fetchChampionBin(cdVersion, c.id).catch(() => null)));
+    slice.forEach((c, j) => {
+      if (bins[j]) slotsById.set(c.id, spellSlots(bins[j]));
+    });
+  }
+  console.log(`  ${slotsById.size}/${champions.length} champions trouvés.`);
+
+  // Cooldowns : le jeu fait foi.
+  let cdTotal = 0;
+  let cdChanged = 0;
+  for (const c of champions) {
+    const slots = slotsById.get(c.id);
+    if (!slots) continue;
+    for (const key of ABILITY_KEYS) {
+      const cd = cooldowns(slots[key], c.abilities[key].maxRank);
+      if (!cd) continue;
+      cdTotal++;
+      if (JSON.stringify(cd) !== JSON.stringify(c.abilities[key].cooldown)) cdChanged++;
+      c.abilities[key].cooldown = cd;
+    }
+  }
+  console.log(
+    `  cooldowns : ${cdTotal} sorts au patch ${cdVersion}, dont ${cdChanged} différents de Meraki.`,
+  );
+
+  // Passifs (data/mechanics.ts) : références résolues en formules du patch.
+  const mechanics = resolveMechanics(champions, slotsById);
 
   // --- Objets ---
   // Disponibilité sur la Faille de l'invocateur (classé) : Data Dragon expose
@@ -737,6 +841,7 @@ async function main() {
   await Deno.writeTextFile(new URL("champions.gen.ts", OUT_DIR), renderChampions(champions, patch));
   await Deno.writeTextFile(new URL("items.gen.ts", OUT_DIR), renderItems(items, patch));
   await Deno.writeTextFile(new URL("runes.gen.ts", OUT_DIR), renderRunes(runes, patch));
+  await Deno.writeTextFile(new URL("mechanics.gen.ts", OUT_DIR), renderMechanics(mechanics, patch));
   await Deno.writeTextFile(
     new URL("meta.gen.ts", OUT_DIR),
     renderMeta(patch, {

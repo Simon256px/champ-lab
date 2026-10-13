@@ -20,6 +20,7 @@ import {
   cooldownOf,
   damageMultiplier,
   effectiveHp,
+  formulaAt,
   growth,
   rankOf,
   ratiosAt,
@@ -91,6 +92,10 @@ Deno.test("mitigation: l'armure réduit les dégâts physiques", () => {
     bonusHp: 0,
     lifeSteal: 0,
     omnivamp: 0,
+    armor: 30,
+    bonusArmor: 0,
+    mr: 30,
+    bonusMr: 0,
   };
   assertEquals(damageMultiplier("true", s, TARGET), 1);
   assert(damageMultiplier("physical", s, TARGET) < 1);
@@ -425,7 +430,7 @@ Deno.test("survie : le bouclier de Garen réduit la part de PV que Darius lui re
 });
 
 Deno.test("survie : un soin ne rend que ce qui a été perdu", () => {
-  const own = { shield: 50, heal: 500 } as Parameters<typeof effectiveHp>[1];
+  const own = { shield: 50, heal: 500, missingHpHealRatio: 0 };
   assertEquals(effectiveHp(1000, own, 100), 1150);
   assertEquals(effectiveHp(1000, own, 900), 1550);
 });
@@ -464,4 +469,45 @@ Deno.test("VA qui s'empile : Jax place plus d'autos qu'avec sa VA de départ", (
   const darius = CHAMPIONS.darius;
   const sd = stats11("darius");
   assertEquals(autoCount(8, darius, 11, sd), autosIn(8, sd.attackSpeed), "sans passif : inchangé");
+});
+
+// --- Valeurs tirées des fichiers du jeu (CommunityDragon) ---
+
+Deno.test("fichiers du jeu : les passifs de data/mechanics.ts sont tous résolus", () => {
+  for (const id of ["fiora", "jax", "vayne", "darius"]) {
+    assert(CHAMPIONS[id].mechanics?.length, `passifs de ${id} non résolus`);
+  }
+});
+
+Deno.test("fichiers du jeu : le soin des points vitaux croît avec le niveau", () => {
+  const vital = CHAMPIONS.fiora.mechanics!.find((m) => m.kind === "periodic");
+  assert(vital?.kind === "periodic" && vital.heal);
+  const s = stats11("fiora");
+  assert(formulaAt(vital.heal, 1, 18, s) > formulaAt(vital.heal, 1, 1, s));
+});
+
+Deno.test("fichiers du jeu : Fiora R = 4 points vitaux, en dégâts bruts", () => {
+  const res = computeCombo(input("fiora", ["stridebreaker"], { level: 11 }));
+  const r = res.lines.find((l) => l.key === "R");
+  const vital = res.lines.find((l) => l.name === "Point vital");
+  assert(r && vital, "R et point vital doivent produire une ligne");
+  assertEquals(r.type, "true");
+  assertAlmostEquals(r.damage, 4 * vital.damage, 0.001);
+});
+
+Deno.test("fichiers du jeu : la VA par stack de Jax monte par paliers", () => {
+  const m = CHAMPIONS.jax.mechanics!.find((x) => x.kind === "stackingAttackSpeed");
+  assert(m?.kind === "stackingAttackSpeed");
+  const s = stats11("jax");
+  assert(formulaAt(m.perStack, 1, 16, s) > formulaAt(m.perStack, 1, 1, s));
+  assertEquals(formulaAt(m.perStack, 1, 2, s), formulaAt(m.perStack, 1, 1, s), "pas de palier au niveau 2");
+});
+
+Deno.test("soin en % des PV manquants : Darius Q soigne sur une fenêtre, pas en burst", () => {
+  const burst = computeCombo(input("darius", ["stridebreaker"]));
+  const trade = computeCombo(input("darius", ["stridebreaker"], { window: 12 }));
+  assertEquals(burst.missingHpHealRatio, 0, "lancé à t = 0 : rien à soigner");
+  assert(trade.missingHpHealRatio > 0, "relancé en cours de combat : soigne");
+  const own = { shield: 0, heal: 0, missingHpHealRatio: trade.missingHpHealRatio };
+  assert(effectiveHp(1000, own, 800) > 1000);
 });

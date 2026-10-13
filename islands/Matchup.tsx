@@ -221,8 +221,8 @@ export default function Matchup({ initialA, initialB }: Props) {
             </p>
             <p>
               Kits : dégâts en % des PV, ratios par rang, boucliers et soins des sorts, vol de vie et
-              omnivampirisme, qui s'ajoutent aux PV du camp qui les porte. Passifs saisis à la main pour
-              Darius, Fiora, Jax et Vayne.
+              omnivampirisme, qui s'ajoutent aux PV du camp qui les porte. Passifs de Darius, Fiora, Jax et
+              Vayne tirés des fichiers du jeu (CommunityDragon), au patch près, comme les cooldowns.
             </p>
             <p class="dim">
               Pas encore modélisé : les autres passifs, les effets d'objets, portée, déplacements, contrôles,

@@ -1,7 +1,7 @@
 import type { Champion } from "@/data/types.ts";
 import { GENERATED_CHAMPIONS } from "@/data/generated/champions.gen.ts";
 import { MANUAL_CHAMPIONS } from "@/data/manual.ts";
-import { MECHANICS } from "@/data/mechanics.ts";
+import { GENERATED_MECHANICS } from "@/data/generated/mechanics.gen.ts";
 
 /**
  * Champions — roster complet généré depuis Meraki + Data Dragon, complété par
@@ -18,11 +18,25 @@ export const CHAMPIONS: Record<string, Champion> = withMechanics({
   ...GENERATED_CHAMPIONS,
 });
 
-/** Greffe les mécaniques saisies à la main (data/mechanics.ts) sur le roster. */
+/**
+ * Greffe les passifs (data/mechanics.ts, valeurs résolues depuis les fichiers du
+ * jeu dans data/generated/mechanics.gen.ts). Un `abilityDamage` donne directement
+ * sa formule au sort concerné (Fiora R) : le moteur le traite comme un sort normal.
+ */
 function withMechanics(roster: Record<string, Champion>): Record<string, Champion> {
   const out: Record<string, Champion> = {};
   for (const [id, c] of Object.entries(roster)) {
-    out[id] = MECHANICS[id] ? { ...c, mechanics: MECHANICS[id] } : c;
+    const mechanics = GENERATED_MECHANICS[id];
+    if (!mechanics) {
+      out[id] = c;
+      continue;
+    }
+    const abilities = { ...c.abilities };
+    for (const m of mechanics) {
+      if (m.kind !== "abilityDamage") continue;
+      abilities[m.key] = { ...abilities[m.key], type: m.type, formula: m.damage, formulaScale: m.scale };
+    }
+    out[id] = { ...c, abilities, mechanics };
   }
   return out;
 }
