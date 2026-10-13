@@ -31,6 +31,7 @@ export const GENERATED_ITEMS: Record<string, Item> = {
     "stats": {
       "ap": 90,
       "abilityHaste": 10,
+      "mana": 300,
     },
     "tier": "legendary",
     "cost": 2800,
@@ -72,6 +73,7 @@ export const GENERATED_ITEMS: Record<string, Item> = {
     "stats": {
       "ap": 70,
       "abilityHaste": 25,
+      "mana": 600,
     },
     "tier": "legendary",
     "cost": 2900,
@@ -81,6 +83,20 @@ export const GENERATED_ITEMS: Record<string, Item> = {
       "fiendishcodex",
     ],
     "icon": "https://ddragon.leagueoflegends.com/cdn/16.20.1/img/item/3003.png",
+    "mechanics": [
+      {
+        "kind": "statBonus",
+        "stat": "ap",
+        "amount": {
+          "op": "stat",
+          "stat": "bonusMana",
+          "f": {
+            "op": "num",
+            "n": 0.01,
+          },
+        },
+      },
+    ],
   },
   "ardentcenser": {
     "id": "ardentcenser",
@@ -280,6 +296,7 @@ export const GENERATED_ITEMS: Record<string, Item> = {
     "stats": {
       "ap": 80,
       "abilityHaste": 20,
+      "mana": 600,
     },
     "tier": "legendary",
     "cost": 2800,
@@ -429,6 +446,16 @@ export const GENERATED_ITEMS: Record<string, Item> = {
       "clotharmor",
     ],
     "icon": "https://ddragon.leagueoflegends.com/cdn/16.20.1/img/item/3076.png",
+    "mechanics": [
+      {
+        "kind": "grievous",
+        "amount": {
+          "op": "num",
+          "n": 0.4,
+        },
+        "whenStruck": true,
+      },
+    ],
   },
   "catalystofaeons": {
     "id": "catalystofaeons",
@@ -436,6 +463,7 @@ export const GENERATED_ITEMS: Record<string, Item> = {
     "short": "CATALYST",
     "stats": {
       "hp": 300,
+      "mana": 375,
     },
     "tier": "epic",
     "cost": 1300,
@@ -521,6 +549,15 @@ export const GENERATED_ITEMS: Record<string, Item> = {
       "caulfieldswarhammer",
     ],
     "icon": "https://ddragon.leagueoflegends.com/cdn/16.20.1/img/item/6609.png",
+    "mechanics": [
+      {
+        "kind": "grievous",
+        "amount": {
+          "op": "num",
+          "n": 0.4,
+        },
+      },
+    ],
   },
   "cloakofagility": {
     "id": "cloakofagility",
@@ -694,6 +731,23 @@ export const GENERATED_ITEMS: Record<string, Item> = {
       "caulfieldswarhammer",
     ],
     "icon": "https://ddragon.leagueoflegends.com/cdn/16.20.1/img/item/6333.png",
+    "mechanics": [
+      {
+        "kind": "damageDelay",
+        "share": {
+          "op": "num",
+          "n": 0.3,
+        },
+        "rangedShare": {
+          "op": "num",
+          "n": 0.1,
+        },
+        "seconds": {
+          "op": "num",
+          "n": 3,
+        },
+      },
+    ],
   },
   "doransblade": {
     "id": "doransblade",
@@ -895,6 +949,15 @@ export const GENERATED_ITEMS: Record<string, Item> = {
       "longsword",
     ],
     "icon": "https://ddragon.leagueoflegends.com/cdn/16.20.1/img/item/3123.png",
+    "mechanics": [
+      {
+        "kind": "grievous",
+        "amount": {
+          "op": "num",
+          "n": 0.4,
+        },
+      },
+    ],
   },
   "experimentalhexplate": {
     "id": "experimentalhexplate",
@@ -1007,6 +1070,7 @@ export const GENERATED_ITEMS: Record<string, Item> = {
     "stats": {
       "armor": 75,
       "abilityHaste": 20,
+      "mana": 400,
     },
     "tier": "legendary",
     "cost": 2500,
@@ -1037,6 +1101,7 @@ export const GENERATED_ITEMS: Record<string, Item> = {
     "stats": {
       "armor": 25,
       "abilityHaste": 10,
+      "mana": 300,
     },
     "tier": "epic",
     "cost": 900,
@@ -1073,6 +1138,15 @@ export const GENERATED_ITEMS: Record<string, Item> = {
       "bfsword",
     ],
     "icon": "https://ddragon.leagueoflegends.com/cdn/16.20.1/img/item/3026.png",
+    "mechanics": [
+      {
+        "kind": "revive",
+        "hpShare": {
+          "op": "num",
+          "n": 0.5,
+        },
+      },
+    ],
   },
   "guardiansblade": {
     "id": "guardiansblade",
@@ -1385,6 +1459,23 @@ export const GENERATED_ITEMS: Record<string, Item> = {
       "noonquiver",
     ],
     "icon": "https://ddragon.leagueoflegends.com/cdn/16.20.1/img/item/6673.png",
+    "mechanics": [
+      {
+        "kind": "lifeline",
+        "shield": {
+          "op": "steps",
+          "l1": 400,
+          "perLevel": 0,
+          "bp": [
+            {
+              "level": 9,
+              "add": 0,
+              "perLevel": 30,
+            },
+          ],
+        },
+      },
+    ],
   },
   "imperialmandate": {
     "id": "imperialmandate",
@@ -1714,6 +1805,7 @@ export const GENERATED_ITEMS: Record<string, Item> = {
     "stats": {
       "ap": 40,
       "abilityHaste": 10,
+      "mana": 300,
     },
     "tier": "epic",
     "cost": 1200,
@@ -1731,6 +1823,7 @@ export const GENERATED_ITEMS: Record<string, Item> = {
     "stats": {
       "ap": 100,
       "abilityHaste": 10,
+      "mana": 600,
     },
     "tier": "legendary",
     "cost": 2750,
@@ -1784,6 +1877,7 @@ export const GENERATED_ITEMS: Record<string, Item> = {
     "stats": {
       "ap": 90,
       "abilityHaste": 15,
+      "mana": 600,
     },
     "tier": "legendary",
     "cost": 2700,
@@ -1800,6 +1894,7 @@ export const GENERATED_ITEMS: Record<string, Item> = {
     "stats": {
       "ad": 35,
       "abilityHaste": 15,
+      "mana": 500,
     },
     "tier": "legendary",
     "cost": 2900,
@@ -1809,6 +1904,20 @@ export const GENERATED_ITEMS: Record<string, Item> = {
       "longsword",
     ],
     "icon": "https://ddragon.leagueoflegends.com/cdn/16.20.1/img/item/3004.png",
+    "mechanics": [
+      {
+        "kind": "statBonus",
+        "stat": "bonusAd",
+        "amount": {
+          "op": "stat",
+          "stat": "maxMana",
+          "f": {
+            "op": "num",
+            "n": 0.02,
+          },
+        },
+      },
+    ],
   },
   "mawofmalmortius": {
     "id": "mawofmalmortius",
@@ -1826,6 +1935,55 @@ export const GENERATED_ITEMS: Record<string, Item> = {
       "caulfieldswarhammer",
     ],
     "icon": "https://ddragon.leagueoflegends.com/cdn/16.20.1/img/item/3156.png",
+    "mechanics": [
+      {
+        "kind": "lifeline",
+        "shield": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "num",
+              "n": 200,
+            },
+            {
+              "op": "stat",
+              "stat": "bonusAd",
+              "f": {
+                "op": "num",
+                "n": 1.5,
+              },
+            },
+          ],
+        },
+        "rangedShield": {
+          "op": "mul",
+          "of": [
+            {
+              "op": "sum",
+              "of": [
+                {
+                  "op": "num",
+                  "n": 200,
+                },
+                {
+                  "op": "stat",
+                  "stat": "bonusAd",
+                  "f": {
+                    "op": "num",
+                    "n": 1.5,
+                  },
+                },
+              ],
+            },
+            {
+              "op": "num",
+              "n": 0.75,
+            },
+          ],
+        },
+        "magicOnly": true,
+      },
+    ],
   },
   "mejaissoulstealer": {
     "id": "mejaissoulstealer",
@@ -1927,6 +2085,15 @@ export const GENERATED_ITEMS: Record<string, Item> = {
       "kindlegem",
     ],
     "icon": "https://ddragon.leagueoflegends.com/cdn/16.20.1/img/item/3165.png",
+    "mechanics": [
+      {
+        "kind": "grievous",
+        "amount": {
+          "op": "num",
+          "n": 0.4,
+        },
+      },
+    ],
   },
   "mortalreminder": {
     "id": "mortalreminder",
@@ -1945,6 +2112,15 @@ export const GENERATED_ITEMS: Record<string, Item> = {
       "cloakofagility",
     ],
     "icon": "https://ddragon.leagueoflegends.com/cdn/16.20.1/img/item/3033.png",
+    "mechanics": [
+      {
+        "kind": "grievous",
+        "amount": {
+          "op": "num",
+          "n": 0.4,
+        },
+      },
+    ],
   },
   "mosstomperseedling": {
     "id": "mosstomperseedling",
@@ -2078,6 +2254,15 @@ export const GENERATED_ITEMS: Record<string, Item> = {
       "amplifyingtome",
     ],
     "icon": "https://ddragon.leagueoflegends.com/cdn/16.20.1/img/item/3916.png",
+    "mechanics": [
+      {
+        "kind": "grievous",
+        "amount": {
+          "op": "num",
+          "n": 0.4,
+        },
+      },
+    ],
   },
   "opportunity": {
     "id": "opportunity",
@@ -2249,6 +2434,15 @@ export const GENERATED_ITEMS: Record<string, Item> = {
       "giantsbelt",
     ],
     "icon": "https://ddragon.leagueoflegends.com/cdn/16.20.1/img/item/3143.png",
+    "mechanics": [
+      {
+        "kind": "critReduction",
+        "amount": {
+          "op": "num",
+          "n": 0.3,
+        },
+      },
+    ],
   },
   "rapidfirecannon": {
     "id": "rapidfirecannon",
@@ -2328,6 +2522,49 @@ export const GENERATED_ITEMS: Record<string, Item> = {
       "forbiddenidol",
     ],
     "icon": "https://ddragon.leagueoflegends.com/cdn/16.20.1/img/item/3107.png",
+    "mechanics": [
+      {
+        "kind": "activeHeal",
+        "heal": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "num",
+              "n": 150,
+            },
+            {
+              "op": "mul",
+              "of": [
+                {
+                  "op": "lerp",
+                  "from": 0,
+                  "to": 1,
+                },
+                {
+                  "op": "sum",
+                  "of": [
+                    {
+                      "op": "num",
+                      "n": -150,
+                    },
+                    {
+                      "op": "num",
+                      "n": 350,
+                    },
+                  ],
+                },
+              ],
+            },
+          ],
+        },
+        "damage": {
+          "op": "num",
+          "n": 0.1,
+        },
+        "type": "true",
+        "scale": "targetMaxHp",
+      },
+    ],
   },
   "rejuvenationbead": {
     "id": "rejuvenationbead",
@@ -2362,6 +2599,7 @@ export const GENERATED_ITEMS: Record<string, Item> = {
     "stats": {
       "ap": 45,
       "hp": 350,
+      "mana": 500,
     },
     "tier": "legendary",
     "cost": 2600,
@@ -2370,6 +2608,56 @@ export const GENERATED_ITEMS: Record<string, Item> = {
       "catalystofaeons",
     ],
     "icon": "https://ddragon.leagueoflegends.com/cdn/16.20.1/img/item/6657.png",
+    "mechanics": [
+      {
+        "kind": "statBonus",
+        "stat": "hp",
+        "amount": {
+          "op": "num",
+          "n": 10,
+        },
+        "secondsPerStack": {
+          "op": "num",
+          "n": 60,
+        },
+        "maxStacks": {
+          "op": "num",
+          "n": 10,
+        },
+      },
+      {
+        "kind": "statBonus",
+        "stat": "mana",
+        "amount": {
+          "op": "num",
+          "n": 30,
+        },
+        "secondsPerStack": {
+          "op": "num",
+          "n": 60,
+        },
+        "maxStacks": {
+          "op": "num",
+          "n": 10,
+        },
+      },
+      {
+        "kind": "statBonus",
+        "stat": "ap",
+        "amount": {
+          "op": "num",
+          "n": 3,
+        },
+        "secondsPerStack": {
+          "op": "num",
+          "n": 60,
+        },
+        "maxStacks": {
+          "op": "num",
+          "n": 10,
+        },
+      },
+    ],
   },
   "rubycrystal": {
     "id": "rubycrystal",
@@ -2419,7 +2707,9 @@ export const GENERATED_ITEMS: Record<string, Item> = {
     "id": "sapphirecrystal",
     "name": "Sapphire Crystal",
     "short": "SAPPHIRE",
-    "stats": {},
+    "stats": {
+      "mana": 300,
+    },
     "tier": "basic",
     "cost": 300,
     "icon": "https://ddragon.leagueoflegends.com/cdn/16.20.1/img/item/1027.png",
@@ -2687,6 +2977,19 @@ export const GENERATED_ITEMS: Record<string, Item> = {
       "kindlegem",
     ],
     "icon": "https://ddragon.leagueoflegends.com/cdn/16.20.1/img/item/3065.png",
+    "mechanics": [
+      {
+        "kind": "healShieldReceived",
+        "heal": {
+          "op": "num",
+          "n": 0.25,
+        },
+        "shield": {
+          "op": "num",
+          "n": 0.25,
+        },
+      },
+    ],
   },
   "staffofflowingwater": {
     "id": "staffofflowingwater",
@@ -2756,6 +3059,31 @@ export const GENERATED_ITEMS: Record<string, Item> = {
       "rubycrystal",
     ],
     "icon": "https://ddragon.leagueoflegends.com/cdn/16.20.1/img/item/3053.png",
+    "mechanics": [
+      {
+        "kind": "statBonus",
+        "stat": "bonusAd",
+        "amount": {
+          "op": "stat",
+          "stat": "baseAd",
+          "f": {
+            "op": "num",
+            "n": 0.5,
+          },
+        },
+      },
+      {
+        "kind": "lifeline",
+        "shield": {
+          "op": "stat",
+          "stat": "bonusHp",
+          "f": {
+            "op": "num",
+            "n": 0.6,
+          },
+        },
+      },
+    ],
   },
   "stormsurge": {
     "id": "stormsurge",
@@ -2860,7 +3188,9 @@ export const GENERATED_ITEMS: Record<string, Item> = {
     "id": "tearofthegoddess",
     "name": "Tear of the Goddess",
     "short": "TEAR",
-    "stats": {},
+    "stats": {
+      "mana": 240,
+    },
     "tier": "starter",
     "cost": 400,
     "icon": "https://ddragon.leagueoflegends.com/cdn/16.20.1/img/item/3070.png",
@@ -2932,6 +3262,37 @@ export const GENERATED_ITEMS: Record<string, Item> = {
       "rubycrystal",
     ],
     "icon": "https://ddragon.leagueoflegends.com/cdn/16.20.1/img/item/3075.png",
+    "mechanics": [
+      {
+        "kind": "thorns",
+        "type": "magic",
+        "damage": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "num",
+              "n": 20,
+            },
+            {
+              "op": "stat",
+              "stat": "bonusArmor",
+              "f": {
+                "op": "num",
+                "n": 0.1,
+              },
+            },
+          ],
+        },
+      },
+      {
+        "kind": "grievous",
+        "amount": {
+          "op": "num",
+          "n": 0.4,
+        },
+        "whenStruck": true,
+      },
+    ],
   },
   "tiamat": {
     "id": "tiamat",
@@ -3173,6 +3534,7 @@ export const GENERATED_ITEMS: Record<string, Item> = {
     "short": "WHISPERI",
     "stats": {
       "hp": 200,
+      "mana": 300,
       "healShieldPower": 0.08,
     },
     "tier": "legendary",
@@ -3205,6 +3567,7 @@ export const GENERATED_ITEMS: Record<string, Item> = {
     "stats": {
       "hp": 550,
       "abilityHaste": 15,
+      "mana": 500,
     },
     "tier": "legendary",
     "cost": 2400,
@@ -3366,5 +3729,14 @@ export const GENERATED_ITEMS: Record<string, Item> = {
       "seekersarmguard",
     ],
     "icon": "https://ddragon.leagueoflegends.com/cdn/16.20.1/img/item/3157.png",
+    "mechanics": [
+      {
+        "kind": "stasis",
+        "duration": {
+          "op": "num",
+          "n": 2.5,
+        },
+      },
+    ],
   },
 };

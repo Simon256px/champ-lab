@@ -41,6 +41,7 @@ import type {
   ItemTier,
   KitSheet,
   Mechanic,
+  RuneKind,
   ScaledValue,
   StatRef,
 } from "../data/types.ts";
@@ -57,14 +58,18 @@ import {
   cooldowns,
   fetchChampionBin,
   fetchItemsBin,
+  fetchPerks,
   fetchTooltips,
   isAimed,
   isPercentCalc,
   itemExtraStats,
   kitSpell,
   parseTooltip,
+  perkData,
   resolveItemRef,
   resolveRef,
+  rootDuration,
+  slowEffect,
   type SpellSlots,
   spellSlots,
   type SpellTooltip,
@@ -161,6 +166,8 @@ interface DDChampStats {
   attackspeedperlevel?: number;
   attackrange?: number;
   movespeed?: number;
+  mp?: number;
+  mpperlevel?: number;
 }
 
 interface MItemStat {
@@ -338,6 +345,8 @@ function mapChampion(m: MChampion, dd?: DDChampStats): Champion {
     attackSpeedPerLevel: round(pick(dd?.attackspeedperlevel, m.stats.attackSpeed?.perLevel ?? 0) / 100, 4),
     attackRange: round(pick(dd?.attackrange, m.stats.attackRange?.flat ?? 0)),
     moveSpeed: dd?.movespeed,
+    mana: dd?.mp,
+    manaPerLevel: dd?.mpperlevel,
     critDamage: round((m.stats.criticalStrikeDamage?.flat || 175) / 100, 3),
   };
 
@@ -454,6 +463,7 @@ function mapItemStats(m: MItem, dd?: Record<string, number>): ItemStats {
   // létalité et les %pén n'existent pas côté DD : Meraki fait foi.
   if (dd) {
     if (dd.FlatPhysicalDamageMod) stats.ad = round(dd.FlatPhysicalDamageMod);
+    if (dd.FlatMPPoolMod) stats.mana = round(dd.FlatMPPoolMod);
     if (dd.FlatMagicDamageMod) stats.ap = round(dd.FlatMagicDamageMod);
     if (dd.FlatHPPoolMod) stats.hp = round(dd.FlatHPPoolMod);
     if (dd.FlatArmorMod) stats.armor = round(dd.FlatArmorMod);
@@ -526,9 +536,28 @@ ${body}
  * Runes keystone : comportement modélisé dans le moteur, par id Data Dragon.
  * Seules celles listées ici ont un effet réel ; les autres sont "none" (neutres).
  */
-const RUNE_KIND: Record<string, "electro" | "conqueror"> = {
-  "8112": "electro", // Électrocution (Domination)
-  "8010": "conqueror", // Conquérant (Precision)
+const RUNE_KIND: Record<string, RuneKind> = {
+  "8112": "electro", // Électrocution
+  "8010": "conqueror", // Conquérant
+  "8214": "aery", // Invocation d'Aery
+  "8229": "comet", // Comète arcanique
+  "8005": "pta", // Attaque soutenue
+  "8008": "lethaltempo", // Tempo mortel
+  "9923": "hailofblades", // Grêle de lames
+  "8437": "grasp", // Poigne de l'immortel
+  "8439": "aftershock", // Répercussion
+  "8021": "fleet", // Jeu de jambes
+  "8128": "darkharvest", // Moisson noire
+  "8369": "firststrike", // Frappe initiale
+  "8465": "guardian", // Gardien
+  "8992": "deathfire", // Toucher de feu mortel
+};
+
+/** Runes sans effet dans un duel immobile, et pourquoi (affiché tel quel). */
+const NO_DUEL_EFFECT: Record<string, string> = {
+  "8230": "vitesse de déplacement et résistance aux ralentissements : sans effet dans un duel immobile",
+  "8351": "ralentissements et réduction des dégâts infligés aux alliés : sans effet en 1 contre 1",
+  "8360": "échange de sorts d'invocateur : hors du modèle",
 };
 
 interface DDRuneSlot {
@@ -544,13 +573,17 @@ interface GenRune {
   id: string;
   name: string;
   description: string;
-  kind: "electro" | "conqueror" | "none";
+  kind: RuneKind;
   icon: string;
   tree: string;
+  values?: Record<string, number>;
+  calcs?: Record<string, Formula | null>;
+  rangedCalcs?: Record<string, Formula | null>;
+  noDuelEffect?: string;
 }
 
 /** Extrait les runes keystone (slot 0 de chaque arbre) depuis Data Dragon. */
-function mapRunes(trees: DDRuneTree[]): GenRune[] {
+function mapRunes(trees: DDRuneTree[], perks: Map<string, unknown>): GenRune[] {
   const out: GenRune[] = [];
   for (const tree of trees) {
     const keystones = tree.slots[0]?.runes ?? [];
@@ -559,15 +592,20 @@ function mapRunes(trees: DDRuneTree[]): GenRune[] {
       const kind: GenRune["kind"] = Object.hasOwn(RUNE_KIND, idStr) ? RUNE_KIND[idStr] : "none";
       const modeled = kind !== "none";
       const shortDesc = (k.shortDesc ?? "").replace(/<[^>]+>/g, "").trim();
+      const script = perks.get(idStr);
+      const noDuelEffect = NO_DUEL_EFFECT[idStr];
       out.push({
         id: slugify(k.key),
         name: k.name,
         description: modeled
-          ? `keystone · ${tree.name} · calcul modélisé`
-          : `keystone · ${tree.name}${shortDesc ? ` · ${shortDesc}` : ""} · non modélisée`,
+          ? `keystone · ${tree.name} · valeurs du jeu`
+          : `keystone · ${tree.name}${shortDesc ? ` · ${shortDesc}` : ""}`,
         kind,
         icon: `${DDRAGON}/cdn/img/${k.icon}`,
         tree: tree.name,
+        // Valeurs et calculs du fichier des runes du jeu (au patch près).
+        ...(script ? perkData(script) : {}),
+        ...(noDuelEffect ? { noDuelEffect } : {}),
       });
     }
   }
@@ -601,6 +639,14 @@ import type { KitSheet } from "../types.ts";
 export const GENERATED_KITS: Record<string, KitSheet> = ${JSON.stringify(kits, null, 2)};
 `;
 }
+
+/**
+ * Valeurs d'objets absentes du fichier des objets mais écrites dans leur description
+ * (même patch) : nom de la valeur → motif à un groupe (un pourcentage).
+ */
+const TEXT_VALUES: Record<string, Record<string, RegExp>> = {
+  guardianangel: { ReviveBaseHealth: /restores\s+(\d+(?:\.\d+)?)%\s+base\s+health/i },
+};
 
 /** Champions qui ont une page dédiée : on génère leur fiche de kit complète. */
 const KIT_SHEETS = ["ivern"];
@@ -645,6 +691,8 @@ const NOMINAL: Record<StatRef, number> = {
   critChance: 0.25,
   critDamage: 1.75,
   lethality: 10,
+  maxMana: 1000,
+  bonusMana: 500,
 };
 const META_STATS: Record<keyof AbilityRatios, StatRef | null> = {
   ap: "ap",
@@ -862,6 +910,8 @@ function championFromGame(
       attackSpeedPerLevel: round((s.attackspeedperlevel ?? 0) / 100, 4),
       attackRange: s.attackrange,
       moveSpeed: s.movespeed,
+      mana: s.mp,
+      manaPerLevel: s.mpperlevel,
     },
     skillOrder: ov.skillOrder ?? defaultSkillOrder(),
     abilities: applyAbilityOverrides(id, abilities),
@@ -1085,6 +1135,8 @@ async function main() {
   // Contrôles (étourdissement, projection, peur…) : durée lue dans les fichiers du jeu,
   // sauf si l'infobulle ne le pose que sous condition (« If the target collides with terrain… »).
   let ccCount = 0;
+  let rootCount = 0;
+  let slowCount = 0;
   const conditional: string[] = [];
   for (const c of champions) {
     const slots = slotsById.get(c.id);
@@ -1094,6 +1146,17 @@ async function main() {
       const facts = factsOf(c.id, key);
       if (isAimed(slots[key])) ability.aimed = true;
       if (facts?.mobility) ability.mobility = true;
+      // Enracinement et ralentissement : comptent dans le temps de rapprochement.
+      const root = rootDuration(slots[key], ability.maxRank);
+      if (root) {
+        ability.root = root;
+        rootCount++;
+      }
+      const slow = slowEffect(slots[key], ability.maxRank);
+      if (slow) {
+        ability.slow = slow;
+        slowCount++;
+      }
       // On écarte une durée quand sa famille de contrôle n'apparaît QUE sous condition
       // dans l'infobulle (Vayne E : la projection est sûre, l'étourdissement « If the
       // target collides with terrain » non), et tout quand l'infobulle ne pose aucun
@@ -1118,7 +1181,10 @@ async function main() {
       ccCount++;
     }
   }
-  console.log(`  contrôles : ${ccCount} sorts ; ${conditional.length} conditionnels ignorés.`);
+  console.log(
+    `  contrôles : ${ccCount} sorts ; ${conditional.length} conditionnels ignorés ; ` +
+      `${rootCount} enracinements, ${slowCount} ralentissements.`,
+  );
   console.log(`  contrôles conditionnels : ${conditional.join(", ")}`);
 
   // Passifs (data/mechanics.ts) : références résolues en formules du patch.
@@ -1157,6 +1223,7 @@ async function main() {
       data: Record<string, {
         maps?: Record<string, boolean>;
         stats?: Record<string, number>;
+        description?: string;
         gold?: { total: number };
         from?: string[];
       }>;
@@ -1232,8 +1299,16 @@ async function main() {
   let extraStats = 0;
   let itemEffects = 0;
   for (const it of items) {
-    const bin = itemsBin.get(riotIdBySlug.get(it.id) ?? "");
+    const riotId = riotIdBySlug.get(it.id) ?? "";
+    const bin = itemsBin.get(riotId);
     if (!bin) continue;
+    // Valeurs qui n'existent que dans le texte du jeu (description Data Dragon, même patch).
+    const text = (ddItems.data[riotId]?.description ?? "").replace(/<[^>]+>/g, " ");
+    for (const [name, re] of Object.entries(TEXT_VALUES[it.id] ?? {})) {
+      const m = re.exec(text);
+      if (m) (bin.mDataValues ??= []).push({ mName: name, mValue: Number(m[1]) / 100 });
+      else console.warn(`  ⚠ ${it.id} : « ${name} » introuvable dans la description du jeu.`);
+    }
     const extra = itemExtraStats(bin);
     if (Object.keys(extra).length) {
       it.stats = { ...it.stats, ...extra };
@@ -1294,9 +1369,15 @@ async function main() {
   const runeTrees = await fetchJson<DDRuneTree[]>(
     `${DDRAGON}/cdn/${patch}/data/en_US/runesReforged.json`,
   );
-  const runes = mapRunes(runeTrees);
+  const perks = await fetchPerks(cdVersion);
+  const runes = mapRunes(runeTrees, perks);
   const modeledRunes = runes.filter((r) => r.kind !== "none").length;
-  console.log(`  ${runes.length} runes keystone (${modeledRunes} modélisées).`);
+  const withValues = runes.filter((r) => r.values && Object.keys(r.values).length).length;
+  const unknown = runes.filter((r) => r.kind === "none" && !r.noDuelEffect).map((r) => r.name);
+  console.log(
+    `  ${runes.length} runes keystone : ${modeledRunes} modélisées, ${withValues} avec valeurs du jeu` +
+      (unknown.length ? ` ; ⚠ sans modèle : ${unknown.join(", ")}` : "."),
+  );
 
   // --- Écriture ---
   await Deno.mkdir(OUT_DIR, { recursive: true });

@@ -1,5 +1,11 @@
 import { define } from "@/utils.ts";
 import { DATA_META } from "@/data/generated/meta.gen.ts";
+import { CHAMPION_LIST } from "@/data/champions.ts";
+import { RUNE_LIST } from "@/data/runes.ts";
+
+/** Champions dont le passif (ou une mécanique de kit) est modélisé. */
+const PASSIVES = CHAMPION_LIST.filter((c) => c.mechanics?.length || c.hasBleed).map((c) => c.name);
+const RUNES_MODELED = RUNE_LIST.filter((r) => r.kind !== "none").length;
 
 export default define.page(function Methode() {
   return (
@@ -46,6 +52,15 @@ export default define.page(function Methode() {
               — Meraki peut être en retard sur le patch courant. Un audit croisé (<code>
                 deno task audit
               </code>) mesure la concordance avec Data Dragon et signale les écarts.
+            </p>
+            <p>
+              <b>Couverture des kits.</b> Passifs modélisés (valeurs du jeu) pour{" "}
+              <b>{PASSIVES.length} champions sur {CHAMPION_LIST.length}</b> :{" "}
+              {PASSIVES.join(", ")}. Les autres ont leurs sorts complets mais pas encore leur passif — à
+              ajouter dans <code>data/mechanics.ts</code> (voir{" "}
+              <code>docs/adding-a-champion.md</code>). Runes :{" "}
+              <b>{RUNES_MODELED} keystones sur {RUNE_LIST.length}</b>{" "}
+              ont un effet dans le duel, les autres n'en ont pas dans un 1 contre 1 immobile.
             </p>
             <p>
               <b>Valeurs du jeu.</b>{" "}

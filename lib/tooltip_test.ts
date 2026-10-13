@@ -24,6 +24,8 @@ const stats = Object.fromEntries(
     "critChance",
     "critDamage",
     "lethality",
+    "maxMana",
+    "bonusMana",
   ].map((k) => [k, k === "ap" ? 100 : 0]),
 ) as Record<StatRef, number>;
 

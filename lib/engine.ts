@@ -50,12 +50,42 @@ export const BLEED_ULT_AMP_PER_STACK = 0.2;
  * 12,96–30,66 AD bonus ou 21,6–51,11 AP selon le profil adaptatif du champion.
  * (Le soin à pleins stacks n'est pas modélisé.)
  */
-export function conquerorBonus(adaptive: Adaptive, level: number): { ad: number; ap: number } {
-  const t = (level - 1) / 17;
-  return adaptive === "AD"
-    ? { ad: 12.96 + (30.66 - 12.96) * t, ap: 0 }
-    : { ad: 0, ap: 21.6 + (51.11 - 21.6) * t };
+export function conquerorBonus(
+  rune: RuneDef | undefined,
+  adaptive: Adaptive,
+  level: number,
+  stacks?: number,
+): { ad: number; ap: number } {
+  const v = rune?.values ?? {};
+  const perStack = lerpLevel(v.MinAdaptivePerStack ?? 0, v.MaxAdaptivePerStack ?? 0, level);
+  const force = perStack * (stacks ?? v.MaxStacks ?? 0);
+  // 1 point de force adaptative = 0,6 AD bonus ou 1 AP (règle du jeu).
+  return adaptive === "AD" ? { ad: ADAPTIVE_AD_RATIO * force, ap: 0 } : { ad: 0, ap: force };
 }
+
+/** Une unité de force adaptative vaut 0,6 AD bonus (ou 1 AP). */
+export const ADAPTIVE_AD_RATIO = 0.6;
+
+/** Interpolation linéaire du niveau 1 au niveau 18. */
+export function lerpLevel(from: number, to: number, level: number): number {
+  return from + ((to - from) * (level - 1)) / 17;
+}
+
+/**
+ * Type d'un dégât adaptatif : physique si l'AD bonus dépasse l'AP, magique si l'AP
+ * dépasse l'AD bonus, sinon selon le profil du champion (règle du jeu).
+ */
+export function adaptiveType(s: { bonusAD: number; ap: number }, champion: Champion): DamageType {
+  if (s.bonusAD > s.ap) return "physical";
+  if (s.ap > s.bonusAD) return "magic";
+  return champion.adaptive === "AD" ? "physical" : "magic";
+}
+
+/**
+ * Aery ne repart qu'une fois revenue au lanceur : un aller-retour en combat
+ * rapproché est estimé à 2 s (le jeu ne l'expose pas, il dépend de la distance).
+ */
+export const AERY_ROUND_TRIP = 2;
 
 /** Vitesse d'attaque maximale. */
 export const ATTACK_SPEED_CAP = 2.5;
@@ -113,6 +143,9 @@ export interface DerivedStats {
   /** PV max et PV bonus (objets) du lanceur */
   maxHp: number;
   bonusHp: number;
+  /** mana max et mana bonus (objets) */
+  maxMana: number;
+  bonusMana: number;
   /** armure et RM du lanceur (totales et bonus des objets), pour les formules qui en dépendent */
   armor: number;
   bonusArmor: number;
@@ -130,6 +163,8 @@ export function computeStats(
   runes: Record<string, RuneDef>,
   runeOn: boolean,
   keystoneId: string = champion.keystone,
+  /** minutes depuis l'achat de chaque objet (timeline) ; absent = objet chargé au maximum */
+  itemAges?: Record<string, number>,
 ): DerivedStats {
   const stats = itemIds.map((id) => items[id].stats);
   const baseAD = growth(champion.base.ad, champion.base.adPerLevel, level);
@@ -140,20 +175,18 @@ export function computeStats(
   const bonusArmor = sum((s) => s.armor);
   const bonusMr = sum((s) => s.mr);
 
-  let bonusAD = stats.reduce((a, s) => a + (s.ad ?? 0), 0);
-  let flatAP = stats.reduce((a, s) => a + (s.ap ?? 0), 0);
+  const bonusAD = stats.reduce((a, s) => a + (s.ad ?? 0), 0);
+  const flatAP = stats.reduce((a, s) => a + (s.ap ?? 0), 0);
   const apAmp = stats.reduce((a, s) => a + (s.apAmp ?? 0), 0);
 
-  // Rune Conquérant : force adaptative à pleins stacks — AD bonus ou AP selon
-  // le profil du champion. L'AP gagnée profite à l'amplification (Rabadon).
-  const keystone = runes[keystoneId];
-  if (runeOn && keystone?.kind === "conqueror") {
-    const conq = conquerorBonus(champion.adaptive, level);
-    bonusAD += conq.ad;
-    flatAP += conq.ap;
-  }
+  // Conquérant n'est plus appliqué ici : ses stacks dépendent des coups portés,
+  // computeCombo les compte (valeurs du jeu). Paramètres gardés pour l'appelant.
+  void runes;
+  void runeOn;
+  void keystoneId;
 
-  return {
+  const bonusMana = sum((s) => s.mana);
+  const out: DerivedStats = {
     baseAD,
     bonusAD,
     totalAD: baseAD + bonusAD,
@@ -178,19 +211,100 @@ export function computeStats(
     bonusMr,
     lifeSteal: sum((s) => s.lifeSteal),
     omnivamp: sum((s) => s.omnivamp),
+    maxMana: growth(champion.base.mana ?? 0, champion.base.manaPerLevel ?? 0, level) + bonusMana,
+    bonusMana,
   };
+  // Stats conditionnelles d'objets (Sterak : % de l'AD de base ; Archange, Manamune :
+  // selon le mana ; Baguette des âges : stacks gagnés avec le temps porté).
+  for (const id of new Set(itemIds)) {
+    for (const m of items[id]?.mechanics ?? []) {
+      if (m.kind !== "statBonus") continue;
+      let amount = formulaAt(m.amount, 1, level, out);
+      if (m.secondsPerStack && m.maxStacks) {
+        const max = formulaAt(m.maxStacks, 1, level, out);
+        const per = formulaAt(m.secondsPerStack, 1, level, out);
+        const age = itemAges?.[id];
+        const stacks = age === undefined ? max : Math.min(max, Math.floor((age * 60) / Math.max(1, per)));
+        amount *= stacks;
+      }
+      if (m.stat === "bonusAd") {
+        out.bonusAD += amount;
+        out.totalAD += amount;
+      } else if (m.stat === "ap") out.ap += amount * (1 + apAmp);
+      else if (m.stat === "hp") {
+        out.maxHp += amount;
+        out.bonusHp += amount;
+      } else if (m.stat === "mana") {
+        out.maxMana += amount;
+        out.bonusMana += amount;
+      }
+    }
+  }
+  return out;
 }
 
 /**
  * Vitesse d'attaque : base + ratio × (VA bonus des objets + croissance par
  * niveau). Les champions saisis sans VA prennent le profil standard 0,625.
  */
-export function attackSpeedOf(champion: Champion, level: number, bonusFromItems: number): number {
+export function attackSpeedOf(
+  champion: Champion,
+  level: number,
+  bonusFromItems: number,
+  uncapped = false,
+): number {
   const b = champion.base;
   const base = b.attackSpeed ?? 0.625;
   const ratio = b.attackSpeedRatio ?? base;
   const bonus = bonusFromItems + growth(0, b.attackSpeedPerLevel ?? 0.02, level);
-  return Math.min(ATTACK_SPEED_CAP, base + ratio * bonus);
+  const as = base + ratio * bonus;
+  return uncapped ? as : Math.min(ATTACK_SPEED_CAP, as);
+}
+
+/** Bonus de VA qui changent pendant le combat (runes). */
+export interface AutoMods {
+  /** VA qui s'empile à chaque auto (Tempo mortel) */
+  stacking?: { perStack: number; maxStacks: number };
+  /** VA renforcée sur les N premières autos de chaque cycle, plafond ignoré (Grêle de lames) */
+  opening?: { bonus: number; hits: number; cooldown: number };
+}
+
+/** Détail des autos sur la fenêtre : nombre, autos renforcées, autos à stacks pleins. */
+export function autoTimeline(
+  window: number,
+  champion: Champion,
+  level: number,
+  s: DerivedStats,
+  mods: AutoMods = {},
+): { count: number; openingHits: number; fullStackHits: number } {
+  const jax = champion.mechanics?.find((m) => m.kind === "stackingAttackSpeed");
+  const jaxPer = jax?.kind === "stackingAttackSpeed" ? formulaAt(jax.perStack, 1, level, s) : 0;
+  const jaxMax = jax?.kind === "stackingAttackSpeed" ? formulaAt(jax.maxStacks, 1, level, s) : 0;
+  const st = mods.stacking;
+  const op = mods.opening;
+  let t = 0;
+  let n = 0;
+  let openingHits = 0;
+  let fullStackHits = 0;
+  let cycleStart = 0;
+  let openingLeft = op ? op.hits : 0;
+  while (t <= window + 1e-9) {
+    n++; // un coup à t
+    if (op && openingLeft > 0) openingHits++;
+    if (st && n > st.maxStacks) fullStackHits++;
+    const stacks = Math.min(n, jaxMax);
+    const ltStacks = st ? Math.min(n, st.maxStacks) : 0;
+    const boosted = op !== undefined && openingLeft > 0;
+    if (boosted) openingLeft--;
+    const bonus = s.itemAttackSpeed + jaxPer * stacks + (st ? st.perStack * ltStacks : 0) +
+      (boosted && openingLeft > 0 ? op!.bonus : 0);
+    t += 1 / attackSpeedOf(champion, level, bonus, boosted && openingLeft > 0);
+    if (op && t >= cycleStart + op.cooldown) {
+      cycleStart += op.cooldown;
+      openingLeft = op.hits;
+    }
+  }
+  return { count: n, openingHits, fullStackHits };
 }
 
 /** Cooldown effectif d'un sort au rang donné, ability haste comprise (s). Undefined = inconnu. */
@@ -221,19 +335,16 @@ export function autosIn(window: number, attackSpeed: number): number {
  * Autos sur la fenêtre en tenant compte d'une VA qui s'empile à chaque coup
  * (Jax) : on avance coup par coup, chaque intervalle dépendant des stacks acquis.
  */
-export function autoCount(window: number, champion: Champion, level: number, s: DerivedStats): number {
-  const stacking = champion.mechanics?.find((m) => m.kind === "stackingAttackSpeed");
-  if (!stacking || stacking.kind !== "stackingAttackSpeed") return autosIn(window, s.attackSpeed);
-  const perStack = formulaAt(stacking.perStack, 1, level, s);
-  const maxStacks = formulaAt(stacking.maxStacks, 1, level, s);
-  let t = 0;
-  let n = 1; // premier coup à t = 0
-  while (true) {
-    const stacks = Math.min(n, maxStacks);
-    t += 1 / attackSpeedOf(champion, level, s.itemAttackSpeed + perStack * stacks);
-    if (t > window + 1e-9) return n;
-    n++;
-  }
+export function autoCount(
+  window: number,
+  champion: Champion,
+  level: number,
+  s: DerivedStats,
+  mods: AutoMods = {},
+): number {
+  const jax = champion.mechanics?.some((m) => m.kind === "stackingAttackSpeed");
+  if (!jax && !mods.stacking && !mods.opening) return autosIn(window, s.attackSpeed);
+  return autoTimeline(window, champion, level, s, mods).count;
 }
 
 /** Multiplicateur de dégâts effectifs selon le type et les résistances de la cible. */
@@ -284,6 +395,8 @@ export function formulaStats(s: DerivedStats): Record<StatRef, number> {
     critChance: s.critChance,
     critDamage: s.critDamage,
     lethality: s.lethality,
+    maxMana: s.maxMana,
+    bonusMana: s.bonusMana,
   };
 }
 
@@ -380,6 +493,10 @@ export interface ComboInput {
    * touche. Pondère leurs dégâts et leurs contrôles (espérance).
    */
   accuracy?: number;
+  /** le familier meurt après ce délai (s) : l'adversaire l'a pris pour cible */
+  petLifetime?: number;
+  /** minutes depuis l'achat de chaque objet ; absent = objets chargés au maximum */
+  itemAges?: Record<string, number>;
 }
 
 export interface ComboResult {
@@ -407,6 +524,19 @@ export interface ComboResult {
   /** parades (Fiora W) et secondes d'esquive des autos (Jax E) sur la fenêtre */
   parries: number;
   dodgeAutosSeconds: number;
+  /** résistances en plus pendant `seconds` (Répercussion) */
+  resistBuff?: { armor: number; mr: number; seconds: number };
+  /** PV rendus une fois (Ange gardien) */
+  extraHp: number;
+  /** boucliers sous un seuil de PV (Sterak, Arc-bouclier, Gueule : magique seulement) */
+  lifelines: { amount: number; magicOnly: boolean }[];
+  /** part des dégâts reçus différée pendant `seconds` (Danse de la mort) */
+  damageDelay?: { share: number; seconds: number };
+  /** dégâts renvoyés par auto reçue (Cotte épineuse) */
+  thorns?: { type: DamageType; perHit: number };
+  /** blessures graves infligées : par les coups, et sur les autos reçues (Cotte, Veste) */
+  grievousOffense: number;
+  grievousStruck: number;
 }
 
 /** Calcule le combo complet : lignes de dégâts, total, seuil d'exécution. */
@@ -415,13 +545,36 @@ export function computeCombo(input: ComboInput): ComboResult {
     input;
   const keystoneId = input.keystoneId ?? champion.keystone;
   const accuracy = Math.max(0, Math.min(1, input.accuracy ?? 1));
-  const stats = computeStats(champion, level, itemIds, items, runes, runeOn, keystoneId);
+  const stats = computeStats(champion, level, itemIds, items, runes, runeOn, keystoneId, input.itemAges);
   const lines: DamageLine[] = [];
 
   const mechanics = champion.mechanics ?? [];
   // Sorts qui se déclenchent sur les autos (Vayne W) : pas lancés, comptés plus bas.
   const onHitKeys = new Set(mechanics.flatMap((m) => (m.kind === "abilityOnHit" ? [m.key] : [])));
-  const autos = window === undefined ? 0 : autoCount(window, champion, level, stats);
+  const keystone = runeOn ? runes[keystoneId] : undefined;
+  const ranged = (champion.base.attackRange ?? 0) >= 300;
+  const rv = keystone?.values ?? {};
+  const rc = (name: string) =>
+    (ranged ? keystone?.rangedCalcs?.[name] : undefined) ?? keystone?.calcs?.[name] ?? null;
+  const runeOnFight = keystone !== undefined && include.rune !== false;
+  const autoMods: AutoMods = {};
+  if (runeOnFight && keystone.kind === "lethaltempo") {
+    autoMods.stacking = {
+      perStack: ranged ? rv.TTASPerStackRanged ?? 0 : rv.TTASPerStackMelee ?? 0,
+      maxStacks: rv.MaxStacks ?? 0,
+    };
+  }
+  if (runeOnFight && keystone.kind === "hailofblades") {
+    autoMods.opening = {
+      bonus: ranged ? rv.ASBoostRanged ?? 0 : rv.ASBoost ?? 0,
+      hits: rv.NumHits ?? 0,
+      cooldown: rv.Cooldown ?? 10,
+    };
+  }
+  const autoInfo = window === undefined
+    ? { count: 0, openingHits: 0, fullStackHits: 0 }
+    : autoTimeline(window, champion, level, stats, autoMods);
+  const autos = autoInfo.count;
 
   const keys: AbilityKey[] = ["Q", "W", "E", "R"];
   /** Lancers d'un sort sur la fenêtre (1 en burst), 0 s'il n'est pas appris ou exclu. */
@@ -434,12 +587,41 @@ export function computeCombo(input: ComboInput): ComboResult {
     return { rank, casts };
   };
   const totalCasts = keys.reduce((a, k) => a + castsOf(k).casts, 0);
+  const damagingCastsPlanned = keys
+    .filter((k) => champion.abilities[k].type !== "util" && !onHitKeys.has(k))
+    .reduce((a, k) => a + castsOf(k).casts, 0);
+
+  // Conquérant : chaque sort ou auto qui touche donne 2 stacks (1 par auto à distance).
+  // On applique la force adaptative MOYENNE sur les coups de la fenêtre (valeurs du jeu).
+  let conquerorFullShare = 0;
+  if (runeOnFight && keystone.kind === "conqueror") {
+    const instances = damagingCastsPlanned + autos;
+    const max = rv.MaxStacks ?? 0;
+    const gain = instances > 0 ? (2 * damagingCastsPlanned + (ranged ? 1 : 2) * autos) / instances : 0;
+    let sumStacks = 0;
+    let atFull = 0;
+    for (let i = 0; i < instances; i++) {
+      const stacksNow = Math.min(max, gain * i);
+      sumStacks += stacksNow;
+      if (stacksNow >= max) atFull++;
+    }
+    const avg = instances > 0 ? sumStacks / instances : 0;
+    conquerorFullShare = instances > 0 ? atFull / instances : 0;
+    const bonus = conquerorBonus(
+      keystone,
+      adaptiveType(stats, champion) === "physical" ? "AD" : "AP",
+      level,
+      avg,
+    );
+    stats.bonusAD += bonus.ad;
+    stats.totalAD += bonus.ad;
+    stats.ap += bonus.ap;
+  }
 
   // Effets d'objets équipés (une fois par objet, même en double).
   const itemMechanics = [...new Set(itemIds)].flatMap((id) =>
     (items[id]?.mechanics ?? []).map((m) => ({ name: items[id].name, m }))
   );
-  const ranged = (champion.base.attackRange ?? 0) >= 300;
 
   // Réduction d'armure qui s'empile (Fendoir noir) : chaque coup physique ajoute un
   // stack ; on applique la réduction MOYENNE sur les coups de la fenêtre.
@@ -475,7 +657,8 @@ export function computeCombo(input: ComboInput): ComboResult {
 
   // Auto-attaques (mode trade) : AD total, crits en espérance.
   if (window !== undefined) {
-    const perHit = stats.totalAD * (1 + stats.critChance * (stats.critDamage - 1));
+    const perHit = stats.totalAD *
+      (1 + stats.critChance * (stats.critDamage - 1) * (1 - (target.critReduction ?? 0)));
     lines.push({
       key: "AA",
       name: `Auto-attaques ×${autos}`,
@@ -502,7 +685,8 @@ export function computeCombo(input: ComboInput): ComboResult {
         hits: procs,
       });
     } else if (m.kind === "onHit") {
-      const procs = Math.floor(autos / (m.every ?? 1));
+      const every = m.every ? formulaAt(m.every, 1, level, stats) : 1;
+      const procs = Math.floor(autos / Math.max(1, every));
       if (procs < 1 || m.type === "util") continue;
       const raw = hpScaled(formulaAt(m.damage, 1, level, stats), m.scale, target);
       lines.push({
@@ -510,6 +694,22 @@ export function computeCombo(input: ComboInput): ComboResult {
         name: `${m.name} ×${procs}`,
         type: m.type,
         damage: procs * raw * damageMultiplier(m.type, stats, target),
+      });
+    } else if (m.kind === "afterAbility") {
+      // Une auto chargée par sort lancé (et touché), dans la limite des autos portées.
+      const casts = lines.filter((l) => ["Q", "W", "E", "R"].includes(l.key)).reduce(
+        (a, l) => a + (l.hits ?? 1),
+        0,
+      );
+      const procs = Math.min(casts, autos);
+      if (procs < 1 || m.type === "util") continue;
+      const raw = hpScaled(formulaAt(m.damage, 1, level, stats), m.scale, target);
+      lines.push({
+        key: "P",
+        name: `${m.name} ×${procs}`,
+        type: m.type,
+        damage: procs * raw * damageMultiplier(m.type, stats, target),
+        hits: procs,
       });
     } else if (m.kind === "periodic") {
       // Burst : un déclenchement. Trade : un toutes les `interval` s depuis t = 0.
@@ -534,7 +734,7 @@ export function computeCombo(input: ComboInput): ComboResult {
     if (m.kind !== "pet" || window === undefined) continue;
     const { rank, casts } = castsOf(m.key);
     if (casts < 1) continue;
-    const alive = Math.min(window, formulaAt(m.duration, rank, level, stats));
+    const alive = Math.min(window, formulaAt(m.duration, rank, level, stats), input.petLifetime ?? Infinity);
     const attackSpeed = Math.min(
       ATTACK_SPEED_CAP,
       formulaAt(m.baseAttackSpeed, rank, level, stats) *
@@ -589,23 +789,6 @@ export function computeCombo(input: ComboInput): ComboResult {
     });
   }
 
-  // Rune Électrocution : burst après 3 sorts/attaques distincts. 70–260 selon
-  // le niveau (+5 % AP, +10 % AD bonus) ; dégâts adaptatifs — physiques si la
-  // contribution AD dépasse la contribution AP, magiques sinon.
-  const keystone = runes[keystoneId];
-  if (runeOn && keystone?.kind === "electro" && include.rune) {
-    const fromAP = 0.05 * stats.ap;
-    const fromAD = 0.1 * stats.bonusAD;
-    const raw = 70 + (190 * (level - 1)) / 17 + fromAP + fromAD;
-    const type: DamageType = fromAD > fromAP ? "physical" : "magic";
-    lines.push({
-      key: "✦",
-      name: "Électrocution",
-      type,
-      damage: raw * damageMultiplier(type, stats, target),
-    });
-  }
-
   // Effets d'objets (data/item-mechanics.ts, valeurs du jeu).
   const damagingCasts = lines.filter((l) => ["Q", "W", "E", "R"].includes(l.key))
     .reduce((a, l) => a + (l.hits ?? 1), 0);
@@ -645,6 +828,179 @@ export function computeCombo(input: ComboInput): ComboResult {
     });
   }
 
+  // Effets défensifs et utilitaires des objets (valeurs du jeu).
+  let extraHp = 0;
+  let itemHeal = 0;
+  let stasis = 0;
+  let damageDelay: ComboResult["damageDelay"];
+  let thorns: ComboResult["thorns"];
+  let grievousOffense = 0;
+  let grievousStruck = 0;
+  let healReceived = 0;
+  let shieldReceived = 0;
+  const lifelines: ComboResult["lifelines"] = [];
+  for (const { name, m } of itemMechanics) {
+    const at = (f: Formula) => formulaAt(f, 1, level, stats);
+    if (m.kind === "stasis") stasis = Math.max(stasis, 1);
+    else if (m.kind === "revive") extraHp = Math.max(extraHp, at(m.hpShare) * (stats.maxHp - stats.bonusHp));
+    else if (m.kind === "lifeline") {
+      lifelines.push({
+        amount: at(ranged && m.rangedShield ? m.rangedShield : m.shield),
+        magicOnly: !!m.magicOnly,
+      });
+    } else if (m.kind === "activeHeal") {
+      itemHeal += at(m.heal) * (1 + stats.healShieldPower);
+      if (m.damage && m.type) {
+        const raw = hpScaled(at(m.damage), m.scale, target);
+        lines.push({
+          key: "I",
+          name,
+          type: m.type,
+          damage: raw * damageMultiplier(m.type, stats, target),
+          hits: 1,
+        });
+      }
+    } else if (m.kind === "damageDelay") {
+      damageDelay = { share: at(ranged && m.rangedShare ? m.rangedShare : m.share), seconds: at(m.seconds) };
+    } else if (m.kind === "thorns") thorns = { type: m.type, perHit: at(m.damage) };
+    else if (m.kind === "grievous") {
+      if (m.whenStruck) grievousStruck = Math.max(grievousStruck, at(m.amount));
+      else grievousOffense = Math.max(grievousOffense, at(m.amount));
+    } else if (m.kind === "healShieldReceived") {
+      healReceived = Math.max(healReceived, at(m.heal));
+      shieldReceived = Math.max(shieldReceived, at(m.shield));
+    }
+  }
+
+  // Rune keystone (valeurs du fichier des runes du jeu).
+  let runeShield = 0;
+  let runeHeal = 0;
+  let resistBuff: ComboResult["resistBuff"];
+  if (runeOnFight) {
+    const kind = keystone.kind;
+    const adaptive = adaptiveType(stats, champion);
+    const ev = (name: string) => {
+      const f = rc(name);
+      return f ? formulaAt(f, 1, level, stats) : 0;
+    };
+    const abilityHits = lines.filter((l) => ["Q", "W", "E", "R"].includes(l.key)).reduce(
+      (a, l) => a + (l.hits ?? 1),
+      0,
+    );
+    const hits = abilityHits + autos;
+    const cycles = (
+      cd: number,
+    ) => (window === undefined ? 1 : 1 + Math.floor(window / Math.max(0.1, cd) + 1e-9));
+    const push = (name: string, type: DamageType, procs: number, raw: number) => {
+      if (procs < 1 || raw <= 0) return;
+      lines.push({
+        key: "✦",
+        name: procs > 1 ? `${name} ×${procs}` : name,
+        type,
+        damage: procs * raw * damageMultiplier(type, stats, target),
+        hits: procs,
+      });
+    };
+    const soFar = () => lines.reduce((a, l) => a + l.damage, 0);
+    if (kind === "electro") {
+      // 3 coups distincts en 3 s ; recharge du jeu.
+      const procs = hits >= 3 ? Math.min(Math.floor(hits / 3), cycles(rv.Cooldown ?? 20)) : 0;
+      push(keystone.name, adaptive, procs, ev("TotalDamage"));
+    } else if (kind === "aery") {
+      push(
+        keystone.name,
+        adaptive,
+        Math.min(hits, window === undefined ? 1 : cycles(AERY_ROUND_TRIP)),
+        ev("DamageCalc"),
+      );
+      // Aery protège aussi : un bouclier à chaque bouclier lancé par un sort.
+      const shieldCasts = keys.filter((k) => champion.abilities[k].shield).reduce(
+        (a, k) => a + castsOf(k).casts,
+        0,
+      );
+      runeShield += shieldCasts * ev("ShieldCalc");
+    } else if (kind === "comet") {
+      push(
+        keystone.name,
+        adaptive,
+        Math.min(abilityHits, cycles(ev("CooldownCalc") || 20)),
+        ev("DamageCalc"),
+      );
+    } else if (kind === "pta") {
+      // 3 autos consécutives : dégâts bonus, puis +8 % sur la suite du combat.
+      const procs = autos >= (rv.HitsRequired ?? 3)
+        ? Math.min(Math.floor(autos / (rv.HitsRequired ?? 3)), cycles(rv.Cooldown ?? 6))
+        : 0;
+      push(keystone.name, adaptive, procs, lerpLevel(rv.MinDamage ?? 0, rv.MaxDamage ?? 0, level));
+      if (procs > 0) {
+        const after = Math.max(0, autos - (rv.HitsRequired ?? 3)) / Math.max(1, autos);
+        const amp = soFar() * (rv.BonusPercentDamage ?? 0) * after;
+        if (amp > 0) {
+          lines.push({
+            key: "✦",
+            name: `${keystone.name} (+${Math.round((rv.BonusPercentDamage ?? 0) * 100)} %)`,
+            type: "true",
+            damage: amp,
+            hits: 1,
+          });
+        }
+      }
+    } else if (kind === "lethaltempo") {
+      push(keystone.name, adaptive, autoInfo.fullStackHits, ev("NoteDamage"));
+    } else if (kind === "hailofblades") {
+      push(keystone.name, "true", autoInfo.openingHits, ev("BonusDamage"));
+    } else if (kind === "grasp") {
+      const procs = window === undefined ? 0 : Math.min(autos, cycles(rv.TriggerTime ?? 4));
+      push(keystone.name, "magic", procs, ev("DamageCalc"));
+      runeHeal += procs * ev("HealCalc");
+    } else if (kind === "aftershock") {
+      // Après un contrôle (ou un enracinement) : résistances pendant le délai, puis explosion.
+      const immobilizing = keys.filter((k) => champion.abilities[k].cc || champion.abilities[k].root)
+        .reduce((a, k) => a + castsOf(k).casts, 0);
+      const procs = Math.min(immobilizing, cycles(rv.Cooldown ?? 20));
+      push(keystone.name, "magic", procs, ev("DamageCalc"));
+      if (procs > 0 && window !== undefined) {
+        const cap = ev("MaxResistCalc");
+        resistBuff = {
+          armor: Math.min(cap, ev("ArmorBuff")),
+          mr: Math.min(cap, ev("MagicResistBuff")),
+          seconds: procs * (rv.DelayBeforeBurst ?? 0),
+        };
+      }
+    } else if (kind === "fleet") {
+      // On entre en combat avec une attaque chargée : un soin.
+      if (autos > 0) runeHeal += ev("HealAmount");
+    } else if (kind === "darkharvest") {
+      if (soFar() >= (rv.HarvestThreshold ?? 0.5) * target.hpMax) {
+        push(keystone.name, adaptive, 1, ev("TotalDamage"));
+      }
+    } else if (kind === "firststrike") {
+      const share = window === undefined ? 1 : Math.min(1, (rv.Duration ?? 0) / Math.max(0.1, window));
+      const amp = soFar() * (rv.DamageAmp ?? 0) * share;
+      if (amp > 0) {
+        lines.push({
+          key: "✦",
+          name: `${keystone.name} (+${Math.round((rv.DamageAmp ?? 0) * 100)} %)`,
+          type: "true",
+          damage: amp,
+          hits: 1,
+        });
+      }
+    } else if (kind === "guardian") {
+      runeShield += ev("ShieldCalc");
+    } else if (kind === "deathfire") {
+      // Brûlure entretenue par les sorts ; amplifiée après TimeToAmp secondes.
+      if (abilityHits > 0) {
+        const t = window === undefined
+          ? rv.Duration ?? 0
+          : Math.min(window, (rv.Duration ?? 0) * abilityHits);
+        const amped = Math.min(t, rv.TimeToAmp ?? 0) +
+          Math.max(0, t - (rv.TimeToAmp ?? 0)) * (1 + (rv.DamageMultiplier ?? 0));
+        push(keystone.name, "magic", 1, ev("DamageCalc") * amped);
+      }
+    }
+  }
+
   const total = lines.reduce((a, l) => a + l.damage, 0);
   const rLine = lines.find((l) => l.key === "R");
   const execHP = champion.hasBleed && rLine ? rLine.damage : 0;
@@ -679,6 +1035,12 @@ export function computeCombo(input: ComboInput): ComboResult {
   }
   const autoDamage = lines.find((l) => l.key === "AA")?.damage ?? 0;
   heal += stats.lifeSteal * autoDamage + stats.omnivamp * total;
+  shield += runeShield;
+  heal += runeHeal + itemHeal;
+  // Conquérant à pleins stacks : soigne d'une part des dégâts infligés (moins à distance).
+  if (runeOnFight && keystone.kind === "conqueror") {
+    heal += total * conquerorFullShare * (ranged ? rv.RangedHealingPercent ?? 0 : rv.HealingPercent ?? 0);
+  }
 
   // Soins en % des PV manquants : à chaque lancer (t = 0, cd, 2·cd…), on suppose que
   // les dégâts reçus arrivent régulièrement sur la fenêtre — les PV manquants à
@@ -720,10 +1082,17 @@ export function computeCombo(input: ComboInput): ComboResult {
     else ccReducible += total;
     ccLongest = Math.max(ccLongest, d);
   }
+  // Soins et boucliers reçus renforcés (Visage spirituel), sur tout ce que le champion se rend.
+  heal *= 1 + healReceived;
+  shield *= 1 + shieldReceived;
+  missingHpHealRatio *= 1 + healReceived;
+
   // Onde de choc du familier : projection, donc insensible à la ténacité.
   ccDuration += petCc;
   ccIrreducible += petCc;
   ccLongest = Math.max(ccLongest, petCcLongest);
+  // Stase (Zhonya) : esquive un coup, comme une parade.
+  parries += stasis;
   for (const m of mechanics) {
     if (m.kind === "parry") parries += castsOf(m.key).casts;
     if (m.kind === "dodgeAutos") {
@@ -746,6 +1115,13 @@ export function computeCombo(input: ComboInput): ComboResult {
     ccIrreducible,
     parries,
     dodgeAutosSeconds,
+    ...(resistBuff ? { resistBuff } : {}),
+    extraHp,
+    lifelines,
+    ...(damageDelay ? { damageDelay } : {}),
+    ...(thorns ? { thorns } : {}),
+    grievousOffense,
+    grievousStruck,
   };
 }
 
@@ -753,8 +1129,26 @@ export function computeCombo(input: ComboInput): ComboResult {
  * Dégâts de l'attaquant que le défenseur annule : chaque parade bloque l'un des
  * plus gros coups de sort, l'esquive annule les autos qui tombent pendant sa durée.
  */
-export function blockedDamage(attacker: ComboResult, defender: ComboResult): number {
+export function blockedDamage(attacker: ComboResult, defender: ComboResult, window?: number): number {
   let blocked = 0;
+  // Résistances temporaires (Répercussion) : réduisent la part des dégâts qui tombe
+  // pendant leur durée.
+  // Danse de la mort : une part des dégâts reçus tombe plus tard (sur `seconds`).
+  if (defender.damageDelay) {
+    const share = window === undefined
+      ? 1
+      : Math.min(1, defender.damageDelay.seconds / Math.max(0.1, window));
+    blocked += attacker.total * defender.damageDelay.share * share;
+  }
+  const rb = defender.resistBuff;
+  if (rb && window !== undefined && window > 0) {
+    const share = Math.min(1, rb.seconds / window);
+    const reduce = (resist: number, bonus: number) => 1 - (100 + resist) / (100 + resist + bonus);
+    for (const l of attacker.lines) {
+      if (l.type === "physical") blocked += share * l.damage * reduce(defender.stats.armor, rb.armor);
+      if (l.type === "magic") blocked += share * l.damage * reduce(defender.stats.mr, rb.mr);
+    }
+  }
   if (defender.parries > 0) {
     const perHit: number[] = [];
     for (const l of attacker.lines) {
@@ -819,14 +1213,10 @@ export function computeDefenses(
   level: number,
   itemIds: string[],
   items: Record<string, Item>,
+  itemAges?: Record<string, number>,
 ): Defenses {
-  const stats = itemIds.map((id) => items[id].stats);
-  const b = champion.base;
-  return {
-    hp: growth(b.hp, b.hpPerLevel, level) + stats.reduce((a, s) => a + (s.hp ?? 0), 0),
-    armor: growth(b.armor, b.armorPerLevel, level) + stats.reduce((a, s) => a + (s.armor ?? 0), 0),
-    mr: growth(b.mr, b.mrPerLevel, level) + stats.reduce((a, s) => a + (s.mr ?? 0), 0),
-  };
+  const s = computeStats(champion, level, itemIds, items, {}, false, champion.keystone, itemAges);
+  return { hp: s.maxHp, armor: s.armor, mr: s.mr };
 }
 
 /** Profil de cible tiré d'un vrai champion, PV pleins. Remplace les sliders manuels. */
@@ -835,10 +1225,46 @@ export function targetFromChampion(
   level: number,
   itemIds: string[],
   items: Record<string, Item>,
+  itemAges?: Record<string, number>,
 ): TargetProfile {
-  const d = computeDefenses(champion, level, itemIds, items);
-  return { armor: d.armor, mr: d.mr, hpMax: d.hp, hpCur: d.hp };
+  const d = computeDefenses(champion, level, itemIds, items, itemAges);
+  // Dégâts critiques reçus réduits (Présage de Randuin), lu dans les effets d'objets.
+  let critReduction = 0;
+  for (const id of new Set(itemIds)) {
+    for (const m of items[id]?.mechanics ?? []) {
+      if (m.kind === "critReduction") {
+        critReduction = Math.max(critReduction, evalFormula(m.amount, ZERO_CTX));
+      }
+    }
+  }
+  return { armor: d.armor, mr: d.mr, hpMax: d.hp, hpCur: d.hp, ...(critReduction ? { critReduction } : {}) };
 }
+
+/** Contexte vide pour une valeur d'objet constante (pas de stat, rang ou niveau). */
+const ZERO_CTX = {
+  rank: 1,
+  level: 1,
+  stats: {
+    ap: 0,
+    ad: 0,
+    baseAd: 0,
+    bonusAd: 0,
+    maxHp: 0,
+    baseHp: 0,
+    bonusHp: 0,
+    armor: 0,
+    bonusArmor: 0,
+    mr: 0,
+    bonusMr: 0,
+    attackSpeed: 0,
+    bonusAttackSpeed: 0,
+    critChance: 0,
+    critDamage: 0,
+    lethality: 0,
+    maxMana: 0,
+    bonusMana: 0,
+  },
+};
 
 /** Un camp du duel : tout ce qu'il faut pour calculer son combo, sauf la cible. */
 export interface DuelSide {
@@ -852,6 +1278,8 @@ export interface DuelSide {
   bleedStacks?: number;
   /** Défaut : tout le kit (all-in). */
   include?: IncludeMap;
+  /** minutes depuis l'achat de chaque objet (timeline) ; absent = objets chargés au maximum */
+  itemAges?: Record<string, number>;
 }
 
 export interface DuelOptions {
@@ -893,9 +1321,12 @@ export interface DuelResult {
   /** secondes perdues par chaque camp à combler l'écart de portée (0 avec un dash) */
   approachA: number;
   approachB: number;
-  /** dégâts adverses annulés par chaque camp (parade, esquive) */
+  /** dégâts adverses annulés par chaque camp (parade, esquive, Répercussion) */
   blockedByA: number;
   blockedByB: number;
+  /** l'adversaire a tué le familier de A (resp. B) d'abord, au bout de ce temps (s) */
+  petKillA?: number;
+  petKillB?: number;
 }
 
 const ALL_IN: IncludeMap = { Q: true, W: true, E: true, R: true, bleed: true, rune: true };
@@ -912,8 +1343,8 @@ export function computeDuel(
   runes: Record<string, RuneDef>,
   opts: DuelOptions = {},
 ): DuelResult {
-  const targetA = targetFromChampion(a.champion, a.level, a.itemIds, items);
-  const targetB = targetFromChampion(b.champion, b.level, b.itemIds, items);
+  const targetA = targetFromChampion(a.champion, a.level, a.itemIds, items, a.itemAges);
+  const targetB = targetFromChampion(b.champion, b.level, b.itemIds, items, b.itemAges);
   const inputOf = (atk: DuelSide, target: TargetProfile): ComboInput => ({
     champion: atk.champion,
     level: atk.level,
@@ -927,16 +1358,76 @@ export function computeDuel(
     ranks: atk.ranks,
     keystoneId: atk.keystoneId,
     accuracy: opts.accuracy,
+    itemAges: atk.itemAges,
   });
   const inA = inputOf(a, targetB);
   // Portée : le camp qui a moins de portée perd le temps de combler l'écart, sauf s'il
   // a un sort de mobilité appris. Seulement en trade / all-in (en burst, tout est à t = 0).
-  const approachA = approachTime(b, a);
-  const approachB = approachTime(a, b);
+  const statsA = computeStats(
+    a.champion,
+    a.level,
+    a.itemIds,
+    items,
+    runes,
+    a.runeOn,
+    a.keystoneId,
+    a.itemAges,
+  );
+  const statsB = computeStats(
+    b.champion,
+    b.level,
+    b.itemIds,
+    items,
+    runes,
+    b.runeOn,
+    b.keystoneId,
+    b.itemAges,
+  );
+  const approachA = approachTime(b, a, statsB, opts.accuracy ?? 1);
+  const approachB = approachTime(a, b, statsA, opts.accuracy ?? 1);
+  // Familier (Daisy) : PV et résistances, pour que l'adversaire puisse le tuer d'abord.
+  const petOf = (side: DuelSide, s: DerivedStats) => {
+    const m = side.champion.mechanics?.find((x) => x.kind === "pet");
+    if (!m || m.kind !== "pet" || side.include?.[m.key] === false) return null;
+    const rank = resolveRank(side.champion, m.key, side.level, side.ranks);
+    if (rank < 1) return null;
+    const hp = formulaAt(m.hp, rank, side.level, s);
+    const resists = m.resists ? formulaAt(m.resists, rank, side.level, s) : 0;
+    return { hp, profile: { armor: resists, mr: resists, hpMax: hp, hpCur: hp } as TargetProfile };
+  };
+  const petA = petOf(a, statsA);
+  const petB = petOf(b, statsB);
   const inB = inputOf(b, targetA);
+  /**
+   * Temps qu'un camp met à tuer le familier adverse, à sa cadence sur la fenêtre.
+   * Infinity s'il ne fait pas de dégâts.
+   */
+  const petKillTime = (attacker: ComboInput, pet: { hp: number; profile: TargetProfile }, w: number) => {
+    const vsPet = computeCombo({ ...attacker, target: pet.profile, window: w });
+    const dps = vsPet.total / Math.max(0.5, w);
+    return dps > 0 ? pet.hp / dps : Infinity;
+  };
   const at = (w: number | undefined) => {
-    const pa = computeCombo({ ...inA, window: w });
-    const pb = computeCombo({ ...inB, window: w });
+    // Chaque camp choisit ce qui l'arrange le plus : ignorer le familier adverse, ou le
+    // tuer d'abord (il perd ce temps sur le champion, le familier cesse de frapper).
+    if (w === undefined || (!petA && !petB)) return atWith(w, undefined, undefined);
+    const tA = petA ? petKillTime(inB, petA, w) : Infinity; // B tue le familier de A
+    const tB = petB ? petKillTime(inA, petB, w) : Infinity; // A tue le familier de B
+    let best = atWith(w, undefined, undefined);
+    const scoreB = (r: typeof best) => r.dmgB / r.ehpA - r.dmgA / r.ehpB;
+    if (tA < w) {
+      const alt = atWith(w, tA, undefined);
+      if (scoreB(alt) > scoreB(best)) best = alt;
+    }
+    if (tB < w) {
+      const alt = atWith(w, best.petKillA, tB);
+      if (-scoreB(alt) > -scoreB(best)) best = alt;
+    }
+    return best;
+  };
+  const atWith = (w: number | undefined, petKillA: number | undefined, petKillB: number | undefined) => {
+    const pa = computeCombo({ ...inA, window: w, petLifetime: petKillA });
+    const pb = computeCombo({ ...inB, window: w, petLifetime: petKillB });
     // Contrôles : le camp contrôlé perd ce temps d'action (une parade en absorbe un).
     // Burst : tout tombe à t = 0, les contrôles ne changent rien.
     // Ténacité : réduit les contrôles subis, sauf projections et suppressions.
@@ -948,14 +1439,31 @@ export function computeDuel(
       );
     const ccOnA = w === undefined ? 0 : ccOn(pa, pb);
     const ccOnB = w === undefined ? 0 : ccOn(pb, pa);
-    const lostA = w === undefined ? 0 : ccOnA + approachA;
-    const lostB = w === undefined ? 0 : ccOnB + approachB;
-    const ab = lostA > 0 ? computeCombo({ ...inA, window: Math.max(0, w! - lostA) }) : pa;
-    const ba = lostB > 0 ? computeCombo({ ...inB, window: Math.max(0, w! - lostB) }) : pb;
-    const blockedByB = blockedDamage(ab, ba);
-    const blockedByA = blockedDamage(ba, ab);
-    const dmgA = Math.max(0, ab.total - blockedByB);
-    const dmgB = Math.max(0, ba.total - blockedByA);
+    // Le temps passé à tuer le familier adverse est perdu pour frapper le champion.
+    const lostA = w === undefined ? 0 : ccOnA + approachA + (petKillB ?? 0);
+    const lostB = w === undefined ? 0 : ccOnB + approachB + (petKillA ?? 0);
+    const ab = lostA > 0
+      ? computeCombo({ ...inA, window: Math.max(0, w! - lostA), petLifetime: petKillA })
+      : pa;
+    const ba = lostB > 0
+      ? computeCombo({ ...inB, window: Math.max(0, w! - lostB), petLifetime: petKillB })
+      : pb;
+    const blockedByB = blockedDamage(ab, ba, w);
+    const blockedByA = blockedDamage(ba, ab, w);
+    // Épines (Cotte épineuse) : chaque auto reçue renvoie des dégâts à l'attaquant.
+    const autosOf = (r: ComboResult) => r.lines.find((l) => l.key === "AA")?.hits ?? 0;
+    const thornsTo = (wearer: ComboResult, struckBy: ComboResult, struckTarget: TargetProfile) =>
+      wearer.thorns
+        ? wearer.thorns.perHit * autosOf(struckBy) *
+          damageMultiplier(wearer.thorns.type, wearer.stats, struckTarget)
+        : 0;
+    const dmgA = Math.max(0, ab.total - blockedByB) + thornsTo(ab, ba, targetB);
+    const dmgB = Math.max(0, ba.total - blockedByA) + thornsTo(ba, ab, targetA);
+    // Blessures graves sur les soins de chaque camp.
+    const woundsOnA = Math.max(ba.grievousOffense, autosOf(ab) > 0 ? ba.grievousStruck : 0);
+    const woundsOnB = Math.max(ab.grievousOffense, autosOf(ba) > 0 ? ab.grievousStruck : 0);
+    const magicOf = (r: ComboResult) =>
+      r.lines.filter((l) => l.type === "magic").reduce((a, l) => a + l.damage, 0);
     return {
       ab,
       ba,
@@ -965,9 +1473,11 @@ export function computeDuel(
       ccOnB,
       blockedByA,
       blockedByB,
+      petKillA,
+      petKillB,
       // Chaque camp profite de SES boucliers/soins (son propre combo), face aux dégâts de l'autre.
-      ehpA: effectiveHp(targetA.hpMax, ab, dmgB),
-      ehpB: effectiveHp(targetB.hpMax, ba, dmgA),
+      ehpA: effectiveHp(targetA.hpMax, ab, dmgB, woundsOnA, magicOf(ba)),
+      ehpB: effectiveHp(targetB.hpMax, ba, dmgA, woundsOnB, magicOf(ab)),
     };
   };
   const timed = opts.allIn || opts.window !== undefined;
@@ -976,7 +1486,22 @@ export function computeDuel(
   const ttkB = timed ? timeToKill((w) => at(w).dmgB, (w) => at(w).ehpA) : undefined;
   // All-in : on s'arrête au premier mort — c'est lui qui décide du duel.
   const window = opts.allIn ? Math.min(ttkA!, ttkB!, TTK_LIMIT) : opts.window;
-  const { ab: aToB, ba: bToA, ehpA, ehpB, dmgA, dmgB, ccOnA, ccOnB, blockedByA, blockedByB } = at(window);
+  const {
+    ab: aToB,
+    ba: bToA,
+    ehpA,
+    ehpB,
+    dmgA,
+    dmgB,
+    ccOnA,
+    ccOnB,
+    blockedByA,
+    blockedByB,
+    petKillA,
+    petKillB,
+  } = at(
+    window,
+  );
   const cap = (n: number) => (opts.allIn ? Math.min(1, n) : n);
   const killPctA = cap(dmgA / ehpB);
   const killPctB = cap(dmgB / ehpA);
@@ -996,6 +1521,8 @@ export function computeDuel(
     approachB: timed ? approachB : 0,
     blockedByA,
     blockedByB,
+    ...(petKillA !== undefined ? { petKillA } : {}),
+    ...(petKillB !== undefined ? { petKillB } : {}),
   };
   if (timed) Object.assign(result, { ttkA, ttkB, window });
   return result;
@@ -1009,17 +1536,50 @@ export const MAX_APPROACH = 2;
  * (portée de l'un − portée de l'autre) / vitesse de déplacement, plafonné. Zéro si
  * `chaser` a un sort de mobilité appris (dash, saut, téléportation).
  */
-export function approachTime(ranged: DuelSide, chaser: DuelSide): number {
+export function approachTime(
+  ranged: DuelSide,
+  chaser: DuelSide,
+  rangedStats?: DerivedStats,
+  accuracy = 1,
+): number {
   const gap = (ranged.champion.base.attackRange ?? 0) - (chaser.champion.base.attackRange ?? 0);
   if (gap <= 0) return 0;
   const keys: AbilityKey[] = ["Q", "W", "E", "R"];
-  const canDash = keys.some((k) =>
-    chaser.champion.abilities[k].mobility &&
-    resolveRank(chaser.champion, k, chaser.level, chaser.ranks) >= 1 &&
-    chaser.include?.[k] !== false
-  );
-  if (canDash) return 0;
-  return Math.min(MAX_APPROACH, gap / (chaser.champion.base.moveSpeed ?? 335));
+  const learned = (side: DuelSide, k: AbilityKey) =>
+    resolveRank(side.champion, k, side.level, side.ranks) >= 1 && side.include?.[k] !== false;
+  const canDash = keys.some((k) => chaser.champion.abilities[k].mobility && learned(chaser, k));
+  const ms = chaser.champion.base.moveSpeed ?? 335;
+  // Le camp à portée ralentit et enracine celui qui approche (sorts appris, espérance
+  // de toucher pour les sorts à viser). Un enracinement bloque aussi les dashs.
+  let slow = 0;
+  let slowFor = 0;
+  let slowHit = 1;
+  let root = 0;
+  if (rangedStats) {
+    for (const k of keys) {
+      const ab = ranged.champion.abilities[k];
+      if (!learned(ranged, k)) continue;
+      const rank = resolveRank(ranged.champion, k, ranged.level, ranged.ranks);
+      const hit = ab.aimed ? accuracy : 1;
+      if (ab.slow) {
+        const amount = formulaAt(ab.slow.amount, rank, ranged.level, rangedStats);
+        if (amount * hit > slow * slowHit) {
+          slow = Math.min(0.99, amount);
+          slowFor = formulaAt(ab.slow.duration, rank, ranged.level, rangedStats);
+          slowHit = hit;
+        }
+      }
+      if (ab.root) root = Math.max(root, hit * formulaAt(ab.root, rank, ranged.level, rangedStats));
+    }
+  }
+  let move = 0;
+  if (!canDash) {
+    const plain = gap / ms;
+    const slowed = ms * (1 - slow);
+    const withSlow = gap / slowed <= slowFor ? gap / slowed : slowFor + (gap - slowed * slowFor) / ms;
+    move = Math.min(MAX_APPROACH, slowHit * withSlow + (1 - slowHit) * plain);
+  }
+  return move + root;
 }
 
 /**
@@ -1028,11 +1588,22 @@ export function approachTime(ranged: DuelSide, chaser: DuelSide): number {
  */
 export function effectiveHp(
   hpMax: number,
-  own: Pick<ComboResult, "shield" | "heal" | "missingHpHealRatio">,
+  own:
+    & Pick<ComboResult, "shield" | "heal" | "missingHpHealRatio">
+    & Partial<Pick<ComboResult, "extraHp" | "lifelines">>,
   damageTaken: number,
+  wounds = 0,
+  magicTaken = 0,
 ): number {
-  const heal = own.heal + own.missingHpHealRatio * damageTaken;
-  return hpMax + own.shield + Math.min(heal, damageTaken);
+  // Blessures graves : réduisent les soins, pas les boucliers.
+  const heal = (own.heal + own.missingHpHealRatio * damageTaken) * (1 - wounds);
+  // Boucliers de seuil (sous 30 % de PV) : déclenchés dans tout duel qui va au bout ;
+  // magiques seulement pour la Gueule.
+  const lifeline = (own.lifelines ?? []).reduce(
+    (a, l) => a + (l.magicOnly ? Math.min(l.amount, magicTaken) : l.amount),
+    0,
+  );
+  return hpMax + own.shield + Math.min(heal, damageTaken) + lifeline + (own.extraHp ?? 0);
 }
 
 /** Limite de recherche du temps pour tuer (s). Au-delà, le duel est considéré sans kill. */

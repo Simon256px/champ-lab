@@ -166,6 +166,27 @@ export function toFormula(spell: Json, calcName: string, maxRank: number, ranged
       }
       case "ByCharLevelInterpolationCalculationPart":
         return { op: "lerp", from: clean(p.mStartValue ?? 0), to: clean(p.mEndValue ?? 0) };
+      case "ByCharLevelFormulaCalculationPart":
+        // Une valeur par niveau (Lux : 20 au niveau 1 … 190 au niveau 18).
+        return p.values?.length ? { op: "byLevel", v: (p.values as number[]).slice(0, 18).map(clean) } : null;
+      case "AbilityResourceByCoefficientCalculationPart": {
+        // Ressource (mana) : formule 2 = mana bonus, sinon mana max.
+        const coef = clean(p.mCoefficient ?? 0);
+        return coef
+          ? { op: "stat", stat: p.mStatFormula === 2 ? "bonusMana" : "maxMana", f: { op: "num", n: coef } }
+          : null;
+      }
+      case "ClampSubPartsCalculationPart": {
+        // Somme bornée (Comète arcanique : recharge 20 → 8 s, jamais sous le plancher).
+        const parts = (p.mSubparts ?? []).map(part);
+        if (!parts.every(Boolean)) return null;
+        return {
+          op: "clamp",
+          f: sum(parts as Formula[]),
+          min: clean(p.mFloor ?? 0),
+          max: clean(p.mCeiling ?? 1e9),
+        };
+      }
       case "ByCharLevelBreakpointsCalculationPart":
         return {
           op: "steps",
@@ -178,8 +199,22 @@ export function toFormula(spell: Json, calcName: string, maxRank: number, ranged
             perLevel: clean(b.mBonusPerLevelAtAndAfter ?? 0),
           })),
         };
-      default:
+      default: {
+        // Interpolation niveau 1 → 18 entre deux valeurs nommées (Grêle de lames :
+        // BonusDamageMin → BonusDamageMax). Brique sans nom lisible dans les fichiers.
+        // Même brique, autre forme : StartDataValue / EndDataValue (Locke).
+        if (p.StartDataValue && p.EndDataValue) {
+          const from = named(p.StartDataValue);
+          const to = named(p.EndDataValue);
+          if (from.op === "num" && to.op === "num") return { op: "lerp", from: from.n, to: to.n };
+        }
+        if (p["{0589a59c}"] && p["{0b65bc23}"]) {
+          const from = named(p["{0589a59c}"]);
+          const to = named(p["{0b65bc23}"]);
+          if (from.op === "num" && to.op === "num") return { op: "lerp", from: from.n, to: to.n };
+        }
         return null; // cumul de buff, condition, ressource, brique non nommée…
+      }
     }
   };
 
@@ -204,7 +239,8 @@ export function toFormula(spell: Json, calcName: string, maxRank: number, ranged
     const parts = (c.mFormulaParts ?? []).map(part);
     if (!parts.every(Boolean)) return null;
     let total = sum(parts as Formula[]);
-    if (itemCalc && ranged && c.mRangedMultiplier) {
+    // Multiplicateur à distance (objets, runes : Kraken ×0,8, Poigne ×0,4).
+    if (ranged && c.mRangedMultiplier) {
       const rm = part(c.mRangedMultiplier);
       if (!rm) return null;
       total = mul([total, rm]);
@@ -305,6 +341,42 @@ export function ccPick(
   const longest = dvs.reduce((a, d) => (atMax(d) > atMax(a) ? d : a), dvs[0]);
   const f = rankValues(longest.values, maxRank);
   return f.op === "num" && f.n <= 0 ? null : { formula: f, kind: ccKind(longest.name) };
+}
+
+/** Enracinements : empêchent de bouger (et de dasher), pas d'agir. */
+const ROOT_VARIANT = /(minion|monster|wall|max|self|bonus|ally|allies)/i;
+
+/** Durée d'enracinement d'un sort (s, par rang), la plus longue s'il en porte plusieurs. */
+export function rootDuration(spell: Json, maxRank: number): Formula | null {
+  const dvs: Json[] = (spell?.DataValues ?? []).filter((d: Json) =>
+    /duration/i.test(d.name) && /(root|snare)/i.test(d.name) && !ROOT_VARIANT.test(d.name) && d.values?.length
+  );
+  if (!dvs.length) return null;
+  const atMax = (d: Json) => d.values[Math.min(maxRank, d.values.length - 1)] ?? 0;
+  const longest = dvs.reduce((a, d) => (atMax(d) > atMax(a) ? d : a), dvs[0]);
+  const f = rankValues(longest.values, maxRank);
+  return f.op === "num" && f.n <= 0 ? null : f;
+}
+
+/**
+ * Ralentissement d'un sort : part de vitesse retirée (0..1, valeurs négatives et en %
+ * normalisées) et durée. Null si le sort n'a pas les deux.
+ */
+export function slowEffect(spell: Json, maxRank: number): { amount: Formula; duration: Formula } | null {
+  const dvs: Json[] = spell?.DataValues ?? [];
+  const amount = dvs.find((d) =>
+    /^(ms)?slow(amount|percent|mod)?$|^(ms|movespeed)slow(percent|amount)$/i.test(d.name) && d.values?.length
+  );
+  const duration = dvs.find((d) => /^slowduration$/i.test(d.name) && d.values?.length);
+  if (!amount || !duration) return null;
+  const norm = (amount.values as number[]).map((v) => {
+    const a = Math.abs(v);
+    return a > 1 ? a / 100 : a;
+  });
+  const f = rankValues(norm, maxRank);
+  const d = rankValues(duration.values, maxRank);
+  if ((f.op === "num" && f.n <= 0) || (d.op === "num" && d.n <= 0)) return null;
+  return { amount: f, duration: d };
 }
 
 // ---------------------------------------------------------------------------
@@ -517,6 +589,7 @@ export function resolveItemRef(item: Json, ref: ItemRef, ranged = false): Formul
     if (dv) f = rankValues(dv.values, 1);
   }
   if (!f) return null;
+  if (ref.stat) f = { op: "stat", stat: ref.stat, f };
   return ref.times === undefined ? f : mul([f, { op: "num", n: ref.times }]);
 }
 
@@ -558,6 +631,53 @@ export function kitSpell(spell: Json, tooltip: SpellTooltip, maxRank: number): {
   };
 }
 
+// ---------------------------------------------------------------------------
+// Runes (game/perks.cdtb.bin.json)
+// ---------------------------------------------------------------------------
+
+/** Données de script des runes du jeu, indexées par id de rune (« 8112 »). */
+export async function fetchPerks(version: string): Promise<Map<string, Json>> {
+  const res = await fetch(`${CDRAGON}/${version}/game/perks.cdtb.bin.json`);
+  if (!res.ok) {
+    await res.body?.cancel();
+    return new Map();
+  }
+  const out = new Map<string, Json>();
+  for (const v of Object.values<Json>(await res.json())) {
+    if (v?.__type === "Perk" && v.mPerkId) out.set(String(v.mPerkId), v.mScript?.mSpellScriptData ?? {});
+  }
+  return out;
+}
+
+/**
+ * Valeurs et calculs d'une rune : mEffectAmount (valeurs uniques) et mCalculations,
+ * convertis comme ceux d'un sort ; variante à distance gardée si elle diffère.
+ */
+export function perkData(script: Json): {
+  values: Record<string, number>;
+  calcs: Record<string, Formula | null>;
+  rangedCalcs?: Record<string, Formula | null>;
+} {
+  const values: Record<string, number> = {};
+  for (const [k, v] of Object.entries<Json>(script?.mEffectAmount ?? {})) {
+    if (typeof v === "number" && !k.startsWith("{")) values[k] = clean(v);
+  }
+  const spell = {
+    DataValues: Object.entries(values).map(([name, v]) => ({ name, values: Array(7).fill(v) })),
+    mSpellCalculations: script?.mCalculations ?? {},
+  };
+  const calcs: Record<string, Formula | null> = {};
+  const rangedCalcs: Record<string, Formula | null> = {};
+  let differs = false;
+  for (const name of Object.keys(spell.mSpellCalculations)) {
+    if (name.startsWith("{")) continue;
+    calcs[name] = toFormula(spell, name, 1, false);
+    rangedCalcs[name] = toFormula(spell, name, 1, true);
+    if (JSON.stringify(calcs[name]) !== JSON.stringify(rangedCalcs[name])) differs = true;
+  }
+  return differs ? { values, calcs, rangedCalcs } : { values, calcs };
+}
+
 /** Résout une GameRef sur les sorts d'un champion. Null si introuvable ou non convertible. */
 export function resolveRef(slots: SpellSlots, ref: GameRef, maxRank: number): Formula | null {
   const spell = slots[ref.slot];
@@ -569,5 +689,6 @@ export function resolveRef(slots: SpellSlots, ref: GameRef, maxRank: number): Fo
     if (dv) f = rankValues(dv.values, maxRank);
   }
   if (!f) return null;
-  return ref.times === undefined ? f : mul([f, { op: "num", n: ref.times }]);
+  if (ref.times !== undefined) f = mul([f, { op: "num", n: ref.times }]);
+  return ref.plus === undefined ? f : sum([f, { op: "num", n: ref.plus }]);
 }

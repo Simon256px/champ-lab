@@ -144,13 +144,39 @@ export interface SideState {
   level: number;
   gold: number;
   items: string[];
+  /** minutes depuis l'achat de chaque objet (stats qui grandissent avec le temps) */
+  itemAges: Record<string, number>;
+}
+
+/** Minute à laquelle l'or cumulé atteint `amount` (goldAt est croissante : dichotomie). */
+export function minuteForGold(amount: number, lane: LaneModel = DEFAULT_LANE): number {
+  if (goldAt(0, lane) >= amount) return 0;
+  let lo = 0;
+  let hi = 120;
+  for (let i = 0; i < 40; i++) {
+    const mid = (lo + hi) / 2;
+    if (goldAt(mid, lane) >= amount) hi = mid;
+    else lo = mid;
+  }
+  return hi;
 }
 
 export function sideStateAt(side: TimelineSide, minute: number, items: Record<string, Item>): SideState {
   const lane = { ...DEFAULT_LANE, ...side.lane };
   const gold = goldAt(minute, lane);
   const plan = purchasePlan(side.build ?? defaultBuildOrder(side.champion, items), items);
-  return { level: levelAt(minute, lane), gold, items: inventoryAt(plan, gold, items) };
+  const inventory = inventoryAt(plan, gold, items);
+  // Âge de chaque objet : depuis l'achat de la dernière étape qui l'a complété.
+  const itemAges: Record<string, number> = {};
+  let spent = 0;
+  for (const step of plan) {
+    if (spent + step.price > gold) break;
+    spent += step.price;
+    if (inventory.includes(step.itemId)) {
+      itemAges[step.itemId] = Math.max(0, minute - minuteForGold(spent, lane));
+    }
+  }
+  return { level: levelAt(minute, lane), gold, items: inventory, itemAges };
 }
 
 export interface MatchupPoint {
@@ -207,8 +233,8 @@ export function matchupTimeline(
     const sa = sideStateAt(a, minute, items);
     const sb = sideStateAt(b, minute, items);
     const duel = computeDuel(
-      { ...a, level: sa.level, itemIds: sa.items, runeOn: a.runeOn ?? true },
-      { ...b, level: sb.level, itemIds: sb.items, runeOn: b.runeOn ?? true },
+      { ...a, level: sa.level, itemIds: sa.items, itemAges: sa.itemAges, runeOn: a.runeOn ?? true },
+      { ...b, level: sb.level, itemIds: sb.items, itemAges: sb.itemAges, runeOn: b.runeOn ?? true },
       items,
       runes,
       { window: opts.window, allIn: opts.allIn, accuracy: opts.accuracy },

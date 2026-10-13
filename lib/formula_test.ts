@@ -23,6 +23,8 @@ const stats = {
   critChance: 0.25,
   critDamage: 1.75,
   lethality: 10,
+  maxMana: 1000,
+  bonusMana: 500,
 } satisfies Record<StatRef, number>;
 const at = (f: Formula, rank = 1, level = 1) => evalFormula(f, { rank, level, stats });
 
