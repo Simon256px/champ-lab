@@ -164,10 +164,24 @@ le plus long contrôle adverses ; l'esquive de Jax annule les autos pendant sa d
 Portée et déplacement : en trade / all-in, le camp qui a moins de portée perd le temps de combler l'écart
 (différence de portée / vitesse de déplacement, plafonné à 2 s), sauf s'il a appris un sort de mobilité (dash,
 saut, téléportation ou attraction, d'après l'infobulle). Précision : les sorts à viser (type de ciblage du
-jeu) voient leurs dégâts et contrôles pondérés par un taux de réussite réglable (100 % par défaut).
+jeu) voient leurs dégâts et contrôles pondérés par un taux de réussite réglable (100 % par défaut). Les
+enracinements et ralentissements du camp à portée allongent l'approche (un enracinement bloque aussi les
+dashs).
 
-Indicateur théorique : pas de kite (reculer en tirant), ni de runes hors Électrocution et Conquérant, ni
-d'animations. Autos et sorts s'enchaînent sans temps mort : c'est un plafond de dégâts.
+Runes : les 17 keystones lisent leurs valeurs dans le fichier des runes du jeu (`perks.cdtb.bin.json`) ; 14
+ont un effet modélisé (Électrocution, Conquérant et son soin, Aery, Comète, Attaque soutenue, Tempo mortel,
+Grêle de lames, Poigne, Répercussion, Jeu de jambes, Moisson noire, Frappe initiale, Gardien, Toucher de feu
+mortel), les 3 autres n'agissent pas dans un duel immobile (la raison est affichée).
+
+Objets défensifs et utilitaires (valeurs du jeu) : Zhonya, Ange gardien, Sterak, Arc-bouclier, Gueule de
+Malmortius, Danse de la mort, Cotte épineuse, blessures graves (Chempunk, Morellonomicon, Rappel mortel…),
+Visage spirituel, Présage de Randuin, Rédemption, mana et objets à mana (Archange, Manamune, Baguette des
+âges, qui grandit avec le temps porté dans la timeline). Familiers : l'adversaire peut tuer le familier
+d'abord si ça l'arrange.
+
+Passifs : saisis champion par champion dans `data/mechanics.ts` par références aux fichiers du jeu (la liste à
+jour est sur la page Méthode). Indicateur théorique : autos et sorts s'enchaînent sans temps mort, sans kite
+après l'approche ni animations : c'est un plafond de dégâts, pas un replay de partie.
 
 ## Ajouter / affiner un champion
 

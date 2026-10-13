@@ -274,12 +274,17 @@ export default function KitSheet({ championId, initialTarget }: Props) {
             projection de 1 s qui ignore la ténacité).
           </p>
           <p class="dim">
-            <b>Pas dans le duel :</b>{" "}
-            le passif (jungle uniquement), les effets sur les alliés (W, E, dash des alliés sur Q),
-            l'enracinement de Q (le duel est sans déplacement), le ralentissement de E, le second bouclier de
-            E, Aery et les passifs d'aide des objets d'enchanteur. Daisy n'est jamais prise pour cible : c'est
-            un plafond, l'adversaire peut s'éloigner d'elle ou la tuer en jeu — décoche « avec Daisy » pour
-            comparer.
+            <b>Dans le duel, en plus :</b>{" "}
+            l'enracinement de Q et le ralentissement de E allongent l'approche d'un adversaire au corps à
+            corps (l'enracinement bloque aussi ses dashs) ; Aery frappe et protège (valeurs du jeu) ;
+            l'adversaire peut tuer Daisy d'abord s'il y gagne — le duel retient le meilleur choix pour lui.
+          </p>
+          <p class="dim">
+            <b>Hors d'un 1 contre 1, par nature :</b>{" "}
+            le passif (bosquets de jungle), les effets sur les alliés (W, E, dash des alliés sur Q), le second
+            bouclier de E (seulement si aucun ennemi n'est touché) et les passifs d'aide des objets
+            d'enchanteur (Pierre de lune, Chant de Shurelya, Mandat impérial : ils agissent via des alliés).
+            Leurs valeurs sont dans les infobulles ci-dessus.
           </p>
         </div>
       </div>

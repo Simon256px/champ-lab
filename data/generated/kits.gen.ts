@@ -92,7 +92,25 @@ export const GENERATED_KITS: Record<string, KitSheet> = {
               },
             ],
           },
-          "ManaTooltip": null,
+          "ManaTooltip": {
+            "op": "mul",
+            "of": [
+              {
+                "op": "steps",
+                "l1": 20,
+                "perLevel": -1.175,
+                "bp": [],
+              },
+              {
+                "op": "stat",
+                "stat": "maxMana",
+                "f": {
+                  "op": "num",
+                  "n": 0.01,
+                },
+              },
+            ],
+          },
         },
       },
       "Q": {

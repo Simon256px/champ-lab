@@ -253,9 +253,12 @@ export default function Matchup({ initialA, initialB }: Props) {
               précision.
             </p>
             <p class="dim">
-              Pas encore modélisé : les autres passifs, les runes hors Électrocution et Conquérant, le kite
-              (reculer en tirant), les enracinements et ralentissements, les animations. Les autos et les
-              sorts s'enchaînent sans temps mort : c'est un plafond de dégâts, pas un replay.
+              Aussi : les 17 keystones (valeurs du jeu ; Rush de phase, Glacial et Grimoire n'agissent pas
+              dans un duel immobile), les effets défensifs d'objets (Zhonya, Ange gardien, Sterak, Danse de la
+              mort, Cotte épineuse, blessures graves…), les enracinements et ralentissements sur l'approche,
+              et un familier que l'adversaire peut tuer d'abord. Les passifs sont saisis champion par champion
+              (liste sur la page Méthode). Les autos et les sorts s'enchaînent sans temps mort : c'est un
+              plafond de dégâts, pas un replay de partie (pas de kite après l'approche, pas d'animations).
             </p>
           </div>
         </div>

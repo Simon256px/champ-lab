@@ -158,15 +158,19 @@ export default function ChampLab({ champion }: { champion: Champion }) {
     if (key === "R" && champion.hasBleed) d *= 1 + BLEED_ULT_AMP_PER_STACK * bleed;
     return d;
   };
-  const runeLine = result.lines.find((l) => l.key === "✦");
-  const conq = conquerorBonus(champion.adaptive, level);
+  // Contribution de la rune : dégâts de ses lignes, force adaptative pour Conquérant,
+  // « sans effet » pour une rune qui n'agit pas dans un duel immobile.
+  const runeDamage = result.lines.filter((l) => l.key === "✦").reduce((a, l) => a + l.damage, 0);
+  const conq = conquerorBonus(keystone, champion.adaptive, level);
   const runeContrib = !runeOn
     ? "OFF"
-    : keystone.kind === "electro"
-    ? `+${fr(runeLine?.damage ?? 0)}`
-    : champion.adaptive === "AD"
-    ? `+${fr(conq.ad)} AD`
-    : `+${fr(conq.ap)} AP`;
+    : keystone.kind === "conqueror"
+    ? champion.adaptive === "AD" ? `+${fr(conq.ad)} AD max` : `+${fr(conq.ap)} AP max`
+    : keystone.kind === "none"
+    ? "sans effet en duel"
+    : runeDamage > 0
+    ? `+${fr(runeDamage)}`
+    : "en trade";
 
   // Items filtrés par la recherche (catalogue complet à plat).
   const q = itemQuery.trim().toLowerCase();
@@ -537,7 +541,7 @@ export default function ChampLab({ champion }: { champion: Champion }) {
             <div class="cs">
               {includedAbilityKeys.join(" + ")}
               {champion.hasBleed && include.bleed ? " + saignement" : ""}
-              {runeOn && keystone.kind === "electro" && include.rune ? " + rune" : ""}
+              {runeOn && include.rune && result.lines.some((l) => l.key === "✦") ? " + rune" : ""}
               {result.lines.some((l) => l.key === "I") ? " + objets" : ""} inclus
             </div>
           </div>

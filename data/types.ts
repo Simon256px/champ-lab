@@ -44,7 +44,11 @@ export type Formula =
   /** stat du lanceur × sous-formule */
   | { op: "stat"; stat: StatRef; f: Formula }
   | { op: "sum"; of: Formula[] }
-  | { op: "mul"; of: Formula[] };
+  | { op: "mul"; of: Formula[] }
+  /** sous-formule bornée entre min et max */
+  | { op: "clamp"; f: Formula; min: number; max: number }
+  /** une valeur par niveau (index 0 = niveau 1) */
+  | { op: "byLevel"; v: number[] };
 
 /** Stats du lanceur qu'une formule peut lire. */
 export type StatRef =
@@ -65,7 +69,10 @@ export type StatRef =
   /** chance de crit (0..1) et multiplicateur de crit (1,75) */
   | "critChance"
   | "critDamage"
-  | "lethality";
+  | "lethality"
+  /** mana max et mana bonus (objets) */
+  | "maxMana"
+  | "bonusMana";
 
 /** Ce que multiplie une formule exprimée en fraction de PV (Vayne W : 4–10 % des PV max de la cible). */
 export type HpScale = "targetMaxHp" | "targetMissingHp" | "targetCurrentHp";
@@ -113,6 +120,10 @@ export interface Ability {
   cc?: Formula;
   /** contrôle insensible à la ténacité (projection, suppression) */
   ccIgnoresTenacity?: boolean;
+  /** enracinement (s par lancer) : empêche de bouger et de dasher, pas d'agir */
+  root?: Formula;
+  /** ralentissement : part de vitesse retirée (0..1) et durée (s) */
+  slow?: { amount: Formula; duration: Formula };
   /** sort à viser (esquivable) d'après son type de ciblage dans les fichiers du jeu */
   aimed?: boolean;
   /** le sort rapproche son lanceur (dash, saut, téléportation), d'après l'infobulle */
@@ -138,6 +149,9 @@ export interface ChampionBaseStats {
   attackRange?: number;
   /** vitesse de déplacement de base (unités/s) */
   moveSpeed?: number;
+  /** mana de base et par niveau (énergie pour certains champions) */
+  mana?: number;
+  manaPerLevel?: number;
   /** dégâts d'un coup critique, en multiplicateur (1,75 = 175 %). Absent = 1,75. */
   critDamage?: number;
 }
@@ -152,6 +166,8 @@ export interface GameRef {
   calc?: string;
   value?: string;
   times?: number;
+  /** ajouté après `times` (Caitlyn : 5 stacks, le 6e coup est un headshot → +1) */
+  plus?: number;
   /**
    * Lire une stat de base dans le fichier d'un AUTRE personnage (familier : Daisy =
    * « ivernminion ») : `field` est le nom du champ (« attackSpeedModifiable »).
@@ -171,7 +187,15 @@ export type Mechanic<A = Formula> =
     kind: "onHit";
     name: string;
     type: DamageType;
-    every?: number;
+    every?: A;
+    damage: A;
+    scale?: HpScale;
+  }
+  | {
+    /** chaque sort lancé charge la prochaine auto (Riven, Lux) : au plus une par lancer */
+    kind: "afterAbility";
+    name: string;
+    type: DamageType;
     damage: A;
     scale?: HpScale;
   }
@@ -237,6 +261,8 @@ export type Mechanic<A = Formula> =
     baseAttackSpeed: A;
     bonusAttackSpeed: A;
     hp: A;
+    /** armure et RM du familier (Daisy : 30 → 90 selon le niveau) */
+    resists?: A;
     duration: A;
     slamEvery?: number;
     slamType?: DamageType;
@@ -299,6 +325,8 @@ export interface ItemStats {
   tenacity?: number;
   /** soins et boucliers renforcés, en fraction (Bâton aqueux 0,1) */
   healShieldPower?: number;
+  /** mana en plus */
+  mana?: number;
 }
 
 /** Référence à une valeur du fichier d'un objet (CommunityDragon), résolue par le pipeline. */
@@ -306,6 +334,8 @@ export interface ItemRef {
   calc?: string;
   value?: string;
   times?: number;
+  /** multiplie la valeur par une stat du porteur (Sterak : 0,6 × PV bonus) */
+  stat?: StatRef;
 }
 
 /**
@@ -351,6 +381,72 @@ export type ItemMechanic<A = Formula> =
     perSecond: A;
     scale?: HpScale;
     duration: A;
+  }
+  | {
+    /**
+     * Stat en plus (Sterak : 50 % de l'AD de base ; Archange : AP selon le mana).
+     * `perStack` + `secondsPerStack` : stat qui grandit avec le temps porté (Baguette des âges).
+     */
+    kind: "statBonus";
+    stat: "bonusAd" | "ap" | "hp" | "mana";
+    amount: A;
+    secondsPerStack?: A;
+    maxStacks?: A;
+  }
+  | {
+    /** stase (Zhonya) : esquive le plus gros coup de sort adverse, une fois */
+    kind: "stasis";
+    duration: A;
+  }
+  | {
+    /** renaissance (Ange gardien) : rend une part des PV de base, une fois */
+    kind: "revive";
+    hpShare: A;
+  }
+  | {
+    /** bouclier quand les PV passent sous un seuil (Sterak, Arc-bouclier, Gueule : magique seulement) */
+    kind: "lifeline";
+    shield: A;
+    rangedShield?: A;
+    magicOnly?: boolean;
+  }
+  | {
+    /** actif de soin (Rédemption), avec dégâts en % des PV de la cible */
+    kind: "activeHeal";
+    heal: A;
+    damage?: A;
+    type?: DamageType;
+    scale?: HpScale;
+  }
+  | {
+    /** une part des dégâts reçus est différée (Danse de la mort) */
+    kind: "damageDelay";
+    share: A;
+    rangedShare?: A;
+    seconds: A;
+  }
+  | {
+    /** renvoie des dégâts à chaque auto reçue (Cotte épineuse) */
+    kind: "thorns";
+    type: DamageType;
+    damage: A;
+  }
+  | {
+    /** blessures graves : réduit les soins adverses ; `whenStruck` = seulement sur les autos reçues */
+    kind: "grievous";
+    amount: A;
+    whenStruck?: boolean;
+  }
+  | {
+    /** soins et boucliers reçus renforcés (Visage spirituel) */
+    kind: "healShieldReceived";
+    heal: A;
+    shield: A;
+  }
+  | {
+    /** dégâts des coups critiques reçus réduits (Présage de Randuin) */
+    kind: "critReduction";
+    amount: A;
   };
 
 /** Un sort tel que le jeu le décrit : infobulle, valeurs brutes et calculs (fiche de kit). */
@@ -395,7 +491,23 @@ export interface Item {
 }
 
 /** Comportement d'une rune modélisé dans lib/engine.ts. "none" = non modélisée (neutre). */
-export type RuneKind = "electro" | "conqueror" | "none";
+export type RuneKind =
+  | "electro"
+  | "conqueror"
+  | "aery"
+  | "comet"
+  | "pta"
+  | "lethaltempo"
+  | "hailofblades"
+  | "grasp"
+  | "aftershock"
+  | "fleet"
+  | "darkharvest"
+  | "firststrike"
+  | "guardian"
+  | "deathfire"
+  /** aucun effet dans un duel immobile (vitesse, ralentissement, sorts d'invocateur) */
+  | "none";
 
 export interface RuneDef {
   id: string;
@@ -405,6 +517,13 @@ export interface RuneDef {
   kind: RuneKind;
   /** URL de l'icône officielle de la rune (Data Dragon). */
   icon?: string;
+  /** valeurs du fichier des runes du jeu (perks.cdtb.bin.json → mEffectAmount) */
+  values?: Record<string, number>;
+  /** calculs du jeu convertis ; variante à distance si elle diffère */
+  calcs?: Record<string, Formula | null>;
+  rangedCalcs?: Record<string, Formula | null>;
+  /** pourquoi la rune n'a pas d'effet dans le duel (kind « none ») */
+  noDuelEffect?: string;
 }
 
 export interface TargetProfile {
@@ -412,6 +531,8 @@ export interface TargetProfile {
   mr: number;
   hpMax: number;
   hpCur: number;
+  /** part des dégâts critiques retirée (Présage de Randuin) */
+  critReduction?: number;
 }
 
 /** Une ligne de dégâts calculée (un sort, le saignement, ou une rune). */

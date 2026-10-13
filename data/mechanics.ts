@@ -17,6 +17,7 @@ import type { GameRef, Mechanic } from "./types.ts";
  *   missingHpHeal        soin en % des PV manquants à chaque lancer d'un sort
  *   abilityDamage        donne des dégâts à un sort que Meraki laisse utilitaire
  *   pet                  familier invoqué (Daisy) : attaques, onde de choc, PV
+ *   afterAbility         chaque sort charge la prochaine auto (Riven, Lux)
  *   parry                parade : bloque le plus gros coup et le plus long contrôle adverses
  *   dodgeAutos           esquive les autos adverses pendant X secondes
  *
@@ -26,6 +27,83 @@ import type { GameRef, Mechanic } from "./types.ts";
  * docs/adding-a-champion.md.
  */
 export const MECHANICS: Record<string, Mechanic<GameRef>[]> = {
+  // --- Passifs à l'impact : textes des infobulles du jeu, valeurs du passif ---
+  akshan: [
+    // Sale combat : « After launching an Attack, Akshan will fire an additional shot ».
+    { kind: "onHit", name: "Second tir", type: "physical", damage: { slot: "P", calc: "SecondAutoDamage" } },
+    // « Every three hits … deals an additional … magic damage » (compté sur les autos seules).
+    {
+      kind: "onHit",
+      name: "Sale combat",
+      type: "magic",
+      every: { slot: "P", value: "MaxStacks" },
+      damage: { slot: "P", calc: "PassiveProcDamage" },
+    },
+  ],
+  caitlyn: [
+    // Headshot : 5 stacks (1 par auto), la 6e auto est un headshot.
+    {
+      kind: "onHit",
+      name: "Headshot",
+      type: "physical",
+      every: { slot: "P", value: "AttacksPerHeadshot", plus: 1 },
+      damage: { slot: "P", calc: "HeadShotBonusDamage" },
+    },
+  ],
+  diana: [{
+    kind: "onHit",
+    name: "Lame lunaire",
+    type: "magic",
+    every: { slot: "P", value: "AttackCount" },
+    damage: { slot: "P", calc: "CleaveDamage" },
+  }],
+  gwen: [{
+    kind: "onHit",
+    name: "Mille coupures",
+    type: "magic",
+    damage: { slot: "P", calc: "PercentHealth1000Cuts" },
+    scale: "targetMaxHp",
+  }],
+  kaisa: [{
+    kind: "onHit",
+    name: "Plasma (base)",
+    type: "magic",
+    damage: { slot: "P", calc: "PBaseDamage" },
+  }],
+  locke: [{
+    kind: "onHit",
+    name: "Dégâts à l'impact",
+    type: "magic",
+    damage: { slot: "P", calc: "MinOnHitDamage" },
+  }],
+  lux: [{
+    kind: "afterAbility",
+    name: "Illumination",
+    type: "magic",
+    damage: { slot: "P", calc: "TotalDamage" },
+  }],
+  masteryi: [{
+    kind: "onHit",
+    name: "Double frappe",
+    type: "physical",
+    every: { slot: "P", value: "AttackCount" },
+    damage: { slot: "P", calc: "TotalDamage" },
+  }],
+  mordekaiser: [{
+    kind: "onHit",
+    name: "Ténèbres",
+    type: "magic",
+    damage: { slot: "P", calc: "BonusAPAuto" },
+  }],
+  orianna: [{ kind: "onHit", name: "Remontoir", type: "magic", damage: { slot: "P", calc: "TotalDamage" } }],
+  rell: [{ kind: "onHit", name: "Brise-armure", type: "magic", damage: { slot: "P", calc: "OnHitDamage" } }],
+  riven: [{
+    kind: "afterAbility",
+    name: "Lame runique",
+    type: "physical",
+    damage: { slot: "P", calc: "TotalDamage" },
+  }],
+
   fiora: [
     {
       // Danse du duelliste : un point vital = % des PV max de la cible en dégâts
@@ -96,6 +174,7 @@ export const MECHANICS: Record<string, Mechanic<GameRef>[]> = {
       baseAttackSpeed: { slot: "R", character: "ivernminion", field: "attackSpeedModifiable" },
       bonusAttackSpeed: { slot: "R", value: "DaisyAS", times: 0.01 },
       hp: { slot: "R", calc: "TotalDaisyHP" },
+      resists: { slot: "R", calc: "TotalBonusResists" },
       duration: { slot: "R", value: "DaisyDuration" },
       slamEvery: 3,
       slamType: "magic",

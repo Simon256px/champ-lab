@@ -43,5 +43,9 @@ export function evalFormula(f: Formula, ctx: FormulaContext): number {
       return f.of.reduce((a, g) => a + evalFormula(g, ctx), 0);
     case "mul":
       return f.of.reduce((a, g) => a * evalFormula(g, ctx), 1);
+    case "clamp":
+      return Math.max(f.min, Math.min(f.max, evalFormula(f.f, ctx)));
+    case "byLevel":
+      return f.v[Math.max(1, Math.min(ctx.level, f.v.length)) - 1];
   }
 }

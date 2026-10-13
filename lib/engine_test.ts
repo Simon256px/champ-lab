@@ -91,6 +91,8 @@ Deno.test("mitigation: l'armure réduit les dégâts physiques", () => {
     critDamage: 1.75,
     tenacity: 0,
     healShieldPower: 0,
+    maxMana: 0,
+    bonusMana: 0,
     abilityHaste: 0,
     itemAttackSpeed: 0,
     bonusAttackSpeed: 0,
@@ -712,11 +714,49 @@ Deno.test("portée : le camp à moins de portée perd le temps de combler l'éca
     (CHAMPIONS.caitlyn.base.attackRange! - CHAMPIONS.garen.base.attackRange!) /
       CHAMPIONS.garen.base.moveSpeed!,
   );
-  assertAlmostEquals(approachTime(cait, garen), expected);
-  assertEquals(approachTime(garen, cait), 0, "le plus long à portée n'a rien à combler");
-  const res = computeDuel(cait, garen, ITEMS, RUNES, { window: 6 });
+  // Sans ralentissement ni enracinement appris (Q seul), le rapprochement est la marche simple.
+  const qOnly = side("caitlyn", [], { ranks: { Q: 5, W: 0, E: 0, R: 0 } });
+  assertAlmostEquals(approachTime(qOnly, garen, stats11("caitlyn")), expected);
+  assertEquals(approachTime(garen, cait, stats11("garen")), 0, "le plus long à portée n'a rien à combler");
+  const res = computeDuel(qOnly, garen, ITEMS, RUNES, { window: 6 });
   assertAlmostEquals(res.approachB, expected);
   assertEquals(computeDuel(cait, garen, ITEMS, RUNES).approachB, 0, "burst : pas de rapprochement");
+});
+
+Deno.test("portée : enracinement et ralentissement du camp à portée allongent l'approche", () => {
+  const garen = side("garen", []);
+  const plain = approachTime(
+    side("caitlyn", [], { ranks: { Q: 5, W: 0, E: 0, R: 0 } }),
+    garen,
+    stats11("caitlyn"),
+  );
+  const full = approachTime(side("caitlyn", []), garen, stats11("caitlyn"));
+  assert(CHAMPIONS.caitlyn.abilities.W.root, "le piège de Caitlyn enracine");
+  assert(full > plain, "piège et filet : Garen met plus longtemps à la rejoindre");
+  const blind = approachTime(side("caitlyn", []), garen, stats11("caitlyn"), 0);
+  assert(blind < full, "sorts à viser ratés : l'approche raccourcit");
+});
+
+Deno.test("Répercussion : résistances temporaires après un contrôle", () => {
+  const leona = side("leona", [], { keystoneId: "aftershock" });
+  const darius = side("darius", ["stridebreaker"]);
+  const res = computeDuel(darius, leona, ITEMS, RUNES, { window: 6 });
+  assert(res.bToA.resistBuff, "Leona étourdit : Répercussion s'active");
+  assert(res.blockedByB > 0, "les résistances réduisent les dégâts reçus");
+});
+
+Deno.test("familier : l'adversaire tue Daisy d'abord quand ça l'arrange", () => {
+  const ivern = side("ivern", ["moonstonerenewer", "ionianbootsoflucidity"]);
+  const brawler = side("darius", ["stridebreaker", "blackcleaver"], { level: 11 });
+  const res = computeDuel(ivern, brawler, ITEMS, RUNES, { allIn: true });
+  const ignore = computeDuel(ivern, brawler, ITEMS, RUNES, { window: res.window });
+  assert(res.killPctB >= 0, "le duel se calcule");
+  if (res.petKillA !== undefined) {
+    assert(res.petKillA > 0 && res.petKillA < res.window!, "Daisy meurt pendant le combat");
+    const daisy = res.aToB.lines.find((l) => l.name.startsWith("Daisy — attaques"));
+    const daisyIgnored = ignore.aToB.lines.find((l) => l.name.startsWith("Daisy — attaques"));
+    assert(!daisy || !daisyIgnored || daisy.hits! <= daisyIgnored.hits!, "Daisy frappe moins si elle meurt");
+  }
 });
 
 Deno.test("portée : un dash ou une attraction annule le rapprochement", () => {

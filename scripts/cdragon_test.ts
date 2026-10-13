@@ -34,6 +34,8 @@ const stats = {
   critChance: 0,
   critDamage: 1.75,
   lethality: 0,
+  maxMana: 0,
+  bonusMana: 0,
 };
 
 // Forme réelle du Q de Darius (16.20) : BaseDamage + AD total × TotalADRatio × 0,01.

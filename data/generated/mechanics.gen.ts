@@ -8,6 +8,417 @@
 import type { Mechanic } from "../types.ts";
 
 export const GENERATED_MECHANICS: Record<string, Mechanic[]> = {
+  "akshan": [
+    {
+      "kind": "onHit",
+      "name": "Second tir",
+      "type": "physical",
+      "damage": {
+        "op": "stat",
+        "stat": "ad",
+        "f": {
+          "op": "num",
+          "n": 0.5,
+        },
+      },
+    },
+    {
+      "kind": "onHit",
+      "name": "Sale combat",
+      "type": "magic",
+      "every": {
+        "op": "num",
+        "n": 3,
+      },
+      "damage": {
+        "op": "sum",
+        "of": [
+          {
+            "op": "steps",
+            "l1": 15,
+            "perLevel": 0,
+            "bp": [
+              {
+                "level": 6,
+                "add": 25,
+                "perLevel": 0,
+              },
+              {
+                "level": 11,
+                "add": 40,
+                "perLevel": 0,
+              },
+              {
+                "level": 16,
+                "add": 70,
+                "perLevel": 0,
+              },
+            ],
+          },
+          {
+            "op": "stat",
+            "stat": "ap",
+            "f": {
+              "op": "num",
+              "n": 0.6,
+            },
+          },
+        ],
+      },
+    },
+  ],
+  "caitlyn": [
+    {
+      "kind": "onHit",
+      "name": "Headshot",
+      "type": "physical",
+      "every": {
+        "op": "sum",
+        "of": [
+          {
+            "op": "num",
+            "n": 5,
+          },
+          {
+            "op": "num",
+            "n": 1,
+          },
+        ],
+      },
+      "damage": {
+        "op": "stat",
+        "stat": "ad",
+        "f": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "steps",
+              "l1": 0.6,
+              "perLevel": 0,
+              "bp": [
+                {
+                  "level": 7,
+                  "add": 0.2,
+                  "perLevel": 0,
+                },
+                {
+                  "level": 13,
+                  "add": 0.2,
+                  "perLevel": 0,
+                },
+              ],
+            },
+            {
+              "op": "mul",
+              "of": [
+                {
+                  "op": "stat",
+                  "stat": "critChance",
+                  "f": {
+                    "op": "num",
+                    "n": 1,
+                  },
+                },
+                {
+                  "op": "sum",
+                  "of": [
+                    {
+                      "op": "stat",
+                      "stat": "critDamage",
+                      "f": {
+                        "op": "num",
+                        "n": 1,
+                      },
+                    },
+                    {
+                      "op": "num",
+                      "n": -1,
+                    },
+                  ],
+                },
+              ],
+            },
+          ],
+        },
+      },
+    },
+  ],
+  "diana": [
+    {
+      "kind": "onHit",
+      "name": "Lame lunaire",
+      "type": "magic",
+      "every": {
+        "op": "num",
+        "n": 3,
+      },
+      "damage": {
+        "op": "sum",
+        "of": [
+          {
+            "op": "steps",
+            "l1": 20,
+            "perLevel": 5,
+            "bp": [
+              {
+                "level": 7,
+                "add": 0,
+                "perLevel": 10,
+              },
+              {
+                "level": 12,
+                "add": 0,
+                "perLevel": 15,
+              },
+              {
+                "level": 17,
+                "add": 0,
+                "perLevel": 25,
+              },
+            ],
+          },
+          {
+            "op": "stat",
+            "stat": "ap",
+            "f": {
+              "op": "num",
+              "n": 0.5,
+            },
+          },
+        ],
+      },
+    },
+  ],
+  "gwen": [
+    {
+      "kind": "onHit",
+      "name": "Mille coupures",
+      "type": "magic",
+      "damage": {
+        "op": "mul",
+        "of": [
+          {
+            "op": "sum",
+            "of": [
+              {
+                "op": "num",
+                "n": 1,
+              },
+              {
+                "op": "stat",
+                "stat": "ap",
+                "f": {
+                  "op": "num",
+                  "n": 0.006,
+                },
+              },
+            ],
+          },
+          {
+            "op": "num",
+            "n": 0.01,
+          },
+        ],
+      },
+      "scale": "targetMaxHp",
+    },
+  ],
+  "kaisa": [
+    {
+      "kind": "onHit",
+      "name": "Plasma (base)",
+      "type": "magic",
+      "damage": {
+        "op": "sum",
+        "of": [
+          {
+            "op": "lerp",
+            "from": 4,
+            "to": 30,
+          },
+          {
+            "op": "stat",
+            "stat": "ap",
+            "f": {
+              "op": "num",
+              "n": 0.12,
+            },
+          },
+        ],
+      },
+    },
+  ],
+  "locke": [
+    {
+      "kind": "onHit",
+      "name": "Dégâts à l'impact",
+      "type": "magic",
+      "damage": {
+        "op": "sum",
+        "of": [
+          {
+            "op": "lerp",
+            "from": 5,
+            "to": 40,
+          },
+          {
+            "op": "stat",
+            "stat": "ap",
+            "f": {
+              "op": "num",
+              "n": 0.1,
+            },
+          },
+        ],
+      },
+    },
+  ],
+  "lux": [
+    {
+      "kind": "afterAbility",
+      "name": "Illumination",
+      "type": "magic",
+      "damage": {
+        "op": "sum",
+        "of": [
+          {
+            "op": "byLevel",
+            "v": [
+              20,
+              30,
+              40,
+              50,
+              60,
+              70,
+              80,
+              90,
+              100,
+              110,
+              120,
+              130,
+              140,
+              150,
+              160,
+              170,
+              180,
+              190,
+            ],
+          },
+          {
+            "op": "stat",
+            "stat": "ap",
+            "f": {
+              "op": "num",
+              "n": 0.35,
+            },
+          },
+        ],
+      },
+    },
+  ],
+  "masteryi": [
+    {
+      "kind": "onHit",
+      "name": "Double frappe",
+      "type": "physical",
+      "every": {
+        "op": "num",
+        "n": 4,
+      },
+      "damage": {
+        "op": "stat",
+        "stat": "ad",
+        "f": {
+          "op": "num",
+          "n": 0.5,
+        },
+      },
+    },
+  ],
+  "mordekaiser": [
+    {
+      "kind": "onHit",
+      "name": "Ténèbres",
+      "type": "magic",
+      "damage": {
+        "op": "stat",
+        "stat": "ap",
+        "f": {
+          "op": "num",
+          "n": 0.4,
+        },
+      },
+    },
+  ],
+  "orianna": [
+    {
+      "kind": "onHit",
+      "name": "Remontoir",
+      "type": "magic",
+      "damage": {
+        "op": "sum",
+        "of": [
+          {
+            "op": "lerp",
+            "from": 10,
+            "to": 50,
+          },
+          {
+            "op": "stat",
+            "stat": "ap",
+            "f": {
+              "op": "num",
+              "n": 0.15,
+            },
+          },
+        ],
+      },
+    },
+  ],
+  "rell": [
+    {
+      "kind": "onHit",
+      "name": "Brise-armure",
+      "type": "magic",
+      "damage": {
+        "op": "sum",
+        "of": [
+          {
+            "op": "stat",
+            "stat": "armor",
+            "f": {
+              "op": "num",
+              "n": 0.05,
+            },
+          },
+          {
+            "op": "stat",
+            "stat": "mr",
+            "f": {
+              "op": "num",
+              "n": 0.05,
+            },
+          },
+        ],
+      },
+    },
+  ],
+  "riven": [
+    {
+      "kind": "afterAbility",
+      "name": "Lame runique",
+      "type": "physical",
+      "damage": {
+        "op": "stat",
+        "stat": "ad",
+        "f": {
+          "op": "lerp",
+          "from": 0.3,
+          "to": 0.45,
+        },
+      },
+    },
+  ],
   "fiora": [
     {
       "kind": "periodic",
@@ -217,6 +628,18 @@ export const GENERATED_MECHANICS: Record<string, Mechanic[]> = {
               "op": "num",
               "n": 0.5,
             },
+          },
+        ],
+      },
+      "resists": {
+        "op": "steps",
+        "l1": 30,
+        "perLevel": 0,
+        "bp": [
+          {
+            "level": 7,
+            "add": 0,
+            "perLevel": 5,
           },
         ],
       },
