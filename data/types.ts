@@ -111,6 +111,8 @@ export interface Ability {
    * (enracinement) n'en font pas partie : le duel est sans déplacement.
    */
   cc?: Formula;
+  /** contrôle insensible à la ténacité (projection, suppression) */
+  ccIgnoresTenacity?: boolean;
   /** sort à viser (esquivable) d'après son type de ciblage dans les fichiers du jeu */
   aimed?: boolean;
   /** le sort rapproche son lanceur (dash, saut, téléportation), d'après l'infobulle */

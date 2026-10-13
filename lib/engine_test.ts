@@ -8,6 +8,7 @@
 import { assert, assertAlmostEquals, assertEquals } from "@std/assert";
 import {
   abilityRaw,
+  approachTime,
   ATTACK_SPEED_CAP,
   attackSpeedOf,
   autoCount,
@@ -23,6 +24,7 @@ import {
   effectiveHp,
   formulaAt,
   growth,
+  MAX_APPROACH,
   rankOf,
   ratiosAt,
   stackPercent,
@@ -697,4 +699,49 @@ Deno.test("objets : chaque effet résolu s'évalue sans planter", () => {
     const r = computeCombo(input("darius", [it.id], { window: 6 }));
     assert(Number.isFinite(r.total) && r.total > 0, `${it.id}`);
   }
+});
+
+// --- Portée, ténacité, précision ---
+
+Deno.test("portée : le camp à moins de portée perd le temps de combler l'écart", () => {
+  const cait = side("caitlyn", []);
+  const garen = side("garen", []);
+  const expected = Math.min(
+    MAX_APPROACH,
+    (CHAMPIONS.caitlyn.base.attackRange! - CHAMPIONS.garen.base.attackRange!) /
+      CHAMPIONS.garen.base.moveSpeed!,
+  );
+  assertAlmostEquals(approachTime(cait, garen), expected);
+  assertEquals(approachTime(garen, cait), 0, "le plus long à portée n'a rien à combler");
+  const res = computeDuel(cait, garen, ITEMS, RUNES, { window: 6 });
+  assertAlmostEquals(res.approachB, expected);
+  assertEquals(computeDuel(cait, garen, ITEMS, RUNES).approachB, 0, "burst : pas de rapprochement");
+});
+
+Deno.test("portée : un dash ou une attraction annule le rapprochement", () => {
+  assert(CHAMPIONS.darius.abilities.E.mobility, "Darius E attire sa cible");
+  assertEquals(approachTime(side("caitlyn", []), side("darius", [], { level: 3 })), 0);
+  assertEquals(approachTime(side("caitlyn", []), side("zed", [])), 0);
+  assert(!CHAMPIONS.ahri.abilities.Q.mobility, "« pulls back her orb » n'est pas une attraction");
+});
+
+Deno.test("ténacité : réduit les contrôles subis, pas les projections", () => {
+  assert(CHAMPIONS.malphite.abilities.R.ccIgnoresTenacity, "Malphite R est une projection");
+  assert(!CHAMPIONS.ahri.abilities.E.ccIgnoresTenacity, "le charme d'Ahri se réduit");
+  const vs = (attacker: string, items: string[]) =>
+    computeDuel(side(attacker, []), side("darius", items), ITEMS, RUNES, { window: 6 }).ccOnB;
+  assert(vs("ahri", ["mercurystreads"]) < vs("ahri", []), "Mercure réduit le charme");
+  assertAlmostEquals(vs("malphite", ["mercurystreads"]), vs("malphite", []), 1e-9);
+});
+
+Deno.test("précision : seuls les sorts à viser sont pondérés", () => {
+  const at = (accuracy: number) => computeCombo(input("ahri", [], { window: 6, accuracy }));
+  const full = at(1);
+  const half = at(0.5);
+  for (const l of full.lines) {
+    const other = half.lines.find((x) => x.key === l.key && x.name === l.name)!;
+    const aimed = ["Q", "W", "E", "R"].includes(l.key) && CHAMPIONS.ahri.abilities[l.key as "Q"].aimed;
+    assertAlmostEquals(other.damage, aimed ? l.damage / 2 : l.damage, 1e-6, l.name);
+  }
+  assertAlmostEquals(half.ccDuration, full.ccDuration / 2, 1e-9, "le charme d'Ahri E se vise");
 });

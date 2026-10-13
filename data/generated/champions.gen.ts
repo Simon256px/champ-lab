@@ -133,6 +133,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           12,
         ],
         "aimed": true,
+        "mobility": true,
         "formula": {
           "op": "sum",
           "of": [
@@ -845,6 +846,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           "op": "num",
           "n": 1,
         },
+        "ccIgnoresTenacity": true,
         "formula": {
           "op": "sum",
           "of": [
@@ -1168,6 +1170,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           "op": "num",
           "n": 0.75,
         },
+        "ccIgnoresTenacity": true,
         "formula": {
           "op": "sum",
           "of": [
@@ -3240,6 +3243,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           16,
         ],
         "aimed": true,
+        "mobility": true,
         "formula": {
           "op": "sum",
           "of": [
@@ -3690,6 +3694,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
             2,
           ],
         },
+        "ccIgnoresTenacity": true,
         "formula": {
           "op": "sum",
           "of": [
@@ -3912,6 +3917,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           "op": "num",
           "n": 0.5,
         },
+        "ccIgnoresTenacity": true,
         "formula": {
           "op": "sum",
           "of": [
@@ -4404,6 +4410,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           "op": "num",
           "n": 0.75,
         },
+        "ccIgnoresTenacity": true,
       },
       "R": {
         "name": "The Hextech Ultimatum",
@@ -5177,6 +5184,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           16,
         ],
         "aimed": true,
+        "mobility": true,
       },
       "R": {
         "name": "Noxian Guillotine",
@@ -5470,6 +5478,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           90,
           80,
         ],
+        "mobility": true,
         "formula": {
           "op": "sum",
           "of": [
@@ -5801,6 +5810,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           "op": "num",
           "n": 0.5,
         },
+        "ccIgnoresTenacity": true,
         "formula": {
           "op": "sum",
           "of": [
@@ -7460,6 +7470,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           "op": "num",
           "n": 0.75,
         },
+        "ccIgnoresTenacity": true,
         "formula": {
           "op": "sum",
           "of": [
@@ -10100,6 +10111,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           "op": "num",
           "n": 0.5,
         },
+        "ccIgnoresTenacity": true,
       },
     },
     "shelf": [
@@ -10707,6 +10719,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           "op": "num",
           "n": 0.35,
         },
+        "ccIgnoresTenacity": true,
       },
       "R": {
         "name": "Transform Mercury Cannon",
@@ -11249,6 +11262,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           3.5,
         ],
         "aimed": true,
+        "mobility": true,
         "cc": {
           "op": "num",
           "n": 1,
@@ -11312,6 +11326,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           "op": "num",
           "n": 0.5,
         },
+        "ccIgnoresTenacity": true,
       },
       "E": {
         "name": "Footwork",
@@ -11821,6 +11836,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
             2,
           ],
         },
+        "ccIgnoresTenacity": true,
       },
     },
     "shelf": [
@@ -13029,6 +13045,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           "op": "num",
           "n": 1,
         },
+        "ccIgnoresTenacity": true,
         "formula": {
           "op": "sum",
           "of": [
@@ -13838,6 +13855,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           7,
         ],
         "aimed": true,
+        "mobility": true,
         "formula": {
           "op": "sum",
           "of": [
@@ -15929,6 +15947,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           "op": "num",
           "n": 1,
         },
+        "ccIgnoresTenacity": true,
       },
     },
     "shelf": [
@@ -16365,6 +16384,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           "op": "num",
           "n": 1.5,
         },
+        "ccIgnoresTenacity": true,
         "formula": {
           "op": "sum",
           "of": [
@@ -16543,6 +16563,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           "op": "num",
           "n": 2.5,
         },
+        "ccIgnoresTenacity": true,
       },
     },
     "shelf": [
@@ -18338,6 +18359,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           "op": "num",
           "n": 0.5,
         },
+        "ccIgnoresTenacity": true,
         "formula": {
           "op": "sum",
           "of": [
@@ -19403,6 +19425,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           95,
           80,
         ],
+        "mobility": true,
       },
     },
     "shelf": [
@@ -20766,6 +20789,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           "op": "num",
           "n": 0.5,
         },
+        "ccIgnoresTenacity": true,
         "formula": {
           "op": "sum",
           "of": [
@@ -20857,6 +20881,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           "op": "num",
           "n": 2,
         },
+        "ccIgnoresTenacity": true,
         "formula": {
           "op": "mul",
           "of": [
@@ -20964,6 +20989,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           8,
         ],
         "aimed": true,
+        "mobility": true,
         "formula": {
           "op": "sum",
           "of": [
@@ -21632,6 +21658,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           "op": "num",
           "n": 1,
         },
+        "ccIgnoresTenacity": true,
         "formula": {
           "op": "sum",
           "of": [
@@ -21891,6 +21918,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           "op": "num",
           "n": 0.75,
         },
+        "ccIgnoresTenacity": true,
         "formula": {
           "op": "sum",
           "of": [
@@ -22013,6 +22041,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           "op": "num",
           "n": 1,
         },
+        "ccIgnoresTenacity": true,
       },
       "E": {
         "name": "Furious Bite",
@@ -22276,6 +22305,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           100,
           80,
         ],
+        "mobility": true,
       },
     },
     "shelf": [
@@ -22353,6 +22383,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           16,
         ],
         "aimed": true,
+        "mobility": true,
         "formula": {
           "op": "sum",
           "of": [
@@ -23788,6 +23819,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           "op": "num",
           "n": 0.5,
         },
+        "ccIgnoresTenacity": true,
       },
       "W": {
         "name": "Winter's Wrath",
@@ -27181,6 +27213,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           "op": "num",
           "n": 0.5,
         },
+        "ccIgnoresTenacity": true,
       },
       "R": {
         "name": "Hijack",
@@ -27567,6 +27600,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           "op": "num",
           "n": 1,
         },
+        "ccIgnoresTenacity": true,
         "formula": {
           "op": "sum",
           "of": [
@@ -28468,6 +28502,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           9,
         ],
         "aimed": true,
+        "mobility": true,
         "formula": {
           "op": "sum",
           "of": [
@@ -28542,6 +28577,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           10,
         ],
         "aimed": true,
+        "mobility": true,
         "formula": {
           "op": "sum",
           "of": [
@@ -31250,6 +31286,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           "op": "num",
           "n": 0.75,
         },
+        "ccIgnoresTenacity": true,
         "formula": {
           "op": "sum",
           "of": [
@@ -32481,6 +32518,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           "op": "num",
           "n": 0.6,
         },
+        "ccIgnoresTenacity": true,
       },
     },
     "shelf": [
@@ -32909,6 +32947,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           "op": "num",
           "n": 0.75,
         },
+        "ccIgnoresTenacity": true,
       },
       "W": {
         "name": "Wind Becomes Lightning",
@@ -33194,6 +33233,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           "op": "num",
           "n": 1,
         },
+        "ccIgnoresTenacity": true,
         "formula": {
           "op": "sum",
           "of": [
@@ -33297,6 +33337,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           "op": "num",
           "n": 0.75,
         },
+        "ccIgnoresTenacity": true,
         "formula": {
           "op": "sum",
           "of": [
@@ -33392,6 +33433,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           "op": "num",
           "n": 0.75,
         },
+        "ccIgnoresTenacity": true,
       },
     },
     "shelf": [
@@ -34062,6 +34104,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           "op": "num",
           "n": 0.75,
         },
+        "ccIgnoresTenacity": true,
       },
       "W": {
         "name": "Dreaded Return",
@@ -34102,6 +34145,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           12,
         ],
         "aimed": true,
+        "mobility": true,
       },
       "E": {
         "name": "Aureate Rush",
@@ -34357,6 +34401,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           "op": "num",
           "n": 1,
         },
+        "ccIgnoresTenacity": true,
         "formula": {
           "op": "sum",
           "of": [
@@ -35544,6 +35589,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           "op": "num",
           "n": 1,
         },
+        "ccIgnoresTenacity": true,
         "formula": {
           "op": "sum",
           "of": [

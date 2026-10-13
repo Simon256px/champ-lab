@@ -147,12 +147,17 @@ roi déchu, Nashor, Fin de l'esprit), Lame enchantée (Brillance, Trinité, Lich
 déclenchés par un sort (Luden), actifs (Brise-pas), réduction d'armure (Fendoir noir), brûlure (Liandry).
 Variantes mêlée / distance du jeu respectées ; dégâts critiques (IE) et ténacité lus aussi.
 
-Interactions : les contrôles lus dans les fichiers du jeu (118 sorts) font perdre ce temps d'action à la cible
-; la parade de Fiora bloque le plus gros coup et le plus long contrôle adverses ; l'esquive de Jax annule les
-autos pendant sa durée.
+Interactions : les contrôles lus dans les fichiers du jeu font perdre ce temps d'action à la cible ; la
+ténacité (objets) les réduit, sauf projections et suppressions. La parade de Fiora bloque le plus gros coup et
+le plus long contrôle adverses ; l'esquive de Jax annule les autos pendant sa durée.
 
-Indicateur théorique : pas d'effets d'objets, de ténacité, de portée, de déplacements ni d'animations. Autos
-et sorts s'enchaînent sans temps mort : c'est un plafond de dégâts.
+Portée et déplacement : en trade / all-in, le camp qui a moins de portée perd le temps de combler l'écart
+(différence de portée / vitesse de déplacement, plafonné à 2 s), sauf s'il a appris un sort de mobilité (dash,
+saut, téléportation ou attraction, d'après l'infobulle). Précision : les sorts à viser (type de ciblage du
+jeu) voient leurs dégâts et contrôles pondérés par un taux de réussite réglable (100 % par défaut).
+
+Indicateur théorique : pas de kite (reculer en tirant), ni de runes hors Électrocution et Conquérant, ni
+d'animations. Autos et sorts s'enchaînent sans temps mort : c'est un plafond de dégâts.
 
 ## Ajouter / affiner un champion
 

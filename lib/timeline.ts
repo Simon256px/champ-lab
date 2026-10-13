@@ -171,6 +171,9 @@ export interface MatchupPoint {
   /** secondes de contrôle subies par chaque camp */
   ccOnA: number;
   ccOnB: number;
+  /** secondes perdues à combler l'écart de portée */
+  approachA: number;
+  approachB: number;
   /** mode trade : secondes pour que A tue B (Infinity = pas de kill) */
   ttkA?: number;
   /** mode trade : secondes pour que B tue A */
@@ -186,6 +189,8 @@ export interface TimelineOptions {
   window?: number;
   /** all-in jusqu'au premier kill (prioritaire sur window) */
   allIn?: boolean;
+  /** part des sorts à viser qui touchent (0..1, défaut 1) */
+  accuracy?: number;
 }
 
 export function matchupTimeline(
@@ -206,7 +211,7 @@ export function matchupTimeline(
       { ...b, level: sb.level, itemIds: sb.items, runeOn: b.runeOn ?? true },
       items,
       runes,
-      { window: opts.window, allIn: opts.allIn },
+      { window: opts.window, allIn: opts.allIn, accuracy: opts.accuracy },
     );
     points.push({
       minute,
@@ -221,6 +226,8 @@ export function matchupTimeline(
       sustainB: duel.sustainB,
       ccOnA: duel.ccOnA,
       ccOnB: duel.ccOnB,
+      approachA: duel.approachA,
+      approachB: duel.approachB,
       ...(duel.ttkA !== undefined ? { ttkA: duel.ttkA, ttkB: duel.ttkB } : {}),
     });
   }

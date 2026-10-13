@@ -50,6 +50,7 @@ import {
   candidateCalcs,
   ccDuration,
   type CcKind,
+  ccPick,
   cdragonVersion,
   cooldowns,
   fetchChampionBin,
@@ -1074,6 +1075,9 @@ async function main() {
       if (all && !cc) conditional.push(`${c.id} ${key}`);
       if (!cc) continue;
       ability.cc = cc;
+      // Projections et suppressions ignorent la ténacité.
+      const kind = ccPick(slots[key], ability.maxRank, allowed)?.kind;
+      if (kind === "knock" || kind === "suppress") ability.ccIgnoresTenacity = true;
       ccCount++;
     }
   }
