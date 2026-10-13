@@ -511,3 +511,47 @@ Deno.test("soin en % des PV manquants : Darius Q soigne sur une fenêtre, pas en
   const own = { shield: 0, heal: 0, missingHpHealRatio: trade.missingHpHealRatio };
   assert(effectiveHp(1000, own, 800) > 1000);
 });
+
+// --- Sorts : nombres tirés des fichiers du jeu quand ils concordent avec Meraki ---
+
+Deno.test("fichiers du jeu : une large part du roster a ses dégâts au patch près", () => {
+  const all = Object.values(CHAMPIONS).flatMap((c) => Object.values(c.abilities));
+  const fromGame = all.filter((a) => a.formula).length;
+  assert(fromGame > 200, `seulement ${fromGame} sorts avec une formule du jeu`);
+});
+
+Deno.test("fichiers du jeu : la formule l'emporte sur base + ratios Meraki", () => {
+  const darius = CHAMPIONS.darius;
+  const fake = {
+    ...darius,
+    abilities: { ...darius.abilities, Q: { ...darius.abilities.Q, formula: { op: "num" as const, n: 999 } } },
+  };
+  assertEquals(abilityRaw(fake, "Q", 11, stats11("darius")), 999);
+});
+
+Deno.test("fichiers du jeu : une correction manuelle (Ahri Q) n'est pas écrasée", () => {
+  assertEquals(CHAMPIONS.ahri.abilities.Q.formula, undefined);
+  assertEquals(CHAMPIONS.ahri.abilities.Q.base[0], 80);
+});
+
+Deno.test("fichiers du jeu : le bouclier de Garen W suit la formule du jeu", () => {
+  const w = CHAMPIONS.garen.abilities.W;
+  assert(w.shieldFormula, "le bouclier de Garen W doit venir des fichiers du jeu");
+  const res = computeCombo(input("garen", [], { ranks: { Q: 0, W: 3, E: 0, R: 0 } }));
+  assertAlmostEquals(res.shield, formulaAt(w.shieldFormula, 3, 11, res.stats), 0.001);
+});
+
+Deno.test("fichiers du jeu : chaque formule de sort s'évalue en un nombre fini et positif", () => {
+  for (const c of Object.values(CHAMPIONS)) {
+    const s = stats11(c.id);
+    for (const [key, a] of Object.entries(c.abilities)) {
+      for (const f of [a.formula, a.shieldFormula, a.healFormula]) {
+        if (!f) continue;
+        for (let rank = 1; rank <= a.maxRank; rank++) {
+          const v = formulaAt(f, rank, 11, s);
+          assert(Number.isFinite(v) && v >= 0, `${c.id} ${key} rang ${rank} : ${v}`);
+        }
+      }
+    }
+  }
+});

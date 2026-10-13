@@ -193,6 +193,34 @@ export function toFormula(spell: Json, calcName: string, maxRank: number): Formu
   return calc(calcName);
 }
 
+/**
+ * Calculs candidats d'un sort pour un effet (dégâts, bouclier, soin), du plus
+ * probable au moins probable. On écarte les variantes : dégâts aux monstres ou
+ * sbires, minimum / maximum, bonus, par seconde, par stack, infobulles…
+ */
+export function candidateCalcs(spell: Json, effect: "damage" | "shield" | "heal"): string[] {
+  const names = Object.keys(spell?.mSpellCalculations ?? {});
+  const match = effect === "damage" ? /damage/i : effect === "shield" ? /shield/i : /heal/i;
+  const variant =
+    /(monster|minion|tooltip|minimum|^min|maximum|^max|bonus|persecond|second|tick|perstack|stack|reduction|amp|crit|empower|percent|cap|dps|tower|turret|pet|clone|ward)/i;
+  const preferred = effect === "damage"
+    ? ["TotalDamage", "Damage", "DamageCalc", "CalculatedDamage", "FinalDamage", "TotalDamageCalc"]
+    : effect === "shield"
+    ? ["TotalShield", "ShieldAmount", "Shield", "ShieldStrength", "TotalShieldAmount"]
+    : ["TotalHeal", "HealAmount", "Heal", "TotalHealing", "Healing"];
+  const ok = names.filter((n) => match.test(n) && !variant.test(n));
+  const rank = (n: string) => {
+    const i = preferred.indexOf(n);
+    return i >= 0 ? i : preferred.length;
+  };
+  return ok.sort((a, b) => rank(a) - rank(b) || a.length - b.length);
+}
+
+/** Vrai si le calcul est affiché en % (fraction de quelque chose : PV de la cible…) — sens inconnu. */
+export function isPercentCalc(spell: Json, calcName: string): boolean {
+  return !!spell?.mSpellCalculations?.[calcName]?.mDisplayAsPercent;
+}
+
 /** Résout une GameRef sur les sorts d'un champion. Null si introuvable ou non convertible. */
 export function resolveRef(slots: SpellSlots, ref: GameRef, maxRank: number): Formula | null {
   const spell = slots[ref.slot];

@@ -164,8 +164,11 @@ Le pipeline (`scripts/fetch-data.ts`, lancé par `deno task data`) combine trois
 - **[Meraki / lolstaticdata](https://github.com/meraki-analytics/lolstaticdata)** — stats de base, ratios de
   sorts (AP / AD / AD bonus) et stats plates d'objets, parsés du wiki. Peut avoir plusieurs patchs de retard.
 - **[CommunityDragon](https://raw.communitydragon.org/)** — les fichiers du jeu convertis en JSON, au patch
-  près (`scripts/cdragon.ts`). Font foi pour les **cooldowns** et les **passifs** de `data/mechanics.ts` :
-  leurs formules sont converties en `Formula` et évaluées par le moteur (`lib/formula.ts`).
+  près (`scripts/cdragon.ts`). Font foi pour les **cooldowns**, les **passifs** de `data/mechanics.ts`, et les
+  **nombres des sorts** (dégâts, boucliers, soins) quand la formule du jeu concorde avec Meraki à ×/÷ 1,3
+  près. Meraki garde la structure (type de dégâts, effets présents) ; au-delà de l'écart toléré, on soupçonne
+  un autre calcul (deux passages, charge max, par seconde…) et on garde Meraki en le signalant. Les formules
+  sont converties en `Formula` et évaluées par le moteur (`lib/formula.ts`).
 
 Les objets sont filtrés sur la **Faille de l'invocateur** (classé) via Data Dragon (`maps["11"]`) : objets
 complets et bottes (y compris améliorées), pas de composants ni d'objets ARAM/Arena. Les champions non encore

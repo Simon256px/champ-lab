@@ -39,15 +39,20 @@ import type {
   ItemTier,
   Mechanic,
   ScaledValue,
+  StatRef,
 } from "../data/types.ts";
 import { MECHANICS } from "../data/mechanics.ts";
+import { evalFormula } from "../lib/formula.ts";
 import {
+  candidateCalcs,
   cdragonVersion,
   cooldowns,
   fetchChampionBin,
+  isPercentCalc,
   resolveRef,
   type SpellSlots,
   spellSlots,
+  toFormula,
 } from "./cdragon.ts";
 import {
   CHAMPION_OVERRIDES,
@@ -576,6 +581,156 @@ ${body}
  * référence est introuvable (sort renommé, calcul non convertible) est écartée
  * et signalée — on n'invente pas de valeur.
  */
+/** Écart maximal toléré entre Meraki et le jeu pour adopter la formule du jeu (×/÷). */
+const MAX_GAP = 1.3;
+
+/** Stats nominales (niveau ~11, build moyen) pour comparer deux formules d'un même sort. */
+const NOMINAL: Record<StatRef, number> = {
+  ap: 150,
+  ad: 180,
+  baseAd: 120,
+  bonusAd: 60,
+  maxHp: 2000,
+  baseHp: 1600,
+  bonusHp: 400,
+  armor: 80,
+  bonusArmor: 30,
+  mr: 60,
+  bonusMr: 20,
+};
+const META_STATS: Record<keyof AbilityRatios, StatRef | null> = {
+  ap: "ap",
+  totalAd: "ad",
+  bonusAd: "bonusAd",
+  bonusHp: "bonusHp",
+  maxHp: "maxHp",
+  targetMaxHp: null,
+  targetMissingHp: null,
+  targetCurrentHp: null,
+};
+
+/** Valeur Meraki d'un effet au rang donné, avec les stats nominales. Null si elle dépend de la cible. */
+function merakiAt(v: ScaledValue, rank: number): number | null {
+  let total = v.base[Math.min(rank, v.base.length) - 1] ?? 0;
+  for (const [k, value] of Object.entries(v.ratios) as [keyof AbilityRatios, number][]) {
+    const stat = META_STATS[k];
+    if (!stat) return null; // % PV de la cible : sens absent des formules du jeu
+    const r = v.rankRatios?.[k]?.[Math.min(rank, v.rankRatios[k]!.length) - 1] ?? value;
+    total += r * NOMINAL[stat];
+  }
+  return total;
+}
+
+/** Écart relatif le plus fort entre Meraki et le jeu, tous rangs confondus (0 = identique). */
+function worstGap(meraki: ScaledValue, game: Formula, maxRank: number): number | null {
+  let worst = 0;
+  for (let rank = 1; rank <= maxRank; rank++) {
+    const m = merakiAt(meraki, rank);
+    if (m === null) return null;
+    const g = evalFormula(game, { rank, level: 11, stats: NOMINAL });
+    if (m <= 0 && g <= 0) continue;
+    if (m <= 0 || g <= 0) return Infinity;
+    worst = Math.max(worst, Math.abs(Math.log(g / m)));
+  }
+  return worst;
+}
+
+/**
+ * Formule du jeu d'un effet si elle concorde avec Meraki : même ordre de grandeur
+ * à tous les rangs (×/÷ 1,3 au plus). Au-delà, on soupçonne un autre calcul
+ * (variante, deux passages, cible isolée, charge max, par tick…) : on garde Meraki
+ * et on le signale. Un équilibrage de patch dépasse rarement 30 % au rang max.
+ */
+function matchGameFormula(
+  spell: unknown,
+  effect: "damage" | "shield" | "heal",
+  meraki: ScaledValue,
+  maxRank: number,
+): { formula: Formula; gap: number } | "percent" | "mismatch" | "none" {
+  let sawPercent = false;
+  let sawMismatch = false;
+  for (const name of candidateCalcs(spell, effect)) {
+    if (isPercentCalc(spell, name)) {
+      sawPercent = true;
+      continue;
+    }
+    const f = toFormulaSafe(spell, name, maxRank);
+    if (!f) continue;
+    const gap = worstGap(meraki, f, maxRank);
+    if (gap === null) return "percent";
+    if (gap <= Math.log(MAX_GAP)) return { formula: f, gap };
+    sawMismatch = true;
+  }
+  return sawMismatch ? "mismatch" : sawPercent ? "percent" : "none";
+}
+
+function toFormulaSafe(spell: unknown, name: string, maxRank: number): Formula | null {
+  try {
+    return toFormula(spell, name, maxRank);
+  } catch {
+    return null;
+  }
+}
+
+/**
+ * Applique les formules du jeu aux sorts : dégâts (`formula`), boucliers et soins
+ * (`shieldFormula`, `healFormula`). Meraki reste la référence de STRUCTURE (type de
+ * dégâts, quel effet existe) ; le jeu fournit les NOMBRES au patch près. Un sort
+ * corrigé à la main (data/overrides.ts) garde sa correction.
+ */
+function applyGameFormulas(champions: Champion[], slotsById: Map<string, SpellSlots>) {
+  const stats = { damage: 0, shield: 0, heal: 0, percent: 0, mismatch: 0, none: 0, changed: 0 };
+  const mismatches: string[] = [];
+  for (const c of champions) {
+    const slots = slotsById.get(c.id);
+    if (!slots) continue;
+    for (const key of ABILITY_KEYS) {
+      const ability = c.abilities[key];
+      const spell = slots[key];
+      if (!spell) continue;
+      const overridden = CHAMPION_OVERRIDES[c.id]?.abilities?.[key];
+      if (ability.type !== "util" && !overridden?.base && !overridden?.ratios) {
+        const m = matchGameFormula(spell, "damage", ability, ability.maxRank);
+        if (typeof m === "object") {
+          ability.formula = m.formula;
+          stats.damage++;
+          if (m.gap > 0.05) stats.changed++;
+        } else {
+          stats[m]++;
+          if (m === "mismatch") mismatches.push(`${c.id} ${key}`);
+        }
+      }
+      for (const effect of ["shield", "heal"] as const) {
+        const v = ability[effect];
+        if (!v) continue;
+        const m = matchGameFormula(spell, effect, v, ability.maxRank);
+        if (typeof m === "object") {
+          ability[effect === "shield" ? "shieldFormula" : "healFormula"] = m.formula;
+          stats[effect]++;
+        }
+      }
+    }
+  }
+  console.log(
+    `  formules du jeu : ${stats.damage} sorts de dégâts (dont ${stats.changed} à plus de 5 % de Meraki), ` +
+      `${stats.shield} boucliers, ${stats.heal} soins.`,
+  );
+  console.log(
+    `  gardés sur Meraki : ${stats.percent} en % des PV, ${stats.none} sans calcul exploitable, ` +
+      `${stats.mismatch} écarts suspects (×/÷ > ${MAX_GAP}).`,
+  );
+  if (mismatches.length) console.log(`  écarts suspects : ${mismatches.join(", ")}`);
+  return {
+    damage: stats.damage,
+    changed: stats.changed,
+    shield: stats.shield,
+    heal: stats.heal,
+    keptPercent: stats.percent,
+    keptNone: stats.none,
+    keptMismatch: stats.mismatch,
+  };
+}
+
 function resolveMechanics(
   champions: Champion[],
   slotsById: Map<string, SpellSlots>,
@@ -615,7 +770,13 @@ function resolveMechanics(
 
 function renderMeta(
   patch: string,
-  counts: { champions: number; items: number; runes: number; statsPatch: string },
+  counts: {
+    champions: number;
+    items: number;
+    runes: number;
+    statsPatch: string;
+    gameFormulas: ReturnType<typeof applyGameFormulas>;
+  },
 ): string {
   return `${header(patch)}
 /** Métadonnées de génération (affichées dans /methode). */
@@ -628,6 +789,8 @@ export const DATA_META = {
   champions: ${counts.champions},
   items: ${counts.items},
   runes: ${counts.runes},
+  /** sorts dont les nombres viennent des fichiers du jeu (CommunityDragon) au patch près */
+  gameFormulas: ${JSON.stringify(counts.gameFormulas)},
 } as const;
 `;
 }
@@ -731,6 +894,9 @@ async function main() {
 
   // Passifs (data/mechanics.ts) : références résolues en formules du patch.
   const mechanics = resolveMechanics(champions, slotsById);
+
+  // Dégâts, boucliers et soins des sorts : formules du jeu quand elles concordent.
+  const gameFormulas = applyGameFormulas(champions, slotsById);
 
   // --- Objets ---
   // Disponibilité sur la Faille de l'invocateur (classé) : Data Dragon expose
@@ -849,6 +1015,7 @@ async function main() {
       items: items.length,
       runes: runes.length,
       statsPatch,
+      gameFormulas,
     }),
   );
 

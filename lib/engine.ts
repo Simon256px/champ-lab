@@ -511,8 +511,18 @@ export function computeCombo(input: ComboInput): ComboResult {
     const casts = window === undefined
       ? 1
       : castsIn(window, cooldownOf(champion, key, rank, stats.abilityHaste));
-    if (ability.shield) shield += casts * scaledAt(ability.shield, rank, stats);
-    if (ability.heal) heal += casts * scaledAt(ability.heal, rank, stats);
+    if (ability.shield) {
+      shield += casts *
+        (ability.shieldFormula
+          ? formulaAt(ability.shieldFormula, rank, level, stats)
+          : scaledAt(ability.shield, rank, stats));
+    }
+    if (ability.heal) {
+      heal += casts *
+        (ability.healFormula
+          ? formulaAt(ability.healFormula, rank, level, stats)
+          : scaledAt(ability.heal, rank, stats));
+    }
   }
   const autoDamage = lines.find((l) => l.key === "AA")?.damage ?? 0;
   heal += stats.lifeSteal * autoDamage + stats.omnivamp * total;
