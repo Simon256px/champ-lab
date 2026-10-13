@@ -1,5 +1,3 @@
-
-
 # CHAMP LAB
 
 > Vois ce que tes runes et tes objets font **vraiment** — champion par champion.
@@ -79,9 +77,12 @@ champ-lab/
 │   └── fetch-data.ts     # PIPELINE Meraki + Data Dragon → data/generated/
 ├── lib/
 │   ├── engine.ts         # MOTEUR pur & typé (aucune donnée en dur)
-│   └── engine_test.ts    #   tests d'invariants
+│   ├── engine_test.ts    #   tests d'invariants
+│   ├── timeline.ts       # MATCHUP dans le temps : niveau/or/build à la minute T, spikes
+│   └── timeline_test.ts
 ├── islands/
-│   └── ChampLab.tsx      # le SEUL îlot hydraté : tout l'interactif
+│   ├── ChampLab.tsx      # îlot du labo
+│   └── Matchup.tsx       # îlot du matchup (courbe d'avantage + spikes)
 ├── components/
 │   └── Chrome.tsx        # barre HUD, nav, pied (composants serveur)
 ├── routes/               # routing par fichiers (Fresh)
@@ -91,6 +92,7 @@ champ-lab/
 │   ├── champions/index.tsx  # roster
 │   ├── lab/[champion].tsx   # labo d'un champion
 │   ├── lab/index.tsx        # redirige vers le premier champion
+│   ├── matchup/index.tsx    # A vs B minute par minute (?a=…&b=…)
 │   └── methode.tsx          # sources, éco, légal
 ├── static/styles.css     # design system, 100% CSS
 ├── deno.json             # dépendances + tâches
@@ -111,6 +113,17 @@ effectif  = dégâts * 100 / (100 + résistance après pénétration)   // "vrai
 
 Les pénétrations en % s'empilent multiplicativement. La fonction signature est `itemImpact()` : la différence
 de dégâts totaux si on ajoutait un objet au build — c'est le **mode impact**.
+
+### Matchup
+
+`computeDuel()` prend deux champions (niveau + build chacun) : la cible n'est plus un profil manuel mais le
+vrai adversaire (PV, armure et RM du niveau et des objets). Chaque camp place son combo sur l'autre ;
+`edge = %PV retirés par A − %PV retirés par B`.
+
+`lib/timeline.ts` déduit niveau, or et inventaire de la minute (courbe d'XP de solo lane, or passif + farm,
+ordre de build déroulé composant par composant) et calcule le duel à chaque minute. `findSpikes()` repère les
+sauts nets de la courbe (niveau 6, objet terminé…) et leur cause. Indicateur théorique : ni auto-attaques, ni
+cooldowns, ni soins, boucliers, portée ou contrôles.
 
 ## Ajouter / affiner un champion
 

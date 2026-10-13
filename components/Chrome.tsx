@@ -11,6 +11,7 @@ interface NavItem {
 const NAV: NavItem[] = [
   { href: "/", label: "ACCUEIL" },
   { href: "/champions", label: "CHAMPIONS" },
+  { href: "/matchup", label: "MATCHUP" },
   { href: "/methode", label: "MÉTHODE" },
 ];
 
