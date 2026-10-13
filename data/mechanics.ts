@@ -16,6 +16,8 @@ import type { GameRef, Mechanic } from "./types.ts";
  *   stackingAttackSpeed  VA bonus qui s'empile à chaque auto
  *   missingHpHeal        soin en % des PV manquants à chaque lancer d'un sort
  *   abilityDamage        donne des dégâts à un sort que Meraki laisse utilitaire
+ *   parry                parade : bloque le plus gros coup et le plus long contrôle adverses
+ *   dodgeAutos           esquive les autos adverses pendant X secondes
  *
  * Pour trouver le nom d'un calcul : ouvrir
  * https://raw.communitydragon.org/latest/game/data/characters/<id>/<id>.bin.json
@@ -43,6 +45,11 @@ export const MECHANICS: Record<string, Mechanic<GameRef>[]> = {
       damage: { slot: "P", calc: "RDamageTotal" },
       scale: "targetMaxHp",
     },
+    {
+      // Riposte : bloque les dégâts et les contrôles pendant la parade.
+      kind: "parry",
+      key: "W",
+    },
   ],
   jax: [
     {
@@ -51,6 +58,12 @@ export const MECHANICS: Record<string, Mechanic<GameRef>[]> = {
       name: "Assaut implacable",
       perStack: { slot: "P", calc: "AttackSpeedPerStack" },
       maxStacks: { slot: "P", value: "MaxStacks" },
+    },
+    {
+      // Contre-attaque : esquive les autos adverses (puis étourdit, lu comme contrôle).
+      kind: "dodgeAutos",
+      key: "E",
+      duration: { slot: "E", value: "DodgeDuration" },
     },
   ],
   vayne: [

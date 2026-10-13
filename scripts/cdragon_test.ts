@@ -3,8 +3,8 @@
  * reproduits des fichiers du jeu (pas de réseau). Lancer : `deno task test`.
  */
 
-import { assert, assertEquals } from "@std/assert";
-import { cooldowns, resolveRef, spellSlots, toFormula } from "./cdragon.ts";
+import { assert, assertAlmostEquals, assertEquals } from "@std/assert";
+import { ccDuration, cooldowns, resolveRef, spellSlots, toFormula } from "./cdragon.ts";
 import { evalFormula } from "../lib/formula.ts";
 
 const stats = {
@@ -19,6 +19,11 @@ const stats = {
   bonusArmor: 0,
   mr: 0,
   bonusMr: 0,
+  attackSpeed: 1,
+  bonusAttackSpeed: 0.4,
+  critChance: 0,
+  critDamage: 1.75,
+  lethality: 0,
 };
 
 // Forme réelle du Q de Darius (16.20) : BaseDamage + AD total × TotalADRatio × 0,01.
@@ -90,4 +95,46 @@ Deno.test("cdragon : cooldowns par rang, sorts retrouvés, valeur brute avec fac
   assert(slots.Q, "le Q doit être retrouvé via spellNames");
   const heal = resolveRef(slots, { slot: "Q", value: "MissingHealthHeal", times: 0.01 }, 5)!;
   assertEquals(evalFormula(heal, { rank: 1, level: 1, stats }), 0.17);
+});
+
+Deno.test("cdragon : contrôle — la durée la plus longue, sans variantes ni enracinement", () => {
+  const spell = {
+    DataValues: [
+      { name: "StunDuration", values: [0.75, 0.75, 0.75, 0.75, 0.75, 0.75, 0.75] },
+      { name: "KnockUpDuration", values: [1, 1, 1, 1, 1, 1, 1] },
+      { name: "MinionStunDuration", values: [3, 3, 3, 3, 3, 3, 3] },
+      { name: "WallStunDuration", values: [2, 2, 2, 2, 2, 2, 2] },
+      { name: "RootDuration", values: [2.5, 2.5, 2.5, 2.5, 2.5, 2.5, 2.5] },
+      { name: "MaxStunDuration", values: [3.5, 3.5, 3.5, 3.5, 3.5, 3.5, 3.5] },
+    ],
+  };
+  assertEquals(ccDuration(spell, 5), { op: "num", n: 1 });
+  assertEquals(ccDuration({ DataValues: [{ name: "RootDuration", values: [1, 1] }] }, 5), null);
+  assertEquals(
+    ccDuration({ DataValues: [{ name: "CharmDuration", values: [0, 1.2, 1.35, 1.5, 1.65, 1.8, 1.8] }] }, 5),
+    { op: "rank", v: [1.2, 1.35, 1.5, 1.65, 1.8] },
+  );
+});
+
+Deno.test("cdragon : stats VA, crit, létalité reconnues", () => {
+  const spell = {
+    mSpellCalculations: {
+      X: {
+        mFormulaParts: [
+          { mStat: 4, mStatFormula: 2, mCoefficient: 0.3, __type: "StatByCoefficientCalculationPart" },
+          { mStat: 8, mCoefficient: 100, __type: "StatByCoefficientCalculationPart" },
+          { mStat: 29, mCoefficient: 2, __type: "StatByCoefficientCalculationPart" },
+        ],
+        __type: "GameCalculation",
+      },
+      Y: {
+        mFormulaParts: [{ mStat: 7, mCoefficient: 1, __type: "StatByCoefficientCalculationPart" }],
+        __type: "GameCalculation",
+      },
+    },
+  };
+  const f = toFormula(spell, "X", 5)!;
+  const v = evalFormula(f, { rank: 1, level: 1, stats: { ...stats, critChance: 0.25, lethality: 10 } });
+  assertAlmostEquals(v, 45.12, 1e-9);
+  assertEquals(toFormula(spell, "Y", 5), null, "vitesse de déplacement : non modélisée");
 });

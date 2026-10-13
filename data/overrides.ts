@@ -88,6 +88,11 @@ export const ITEM_OVERRIDES: Record<string, ItemOverride> = {
 // ---------------------------------------------------------------------------
 
 interface AbilityOverride {
+  /**
+   * Le contrôle lu dans les fichiers du jeu dépend d'une condition que le duel ne
+   * modélise pas (contre un mur, cible enflammée, parade réussie) : on l'ignore.
+   */
+  conditionalCc?: boolean;
   type?: "magic" | "physical" | "true" | "util";
   base?: number[];
   ratios?: AbilityRatios;
@@ -108,6 +113,12 @@ interface ChampionOverride {
 }
 
 export const CHAMPION_OVERRIDES: Record<string, ChampionOverride> = {
+  // --- Contrôles conditionnels : les fichiers du jeu donnent la durée, pas la condition.
+  fiora: { abilities: { W: { conditionalCc: true } } }, // étourdit seulement si la parade bloque un contrôle
+  vayne: { abilities: { E: { conditionalCc: true } } }, // étourdit seulement contre un mur
+  brand: { abilities: { Q: { conditionalCc: true } } }, // étourdit seulement une cible enflammée
+  poppy: { abilities: { E: { conditionalCc: true } } }, // étourdit seulement contre un mur
+
   // --- Les deux champions "seed" historiques : on conserve leur réglage soigné.
   ahri: {
     adaptive: "AP",

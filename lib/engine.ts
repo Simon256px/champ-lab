@@ -104,6 +104,8 @@ export interface DerivedStats {
   abilityHaste: number;
   /** VA bonus des objets seuls (fraction), pour recalculer la VA avec un buff */
   itemAttackSpeed: number;
+  /** VA bonus totale (objets + croissance par niveau), en fraction */
+  bonusAttackSpeed: number;
   /** PV max et PV bonus (objets) du lanceur */
   maxHp: number;
   bonusHp: number;
@@ -157,6 +159,7 @@ export function computeStats(
     lethality: stats.reduce((a, s) => a + (s.lethality ?? 0), 0),
     armorPenPct: stackPercent(stats.map((s) => s.armorPenPercent)),
     attackSpeed: attackSpeedOf(champion, level, itemAttackSpeed),
+    bonusAttackSpeed: itemAttackSpeed + growth(0, champion.base.attackSpeedPerLevel ?? 0.02, level),
     critChance: Math.min(1, sum((s) => s.critChance)),
     critDamage: champion.base.critDamage ?? 1.75,
     abilityHaste: sum((s) => s.abilityHaste),
@@ -270,6 +273,11 @@ export function formulaStats(s: DerivedStats): Record<StatRef, number> {
     bonusArmor: s.bonusArmor,
     mr: s.mr,
     bonusMr: s.bonusMr,
+    attackSpeed: s.attackSpeed,
+    bonusAttackSpeed: s.bonusAttackSpeed,
+    critChance: s.critChance,
+    critDamage: s.critDamage,
+    lethality: s.lethality,
   };
 }
 
@@ -379,6 +387,12 @@ export interface ComboResult {
    * le duel les multiplie par ce que le lanceur a encaissé.
    */
   missingHpHealRatio: number;
+  /** contrôles infligés sur la fenêtre (s cumulées) et le plus long d'entre eux */
+  ccDuration: number;
+  ccLongest: number;
+  /** parades (Fiora W) et secondes d'esquive des autos (Jax E) sur la fenêtre */
+  parries: number;
+  dodgeAutosSeconds: number;
 }
 
 /** Calcule le combo complet : lignes de dégâts, total, seuil d'exécution. */
@@ -410,7 +424,7 @@ export function computeCombo(input: ComboInput): ComboResult {
       cooldownOf(champion, key, resolveRank(champion, key, level, ranks), stats.abilityHaste),
     );
     const name = casts > 1 ? `${ability.name} ×${casts}` : ability.name;
-    lines.push({ key, name, type: ability.type, damage: dmg * casts });
+    lines.push({ key, name, type: ability.type, damage: dmg * casts, hits: casts });
   }
 
   // Auto-attaques (mode trade) : AD total, crits en espérance.
@@ -421,6 +435,7 @@ export function computeCombo(input: ComboInput): ComboResult {
       name: `Auto-attaques ×${autos}`,
       type: "physical",
       damage: autos * perHit * damageMultiplier("physical", stats, target),
+      hits: autos,
     });
   }
 
@@ -438,6 +453,7 @@ export function computeCombo(input: ComboInput): ComboResult {
         name: `${ability.name} ×${procs}`,
         type: ability.type,
         damage: procs * raw * damageMultiplier(ability.type, stats, target),
+        hits: procs,
       });
     } else if (m.kind === "onHit") {
       const procs = Math.floor(autos / (m.every ?? 1));
@@ -543,7 +559,75 @@ export function computeCombo(input: ComboInput): ComboResult {
     }
   }
 
-  return { stats, lines, total, execHP, shield, heal, missingHpHealRatio };
+  // Contrôles, parades, esquives : comptés sur la fenêtre (en burst, tout tombe à
+  // t = 0 et le duel n'en tient pas compte).
+  let ccDuration = 0;
+  let ccLongest = 0;
+  let parries = 0;
+  let dodgeAutosSeconds = 0;
+  const castsOf = (key: AbilityKey) => {
+    const rank = resolveRank(champion, key, level, ranks);
+    if (rank < 1 || include[key] === false) return { rank, casts: 0 };
+    const casts = window === undefined
+      ? 1
+      : castsIn(window, cooldownOf(champion, key, rank, stats.abilityHaste));
+    return { rank, casts };
+  };
+  for (const key of keys) {
+    const cc = champion.abilities[key].cc;
+    if (!cc) continue;
+    const { rank, casts } = castsOf(key);
+    if (casts < 1) continue;
+    const d = formulaAt(cc, rank, level, stats);
+    ccDuration += casts * d;
+    ccLongest = Math.max(ccLongest, d);
+  }
+  for (const m of mechanics) {
+    if (m.kind === "parry") parries += castsOf(m.key).casts;
+    if (m.kind === "dodgeAutos") {
+      const { rank, casts } = castsOf(m.key);
+      dodgeAutosSeconds += casts * formulaAt(m.duration, rank, level, stats);
+    }
+  }
+
+  return {
+    stats,
+    lines,
+    total,
+    execHP,
+    shield,
+    heal,
+    missingHpHealRatio,
+    ccDuration,
+    ccLongest,
+    parries,
+    dodgeAutosSeconds,
+  };
+}
+
+/**
+ * Dégâts de l'attaquant que le défenseur annule : chaque parade bloque l'un des
+ * plus gros coups de sort, l'esquive annule les autos qui tombent pendant sa durée.
+ */
+export function blockedDamage(attacker: ComboResult, defender: ComboResult): number {
+  let blocked = 0;
+  if (defender.parries > 0) {
+    const perHit: number[] = [];
+    for (const l of attacker.lines) {
+      if (!["Q", "W", "E", "R"].includes(l.key)) continue;
+      const n = l.hits ?? 1;
+      for (let i = 0; i < n; i++) perHit.push(l.damage / n);
+    }
+    perHit.sort((a, b) => b - a);
+    blocked += perHit.slice(0, defender.parries).reduce((a, d) => a + d, 0);
+  }
+  const aa = attacker.lines.find((l) => l.key === "AA");
+  if (aa && defender.dodgeAutosSeconds > 0) {
+    const n = aa.hits ?? 1;
+    const dodged = Math.min(n, Math.floor(defender.dodgeAutosSeconds * attacker.stats.attackSpeed));
+    blocked += (dodged * aa.damage) / n;
+  }
+  return blocked;
 }
 
 /** Répartition des dégâts par type (pour la barre du readout). */
@@ -657,6 +741,12 @@ export interface DuelResult {
   /** PV que chaque camp se rend sur la fenêtre (boucliers + soins plafonnés aux dégâts reçus) */
   sustainA: number;
   sustainB: number;
+  /** secondes pendant lesquelles chaque camp est contrôlé (après parade) */
+  ccOnA: number;
+  ccOnB: number;
+  /** dégâts adverses annulés par chaque camp (parade, esquive) */
+  blockedByA: number;
+  blockedByB: number;
 }
 
 const ALL_IN: IncludeMap = { Q: true, W: true, E: true, R: true, bleed: true, rune: true };
@@ -691,26 +781,42 @@ export function computeDuel(
   const inA = inputOf(a, targetB);
   const inB = inputOf(b, targetA);
   const at = (w: number | undefined) => {
-    const ab = computeCombo({ ...inA, window: w });
-    const ba = computeCombo({ ...inB, window: w });
+    const pa = computeCombo({ ...inA, window: w });
+    const pb = computeCombo({ ...inB, window: w });
+    // Contrôles : le camp contrôlé perd ce temps d'action (une parade en absorbe un).
+    // Burst : tout tombe à t = 0, les contrôles ne changent rien.
+    const ccOnA = w === undefined ? 0 : Math.max(0, pb.ccDuration - pa.parries * pb.ccLongest);
+    const ccOnB = w === undefined ? 0 : Math.max(0, pa.ccDuration - pb.parries * pa.ccLongest);
+    const ab = ccOnA > 0 ? computeCombo({ ...inA, window: Math.max(0, w! - ccOnA) }) : pa;
+    const ba = ccOnB > 0 ? computeCombo({ ...inB, window: Math.max(0, w! - ccOnB) }) : pb;
+    const blockedByB = blockedDamage(ab, ba);
+    const blockedByA = blockedDamage(ba, ab);
+    const dmgA = Math.max(0, ab.total - blockedByB);
+    const dmgB = Math.max(0, ba.total - blockedByA);
     return {
       ab,
       ba,
+      dmgA,
+      dmgB,
+      ccOnA,
+      ccOnB,
+      blockedByA,
+      blockedByB,
       // Chaque camp profite de SES boucliers/soins (son propre combo), face aux dégâts de l'autre.
-      ehpA: effectiveHp(targetA.hpMax, ab, ba.total),
-      ehpB: effectiveHp(targetB.hpMax, ba, ab.total),
+      ehpA: effectiveHp(targetA.hpMax, ab, dmgB),
+      ehpB: effectiveHp(targetB.hpMax, ba, dmgA),
     };
   };
   const timed = opts.allIn || opts.window !== undefined;
   // A tue B quand ses dégâts dépassent les PV de B + ce que B se rend (bouclier, soins).
-  const ttkA = timed ? timeToKill((w) => at(w).ab.total, (w) => at(w).ehpB) : undefined;
-  const ttkB = timed ? timeToKill((w) => at(w).ba.total, (w) => at(w).ehpA) : undefined;
+  const ttkA = timed ? timeToKill((w) => at(w).dmgA, (w) => at(w).ehpB) : undefined;
+  const ttkB = timed ? timeToKill((w) => at(w).dmgB, (w) => at(w).ehpA) : undefined;
   // All-in : on s'arrête au premier mort — c'est lui qui décide du duel.
   const window = opts.allIn ? Math.min(ttkA!, ttkB!, TTK_LIMIT) : opts.window;
-  const { ab: aToB, ba: bToA, ehpA, ehpB } = at(window);
+  const { ab: aToB, ba: bToA, ehpA, ehpB, dmgA, dmgB, ccOnA, ccOnB, blockedByA, blockedByB } = at(window);
   const cap = (n: number) => (opts.allIn ? Math.min(1, n) : n);
-  const killPctA = cap(aToB.total / ehpB);
-  const killPctB = cap(bToA.total / ehpA);
+  const killPctA = cap(dmgA / ehpB);
+  const killPctB = cap(dmgB / ehpA);
   const result: DuelResult = {
     aToB,
     bToA,
@@ -721,6 +827,10 @@ export function computeDuel(
     edge: killPctA - killPctB,
     sustainA: ehpA - targetA.hpMax,
     sustainB: ehpB - targetB.hpMax,
+    ccOnA,
+    ccOnB,
+    blockedByA,
+    blockedByB,
   };
   if (timed) Object.assign(result, { ttkA, ttkB, window });
   return result;

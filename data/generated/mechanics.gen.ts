@@ -70,6 +70,10 @@ export const GENERATED_MECHANICS: Record<string, Mechanic[]> = {
       },
       "scale": "targetMaxHp",
     },
+    {
+      "kind": "parry",
+      "key": "W",
+    },
   ],
   "jax": [
     {
@@ -115,6 +119,14 @@ export const GENERATED_MECHANICS: Record<string, Mechanic[]> = {
       "maxStacks": {
         "op": "num",
         "n": 8,
+      },
+    },
+    {
+      "kind": "dodgeAutos",
+      "key": "E",
+      "duration": {
+        "op": "num",
+        "n": 2,
       },
     },
   ],
