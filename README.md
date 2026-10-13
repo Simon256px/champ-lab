@@ -122,8 +122,18 @@ vrai adversaire (PV, armure et RM du niveau et des objets). Chaque camp place so
 
 `lib/timeline.ts` déduit niveau, or et inventaire de la minute (courbe d'XP de solo lane, or passif + farm,
 ordre de build déroulé composant par composant) et calcule le duel à chaque minute. `findSpikes()` repère les
-sauts nets de la courbe (niveau 6, objet terminé…) et leur cause. Indicateur théorique : ni auto-attaques, ni
-cooldowns, ni soins, boucliers, portée ou contrôles.
+sauts nets de la courbe (niveau 6, objet terminé…) et leur cause.
+
+Trois façons de faire l'échange :
+
+- **burst** : une rotation Q/W/E/R + rune, sans auto-attaque ;
+- **trade** (`window: 3`) : sur T secondes, chaque sort relancé selon son cooldown (ability haste comprise),
+  auto-attaques à la vitesse d'attaque (`base + ratio × VA bonus`, plafond 2,5), crits en espérance ;
+- **all-in** (`allIn: true`) : le trade prolongé jusqu'au premier mort. `timeToKill()` donne le temps pour
+  tuer de chaque camp, et l'edge se lit à l'instant du premier kill (PV retirés plafonnés à 100 %).
+
+Indicateur théorique : ni passifs (sauf Darius), ni effets à l'impact, soins, boucliers, portée, déplacements,
+contrôles ou animations. Autos et sorts s'enchaînent sans temps mort : c'est un plafond de dégâts.
 
 ## Ajouter / affiner un champion
 

@@ -7,14 +7,20 @@
 
 import { assert, assertAlmostEquals, assertEquals } from "@std/assert";
 import {
+  ATTACK_SPEED_CAP,
+  attackSpeedOf,
+  autosIn,
+  castsIn,
   computeCombo,
   computeDefenses,
   computeDuel,
+  cooldownOf,
   damageMultiplier,
   growth,
   rankOf,
   stackPercent,
   targetFromChampion,
+  timeToKill,
 } from "@/lib/engine.ts";
 import { CHAMPIONS } from "@/data/champions.ts";
 import { ITEMS } from "@/data/items.ts";
@@ -71,6 +77,10 @@ Deno.test("mitigation: l'armure réduit les dégâts physiques", () => {
     magicPenPct: 0,
     lethality: 0,
     armorPenPct: 0,
+    attackSpeed: 0.625,
+    critChance: 0,
+    critDamage: 1.75,
+    abilityHaste: 0,
   };
   assertEquals(damageMultiplier("true", s, TARGET), 1);
   assert(damageMultiplier("physical", s, TARGET) < 1);
@@ -265,5 +275,102 @@ Deno.test("roster : chaque champion se duelle contre tout le roster sans planter
       assert(Number.isFinite(res.edge), `edge non fini pour ${a} vs ${b}`);
       assert(res.targetA.hpMax > 0 && res.targetB.hpMax > 0, `PV nuls pour ${a} vs ${b}`);
     }
+  }
+});
+
+// --- Trade sur une durée : auto-attaques, vitesse d'attaque, cooldowns, crits. ---
+
+Deno.test("vitesse d'attaque : base au niveau 1 sans objet, plafonnée à 2,5", () => {
+  const fiora = CHAMPIONS.fiora;
+  assertAlmostEquals(attackSpeedOf(fiora, 1, 0), fiora.base.attackSpeed!);
+  assert(attackSpeedOf(fiora, 18, 0) > attackSpeedOf(fiora, 1, 0), "la VA croît avec le niveau");
+  assertEquals(attackSpeedOf(fiora, 18, 10), ATTACK_SPEED_CAP);
+});
+
+Deno.test("roster : chaque champion a une vitesse d'attaque exploitable", () => {
+  for (const c of Object.values(CHAMPIONS)) {
+    const as = attackSpeedOf(c, 1, 0);
+    assert(as > 0.4 && as < 1, `VA de base suspecte pour ${c.id} : ${as}`);
+  }
+});
+
+Deno.test("cooldowns : 100 d'ability haste divisent le cooldown par deux", () => {
+  const darius = CHAMPIONS.darius;
+  const cd = cooldownOf(darius, "Q", 1, 0)!;
+  assertAlmostEquals(cooldownOf(darius, "Q", 1, 100)!, cd / 2);
+  assertEquals(cooldownOf(darius, "Q", 0, 0), undefined, "sort pas appris : pas de cooldown");
+});
+
+Deno.test("lancers et autos sur une fenêtre : premier à t = 0", () => {
+  assertEquals(castsIn(0, 5), 1);
+  assertEquals(castsIn(10, 5), 3);
+  assertEquals(castsIn(10, undefined), 1, "cooldown inconnu : un seul lancer");
+  assertEquals(castsIn(10, 0.9), 1, "posture / toggle : un seul lancer");
+  assertEquals(autosIn(0, 1), 1);
+  assertEquals(autosIn(3, 1), 4);
+});
+
+Deno.test("trade : le burst n'a pas d'auto, le trade en a, et une fenêtre plus longue fait plus mal", () => {
+  const burst = computeCombo(input("fiora", ["stridebreaker"]));
+  const t0 = computeCombo(input("fiora", ["stridebreaker"], { window: 0 }));
+  const t3 = computeCombo(input("fiora", ["stridebreaker"], { window: 3 }));
+  const t6 = computeCombo(input("fiora", ["stridebreaker"], { window: 6 }));
+  assertEquals(burst.lines.find((l) => l.key === "AA"), undefined);
+  assert(t0.lines.some((l) => l.key === "AA"), "le mode trade ajoute les auto-attaques");
+  assert(t0.total > burst.total && t6.total > t3.total && t3.total >= t0.total);
+});
+
+Deno.test("trade : la VA bonus ajoute des autos, le crit renforce chaque auto", () => {
+  const aa = (items: string[]) =>
+    computeCombo(input("jinx", items, { window: 6 })).lines.find((l) => l.key === "AA")!;
+  const naked = aa([]);
+  const greaves = aa(["berserkersgreaves"]);
+  const ie = aa(["infinityedge"]);
+  assert(greaves.name !== naked.name, "Berserker doit changer le nombre d'autos");
+  assert(greaves.damage > naked.damage);
+  assert(ie.damage > naked.damage);
+});
+
+Deno.test("trade : l'ability haste permet de relancer plus souvent", () => {
+  const casts = (items: string[]) =>
+    computeCombo(input("darius", items, { window: 8, level: 9 })).lines.find((l) => l.key === "Q")!.damage;
+  assert(casts(["ionianbootsoflucidity"]) >= casts([]));
+  // À haste énorme, au moins un lancer de plus sur la fenêtre.
+  const fast = computeCombo(input("darius", [], { window: 8, level: 9 }));
+  const q = fast.lines.find((l) => l.key === "Q")!;
+  assert(q.name.includes("×"), "sur 8 s, le Q de Darius doit être relancé");
+});
+
+Deno.test("temps pour tuer : 0 si le burst suffit, Infinity si jamais, sinon le premier palier", () => {
+  const steps = (w: number) => 100 * (1 + Math.floor(w));
+  assertEquals(timeToKill(steps, 50), 0);
+  assertEquals(timeToKill(steps, 1e9), Infinity);
+  assertAlmostEquals(timeToKill(steps, 250), 2, 0.011);
+});
+
+Deno.test("all-in : symétrique, plafonné à 100 %, le plus rapide gagne", () => {
+  const a = side("darius", ["stridebreaker"]);
+  const b = side("ahri", ["ludensecho"]);
+  const ab = computeDuel(a, b, ITEMS, RUNES, { allIn: true });
+  const ba = computeDuel(b, a, ITEMS, RUNES, { allIn: true });
+  assertAlmostEquals(ab.edge, -ba.edge);
+  assert(ab.killPctA <= 1 && ab.killPctB <= 1);
+  assert(ab.ttkA !== undefined && ab.ttkB !== undefined);
+  if (ab.ttkA < ab.ttkB) {
+    assertAlmostEquals(ab.killPctA, 1);
+    assert(ab.edge >= 0);
+  } else if (ab.ttkB < ab.ttkA) {
+    assertAlmostEquals(ab.killPctB, 1);
+    assert(ab.edge <= 0);
+  }
+  assertAlmostEquals(ab.window!, Math.min(ab.ttkA, ab.ttkB, 20));
+});
+
+Deno.test("roster : l'all-in se calcule contre un adversaire de référence", () => {
+  const ref = side("garen", CHAMPIONS.garen.shelf.slice(0, 2));
+  for (const id of Object.keys(CHAMPIONS)) {
+    const res = computeDuel(side(id, CHAMPIONS[id].shelf.slice(0, 2)), ref, ITEMS, RUNES, { allIn: true });
+    assert(Number.isFinite(res.edge), `edge non fini pour ${id}`);
+    assert(res.ttkA! >= 0 && res.ttkB! >= 0, `temps pour tuer négatif pour ${id}`);
   }
 });

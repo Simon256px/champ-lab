@@ -103,3 +103,16 @@ Deno.test("spikes : le niveau 6 de Darius ressort, avec son ultime comme cause",
   assert(lvl6, "le passage au niveau 6 doit être un spike");
   assertEquals(lvl6.side, "A");
 });
+
+Deno.test("timeline all-in : symétrique, temps pour tuer renseignés", () => {
+  const a = { champion: CHAMPIONS.darius };
+  const b = { champion: CHAMPIONS.fiora };
+  const ab = matchupTimeline(a, b, ITEMS, RUNES, { allIn: true });
+  const ba = matchupTimeline(b, a, ITEMS, RUNES, { allIn: true });
+  ab.forEach((p, i) => {
+    assertAlmostEquals(p.edge, -ba[i].edge);
+    assert(p.ttkA !== undefined && p.ttkB !== undefined);
+  });
+  const burst = matchupTimeline(a, b, ITEMS, RUNES);
+  assertEquals(burst[0].ttkA, undefined, "pas de temps pour tuer en mode burst");
+});

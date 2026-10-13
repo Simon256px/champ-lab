@@ -1396,6 +1396,41 @@ input[type=range].en::-moz-range-thumb {
   border: 1px solid var(--line2);
   padding: 6px 8px;
 }
+.mu-modes {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 6px;
+  border-top: 1px dashed var(--line);
+}
+.mu-modes button {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 2px;
+  border: 1px solid var(--line);
+  padding: 6px 10px;
+  text-align: left;
+  transition: 0.12s;
+}
+.mu-modes button b {
+  color: var(--dim2);
+  font-size: 11px;
+  letter-spacing: 0.12em;
+}
+.mu-modes button span {
+  color: var(--dim);
+  font-size: 10px;
+}
+.mu-modes button:hover {
+  border-color: var(--line2);
+}
+.mu-modes button.on {
+  border-color: var(--green);
+  background: #14200a;
+}
+.mu-modes button.on b {
+  color: var(--green);
+}
 .mu-lane {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
