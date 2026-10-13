@@ -1,3 +1,4 @@
+import { page } from "fresh";
 import { define } from "@/utils.ts";
 import { CHAMPION_LIST, CHAMPIONS } from "@/data/champions.ts";
 import { GENERATED_PASSIVES } from "@/data/generated/passives.gen.ts";
@@ -9,7 +10,14 @@ const VERDICT = {
   utility: "SANS DÉGÂTS",
 } as const;
 
-export default define.page(function LabPage(ctx) {
+// Champion inconnu : la page d'erreur est rendue avec le statut HTTP 404.
+export const handler = define.handlers({
+  GET(ctx) {
+    return page(undefined, CHAMPIONS[ctx.params.champion] ? undefined : { status: 404 });
+  },
+});
+
+export default define.page<typeof handler>(function LabPage(ctx) {
   const id = ctx.params.champion;
   const champion = CHAMPIONS[id];
 
