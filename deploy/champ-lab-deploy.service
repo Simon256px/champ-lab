@@ -1,0 +1,8 @@
+[Unit]
+Description=CHAMP LAB — mise à jour depuis GitHub si la branche main a changé
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=oneshot
+ExecStart=/usr/local/bin/champ-lab-deploy --if-changed

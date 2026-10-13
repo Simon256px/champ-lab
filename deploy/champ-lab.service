@@ -1,0 +1,34 @@
+[Unit]
+Description=lol.simoncourtois.com — CHAMP LAB, simulateur LoL (Fresh / Deno)
+Documentation=https://github.com/Simon256px/champ-lab
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=champlab
+Group=champlab
+WorkingDirectory=/srv/champ-lab
+
+Environment=DENO_DIR=/srv/champ-lab/.deno
+Environment=DENO_NO_UPDATE_CHECK=1
+
+# Build de production (_fresh/) servi tel quel ; dépendances déjà en cache.
+ExecStart=/usr/local/bin/deno serve --cached-only --host 127.0.0.1 --port 8040 \
+  --allow-net=127.0.0.1:8040 --allow-read=/srv/champ-lab --allow-env _fresh/server.js
+Restart=on-failure
+RestartSec=3
+
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=strict
+ReadOnlyPaths=/srv/champ-lab
+ProtectHome=true
+ProtectControlGroups=true
+ProtectKernelTunables=true
+ProtectKernelModules=true
+RestrictSUIDSGID=true
+LockPersonality=true
+
+[Install]
+WantedBy=multi-user.target

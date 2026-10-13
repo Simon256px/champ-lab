@@ -30,8 +30,7 @@ jobs:
       - uses: denoland/setup-deno@v2
         with:
           deno-version: v2.x
-      # Vérifie que le build de production passe. Le déploiement lui-même est
-      # géré par l'intégration native Deno Deploy (branchée sur le repo GitHub),
-      # pas par ce workflow.
+      # Vérifie que le build de production passe. Le déploiement est fait par le
+      # serveur lui-même (timer champ-lab-deploy, voir DEPLOY.md) une fois main à jour.
       - name: Build with Fresh
         run: deno task build
