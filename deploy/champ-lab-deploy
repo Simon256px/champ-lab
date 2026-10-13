@@ -1,0 +1,32 @@
+#!/usr/bin/env bash
+# Met lol.simoncourtois.com à jour depuis GitHub (branche main) : récupère, construit,
+# met les dépendances en cache, redémarre, puis vérifie que le site répond.
+#
+#   sudo champ-lab-deploy               # déploie maintenant
+#   sudo champ-lab-deploy --if-changed  # seulement si main a bougé (timer champ-lab-deploy.timer)
+set -euo pipefail
+
+APP=/srv/champ-lab
+URL=http://127.0.0.1:8040/
+
+run() { runuser -u champlab -- env DENO_DIR="$APP/.deno" HOME="$APP" DENO_NO_UPDATE_CHECK=1 "$@"; }
+
+cd "$APP"
+run git fetch --quiet origin main
+if [[ "${1:-}" == "--if-changed" && "$(run git rev-parse HEAD)" == "$(run git rev-parse origin/main)" ]]; then
+  exit 0
+fi
+
+run git merge --ff-only --quiet origin/main
+run /usr/local/bin/deno task build
+run /usr/local/bin/deno cache _fresh/server.js
+systemctl restart champ-lab
+
+code=000
+for _ in $(seq 1 15); do
+  code=$(curl -s -o /dev/null -w "%{http_code}" "$URL" || true)
+  [[ "$code" == 200 ]] && break
+  sleep 1
+done
+echo "champ-lab : $(run git log --oneline -1) — HTTP $code"
+[[ "$code" == 200 ]]

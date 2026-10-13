@@ -54,12 +54,12 @@ export function Nav({ active }: { active: string }) {
         );
       })}
       <a
-        href="https://champ-lab.simon256px.deno.net/"
+        href="https://github.com/Simon256px/champ-lab"
         class="navlink ghost"
         target="_blank"
         rel="noopener noreferrer"
       >
-        SITE ↗
+        CODE ↗
       </a>
     </nav>
   );
