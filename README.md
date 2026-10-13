@@ -72,6 +72,7 @@ champ-lab/
 │   │   └── meta.gen.ts   #     patch + compteurs
 │   ├── overrides.ts      #   >>> réglages à la main : étagères, runes, passifs
 │   ├── mechanics.ts      #   >>> passifs de kit : références aux fichiers du jeu (Fiora, Jax…)
+│   ├── item-mechanics.ts #   >>> effets d'objets : Kraken, Lame enchantée, Fendoir, Liandry…
 │   ├── champions.ts      #   ré-exporte le généré
 │   ├── items.ts          #   ré-exporte le généré + itemStatLine
 │   └── runes.ts          #   runes keystone (kinds modélisés dans le moteur)
@@ -140,6 +141,11 @@ Kits et survie : dégâts en % des PV (cible ou lanceur), ratios par rang, boucl
 vie et omnivampirisme, qui s'ajoutent aux PV effectifs du camp qui les porte (un soin ne rend que ce qui a été
 perdu). Les passifs absents de Meraki se décrivent dans `data/mechanics.ts` (voir
 `docs/adding-a-champion.md`).
+
+Effets d'objets (`data/item-mechanics.ts`, valeurs du fichier des objets du jeu) : à l'impact (Kraken, Lame du
+roi déchu, Nashor, Fin de l'esprit), Lame enchantée (Brillance, Trinité, Lich Bane, Faucheuse d'essence),
+déclenchés par un sort (Luden), actifs (Brise-pas), réduction d'armure (Fendoir noir), brûlure (Liandry).
+Variantes mêlée / distance du jeu respectées ; dégâts critiques (IE) et ténacité lus aussi.
 
 Interactions : les contrôles lus dans les fichiers du jeu (118 sorts) font perdre ce temps d'action à la cible
 ; la parade de Fiora bloque le plus gros coup et le plus long contrôle adverses ; l'esquive de Jax annule les

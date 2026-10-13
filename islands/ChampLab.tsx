@@ -537,7 +537,8 @@ export default function ChampLab({ champion }: { champion: Champion }) {
             <div class="cs">
               {includedAbilityKeys.join(" + ")}
               {champion.hasBleed && include.bleed ? " + saignement" : ""}
-              {runeOn && keystone.kind === "electro" && include.rune ? " + rune" : ""} inclus
+              {runeOn && keystone.kind === "electro" && include.rune ? " + rune" : ""}
+              {result.lines.some((l) => l.key === "I") ? " + objets" : ""} inclus
             </div>
           </div>
           <div class="rright">

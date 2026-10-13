@@ -4,7 +4,17 @@
  */
 
 import { assert, assertAlmostEquals, assertEquals } from "@std/assert";
-import { ccDuration, ccKind, cooldowns, parseTooltip, resolveRef, spellSlots, toFormula } from "./cdragon.ts";
+import {
+  ccDuration,
+  ccKind,
+  cooldowns,
+  itemExtraStats,
+  parseTooltip,
+  resolveItemRef,
+  resolveRef,
+  spellSlots,
+  toFormula,
+} from "./cdragon.ts";
 import { evalFormula } from "../lib/formula.ts";
 
 const stats = {
@@ -183,4 +193,65 @@ Deno.test("cdragon : familles de contrôle d'après les noms internes", () => {
   assertEquals(ccKind("KnockupDuration"), "knock");
   assertEquals(ccKind("CharmDuration"), "charm");
   assertEquals(ccKind("CCDuration"), null);
+});
+
+// --- Objets (extraits réels de items.cdtb.bin.json, 16.20) ---
+
+const KRAKEN = {
+  mDataValues: [
+    { mName: "AttackCount", mValue: 3 },
+    { mName: "RangedDamageMultiplier", mValue: 0.800000011920929 },
+  ],
+  mItemCalculations: {
+    DamageAmount: {
+      mFormulaParts: [{
+        mLevel1Value: 150,
+        mBreakpoints: [{ mLevel: 9, mBonusPerLevelAtAndAfter: 5, __type: "Breakpoint" }],
+        __type: "ByCharLevelBreakpointsCalculationPart",
+      }],
+      mRangedMultiplier: { mDataValue: "RangedDamageMultiplier", __type: "NamedDataValueCalculationPart" },
+      __type: "{e9a3c91d}",
+    },
+  },
+};
+const HYDRA = {
+  mItemCalculations: {
+    ChampRange: {
+      mDefaultGameCalculation: "{792cf56b}",
+      mConditionalGameCalculation: "{06387172}",
+      mConditionalCalculationRequirements: { __type: "IsRangedCastRequirement" },
+      __type: "GameCalculationConditional",
+    },
+    "{792cf56b}": {
+      mFormulaParts: [{ mNumber: 1, __type: "NumberCalculationPart" }],
+      __type: "GameCalculation",
+    },
+    "{06387172}": {
+      mFormulaParts: [{ mNumber: 2, __type: "NumberCalculationPart" }],
+      __type: "GameCalculation",
+    },
+  },
+  mFlatCritDamageMod: 0.30000001192092896,
+  mPercentTenacityItemMod: 0.30000001192092896,
+};
+
+Deno.test("cdragon : objet — paliers par niveau et multiplicateur à distance (Kraken)", () => {
+  const melee = resolveItemRef(KRAKEN, { calc: "DamageAmount" })!;
+  const ranged = resolveItemRef(KRAKEN, { calc: "DamageAmount" }, true)!;
+  const at = (f: typeof melee, level: number) => evalFormula(f, { rank: 1, level, stats });
+  assertEquals(at(melee, 8), 150);
+  assertEquals(at(melee, 18), 200);
+  assertAlmostEquals(at(ranged, 18), 160, 1e-9);
+  assertEquals(
+    evalFormula(resolveItemRef(KRAKEN, { value: "AttackCount" })!, { rank: 1, level: 1, stats }),
+    3,
+  );
+});
+
+Deno.test("cdragon : objet — calcul conditionnel mêlée / distance, stats en plus", () => {
+  const at = (ranged: boolean) =>
+    evalFormula(resolveItemRef(HYDRA, { calc: "ChampRange" }, ranged)!, { rank: 1, level: 1, stats });
+  assertEquals(at(false), 1);
+  assertEquals(at(true), 2);
+  assertEquals(itemExtraStats(HYDRA), { critDamage: 0.3, tenacity: 0.3 });
 });

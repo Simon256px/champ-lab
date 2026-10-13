@@ -104,6 +104,23 @@ et cherche le sort (`mSpell` → `mSpellCalculations` pour les calculs, `DataVal
 référence ne se résout pas (sort renommé, formule non convertible), le pipeline le signale et écarte la
 mécanique. Ajoute un test qui vérifie qu'elle s'applique (voir les tests « passif » de `lib/engine_test.ts`).
 
+## 2 quater. Effets d'objets → `data/item-mechanics.ts`
+
+Même principe que les passifs : des références au fichier des objets du jeu
+(`https://raw.communitydragon.org/latest/game/items.cdtb.bin.json`, entrée `Items/<id Riot>` → `mDataValues`
+pour les valeurs, `mItemCalculations` pour les calculs), jamais de chiffres.
+
+| `kind`       | Pour                                                     | Exemple                   |
+| ------------ | -------------------------------------------------------- | ------------------------- |
+| `onHit`      | dégâts tous les N coups d'auto (`every`)                 | Kraken, Lame du roi déchu |
+| `spellProc`  | dégâts déclenchés par un sort (`needsAuto` : Lame ench.) | Trinité, Luden            |
+| `active`     | actif lancé une fois par cooldown                        | Brise-pas                 |
+| `armorShred` | réduction d'armure qui s'empile                          | Fendoir noir              |
+| `burn`       | brûlure par seconde entretenue par les sorts             | Liandry                   |
+
+Les variantes mêlée / distance sont résolues toutes les deux (calcul conditionnel du jeu, multiplicateur à
+distance) ; `rangedDamage` permet d'indiquer un calcul distinct (Lame du roi déchu).
+
 ## 3. Cas complexes → moteur
 
 Si le champion a une mécanique que ni le modèle générique ni `data/mechanics.ts` ne couvrent (exécution, cumul
