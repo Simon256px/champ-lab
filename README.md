@@ -68,15 +68,19 @@ champ-lab/
 │   ├── generated/        #   >>> GÉNÉRÉ par `deno task data` (ne pas éditer)
 │   │   ├── champions.gen.ts
 │   │   ├── items.gen.ts
+│   │   ├── mechanics.gen.ts #   passifs résolus depuis les fichiers du jeu
 │   │   └── meta.gen.ts   #     patch + compteurs
 │   ├── overrides.ts      #   >>> réglages à la main : étagères, runes, passifs
+│   ├── mechanics.ts      #   >>> passifs de kit : références aux fichiers du jeu (Fiora, Jax…)
 │   ├── champions.ts      #   ré-exporte le généré
 │   ├── items.ts          #   ré-exporte le généré + itemStatLine
 │   └── runes.ts          #   runes keystone (kinds modélisés dans le moteur)
 ├── scripts/
-│   └── fetch-data.ts     # PIPELINE Meraki + Data Dragon → data/generated/
+│   ├── fetch-data.ts     # PIPELINE Meraki + Data Dragon + CommunityDragon → data/generated/
+│   └── cdragon.ts        #   fichiers du jeu : sorts, cooldowns, formules → Formula
 ├── lib/
 │   ├── engine.ts         # MOTEUR pur & typé (aucune donnée en dur)
+│   ├── formula.ts        #   évalue les formules du jeu (Formula)
 │   ├── engine_test.ts    #   tests d'invariants
 │   ├── timeline.ts       # MATCHUP dans le temps : niveau/or/build à la minute T, spikes
 │   └── timeline_test.ts
@@ -132,8 +136,13 @@ Trois façons de faire l'échange :
 - **all-in** (`allIn: true`) : le trade prolongé jusqu'au premier mort. `timeToKill()` donne le temps pour
   tuer de chaque camp, et l'edge se lit à l'instant du premier kill (PV retirés plafonnés à 100 %).
 
-Indicateur théorique : ni passifs (sauf Darius), ni effets à l'impact, soins, boucliers, portée, déplacements,
-contrôles ou animations. Autos et sorts s'enchaînent sans temps mort : c'est un plafond de dégâts.
+Kits et survie : dégâts en % des PV (cible ou lanceur), ratios par rang, boucliers et soins des sorts, vol de
+vie et omnivampirisme, qui s'ajoutent aux PV effectifs du camp qui les porte (un soin ne rend que ce qui a été
+perdu). Les passifs absents de Meraki se décrivent dans `data/mechanics.ts` (voir
+`docs/adding-a-champion.md`).
+
+Indicateur théorique : pas d'effets d'objets, de portée, de déplacements, de contrôles, d'esquives ni
+d'animations. Autos et sorts s'enchaînent sans temps mort : c'est un plafond de dégâts.
 
 ## Ajouter / affiner un champion
 
@@ -148,20 +157,24 @@ maintenance du patch se répartit.
 
 ## Sources de données
 
-Le pipeline (`scripts/fetch-data.ts`, lancé par `deno task data`) combine deux sources :
+Le pipeline (`scripts/fetch-data.ts`, lancé par `deno task data`) combine trois sources :
 
 - **[Data Dragon](https://developer.riotgames.com/docs/lol#data-dragon)** (Riot) — résolution du patch et
   liste des champions ; portraits carrés via **Community Dragon**.
 - **[Meraki / lolstaticdata](https://github.com/meraki-analytics/lolstaticdata)** — stats de base, ratios de
-  sorts (AP / AD / AD bonus) et stats plates d'objets, parsés du wiki et versionnés par patch.
+  sorts (AP / AD / AD bonus) et stats plates d'objets, parsés du wiki. Peut avoir plusieurs patchs de retard.
+- **[CommunityDragon](https://raw.communitydragon.org/)** — les fichiers du jeu convertis en JSON, au patch
+  près (`scripts/cdragon.ts`). Font foi pour les **cooldowns** et les **passifs** de `data/mechanics.ts` :
+  leurs formules sont converties en `Formula` et évaluées par le moteur (`lib/formula.ts`).
 
 Les objets sont filtrés sur la **Faille de l'invocateur** (classé) via Data Dragon (`maps["11"]`) : objets
 complets et bottes (y compris améliorées), pas de composants ni d'objets ARAM/Arena. Les champions non encore
 présents dans Meraki (ex. Locke) sont saisis à la main dans `data/manual.ts` et fusionnés au roster.
 
-**Honnêteté :** le pipeline n'extrait que ce que le moteur sait déjà modéliser. Ce que Meraki encode en texte
-(passifs conditionnels, dégâts en % PV, cumuls) n'est **pas deviné** : ces cas restent à coder à la main dans
-`lib/engine.ts` et à réinjecter via `data/overrides.ts`. C'est un travail continu, idéal pour contribuer.
+**Honnêteté :** le pipeline n'extrait que ce que le moteur sait déjà modéliser. Une formule de jeu qui utilise
+une brique non reconnue (cumul de buff, condition, stat au sens non vérifié) n'est **pas devinée** : elle est
+écartée et signalée. Les passifs se décrivent dans `data/mechanics.ts` par des références aux fichiers du jeu,
+sans chiffre saisi à la main. C'est un travail continu, idéal pour contribuer.
 
 Régénérer un patch précis :
 

@@ -22,7 +22,9 @@ export default define.page(function Methode() {
                 <b>images officielles</b>. Fiable pour les stats plates.
               </li>
               <li>
-                <b>Community Dragon</b> — assets et ressources graphiques supplémentaires.
+                <b>Community Dragon</b>{" "}
+                — les fichiers du jeu convertis en JSON, au patch près : cooldowns et valeurs des passifs
+                (formules du jeu évaluées par le moteur), plus des assets graphiques.
               </li>
               <li>
                 <b>Meraki (lolstaticdata)</b>{" "}
@@ -47,10 +49,10 @@ export default define.page(function Methode() {
             </p>
             <p>
               ⚠ Le pipeline n'extrait que ce que le moteur sait modéliser : stats de base, ratios AP / AD / AD
-              bonus, stats plates d'objets. Les mécaniques vraiment complexes (dégâts en % des PV, passifs
-              conditionnels, cumuls spécifiques) ne sont <b>pas inventées</b>{" "}
-              — elles restent à modéliser à la main dans <code>lib/engine.ts</code> et via{" "}
-              <code>data/overrides.ts</code>, champion par champion.
+              bonus et par rang, dégâts en % des PV, boucliers et soins des sorts, cooldowns, stats plates
+              d'objets (dont VA, crit, vol de vie). Les passifs et mécaniques conditionnelles ne sont{" "}
+              <b>pas inventés</b> — ils se saisissent à la main dans <code>data/mechanics.ts</code>{" "}
+              (Fiora, Jax, Vayne pour l'instant) ou <code>lib/engine.ts</code>, champion par champion.
             </p>
           </div>
         </section>

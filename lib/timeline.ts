@@ -165,6 +165,9 @@ export interface MatchupPoint {
   killPctB: number;
   /** killPctA - killPctB (> 0 = A gagne l'échange) */
   edge: number;
+  /** PV que chaque camp se rend (boucliers + soins) sur la fenêtre */
+  sustainA: number;
+  sustainB: number;
   /** mode trade : secondes pour que A tue B (Infinity = pas de kill) */
   ttkA?: number;
   /** mode trade : secondes pour que B tue A */
@@ -211,6 +214,8 @@ export function matchupTimeline(
       killPctA: duel.killPctA,
       killPctB: duel.killPctB,
       edge: duel.edge,
+      sustainA: duel.sustainA,
+      sustainB: duel.sustainB,
       ...(duel.ttkA !== undefined ? { ttkA: duel.ttkA, ttkB: duel.ttkB } : {}),
     });
   }

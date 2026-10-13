@@ -15,7 +15,9 @@
  *   4. fusionne des "overrides" écrits à la main (data/overrides.ts) pour les
  *      passifs complexes (Rabadon %AP, Fendoir %pén.), les étagères d'objets
  *      recommandés et la rune par défaut de chaque champion ;
- *   5. écrit data/generated/champions.gen.ts, items.gen.ts, meta.gen.ts.
+ *   5. lit les fichiers du jeu (CommunityDragon, au patch près) : cooldowns, et
+ *      valeurs des passifs décrits dans data/mechanics.ts ;
+ *   6. écrit data/generated/champions.gen.ts, items.gen.ts, mechanics.gen.ts, meta.gen.ts.
  *
  * Honnêteté : les mécaniques non-plates (dégâts % PV, passifs conditionnels…)
  * ne sont PAS inventées. Elles restent à modéliser au cas par cas dans
@@ -30,10 +32,23 @@ import type {
   Champion,
   ChampionBaseStats,
   DamageType,
+  Formula,
+  GameRef,
   Item,
   ItemStats,
   ItemTier,
+  Mechanic,
+  ScaledValue,
 } from "../data/types.ts";
+import { MECHANICS } from "../data/mechanics.ts";
+import {
+  cdragonVersion,
+  cooldowns,
+  fetchChampionBin,
+  resolveRef,
+  type SpellSlots,
+  spellSlots,
+} from "./cdragon.ts";
 import {
   CHAMPION_OVERRIDES,
   DEFAULT_AD_SHELF,
@@ -164,25 +179,30 @@ function damageType(m: string | undefined, hasDamage: boolean): DamageType {
   }
 }
 
-/** Convertit une unité Meraki en clé de ratio du domaine (ou null si non modélisé). */
+/**
+ * Convertit une unité Meraki en clé de ratio du domaine (ou null si non modélisé).
+ * Les unités composées (« 3 % (+ 0,55 % par 100 AP) des PV max de la cible »)
+ * gardent leur part fixe : le bonus par 100 AP est ignoré.
+ */
 function ratioKeyFromUnit(unit: string): keyof AbilityRatios | null {
-  switch (unit.trim()) {
-    case "% AP":
-      return "ap";
-    case "% AD":
-      return "totalAd";
-    case "% bonus AD":
-      return "bonusAd";
-    default:
-      return null; // % PV cible, létalité conditionnelle, etc. → non modélisé
-  }
+  const u = unit.trim().toLowerCase().replace(/\s+/g, " ");
+  if (u === "% ap") return "ap";
+  if (u === "% ad") return "totalAd";
+  if (u === "% bonus ad") return "bonusAd";
+  if (/primary target/.test(u)) return null;
+  if (/target'?s maximum health/.test(u)) return "targetMaxHp";
+  if (/target'?s missing health/.test(u)) return "targetMissingHp";
+  if (/target'?s current health/.test(u)) return "targetCurrentHp";
+  if (/^% (of (his|her|its) )?bonus health$/.test(u)) return "bonusHp";
+  if (/^% (of (his|her|its) )?maximum health$/.test(u)) return "maxHp";
+  return null; // létalité conditionnelle, % mana, % armure… → non modélisé
 }
 
 /**
  * Choisit la ligne de dégâts "principale" d'un sort parmi les entrées de
  * leveling de Meraki. Heuristique : on privilégie un attribut dont le nom
  * contient "Damage", en écartant les "Total"/"Maximum"/"Reduced"/"Minimum"/
- * "Per Stack" qui sont des variantes/plafonds. À défaut, la première.
+ * "Per Stack" qui sont des variantes/plafonds. À défaut, une variante ; sinon rien.
  */
 function pickDamageLeveling(ability: MAbility): MLeveling | null {
   const levelings: MLeveling[] = [];
@@ -191,23 +211,25 @@ function pickDamageLeveling(ability: MAbility): MLeveling | null {
   }
   if (levelings.length === 0) return null;
 
-  const isDamage = (a: string) => /damage/i.test(a);
+  // « Damage » au sens dégâts infligés — pas « Attack Damage » (un buff de stat) ni
+  // « Damage Reduction / Amplification / Taken » (des modificateurs).
+  const isDamage = (a: string) =>
+    /damage/i.test(a) && !/(attack damage|reduction|amplif|taken|stored|absorbed|blocked)/i.test(a);
   const isVariant = (a: string) =>
     /(total|maximum|minimum|reduced|per stack|monster|per second|bonus)/i.test(a);
 
   const primary = levelings.find((l) => isDamage(l.attribute) && !isVariant(l.attribute));
   if (primary) return primary;
-  const anyDamage = levelings.find((l) => isDamage(l.attribute));
-  return anyDamage ?? levelings[0];
+  // Pas de ligne « Damage » : le sort ne fait pas de dégâts modélisables. On ne
+  // retombe PAS sur la première ligne venue (bouclier, largeur de mur, buff…).
+  return levelings.find((l) => isDamage(l.attribute)) ?? null;
 }
 
-/** Extrait base[] par rang + ratios depuis la ligne de dégâts choisie. */
-function extractAbilityDamage(ability: MAbility): { base: number[]; ratios: AbilityRatios } | null {
-  const lv = pickDamageLeveling(ability);
-  if (!lv) return null;
-
+/** Projette une ligne de leveling Meraki sur base[] par rang + ratios (fixes ou par rang). */
+function scaledFromLeveling(lv: MLeveling): ScaledValue | null {
   let base: number[] = [];
   const ratios: AbilityRatios = {};
+  const rankRatios: Partial<Record<keyof AbilityRatios, number[]>> = {};
 
   for (const mod of lv.modifiers) {
     const units = mod.units;
@@ -216,16 +238,39 @@ function extractAbilityDamage(ability: MAbility): { base: number[]; ratios: Abil
       if (base.length === 0) base = mod.values.map((v) => round(v));
       continue;
     }
-    // Sinon, unité de ratio homogène : on prend le rang 1 (les ratios varient
-    // rarement par rang ; quand ils le font, on retient le premier — simple et
-    // relisible, à raffiner en override si besoin).
     const key = ratioKeyFromUnit(units[0]);
-    if (key && mod.values.length) ratios[key] = round(mod.values[0] / 100, 3);
+    if (!key || !mod.values.length) continue;
+    const values = mod.values.map((v) => round(v / 100, 4));
+    ratios[key] = values[0];
+    // Ratio qui varie avec le rang (Darius Q 100→140 % AD) : on garde la série.
+    if (values.some((v) => v !== values[0])) rankRatios[key] = values;
   }
 
   if (base.length === 0 && Object.keys(ratios).length === 0) return null;
   if (base.length === 0) base = [0];
-  return { base, ratios };
+  return Object.keys(rankRatios).length ? { base, ratios, rankRatios } : { base, ratios };
+}
+
+/** Extrait base[] par rang + ratios depuis la ligne de dégâts choisie. */
+function extractAbilityDamage(ability: MAbility): ScaledValue | null {
+  const lv = pickDamageLeveling(ability);
+  return lv ? scaledFromLeveling(lv) : null;
+}
+
+/**
+ * Bouclier ou soin d'un sort : première ligne dont l'attribut correspond, en
+ * préférant celles qui ne sont pas des variantes (max, min, par seconde…).
+ */
+function extractEffect(ability: MAbility, match: RegExp, exclude: RegExp): ScaledValue | null {
+  const levelings: MLeveling[] = [];
+  for (const eff of ability.effects) {
+    for (const lv of eff.leveling ?? []) {
+      if (match.test(lv.attribute) && !exclude.test(lv.attribute)) levelings.push(lv);
+    }
+  }
+  const isVariant = (a: string) => /(maximum|minimum|per second|total|increased|empowered|bonus)/i.test(a);
+  const lv = levelings.find((l) => !isVariant(l.attribute)) ?? levelings[0];
+  return lv ? scaledFromLeveling(lv) : null;
 }
 
 // ---------------------------------------------------------------------------
@@ -276,13 +321,18 @@ function mapChampion(m: MChampion, dd?: DDChampStats): Champion {
     const type = damageType(ma.damageType, !!dmg);
     const maxRank = key === "R" ? 3 : 5;
     const cooldown = ma.cooldown?.modifiers?.[0]?.values?.map((v) => round(v));
+    const shield = extractEffect(ma, /shield/i, /reduc|destroy|break/i);
+    const heal = extractEffect(ma, /heal|health restored/i, /reduc|grievous|cut/i);
     abilities[key] = {
       name: ma.name,
       type,
       maxRank,
       base: dmg?.base ?? [0],
       ratios: dmg?.ratios ?? {},
+      ...(dmg?.rankRatios ? { rankRatios: dmg.rankRatios } : {}),
       ...(cooldown?.length ? { cooldown } : {}),
+      ...(shield ? { shield } : {}),
+      ...(heal ? { heal } : {}),
     };
   }
 
@@ -318,7 +368,17 @@ function applyAbilityOverrides(id: string, abilities: Record<AbilityKey, Ability
   const ov = CHAMPION_OVERRIDES[id]?.abilities;
   if (!ov) return abilities;
   for (const key of ABILITY_KEYS) {
-    if (ov[key]) abilities[key] = { ...abilities[key], ...ov[key] };
+    const o = ov[key];
+    if (!o) continue;
+    const merged = { ...abilities[key], ...o };
+    // Un ratio corrigé à la main remplace aussi sa série par rang générée.
+    if (o.ratios && merged.rankRatios) {
+      const rr = { ...merged.rankRatios };
+      for (const k of Object.keys(o.ratios) as (keyof AbilityRatios)[]) delete rr[k];
+      if (Object.keys(rr).length) merged.rankRatios = rr;
+      else delete merged.rankRatios;
+    }
+    abilities[key] = merged;
   }
   return abilities;
 }
@@ -348,6 +408,10 @@ function mapItemStats(m: MItem, dd?: Record<string, number>): ItemStats {
   if (asPct) stats.attackSpeed = round(asPct / 100, 3);
   const critPct = flat("criticalStrikeChance") || pct("criticalStrikeChance");
   if (critPct) stats.critChance = round(critPct / 100, 3);
+  const lifeSteal = flat("lifesteal") || pct("lifesteal");
+  if (lifeSteal) stats.lifeSteal = round(lifeSteal / 100, 3);
+  const omnivamp = flat("omnivamp") || pct("omnivamp");
+  if (omnivamp) stats.omnivamp = round(omnivamp / 100, 3);
 
   // Stats plates : Data Dragon (versionné par patch) fait foi quand il les
   // expose — Meraki "latest" peut retarder d'un ou plusieurs patchs. L'AH, la
@@ -360,6 +424,7 @@ function mapItemStats(m: MItem, dd?: Record<string, number>): ItemStats {
     if (dd.FlatSpellBlockMod) stats.mr = round(dd.FlatSpellBlockMod);
     if (dd.PercentAttackSpeedMod) stats.attackSpeed = round(dd.PercentAttackSpeedMod, 3);
     if (dd.FlatCritChanceMod) stats.critChance = round(dd.FlatCritChanceMod, 3);
+    if (dd.PercentLifeStealMod) stats.lifeSteal = round(dd.PercentLifeStealMod, 3);
   }
   return stats;
 }
@@ -492,6 +557,62 @@ ${body}
 `;
 }
 
+function renderMechanics(mechanics: Record<string, Mechanic[]>, patch: string): string {
+  const body = Object.entries(mechanics)
+    .map(([id, list]) => `  ${JSON.stringify(id)}: ${JSON.stringify(list, null, 2).replace(/\n/g, "\n  ")},`)
+    .join("\n");
+  return `${header(patch)}
+// Passifs décrits dans data/mechanics.ts, valeurs résolues depuis les fichiers du jeu.
+import type { Mechanic } from "../types.ts";
+
+export const GENERATED_MECHANICS: Record<string, Mechanic[]> = {
+${body}
+};
+`;
+}
+
+/**
+ * Résout les GameRef de data/mechanics.ts en formules. Une mécanique dont une
+ * référence est introuvable (sort renommé, calcul non convertible) est écartée
+ * et signalée — on n'invente pas de valeur.
+ */
+function resolveMechanics(
+  champions: Champion[],
+  slotsById: Map<string, SpellSlots>,
+): Record<string, Mechanic[]> {
+  const out: Record<string, Mechanic[]> = {};
+  let ok = 0;
+  for (const [id, list] of Object.entries(MECHANICS)) {
+    const champ = champions.find((c) => c.id === id);
+    const slots = slotsById.get(id);
+    if (!champ || !slots) {
+      console.warn(`  ⚠ mécaniques de ${id} : champion ou fichiers du jeu introuvables.`);
+      continue;
+    }
+    const maxRank = (ref: GameRef) => (ref.slot === "P" ? 1 : champ.abilities[ref.slot].maxRank);
+    for (const m of list) {
+      const resolved: Record<string, unknown> = {};
+      let failed: string | null = null;
+      for (const [k, v] of Object.entries(m)) {
+        if (v && typeof v === "object" && "slot" in v) {
+          const ref = v as GameRef;
+          const f: Formula | null = resolveRef(slots, ref, maxRank(ref));
+          if (!f) failed = `${ref.slot}/${ref.calc ?? ref.value}`;
+          resolved[k] = f;
+        } else resolved[k] = v;
+      }
+      if (failed) {
+        console.warn(`  ⚠ mécanique ${id} ${m.kind} : référence ${failed} non résolue, écartée.`);
+        continue;
+      }
+      (out[id] ??= []).push(resolved as Mechanic);
+      ok++;
+    }
+  }
+  console.log(`  mécaniques : ${ok} résolues depuis les fichiers du jeu.`);
+  return out;
+}
+
 function renderMeta(
   patch: string,
   counts: { champions: number; items: number; runes: number; statsPatch: string },
@@ -576,6 +697,40 @@ async function main() {
         `les stats champions peuvent être en retard (voir deno task audit).`,
     );
   }
+
+  // --- Fichiers du jeu (CommunityDragon) : à jour au patch, contrairement à Meraki ---
+  const cdVersion = cdragonVersion(patch);
+  console.log(`▶ Fichiers du jeu (CommunityDragon ${cdVersion})…`);
+  const slotsById = new Map<string, SpellSlots>();
+  for (let i = 0; i < champions.length; i += BATCH) {
+    const slice = champions.slice(i, i + BATCH);
+    const bins = await Promise.all(slice.map((c) => fetchChampionBin(cdVersion, c.id).catch(() => null)));
+    slice.forEach((c, j) => {
+      if (bins[j]) slotsById.set(c.id, spellSlots(bins[j]));
+    });
+  }
+  console.log(`  ${slotsById.size}/${champions.length} champions trouvés.`);
+
+  // Cooldowns : le jeu fait foi.
+  let cdTotal = 0;
+  let cdChanged = 0;
+  for (const c of champions) {
+    const slots = slotsById.get(c.id);
+    if (!slots) continue;
+    for (const key of ABILITY_KEYS) {
+      const cd = cooldowns(slots[key], c.abilities[key].maxRank);
+      if (!cd) continue;
+      cdTotal++;
+      if (JSON.stringify(cd) !== JSON.stringify(c.abilities[key].cooldown)) cdChanged++;
+      c.abilities[key].cooldown = cd;
+    }
+  }
+  console.log(
+    `  cooldowns : ${cdTotal} sorts au patch ${cdVersion}, dont ${cdChanged} différents de Meraki.`,
+  );
+
+  // Passifs (data/mechanics.ts) : références résolues en formules du patch.
+  const mechanics = resolveMechanics(champions, slotsById);
 
   // --- Objets ---
   // Disponibilité sur la Faille de l'invocateur (classé) : Data Dragon expose
@@ -686,6 +841,7 @@ async function main() {
   await Deno.writeTextFile(new URL("champions.gen.ts", OUT_DIR), renderChampions(champions, patch));
   await Deno.writeTextFile(new URL("items.gen.ts", OUT_DIR), renderItems(items, patch));
   await Deno.writeTextFile(new URL("runes.gen.ts", OUT_DIR), renderRunes(runes, patch));
+  await Deno.writeTextFile(new URL("mechanics.gen.ts", OUT_DIR), renderMechanics(mechanics, patch));
   await Deno.writeTextFile(
     new URL("meta.gen.ts", OUT_DIR),
     renderMeta(patch, {

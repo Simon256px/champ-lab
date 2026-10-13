@@ -282,6 +282,7 @@ export const GENERATED_ITEMS: Record<string, Item> = {
     "stats": {
       "ad": 40,
       "attackSpeed": 0.25,
+      "lifeSteal": 0.1,
     },
     "tier": "legendary",
     "cost": 3200,
@@ -353,6 +354,7 @@ export const GENERATED_ITEMS: Record<string, Item> = {
     "short": "BLOODTHI",
     "stats": {
       "ad": 80,
+      "lifeSteal": 0.15,
     },
     "tier": "legendary",
     "cost": 3400,
@@ -669,6 +671,7 @@ export const GENERATED_ITEMS: Record<string, Item> = {
     "stats": {
       "ad": 10,
       "hp": 80,
+      "omnivamp": 0.025,
     },
     "tier": "starter",
     "cost": 450,
@@ -786,6 +789,7 @@ export const GENERATED_ITEMS: Record<string, Item> = {
     "short": "ENDLESS",
     "stats": {
       "ad": 65,
+      "omnivamp": 0.05,
     },
     "tier": "legendary",
     "cost": 3100,
@@ -1024,6 +1028,7 @@ export const GENERATED_ITEMS: Record<string, Item> = {
     "stats": {
       "ad": 25,
       "hp": 150,
+      "lifeSteal": 0.05,
     },
     "tier": "starter",
     "cost": 950,
@@ -1184,6 +1189,7 @@ export const GENERATED_ITEMS: Record<string, Item> = {
     "stats": {
       "ad": 40,
       "ap": 80,
+      "omnivamp": 0.1,
     },
     "tier": "legendary",
     "cost": 3000,
@@ -1649,6 +1655,7 @@ export const GENERATED_ITEMS: Record<string, Item> = {
     "stats": {
       "ad": 50,
       "mr": 35,
+      "lifeSteal": 0.1,
     },
     "tier": "legendary",
     "cost": 3200,
@@ -2047,6 +2054,7 @@ export const GENERATED_ITEMS: Record<string, Item> = {
     "stats": {
       "ad": 65,
       "abilityHaste": 15,
+      "lifeSteal": 0.12,
     },
     "tier": "legendary",
     "cost": 3300,
@@ -2790,6 +2798,7 @@ export const GENERATED_ITEMS: Record<string, Item> = {
     "short": "VAMPIRIC",
     "stats": {
       "ad": 15,
+      "lifeSteal": 0.07,
     },
     "tier": "epic",
     "cost": 900,
@@ -3043,6 +3052,7 @@ export const GENERATED_ITEMS: Record<string, Item> = {
     "stats": {
       "abilityHaste": 30,
       "attackSpeed": 0.45,
+      "lifeSteal": 0.05,
     },
     "tier": "legendary",
     "cost": 1100,

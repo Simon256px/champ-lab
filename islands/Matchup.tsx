@@ -171,6 +171,12 @@ export default function Matchup({ initialA, initialB }: Props) {
                       {" "}· tue en <b>{secs(focus.ttkA)}</b> / <b>{secs(focus.ttkB)}</b>
                     </>
                   )}
+                  {(focus.sustainA > 0 || focus.sustainB > 0) && (
+                    <>
+                      {" "}· boucliers + soins <b>+{Math.round(focus.sustainA)}</b> /{" "}
+                      <b>+{Math.round(focus.sustainB)}</b> PV
+                    </>
+                  )}
                 </>
               )
               : <span class="dim">Survole la courbe pour le détail d'une minute.</span>}
@@ -213,10 +219,15 @@ export default function Matchup({ initialA, initialB }: Props) {
               (ability haste comprise), auto-attaques à la vitesse d'attaque, crits en espérance. L'all-in
               s'arrête au premier mort. Résistances et PV du niveau et des objets compris.
             </p>
+            <p>
+              Kits : dégâts en % des PV, ratios par rang, boucliers et soins des sorts, vol de vie et
+              omnivampirisme, qui s'ajoutent aux PV du camp qui les porte. Passifs de Darius, Fiora, Jax et
+              Vayne tirés des fichiers du jeu (CommunityDragon), au patch près, comme les cooldowns.
+            </p>
             <p class="dim">
-              Pas encore modélisé : passifs (sauf Darius), effets à l'impact, soins, boucliers, portée,
-              déplacements, contrôles, animations. Les autos et les sorts s'enchaînent sans temps mort : c'est
-              un plafond de dégâts, pas un replay.
+              Pas encore modélisé : les autres passifs, les effets d'objets, portée, déplacements, contrôles,
+              esquives et parades, animations. Les autos et les sorts s'enchaînent sans temps mort : c'est un
+              plafond de dégâts, pas un replay.
             </p>
           </div>
         </div>

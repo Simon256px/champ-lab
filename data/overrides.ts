@@ -15,7 +15,7 @@
  * >>> C'est ici que la communauté affine un champion, sans toucher au généré. <<<
  */
 
-import type { AbilityKey, Adaptive, ItemStats } from "./types.ts";
+import type { AbilityKey, AbilityRatios, Adaptive, ItemStats } from "./types.ts";
 
 // ---------------------------------------------------------------------------
 // Étagères par défaut (ids d'objets de data/items.ts, tels que slugifiés).
@@ -90,7 +90,7 @@ export const ITEM_OVERRIDES: Record<string, ItemOverride> = {
 interface AbilityOverride {
   type?: "magic" | "physical" | "true" | "util";
   base?: number[];
-  ratios?: { ap?: number; totalAd?: number; bonusAd?: number };
+  ratios?: AbilityRatios;
   name?: string;
 }
 
@@ -113,6 +113,12 @@ export const CHAMPION_OVERRIDES: Record<string, ChampionOverride> = {
     adaptive: "AP",
     keystone: "electrocute",
     skillOrder: ["Q", "W", "E", "Q", "Q", "R", "Q", "E", "Q", "E", "R", "E", "E", "W", "W", "R", "W", "W"],
+    abilities: {
+      // L'orbe frappe à l'aller ET au retour. Meraki expose « Damage Per Pass » (retenu
+      // par défaut) et « Total Mixed Damage » : on prend le total des deux passages
+      // (le retour est en vrai dégât ; approximé en magique).
+      Q: { base: [80, 130, 180, 230, 280], ratios: { ap: 1 } },
+    },
     shelf: [
       "sorcerersshoes",
       "ludensecho",
