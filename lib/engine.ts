@@ -175,8 +175,8 @@ export function computeStats(
   const bonusArmor = sum((s) => s.armor);
   const bonusMr = sum((s) => s.mr);
 
-  let bonusAD = stats.reduce((a, s) => a + (s.ad ?? 0), 0);
-  let flatAP = stats.reduce((a, s) => a + (s.ap ?? 0), 0);
+  const bonusAD = stats.reduce((a, s) => a + (s.ad ?? 0), 0);
+  const flatAP = stats.reduce((a, s) => a + (s.ap ?? 0), 0);
   const apAmp = stats.reduce((a, s) => a + (s.apAmp ?? 0), 0);
 
   // Conquérant n'est plus appliqué ici : ses stacks dépendent des coups portés,
