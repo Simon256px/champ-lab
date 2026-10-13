@@ -13,7 +13,7 @@
  * identifiée…) renvoie null — l'appelant retombe alors sur Meraki et le signale.
  */
 
-import type { AbilityKey, Formula, GameRef, StatRef } from "../data/types.ts";
+import type { AbilityKey, Formula, GameRef, ItemRef, StatRef } from "../data/types.ts";
 
 export const CDRAGON = "https://raw.communitydragon.org";
 
@@ -124,7 +124,7 @@ function mul(of: Formula[]): Formula {
 }
 
 /** Convertit une formule de sort en Formula. Null si une brique n'est pas reconnue. */
-export function toFormula(spell: Json, calcName: string, maxRank: number): Formula | null {
+export function toFormula(spell: Json, calcName: string, maxRank: number, ranged = false): Formula | null {
   const calcs = spell?.mSpellCalculations ?? {};
   const dataValues: Json[] = spell?.DataValues ?? [];
   const named = (name: string) => rankValues(dataValues.find((d) => d.name === name)?.values, maxRank);
@@ -193,10 +193,22 @@ export function toFormula(spell: Json, calcName: string, maxRank: number): Formu
       const m = part(c.mMultiplier);
       return base && m ? mul([base, m]) : null;
     }
-    if (c.__type !== "GameCalculation") return null;
+    // Calcul qui change selon que le porteur attaque à distance (objets : BotRK, Hydre…).
+    if (c.__type === "GameCalculationConditional") {
+      if (c.mConditionalCalculationRequirements?.__type !== "IsRangedCastRequirement") return null;
+      return calc(ranged ? c.mConditionalGameCalculation : c.mDefaultGameCalculation);
+    }
+    // « {e9a3c91d} » : calcul d'objet avec un multiplicateur à distance (Kraken ×0,8).
+    const itemCalc = c.__type === "{e9a3c91d}";
+    if (c.__type !== "GameCalculation" && !itemCalc) return null;
     const parts = (c.mFormulaParts ?? []).map(part);
     if (!parts.every(Boolean)) return null;
-    const total = sum(parts as Formula[]);
+    let total = sum(parts as Formula[]);
+    if (itemCalc && ranged && c.mRangedMultiplier) {
+      const rm = part(c.mRangedMultiplier);
+      if (!rm) return null;
+      total = mul([total, rm]);
+    }
     if (!c.mMultiplier) return total;
     const m = part(c.mMultiplier);
     return m ? mul([total, m]) : null;
@@ -392,6 +404,59 @@ export function parseTooltip(text: string): TooltipFacts {
 export function isAimed(spell: Json): boolean {
   const t = spell?.mTargetingTypeData?.__type;
   return ["Location", "Direction", "LocationClamped", "Area", "Cone"].includes(t);
+}
+
+// ---------------------------------------------------------------------------
+// Objets (game/items.cdtb.bin.json)
+// ---------------------------------------------------------------------------
+
+/** Fichier des objets du jeu, indexé par id Riot (« 3071 »). */
+export async function fetchItemsBin(version: string): Promise<Map<string, Json>> {
+  const res = await fetch(`${CDRAGON}/${version}/game/items.cdtb.bin.json`);
+  if (!res.ok) {
+    await res.body?.cancel();
+    return new Map();
+  }
+  const all = await res.json();
+  const out = new Map<string, Json>();
+  for (const [k, v] of Object.entries<Json>(all)) {
+    const m = /^Items\/(\d+)$/.exec(k);
+    if (m && v?.__type === "ItemData") out.set(m[1], v);
+  }
+  return out;
+}
+
+/** Présente un objet comme un sort (DataValues, calculs) pour réutiliser toFormula. */
+export function itemAsSpell(item: Json): Json {
+  return {
+    DataValues: (item?.mDataValues ?? []).map((d: Json) => ({
+      name: d.mName,
+      values: Array(7).fill(d.mValue ?? 0),
+    })),
+    mSpellCalculations: item?.mItemCalculations ?? {},
+    mEffectAmount: item?.mEffectAmount,
+  };
+}
+
+/** Stats d'objet que Data Dragon et Meraki n'exposent pas : dégâts critiques bonus, ténacité. */
+export function itemExtraStats(item: Json): { critDamage?: number; tenacity?: number } {
+  const out: { critDamage?: number; tenacity?: number } = {};
+  if (item?.mFlatCritDamageMod) out.critDamage = clean(item.mFlatCritDamageMod);
+  if (item?.mPercentTenacityItemMod) out.tenacity = clean(item.mPercentTenacityItemMod);
+  return out;
+}
+
+/** Résout une ItemRef sur un objet (mêlée, ou à distance si `ranged`). */
+export function resolveItemRef(item: Json, ref: ItemRef, ranged = false): Formula | null {
+  const spell = itemAsSpell(item);
+  let f: Formula | null = null;
+  if (ref.calc) f = toFormula(spell, ref.calc, 1, ranged);
+  else if (ref.value) {
+    const dv = spell.DataValues.find((d: Json) => d.name === ref.value);
+    if (dv) f = rankValues(dv.values, 1);
+  }
+  if (!f) return null;
+  return ref.times === undefined ? f : mul([f, { op: "num", n: ref.times }]);
 }
 
 /** Résout une GameRef sur les sorts d'un champion. Null si introuvable ou non convertible. */

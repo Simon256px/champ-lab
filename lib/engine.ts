@@ -99,8 +99,10 @@ export interface DerivedStats {
   attackSpeed: number;
   /** chance de coup critique, 0..1 */
   critChance: number;
-  /** multiplicateur d'un coup critique (1,75 de base) */
+  /** multiplicateur d'un coup critique (1,75 de base, +0,3 avec IE) */
   critDamage: number;
+  /** ténacité (fraction), objets cumulés multiplicativement */
+  tenacity: number;
   abilityHaste: number;
   /** VA bonus des objets seuls (fraction), pour recalculer la VA avec un buff */
   itemAttackSpeed: number;
@@ -161,7 +163,8 @@ export function computeStats(
     attackSpeed: attackSpeedOf(champion, level, itemAttackSpeed),
     bonusAttackSpeed: itemAttackSpeed + growth(0, champion.base.attackSpeedPerLevel ?? 0.02, level),
     critChance: Math.min(1, sum((s) => s.critChance)),
-    critDamage: champion.base.critDamage ?? 1.75,
+    critDamage: (champion.base.critDamage ?? 1.75) + sum((s) => s.critDamage),
+    tenacity: stackPercent(stats.map((s) => s.tenacity)),
     abilityHaste: sum((s) => s.abilityHaste),
     itemAttackSpeed,
     maxHp: growth(champion.base.hp, champion.base.hpPerLevel, level) + bonusHp,
@@ -409,6 +412,36 @@ export function computeCombo(input: ComboInput): ComboResult {
   const autos = window === undefined ? 0 : autoCount(window, champion, level, stats);
 
   const keys: AbilityKey[] = ["Q", "W", "E", "R"];
+  /** Lancers d'un sort sur la fenêtre (1 en burst), 0 s'il n'est pas appris ou exclu. */
+  const castsOf = (key: AbilityKey) => {
+    const rank = resolveRank(champion, key, level, ranks);
+    if (rank < 1 || include[key] === false) return { rank, casts: 0 };
+    const casts = window === undefined
+      ? 1
+      : castsIn(window, cooldownOf(champion, key, rank, stats.abilityHaste));
+    return { rank, casts };
+  };
+  const totalCasts = keys.reduce((a, k) => a + castsOf(k).casts, 0);
+
+  // Effets d'objets équipés (une fois par objet, même en double).
+  const itemMechanics = [...new Set(itemIds)].flatMap((id) =>
+    (items[id]?.mechanics ?? []).map((m) => ({ name: items[id].name, m }))
+  );
+  const ranged = (champion.base.attackRange ?? 0) >= 300;
+
+  // Réduction d'armure qui s'empile (Fendoir noir) : chaque coup physique ajoute un
+  // stack ; on applique la réduction MOYENNE sur les coups de la fenêtre.
+  for (const { m } of itemMechanics) {
+    if (m.kind !== "armorShred") continue;
+    const physicalHits = autos +
+      keys.filter((k) => champion.abilities[k].type === "physical").reduce((a, k) => a + castsOf(k).casts, 0);
+    if (physicalHits < 1) continue;
+    const perStack = formulaAt(m.perStack, 1, level, stats);
+    const max = formulaAt(m.maxStacks, 1, level, stats);
+    let stacks = 0;
+    for (let i = 0; i < physicalHits; i++) stacks += Math.min(i, max); // le stack tombe après le coup
+    stats.armorPenPct = stackPercent([stats.armorPenPct, (perStack * stacks) / physicalHits]);
+  }
   for (const key of keys) {
     const ability = champion.abilities[key];
     if (ability.type === "util") continue;
@@ -510,6 +543,45 @@ export function computeCombo(input: ComboInput): ComboResult {
     });
   }
 
+  // Effets d'objets (data/item-mechanics.ts, valeurs du jeu).
+  const damagingCasts = lines.filter((l) => ["Q", "W", "E", "R"].includes(l.key))
+    .reduce((a, l) => a + (l.hits ?? 1), 0);
+  for (const { name, m } of itemMechanics) {
+    let procs = 0;
+    let raw = 0;
+    if (m.kind === "onHit") {
+      const every = m.every ? formulaAt(m.every, 1, level, stats) : 1;
+      procs = Math.floor(autos / Math.max(1, every));
+      const f = ranged && m.rangedDamage ? m.rangedDamage : m.damage;
+      raw = hpScaled(formulaAt(f, 1, level, stats), m.scale, target);
+    } else if (m.kind === "spellProc") {
+      // Une fois par lancer de sort, au plus une fois par cooldown, et seulement s'il
+      // y a une auto pour la porter (Lame enchantée).
+      const cd = formulaAt(m.cooldown, 1, level, stats);
+      const cap = window === undefined ? 1 : 1 + Math.floor(window / Math.max(0.1, cd) + 1e-9);
+      procs = Math.min(totalCasts, cap, m.needsAuto ? autos : Infinity);
+      raw = formulaAt(m.damage, 1, level, stats);
+    } else if (m.kind === "active") {
+      procs = window === undefined ? 1 : castsIn(window, formulaAt(m.cooldown, 1, level, stats));
+      raw = formulaAt(m.damage, 1, level, stats);
+    } else if (m.kind === "burn") {
+      // Entretenue par les sorts qui touchent : sa durée par sort, dans la limite de la fenêtre.
+      const duration = formulaAt(m.duration, 1, level, stats);
+      if (damagingCasts < 1) continue;
+      const seconds = window === undefined ? duration : Math.min(window, duration * damagingCasts);
+      procs = 1;
+      raw = seconds * hpScaled(formulaAt(m.perSecond, 1, level, stats), m.scale, target);
+    } else continue;
+    if (procs < 1 || raw <= 0) continue;
+    lines.push({
+      key: "I",
+      name: procs > 1 ? `${name} ×${procs}` : name,
+      type: m.type,
+      damage: procs * raw * damageMultiplier(m.type, stats, target),
+      hits: procs,
+    });
+  }
+
   const total = lines.reduce((a, l) => a + l.damage, 0);
   const rLine = lines.find((l) => l.key === "R");
   const execHP = champion.hasBleed && rLine ? rLine.damage : 0;
@@ -565,14 +637,6 @@ export function computeCombo(input: ComboInput): ComboResult {
   let ccLongest = 0;
   let parries = 0;
   let dodgeAutosSeconds = 0;
-  const castsOf = (key: AbilityKey) => {
-    const rank = resolveRank(champion, key, level, ranks);
-    if (rank < 1 || include[key] === false) return { rank, casts: 0 };
-    const casts = window === undefined
-      ? 1
-      : castsIn(window, cooldownOf(champion, key, rank, stats.abilityHaste));
-    return { rank, casts };
-  };
   for (const key of keys) {
     const cc = champion.abilities[key].cc;
     if (!cc) continue;

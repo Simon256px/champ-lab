@@ -262,7 +262,63 @@ export interface ItemStats {
   lifeSteal?: number;
   /** omnivampirisme en fraction (soigne d'une part de tous les dégâts) */
   omnivamp?: number;
+  /** dégâts critiques en plus (IE : 0,3 → crit à 205 %) */
+  critDamage?: number;
+  /** ténacité en fraction (réduit la durée des contrôles, sauf projections et suppressions) */
+  tenacity?: number;
 }
+
+/** Référence à une valeur du fichier d'un objet (CommunityDragon), résolue par le pipeline. */
+export interface ItemRef {
+  calc?: string;
+  value?: string;
+  times?: number;
+}
+
+/**
+ * Effet d'objet (passif ou actif) que le moteur applique. Saisi dans
+ * data/item-mechanics.ts avec des ItemRef, résolu en Formula dans items.gen.ts.
+ */
+export type ItemMechanic<A = Formula> =
+  | {
+    /** dégâts en plus tous les `every` coups d'auto (Kraken : 3 ; BotRK, Nashor : 1) */
+    kind: "onHit";
+    type: DamageType;
+    every?: A;
+    damage: A;
+    /** variante à distance si elle diffère (Kraken ×0,8, BotRK 6 % au lieu de 9 %) */
+    rangedDamage?: A;
+    scale?: HpScale;
+  }
+  | {
+    /** dégâts déclenchés par un sort, sur la prochaine auto si `needsAuto` (Lame enchantée), une fois par `cooldown` */
+    kind: "spellProc";
+    type: DamageType;
+    damage: A;
+    cooldown: A;
+    needsAuto: boolean;
+  }
+  | {
+    /** actif d'objet lancé une fois par `cooldown` (Brise-pas) */
+    kind: "active";
+    type: DamageType;
+    damage: A;
+    cooldown: A;
+  }
+  | {
+    /** réduction d'armure qui s'empile à chaque coup physique (Fendoir noir) */
+    kind: "armorShred";
+    perStack: A;
+    maxStacks: A;
+  }
+  | {
+    /** brûlure par seconde tant que les sorts touchent (Liandry) */
+    kind: "burn";
+    type: DamageType;
+    perSecond: A;
+    scale?: HpScale;
+    duration: A;
+  };
 
 /** Place d'un objet dans l'arbre de craft. Les composants servent à la timeline de build. */
 export type ItemTier = "starter" | "basic" | "epic" | "legendary" | "boots";
@@ -280,6 +336,8 @@ export interface Item {
   from?: string[];
   /** URL de l'icône officielle de l'objet (Data Dragon). */
   icon?: string;
+  /** effets modélisés (data/item-mechanics.ts, valeurs du jeu) */
+  mechanics?: ItemMechanic[];
 }
 
 /** Comportement d'une rune modélisé dans lib/engine.ts. "none" = non modélisée (neutre). */

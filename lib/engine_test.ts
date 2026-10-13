@@ -87,6 +87,7 @@ Deno.test("mitigation: l'armure réduit les dégâts physiques", () => {
     attackSpeed: 0.625,
     critChance: 0,
     critDamage: 1.75,
+    tenacity: 0,
     abilityHaste: 0,
     itemAttackSpeed: 0,
     bonusAttackSpeed: 0,
@@ -627,4 +628,73 @@ Deno.test("fichiers du jeu : Locke, Yunara, Zaahen générés et calculables", (
   }
   assertEquals(CHAMPIONS.locke.adaptive, "AP", "Locke scale sur l'AP");
   assertEquals(CHAMPIONS.yunara.adaptive, "AD", "Yunara est une tireuse");
+});
+
+// --- Effets d'objets (valeurs des fichiers du jeu) ---
+
+const itemLine = (r: ReturnType<typeof computeCombo>, name: string) =>
+  r.lines.find((l) => l.key === "I" && l.name.startsWith(name));
+
+Deno.test("objets : Kraken frappe tous les 3 coups, version à distance plus faible", () => {
+  const melee = computeCombo(input("darius", ["krakenslayer"], { window: 6 }));
+  const kraken = itemLine(melee, "Kraken Slayer")!;
+  const autos = melee.lines.find((l) => l.key === "AA")!.hits!;
+  assertEquals(kraken.hits, Math.floor(autos / 3));
+  const perHitMelee = kraken.damage / kraken.hits!;
+  const jinx = computeCombo(input("jinx", ["krakenslayer"], { window: 6 }));
+  const k2 = itemLine(jinx, "Kraken Slayer")!;
+  assert(k2.damage / k2.hits! < perHitMelee, "Kraken à distance : ×0,8");
+});
+
+Deno.test("objets : la Lame du roi déchu frappe en % des PV actuels", () => {
+  const botrk = (hp: number) =>
+    itemLine(
+      computeCombo(
+        input("darius", ["bladeoftheruinedking"], { window: 4, target: { ...TARGET, hpMax: hp, hpCur: hp } }),
+      ),
+      "Blade of the Ruined King",
+    )!.damage;
+  assertAlmostEquals(botrk(4000) / botrk(2000), 2, 0.001);
+});
+
+Deno.test("objets : la Lame enchantée a besoin d'une auto, Luden non", () => {
+  assertEquals(itemLine(computeCombo(input("darius", ["trinityforce"])), "Trinity Force"), undefined);
+  const trade = computeCombo(input("darius", ["trinityforce"], { window: 6 }));
+  assert(itemLine(trade, "Trinity Force"), "en trade, les sorts chargent les autos");
+  assert(
+    itemLine(computeCombo(input("ahri", ["ludensecho"])), "Luden"),
+    "Luden se déclenche dès le premier sort",
+  );
+});
+
+Deno.test("objets : le Fendoir noir réduit l'armure, l'actif de Brise-pas tombe même en burst", () => {
+  const withCleaver = computeCombo(input("darius", ["blackcleaver"], { window: 6 }));
+  const without = computeCombo(input("darius", ["stridebreaker"], { window: 6 }));
+  assert(withCleaver.stats.armorPenPct > without.stats.armorPenPct);
+  assert(itemLine(computeCombo(input("darius", ["stridebreaker"])), "Stridebreaker"));
+});
+
+Deno.test("objets : Liandry brûle en % des PV max tant que les sorts touchent", () => {
+  const burn = (hp: number) =>
+    itemLine(
+      computeCombo(
+        input("ahri", ["liandrystorment"], { window: 6, target: { ...TARGET, hpMax: hp, hpCur: hp } }),
+      ),
+      "Liandry",
+    )!.damage;
+  assertAlmostEquals(burn(3000) / burn(1500), 2, 0.001);
+});
+
+Deno.test("objets : dégâts critiques d'IE et ténacité des Mercure, lus dans le jeu", () => {
+  const s = computeStats(CHAMPIONS.jinx, 11, ["infinityedge"], ITEMS, RUNES, false);
+  assertAlmostEquals(s.critDamage, CHAMPIONS.jinx.base.critDamage! + ITEMS.infinityedge.stats.critDamage!);
+  assert(ITEMS.mercurystreads.stats.tenacity! > 0);
+});
+
+Deno.test("objets : chaque effet résolu s'évalue sans planter", () => {
+  for (const it of Object.values(ITEMS)) {
+    if (!it.mechanics) continue;
+    const r = computeCombo(input("darius", [it.id], { window: 6 }));
+    assert(Number.isFinite(r.total) && r.total > 0, `${it.id}`);
+  }
 });

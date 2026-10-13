@@ -35,6 +35,8 @@ import type {
   Formula,
   GameRef,
   Item,
+  ItemMechanic,
+  ItemRef,
   ItemStats,
   ItemTier,
   Mechanic,
@@ -42,6 +44,7 @@ import type {
   StatRef,
 } from "../data/types.ts";
 import { MECHANICS } from "../data/mechanics.ts";
+import { ITEM_MECHANICS } from "../data/item-mechanics.ts";
 import { evalFormula } from "../lib/formula.ts";
 import {
   candidateCalcs,
@@ -50,10 +53,13 @@ import {
   cdragonVersion,
   cooldowns,
   fetchChampionBin,
+  fetchItemsBin,
   fetchTooltips,
   isAimed,
   isPercentCalc,
+  itemExtraStats,
   parseTooltip,
+  resolveItemRef,
   resolveRef,
   type SpellSlots,
   spellSlots,
@@ -1156,6 +1162,53 @@ async function main() {
   if (brokenRecipes.length) {
     console.log(`  ⚠ Recettes avec un composant inconnu : ${brokenRecipes.join(" ; ")}`);
   }
+
+  // Fichier des objets du jeu : stats absentes ailleurs (dégâts critiques, ténacité)
+  // et effets de data/item-mechanics.ts, au patch près.
+  console.log(`▶ Objets dans les fichiers du jeu (CommunityDragon ${cdVersion})…`);
+  const itemsBin = await fetchItemsBin(cdVersion);
+  const riotIdBySlug = new Map([...slugByRiotId].map(([rid, slug]) => [slug, rid]));
+  let extraStats = 0;
+  let itemEffects = 0;
+  for (const it of items) {
+    const bin = itemsBin.get(riotIdBySlug.get(it.id) ?? "");
+    if (!bin) continue;
+    const extra = itemExtraStats(bin);
+    if (Object.keys(extra).length) {
+      it.stats = { ...it.stats, ...extra };
+      extraStats++;
+    }
+    const specs = ITEM_MECHANICS[it.id];
+    if (!specs) continue;
+    const resolved: ItemMechanic[] = [];
+    for (const spec of specs) {
+      const out: Record<string, unknown> = {};
+      let failed: string | null = null;
+      for (const [k, v] of Object.entries(spec)) {
+        if (v && typeof v === "object") {
+          const ref = v as ItemRef;
+          const melee = resolveItemRef(bin, ref, false);
+          if (!melee) failed = ref.calc ?? ref.value ?? k;
+          out[k] = melee;
+          // Variante à distance d'un calcul unique (Kraken ×0,8) : gardée si elle diffère.
+          if (k === "damage" && !("rangedDamage" in spec)) {
+            const ranged = resolveItemRef(bin, ref, true);
+            if (ranged && JSON.stringify(ranged) !== JSON.stringify(melee)) out.rangedDamage = ranged;
+          }
+        } else out[k] = v;
+      }
+      if (failed) {
+        console.warn(`  ⚠ effet de ${it.id} : ${failed} introuvable dans les fichiers du jeu, écarté.`);
+        continue;
+      }
+      resolved.push(out as ItemMechanic);
+      itemEffects++;
+    }
+    if (resolved.length) it.mechanics = resolved;
+  }
+  console.log(
+    `  ${extraStats} objets avec dégâts critiques ou ténacité ; ${itemEffects} effets d'objets résolus.`,
+  );
   items.sort((a, b) => a.name.localeCompare(b.name, "fr"));
 
   // --- Intégrité : une étagère ne doit référencer que des objets existants.

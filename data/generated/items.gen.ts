@@ -258,6 +258,19 @@ export const GENERATED_ITEMS: Record<string, Item> = {
       "pickaxe",
     ],
     "icon": "https://ddragon.leagueoflegends.com/cdn/16.20.1/img/item/3071.png",
+    "mechanics": [
+      {
+        "kind": "armorShred",
+        "perStack": {
+          "op": "num",
+          "n": 0.06,
+        },
+        "maxStacks": {
+          "op": "num",
+          "n": 5,
+        },
+      },
+    ],
   },
   "blackfiretorch": {
     "id": "blackfiretorch",
@@ -292,6 +305,21 @@ export const GENERATED_ITEMS: Record<string, Item> = {
       "pickaxe",
     ],
     "icon": "https://ddragon.leagueoflegends.com/cdn/16.20.1/img/item/3153.png",
+    "mechanics": [
+      {
+        "kind": "onHit",
+        "type": "physical",
+        "damage": {
+          "op": "num",
+          "n": 0.09,
+        },
+        "rangedDamage": {
+          "op": "num",
+          "n": 0.06,
+        },
+        "scale": "targetCurrentHp",
+      },
+    ],
   },
   "blastingwand": {
     "id": "blastingwand",
@@ -466,6 +494,7 @@ export const GENERATED_ITEMS: Record<string, Item> = {
     "short": "CHAINLAC",
     "stats": {
       "mr": 25,
+      "tenacity": 0.3,
     },
     "tier": "boots",
     "cost": 1250,
@@ -790,6 +819,7 @@ export const GENERATED_ITEMS: Record<string, Item> = {
     "stats": {
       "ad": 65,
       "omnivamp": 0.05,
+      "tenacity": 0.2,
     },
     "tier": "legendary",
     "cost": 3100,
@@ -817,6 +847,38 @@ export const GENERATED_ITEMS: Record<string, Item> = {
       "cloakofagility",
     ],
     "icon": "https://ddragon.leagueoflegends.com/cdn/16.20.1/img/item/3508.png",
+    "mechanics": [
+      {
+        "kind": "spellProc",
+        "type": "physical",
+        "damage": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "stat",
+              "stat": "baseAd",
+              "f": {
+                "op": "num",
+                "n": 1.25,
+              },
+            },
+            {
+              "op": "stat",
+              "stat": "critChance",
+              "f": {
+                "op": "num",
+                "n": 50,
+              },
+            },
+          ],
+        },
+        "cooldown": {
+          "op": "num",
+          "n": 1.5,
+        },
+        "needsAuto": true,
+      },
+    ],
   },
   "executionerscalling": {
     "id": "executionerscalling",
@@ -1344,6 +1406,7 @@ export const GENERATED_ITEMS: Record<string, Item> = {
     "stats": {
       "ad": 75,
       "critChance": 0.25,
+      "critDamage": 0.3,
     },
     "tier": "legendary",
     "cost": 3500,
@@ -1453,6 +1516,49 @@ export const GENERATED_ITEMS: Record<string, Item> = {
       "recurvebow",
     ],
     "icon": "https://ddragon.leagueoflegends.com/cdn/16.20.1/img/item/6672.png",
+    "mechanics": [
+      {
+        "kind": "onHit",
+        "type": "physical",
+        "every": {
+          "op": "num",
+          "n": 3,
+        },
+        "damage": {
+          "op": "steps",
+          "l1": 150,
+          "perLevel": 0,
+          "bp": [
+            {
+              "level": 9,
+              "add": 0,
+              "perLevel": 5,
+            },
+          ],
+        },
+        "rangedDamage": {
+          "op": "mul",
+          "of": [
+            {
+              "op": "steps",
+              "l1": 150,
+              "perLevel": 0,
+              "bp": [
+                {
+                  "level": 9,
+                  "add": 0,
+                  "perLevel": 5,
+                },
+              ],
+            },
+            {
+              "op": "num",
+              "n": 0.8,
+            },
+          ],
+        },
+      },
+    ],
   },
   "lastwhisper": {
     "id": "lastwhisper",
@@ -1485,6 +1591,21 @@ export const GENERATED_ITEMS: Record<string, Item> = {
       "fatedashes",
     ],
     "icon": "https://ddragon.leagueoflegends.com/cdn/16.20.1/img/item/6653.png",
+    "mechanics": [
+      {
+        "kind": "burn",
+        "type": "magic",
+        "perSecond": {
+          "op": "num",
+          "n": 0.02,
+        },
+        "scale": "targetMaxHp",
+        "duration": {
+          "op": "num",
+          "n": 3,
+        },
+      },
+    ],
   },
   "lichbane": {
     "id": "lichbane",
@@ -1502,6 +1623,38 @@ export const GENERATED_ITEMS: Record<string, Item> = {
       "blastingwand",
     ],
     "icon": "https://ddragon.leagueoflegends.com/cdn/16.20.1/img/item/3100.png",
+    "mechanics": [
+      {
+        "kind": "spellProc",
+        "type": "magic",
+        "damage": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "stat",
+              "stat": "baseAd",
+              "f": {
+                "op": "num",
+                "n": 0.75,
+              },
+            },
+            {
+              "op": "stat",
+              "stat": "ap",
+              "f": {
+                "op": "num",
+                "n": 0.45,
+              },
+            },
+          ],
+        },
+        "cooldown": {
+          "op": "num",
+          "n": 1.5,
+        },
+        "needsAuto": true,
+      },
+    ],
   },
   "locketoftheironsolari": {
     "id": "locketoftheironsolari",
@@ -1582,6 +1735,43 @@ export const GENERATED_ITEMS: Record<string, Item> = {
       "hextechalternator",
     ],
     "icon": "https://ddragon.leagueoflegends.com/cdn/16.20.1/img/item/6655.png",
+    "mechanics": [
+      {
+        "kind": "spellProc",
+        "type": "magic",
+        "damage": {
+          "op": "mul",
+          "of": [
+            {
+              "op": "sum",
+              "of": [
+                {
+                  "op": "num",
+                  "n": 75,
+                },
+                {
+                  "op": "stat",
+                  "stat": "ap",
+                  "f": {
+                    "op": "num",
+                    "n": 0.05,
+                  },
+                },
+              ],
+            },
+            {
+              "op": "num",
+              "n": 2,
+            },
+          ],
+        },
+        "cooldown": {
+          "op": "num",
+          "n": 12,
+        },
+        "needsAuto": false,
+      },
+    ],
   },
   "malignance": {
     "id": "malignance",
@@ -1672,6 +1862,7 @@ export const GENERATED_ITEMS: Record<string, Item> = {
     "short": "MERCURYS",
     "stats": {
       "mr": 20,
+      "tenacity": 0.3,
     },
     "tier": "boots",
     "cost": 1250,
@@ -1776,6 +1967,29 @@ export const GENERATED_ITEMS: Record<string, Item> = {
       "fiendishcodex",
     ],
     "icon": "https://ddragon.leagueoflegends.com/cdn/16.20.1/img/item/3115.png",
+    "mechanics": [
+      {
+        "kind": "onHit",
+        "type": "magic",
+        "damage": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "num",
+              "n": 15,
+            },
+            {
+              "op": "stat",
+              "stat": "ap",
+              "f": {
+                "op": "num",
+                "n": 0.15,
+              },
+            },
+          ],
+        },
+      },
+    ],
   },
   "navoriflickerblade": {
     "id": "navoriflickerblade",
@@ -2340,6 +2554,25 @@ export const GENERATED_ITEMS: Record<string, Item> = {
       "glowingmote",
     ],
     "icon": "https://ddragon.leagueoflegends.com/cdn/16.20.1/img/item/3057.png",
+    "mechanics": [
+      {
+        "kind": "spellProc",
+        "type": "physical",
+        "damage": {
+          "op": "stat",
+          "stat": "baseAd",
+          "f": {
+            "op": "num",
+            "n": 1,
+          },
+        },
+        "cooldown": {
+          "op": "num",
+          "n": 1.5,
+        },
+        "needsAuto": true,
+      },
+    ],
   },
   "shurelyasbattlesong": {
     "id": "shurelyasbattlesong",
@@ -2506,6 +2739,7 @@ export const GENERATED_ITEMS: Record<string, Item> = {
     "short": "STERAKS",
     "stats": {
       "hp": 400,
+      "tenacity": 0.2,
     },
     "tier": "legendary",
     "cost": 3200,
@@ -2549,6 +2783,24 @@ export const GENERATED_ITEMS: Record<string, Item> = {
       "dagger",
     ],
     "icon": "https://ddragon.leagueoflegends.com/cdn/16.20.1/img/item/6631.png",
+    "mechanics": [
+      {
+        "kind": "active",
+        "type": "physical",
+        "damage": {
+          "op": "stat",
+          "stat": "ad",
+          "f": {
+            "op": "num",
+            "n": 0.8,
+          },
+        },
+        "cooldown": {
+          "op": "num",
+          "n": 15,
+        },
+      },
+    ],
   },
   "sunderedsky": {
     "id": "sunderedsky",
@@ -2740,6 +2992,25 @@ export const GENERATED_ITEMS: Record<string, Item> = {
       "hearthboundaxe",
     ],
     "icon": "https://ddragon.leagueoflegends.com/cdn/16.20.1/img/item/3078.png",
+    "mechanics": [
+      {
+        "kind": "spellProc",
+        "type": "physical",
+        "damage": {
+          "op": "stat",
+          "stat": "baseAd",
+          "f": {
+            "op": "num",
+            "n": 2,
+          },
+        },
+        "cooldown": {
+          "op": "num",
+          "n": 1.5,
+        },
+        "needsAuto": true,
+      },
+    ],
   },
   "tunneler": {
     "id": "tunneler",
@@ -2943,6 +3214,7 @@ export const GENERATED_ITEMS: Record<string, Item> = {
     "stats": {
       "mr": 45,
       "attackSpeed": 0.5,
+      "tenacity": 0.2,
     },
     "tier": "legendary",
     "cost": 2800,
@@ -2952,6 +3224,16 @@ export const GENERATED_ITEMS: Record<string, Item> = {
       "recurvebow",
     ],
     "icon": "https://ddragon.leagueoflegends.com/cdn/16.20.1/img/item/3091.png",
+    "mechanics": [
+      {
+        "kind": "onHit",
+        "type": "magic",
+        "damage": {
+          "op": "num",
+          "n": 45,
+        },
+      },
+    ],
   },
   "worldatlas": {
     "id": "worldatlas",
