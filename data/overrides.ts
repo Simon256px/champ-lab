@@ -89,8 +89,9 @@ export const ITEM_OVERRIDES: Record<string, ItemOverride> = {
 
 interface AbilityOverride {
   /**
-   * Le contrôle lu dans les fichiers du jeu dépend d'une condition que le duel ne
-   * modélise pas (contre un mur, cible enflammée, parade réussie) : on l'ignore.
+   * Contrôle conditionnel. Le pipeline le détecte seul dans l'infobulle (« If the
+   * target collides with terrain… ») ; ce réglage corrige la lecture : true = ignorer
+   * le contrôle, false = le compter malgré l'infobulle.
    */
   conditionalCc?: boolean;
   type?: "magic" | "physical" | "true" | "util";
@@ -113,11 +114,9 @@ interface ChampionOverride {
 }
 
 export const CHAMPION_OVERRIDES: Record<string, ChampionOverride> = {
-  // --- Contrôles conditionnels : les fichiers du jeu donnent la durée, pas la condition.
-  fiora: { abilities: { W: { conditionalCc: true } } }, // étourdit seulement si la parade bloque un contrôle
-  vayne: { abilities: { E: { conditionalCc: true } } }, // étourdit seulement contre un mur
-  brand: { abilities: { Q: { conditionalCc: true } } }, // étourdit seulement une cible enflammée
-  poppy: { abilities: { E: { conditionalCc: true } } }, // étourdit seulement contre un mur
+  // --- Contrôles conditionnels : le pipeline les lit dans les infobulles (« If… »).
+  // Ici, seulement ce que l'infobulle ne formule pas comme une condition.
+  yasuo: { abilities: { Q: { conditionalCc: true } } }, // projette seulement au 3e Q (« While he has 2 stacks »)
 
   // --- Les deux champions "seed" historiques : on conserve leur réglage soigné.
   ahri: {

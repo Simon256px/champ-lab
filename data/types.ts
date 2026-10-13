@@ -111,6 +111,10 @@ export interface Ability {
    * (enracinement) n'en font pas partie : le duel est sans déplacement.
    */
   cc?: Formula;
+  /** sort à viser (esquivable) d'après son type de ciblage dans les fichiers du jeu */
+  aimed?: boolean;
+  /** le sort rapproche son lanceur (dash, saut, téléportation), d'après l'infobulle */
+  mobility?: boolean;
 }
 
 export interface ChampionBaseStats {
@@ -130,6 +134,8 @@ export interface ChampionBaseStats {
   attackSpeedPerLevel?: number;
   /** portée d'auto-attaque (unités) */
   attackRange?: number;
+  /** vitesse de déplacement de base (unités/s) */
+  moveSpeed?: number;
   /** dégâts d'un coup critique, en multiplicateur (1,75 = 175 %). Absent = 1,75. */
   critDamage?: number;
 }

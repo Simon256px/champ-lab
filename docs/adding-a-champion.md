@@ -59,10 +59,11 @@ ne garde que les légendaires/bottes portant une stat modélisée). Deux leviers
 
 ## 2 bis. Champion trop récent pour Meraki
 
-Certains champions sortent dans Data Dragon avant d'être dans Meraki (ex. Locke). Le pipeline les saute (404
-côté Meraki). En attendant, ajoute-les **à la main** dans `data/manual.ts` : stats de base et types de dégâts
-confirmés (Data Dragon), valeurs de dégâts illustratives à raffiner. Ils sont fusionnés au roster et remplacés
-automatiquement dès que Meraki les publie (retire alors l'entrée).
+Certains champions sortent dans le jeu avant d'être dans Meraki (Locke, Yunara, Zaahen). Le pipeline les
+**génère depuis les fichiers du jeu** : stats de base (Data Dragon), sorts et cooldowns (CommunityDragon),
+type de dégâts et calcul principal (infobulle : premier calcul cité dans une balise de dégâts), profil AD/AP
+d'après ce sur quoi scalent les sorts. `data/manual.ts` ne sert plus que de secours si les fichiers du jeu
+manquent.
 
 ## 2 ter. Passifs → `data/mechanics.ts`
 
@@ -83,9 +84,11 @@ dans `data/mechanics.ts`, appliqué par le moteur en mode trade / all-in :
 
 **Contrôles.** Leur durée est lue automatiquement dans les fichiers du jeu (`StunDuration`, `KnockupDuration`,
 `CharmDuration`…) : seuls ceux qui empêchent d'agir comptent, pas les enracinements ni les variantes (sbires,
-contre un mur, charge max). Le jeu donne la durée, **pas la condition** : si un contrôle n'arrive que dans
-certains cas (contre un mur, cible enflammée, parade réussie), marque-le `conditionalCc: true` dans
-`data/overrides.ts` pour qu'il soit ignoré.
+contre un mur, charge max). Le jeu donne la durée, pas la condition : le pipeline la lit dans **l'infobulle**
+du sort. Un contrôle cité seulement dans une phrase en « If… » (« If the target collides with terrain… ») est
+écarté, famille par famille (Vayne E : la projection compte, l'étourdissement au mur non). La liste des
+contrôles écartés s'affiche à chaque `deno task data`. Si la lecture se trompe, corrige-la dans
+`data/overrides.ts` : `conditionalCc: true` pour ignorer, `false` pour compter.
 
 **On ne saisit pas de chiffres.** Chaque valeur est une référence aux fichiers du jeu (CommunityDragon),
 résolue au patch courant par `deno task data` dans `data/generated/mechanics.gen.ts` :

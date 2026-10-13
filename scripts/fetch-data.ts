@@ -46,14 +46,20 @@ import { evalFormula } from "../lib/formula.ts";
 import {
   candidateCalcs,
   ccDuration,
+  type CcKind,
   cdragonVersion,
   cooldowns,
   fetchChampionBin,
+  fetchTooltips,
+  isAimed,
   isPercentCalc,
+  parseTooltip,
   resolveRef,
   type SpellSlots,
   spellSlots,
+  type SpellTooltip,
   toFormula,
+  type TooltipFacts,
 } from "./cdragon.ts";
 import {
   CHAMPION_OVERRIDES,
@@ -120,6 +126,16 @@ interface MChampion {
   abilities: Record<string, MAbility[]>;
 }
 
+/** Résumé d'un champion Data Dragon (champion.json). */
+interface DDChampion {
+  id: string;
+  name: string;
+  title: string;
+  info?: { attack: number; magic: number };
+  tags?: string[];
+  stats: DDChampStats;
+}
+
 /** Stats de base Data Dragon (champion.json) — source de vérité "plate", par patch. */
 interface DDChampStats {
   hp: number;
@@ -134,6 +150,7 @@ interface DDChampStats {
   /** en % (1 = +1 % par niveau) */
   attackspeedperlevel?: number;
   attackrange?: number;
+  movespeed?: number;
 }
 
 interface MItemStat {
@@ -310,6 +327,7 @@ function mapChampion(m: MChampion, dd?: DDChampStats): Champion {
     ),
     attackSpeedPerLevel: round(pick(dd?.attackspeedperlevel, m.stats.attackSpeed?.perLevel ?? 0) / 100, 4),
     attackRange: round(pick(dd?.attackrange, m.stats.attackRange?.flat ?? 0)),
+    moveSpeed: dd?.movespeed,
     critDamage: round((m.stats.criticalStrikeDamage?.flat || 175) / 100, 3),
   };
 
@@ -653,7 +671,7 @@ function matchGameFormula(
   effect: "damage" | "shield" | "heal",
   meraki: ScaledValue,
   maxRank: number,
-): { formula: Formula; gap: number } | "percent" | "mismatch" | "none" {
+): { formula: Formula; gap: number; calc: string } | "percent" | "mismatch" | "none" {
   let sawPercent = false;
   let sawMismatch = false;
   for (const name of candidateCalcs(spell, effect)) {
@@ -665,7 +683,7 @@ function matchGameFormula(
     if (!f) continue;
     const gap = worstGap(meraki, f, maxRank);
     if (gap === null) return "percent";
-    if (gap <= Math.log(MAX_GAP)) return { formula: f, gap };
+    if (gap <= Math.log(MAX_GAP)) return { formula: f, gap, calc: name };
     sawMismatch = true;
   }
   return sawMismatch ? "mismatch" : sawPercent ? "percent" : "none";
@@ -685,8 +703,12 @@ function toFormulaSafe(spell: unknown, name: string, maxRank: number): Formula |
  * dégâts, quel effet existe) ; le jeu fournit les NOMBRES au patch près. Un sort
  * corrigé à la main (data/overrides.ts) garde sa correction.
  */
-function applyGameFormulas(champions: Champion[], slotsById: Map<string, SpellSlots>) {
-  const stats = { damage: 0, shield: 0, heal: 0, percent: 0, mismatch: 0, none: 0, changed: 0 };
+function applyGameFormulas(
+  champions: Champion[],
+  slotsById: Map<string, SpellSlots>,
+  factsOf: (id: string, key: AbilityKey) => TooltipFacts | null,
+) {
+  const stats = { damage: 0, shield: 0, heal: 0, percent: 0, mismatch: 0, none: 0, changed: 0, retyped: 0 };
   const mismatches: string[] = [];
   for (const c of champions) {
     const slots = slotsById.get(c.id);
@@ -702,6 +724,12 @@ function applyGameFormulas(champions: Champion[], slotsById: Map<string, SpellSl
           ability.formula = m.formula;
           stats.damage++;
           if (m.gap > 0.05) stats.changed++;
+          // L'infobulle dit le type de dégâts du calcul retenu (Meraki range les mixtes en magique).
+          const type = factsOf(c.id, key)?.damageTypes.get(m.calc);
+          if (type && type !== ability.type && !overridden?.type) {
+            ability.type = type;
+            stats.retyped++;
+          }
         } else {
           stats[m]++;
           if (m === "mismatch") mismatches.push(`${c.id} ${key}`);
@@ -720,7 +748,7 @@ function applyGameFormulas(champions: Champion[], slotsById: Map<string, SpellSl
   }
   console.log(
     `  formules du jeu : ${stats.damage} sorts de dégâts (dont ${stats.changed} à plus de 5 % de Meraki), ` +
-      `${stats.shield} boucliers, ${stats.heal} soins.`,
+      `${stats.shield} boucliers, ${stats.heal} soins ; ${stats.retyped} types de dégâts corrigés par l'infobulle.`,
   );
   console.log(
     `  gardés sur Meraki : ${stats.percent} en % des PV, ${stats.none} sans calcul exploitable, ` +
@@ -735,6 +763,87 @@ function applyGameFormulas(champions: Champion[], slotsById: Map<string, SpellSl
     keptPercent: stats.percent,
     keptNone: stats.none,
     keptMismatch: stats.mismatch,
+  };
+}
+
+/**
+ * Champion construit entièrement depuis le jeu, pour ceux que Meraki n'a pas encore :
+ * stats de base (Data Dragon), sorts (fichiers du jeu), type de dégâts et choix du
+ * calcul principal (infobulle : premier calcul cité dans une balise de dégâts).
+ */
+function championFromGame(
+  dd: DDChampion,
+  slots: SpellSlots,
+  tips: Partial<Record<AbilityKey, SpellTooltip>>,
+  factsOf: (id: string, key: AbilityKey) => TooltipFacts | null,
+): Champion {
+  const id = slugify(dd.id);
+  const ov = CHAMPION_OVERRIDES[id] ?? {};
+  const s = dd.stats;
+  const abilities = {} as Record<AbilityKey, Ability>;
+  for (const key of ABILITY_KEYS) {
+    // L'infobulle donne parfois maxLevel = 0 : rangs standard dans ce cas.
+    const maxRank = (tips[key]?.maxLevel ?? 0) > 0 ? tips[key]!.maxLevel! : key === "R" ? 3 : 5;
+    const facts = factsOf(id, key);
+    const spell = slots[key];
+    let formula: Formula | null = null;
+    let type: DamageType = "util";
+    for (const calc of facts?.damageCalcs ?? []) {
+      if (isPercentCalc(spell, calc)) continue;
+      formula = toFormulaSafe(spell, calc, maxRank);
+      if (formula) {
+        type = facts!.damageTypes.get(calc)!;
+        break;
+      }
+    }
+    abilities[key] = {
+      name: tips[key]?.name ?? key,
+      type,
+      maxRank,
+      base: [0],
+      ratios: {},
+      ...(formula ? { formula } : {}),
+      ...(cooldowns(spell, maxRank) ? { cooldown: cooldowns(spell, maxRank) } : {}),
+    };
+  }
+  // Profil adaptatif : un tireur reste AD ; sinon, ce sur quoi scalent ses sorts
+  // (le profil attaque / magie de Data Dragon n'est pas fiable pour les nouveaux).
+  const refs = JSON.stringify(Object.values(abilities).map((a) => a.formula ?? null));
+  const apRefs = (refs.match(/"stat":"ap"/g) ?? []).length;
+  const adRefs = (refs.match(/"stat":"(ad|bonusAd|baseAd)"/g) ?? []).length;
+  const adaptive: Adaptive = ov.adaptive ??
+    (dd.tags?.includes("Marksman") || adRefs > apRefs
+      ? "AD"
+      : apRefs > adRefs
+      ? "AP"
+      : (dd.info?.attack ?? 0) >= (dd.info?.magic ?? 0)
+      ? "AD"
+      : "AP");
+  return {
+    id,
+    name: dd.name,
+    title: dd.title,
+    initial: dd.name[0]?.toUpperCase() ?? "?",
+    adaptive,
+    base: {
+      ad: round(s.attackdamage),
+      adPerLevel: round(s.attackdamageperlevel),
+      hp: round(s.hp),
+      hpPerLevel: round(s.hpperlevel),
+      armor: round(s.armor),
+      armorPerLevel: round(s.armorperlevel),
+      mr: round(s.spellblock),
+      mrPerLevel: round(s.spellblockperlevel),
+      attackSpeed: s.attackspeed,
+      attackSpeedRatio: s.attackspeed,
+      attackSpeedPerLevel: round((s.attackspeedperlevel ?? 0) / 100, 4),
+      attackRange: s.attackrange,
+      moveSpeed: s.movespeed,
+    },
+    skillOrder: ov.skillOrder ?? defaultSkillOrder(),
+    abilities: applyAbilityOverrides(id, abilities),
+    shelf: ov.shelf ?? (adaptive === "AD" ? DEFAULT_AD_SHELF : DEFAULT_AP_SHELF),
+    keystone: ov.keystone ?? (adaptive === "AD" ? "conqueror" : "electrocute"),
   };
 }
 
@@ -823,7 +932,7 @@ async function main() {
 
   // --- Champions ---
   console.log("▶ Récupération de la liste des champions (Data Dragon)…");
-  const dd = await fetchJson<{ data: Record<string, { id: string; stats: DDChampStats }> }>(
+  const dd = await fetchJson<{ data: Record<string, DDChampion> }>(
     `${DDRAGON}/cdn/${patch}/data/en_US/champion.json`,
   );
   const championIds = Object.values(dd.data).map((c) => c.id).sort();
@@ -899,26 +1008,77 @@ async function main() {
     `  cooldowns : ${cdTotal} sorts au patch ${cdVersion}, dont ${cdChanged} différents de Meraki.`,
   );
 
-  // Contrôles (étourdissement, projection, peur…) : durée lue dans les fichiers du jeu.
+  // Infobulles du client : types de dégâts, contrôles conditionnels, mobilité.
+  const tooltips = await fetchTooltips(cdVersion);
+  console.log(`  infobulles : ${tooltips.size} champions.`);
+  const factsCache = new Map<string, TooltipFacts | null>();
+  const factsOf = (id: string, key: AbilityKey): TooltipFacts | null => {
+    const k = `${id}/${key}`;
+    if (!factsCache.has(k)) {
+      const t = tooltips.get(id)?.[key];
+      factsCache.set(k, t ? parseTooltip(t.text) : null);
+    }
+    return factsCache.get(k)!;
+  };
+
+  // Champions présents dans le jeu mais pas dans Meraki (Locke, Yunara…) : générés
+  // entièrement depuis les fichiers du jeu et les infobulles.
+  for (const id of championIds) {
+    const slug = slugify(id);
+    if (champions.some((c) => c.id === slug)) continue;
+    const bin = await fetchChampionBin(cdVersion, slug).catch(() => null);
+    const tips = tooltips.get(slug);
+    if (!bin || !tips) {
+      console.warn(`  ⚠ ${id} : ni Meraki ni fichiers du jeu, ignoré.`);
+      continue;
+    }
+    slotsById.set(slug, spellSlots(bin));
+    champions.push(championFromGame(dd.data[id], slotsById.get(slug)!, tips, factsOf));
+    console.log(`  + ${id} généré depuis les fichiers du jeu (absent de Meraki).`);
+  }
+  champions.sort((a, b) => a.name.localeCompare(b.name, "fr"));
+
+  // Contrôles (étourdissement, projection, peur…) : durée lue dans les fichiers du jeu,
+  // sauf si l'infobulle ne le pose que sous condition (« If the target collides with terrain… »).
   let ccCount = 0;
+  const conditional: string[] = [];
   for (const c of champions) {
     const slots = slotsById.get(c.id);
     if (!slots) continue;
     for (const key of ABILITY_KEYS) {
-      if (CHAMPION_OVERRIDES[c.id]?.abilities?.[key]?.conditionalCc) continue;
-      const cc = ccDuration(slots[key], c.abilities[key].maxRank);
+      const ability = c.abilities[key];
+      const facts = factsOf(c.id, key);
+      if (isAimed(slots[key])) ability.aimed = true;
+      if (facts?.mobility) ability.mobility = true;
+      // On écarte une durée quand sa famille de contrôle n'apparaît QUE sous condition
+      // dans l'infobulle (Vayne E : la projection est sûre, l'étourdissement « If the
+      // target collides with terrain » non), et tout quand l'infobulle ne pose aucun
+      // contrôle sans condition (Brand Q, Fiora W). Les noms internes ne suivent pas
+      // toujours l'infobulle (une projection stockée en « StunDuration ») : une famille
+      // absente de l'infobulle reste donc acceptée. Le réglage manuel l'emporte.
+      const manual = CHAMPION_OVERRIDES[c.id]?.abilities?.[key]?.conditionalCc;
+      const allowed = (kind: CcKind | null) => {
+        if (manual !== undefined) return !manual;
+        if (!facts || facts.ccConditional.size === 0) return true;
+        if (facts.ccUnconditional.size === 0) return false;
+        return kind === null || facts.ccUnconditional.has(kind) || !facts.ccConditional.has(kind);
+      };
+      const all = ccDuration(slots[key], ability.maxRank);
+      const cc = ccDuration(slots[key], ability.maxRank, allowed);
+      if (all && !cc) conditional.push(`${c.id} ${key}`);
       if (!cc) continue;
-      c.abilities[key].cc = cc;
+      ability.cc = cc;
       ccCount++;
     }
   }
-  console.log(`  contrôles : ${ccCount} sorts (étourdissement, projection, peur, charme…).`);
+  console.log(`  contrôles : ${ccCount} sorts ; ${conditional.length} conditionnels ignorés.`);
+  console.log(`  contrôles conditionnels : ${conditional.join(", ")}`);
 
   // Passifs (data/mechanics.ts) : références résolues en formules du patch.
   const mechanics = resolveMechanics(champions, slotsById);
 
   // Dégâts, boucliers et soins des sorts : formules du jeu quand elles concordent.
-  const gameFormulas = applyGameFormulas(champions, slotsById);
+  const gameFormulas = applyGameFormulas(champions, slotsById, factsOf);
 
   // --- Objets ---
   // Disponibilité sur la Faille de l'invocateur (classé) : Data Dragon expose

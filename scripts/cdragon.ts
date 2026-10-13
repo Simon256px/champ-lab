@@ -233,6 +233,33 @@ export function isPercentCalc(spell: Json, calcName: string): boolean {
   return !!spell?.mSpellCalculations?.[calcName]?.mDisplayAsPercent;
 }
 
+/** Famille d'un contrôle, pour rapprocher une durée (« StunDuration ») d'un mot d'infobulle (« Stunned »). */
+export type CcKind =
+  | "stun"
+  | "knock"
+  | "charm"
+  | "fear"
+  | "taunt"
+  | "suppress"
+  | "sleep"
+  | "polymorph"
+  | "berserk";
+
+/** Famille d'après un nom de DataValue ou un mot d'infobulle. Null = générique (« CCDuration »). */
+export function ccKind(word: string): CcKind | null {
+  const w = word.toLowerCase();
+  if (/stun/.test(w)) return "stun";
+  if (/knock|airborne/.test(w)) return "knock";
+  if (/charm/.test(w)) return "charm";
+  if (/fear|flee/.test(w)) return "fear";
+  if (/taunt/.test(w)) return "taunt";
+  if (/suppress/.test(w)) return "suppress";
+  if (/sleep|drowsy/.test(w)) return "sleep";
+  if (/polymorph/.test(w)) return "polymorph";
+  if (/berserk/.test(w)) return "berserk";
+  return null;
+}
+
 /** Contrôles qui empêchent d'agir. Les enracinements (root, snare) n'en font pas partie. */
 const HARD_CC = /(stun|knock|airborne|fear|flee|charm|taunt|suppress|sleep|polymorph|cc)/i;
 /** Variantes écartées : sur sbires/monstres, contre un mur, durée max d'une charge, effet sur soi… */
@@ -243,15 +270,128 @@ const CC_VARIANT = /(minion|monster|wall|berserk|slow|noncharm|self|outer|bonus|
  * porte plusieurs (Alistar W : étourdissement et projection simultanés), on garde
  * la plus longue — elles se chevauchent, elles ne s'additionnent pas.
  */
-export function ccDuration(spell: Json, maxRank: number): Formula | null {
+export function ccDuration(
+  spell: Json,
+  maxRank: number,
+  allowed: (kind: CcKind | null) => boolean = () => true,
+): Formula | null {
   const dvs: Json[] = (spell?.DataValues ?? []).filter((d: Json) =>
-    /duration/i.test(d.name) && HARD_CC.test(d.name) && !CC_VARIANT.test(d.name) && d.values?.length
+    /duration/i.test(d.name) && HARD_CC.test(d.name) && !CC_VARIANT.test(d.name) && d.values?.length &&
+    allowed(ccKind(d.name))
   );
   if (!dvs.length) return null;
   const atMax = (d: Json) => d.values[Math.min(maxRank, d.values.length - 1)] ?? 0;
   const longest = dvs.reduce((a, d) => (atMax(d) > atMax(a) ? d : a), dvs[0]);
   const f = rankValues(longest.values, maxRank);
   return f.op === "num" && f.n <= 0 ? null : f;
+}
+
+// ---------------------------------------------------------------------------
+// Infobulles (client du jeu) : le SENS que les formules n'ont pas
+// ---------------------------------------------------------------------------
+
+/** Infobulle d'un sort telle que le client du jeu l'affiche, avec ses @placeholders@. */
+export interface SpellTooltip {
+  name: string;
+  maxLevel?: number;
+  text: string;
+}
+
+/** Infobulles de Q/W/E/R pour chaque champion, indexées par alias en minuscules (« monkeyking »). */
+export async function fetchTooltips(
+  version: string,
+): Promise<Map<string, Partial<Record<AbilityKey, SpellTooltip>>>> {
+  const base = `${CDRAGON}/${version}/plugins/rcp-be-lol-game-data/global/default/v1`;
+  const summary: Json[] = await (await fetch(`${base}/champion-summary.json`)).json();
+  const out = new Map<string, Partial<Record<AbilityKey, SpellTooltip>>>();
+  const queue = summary.filter((c) => c.id > 0);
+  const worker = async () => {
+    while (queue.length) {
+      const c = queue.shift()!;
+      const res = await fetch(`${base}/champions/${c.id}.json`).catch(() => null);
+      if (!res?.ok) {
+        await res?.body?.cancel();
+        continue;
+      }
+      const data = await res.json();
+      const spells: Partial<Record<AbilityKey, SpellTooltip>> = {};
+      for (const s of data.spells ?? []) {
+        const key = String(s.spellKey ?? "").toUpperCase() as AbilityKey;
+        if (!["Q", "W", "E", "R"].includes(key)) continue;
+        spells[key] = {
+          name: s.name,
+          maxLevel: s.maxLevel,
+          text: s.dynamicDescription ?? s.description ?? "",
+        };
+      }
+      out.set(String(c.alias).toLowerCase(), spells);
+    }
+  };
+  await Promise.all(Array.from({ length: 12 }, worker));
+  return out;
+}
+
+/** Contrôles qui empêchent d'agir, tels que les infobulles les nomment (<status>Stunned</status>…). */
+const CC_STATUS =
+  /<status>[^<]*\b(stun|stuns|stunned|knock|knocks|knocked|airborne|charm|charms|charmed|fear|fears|feared|flee|taunt|taunts|taunted|suppress|suppresses|suppressed|sleep|asleep|drowsy|polymorph|berserk)/i;
+/**
+ * Une phrase qui pose une condition (« If the target collides with terrain… »). Seul
+ * « if » compte : « When used on an enemy » (Lulu W) est un choix, « While active »
+ * (Volibear Q) une durée — pas des conditions.
+ */
+const CONDITION = /\bif\b/i;
+/** Verbes de rapprochement : le sort permet de combler la distance. */
+const MOBILITY =
+  /\b(dash|dashes|dashing|leap|leaps|lunge|lunges|blink|blinks|teleport|teleports|charges? (?:forward|toward))\b/i;
+
+export interface TooltipFacts {
+  /** type de dégâts de chaque calcul cité dans une balise de dégâts */
+  damageTypes: Map<string, "magic" | "physical" | "true">;
+  /** calculs de dégâts dans l'ordre d'apparition */
+  damageCalcs: string[];
+  /** familles de contrôle posées sans condition */
+  ccUnconditional: Set<CcKind>;
+  /** familles de contrôle posées seulement sous condition (mur, cible enflammée, parade…) */
+  ccConditional: Set<CcKind>;
+  /** le sort rapproche son lanceur (dash, saut, téléportation) */
+  mobility: boolean;
+}
+
+/** Lit une infobulle : types de dégâts par calcul, contrôles (conditionnels ou non), mobilité. */
+export function parseTooltip(text: string): TooltipFacts {
+  const damageTypes = new Map<string, "magic" | "physical" | "true">();
+  const damageCalcs: string[] = [];
+  for (const m of text.matchAll(/<(magic|physical|true)Damage>([\s\S]*?)<\/\1Damage>/gi)) {
+    const type = m[1].toLowerCase() as "magic" | "physical" | "true";
+    for (const ref of m[2].matchAll(/@([A-Za-z0-9_]+)(?:\*[\d.]+)?@/g)) {
+      if (!damageTypes.has(ref[1])) {
+        damageTypes.set(ref[1], type);
+        damageCalcs.push(ref[1]);
+      }
+    }
+  }
+  // Phrases : on découpe sur les fins de phrase et les sauts de ligne de l'infobulle.
+  // Les infobulles collent souvent les phrases (« …seconds.When used… ») : on coupe
+  // aussi sur un point suivi d'une majuscule.
+  const sentences = text.split(/<br\s*\/?>|(?<=\.)\s*(?=[A-Z<])/i);
+  const ccUnconditional = new Set<CcKind>();
+  const ccConditional = new Set<CcKind>();
+  const statusAll = new RegExp(CC_STATUS.source, "gi");
+  for (const s of sentences) {
+    const conditional = CONDITION.test(s.replace(/<[^>]+>/g, ""));
+    for (const m of s.matchAll(statusAll)) {
+      const kind = ccKind(m[1]);
+      if (kind) (conditional ? ccConditional : ccUnconditional).add(kind);
+    }
+  }
+  const plain = text.replace(/<[^>]+>/g, " ");
+  return { damageTypes, damageCalcs, ccUnconditional, ccConditional, mobility: MOBILITY.test(plain) };
+}
+
+/** Sort à viser (esquivable) d'après son type de ciblage dans les fichiers du jeu. */
+export function isAimed(spell: Json): boolean {
+  const t = spell?.mTargetingTypeData?.__type;
+  return ["Location", "Direction", "LocationClamped", "Area", "Cone"].includes(t);
 }
 
 /** Résout une GameRef sur les sorts d'un champion. Null si introuvable ou non convertible. */

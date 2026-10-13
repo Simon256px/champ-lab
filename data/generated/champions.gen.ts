@@ -26,6 +26,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "attackSpeedRatio": 0.651,
       "attackSpeedPerLevel": 0.025,
       "attackRange": 175,
+      "moveSpeed": 345,
       "critDamage": 1.75,
     },
     "skillOrder": [
@@ -79,10 +80,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           8,
           6,
         ],
-        "cc": {
-          "op": "num",
-          "n": 0.25,
-        },
+        "aimed": true,
         "formula": {
           "op": "sum",
           "of": [
@@ -115,7 +113,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       },
       "W": {
         "name": "Infernal Chains",
-        "type": "magic",
+        "type": "physical",
         "maxRank": 5,
         "base": [
           30,
@@ -134,6 +132,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           13.5,
           12,
         ],
+        "aimed": true,
         "formula": {
           "op": "sum",
           "of": [
@@ -173,6 +172,8 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           6,
           5,
         ],
+        "aimed": true,
+        "mobility": true,
       },
       "R": {
         "name": "World Ender",
@@ -222,6 +223,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "attackSpeedRatio": 0.625,
       "attackSpeedPerLevel": 0.022,
       "attackRange": 550,
+      "moveSpeed": 330,
       "critDamage": 1.75,
     },
     "skillOrder": [
@@ -266,6 +268,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           7,
           7,
         ],
+        "aimed": true,
       },
       "W": {
         "name": "Fox-Fire",
@@ -333,6 +336,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           12,
           12,
         ],
+        "aimed": true,
         "cc": {
           "op": "rank",
           "v": [
@@ -384,6 +388,8 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           120,
           100,
         ],
+        "aimed": true,
+        "mobility": true,
       },
     },
     "shelf": [
@@ -415,6 +421,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "attackSpeedRatio": 0.625,
       "attackSpeedPerLevel": 0.032,
       "attackRange": 125,
+      "moveSpeed": 345,
       "critDamage": 1.75,
     },
     "skillOrder": [
@@ -460,6 +467,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           1.5,
           1.5,
         ],
+        "aimed": true,
         "formula": {
           "op": "sum",
           "of": [
@@ -507,6 +515,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           17,
           16,
         ],
+        "aimed": true,
       },
       "E": {
         "name": "Shuriken Flip",
@@ -530,6 +539,8 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           11.5,
           10,
         ],
+        "aimed": true,
+        "mobility": true,
         "formula": {
           "op": "mul",
           "of": [
@@ -589,6 +600,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           90,
           60,
         ],
+        "mobility": true,
         "formula": {
           "op": "sum",
           "of": [
@@ -649,6 +661,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "attackSpeedRatio": 0.4,
       "attackSpeedPerLevel": 0.04,
       "attackRange": 500,
+      "moveSpeed": 330,
       "critDamage": 1.75,
     },
     "skillOrder": [
@@ -693,6 +706,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           6,
           5,
         ],
+        "aimed": true,
       },
       "W": {
         "name": "Going Rogue",
@@ -727,6 +741,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           13.5,
           12,
         ],
+        "aimed": true,
       },
       "R": {
         "name": "Comeuppance",
@@ -781,6 +796,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "attackSpeedRatio": 0.625,
       "attackSpeedPerLevel": 0.0213,
       "attackRange": 125,
+      "moveSpeed": 335,
       "critDamage": 1.75,
     },
     "skillOrder": [
@@ -972,6 +988,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "attackSpeedRatio": 0.625,
       "attackSpeedPerLevel": 0.025,
       "attackRange": 125,
+      "moveSpeed": 335,
       "critDamage": 1.75,
     },
     "skillOrder": [
@@ -1026,6 +1043,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           11,
           10,
         ],
+        "aimed": true,
       },
       "W": {
         "name": "Repudiation",
@@ -1102,6 +1120,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           10,
           9,
         ],
+        "aimed": true,
         "formula": {
           "op": "sum",
           "of": [
@@ -1143,6 +1162,8 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           115,
           100,
         ],
+        "aimed": true,
+        "mobility": true,
         "cc": {
           "op": "num",
           "n": 0.75,
@@ -1199,6 +1220,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "attackSpeedRatio": 0.638,
       "attackSpeedPerLevel": 0.0218,
       "attackRange": 125,
+      "moveSpeed": 335,
       "critDamage": 1.75,
     },
     "skillOrder": [
@@ -1243,6 +1265,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           3,
           3,
         ],
+        "aimed": true,
         "cc": {
           "op": "num",
           "n": 1,
@@ -1416,6 +1439,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "attackSpeedRatio": 0.625,
       "attackSpeedPerLevel": 0.0168,
       "attackRange": 600,
+      "moveSpeed": 325,
       "critDamage": 1.75,
     },
     "skillOrder": [
@@ -1460,6 +1484,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           8,
           7,
         ],
+        "aimed": true,
         "cc": {
           "op": "rank",
           "v": [
@@ -1509,6 +1534,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           17,
           17,
         ],
+        "aimed": true,
       },
       "E": {
         "name": "Frostbite",
@@ -1572,6 +1598,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           3,
           2,
         ],
+        "aimed": true,
       },
     },
     "shelf": [
@@ -1603,6 +1630,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "attackSpeedRatio": 0.625,
       "attackSpeedPerLevel": 0.0136,
       "attackRange": 625,
+      "moveSpeed": 335,
       "critDamage": 1.75,
     },
     "skillOrder": [
@@ -1692,6 +1720,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           7,
           7,
         ],
+        "aimed": true,
         "formula": {
           "op": "sum",
           "of": [
@@ -1813,6 +1842,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           115,
           100,
         ],
+        "aimed": true,
         "formula": {
           "op": "sum",
           "of": [
@@ -1865,6 +1895,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "attackSpeedRatio": 0.658,
       "attackSpeedPerLevel": 0.021,
       "attackRange": 550,
+      "moveSpeed": 325,
       "critDamage": 1.75,
     },
     "skillOrder": [
@@ -1903,6 +1934,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           9,
           9,
         ],
+        "aimed": true,
       },
       "W": {
         "name": "Phase",
@@ -1942,6 +1974,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           110,
           100,
         ],
+        "aimed": true,
       },
     },
     "shelf": [
@@ -1973,6 +2006,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "attackSpeedRatio": 0.658,
       "attackSpeedPerLevel": 0.03,
       "attackRange": 600,
+      "moveSpeed": 325,
       "critDamage": 1,
     },
     "skillOrder": [
@@ -2037,6 +2071,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           7.5,
           4,
         ],
+        "aimed": true,
         "formula": {
           "op": "sum",
           "of": [
@@ -2076,6 +2111,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           5,
           5,
         ],
+        "aimed": true,
       },
       "R": {
         "name": "Enchanted Crystal Arrow",
@@ -2094,6 +2130,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           80,
           60,
         ],
+        "aimed": true,
         "cc": {
           "op": "num",
           "n": 1,
@@ -2150,6 +2187,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "attackSpeedRatio": 0.625,
       "attackSpeedPerLevel": 0.015,
       "attackRange": 550,
+      "moveSpeed": 340,
       "critDamage": 1.75,
     },
     "skillOrder": [
@@ -2194,6 +2232,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           3,
           3,
         ],
+        "aimed": true,
       },
       "W": {
         "name": "Astral Flight",
@@ -2210,6 +2249,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           17.5,
           16,
         ],
+        "aimed": true,
       },
       "E": {
         "name": "Singularity",
@@ -2232,6 +2272,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           12,
           12,
         ],
+        "aimed": true,
       },
       "R": {
         "name": "Falling Star",
@@ -2250,6 +2291,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           110,
           100,
         ],
+        "aimed": true,
         "cc": {
           "op": "num",
           "n": 1,
@@ -2315,6 +2357,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "attackSpeedRatio": 0.668,
       "attackSpeedPerLevel": 0.02,
       "attackRange": 550,
+      "moveSpeed": 335,
       "critDamage": 1.75,
     },
     "skillOrder": [
@@ -2359,6 +2402,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           7.5,
           7,
         ],
+        "aimed": true,
         "formula": {
           "op": "sum",
           "of": [
@@ -2398,6 +2442,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           19,
           18,
         ],
+        "aimed": true,
       },
       "E": {
         "name": "The Weirding",
@@ -2420,6 +2465,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           12,
           11,
         ],
+        "aimed": true,
         "formula": {
           "op": "sum",
           "of": [
@@ -2461,6 +2507,8 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           120,
           100,
         ],
+        "aimed": true,
+        "mobility": true,
         "cc": {
           "op": "rank",
           "v": [
@@ -2521,6 +2569,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "attackSpeedRatio": 0.694,
       "attackSpeedPerLevel": 0.05,
       "attackRange": 525,
+      "moveSpeed": 330,
       "critDamage": 1.75,
     },
     "skillOrder": [
@@ -2565,6 +2614,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           8,
           6,
         ],
+        "aimed": true,
         "formula": {
           "op": "sum",
           "of": [
@@ -2672,6 +2722,8 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
             "ap": 0.6,
           },
         },
+        "aimed": true,
+        "mobility": true,
         "shieldFormula": {
           "op": "sum",
           "of": [
@@ -2713,6 +2765,8 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           105,
           90,
         ],
+        "aimed": true,
+        "mobility": true,
         "formula": {
           "op": "sum",
           "of": [
@@ -2765,6 +2819,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "attackSpeedRatio": 0.658,
       "attackSpeedPerLevel": 0.02,
       "attackRange": 500,
+      "moveSpeed": 335,
       "critDamage": 1.75,
     },
     "skillOrder": [
@@ -2809,16 +2864,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           8,
           7,
         ],
-        "cc": {
-          "op": "rank",
-          "v": [
-            1,
-            1.2,
-            1.4,
-            1.6,
-            1.8,
-          ],
-        },
+        "aimed": true,
         "formula": {
           "op": "sum",
           "of": [
@@ -2916,6 +2962,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           95,
           80,
         ],
+        "aimed": true,
       },
     },
     "shelf": [
@@ -2947,6 +2994,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "attackSpeedRatio": 0.85,
       "attackSpeedPerLevel": 0,
       "attackRange": 150,
+      "moveSpeed": 340,
       "critDamage": 1.75,
     },
     "skillOrder": [
@@ -2991,6 +3039,8 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           1.75,
           1,
         ],
+        "aimed": true,
+        "mobility": true,
         "formula": {
           "op": "sum",
           "of": [
@@ -3037,6 +3087,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           9,
           8,
         ],
+        "aimed": true,
         "formula": {
           "op": "sum",
           "of": [
@@ -3143,6 +3194,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "attackSpeedRatio": 0.625,
       "attackSpeedPerLevel": 0.0113,
       "attackRange": 125,
+      "moveSpeed": 325,
       "critDamage": 1.75,
     },
     "skillOrder": [
@@ -3187,6 +3239,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           17,
           16,
         ],
+        "aimed": true,
         "formula": {
           "op": "sum",
           "of": [
@@ -3302,6 +3355,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "attackSpeedRatio": 0.625,
       "attackSpeedPerLevel": 0.02,
       "attackRange": 550,
+      "moveSpeed": 340,
       "critDamage": 1.75,
     },
     "skillOrder": [
@@ -3346,6 +3400,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           6.5,
           6,
         ],
+        "aimed": true,
         "formula": {
           "op": "sum",
           "of": [
@@ -3391,6 +3446,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           8.5,
           8,
         ],
+        "aimed": true,
         "formula": {
           "op": "sum",
           "of": [
@@ -3529,6 +3585,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "attackSpeedRatio": 0.644,
       "attackSpeedPerLevel": 0.035,
       "attackRange": 125,
+      "moveSpeed": 335,
       "critDamage": 1.75,
     },
     "skillOrder": [
@@ -3571,6 +3628,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           6.5,
           6,
         ],
+        "aimed": true,
       },
       "W": {
         "name": "Stand Behind Me",
@@ -3587,6 +3645,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           9,
           8,
         ],
+        "mobility": true,
       },
       "E": {
         "name": "Unbreakable",
@@ -3603,6 +3662,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           10,
           8,
         ],
+        "aimed": true,
       },
       "R": {
         "name": "Glacial Fissure",
@@ -3621,6 +3681,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           115,
           100,
         ],
+        "aimed": true,
         "cc": {
           "op": "rank",
           "v": [
@@ -3681,6 +3742,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "attackSpeedRatio": 0.669,
       "attackSpeedPerLevel": 0.02,
       "attackRange": 125,
+      "moveSpeed": 340,
       "critDamage": 1.75,
     },
     "skillOrder": [
@@ -3706,7 +3768,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
     "abilities": {
       "Q": {
         "name": "Head Rush",
-        "type": "magic",
+        "type": "physical",
         "maxRank": 5,
         "base": [
           60,
@@ -3726,6 +3788,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           10,
           9,
         ],
+        "mobility": true,
         "cc": {
           "op": "num",
           "n": 0.85,
@@ -3788,6 +3851,8 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           11,
           10,
         ],
+        "aimed": true,
+        "mobility": true,
         "formula": {
           "op": "stat",
           "stat": "ad",
@@ -3842,6 +3907,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
             ],
           },
         },
+        "aimed": true,
         "cc": {
           "op": "num",
           "n": 0.5,
@@ -3896,6 +3962,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           100,
           80,
         ],
+        "aimed": true,
         "cc": {
           "op": "num",
           "n": 1.5,
@@ -3952,6 +4019,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "attackSpeedRatio": 0.625,
       "attackSpeedPerLevel": 0.04,
       "attackRange": 650,
+      "moveSpeed": 325,
       "critDamage": 1.75,
     },
     "skillOrder": [
@@ -4005,6 +4073,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           7,
           6,
         ],
+        "aimed": true,
         "formula": {
           "op": "sum",
           "of": [
@@ -4056,6 +4125,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           0.5,
           0.5,
         ],
+        "aimed": true,
       },
       "E": {
         "name": "90 Caliber Net",
@@ -4078,6 +4148,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           10,
           8,
         ],
+        "aimed": true,
         "formula": {
           "op": "sum",
           "of": [
@@ -4215,6 +4286,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "attackSpeedRatio": 0.644,
       "attackSpeedPerLevel": 0.025,
       "attackRange": 125,
+      "moveSpeed": 340,
       "critDamage": 1.75,
     },
     "skillOrder": [
@@ -4286,6 +4358,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           12,
           11,
         ],
+        "aimed": true,
         "formula": {
           "op": "sum",
           "of": [
@@ -4325,6 +4398,8 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           13,
           12,
         ],
+        "aimed": true,
+        "mobility": true,
         "cc": {
           "op": "num",
           "n": 0.75,
@@ -4352,6 +4427,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           115,
           90,
         ],
+        "mobility": true,
       },
     },
     "shelf": [
@@ -4383,6 +4459,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "attackSpeedRatio": 0.647,
       "attackSpeedPerLevel": 0.015,
       "attackRange": 550,
+      "moveSpeed": 335,
       "critDamage": 1.75,
     },
     "skillOrder": [
@@ -4427,6 +4504,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           3.5,
           3.5,
         ],
+        "aimed": true,
       },
       "W": {
         "name": "Miasma",
@@ -4449,6 +4527,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           18,
           16,
         ],
+        "aimed": true,
       },
       "E": {
         "name": "Twin Fang",
@@ -4520,6 +4599,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           100,
           80,
         ],
+        "aimed": true,
         "cc": {
           "op": "num",
           "n": 2,
@@ -4576,6 +4656,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "attackSpeedRatio": 0.625,
       "attackSpeedPerLevel": 0.0144,
       "attackRange": 125,
+      "moveSpeed": 345,
       "critDamage": 1.75,
     },
     "skillOrder": [
@@ -4620,6 +4701,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           6,
           6,
         ],
+        "aimed": true,
       },
       "W": {
         "name": "Feral Scream",
@@ -4642,6 +4724,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           9.5,
           9,
         ],
+        "aimed": true,
       },
       "E": {
         "name": "Vorpal Spikes",
@@ -4761,6 +4844,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "attackSpeedRatio": 0.644,
       "attackSpeedPerLevel": 0.028,
       "attackRange": 550,
+      "moveSpeed": 325,
       "critDamage": 1.75,
     },
     "skillOrder": [
@@ -4806,6 +4890,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           7.5,
           7,
         ],
+        "aimed": true,
         "formula": {
           "op": "sum",
           "of": [
@@ -4860,6 +4945,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           14,
           12,
         ],
+        "aimed": true,
       },
       "E": {
         "name": "Gatling Gun",
@@ -4882,6 +4968,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           12,
           12,
         ],
+        "aimed": true,
       },
       "R": {
         "name": "Missile Barrage",
@@ -4900,6 +4987,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           2,
           2,
         ],
+        "aimed": true,
         "formula": {
           "op": "sum",
           "of": [
@@ -4953,6 +5041,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "attackSpeedRatio": 0.625,
       "attackSpeedPerLevel": 0.01,
       "attackRange": 175,
+      "moveSpeed": 340,
       "critDamage": 1.75,
     },
     "skillOrder": [
@@ -5087,6 +5176,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           18.5,
           16,
         ],
+        "aimed": true,
       },
       "R": {
         "name": "Noxian Guillotine",
@@ -5105,6 +5195,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           100,
           80,
         ],
+        "mobility": true,
         "formula": {
           "op": "sum",
           "of": [
@@ -5157,6 +5248,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "attackSpeedRatio": 0.694,
       "attackSpeedPerLevel": 0.02,
       "attackRange": 150,
+      "moveSpeed": 345,
       "critDamage": 1.75,
     },
     "skillOrder": [
@@ -5201,6 +5293,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           6.5,
           6,
         ],
+        "aimed": true,
         "formula": {
           "op": "sum",
           "of": [
@@ -5335,6 +5428,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           16,
           14,
         ],
+        "mobility": true,
         "formula": {
           "op": "sum",
           "of": [
@@ -5428,6 +5522,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "attackSpeedRatio": 0.625,
       "attackSpeedPerLevel": 0.033,
       "attackRange": 125,
+      "moveSpeed": 345,
       "critDamage": 1.75,
     },
     "skillOrder": [
@@ -5477,6 +5572,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           4,
           4,
         ],
+        "aimed": true,
       },
       "W": {
         "name": "Heart Zapper",
@@ -5579,6 +5675,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "attackSpeedRatio": 0.679,
       "attackSpeedPerLevel": 0.027,
       "attackRange": 550,
+      "moveSpeed": 330,
       "critDamage": 1.75,
     },
     "skillOrder": [
@@ -5699,6 +5796,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           15,
           14,
         ],
+        "aimed": true,
         "cc": {
           "op": "num",
           "n": 0.5,
@@ -5751,6 +5849,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           90,
           80,
         ],
+        "aimed": true,
         "formula": {
           "op": "sum",
           "of": [
@@ -5807,6 +5906,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "attackSpeedRatio": 0.625,
       "attackSpeedPerLevel": 0.033,
       "attackRange": 125,
+      "moveSpeed": 340,
       "critDamage": 1.75,
     },
     "skillOrder": [
@@ -5851,6 +5951,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           7.5,
           7,
         ],
+        "aimed": true,
         "formula": {
           "op": "sum",
           "of": [
@@ -5902,10 +6003,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
             "ap": 1.5,
           },
         },
-        "cc": {
-          "op": "num",
-          "n": 2.25,
-        },
+        "aimed": true,
         "shieldFormula": {
           "op": "sum",
           "of": [
@@ -5951,6 +6049,8 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           7.5,
           7,
         ],
+        "aimed": true,
+        "mobility": true,
         "formula": {
           "op": "sum",
           "of": [
@@ -6075,6 +6175,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "attackSpeedRatio": 0.625,
       "attackSpeedPerLevel": 0.0175,
       "attackRange": 550,
+      "moveSpeed": 330,
       "critDamage": 1.75,
     },
     "skillOrder": [
@@ -6141,6 +6242,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           12,
           12,
         ],
+        "aimed": true,
         "formula": {
           "op": "sum",
           "of": [
@@ -6180,6 +6282,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           10.5,
           10,
         ],
+        "aimed": true,
         "cc": {
           "op": "rank",
           "v": [
@@ -6235,6 +6338,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "attackSpeedRatio": 0.667,
       "attackSpeedPerLevel": 0.021,
       "attackRange": 125,
+      "moveSpeed": 335,
       "critDamage": 1.75,
     },
     "skillOrder": [
@@ -6279,6 +6383,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           4,
           4,
         ],
+        "aimed": true,
         "formula": {
           "op": "sum",
           "of": [
@@ -6356,6 +6461,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           8,
           8,
         ],
+        "mobility": true,
       },
       "R": {
         "name": "Last Caress",
@@ -6374,6 +6480,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           100,
           80,
         ],
+        "aimed": true,
         "formula": {
           "op": "sum",
           "of": [
@@ -6426,6 +6533,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "attackSpeedRatio": 0.625,
       "attackSpeedPerLevel": 0.025,
       "attackRange": 550,
+      "moveSpeed": 325,
       "critDamage": 1.75,
     },
     "skillOrder": [
@@ -6471,6 +6579,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           4.75,
           4.5,
         ],
+        "aimed": true,
         "formula": {
           "op": "sum",
           "of": [
@@ -6534,6 +6643,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           8,
           8,
         ],
+        "aimed": true,
         "formula": {
           "op": "sum",
           "of": [
@@ -6588,6 +6698,8 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           17,
           14,
         ],
+        "aimed": true,
+        "mobility": true,
         "formula": {
           "op": "sum",
           "of": [
@@ -6638,6 +6750,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           105,
           90,
         ],
+        "aimed": true,
         "formula": {
           "op": "sum",
           "of": [
@@ -6698,6 +6811,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "attackSpeedRatio": 0.625,
       "attackSpeedPerLevel": 0.0211,
       "attackRange": 480,
+      "moveSpeed": 335,
       "critDamage": 1.75,
     },
     "skillOrder": [
@@ -6809,6 +6923,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           110,
           80,
         ],
+        "mobility": true,
       },
     },
     "shelf": [
@@ -6840,6 +6955,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "attackSpeedRatio": 0.69,
       "attackSpeedPerLevel": 0.032,
       "attackRange": 150,
+      "moveSpeed": 345,
       "critDamage": 1.75,
     },
     "skillOrder": [
@@ -6893,6 +7009,8 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           7.75,
           6,
         ],
+        "aimed": true,
+        "mobility": true,
       },
       "W": {
         "name": "Riposte",
@@ -6915,6 +7033,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           18,
           16,
         ],
+        "aimed": true,
         "formula": {
           "op": "sum",
           "of": [
@@ -7009,6 +7128,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "attackSpeedRatio": 0.658,
       "attackSpeedPerLevel": 0.031,
       "attackRange": 175,
+      "moveSpeed": 335,
       "critDamage": 1.75,
     },
     "skillOrder": [
@@ -7053,6 +7173,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           6.5,
           6,
         ],
+        "mobility": true,
         "formula": {
           "op": "sum",
           "of": [
@@ -7120,6 +7241,8 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           10,
           8,
         ],
+        "aimed": true,
+        "mobility": true,
         "formula": {
           "op": "sum",
           "of": [
@@ -7161,6 +7284,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           100,
           80,
         ],
+        "aimed": true,
         "formula": {
           "op": "sum",
           "of": [
@@ -7213,6 +7337,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "attackSpeedRatio": 0.625,
       "attackSpeedPerLevel": 0.015,
       "attackRange": 150,
+      "moveSpeed": 340,
       "critDamage": 1.75,
     },
     "skillOrder": [
@@ -7257,6 +7382,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           8,
           7,
         ],
+        "aimed": true,
         "formula": {
           "op": "sum",
           "of": [
@@ -7328,6 +7454,8 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           8,
           7,
         ],
+        "aimed": true,
+        "mobility": true,
         "cc": {
           "op": "num",
           "n": 0.75,
@@ -7433,6 +7561,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "attackSpeedRatio": 0.69,
       "attackSpeedPerLevel": 0.032,
       "attackRange": 125,
+      "moveSpeed": 345,
       "critDamage": 1.75,
     },
     "skillOrder": [
@@ -7571,6 +7700,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           0.5,
           0.5,
         ],
+        "aimed": true,
       },
       "R": {
         "name": "Cannon Barrage",
@@ -7589,6 +7719,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           140,
           120,
         ],
+        "aimed": true,
         "formula": {
           "op": "sum",
           "of": [
@@ -7641,6 +7772,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "attackSpeedRatio": 0.625,
       "attackSpeedPerLevel": 0.0365,
       "attackRange": 175,
+      "moveSpeed": 340,
       "critDamage": 1.75,
     },
     "skillOrder": [
@@ -7852,6 +7984,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "attackSpeedRatio": 0.625,
       "attackSpeedPerLevel": 0.06,
       "attackRange": 175,
+      "moveSpeed": 335,
       "critDamage": 1.75,
     },
     "skillOrder": [
@@ -7896,6 +8029,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           11.5,
           10,
         ],
+        "aimed": true,
         "formula": {
           "op": "sum",
           "of": [
@@ -7977,6 +8111,8 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           14.5,
           12,
         ],
+        "aimed": true,
+        "mobility": true,
         "formula": {
           "op": "sum",
           "of": [
@@ -8019,6 +8155,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           60,
           30,
         ],
+        "aimed": true,
         "cc": {
           "op": "rank",
           "v": [
@@ -8087,6 +8224,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "attackSpeedRatio": 0.625,
       "attackSpeedPerLevel": 0.0205,
       "attackRange": 125,
+      "moveSpeed": 330,
       "critDamage": 1.75,
     },
     "skillOrder": [
@@ -8131,6 +8269,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           7,
           6,
         ],
+        "aimed": true,
       },
       "W": {
         "name": "Drunken Rage",
@@ -8176,6 +8315,8 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           12.5,
           12,
         ],
+        "aimed": true,
+        "mobility": true,
         "cc": {
           "op": "num",
           "n": 1,
@@ -8221,6 +8362,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           85,
           70,
         ],
+        "aimed": true,
         "formula": {
           "op": "sum",
           "of": [
@@ -8273,6 +8415,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "attackSpeedRatio": 0.49,
       "attackSpeedPerLevel": 0.03,
       "attackRange": 425,
+      "moveSpeed": 340,
       "critDamage": 1.75,
     },
     "skillOrder": [
@@ -8317,6 +8460,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           7.75,
           6,
         ],
+        "aimed": true,
         "formula": {
           "op": "sum",
           "of": [
@@ -8362,6 +8506,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           20,
           18,
         ],
+        "aimed": true,
         "formula": {
           "op": "sum",
           "of": [
@@ -8401,6 +8546,8 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           13,
           12,
         ],
+        "aimed": true,
+        "mobility": true,
       },
       "R": {
         "name": "Collateral Damage",
@@ -8419,6 +8566,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           80,
           60,
         ],
+        "aimed": true,
         "formula": {
           "op": "sum",
           "of": [
@@ -8471,6 +8619,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "attackSpeedRatio": 0.69,
       "attackSpeedPerLevel": 0.0225,
       "attackRange": 150,
+      "moveSpeed": 340,
       "critDamage": 1.75,
     },
     "skillOrder": [
@@ -8515,6 +8664,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           4.25,
           3.5,
         ],
+        "aimed": true,
       },
       "W": {
         "name": "Hallowed Mist",
@@ -8553,6 +8703,8 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           11.5,
           11,
         ],
+        "aimed": true,
+        "mobility": true,
         "formula": {
           "op": "sum",
           "of": [
@@ -8588,6 +8740,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           100,
           80,
         ],
+        "aimed": true,
         "formula": {
           "op": "sum",
           "of": [
@@ -8640,6 +8793,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "attackSpeedRatio": 0.67,
       "attackSpeedPerLevel": 0.025,
       "attackRange": 175,
+      "moveSpeed": 345,
       "critDamage": 1.75,
     },
     "skillOrder": [
@@ -8779,6 +8933,8 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           120,
           100,
         ],
+        "aimed": true,
+        "mobility": true,
         "cc": {
           "op": "num",
           "n": 0.75,
@@ -8835,6 +8991,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "attackSpeedRatio": 0.625,
       "attackSpeedPerLevel": 0.0136,
       "attackRange": 550,
+      "moveSpeed": 340,
       "critDamage": 1.75,
     },
     "skillOrder": [
@@ -8873,6 +9030,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           1,
           1,
         ],
+        "aimed": true,
       },
       "W": {
         "name": "Hextech Micro-Rockets",
@@ -8895,6 +9053,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           8,
           7,
         ],
+        "aimed": true,
         "formula": {
           "op": "sum",
           "of": [
@@ -8940,6 +9099,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           11,
           11,
         ],
+        "aimed": true,
         "cc": {
           "op": "num",
           "n": 1.5,
@@ -9012,6 +9172,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "attackSpeedRatio": 0.658,
       "attackSpeedPerLevel": 0.025,
       "attackRange": 550,
+      "moveSpeed": 330,
       "critDamage": 1.75,
     },
     "skillOrder": [
@@ -9110,6 +9271,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           100,
           80,
         ],
+        "aimed": true,
       },
     },
     "shelf": [
@@ -9141,6 +9303,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "attackSpeedRatio": 0.625,
       "attackSpeedPerLevel": 0.025,
       "attackRange": 125,
+      "moveSpeed": 350,
       "critDamage": 1.75,
     },
     "skillOrder": [
@@ -9179,6 +9342,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           7,
           6,
         ],
+        "aimed": true,
       },
       "W": {
         "name": "Harsh Lesson",
@@ -9206,6 +9370,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           4,
           4,
         ],
+        "mobility": true,
       },
       "E": {
         "name": "Test of Spirit",
@@ -9222,6 +9387,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           13,
           12,
         ],
+        "aimed": true,
       },
       "R": {
         "name": "Leap of Faith",
@@ -9292,6 +9458,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "attackSpeedRatio": 0.656,
       "attackSpeedPerLevel": 0.025,
       "attackRange": 200,
+      "moveSpeed": 335,
       "critDamage": 1.75,
     },
     "skillOrder": [
@@ -9353,6 +9520,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
             ],
           },
         },
+        "mobility": true,
         "healFormula": {
           "op": "stat",
           "stat": "ad",
@@ -9390,6 +9558,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           14,
           12,
         ],
+        "aimed": true,
       },
       "E": {
         "name": "Flawless Duet",
@@ -9412,6 +9581,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           11.5,
           10,
         ],
+        "aimed": true,
         "cc": {
           "op": "num",
           "n": 0.75,
@@ -9457,6 +9627,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           105,
           85,
         ],
+        "aimed": true,
         "cc": {
           "op": "num",
           "n": 1.5,
@@ -9513,6 +9684,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "attackSpeedRatio": 0.644,
       "attackSpeedPerLevel": 0.034,
       "attackRange": 475,
+      "moveSpeed": 330,
       "critDamage": 1.75,
     },
     "skillOrder": [
@@ -9557,6 +9729,8 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           11,
           10,
         ],
+        "aimed": true,
+        "mobility": true,
         "formula": {
           "op": "sum",
           "of": [
@@ -9719,6 +9893,8 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           130,
           120,
         ],
+        "aimed": true,
+        "mobility": true,
         "cc": {
           "op": "num",
           "n": 1,
@@ -9754,6 +9930,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "attackSpeedRatio": 0.625,
       "attackSpeedPerLevel": 0.03,
       "attackRange": 550,
+      "moveSpeed": 325,
       "critDamage": 1.75,
     },
     "skillOrder": [
@@ -9798,6 +9975,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           14,
           14,
         ],
+        "aimed": true,
       },
       "W": {
         "name": "Zephyr",
@@ -9953,6 +10131,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "attackSpeedRatio": 0.658,
       "attackSpeedPerLevel": 0.025,
       "attackRange": 175,
+      "moveSpeed": 340,
       "critDamage": 1.75,
     },
     "skillOrder": [
@@ -9997,6 +10176,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           7,
           6,
         ],
+        "aimed": true,
         "formula": {
           "op": "sum",
           "of": [
@@ -10093,6 +10273,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           10.5,
           10,
         ],
+        "aimed": true,
         "formula": {
           "op": "sum",
           "of": [
@@ -10134,6 +10315,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           105,
           90,
         ],
+        "mobility": true,
         "formula": {
           "op": "sum",
           "of": [
@@ -10186,6 +10368,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "attackSpeedRatio": 0.638,
       "attackSpeedPerLevel": 0.034,
       "attackRange": 125,
+      "moveSpeed": 350,
       "critDamage": 1.75,
     },
     "skillOrder": [
@@ -10230,6 +10413,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           6.5,
           6,
         ],
+        "mobility": true,
         "formula": {
           "op": "sum",
           "of": [
@@ -10275,6 +10459,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           4,
           3,
         ],
+        "mobility": true,
         "formula": {
           "op": "sum",
           "of": [
@@ -10395,6 +10580,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "attackSpeedRatio": 0.658,
       "attackSpeedPerLevel": 0.03,
       "attackRange": 125,
+      "moveSpeed": 335,
       "critDamage": 1.75,
     },
     "skillOrder": [
@@ -10440,6 +10626,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           10,
           8,
         ],
+        "mobility": true,
         "formula": {
           "op": "sum",
           "of": [
@@ -10565,6 +10752,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "attackSpeedRatio": 0.625,
       "attackSpeedPerLevel": 0.03,
       "attackRange": 550,
+      "moveSpeed": 330,
       "critDamage": 1.75,
     },
     "skillOrder": [
@@ -10678,6 +10866,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           12,
           12,
         ],
+        "aimed": true,
         "formula": {
           "op": "sum",
           "of": [
@@ -10724,6 +10913,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           2,
           2,
         ],
+        "aimed": true,
         "formula": {
           "op": "sum",
           "of": [
@@ -10773,6 +10963,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           105,
           90,
         ],
+        "aimed": true,
         "formula": {
           "op": "sum",
           "of": [
@@ -10825,6 +11016,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "attackSpeedRatio": 0.625,
       "attackSpeedPerLevel": 0.01,
       "attackRange": 525,
+      "moveSpeed": 325,
       "critDamage": 1.75,
     },
     "skillOrder": [
@@ -10885,6 +11077,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           5,
           4,
         ],
+        "aimed": true,
         "formula": {
           "op": "sum",
           "of": [
@@ -10930,6 +11123,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           13.5,
           10,
         ],
+        "aimed": true,
         "formula": {
           "op": "sum",
           "of": [
@@ -10979,6 +11173,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           65,
           45,
         ],
+        "aimed": true,
       },
     },
     "shelf": [
@@ -11010,6 +11205,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "attackSpeedRatio": 0.625,
       "attackSpeedPerLevel": 0.025,
       "attackRange": 150,
+      "moveSpeed": 330,
       "critDamage": 1.75,
     },
     "skillOrder": [
@@ -11052,6 +11248,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           3.5,
           3.5,
         ],
+        "aimed": true,
         "cc": {
           "op": "num",
           "n": 1,
@@ -11109,6 +11306,8 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           11,
           10,
         ],
+        "aimed": true,
+        "mobility": true,
         "cc": {
           "op": "num",
           "n": 0.5,
@@ -11141,6 +11340,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
             "bonusHp": 0.15,
           },
         },
+        "mobility": true,
         "shieldFormula": {
           "op": "sum",
           "of": [
@@ -11180,6 +11380,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           100,
           80,
         ],
+        "mobility": true,
         "formula": {
           "op": "sum",
           "of": [
@@ -11232,6 +11433,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "attackSpeedRatio": 0.644,
       "attackSpeedPerLevel": 0.018,
       "attackRange": 525,
+      "moveSpeed": 335,
       "critDamage": 1.75,
     },
     "skillOrder": [
@@ -11331,6 +11533,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           16,
           14,
         ],
+        "aimed": true,
         "formula": {
           "op": "sum",
           "of": [
@@ -11410,6 +11613,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
             ],
           },
         },
+        "aimed": true,
         "shieldFormula": {
           "op": "sum",
           "of": [
@@ -11474,6 +11678,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "attackSpeedRatio": 0.694,
       "attackSpeedPerLevel": 0.045,
       "attackRange": 525,
+      "moveSpeed": 330,
       "critDamage": 1.75,
     },
     "skillOrder": [
@@ -11518,6 +11723,8 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           9,
           9,
         ],
+        "aimed": true,
+        "mobility": true,
         "formula": {
           "op": "sum",
           "of": [
@@ -11568,6 +11775,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           30,
           30,
         ],
+        "aimed": true,
       },
       "E": {
         "name": "Rend",
@@ -11644,6 +11852,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "attackSpeedRatio": 0.625,
       "attackSpeedPerLevel": 0.023,
       "attackRange": 525,
+      "moveSpeed": 335,
       "critDamage": 1.75,
     },
     "skillOrder": [
@@ -11688,6 +11897,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           6,
           5,
         ],
+        "aimed": true,
         "formula": {
           "op": "sum",
           "of": [
@@ -11852,6 +12062,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "attackSpeedRatio": 0.625,
       "attackSpeedPerLevel": 0.0211,
       "attackRange": 450,
+      "moveSpeed": 335,
       "critDamage": 1.75,
     },
     "skillOrder": [
@@ -11896,6 +12107,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           1,
           1,
         ],
+        "aimed": true,
         "formula": {
           "op": "sum",
           "of": [
@@ -11935,6 +12147,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           15,
           15,
         ],
+        "aimed": true,
       },
       "E": {
         "name": "Defile",
@@ -12027,6 +12240,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "attackSpeedRatio": 0.64,
       "attackSpeedPerLevel": 0.037,
       "attackRange": 150,
+      "moveSpeed": 335,
       "critDamage": 1.75,
     },
     "skillOrder": [
@@ -12196,6 +12410,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           18,
           17,
         ],
+        "aimed": true,
         "formula": {
           "op": "sum",
           "of": [
@@ -12237,6 +12452,8 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           3.5,
           2,
         ],
+        "aimed": true,
+        "mobility": true,
       },
     },
     "shelf": [
@@ -12268,6 +12485,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "attackSpeedRatio": 0.658,
       "attackSpeedPerLevel": 0.0274,
       "attackRange": 125,
+      "moveSpeed": 335,
       "critDamage": 1.75,
     },
     "skillOrder": [
@@ -12374,6 +12592,8 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           9,
           8,
         ],
+        "aimed": true,
+        "mobility": true,
         "formula": {
           "op": "sum",
           "of": [
@@ -12452,6 +12672,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "attackSpeedRatio": 0.667,
       "attackSpeedPerLevel": 0.015,
       "attackRange": 175,
+      "moveSpeed": 335,
       "critDamage": 1.75,
     },
     "skillOrder": [
@@ -12712,6 +12933,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "attackSpeedRatio": 0.669,
       "attackSpeedPerLevel": 0.027,
       "attackRange": 175,
+      "moveSpeed": 340,
       "critDamage": 1.75,
     },
     "skillOrder": [
@@ -12756,6 +12978,8 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           5.5,
           5,
         ],
+        "aimed": true,
+        "mobility": true,
         "formula": {
           "op": "sum",
           "of": [
@@ -12949,6 +13173,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "attackSpeedRatio": 0.69,
       "attackSpeedPerLevel": 0.034,
       "attackRange": 550,
+      "moveSpeed": 335,
       "critDamage": 1.75,
     },
     "skillOrder": [
@@ -12993,6 +13218,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           4.75,
           4,
         ],
+        "aimed": true,
         "formula": {
           "op": "sum",
           "of": [
@@ -13155,6 +13381,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "attackSpeedRatio": 0.668,
       "attackSpeedPerLevel": 0.027,
       "attackRange": 125,
+      "moveSpeed": 345,
       "critDamage": 1.75,
     },
     "skillOrder": [
@@ -13256,6 +13483,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
             "ap": 0.5,
           },
         },
+        "aimed": true,
         "formula": {
           "op": "sum",
           "of": [
@@ -13324,6 +13552,8 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           14,
           12,
         ],
+        "aimed": true,
+        "mobility": true,
         "formula": {
           "op": "sum",
           "of": [
@@ -13361,6 +13591,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           85,
           70,
         ],
+        "mobility": true,
       },
     },
     "shelf": [
@@ -13392,6 +13623,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "attackSpeedRatio": 0.625,
       "attackSpeedPerLevel": 0.035,
       "attackRange": 500,
+      "moveSpeed": 325,
       "critDamage": 1.75,
     },
     "skillOrder": [
@@ -13436,6 +13668,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           9,
           9,
         ],
+        "aimed": true,
         "formula": {
           "op": "sum",
           "of": [
@@ -13559,6 +13792,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "attackSpeedRatio": 0.625,
       "attackSpeedPerLevel": 0.035,
       "attackRange": 125,
+      "moveSpeed": 345,
       "critDamage": 1.75,
     },
     "skillOrder": [
@@ -13603,6 +13837,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           8,
           7,
         ],
+        "aimed": true,
         "formula": {
           "op": "sum",
           "of": [
@@ -13679,6 +13914,8 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           10,
           9,
         ],
+        "aimed": true,
+        "mobility": true,
         "formula": {
           "op": "sum",
           "of": [
@@ -13735,6 +13972,8 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
             "bonusAd": 0.3,
           },
         },
+        "aimed": true,
+        "mobility": true,
       },
     },
     "shelf": [
@@ -13766,6 +14005,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "attackSpeedRatio": 0.665,
       "attackSpeedPerLevel": 0.0265,
       "attackRange": 500,
+      "moveSpeed": 330,
       "critDamage": 1.75,
     },
     "skillOrder": [
@@ -13810,6 +14050,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           7,
           7,
         ],
+        "aimed": true,
         "formula": {
           "op": "sum",
           "of": [
@@ -13882,6 +14123,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           12,
           12,
         ],
+        "aimed": true,
         "formula": {
           "op": "sum",
           "of": [
@@ -13924,6 +14166,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           1.5,
           1,
         ],
+        "aimed": true,
         "formula": {
           "op": "sum",
           "of": [
@@ -13988,6 +14231,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "attackSpeedRatio": 0.4,
       "attackSpeedPerLevel": 0.015,
       "attackRange": 525,
+      "moveSpeed": 340,
       "critDamage": 1.75,
     },
     "skillOrder": [
@@ -14077,6 +14321,8 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           11.25,
           10,
         ],
+        "aimed": true,
+        "mobility": true,
         "formula": {
           "op": "sum",
           "of": [
@@ -14122,6 +14368,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           11.75,
           11,
         ],
+        "aimed": true,
         "formula": {
           "op": "sum",
           "of": [
@@ -14163,6 +14410,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           35,
           25,
         ],
+        "aimed": true,
         "formula": {
           "op": "sum",
           "of": [
@@ -14215,6 +14463,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "attackSpeedRatio": 0.651,
       "attackSpeedPerLevel": 0.03,
       "attackRange": 125,
+      "moveSpeed": 345,
       "critDamage": 1.75,
     },
     "skillOrder": [
@@ -14259,6 +14508,8 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           7,
           6,
         ],
+        "aimed": true,
+        "mobility": true,
         "formula": {
           "op": "sum",
           "of": [
@@ -14310,6 +14561,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
             "ap": 0.8,
           },
         },
+        "mobility": true,
         "shieldFormula": {
           "op": "sum",
           "of": [
@@ -14448,6 +14700,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "attackSpeedRatio": 0.625,
       "attackSpeedPerLevel": 0.029,
       "attackRange": 125,
+      "moveSpeed": 335,
       "critDamage": 1.75,
     },
     "skillOrder": [
@@ -14540,6 +14793,8 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           7.5,
           6,
         ],
+        "aimed": true,
+        "mobility": true,
       },
       "R": {
         "name": "Solar Flare",
@@ -14558,6 +14813,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           75,
           60,
         ],
+        "aimed": true,
         "cc": {
           "op": "num",
           "n": 1.75,
@@ -14614,6 +14870,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "attackSpeedRatio": 0.625,
       "attackSpeedPerLevel": 0.027,
       "attackRange": 325,
+      "moveSpeed": 330,
       "critDamage": 1.75,
     },
     "skillOrder": [
@@ -14703,6 +14960,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           11,
           10,
         ],
+        "aimed": true,
         "formula": {
           "op": "sum",
           "of": [
@@ -14748,6 +15006,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           12,
           12,
         ],
+        "aimed": true,
         "formula": {
           "op": "sum",
           "of": [
@@ -14849,6 +15108,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "attackSpeedRatio": 0.625,
       "attackSpeedPerLevel": 0.015,
       "attackRange": 550,
+      "moveSpeed": 325,
       "critDamage": 1.75,
     },
     "skillOrder": [
@@ -14893,6 +15153,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           4,
           3,
         ],
+        "aimed": true,
       },
       "W": {
         "name": "Ring of Frost",
@@ -14960,6 +15221,8 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           15,
           12,
         ],
+        "aimed": true,
+        "mobility": true,
         "formula": {
           "op": "sum",
           "of": [
@@ -15044,6 +15307,185 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
     ],
     "keystone": "electrocute",
   },
+  "locke": {
+    "id": "locke",
+    "name": "Locke",
+    "title": "the Ashen Exorcist",
+    "initial": "L",
+    "adaptive": "AP",
+    "base": {
+      "ad": 58,
+      "adPerLevel": 0,
+      "hp": 620,
+      "hpPerLevel": 109,
+      "armor": 32,
+      "armorPerLevel": 4.2,
+      "mr": 32,
+      "mrPerLevel": 2.05,
+      "attackSpeed": 0.688,
+      "attackSpeedRatio": 0.688,
+      "attackSpeedPerLevel": 0.033,
+      "attackRange": 125,
+      "moveSpeed": 340,
+    },
+    "skillOrder": [
+      "Q",
+      "W",
+      "E",
+      "Q",
+      "Q",
+      "R",
+      "Q",
+      "E",
+      "Q",
+      "E",
+      "R",
+      "E",
+      "E",
+      "W",
+      "W",
+      "R",
+      "W",
+      "W",
+    ],
+    "abilities": {
+      "Q": {
+        "name": "Ritual Nails",
+        "type": "magic",
+        "maxRank": 5,
+        "base": [
+          0,
+        ],
+        "ratios": {},
+        "formula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                40,
+                48,
+                56,
+                64,
+                72,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "ap",
+              "f": {
+                "op": "num",
+                "n": 0.2,
+              },
+            },
+          ],
+        },
+        "cooldown": [
+          10,
+          9,
+          8,
+          7,
+          6,
+        ],
+        "aimed": true,
+      },
+      "W": {
+        "name": "Soul Ignition",
+        "type": "util",
+        "maxRank": 5,
+        "base": [
+          0,
+        ],
+        "ratios": {},
+        "cooldown": [
+          20,
+          18,
+          16,
+          14,
+          12,
+        ],
+      },
+      "E": {
+        "name": "Ashen Pursuit",
+        "type": "magic",
+        "maxRank": 5,
+        "base": [
+          0,
+        ],
+        "ratios": {},
+        "formula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                40,
+                50,
+                60,
+                70,
+                80,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "ap",
+              "f": {
+                "op": "num",
+                "n": 0.4,
+              },
+            },
+          ],
+        },
+        "aimed": true,
+        "mobility": true,
+      },
+      "R": {
+        "name": "Purgatory",
+        "type": "magic",
+        "maxRank": 3,
+        "base": [
+          0,
+        ],
+        "ratios": {},
+        "formula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                150,
+                225,
+                300,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "ap",
+              "f": {
+                "op": "num",
+                "n": 0.6,
+              },
+            },
+          ],
+        },
+        "cooldown": [
+          120,
+          100,
+          80,
+        ],
+        "aimed": true,
+      },
+    },
+    "shelf": [
+      "sorcerersshoes",
+      "ludensecho",
+      "shadowflame",
+      "rabadonsdeathcap",
+      "voidstaff",
+      "zhonyashourglass",
+    ],
+    "keystone": "electrocute",
+  },
   "lucian": {
     "id": "lucian",
     "name": "Lucian",
@@ -15063,6 +15505,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "attackSpeedRatio": 0.638,
       "attackSpeedPerLevel": 0.025,
       "attackRange": 500,
+      "moveSpeed": 335,
       "critDamage": 1.75,
     },
     "skillOrder": [
@@ -15161,6 +15604,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           11,
           10,
         ],
+        "aimed": true,
         "formula": {
           "op": "sum",
           "of": [
@@ -15200,6 +15644,8 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           14.5,
           14,
         ],
+        "aimed": true,
+        "mobility": true,
       },
       "R": {
         "name": "The Culling",
@@ -15219,6 +15665,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           100,
           90,
         ],
+        "aimed": true,
         "formula": {
           "op": "sum",
           "of": [
@@ -15279,6 +15726,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "attackSpeedRatio": 0.625,
       "attackSpeedPerLevel": 0.0225,
       "attackRange": 550,
+      "moveSpeed": 330,
       "critDamage": 1.75,
     },
     "skillOrder": [
@@ -15323,6 +15771,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           7,
           7,
         ],
+        "aimed": true,
         "formula": {
           "op": "sum",
           "of": [
@@ -15511,6 +15960,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "attackSpeedRatio": 0.625,
       "attackSpeedPerLevel": 0.03,
       "attackRange": 550,
+      "moveSpeed": 330,
       "critDamage": 1.75,
     },
     "skillOrder": [
@@ -15555,6 +16005,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           9.5,
           9,
         ],
+        "aimed": true,
         "formula": {
           "op": "sum",
           "of": [
@@ -15606,6 +16057,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
             "ap": 0.4,
           },
         },
+        "aimed": true,
         "shieldFormula": {
           "op": "sum",
           "of": [
@@ -15651,6 +16103,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           8.5,
           8,
         ],
+        "aimed": true,
         "formula": {
           "op": "sum",
           "of": [
@@ -15692,6 +16145,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           50,
           40,
         ],
+        "aimed": true,
         "formula": {
           "op": "sum",
           "of": [
@@ -15744,6 +16198,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "attackSpeedRatio": 0.638,
       "attackSpeedPerLevel": 0.034,
       "attackRange": 125,
+      "moveSpeed": 335,
       "critDamage": 1.75,
     },
     "skillOrder": [
@@ -15904,6 +16359,8 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           115,
           100,
         ],
+        "aimed": true,
+        "mobility": true,
         "cc": {
           "op": "num",
           "n": 1.5,
@@ -15960,6 +16417,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "attackSpeedRatio": 0.625,
       "attackSpeedPerLevel": 0.015,
       "attackRange": 500,
+      "moveSpeed": 335,
       "critDamage": 1.75,
     },
     "skillOrder": [
@@ -16004,6 +16462,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           6,
           6,
         ],
+        "aimed": true,
       },
       "W": {
         "name": "Void Swarm",
@@ -16115,6 +16574,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "attackSpeedRatio": 0.695,
       "attackSpeedPerLevel": 0.0213,
       "attackRange": 125,
+      "moveSpeed": 335,
       "critDamage": 1.75,
     },
     "skillOrder": [
@@ -16169,6 +16629,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           5.5,
           5,
         ],
+        "aimed": true,
       },
       "W": {
         "name": "Twisted Advance",
@@ -16191,6 +16652,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           11,
           10,
         ],
+        "mobility": true,
         "formula": {
           "op": "sum",
           "of": [
@@ -16237,6 +16699,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           15,
           14,
         ],
+        "aimed": true,
       },
       "R": {
         "name": "Nature's Grasp",
@@ -16255,6 +16718,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           110,
           90,
         ],
+        "aimed": true,
         "formula": {
           "op": "sum",
           "of": [
@@ -16307,6 +16771,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "attackSpeedRatio": 0.679,
       "attackSpeedPerLevel": 0.025,
       "attackRange": 175,
+      "moveSpeed": 355,
       "critDamage": 1.75,
     },
     "skillOrder": [
@@ -16351,6 +16816,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           18.5,
           18,
         ],
+        "mobility": true,
         "formula": {
           "op": "sum",
           "of": [
@@ -16492,6 +16958,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "attackSpeedRatio": 0.4,
       "attackSpeedPerLevel": 0.025,
       "attackRange": 550,
+      "moveSpeed": 330,
       "critDamage": 1.75,
     },
     "skillOrder": [
@@ -16536,6 +17003,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           7,
           6,
         ],
+        "aimed": true,
       },
       "W": {
         "name": "Rebuttal",
@@ -16574,6 +17042,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           9.5,
           9,
         ],
+        "aimed": true,
         "formula": {
           "op": "sum",
           "of": [
@@ -16646,6 +17115,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "attackSpeedRatio": 0.625,
       "attackSpeedPerLevel": 0.03,
       "attackRange": 525,
+      "moveSpeed": 330,
       "critDamage": 1.75,
     },
     "skillOrder": [
@@ -16690,6 +17160,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           10,
           10,
         ],
+        "aimed": true,
         "formula": {
           "op": "sum",
           "of": [
@@ -16868,6 +17339,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "attackSpeedRatio": 0.656,
       "attackSpeedPerLevel": 0.03,
       "attackRange": 550,
+      "moveSpeed": 325,
       "critDamage": 1.75,
     },
     "skillOrder": [
@@ -16980,6 +17452,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           110,
           100,
         ],
+        "aimed": true,
         "formula": {
           "op": "mul",
           "of": [
@@ -17053,6 +17526,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "attackSpeedRatio": 0.625,
       "attackSpeedPerLevel": 0.01,
       "attackRange": 175,
+      "moveSpeed": 335,
       "critDamage": 1.75,
     },
     "skillOrder": [
@@ -17110,6 +17584,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           5,
           4,
         ],
+        "aimed": true,
       },
       "W": {
         "name": "Indestructible",
@@ -17148,6 +17623,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           12,
           10,
         ],
+        "aimed": true,
         "formula": {
           "op": "sum",
           "of": [
@@ -17216,6 +17692,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "attackSpeedRatio": 0.625,
       "attackSpeedPerLevel": 0.0153,
       "attackRange": 450,
+      "moveSpeed": 335,
       "critDamage": 1.75,
     },
     "skillOrder": [
@@ -17260,6 +17737,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           10,
           10,
         ],
+        "aimed": true,
         "formula": {
           "op": "sum",
           "of": [
@@ -17305,6 +17783,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           12,
           12,
         ],
+        "aimed": true,
       },
       "E": {
         "name": "Black Shield",
@@ -17434,6 +17913,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "attackSpeedRatio": 0.625,
       "attackSpeedPerLevel": 0.021,
       "attackRange": 125,
+      "moveSpeed": 340,
       "critDamage": 1.75,
     },
     "skillOrder": [
@@ -17490,6 +17970,8 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
             "bonusAd": 0.4,
           },
         },
+        "aimed": true,
+        "mobility": true,
         "formula": {
           "op": "sum",
           "of": [
@@ -17551,6 +18033,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           8,
           7,
         ],
+        "aimed": true,
         "formula": {
           "op": "sum",
           "of": [
@@ -17602,6 +18085,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
             "bonusAd": 1.5,
           },
         },
+        "mobility": true,
       },
     },
     "shelf": [
@@ -17633,6 +18117,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "attackSpeedRatio": 0.644,
       "attackSpeedPerLevel": 0.0261,
       "attackRange": 550,
+      "moveSpeed": 335,
       "critDamage": 1.75,
     },
     "skillOrder": [
@@ -17677,6 +18162,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           9,
           8,
         ],
+        "aimed": true,
         "cc": {
           "op": "num",
           "n": 1.5,
@@ -17847,6 +18333,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           110,
           100,
         ],
+        "aimed": true,
         "cc": {
           "op": "num",
           "n": 0.5,
@@ -17903,6 +18390,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "attackSpeedRatio": 0.638,
       "attackSpeedPerLevel": 0.0348,
       "attackRange": 125,
+      "moveSpeed": 350,
       "critDamage": 1.75,
     },
     "skillOrder": [
@@ -17983,6 +18471,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           12,
           12,
         ],
+        "aimed": true,
         "formula": {
           "op": "sum",
           "of": [
@@ -18068,6 +18557,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "attackSpeedRatio": 0.612,
       "attackSpeedPerLevel": 0.01,
       "attackRange": 175,
+      "moveSpeed": 325,
       "critDamage": 1.75,
     },
     "skillOrder": [
@@ -18112,6 +18602,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           11,
           10,
         ],
+        "aimed": true,
         "formula": {
           "op": "sum",
           "of": [
@@ -18332,6 +18823,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "attackSpeedRatio": 0.67,
       "attackSpeedPerLevel": 0.035,
       "attackRange": 550,
+      "moveSpeed": 340,
       "critDamage": 1.75,
     },
     "skillOrder": [
@@ -18376,6 +18868,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           7.5,
           7,
         ],
+        "aimed": true,
         "formula": {
           "op": "sum",
           "of": [
@@ -18421,6 +18914,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           13,
           12,
         ],
+        "aimed": true,
       },
       "E": {
         "name": "Tangle-Barbs",
@@ -18443,6 +18937,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           10.5,
           10,
         ],
+        "aimed": true,
         "formula": {
           "op": "sum",
           "of": [
@@ -18484,6 +18979,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           105,
           90,
         ],
+        "mobility": true,
         "cc": {
           "op": "num",
           "n": 0.75,
@@ -18540,6 +19036,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "attackSpeedRatio": 0.638,
       "attackSpeedPerLevel": 0.0322,
       "attackRange": 525,
+      "moveSpeed": 335,
       "critDamage": 1.75,
     },
     "skillOrder": [
@@ -18584,6 +19081,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           6,
           6,
         ],
+        "aimed": true,
       },
       "W": {
         "name": "Bushwhack",
@@ -18606,6 +19104,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           10,
           9,
         ],
+        "aimed": true,
       },
       "E": {
         "name": "Primal Surge",
@@ -18702,6 +19201,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "attackSpeedRatio": 0.67,
       "attackSpeedPerLevel": 0.0125,
       "attackRange": 225,
+      "moveSpeed": 340,
       "critDamage": 1.75,
     },
     "skillOrder": [
@@ -18755,6 +19255,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           4,
           4,
         ],
+        "aimed": true,
         "formula": {
           "op": "mul",
           "of": [
@@ -18860,6 +19361,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           0.5,
           0.5,
         ],
+        "mobility": true,
         "formula": {
           "op": "sum",
           "of": [
@@ -18932,6 +19434,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "attackSpeedRatio": 0.721,
       "attackSpeedPerLevel": 0.027,
       "attackRange": 125,
+      "moveSpeed": 345,
       "critDamage": 1.75,
     },
     "skillOrder": [
@@ -18976,6 +19479,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           8,
           8,
         ],
+        "aimed": true,
         "formula": {
           "op": "sum",
           "of": [
@@ -19117,6 +19621,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "attackSpeedRatio": 0.625,
       "attackSpeedPerLevel": 0.0225,
       "attackRange": 125,
+      "moveSpeed": 345,
       "critDamage": 1.75,
     },
     "skillOrder": [
@@ -19194,6 +19699,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           14,
           14,
         ],
+        "aimed": true,
         "cc": {
           "op": "num",
           "n": 0.75,
@@ -19220,6 +19726,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           11,
           10,
         ],
+        "aimed": true,
         "formula": {
           "op": "sum",
           "of": [
@@ -19343,6 +19850,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "attackSpeedRatio": 0.694,
       "attackSpeedPerLevel": 0.027,
       "attackRange": 125,
+      "moveSpeed": 350,
       "critDamage": 1.75,
     },
     "skillOrder": [
@@ -19387,6 +19895,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           9,
           9,
         ],
+        "aimed": true,
         "formula": {
           "op": "sum",
           "of": [
@@ -19526,6 +20035,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "attackSpeedRatio": 0.658,
       "attackSpeedPerLevel": 0.035,
       "attackRange": 525,
+      "moveSpeed": 325,
       "critDamage": 1.75,
     },
     "skillOrder": [
@@ -19570,6 +20080,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           4,
           3,
         ],
+        "aimed": true,
       },
       "W": {
         "name": "Command: Dissonance",
@@ -19723,6 +20234,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "attackSpeedRatio": 0.625,
       "attackSpeedPerLevel": 0.02,
       "attackRange": 175,
+      "moveSpeed": 335,
       "critDamage": 1.75,
     },
     "skillOrder": [
@@ -19767,6 +20279,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           7.5,
           7,
         ],
+        "aimed": true,
         "formula": {
           "op": "sum",
           "of": [
@@ -19817,6 +20330,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           10.5,
           10,
         ],
+        "aimed": true,
       },
       "E": {
         "name": "Searing Charge",
@@ -19837,10 +20351,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           12.5,
           12,
         ],
-        "cc": {
-          "op": "num",
-          "n": 1.25,
-        },
+        "aimed": true,
         "formula": {
           "op": "sum",
           "of": [
@@ -19890,10 +20401,8 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           120,
           100,
         ],
-        "cc": {
-          "op": "num",
-          "n": 1,
-        },
+        "aimed": true,
+        "mobility": true,
         "formula": {
           "op": "sum",
           "of": [
@@ -19946,6 +20455,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "attackSpeedRatio": 0.658,
       "attackSpeedPerLevel": 0.0295,
       "attackRange": 175,
+      "moveSpeed": 345,
       "critDamage": 1.75,
     },
     "skillOrder": [
@@ -19991,6 +20501,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           8.75,
           8,
         ],
+        "aimed": true,
         "formula": {
           "op": "sum",
           "of": [
@@ -20049,6 +20560,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           10,
           9,
         ],
+        "mobility": true,
         "cc": {
           "op": "num",
           "n": 1,
@@ -20075,6 +20587,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           19,
           18,
         ],
+        "aimed": true,
         "formula": {
           "op": "sum",
           "of": [
@@ -20116,6 +20629,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           165,
           150,
         ],
+        "mobility": true,
         "formula": {
           "op": "sum",
           "of": [
@@ -20168,6 +20682,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "attackSpeedRatio": 0.625,
       "attackSpeedPerLevel": 0.025,
       "attackRange": 125,
+      "moveSpeed": 345,
       "critDamage": 1.75,
     },
     "skillOrder": [
@@ -20223,6 +20738,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           ],
           "ratios": {},
         },
+        "aimed": true,
       },
       "W": {
         "name": "Steadfast Presence",
@@ -20245,6 +20761,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           14,
           12,
         ],
+        "mobility": true,
         "cc": {
           "op": "num",
           "n": 0.5,
@@ -20335,6 +20852,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           120,
           100,
         ],
+        "aimed": true,
         "cc": {
           "op": "num",
           "n": 2,
@@ -20400,6 +20918,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "attackSpeedRatio": 0.667,
       "attackSpeedPerLevel": 0.025,
       "attackRange": 150,
+      "moveSpeed": 330,
       "critDamage": 1.75,
     },
     "skillOrder": [
@@ -20444,6 +20963,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           8.5,
           8,
         ],
+        "aimed": true,
         "formula": {
           "op": "sum",
           "of": [
@@ -20505,6 +21025,8 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           12,
           11,
         ],
+        "aimed": true,
+        "mobility": true,
         "cc": {
           "op": "num",
           "n": 1.25,
@@ -20546,6 +21068,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           85,
           70,
         ],
+        "aimed": true,
       },
     },
     "shelf": [
@@ -20577,6 +21100,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "attackSpeedRatio": 0.625,
       "attackSpeedPerLevel": 0.021,
       "attackRange": 150,
+      "moveSpeed": 335,
       "critDamage": 1.75,
     },
     "skillOrder": [
@@ -20621,6 +21145,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           7,
           7,
         ],
+        "aimed": true,
         "formula": {
           "op": "sum",
           "of": [
@@ -20667,6 +21192,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           7,
           7,
         ],
+        "mobility": true,
         "formula": {
           "op": "sum",
           "of": [
@@ -20720,6 +21246,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           8,
           7,
         ],
+        "mobility": true,
         "formula": {
           "op": "sum",
           "of": [
@@ -20772,6 +21299,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
             "bonusAd": 1.25,
           },
         },
+        "aimed": true,
         "cc": {
           "op": "num",
           "n": 1,
@@ -20807,6 +21335,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "attackSpeedRatio": 0.668,
       "attackSpeedPerLevel": 0.031,
       "attackRange": 525,
+      "moveSpeed": 330,
       "critDamage": 1.75,
     },
     "skillOrder": [
@@ -20861,6 +21390,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           9.5,
           9,
         ],
+        "aimed": true,
         "formula": {
           "op": "sum",
           "of": [
@@ -20936,6 +21466,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           9,
           8,
         ],
+        "mobility": true,
         "formula": {
           "op": "sum",
           "of": [
@@ -21004,6 +21535,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "attackSpeedRatio": 0.635,
       "attackSpeedPerLevel": 0.03,
       "attackRange": 300,
+      "moveSpeed": 335,
       "critDamage": 1.75,
     },
     "skillOrder": [
@@ -21048,6 +21580,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           8,
           7,
         ],
+        "aimed": true,
         "formula": {
           "op": "sum",
           "of": [
@@ -21093,6 +21626,8 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           11,
           10,
         ],
+        "aimed": true,
+        "mobility": true,
         "cc": {
           "op": "num",
           "n": 1,
@@ -21148,6 +21683,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
             "ap": 0.7,
           },
         },
+        "mobility": true,
         "shieldFormula": {
           "op": "sum",
           "of": [
@@ -21228,6 +21764,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "attackSpeedRatio": 0.625,
       "attackSpeedPerLevel": 0.0222,
       "attackRange": 125,
+      "moveSpeed": 335,
       "critDamage": 1.75,
     },
     "skillOrder": [
@@ -21349,6 +21886,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           105,
           90,
         ],
+        "aimed": true,
         "cc": {
           "op": "num",
           "n": 0.75,
@@ -21405,6 +21943,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "attackSpeedRatio": 0.667,
       "attackSpeedPerLevel": 0.02,
       "attackRange": 175,
+      "moveSpeed": 340,
       "critDamage": 1.75,
     },
     "skillOrder": [
@@ -21527,6 +22066,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           100,
           80,
         ],
+        "mobility": true,
       },
     },
     "shelf": [
@@ -21558,6 +22098,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "attackSpeedRatio": 0.625,
       "attackSpeedPerLevel": 0.02,
       "attackRange": 175,
+      "moveSpeed": 315,
       "critDamage": 1.75,
     },
     "skillOrder": [
@@ -21602,6 +22143,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           9.5,
           9,
         ],
+        "aimed": true,
         "cc": {
           "op": "num",
           "n": 0.65,
@@ -21661,6 +22203,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           ],
           "ratios": {},
         },
+        "mobility": true,
         "cc": {
           "op": "num",
           "n": 0.8,
@@ -21764,6 +22307,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "attackSpeedRatio": 0.625,
       "attackSpeedPerLevel": 0.0211,
       "attackRange": 550,
+      "moveSpeed": 330,
       "critDamage": 1.75,
     },
     "skillOrder": [
@@ -21808,10 +22352,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           16,
           16,
         ],
-        "cc": {
-          "op": "num",
-          "n": 0.5,
-        },
+        "aimed": true,
         "formula": {
           "op": "sum",
           "of": [
@@ -21885,6 +22426,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
             "ap": 0.5,
           },
         },
+        "aimed": true,
         "formula": {
           "op": "sum",
           "of": [
@@ -21945,6 +22487,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           130,
           110,
         ],
+        "aimed": true,
       },
     },
     "shelf": [
@@ -21976,6 +22519,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "attackSpeedRatio": 0.665,
       "attackSpeedPerLevel": 0.0275,
       "attackRange": 125,
+      "moveSpeed": 345,
       "critDamage": 1.75,
     },
     "skillOrder": [
@@ -22124,6 +22668,8 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           11.5,
           10,
         ],
+        "aimed": true,
+        "mobility": true,
         "formula": {
           "op": "sum",
           "of": [
@@ -22205,6 +22751,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "attackSpeedRatio": 0.667,
       "attackSpeedPerLevel": 0.03,
       "attackRange": 125,
+      "moveSpeed": 345,
       "critDamage": 1.75,
     },
     "skillOrder": [
@@ -22329,6 +22876,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           0.25,
           0.25,
         ],
+        "aimed": true,
         "cc": {
           "op": "num",
           "n": 1.75,
@@ -22370,6 +22918,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           90,
           80,
         ],
+        "mobility": true,
       },
     },
     "shelf": [
@@ -22401,6 +22950,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "attackSpeedRatio": 0.625,
       "attackSpeedPerLevel": 0.035,
       "attackRange": 125,
+      "moveSpeed": 340,
       "critDamage": 1.75,
     },
     "skillOrder": [
@@ -22454,6 +23004,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           13,
           13,
         ],
+        "mobility": true,
         "formula": {
           "op": "sum",
           "of": [
@@ -22560,6 +23111,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
             "bonusAd": 1.1,
           },
         },
+        "mobility": true,
         "shieldFormula": {
           "op": "sum",
           "of": [
@@ -22628,6 +23180,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "attackSpeedRatio": 0.644,
       "attackSpeedPerLevel": 0.0185,
       "attackRange": 125,
+      "moveSpeed": 345,
       "critDamage": 1.75,
     },
     "skillOrder": [
@@ -22682,6 +23235,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           7,
           6,
         ],
+        "aimed": true,
       },
       "W": {
         "name": "Scrap Shield",
@@ -22732,6 +23286,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           0.5,
           0.5,
         ],
+        "aimed": true,
         "formula": {
           "op": "sum",
           "of": [
@@ -22804,6 +23359,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "attackSpeedRatio": 0.625,
       "attackSpeedPerLevel": 0.0211,
       "attackRange": 550,
+      "moveSpeed": 340,
       "critDamage": 1.75,
     },
     "skillOrder": [
@@ -22848,6 +23404,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           5,
           5,
         ],
+        "aimed": true,
       },
       "W": {
         "name": "Rune Prison",
@@ -22910,6 +23467,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           160,
           140,
         ],
+        "aimed": true,
       },
     },
     "shelf": [
@@ -22941,6 +23499,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "attackSpeedRatio": 0.658,
       "attackSpeedPerLevel": 0.033,
       "attackRange": 500,
+      "moveSpeed": 335,
       "critDamage": 1.75,
     },
     "skillOrder": [
@@ -22994,6 +23553,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           3,
           2,
         ],
+        "aimed": true,
         "formula": {
           "op": "sum",
           "of": [
@@ -23084,6 +23644,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           14,
           12,
         ],
+        "mobility": true,
         "formula": {
           "op": "sum",
           "of": [
@@ -23177,6 +23738,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "attackSpeedRatio": 0.625,
       "attackSpeedPerLevel": 0.035,
       "attackRange": 150,
+      "moveSpeed": 340,
       "critDamage": 1.75,
     },
     "skillOrder": [
@@ -23221,6 +23783,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           13.5,
           12,
         ],
+        "aimed": true,
         "cc": {
           "op": "num",
           "n": 0.5,
@@ -23248,6 +23811,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           6,
           5,
         ],
+        "aimed": true,
       },
       "E": {
         "name": "Permafrost",
@@ -23315,6 +23879,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           105,
           90,
         ],
+        "aimed": true,
         "cc": {
           "op": "num",
           "n": 1.5,
@@ -23350,6 +23915,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "attackSpeedRatio": 0.4,
       "attackSpeedPerLevel": 0.026,
       "attackRange": 600,
+      "moveSpeed": 330,
       "critDamage": 1.75,
     },
     "skillOrder": [
@@ -23452,6 +24018,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           11,
           11,
         ],
+        "aimed": true,
         "formula": {
           "op": "sum",
           "of": [
@@ -23520,6 +24087,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
             "ap": 0.5,
           },
         },
+        "aimed": true,
         "formula": {
           "op": "sum",
           "of": [
@@ -23580,6 +24148,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "attackSpeedRatio": 0.625,
       "attackSpeedPerLevel": 0.02,
       "attackRange": 525,
+      "moveSpeed": 330,
       "critDamage": 1.75,
     },
     "skillOrder": [
@@ -23624,6 +24193,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           6.5,
           6,
         ],
+        "aimed": true,
         "formula": {
           "op": "sum",
           "of": [
@@ -23737,6 +24307,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           9.5,
           9,
         ],
+        "aimed": true,
         "formula": {
           "op": "sum",
           "of": [
@@ -23778,6 +24349,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           140,
           120,
         ],
+        "aimed": true,
         "formula": {
           "op": "sum",
           "of": [
@@ -23830,6 +24402,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "attackSpeedRatio": 0.625,
       "attackSpeedPerLevel": 0.0175,
       "attackRange": 125,
+      "moveSpeed": 340,
       "critDamage": 1.75,
     },
     "skillOrder": [
@@ -23877,7 +24450,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       },
       "W": {
         "name": "Haymaker",
-        "type": "magic",
+        "type": "true",
         "maxRank": 5,
         "base": [
           80,
@@ -23894,6 +24467,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           13.5,
           12,
         ],
+        "aimed": true,
         "formula": {
           "op": "rank",
           "v": [
@@ -23926,10 +24500,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           11.5,
           10,
         ],
-        "cc": {
-          "op": "num",
-          "n": 1,
-        },
+        "aimed": true,
         "formula": {
           "op": "sum",
           "of": [
@@ -24023,6 +24594,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "attackSpeedRatio": 0.694,
       "attackSpeedPerLevel": 0.03,
       "attackRange": 125,
+      "moveSpeed": 345,
       "critDamage": 1.75,
     },
     "skillOrder": [
@@ -24067,6 +24639,8 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           11.5,
           11,
         ],
+        "aimed": true,
+        "mobility": true,
         "formula": {
           "op": "sum",
           "of": [
@@ -24112,6 +24686,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           15,
           15,
         ],
+        "aimed": true,
         "cc": {
           "op": "rank",
           "v": [
@@ -24217,10 +24792,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           90,
           80,
         ],
-        "cc": {
-          "op": "num",
-          "n": 1,
-        },
+        "aimed": true,
         "formula": {
           "op": "sum",
           "of": [
@@ -24273,6 +24845,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "attackSpeedRatio": 0.651,
       "attackSpeedPerLevel": 0.03,
       "attackRange": 125,
+      "moveSpeed": 340,
       "critDamage": 1.75,
     },
     "skillOrder": [
@@ -24377,6 +24950,8 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           12,
           10,
         ],
+        "aimed": true,
+        "mobility": true,
         "cc": {
           "op": "num",
           "n": 1.5,
@@ -24429,6 +25004,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
             "bonusHp": 0.15,
           },
         },
+        "mobility": true,
         "shieldFormula": {
           "op": "sum",
           "of": [
@@ -24489,6 +25065,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "attackSpeedRatio": 0.658,
       "attackSpeedPerLevel": 0.02,
       "attackRange": 150,
+      "moveSpeed": 350,
       "critDamage": 1.75,
     },
     "skillOrder": [
@@ -24584,6 +25161,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           9,
           8,
         ],
+        "aimed": true,
       },
       "R": {
         "name": "Dragon's Descent",
@@ -24605,6 +25183,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           ],
           "ratios": {},
         },
+        "aimed": true,
         "cc": {
           "op": "num",
           "n": 0.75,
@@ -24661,6 +25240,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "attackSpeedRatio": 0.625,
       "attackSpeedPerLevel": 0.019,
       "attackRange": 125,
+      "moveSpeed": 345,
       "critDamage": 1.75,
     },
     "skillOrder": [
@@ -24721,6 +25301,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           14,
           13,
         ],
+        "aimed": true,
       },
       "E": {
         "name": "Fling",
@@ -24798,6 +25379,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "attackSpeedRatio": 0.679,
       "attackSpeedPerLevel": 0.013,
       "attackRange": 175,
+      "moveSpeed": 345,
       "critDamage": 1.75,
     },
     "skillOrder": [
@@ -24836,6 +25418,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           7,
           6,
         ],
+        "aimed": true,
       },
       "W": {
         "name": "Soul Furnace",
@@ -24940,6 +25523,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           9,
           8,
         ],
+        "aimed": true,
         "formula": {
           "op": "sum",
           "of": [
@@ -24981,6 +25565,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           100,
           60,
         ],
+        "aimed": true,
         "cc": {
           "op": "num",
           "n": 0.75,
@@ -25016,6 +25601,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "attackSpeedRatio": 0.625,
       "attackSpeedPerLevel": 0.016,
       "attackRange": 500,
+      "moveSpeed": 335,
       "critDamage": 1.75,
     },
     "skillOrder": [
@@ -25061,6 +25647,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           8.5,
           8,
         ],
+        "aimed": true,
         "formula": {
           "op": "mul",
           "of": [
@@ -25269,6 +25856,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "attackSpeedRatio": 0.625,
       "attackSpeedPerLevel": 0.02,
       "attackRange": 150,
+      "moveSpeed": 335,
       "critDamage": 1.75,
     },
     "skillOrder": [
@@ -25377,6 +25965,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           7,
           6,
         ],
+        "aimed": true,
         "formula": {
           "op": "sum",
           "of": [
@@ -25422,6 +26011,8 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           19,
           18,
         ],
+        "aimed": true,
+        "mobility": true,
         "cc": {
           "op": "num",
           "n": 1.1,
@@ -25444,6 +26035,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           105,
           90,
         ],
+        "aimed": true,
         "formula": {
           "op": "sum",
           "of": [
@@ -25496,6 +26088,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "attackSpeedRatio": 0.638,
       "attackSpeedPerLevel": 0.04,
       "attackRange": 550,
+      "moveSpeed": 330,
       "critDamage": 1.75,
     },
     "skillOrder": [
@@ -25521,7 +26114,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
     "abilities": {
       "Q": {
         "name": "Super Scorcher Breath",
-        "type": "magic",
+        "type": "physical",
         "maxRank": 5,
         "base": [
           65,
@@ -25629,6 +26222,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           11,
           10,
         ],
+        "aimed": true,
         "formula": {
           "op": "sum",
           "of": [
@@ -25727,6 +26321,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
             "ap": 0.75,
           },
         },
+        "aimed": true,
         "formula": {
           "op": "sum",
           "of": [
@@ -25787,6 +26382,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "attackSpeedRatio": 0.644,
       "attackSpeedPerLevel": 0.023,
       "attackRange": 550,
+      "moveSpeed": 325,
       "critDamage": 1.75,
     },
     "skillOrder": [
@@ -25949,6 +26545,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           120,
           100,
         ],
+        "aimed": true,
         "cc": {
           "op": "num",
           "n": 1.5,
@@ -26005,6 +26602,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "attackSpeedRatio": 0.625,
       "attackSpeedPerLevel": 0.0214,
       "attackRange": 550,
+      "moveSpeed": 325,
       "critDamage": 1.75,
     },
     "skillOrder": [
@@ -26061,6 +26659,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
             "ap": 0.06,
           },
         },
+        "aimed": true,
         "formula": {
           "op": "sum",
           "of": [
@@ -26157,6 +26756,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           17,
           16,
         ],
+        "aimed": true,
         "formula": {
           "op": "sum",
           "of": [
@@ -26256,6 +26856,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "attackSpeedRatio": 0.625,
       "attackSpeedPerLevel": 0.0211,
       "attackRange": 525,
+      "moveSpeed": 330,
       "critDamage": 1.75,
     },
     "skillOrder": [
@@ -26300,6 +26901,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           4,
           3,
         ],
+        "aimed": true,
         "formula": {
           "op": "sum",
           "of": [
@@ -26345,6 +26947,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           19,
           18,
         ],
+        "aimed": true,
         "formula": {
           "op": "sum",
           "of": [
@@ -26390,6 +26993,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           10.5,
           10,
         ],
+        "aimed": true,
       },
       "R": {
         "name": "Demonic Ascension",
@@ -26450,6 +27054,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "attackSpeedRatio": 0.645,
       "attackSpeedPerLevel": 0.035,
       "attackRange": 175,
+      "moveSpeed": 340,
       "critDamage": 1.75,
     },
     "skillOrder": [
@@ -26494,6 +27099,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           7,
           6,
         ],
+        "aimed": true,
         "formula": {
           "op": "sum",
           "of": [
@@ -26552,6 +27158,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
             "bonusHp": 0.05,
           },
         },
+        "mobility": true,
       },
       "E": {
         "name": "Abscond",
@@ -26568,6 +27175,8 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           10,
           9,
         ],
+        "aimed": true,
+        "mobility": true,
         "cc": {
           "op": "num",
           "n": 0.5,
@@ -26617,6 +27226,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "attackSpeedRatio": 0.625,
       "attackSpeedPerLevel": 0.02,
       "attackRange": 550,
+      "moveSpeed": 330,
       "critDamage": 1.75,
     },
     "skillOrder": [
@@ -26706,6 +27316,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           9,
           8,
         ],
+        "aimed": true,
         "formula": {
           "op": "sum",
           "of": [
@@ -26751,6 +27362,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           15,
           15,
         ],
+        "aimed": true,
         "cc": {
           "op": "num",
           "n": 1.25,
@@ -26848,6 +27460,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "attackSpeedRatio": 0.658,
       "attackSpeedPerLevel": 0.025,
       "attackRange": 175,
+      "moveSpeed": 335,
       "critDamage": 1.75,
     },
     "skillOrder": [
@@ -26903,10 +27516,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           ],
           "ratios": {},
         },
-        "cc": {
-          "op": "num",
-          "n": 1.5,
-        },
+        "aimed": true,
         "formula": {
           "op": "sum",
           "of": [
@@ -26952,6 +27562,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           18,
           17,
         ],
+        "aimed": true,
         "cc": {
           "op": "num",
           "n": 1,
@@ -27071,6 +27682,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "attackSpeedRatio": 0.625,
       "attackSpeedPerLevel": 0.0136,
       "attackRange": 525,
+      "moveSpeed": 330,
       "critDamage": 1.75,
     },
     "skillOrder": [
@@ -27115,6 +27727,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           4,
           3,
         ],
+        "aimed": true,
         "formula": {
           "op": "sum",
           "of": [
@@ -27176,6 +27789,8 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           14,
           14,
         ],
+        "aimed": true,
+        "mobility": true,
         "cc": {
           "op": "num",
           "n": 0.75,
@@ -27217,6 +27832,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           150,
           120,
         ],
+        "aimed": true,
       },
     },
     "shelf": [
@@ -27248,6 +27864,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "attackSpeedRatio": 0.625,
       "attackSpeedPerLevel": 0.029,
       "attackRange": 125,
+      "moveSpeed": 335,
       "critDamage": 1.75,
     },
     "skillOrder": [
@@ -27292,6 +27909,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           6.5,
           6,
         ],
+        "mobility": true,
         "formula": {
           "op": "sum",
           "of": [
@@ -27337,6 +27955,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           7.5,
           7,
         ],
+        "aimed": true,
         "formula": {
           "op": "sum",
           "of": [
@@ -27376,6 +27995,8 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           2,
           2,
         ],
+        "aimed": true,
+        "mobility": true,
       },
       "R": {
         "name": "Shadow Assault",
@@ -27446,6 +28067,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "attackSpeedRatio": 0.625,
       "attackSpeedPerLevel": 0.02,
       "attackRange": 150,
+      "moveSpeed": 340,
       "critDamage": 1.75,
     },
     "skillOrder": [
@@ -27539,6 +28161,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           13,
           12,
         ],
+        "aimed": true,
         "cc": {
           "op": "num",
           "n": 1.5,
@@ -27619,6 +28242,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "attackSpeedRatio": 0.69,
       "attackSpeedPerLevel": 0.0338,
       "attackRange": 500,
+      "moveSpeed": 330,
       "critDamage": 1.75,
     },
     "skillOrder": [
@@ -27766,6 +28390,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           0.25,
           0.25,
         ],
+        "aimed": true,
       },
     },
     "shelf": [
@@ -27797,6 +28422,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "attackSpeedRatio": 0.625,
       "attackSpeedPerLevel": 0.035,
       "attackRange": 450,
+      "moveSpeed": 330,
       "critDamage": 1.75,
     },
     "skillOrder": [
@@ -27841,6 +28467,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           11.5,
           9,
         ],
+        "aimed": true,
         "formula": {
           "op": "sum",
           "of": [
@@ -27890,6 +28517,8 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           ],
           "ratios": {},
         },
+        "aimed": true,
+        "mobility": true,
       },
       "E": {
         "name": "Flay",
@@ -27912,6 +28541,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           10.75,
           10,
         ],
+        "aimed": true,
         "formula": {
           "op": "sum",
           "of": [
@@ -28005,6 +28635,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "attackSpeedRatio": 0.694,
       "attackSpeedPerLevel": 0.015,
       "attackRange": 550,
+      "moveSpeed": 325,
       "critDamage": 1.75,
     },
     "skillOrder": [
@@ -28066,6 +28697,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           16,
           14,
         ],
+        "aimed": true,
         "formula": {
           "op": "sum",
           "of": [
@@ -28100,7 +28732,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       },
       "E": {
         "name": "Explosive Charge",
-        "type": "physical",
+        "type": "magic",
         "maxRank": 5,
         "base": [
           45,
@@ -28229,6 +28861,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "attackSpeedRatio": 0.67,
       "attackSpeedPerLevel": 0.029,
       "attackRange": 175,
+      "moveSpeed": 350,
       "critDamage": 1.75,
     },
     "skillOrder": [
@@ -28298,6 +28931,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           15,
           14,
         ],
+        "aimed": true,
       },
       "E": {
         "name": "Pillar of Ice",
@@ -28314,6 +28948,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           16.5,
           15,
         ],
+        "aimed": true,
       },
       "R": {
         "name": "Subjugate",
@@ -28368,6 +29003,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "attackSpeedRatio": 0.694,
       "attackSpeedPerLevel": 0.034,
       "attackRange": 175,
+      "moveSpeed": 345,
       "critDamage": 1.75,
     },
     "skillOrder": [
@@ -28480,6 +29116,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           9,
           8,
         ],
+        "aimed": true,
         "formula": {
           "op": "sum",
           "of": [
@@ -28564,6 +29201,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "attackSpeedRatio": 0.651,
       "attackSpeedPerLevel": 0.025,
       "attackRange": 525,
+      "moveSpeed": 330,
       "critDamage": 1.75,
     },
     "skillOrder": [
@@ -28609,6 +29247,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           5.25,
           5,
         ],
+        "aimed": true,
         "formula": {
           "op": "sum",
           "of": [
@@ -28768,6 +29407,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           140,
           110,
         ],
+        "mobility": true,
       },
     },
     "shelf": [
@@ -28799,6 +29439,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "attackSpeedRatio": 0.679,
       "attackSpeedPerLevel": 0.03,
       "attackRange": 550,
+      "moveSpeed": 330,
       "critDamage": 1.75,
     },
     "skillOrder": [
@@ -28853,6 +29494,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           10,
           9,
         ],
+        "aimed": true,
       },
       "E": {
         "name": "Contaminate",
@@ -28918,6 +29560,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "attackSpeedRatio": 0.65,
       "attackSpeedPerLevel": 0.03,
       "attackRange": 125,
+      "moveSpeed": 350,
       "critDamage": 1.75,
     },
     "skillOrder": [
@@ -29095,6 +29738,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           6,
           6,
         ],
+        "mobility": true,
         "cc": {
           "op": "num",
           "n": 0.75,
@@ -29151,6 +29795,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "attackSpeedRatio": 0.625,
       "attackSpeedPerLevel": 0.0375,
       "attackRange": 350,
+      "moveSpeed": 330,
       "critDamage": 1.75,
     },
     "skillOrder": [
@@ -29195,6 +29840,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           8.5,
           8,
         ],
+        "aimed": true,
         "formula": {
           "op": "sum",
           "of": [
@@ -29307,6 +29953,8 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
             "bonusHp": 0.135,
           },
         },
+        "aimed": true,
+        "mobility": true,
         "cc": {
           "op": "num",
           "n": 1.5,
@@ -29368,7 +30016,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       },
       "R": {
         "name": "Fear Beyond Death",
-        "type": "magic",
+        "type": "physical",
         "maxRank": 3,
         "base": [
           100,
@@ -29383,6 +30031,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           85,
           70,
         ],
+        "aimed": true,
         "cc": {
           "op": "num",
           "n": 1.5,
@@ -29439,6 +30088,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "attackSpeedRatio": 0.658,
       "attackSpeedPerLevel": 0.035,
       "attackRange": 575,
+      "moveSpeed": 330,
       "critDamage": 1.75,
     },
     "skillOrder": [
@@ -29492,6 +30142,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           13,
           12,
         ],
+        "aimed": true,
       },
       "W": {
         "name": "Blighted Quiver",
@@ -29548,7 +30199,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       },
       "E": {
         "name": "Hail of Arrows",
-        "type": "magic",
+        "type": "physical",
         "maxRank": 5,
         "base": [
           60,
@@ -29608,6 +30259,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           80,
           60,
         ],
+        "aimed": true,
         "formula": {
           "op": "sum",
           "of": [
@@ -29660,6 +30312,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "attackSpeedRatio": 0.658,
       "attackSpeedPerLevel": 0.028,
       "attackRange": 550,
+      "moveSpeed": 330,
       "critDamage": 1.75,
     },
     "skillOrder": [
@@ -29710,6 +30363,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           3,
           2,
         ],
+        "aimed": true,
       },
       "W": {
         "name": "Silver Bolts",
@@ -29820,6 +30474,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "attackSpeedRatio": 0.625,
       "attackSpeedPerLevel": 0.0224,
       "attackRange": 550,
+      "moveSpeed": 340,
       "critDamage": 1.75,
     },
     "skillOrder": [
@@ -29873,6 +30528,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           4.5,
           4,
         ],
+        "aimed": true,
         "formula": {
           "op": "sum",
           "of": [
@@ -29933,6 +30589,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           8,
           8,
         ],
+        "aimed": true,
         "formula": {
           "op": "sum",
           "of": [
@@ -29978,6 +30635,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           15.5,
           14,
         ],
+        "aimed": true,
         "cc": {
           "op": "rank",
           "v": [
@@ -30044,6 +30702,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "attackSpeedRatio": 0.625,
       "attackSpeedPerLevel": 0.0159,
       "attackRange": 525,
+      "moveSpeed": 340,
       "critDamage": 1.75,
     },
     "skillOrder": [
@@ -30088,6 +30747,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           7,
           7,
         ],
+        "aimed": true,
         "formula": {
           "op": "sum",
           "of": [
@@ -30133,6 +30793,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           1.5,
           1.5,
         ],
+        "aimed": true,
         "formula": {
           "op": "sum",
           "of": [
@@ -30178,6 +30839,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           10.5,
           10,
         ],
+        "aimed": true,
         "cc": {
           "op": "num",
           "n": 0.75,
@@ -30223,6 +30885,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           90,
           80,
         ],
+        "aimed": true,
       },
     },
     "shelf": [
@@ -30254,6 +30917,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "attackSpeedRatio": 0.625,
       "attackSpeedPerLevel": 0.01,
       "attackRange": 550,
+      "moveSpeed": 335,
       "critDamage": 1.75,
     },
     "skillOrder": [
@@ -30298,6 +30962,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           5,
           4,
         ],
+        "aimed": true,
         "formula": {
           "op": "sum",
           "of": [
@@ -30432,6 +31097,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           13,
           13,
         ],
+        "aimed": true,
         "formula": {
           "op": "sum",
           "of": [
@@ -30479,6 +31145,8 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           120,
           100,
         ],
+        "aimed": true,
+        "mobility": true,
         "formula": {
           "op": "sum",
           "of": [
@@ -30531,6 +31199,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "attackSpeedRatio": 0.644,
       "attackSpeedPerLevel": 0.02,
       "attackRange": 125,
+      "moveSpeed": 340,
       "critDamage": 1.75,
     },
     "skillOrder": [
@@ -30575,6 +31244,8 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           7.5,
           6,
         ],
+        "aimed": true,
+        "mobility": true,
         "cc": {
           "op": "num",
           "n": 0.75,
@@ -30663,6 +31334,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           115,
           90,
         ],
+        "mobility": true,
         "cc": {
           "op": "num",
           "n": 1.3,
@@ -30719,6 +31391,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "attackSpeedRatio": 0.658,
       "attackSpeedPerLevel": 0.0275,
       "attackRange": 200,
+      "moveSpeed": 345,
       "critDamage": 1.75,
     },
     "skillOrder": [
@@ -30768,6 +31441,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           3.5,
           3,
         ],
+        "aimed": true,
       },
       "W": {
         "name": "Spectral Maw",
@@ -30790,6 +31464,8 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           8,
           8,
         ],
+        "aimed": true,
+        "mobility": true,
         "cc": {
           "op": "num",
           "n": 0.25,
@@ -30833,6 +31509,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           8,
           6,
         ],
+        "aimed": true,
       },
       "R": {
         "name": "Heartbreaker",
@@ -30856,6 +31533,8 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           100,
           80,
         ],
+        "aimed": true,
+        "mobility": true,
       },
     },
     "shelf": [
@@ -30887,6 +31566,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "attackSpeedRatio": 0.658,
       "attackSpeedPerLevel": 0.0211,
       "attackRange": 525,
+      "moveSpeed": 335,
       "critDamage": 1.75,
     },
     "skillOrder": [
@@ -30970,6 +31650,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           14,
           13,
         ],
+        "aimed": true,
         "cc": {
           "op": "num",
           "n": 1.5,
@@ -31037,6 +31718,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           100,
           80,
         ],
+        "aimed": true,
         "formula": {
           "op": "sum",
           "of": [
@@ -31089,6 +31771,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "attackSpeedRatio": 0.658,
       "attackSpeedPerLevel": 0.02,
       "attackRange": 450,
+      "moveSpeed": 330,
       "critDamage": 1.75,
     },
     "skillOrder": [
@@ -31218,6 +31901,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
             "ap": 0.7,
           },
         },
+        "aimed": true,
         "formula": {
           "op": "sum",
           "of": [
@@ -31270,6 +31954,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "attackSpeedRatio": 0.7,
       "attackSpeedPerLevel": 0.02,
       "attackRange": 150,
+      "moveSpeed": 340,
       "critDamage": 1.75,
     },
     "skillOrder": [
@@ -31414,6 +32099,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           16,
           16,
         ],
+        "aimed": true,
       },
       "R": {
         "name": "Stormbringer",
@@ -31441,6 +32127,8 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           ],
           "ratios": {},
         },
+        "aimed": true,
+        "mobility": true,
       },
     },
     "shelf": [
@@ -31472,6 +32160,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "attackSpeedRatio": 0.638,
       "attackSpeedPerLevel": 0.02,
       "attackRange": 125,
+      "moveSpeed": 335,
       "critDamage": 1.75,
     },
     "skillOrder": [
@@ -31523,6 +32212,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           6.5,
           6,
         ],
+        "mobility": true,
       },
       "W": {
         "name": "Blood Hunt",
@@ -31577,6 +32267,8 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           90,
           70,
         ],
+        "aimed": true,
+        "mobility": true,
         "formula": {
           "op": "sum",
           "of": [
@@ -31629,6 +32321,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "attackSpeedRatio": 0.658,
       "attackSpeedPerLevel": 0.03,
       "attackRange": 175,
+      "moveSpeed": 340,
       "critDamage": 1.75,
     },
     "skillOrder": [
@@ -31712,6 +32405,8 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           19,
           18,
         ],
+        "aimed": true,
+        "mobility": true,
       },
       "E": {
         "name": "Nimbus Strike",
@@ -31734,6 +32429,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           7.75,
           7,
         ],
+        "mobility": true,
         "formula": {
           "op": "sum",
           "of": [
@@ -31816,6 +32512,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "attackSpeedRatio": 0.658,
       "attackSpeedPerLevel": 0.039,
       "attackRange": 525,
+      "moveSpeed": 330,
       "critDamage": 1.75,
     },
     "skillOrder": [
@@ -31860,6 +32557,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           8.5,
           8,
         ],
+        "aimed": true,
         "formula": {
           "op": "sum",
           "of": [
@@ -31939,6 +32637,8 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           120,
           100,
         ],
+        "aimed": true,
+        "mobility": true,
         "formula": {
           "op": "sum",
           "of": [
@@ -31991,6 +32691,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "attackSpeedRatio": 0.625,
       "attackSpeedPerLevel": 0.0136,
       "attackRange": 525,
+      "moveSpeed": 340,
       "critDamage": 1.75,
     },
     "skillOrder": [
@@ -32035,6 +32736,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           6,
           5,
         ],
+        "aimed": true,
       },
       "W": {
         "name": "Eye of Destruction",
@@ -32057,6 +32759,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           11,
           10,
         ],
+        "aimed": true,
         "formula": {
           "op": "sum",
           "of": [
@@ -32102,6 +32805,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           11.5,
           11,
         ],
+        "aimed": true,
         "cc": {
           "op": "num",
           "n": 0.75,
@@ -32124,6 +32828,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           115,
           100,
         ],
+        "aimed": true,
       },
     },
     "shelf": [
@@ -32155,6 +32860,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "attackSpeedRatio": 0.645,
       "attackSpeedPerLevel": 0.035,
       "attackRange": 175,
+      "moveSpeed": 345,
       "critDamage": 1.75,
     },
     "skillOrder": [
@@ -32225,6 +32931,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           9,
           8,
         ],
+        "aimed": true,
         "formula": {
           "op": "sum",
           "of": [
@@ -32321,6 +33028,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "attackSpeedRatio": 0.67,
       "attackSpeedPerLevel": 0.035,
       "attackRange": 175,
+      "moveSpeed": 345,
       "critDamage": 1.75,
     },
     "skillOrder": [
@@ -32365,10 +33073,8 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           4,
           4,
         ],
-        "cc": {
-          "op": "num",
-          "n": 1,
-        },
+        "aimed": true,
+        "mobility": true,
         "formula": {
           "op": "sum",
           "of": [
@@ -32408,6 +33114,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           19,
           17,
         ],
+        "aimed": true,
       },
       "E": {
         "name": "Sweeping Blade",
@@ -32431,6 +33138,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           0.2,
           0.1,
         ],
+        "mobility": true,
         "formula": {
           "op": "sum",
           "of": [
@@ -32480,6 +33188,8 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           50,
           30,
         ],
+        "aimed": true,
+        "mobility": true,
         "cc": {
           "op": "num",
           "n": 1,
@@ -32536,6 +33246,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "attackSpeedRatio": 0.625,
       "attackSpeedPerLevel": 0.035,
       "attackRange": 175,
+      "moveSpeed": 345,
       "critDamage": 1.75,
     },
     "skillOrder": [
@@ -32580,6 +33291,8 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           4,
           4,
         ],
+        "aimed": true,
+        "mobility": true,
         "cc": {
           "op": "num",
           "n": 0.75,
@@ -32638,6 +33351,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           14,
           14,
         ],
+        "aimed": true,
       },
       "E": {
         "name": "Soul Unbound",
@@ -32654,6 +33368,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           13,
           10,
         ],
+        "aimed": true,
       },
       "R": {
         "name": "Fate Sealed",
@@ -32672,6 +33387,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           100,
           80,
         ],
+        "aimed": true,
         "cc": {
           "op": "num",
           "n": 0.75,
@@ -32707,6 +33423,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "attackSpeedRatio": 0.625,
       "attackSpeedPerLevel": 0.02,
       "attackRange": 175,
+      "moveSpeed": 340,
       "critDamage": 1.75,
     },
     "skillOrder": [
@@ -32800,6 +33517,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           ],
           "ratios": {},
         },
+        "aimed": true,
       },
       "E": {
         "name": "Mourning Mist",
@@ -32827,6 +33545,8 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           9,
           8,
         ],
+        "aimed": true,
+        "mobility": true,
       },
       "R": {
         "name": "Eulogy of the Isles",
@@ -32840,6 +33560,163 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           160,
           130,
           100,
+        ],
+      },
+    },
+    "shelf": [
+      "ionianbootsoflucidity",
+      "stridebreaker",
+      "blackcleaver",
+      "trinityforce",
+      "deathsdance",
+      "steraksgage",
+    ],
+    "keystone": "conqueror",
+  },
+  "yunara": {
+    "id": "yunara",
+    "name": "Yunara",
+    "title": "the Unbroken Faith",
+    "initial": "Y",
+    "adaptive": "AD",
+    "base": {
+      "ad": 55,
+      "adPerLevel": 0,
+      "hp": 590,
+      "hpPerLevel": 110,
+      "armor": 25,
+      "armorPerLevel": 4.4,
+      "mr": 33,
+      "mrPerLevel": 1.1,
+      "attackSpeed": 0.65,
+      "attackSpeedRatio": 0.65,
+      "attackSpeedPerLevel": 0.02,
+      "attackRange": 575,
+      "moveSpeed": 325,
+    },
+    "skillOrder": [
+      "Q",
+      "W",
+      "E",
+      "Q",
+      "Q",
+      "R",
+      "Q",
+      "E",
+      "Q",
+      "E",
+      "R",
+      "E",
+      "E",
+      "W",
+      "W",
+      "R",
+      "W",
+      "W",
+    ],
+    "abilities": {
+      "Q": {
+        "name": "Cultivation of Spirit",
+        "type": "magic",
+        "maxRank": 5,
+        "base": [
+          0,
+        ],
+        "ratios": {},
+        "formula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                3,
+                8,
+                13,
+                18,
+                23,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "ap",
+              "f": {
+                "op": "num",
+                "n": 0.2,
+              },
+            },
+          ],
+        },
+      },
+      "W": {
+        "name": "Arc of Judgment | Arc of Ruin",
+        "type": "magic",
+        "maxRank": 5,
+        "base": [
+          0,
+        ],
+        "ratios": {},
+        "formula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                55,
+                95,
+                135,
+                175,
+                215,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "bonusAd",
+              "f": {
+                "op": "num",
+                "n": 0.85,
+              },
+            },
+            {
+              "op": "stat",
+              "stat": "ap",
+              "f": {
+                "op": "num",
+                "n": 0.5,
+              },
+            },
+          ],
+        },
+        "aimed": true,
+      },
+      "E": {
+        "name": "Kanmei's Steps | Untouchable Shadow",
+        "type": "util",
+        "maxRank": 5,
+        "base": [
+          0,
+        ],
+        "ratios": {},
+        "cooldown": [
+          9,
+          9,
+          9,
+          9,
+          9,
+        ],
+        "mobility": true,
+      },
+      "R": {
+        "name": "Transcend One's Self",
+        "type": "util",
+        "maxRank": 3,
+        "base": [
+          0,
+        ],
+        "ratios": {},
+        "cooldown": [
+          100,
+          90,
+          80,
         ],
       },
     },
@@ -32872,6 +33749,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "attackSpeedRatio": 0.625,
       "attackSpeedPerLevel": 0.01,
       "attackRange": 425,
+      "moveSpeed": 330,
       "critDamage": 1.75,
     },
     "skillOrder": [
@@ -32917,6 +33795,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           6.5,
           6.5,
         ],
+        "aimed": true,
         "formula": {
           "op": "sum",
           "of": [
@@ -32954,6 +33833,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           5,
           0,
         ],
+        "mobility": true,
       },
       "E": {
         "name": "Zoomies",
@@ -33033,6 +33913,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
             "ap": 0.15,
           },
         },
+        "aimed": true,
         "cc": {
           "op": "num",
           "n": 1.25,
@@ -33091,6 +33972,225 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
     ],
     "keystone": "electrocute",
   },
+  "zaahen": {
+    "id": "zaahen",
+    "name": "Zaahen",
+    "title": "The Unsundered",
+    "initial": "Z",
+    "adaptive": "AD",
+    "base": {
+      "ad": 63,
+      "adPerLevel": 0,
+      "hp": 640,
+      "hpPerLevel": 114,
+      "armor": 36,
+      "armorPerLevel": 5,
+      "mr": 32,
+      "mrPerLevel": 2.05,
+      "attackSpeed": 0.625,
+      "attackSpeedRatio": 0.625,
+      "attackSpeedPerLevel": 0.025,
+      "attackRange": 175,
+      "moveSpeed": 345,
+    },
+    "skillOrder": [
+      "Q",
+      "W",
+      "E",
+      "Q",
+      "Q",
+      "R",
+      "Q",
+      "E",
+      "Q",
+      "E",
+      "R",
+      "E",
+      "E",
+      "W",
+      "W",
+      "R",
+      "W",
+      "W",
+    ],
+    "abilities": {
+      "Q": {
+        "name": "The Darkin Glaive",
+        "type": "physical",
+        "maxRank": 5,
+        "base": [
+          0,
+        ],
+        "ratios": {},
+        "formula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                15,
+                30,
+                45,
+                60,
+                75,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "bonusAd",
+              "f": {
+                "op": "rank",
+                "v": [
+                  0.2,
+                  0.25,
+                  0.3,
+                  0.35,
+                  0.4,
+                ],
+              },
+            },
+          ],
+        },
+        "cooldown": [
+          10,
+          9,
+          8,
+          7,
+          6,
+        ],
+        "cc": {
+          "op": "num",
+          "n": 0.75,
+        },
+      },
+      "W": {
+        "name": "Dreaded Return",
+        "type": "physical",
+        "maxRank": 5,
+        "base": [
+          0,
+        ],
+        "ratios": {},
+        "formula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                40,
+                60,
+                80,
+                100,
+                120,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "bonusAd",
+              "f": {
+                "op": "num",
+                "n": 0.5,
+              },
+            },
+          ],
+        },
+        "cooldown": [
+          16,
+          15,
+          14,
+          13,
+          12,
+        ],
+        "aimed": true,
+      },
+      "E": {
+        "name": "Aureate Rush",
+        "type": "physical",
+        "maxRank": 5,
+        "base": [
+          0,
+        ],
+        "ratios": {},
+        "formula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                40,
+                60,
+                80,
+                100,
+                120,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "bonusAd",
+              "f": {
+                "op": "num",
+                "n": 0.5,
+              },
+            },
+          ],
+        },
+        "cooldown": [
+          10,
+          9.5,
+          9,
+          8.5,
+          8,
+        ],
+        "aimed": true,
+        "mobility": true,
+      },
+      "R": {
+        "name": "Grim Deliverance",
+        "type": "physical",
+        "maxRank": 3,
+        "base": [
+          0,
+        ],
+        "ratios": {},
+        "formula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                250,
+                400,
+                550,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "bonusAd",
+              "f": {
+                "op": "num",
+                "n": 2,
+              },
+            },
+          ],
+        },
+        "cooldown": [
+          110,
+          95,
+          80,
+        ],
+        "aimed": true,
+      },
+    },
+    "shelf": [
+      "ionianbootsoflucidity",
+      "stridebreaker",
+      "blackcleaver",
+      "trinityforce",
+      "deathsdance",
+      "steraksgage",
+    ],
+    "keystone": "conqueror",
+  },
   "zac": {
     "id": "zac",
     "name": "Zac",
@@ -33110,6 +34210,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "attackSpeedRatio": 0.638,
       "attackSpeedPerLevel": 0.016,
       "attackRange": 175,
+      "moveSpeed": 340,
       "critDamage": 1.75,
     },
     "skillOrder": [
@@ -33154,6 +34255,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           9.5,
           8,
         ],
+        "aimed": true,
       },
       "W": {
         "name": "Unstable Matter",
@@ -33207,6 +34309,8 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           13,
           10,
         ],
+        "aimed": true,
+        "mobility": true,
         "formula": {
           "op": "sum",
           "of": [
@@ -33248,6 +34352,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           105,
           90,
         ],
+        "aimed": true,
         "cc": {
           "op": "num",
           "n": 1,
@@ -33304,6 +34409,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "attackSpeedRatio": 0.651,
       "attackSpeedPerLevel": 0.033,
       "attackRange": 125,
+      "moveSpeed": 345,
       "critDamage": 1.75,
     },
     "skillOrder": [
@@ -33348,6 +34454,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           6,
           6,
         ],
+        "aimed": true,
         "formula": {
           "op": "sum",
           "of": [
@@ -33387,6 +34494,8 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           17,
           16,
         ],
+        "aimed": true,
+        "mobility": true,
       },
       "E": {
         "name": "Shadow Slash",
@@ -33448,6 +34557,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           110,
           100,
         ],
+        "mobility": true,
         "formula": {
           "op": "stat",
           "stat": "ad",
@@ -33487,6 +34597,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "attackSpeedRatio": 0.625,
       "attackSpeedPerLevel": 0.02,
       "attackRange": 550,
+      "moveSpeed": 330,
       "critDamage": 1.75,
     },
     "skillOrder": [
@@ -33540,10 +34651,11 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           1,
           1,
         ],
+        "aimed": true,
       },
       "W": {
         "name": "Ultrashock Laser",
-        "type": "magic",
+        "type": "physical",
         "maxRank": 5,
         "base": [
           30,
@@ -33610,6 +34722,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           19.5,
           18,
         ],
+        "mobility": true,
       },
       "R": {
         "name": "Lightning Crash",
@@ -33689,6 +34802,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "attackSpeedRatio": 0.656,
       "attackSpeedPerLevel": 0.02,
       "attackRange": 550,
+      "moveSpeed": 325,
       "critDamage": 1.75,
     },
     "skillOrder": [
@@ -33733,6 +34847,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           4.5,
           4,
         ],
+        "aimed": true,
         "formula": {
           "op": "sum",
           "of": [
@@ -33784,6 +34899,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           14,
           12,
         ],
+        "aimed": true,
         "formula": {
           "op": "sum",
           "of": [
@@ -33829,6 +34945,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           16,
           16,
         ],
+        "aimed": true,
         "formula": {
           "op": "sum",
           "of": [
@@ -33876,6 +34993,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           95,
           70,
         ],
+        "aimed": true,
         "formula": {
           "op": "mul",
           "of": [
@@ -33937,6 +35055,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "attackSpeedRatio": 0.625,
       "attackSpeedPerLevel": 0.0213,
       "attackRange": 550,
+      "moveSpeed": 335,
       "critDamage": 1.75,
     },
     "skillOrder": [
@@ -33981,6 +35100,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           8.5,
           8,
         ],
+        "aimed": true,
         "cc": {
           "op": "rank",
           "v": [
@@ -34122,6 +35242,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "attackSpeedRatio": 0.625,
       "attackSpeedPerLevel": 0.025,
       "attackRange": 550,
+      "moveSpeed": 340,
       "critDamage": 1.75,
     },
     "skillOrder": [
@@ -34179,6 +35300,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           7,
           6.5,
         ],
+        "aimed": true,
       },
       "W": {
         "name": "Spell Thief",
@@ -34223,6 +35345,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           15,
           14,
         ],
+        "aimed": true,
         "cc": {
           "op": "num",
           "n": 2.25,
@@ -34241,6 +35364,8 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           8,
           5,
         ],
+        "aimed": true,
+        "mobility": true,
       },
     },
     "shelf": [
@@ -34272,6 +35397,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "attackSpeedRatio": 0.625,
       "attackSpeedPerLevel": 0.0211,
       "attackRange": 575,
+      "moveSpeed": 340,
       "critDamage": 1.75,
     },
     "skillOrder": [
@@ -34316,6 +35442,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           5.5,
           5,
         ],
+        "aimed": true,
         "formula": {
           "op": "sum",
           "of": [
@@ -34348,6 +35475,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           0,
         ],
         "ratios": {},
+        "aimed": true,
       },
       "E": {
         "name": "Grasping Roots",
@@ -34370,6 +35498,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           11,
           11,
         ],
+        "aimed": true,
         "formula": {
           "op": "sum",
           "of": [

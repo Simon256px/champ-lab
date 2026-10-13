@@ -175,8 +175,13 @@ Le pipeline (`scripts/fetch-data.ts`, lancé par `deno task data`) combine trois
   sont converties en `Formula` et évaluées par le moteur (`lib/formula.ts`).
 
 Les objets sont filtrés sur la **Faille de l'invocateur** (classé) via Data Dragon (`maps["11"]`) : objets
-complets et bottes (y compris améliorées), pas de composants ni d'objets ARAM/Arena. Les champions non encore
-présents dans Meraki (ex. Locke) sont saisis à la main dans `data/manual.ts` et fusionnés au roster.
+complets et bottes (y compris améliorées), pas de composants ni d'objets ARAM/Arena. Les champions absents de
+Meraki (Locke, Yunara, Zaahen) sont générés depuis les fichiers du jeu ; `data/manual.ts` reste en secours.
+
+Les **infobulles** du client (CommunityDragon) donnent le sens que les formules n'ont pas : type de dégâts de
+chaque calcul, contrôles posés seulement sous condition (« If the target collides with terrain… », écartés),
+sorts de mobilité (dash, saut, téléportation). Le type de ciblage des fichiers du jeu dit quels sorts se
+visent.
 
 **Honnêteté :** le pipeline n'extrait que ce que le moteur sait déjà modéliser. Une formule de jeu qui utilise
 une brique non reconnue (cumul de buff, condition, stat au sens non vérifié) n'est **pas devinée** : elle est
