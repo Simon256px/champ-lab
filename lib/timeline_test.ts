@@ -94,14 +94,15 @@ Deno.test("timeline : un retard d'XP coûte de l'edge", () => {
   assert(behind.some((p) => p.edge > 0.05), "B en retard d'XP doit perdre l'échange à un moment");
 });
 
-Deno.test("spikes : le niveau 6 de Darius ressort, avec son ultime comme cause", () => {
+Deno.test("spikes : le plus gros saut de Darius est son niveau 6, ultime en cause", () => {
   const darius = CHAMPIONS.darius;
   const garen = CHAMPIONS.garen;
   const pts = matchupTimeline({ champion: darius }, { champion: garen }, ITEMS, RUNES);
-  const spikes = findSpikes(pts, darius, garen, ITEMS);
-  const lvl6 = spikes.find((s) => s.causes.includes(`${darius.name} ultime rang 1`));
-  assert(lvl6, "le passage au niveau 6 doit être un spike");
-  assertEquals(lvl6.side, "A");
+  // Seuil bas : on cherche le saut le plus net, pas un seuil d'affichage.
+  const spikes = findSpikes(pts, darius, garen, ITEMS, 0.05).filter((s) => s.side === "A");
+  const biggest = spikes.reduce((m, s) => (s.delta > m.delta ? s : m), spikes[0]);
+  assert(biggest, "Darius doit avoir au moins un spike");
+  assert(biggest.causes.includes(`${darius.name} ultime rang 1`), "le plus gros spike doit être le niveau 6");
 });
 
 Deno.test("timeline all-in : symétrique, temps pour tuer renseignés", () => {

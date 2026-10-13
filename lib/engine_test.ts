@@ -7,17 +7,22 @@
 
 import { assert, assertAlmostEquals, assertEquals } from "@std/assert";
 import {
+  abilityRaw,
   ATTACK_SPEED_CAP,
   attackSpeedOf,
+  autoCount,
   autosIn,
   castsIn,
   computeCombo,
   computeDefenses,
   computeDuel,
+  computeStats,
   cooldownOf,
   damageMultiplier,
+  effectiveHp,
   growth,
   rankOf,
+  ratiosAt,
   stackPercent,
   targetFromChampion,
   timeToKill,
@@ -81,6 +86,11 @@ Deno.test("mitigation: l'armure réduit les dégâts physiques", () => {
     critChance: 0,
     critDamage: 1.75,
     abilityHaste: 0,
+    itemAttackSpeed: 0,
+    maxHp: 1000,
+    bonusHp: 0,
+    lifeSteal: 0,
+    omnivamp: 0,
   };
   assertEquals(damageMultiplier("true", s, TARGET), 1);
   assert(damageMultiplier("physical", s, TARGET) < 1);
@@ -373,4 +383,85 @@ Deno.test("roster : l'all-in se calcule contre un adversaire de référence", ()
     assert(Number.isFinite(res.edge), `edge non fini pour ${id}`);
     assert(res.ttkA! >= 0 && res.ttkB! >= 0, `temps pour tuer négatif pour ${id}`);
   }
+});
+
+// --- Kits et survie : % PV, ratios par rang, passifs, boucliers, soins. ---
+
+const stats11 = (id: string, items: string[] = []) =>
+  computeStats(CHAMPIONS[id], 11, items, ITEMS, RUNES, false);
+
+Deno.test("ratios par rang : le Q de Darius passe de 100 % à 140 % AD", () => {
+  const q = CHAMPIONS.darius.abilities.Q;
+  assertAlmostEquals(ratiosAt(q, 1).totalAd!, 1);
+  assertAlmostEquals(ratiosAt(q, 5).totalAd!, 1.4);
+});
+
+Deno.test("% PV max de la cible : le W de Vayne croît avec les PV de la cible", () => {
+  const s = stats11("vayne");
+  const small = abilityRaw(CHAMPIONS.vayne, "W", 11, s, { W: 5 }, { ...TARGET, hpMax: 1000, hpCur: 1000 });
+  const big = abilityRaw(CHAMPIONS.vayne, "W", 11, s, { W: 5 }, { ...TARGET, hpMax: 3000, hpCur: 3000 });
+  assertAlmostEquals(big - small, 2000 * 0.1, 0.01, "rang 5 = 10 % des PV max");
+});
+
+Deno.test("pipeline : un sort sans ligne de dégâts reste utilitaire (Garen W = bouclier)", () => {
+  const w = CHAMPIONS.garen.abilities.W;
+  assertEquals(w.type, "util");
+  assert(w.shield && w.shield.base[0] > 0, "le bouclier de Garen W doit être extrait");
+});
+
+Deno.test("override : le Q d'Ahri compte l'aller ET le retour", () => {
+  assertEquals(CHAMPIONS.ahri.abilities.Q.base[0], 80);
+  assertEquals(CHAMPIONS.ahri.abilities.Q.ratios.ap, 1);
+});
+
+Deno.test("survie : le bouclier de Garen réduit la part de PV que Darius lui retire", () => {
+  const darius = side("darius", ["stridebreaker"]);
+  const shielded = computeDuel(darius, side("garen", []), ITEMS, RUNES, { window: 3 });
+  const bare = computeDuel(darius, side("garen", [], { ranks: { Q: 5, W: 0, E: 5, R: 2 } }), ITEMS, RUNES, {
+    window: 3,
+  });
+  assert(shielded.bToA.shield > 0 && bare.bToA.shield === 0);
+  assert(shielded.sustainB > bare.sustainB);
+});
+
+Deno.test("survie : un soin ne rend que ce qui a été perdu", () => {
+  const own = { shield: 50, heal: 500 } as Parameters<typeof effectiveHp>[1];
+  assertEquals(effectiveHp(1000, own, 100), 1150);
+  assertEquals(effectiveHp(1000, own, 900), 1550);
+});
+
+Deno.test("survie : le vol de vie soigne sur les autos", () => {
+  const heal = (items: string[]) => computeCombo(input("jinx", items, { window: 6 })).heal;
+  assert(heal(["bloodthirster"]) > heal(["infinityedge"]), "Bloodthirster doit soigner plus qu'IE");
+});
+
+Deno.test("temps pour tuer : les PV peuvent grandir avec la fenêtre (soins)", () => {
+  // 100 dégâts/s contre 200 PV + 50/s de soin : kill à 4 s.
+  assertAlmostEquals(timeToKill((w) => 100 * w, (w) => 200 + 50 * w), 4, 0.011);
+});
+
+Deno.test("passif périodique : les points vitaux de Fiora tombent toutes les 2,25 s", () => {
+  const vital = (window?: number) =>
+    computeCombo(input("fiora", [], { window })).lines.find((l) => l.name.startsWith("Point vital"));
+  assert(vital(undefined), "burst : un point vital");
+  assert(vital(4.5)!.name.endsWith("×3"), "0 ; 2,25 ; 4,5 s = 3 points");
+  assertEquals(vital(4.5)!.type, "true");
+});
+
+Deno.test("passif à l'impact : le W de Vayne n'est pas lancé, il frappe tous les 3 coups", () => {
+  const burst = computeCombo(input("vayne", []));
+  assertEquals(burst.lines.find((l) => l.key === "W"), undefined, "burst sans auto : pas de W");
+  const trade = computeCombo(input("vayne", [], { window: 6 }));
+  const autos = Number(trade.lines.find((l) => l.key === "AA")!.name.split("×")[1]);
+  const w = trade.lines.find((l) => l.key === "W")!;
+  assertEquals(Number(w.name.split("×")[1]), Math.floor(autos / 3));
+});
+
+Deno.test("VA qui s'empile : Jax place plus d'autos qu'avec sa VA de départ", () => {
+  const jax = CHAMPIONS.jax;
+  const s = stats11("jax");
+  assert(autoCount(8, jax, 11, s) > autosIn(8, s.attackSpeed));
+  const darius = CHAMPIONS.darius;
+  const sd = stats11("darius");
+  assertEquals(autoCount(8, darius, 11, sd), autosIn(8, sd.attackSpeed), "sans passif : inchangé");
 });
