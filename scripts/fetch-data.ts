@@ -58,6 +58,10 @@ interface MStat {
 }
 interface MChampionStats {
   attackDamage: MStat;
+  attackSpeed?: MStat;
+  attackSpeedRatio?: MStat;
+  attackRange?: MStat;
+  criticalStrikeDamage?: MStat;
   health: MStat;
   armor: MStat;
   magicResistance: MStat;
@@ -78,6 +82,7 @@ interface MAbility {
   name: string;
   damageType?: string;
   effects: MEffect[];
+  cooldown?: { modifiers?: MModifier[] } | null;
 }
 interface MChampion {
   /** clé numérique Riot (ex. 103) — PAS le slug */
@@ -104,6 +109,10 @@ interface DDChampStats {
   spellblockperlevel: number;
   attackdamage: number;
   attackdamageperlevel: number;
+  attackspeed?: number;
+  /** en % (1 = +1 % par niveau) */
+  attackspeedperlevel?: number;
+  attackrange?: number;
 }
 
 interface MItemStat {
@@ -242,6 +251,15 @@ function mapChampion(m: MChampion, dd?: DDChampStats): Champion {
     armorPerLevel: round(pick(dd?.armorperlevel, m.stats.armor.perLevel)),
     mr: round(pick(dd?.spellblock, m.stats.magicResistance.flat)),
     mrPerLevel: round(pick(dd?.spellblockperlevel, m.stats.magicResistance.perLevel)),
+    attackSpeed: round(pick(dd?.attackspeed, m.stats.attackSpeed?.flat ?? 0), 3),
+    // Le ratio n'existe que côté Meraki ; à défaut, il vaut la VA de base.
+    attackSpeedRatio: round(
+      m.stats.attackSpeedRatio?.flat || pick(dd?.attackspeed, m.stats.attackSpeed?.flat ?? 0.625),
+      3,
+    ),
+    attackSpeedPerLevel: round(pick(dd?.attackspeedperlevel, m.stats.attackSpeed?.perLevel ?? 0) / 100, 4),
+    attackRange: round(pick(dd?.attackrange, m.stats.attackRange?.flat ?? 0)),
+    critDamage: round((m.stats.criticalStrikeDamage?.flat || 175) / 100, 3),
   };
 
   const adaptive: Adaptive = ov.adaptive ?? (m.adaptiveType === "PHYSICAL_DAMAGE" ? "AD" : "AP");
@@ -257,12 +275,14 @@ function mapChampion(m: MChampion, dd?: DDChampStats): Champion {
     const dmg = extractAbilityDamage(ma);
     const type = damageType(ma.damageType, !!dmg);
     const maxRank = key === "R" ? 3 : 5;
+    const cooldown = ma.cooldown?.modifiers?.[0]?.values?.map((v) => round(v));
     abilities[key] = {
       name: ma.name,
       type,
       maxRank,
       base: dmg?.base ?? [0],
       ratios: dmg?.ratios ?? {},
+      ...(cooldown?.length ? { cooldown } : {}),
     };
   }
 
@@ -323,6 +343,11 @@ function mapItemStats(m: MItem, dd?: Record<string, number>): ItemStats {
   if (pct("magicPenetration")) stats.magicPenPercent = round(pct("magicPenetration") / 100, 3);
   if (pct("armorPenetration")) stats.armorPenPercent = round(pct("armorPenetration") / 100, 3);
   if (flat("lethality")) stats.lethality = round(flat("lethality"));
+  // Meraki range la VA bonus et le crit en « flat » ou en « percent » selon l'objet.
+  const asPct = flat("attackSpeed") || pct("attackSpeed");
+  if (asPct) stats.attackSpeed = round(asPct / 100, 3);
+  const critPct = flat("criticalStrikeChance") || pct("criticalStrikeChance");
+  if (critPct) stats.critChance = round(critPct / 100, 3);
 
   // Stats plates : Data Dragon (versionné par patch) fait foi quand il les
   // expose — Meraki "latest" peut retarder d'un ou plusieurs patchs. L'AH, la
@@ -333,6 +358,8 @@ function mapItemStats(m: MItem, dd?: Record<string, number>): ItemStats {
     if (dd.FlatHPPoolMod) stats.hp = round(dd.FlatHPPoolMod);
     if (dd.FlatArmorMod) stats.armor = round(dd.FlatArmorMod);
     if (dd.FlatSpellBlockMod) stats.mr = round(dd.FlatSpellBlockMod);
+    if (dd.PercentAttackSpeedMod) stats.attackSpeed = round(dd.PercentAttackSpeedMod, 3);
+    if (dd.FlatCritChanceMod) stats.critChance = round(dd.FlatCritChanceMod, 3);
   }
   return stats;
 }

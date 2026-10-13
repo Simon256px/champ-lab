@@ -22,6 +22,11 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "armorPerLevel": 4.8,
       "mr": 32,
       "mrPerLevel": 2.05,
+      "attackSpeed": 0.651,
+      "attackSpeedRatio": 0.651,
+      "attackSpeedPerLevel": 0.025,
+      "attackRange": 175,
+      "critDamage": 1.75,
     },
     "skillOrder": [
       "Q",
@@ -58,6 +63,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "totalAd": 0.6,
         },
+        "cooldown": [
+          14,
+          12,
+          10,
+          8,
+          6,
+        ],
       },
       "W": {
         "name": "Infernal Chains",
@@ -73,6 +85,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "totalAd": 0.4,
         },
+        "cooldown": [
+          20,
+          18,
+          16,
+          14,
+          12,
+        ],
       },
       "E": {
         "name": "Umbral Dash",
@@ -82,6 +101,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           0,
         ],
         "ratios": {},
+        "cooldown": [
+          9,
+          8,
+          7,
+          6,
+          5,
+        ],
       },
       "R": {
         "name": "World Ender",
@@ -93,6 +119,11 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "totalAd": 0.2,
         },
+        "cooldown": [
+          120,
+          100,
+          80,
+        ],
       },
     },
     "shelf": [
@@ -120,6 +151,11 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "armorPerLevel": 4.2,
       "mr": 30,
       "mrPerLevel": 1.3,
+      "attackSpeed": 0.668,
+      "attackSpeedRatio": 0.625,
+      "attackSpeedPerLevel": 0.022,
+      "attackRange": 550,
+      "critDamage": 1.75,
     },
     "skillOrder": [
       "Q",
@@ -156,6 +192,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "ap": 0.5,
         },
+        "cooldown": [
+          7,
+          7,
+          7,
+          7,
+          7,
+        ],
       },
       "W": {
         "name": "Fox-Fire",
@@ -171,6 +214,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "ap": 0.4,
         },
+        "cooldown": [
+          10,
+          9,
+          8,
+          7,
+          6,
+        ],
       },
       "E": {
         "name": "Charm",
@@ -186,6 +236,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "ap": 0.85,
         },
+        "cooldown": [
+          12,
+          12,
+          12,
+          12,
+          12,
+        ],
       },
       "R": {
         "name": "Spirit Rush",
@@ -199,6 +256,11 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "ap": 0.35,
         },
+        "cooldown": [
+          130,
+          115,
+          100,
+        ],
       },
     },
     "shelf": [
@@ -226,6 +288,11 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "armorPerLevel": 4.7,
       "mr": 37,
       "mrPerLevel": 2.05,
+      "attackSpeed": 0.625,
+      "attackSpeedRatio": 0.625,
+      "attackSpeedPerLevel": 0.032,
+      "attackRange": 125,
+      "critDamage": 1.75,
     },
     "skillOrder": [
       "Q",
@@ -263,6 +330,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           "totalAd": 0.65,
           "ap": 0.6,
         },
+        "cooldown": [
+          1.5,
+          1.5,
+          1.5,
+          1.5,
+          1.5,
+        ],
       },
       "W": {
         "name": "Twilight Shroud",
@@ -272,6 +346,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           0,
         ],
         "ratios": {},
+        "cooldown": [
+          20,
+          19,
+          18,
+          17,
+          16,
+        ],
       },
       "E": {
         "name": "Shuriken Flip",
@@ -288,6 +369,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           "totalAd": 0.3,
           "ap": 0.33,
         },
+        "cooldown": [
+          16,
+          14.5,
+          13,
+          11.5,
+          10,
+        ],
       },
       "R": {
         "name": "Perfect Execution",
@@ -302,6 +390,11 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           "bonusAd": 0.5,
           "ap": 0.3,
         },
+        "cooldown": [
+          120,
+          90,
+          60,
+        ],
       },
     },
     "shelf": [
@@ -329,6 +422,11 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "armorPerLevel": 4.7,
       "mr": 33,
       "mrPerLevel": 1.1,
+      "attackSpeed": 0.638,
+      "attackSpeedRatio": 0.4,
+      "attackSpeedPerLevel": 0.04,
+      "attackRange": 500,
+      "critDamage": 1.75,
     },
     "skillOrder": [
       "Q",
@@ -365,6 +463,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "totalAd": 0.8,
         },
+        "cooldown": [
+          8,
+          7.25,
+          6.5,
+          5.75,
+          5,
+        ],
       },
       "W": {
         "name": "Going Rogue",
@@ -378,6 +483,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           120,
         ],
         "ratios": {},
+        "cooldown": [
+          18,
+          14,
+          10,
+          6,
+          2,
+        ],
       },
       "E": {
         "name": "Heroic Swing",
@@ -389,6 +501,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "totalAd": 0.15,
         },
+        "cooldown": [
+          18,
+          16.5,
+          15,
+          13.5,
+          12,
+        ],
       },
       "R": {
         "name": "Comeuppance",
@@ -400,6 +519,11 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "totalAd": 2.25,
         },
+        "cooldown": [
+          100,
+          85,
+          70,
+        ],
       },
     },
     "shelf": [
@@ -427,6 +551,11 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "armorPerLevel": 4.7,
       "mr": 32,
       "mrPerLevel": 2.05,
+      "attackSpeed": 0.625,
+      "attackSpeedRatio": 0.625,
+      "attackSpeedPerLevel": 0.0213,
+      "attackRange": 125,
+      "critDamage": 1.75,
     },
     "skillOrder": [
       "Q",
@@ -463,6 +592,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "ap": 0.8,
         },
+        "cooldown": [
+          14,
+          13,
+          12,
+          11,
+          10,
+        ],
       },
       "W": {
         "name": "Headbutt",
@@ -478,6 +614,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "ap": 1,
         },
+        "cooldown": [
+          14,
+          13,
+          12,
+          11,
+          10,
+        ],
       },
       "E": {
         "name": "Trample",
@@ -493,6 +636,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "ap": 0.07,
         },
+        "cooldown": [
+          12,
+          11.5,
+          11,
+          10.5,
+          10,
+        ],
       },
       "R": {
         "name": "Unbreakable Will",
@@ -502,6 +652,11 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           0,
         ],
         "ratios": {},
+        "cooldown": [
+          120,
+          100,
+          80,
+        ],
       },
     },
     "shelf": [
@@ -529,6 +684,11 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "armorPerLevel": 4.9,
       "mr": 32,
       "mrPerLevel": 2.05,
+      "attackSpeed": 0.625,
+      "attackSpeedRatio": 0.625,
+      "attackSpeedPerLevel": 0.025,
+      "attackRange": 125,
+      "critDamage": 1.75,
     },
     "skillOrder": [
       "Q",
@@ -565,6 +725,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "bonusAd": 0.3,
         },
+        "cooldown": [
+          14,
+          13,
+          12,
+          11,
+          10,
+        ],
       },
       "W": {
         "name": "Repudiation",
@@ -580,6 +747,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "bonusAd": 0.5,
         },
+        "cooldown": [
+          18,
+          17,
+          16,
+          15,
+          14,
+        ],
       },
       "E": {
         "name": "Lacerate",
@@ -595,6 +769,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "bonusAd": 0.4,
         },
+        "cooldown": [
+          13,
+          12,
+          11,
+          10,
+          9,
+        ],
       },
       "R": {
         "name": "Public Execution",
@@ -608,6 +789,11 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "bonusAd": 0.8,
         },
+        "cooldown": [
+          130,
+          115,
+          100,
+        ],
       },
     },
     "shelf": [
@@ -635,6 +821,11 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "armorPerLevel": 4,
       "mr": 32,
       "mrPerLevel": 2.05,
+      "attackSpeed": 0.736,
+      "attackSpeedRatio": 0.638,
+      "attackSpeedPerLevel": 0.0218,
+      "attackRange": 125,
+      "critDamage": 1.75,
     },
     "skillOrder": [
       "Q",
@@ -671,6 +862,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "ap": 0.85,
         },
+        "cooldown": [
+          3,
+          3,
+          3,
+          3,
+          3,
+        ],
       },
       "W": {
         "name": "Despair",
@@ -684,6 +882,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           5,
         ],
         "ratios": {},
+        "cooldown": [
+          1,
+          1,
+          1,
+          1,
+          1,
+        ],
       },
       "E": {
         "name": "Tantrum",
@@ -697,6 +902,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           13,
         ],
         "ratios": {},
+        "cooldown": [
+          9,
+          8,
+          7,
+          6,
+          5,
+        ],
       },
       "R": {
         "name": "Curse of the Sad Mummy",
@@ -710,6 +922,11 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "ap": 0.8,
         },
+        "cooldown": [
+          150,
+          125,
+          100,
+        ],
       },
     },
     "shelf": [
@@ -737,6 +954,11 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "armorPerLevel": 4.1,
       "mr": 30,
       "mrPerLevel": 1.3,
+      "attackSpeed": 0.658,
+      "attackSpeedRatio": 0.625,
+      "attackSpeedPerLevel": 0.0168,
+      "attackRange": 600,
+      "critDamage": 1.75,
     },
     "skillOrder": [
       "Q",
@@ -773,6 +995,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "ap": 0.25,
         },
+        "cooldown": [
+          12,
+          11,
+          10,
+          9,
+          8,
+        ],
       },
       "W": {
         "name": "Crystallize",
@@ -782,6 +1011,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           0,
         ],
         "ratios": {},
+        "cooldown": [
+          17,
+          17,
+          17,
+          17,
+          17,
+        ],
       },
       "E": {
         "name": "Frostbite",
@@ -797,6 +1033,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "ap": 0.55,
         },
+        "cooldown": [
+          4,
+          4,
+          4,
+          4,
+          4,
+        ],
       },
       "R": {
         "name": "Glacial Storm",
@@ -810,6 +1053,11 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "ap": 0.063,
         },
+        "cooldown": [
+          4,
+          3,
+          2,
+        ],
       },
     },
     "shelf": [
@@ -837,6 +1085,11 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "armorPerLevel": 4,
       "mr": 30,
       "mrPerLevel": 1.3,
+      "attackSpeed": 0.61,
+      "attackSpeedRatio": 0.625,
+      "attackSpeedPerLevel": 0.0136,
+      "attackRange": 625,
+      "critDamage": 1.75,
     },
     "skillOrder": [
       "Q",
@@ -873,6 +1126,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "ap": 0.8,
         },
+        "cooldown": [
+          4,
+          4,
+          4,
+          4,
+          4,
+        ],
       },
       "W": {
         "name": "Incinerate",
@@ -888,6 +1148,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "ap": 0.85,
         },
+        "cooldown": [
+          7,
+          7,
+          7,
+          7,
+          7,
+        ],
       },
       "E": {
         "name": "Molten Shield",
@@ -903,6 +1170,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "ap": 0.4,
         },
+        "cooldown": [
+          12,
+          11.5,
+          11,
+          10.5,
+          10,
+        ],
       },
       "R": {
         "name": "Summon: Tibbers",
@@ -916,6 +1190,11 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "ap": 0.75,
         },
+        "cooldown": [
+          130,
+          115,
+          100,
+        ],
       },
     },
     "shelf": [
@@ -943,6 +1222,11 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "armorPerLevel": 4.2,
       "mr": 33,
       "mrPerLevel": 1.1,
+      "attackSpeed": 0.665,
+      "attackSpeedRatio": 0.658,
+      "attackSpeedPerLevel": 0.021,
+      "attackRange": 550,
+      "critDamage": 1.75,
     },
     "skillOrder": [
       "Q",
@@ -982,6 +1266,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           0,
         ],
         "ratios": {},
+        "cooldown": [
+          0.8,
+          0.8,
+          0.8,
+          0.8,
+          0.8,
+        ],
       },
       "E": {
         "name": "Weapon Queue System",
@@ -1000,6 +1291,11 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           0,
         ],
         "ratios": {},
+        "cooldown": [
+          120,
+          110,
+          100,
+        ],
       },
     },
     "shelf": [
@@ -1027,6 +1323,11 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "armorPerLevel": 4.6,
       "mr": 33,
       "mrPerLevel": 1.1,
+      "attackSpeed": 0.658,
+      "attackSpeedRatio": 0.658,
+      "attackSpeedPerLevel": 0.03,
+      "attackRange": 600,
+      "critDamage": 1,
     },
     "skillOrder": [
       "Q",
@@ -1074,6 +1375,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "bonusAd": 1.1,
         },
+        "cooldown": [
+          18,
+          14.5,
+          11,
+          7.5,
+          4,
+        ],
       },
       "E": {
         "name": "Hawkshot",
@@ -1083,6 +1391,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           0,
         ],
         "ratios": {},
+        "cooldown": [
+          5,
+          5,
+          5,
+          5,
+          5,
+        ],
       },
       "R": {
         "name": "Enchanted Crystal Arrow",
@@ -1096,6 +1411,11 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "ap": 1.2,
         },
+        "cooldown": [
+          100,
+          80,
+          60,
+        ],
       },
     },
     "shelf": [
@@ -1123,6 +1443,11 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "armorPerLevel": 4,
       "mr": 30,
       "mrPerLevel": 1.3,
+      "attackSpeed": 0.625,
+      "attackSpeedRatio": 0.625,
+      "attackSpeedPerLevel": 0.015,
+      "attackRange": 550,
+      "critDamage": 1.75,
     },
     "skillOrder": [
       "Q",
@@ -1159,6 +1484,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "ap": 0.069,
         },
+        "cooldown": [
+          3,
+          3,
+          3,
+          3,
+          3,
+        ],
       },
       "W": {
         "name": "Astral Flight",
@@ -1168,6 +1500,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           0,
         ],
         "ratios": {},
+        "cooldown": [
+          22,
+          20.5,
+          19,
+          17.5,
+          16,
+        ],
       },
       "E": {
         "name": "Singularity",
@@ -1183,6 +1522,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "ap": 0.03,
         },
+        "cooldown": [
+          12,
+          12,
+          12,
+          12,
+          12,
+        ],
       },
       "R": {
         "name": "Falling Star",
@@ -1196,6 +1542,11 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "ap": 0.75,
         },
+        "cooldown": [
+          120,
+          110,
+          100,
+        ],
       },
     },
     "shelf": [
@@ -1223,6 +1574,11 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "armorPerLevel": 4.5,
       "mr": 32,
       "mrPerLevel": 1.3,
+      "attackSpeed": 0.668,
+      "attackSpeedRatio": 0.668,
+      "attackSpeedPerLevel": 0.02,
+      "attackRange": 550,
+      "critDamage": 1.75,
     },
     "skillOrder": [
       "Q",
@@ -1259,6 +1615,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "ap": 0.4,
         },
+        "cooldown": [
+          9,
+          8.5,
+          8,
+          7.5,
+          7,
+        ],
       },
       "W": {
         "name": "Across the Veil",
@@ -1268,6 +1631,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           0,
         ],
         "ratios": {},
+        "cooldown": [
+          22,
+          21,
+          20,
+          19,
+          18,
+        ],
       },
       "E": {
         "name": "The Weirding",
@@ -1283,6 +1653,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "ap": 0.7,
         },
+        "cooldown": [
+          15,
+          14,
+          13,
+          12,
+          11,
+        ],
       },
       "R": {
         "name": "Between Worlds",
@@ -1296,6 +1673,11 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "ap": 0.6,
         },
+        "cooldown": [
+          140,
+          120,
+          100,
+        ],
       },
     },
     "shelf": [
@@ -1323,6 +1705,11 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "armorPerLevel": 5,
       "mr": 30,
       "mrPerLevel": 1.3,
+      "attackSpeed": 0.625,
+      "attackSpeedRatio": 0.694,
+      "attackSpeedPerLevel": 0.05,
+      "attackRange": 525,
+      "critDamage": 1.75,
     },
     "skillOrder": [
       "Q",
@@ -1359,6 +1746,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "ap": 0.35,
         },
+        "cooldown": [
+          14,
+          12,
+          10,
+          8,
+          6,
+        ],
       },
       "W": {
         "name": "Arise!",
@@ -1387,6 +1781,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "ap": 0.4,
         },
+        "cooldown": [
+          1.5,
+          1.5,
+          1.5,
+          1.5,
+          1.5,
+        ],
       },
       "E": {
         "name": "Shifting Sands",
@@ -1402,6 +1803,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "ap": 0.4,
         },
+        "cooldown": [
+          22,
+          20.5,
+          19,
+          17.5,
+          16,
+        ],
       },
       "R": {
         "name": "Emperor's Divide",
@@ -1415,6 +1823,11 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "ap": 0.75,
         },
+        "cooldown": [
+          120,
+          105,
+          90,
+        ],
       },
     },
     "shelf": [
@@ -1442,6 +1855,11 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "armorPerLevel": 4.7,
       "mr": 30,
       "mrPerLevel": 1.3,
+      "attackSpeed": 0.658,
+      "attackSpeedRatio": 0.658,
+      "attackSpeedPerLevel": 0.02,
+      "attackRange": 500,
+      "critDamage": 1.75,
     },
     "skillOrder": [
       "Q",
@@ -1478,6 +1896,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "ap": 0.8,
         },
+        "cooldown": [
+          11,
+          10,
+          9,
+          8,
+          7,
+        ],
       },
       "W": {
         "name": "Caretaker's Shrine",
@@ -1502,6 +1927,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           0,
         ],
         "ratios": {},
+        "cooldown": [
+          22,
+          20.5,
+          19,
+          17.5,
+          16,
+        ],
       },
       "R": {
         "name": "Tempered Fate",
@@ -1511,6 +1943,11 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           0,
         ],
         "ratios": {},
+        "cooldown": [
+          110,
+          95,
+          80,
+        ],
       },
     },
     "shelf": [
@@ -1538,6 +1975,11 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "armorPerLevel": 5,
       "mr": 32,
       "mrPerLevel": 2.05,
+      "attackSpeed": 0.67,
+      "attackSpeedRatio": 0.85,
+      "attackSpeedPerLevel": 0,
+      "attackRange": 150,
+      "critDamage": 1.75,
     },
     "skillOrder": [
       "Q",
@@ -1574,6 +2016,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "totalAd": 1,
         },
+        "cooldown": [
+          1,
+          1,
+          1,
+          1,
+          1,
+        ],
       },
       "W": {
         "name": "Above and Below",
@@ -1590,6 +2039,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           "bonusAd": 1,
           "ap": 1.25,
         },
+        "cooldown": [
+          12,
+          11,
+          10,
+          9,
+          8,
+        ],
       },
       "E": {
         "name": "Royal Maelstrom",
@@ -1599,6 +2055,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           0,
         ],
         "ratios": {},
+        "cooldown": [
+          20,
+          19,
+          18,
+          17,
+          16,
+        ],
       },
       "R": {
         "name": "Endless Banquet",
@@ -1612,6 +2075,11 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "ap": 1,
         },
+        "cooldown": [
+          1,
+          1,
+          1,
+        ],
       },
     },
     "shelf": [
@@ -1639,6 +2107,11 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "armorPerLevel": 4.7,
       "mr": 32,
       "mrPerLevel": 2.05,
+      "attackSpeed": 0.625,
+      "attackSpeedRatio": 0.625,
+      "attackSpeedPerLevel": 0.0113,
+      "attackRange": 125,
+      "critDamage": 1.75,
     },
     "skillOrder": [
       "Q",
@@ -1675,6 +2148,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "ap": 1.2,
         },
+        "cooldown": [
+          20,
+          19,
+          18,
+          17,
+          16,
+        ],
       },
       "W": {
         "name": "Overdrive",
@@ -1684,6 +2164,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           0,
         ],
         "ratios": {},
+        "cooldown": [
+          15,
+          15,
+          15,
+          15,
+          15,
+        ],
       },
       "E": {
         "name": "Power Fist",
@@ -1693,6 +2180,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           0,
         ],
         "ratios": {},
+        "cooldown": [
+          9,
+          8,
+          7,
+          6,
+          5,
+        ],
       },
       "R": {
         "name": "Static Field",
@@ -1706,6 +2200,11 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "ap": 0.3,
         },
+        "cooldown": [
+          60,
+          40,
+          20,
+        ],
       },
     },
     "shelf": [
@@ -1733,6 +2232,11 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "armorPerLevel": 4.2,
       "mr": 30,
       "mrPerLevel": 1.3,
+      "attackSpeed": 0.681,
+      "attackSpeedRatio": 0.625,
+      "attackSpeedPerLevel": 0.02,
+      "attackRange": 550,
+      "critDamage": 1.75,
     },
     "skillOrder": [
       "Q",
@@ -1769,6 +2273,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "ap": 0.65,
         },
+        "cooldown": [
+          8,
+          7.5,
+          7,
+          6.5,
+          6,
+        ],
       },
       "W": {
         "name": "Pillar of Flame",
@@ -1784,6 +2295,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "ap": 0.6,
         },
+        "cooldown": [
+          10,
+          9.5,
+          9,
+          8.5,
+          8,
+        ],
       },
       "E": {
         "name": "Conflagration",
@@ -1799,6 +2317,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "ap": 0.6,
         },
+        "cooldown": [
+          13,
+          12,
+          11,
+          10,
+          9,
+        ],
       },
       "R": {
         "name": "Pyroclasm",
@@ -1812,6 +2337,11 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "ap": 0.25,
         },
+        "cooldown": [
+          110,
+          100,
+          90,
+        ],
       },
     },
     "shelf": [
@@ -1839,6 +2369,11 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "armorPerLevel": 5,
       "mr": 32,
       "mrPerLevel": 2.05,
+      "attackSpeed": 0.644,
+      "attackSpeedRatio": 0.644,
+      "attackSpeedPerLevel": 0.035,
+      "attackRange": 125,
+      "critDamage": 1.75,
     },
     "skillOrder": [
       "Q",
@@ -1873,6 +2408,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           275,
         ],
         "ratios": {},
+        "cooldown": [
+          8,
+          7.5,
+          7,
+          6.5,
+          6,
+        ],
       },
       "W": {
         "name": "Stand Behind Me",
@@ -1886,6 +2428,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           40,
         ],
         "ratios": {},
+        "cooldown": [
+          12,
+          11,
+          10,
+          9,
+          8,
+        ],
       },
       "E": {
         "name": "Unbreakable",
@@ -1895,6 +2444,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           0,
         ],
         "ratios": {},
+        "cooldown": [
+          16,
+          14,
+          12,
+          10,
+          8,
+        ],
       },
       "R": {
         "name": "Glacial Fissure",
@@ -1908,6 +2464,11 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "ap": 0.6,
         },
+        "cooldown": [
+          120,
+          100,
+          80,
+        ],
       },
     },
     "shelf": [
@@ -1935,6 +2496,11 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "armorPerLevel": 4.5,
       "mr": 32,
       "mrPerLevel": 2.05,
+      "attackSpeed": 0.644,
+      "attackSpeedRatio": 0.669,
+      "attackSpeedPerLevel": 0.02,
+      "attackRange": 125,
+      "critDamage": 1.75,
     },
     "skillOrder": [
       "Q",
@@ -1972,6 +2538,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           "bonusAd": 0.8,
           "ap": 0.6,
         },
+        "cooldown": [
+          13,
+          12,
+          11,
+          10,
+          9,
+        ],
       },
       "W": {
         "name": "Blood Frenzy",
@@ -1983,6 +2556,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "totalAd": 0.6,
         },
+        "cooldown": [
+          14,
+          13,
+          12,
+          11,
+          10,
+        ],
       },
       "E": {
         "name": "Chilling Scream",
@@ -1999,6 +2579,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           "bonusAd": 1,
           "ap": 1,
         },
+        "cooldown": [
+          16,
+          16,
+          16,
+          16,
+          16,
+        ],
       },
       "R": {
         "name": "Certain Death",
@@ -2013,6 +2600,11 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           "bonusAd": 0.5,
           "ap": 1.2,
         },
+        "cooldown": [
+          120,
+          100,
+          80,
+        ],
       },
     },
     "shelf": [
@@ -2040,6 +2632,11 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "armorPerLevel": 4.7,
       "mr": 33,
       "mrPerLevel": 1.1,
+      "attackSpeed": 0.681,
+      "attackSpeedRatio": 0.625,
+      "attackSpeedPerLevel": 0.04,
+      "attackRange": 650,
+      "critDamage": 1.75,
     },
     "skillOrder": [
       "Q",
@@ -2076,6 +2673,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "totalAd": 1.25,
         },
+        "cooldown": [
+          10,
+          9,
+          8,
+          7,
+          6,
+        ],
       },
       "W": {
         "name": "Yordle Snap Trap",
@@ -2091,6 +2695,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "bonusAd": 0.3,
         },
+        "cooldown": [
+          0.5,
+          0.5,
+          0.5,
+          0.5,
+          0.5,
+        ],
       },
       "E": {
         "name": "90 Caliber Net",
@@ -2106,6 +2717,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "ap": 0.8,
         },
+        "cooldown": [
+          16,
+          14,
+          12,
+          10,
+          8,
+        ],
       },
       "R": {
         "name": "Ace in the Hole",
@@ -2119,6 +2737,11 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "bonusAd": 1,
         },
+        "cooldown": [
+          90,
+          90,
+          90,
+        ],
       },
     },
     "shelf": [
@@ -2146,6 +2769,11 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "armorPerLevel": 4.5,
       "mr": 32,
       "mrPerLevel": 2.05,
+      "attackSpeed": 0.644,
+      "attackSpeedRatio": 0.644,
+      "attackSpeedPerLevel": 0.025,
+      "attackRange": 125,
+      "critDamage": 1.75,
     },
     "skillOrder": [
       "Q",
@@ -2178,6 +2806,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "totalAd": 0.4,
         },
+        "cooldown": [
+          9,
+          8,
+          7,
+          6,
+          5,
+        ],
       },
       "W": {
         "name": "Tactical Sweep",
@@ -2193,6 +2828,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "bonusAd": 0.6,
         },
+        "cooldown": [
+          17,
+          15.5,
+          14,
+          12.5,
+          11,
+        ],
       },
       "E": {
         "name": "Hookshot",
@@ -2202,6 +2844,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           0,
         ],
         "ratios": {},
+        "cooldown": [
+          16,
+          15,
+          14,
+          13,
+          12,
+        ],
       },
       "R": {
         "name": "The Hextech Ultimatum",
@@ -2211,6 +2860,11 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           0,
         ],
         "ratios": {},
+        "cooldown": [
+          140,
+          115,
+          90,
+        ],
       },
     },
     "shelf": [
@@ -2238,6 +2892,11 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "armorPerLevel": 4.7,
       "mr": 32,
       "mrPerLevel": 1.3,
+      "attackSpeed": 0.647,
+      "attackSpeedRatio": 0.647,
+      "attackSpeedPerLevel": 0.015,
+      "attackRange": 550,
+      "critDamage": 1.75,
     },
     "skillOrder": [
       "Q",
@@ -2274,6 +2933,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "ap": 0.093,
         },
+        "cooldown": [
+          3.5,
+          3.5,
+          3.5,
+          3.5,
+          3.5,
+        ],
       },
       "W": {
         "name": "Miasma",
@@ -2289,6 +2955,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "ap": 0.1,
         },
+        "cooldown": [
+          24,
+          22,
+          20,
+          18,
+          16,
+        ],
       },
       "E": {
         "name": "Twin Fang",
@@ -2304,6 +2977,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "ap": 0.55,
         },
+        "cooldown": [
+          0.75,
+          0.75,
+          0.75,
+          0.75,
+          0.75,
+        ],
       },
       "R": {
         "name": "Petrifying Gaze",
@@ -2317,6 +2997,11 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "ap": 0.5,
         },
+        "cooldown": [
+          120,
+          100,
+          80,
+        ],
       },
     },
     "shelf": [
@@ -2344,6 +3029,11 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "armorPerLevel": 4.5,
       "mr": 32,
       "mrPerLevel": 2.05,
+      "attackSpeed": 0.658,
+      "attackSpeedRatio": 0.625,
+      "attackSpeedPerLevel": 0.0144,
+      "attackRange": 125,
+      "critDamage": 1.75,
     },
     "skillOrder": [
       "Q",
@@ -2380,6 +3070,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "ap": 1,
         },
+        "cooldown": [
+          6,
+          6,
+          6,
+          6,
+          6,
+        ],
       },
       "W": {
         "name": "Feral Scream",
@@ -2395,6 +3092,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "ap": 0.7,
         },
+        "cooldown": [
+          11,
+          10.5,
+          10,
+          9.5,
+          9,
+        ],
       },
       "E": {
         "name": "Vorpal Spikes",
@@ -2410,6 +3114,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "ap": 0.3,
         },
+        "cooldown": [
+          8,
+          7,
+          6,
+          5,
+          4,
+        ],
       },
       "R": {
         "name": "Feast",
@@ -2423,6 +3134,11 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "ap": 0.5,
         },
+        "cooldown": [
+          80,
+          70,
+          60,
+        ],
       },
     },
     "shelf": [
@@ -2450,6 +3166,11 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "armorPerLevel": 4.5,
       "mr": 33,
       "mrPerLevel": 1.1,
+      "attackSpeed": 0.644,
+      "attackSpeedRatio": 0.644,
+      "attackSpeedPerLevel": 0.028,
+      "attackRange": 550,
+      "critDamage": 1.75,
     },
     "skillOrder": [
       "Q",
@@ -2487,6 +3208,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           "bonusAd": 1.2,
           "ap": 1,
         },
+        "cooldown": [
+          9,
+          8.5,
+          8,
+          7.5,
+          7,
+        ],
       },
       "W": {
         "name": "Valkyrie",
@@ -2503,6 +3231,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           "bonusAd": 0.4,
           "ap": 0.3,
         },
+        "cooldown": [
+          20,
+          18,
+          16,
+          14,
+          12,
+        ],
       },
       "E": {
         "name": "Gatling Gun",
@@ -2518,6 +3253,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "bonusAd": 0.15,
         },
+        "cooldown": [
+          12,
+          12,
+          12,
+          12,
+          12,
+        ],
       },
       "R": {
         "name": "Missile Barrage",
@@ -2531,6 +3273,11 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "bonusAd": 0.8,
         },
+        "cooldown": [
+          2,
+          2,
+          2,
+        ],
       },
     },
     "shelf": [
@@ -2559,6 +3306,11 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "armorPerLevel": 5.2,
       "mr": 32,
       "mrPerLevel": 2.05,
+      "attackSpeed": 0.625,
+      "attackSpeedRatio": 0.625,
+      "attackSpeedPerLevel": 0.01,
+      "attackRange": 175,
+      "critDamage": 1.75,
     },
     "skillOrder": [
       "Q",
@@ -2595,6 +3347,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "totalAd": 1,
         },
+        "cooldown": [
+          9,
+          8,
+          7,
+          6,
+          5,
+        ],
       },
       "W": {
         "name": "Crippling Strike",
@@ -2606,6 +3365,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "totalAd": 0.4,
         },
+        "cooldown": [
+          5,
+          5,
+          5,
+          5,
+          5,
+        ],
       },
       "E": {
         "name": "Apprehend",
@@ -2615,6 +3381,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           0,
         ],
         "ratios": {},
+        "cooldown": [
+          26,
+          23.5,
+          21,
+          18.5,
+          16,
+        ],
       },
       "R": {
         "name": "Noxian Guillotine",
@@ -2628,6 +3401,11 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "bonusAd": 0.75,
         },
+        "cooldown": [
+          120,
+          100,
+          80,
+        ],
       },
     },
     "shelf": [
@@ -2655,6 +3433,11 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "armorPerLevel": 4.3,
       "mr": 32,
       "mrPerLevel": 2.05,
+      "attackSpeed": 0.625,
+      "attackSpeedRatio": 0.694,
+      "attackSpeedPerLevel": 0.02,
+      "attackRange": 150,
+      "critDamage": 1.75,
     },
     "skillOrder": [
       "Q",
@@ -2691,6 +3474,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "ap": 0.7,
         },
+        "cooldown": [
+          8,
+          7.5,
+          7,
+          6.5,
+          6,
+        ],
       },
       "W": {
         "name": "Pale Cascade",
@@ -2706,6 +3496,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "ap": 0.18,
         },
+        "cooldown": [
+          15,
+          13.5,
+          12,
+          10.5,
+          9,
+        ],
       },
       "E": {
         "name": "Lunar Rush",
@@ -2721,6 +3518,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "ap": 0.6,
         },
+        "cooldown": [
+          22,
+          20,
+          18,
+          16,
+          14,
+        ],
       },
       "R": {
         "name": "Moonfall",
@@ -2734,6 +3538,11 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "ap": 0.6,
         },
+        "cooldown": [
+          100,
+          90,
+          80,
+        ],
       },
     },
     "shelf": [
@@ -2761,6 +3570,11 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "armorPerLevel": 4.5,
       "mr": 29,
       "mrPerLevel": 2.3,
+      "attackSpeed": 0.67,
+      "attackSpeedRatio": 0.625,
+      "attackSpeedPerLevel": 0.033,
+      "attackRange": 125,
+      "critDamage": 1.75,
     },
     "skillOrder": [
       "Q",
@@ -2791,6 +3605,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           0,
         ],
         "ratios": {},
+        "cooldown": [
+          4,
+          4,
+          4,
+          4,
+          4,
+        ],
       },
       "W": {
         "name": "Heart Zapper",
@@ -2804,6 +3625,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           20,
         ],
         "ratios": {},
+        "cooldown": [
+          17,
+          16.5,
+          16,
+          15.5,
+          15,
+        ],
       },
       "E": {
         "name": "Blunt Force Trauma",
@@ -2813,6 +3641,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           0,
         ],
         "ratios": {},
+        "cooldown": [
+          9,
+          8.25,
+          7.5,
+          6.75,
+          6,
+        ],
       },
       "R": {
         "name": "Maximum Dosage",
@@ -2822,6 +3657,11 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           0,
         ],
         "ratios": {},
+        "cooldown": [
+          120,
+          120,
+          120,
+        ],
       },
     },
     "shelf": [
@@ -2849,6 +3689,11 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "armorPerLevel": 4.5,
       "mr": 33,
       "mrPerLevel": 1.1,
+      "attackSpeed": 0.679,
+      "attackSpeedRatio": 0.679,
+      "attackSpeedPerLevel": 0.027,
+      "attackRange": 550,
+      "critDamage": 1.75,
     },
     "skillOrder": [
       "Q",
@@ -2885,6 +3730,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "bonusAd": 0.75,
         },
+        "cooldown": [
+          12,
+          11,
+          10,
+          9,
+          8,
+        ],
       },
       "W": {
         "name": "Blood Rush",
@@ -2894,6 +3746,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           0,
         ],
         "ratios": {},
+        "cooldown": [
+          12,
+          12,
+          12,
+          12,
+          12,
+        ],
       },
       "E": {
         "name": "Stand Aside",
@@ -2909,6 +3768,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "bonusAd": 0.5,
         },
+        "cooldown": [
+          18,
+          17,
+          16,
+          15,
+          14,
+        ],
       },
       "R": {
         "name": "Whirling Death",
@@ -2922,6 +3788,11 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "bonusAd": 1.1,
         },
+        "cooldown": [
+          100,
+          90,
+          80,
+        ],
       },
     },
     "shelf": [
@@ -2949,6 +3820,11 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "armorPerLevel": 4.2,
       "mr": 32,
       "mrPerLevel": 2.05,
+      "attackSpeed": 0.688,
+      "attackSpeedRatio": 0.625,
+      "attackSpeedPerLevel": 0.033,
+      "attackRange": 125,
+      "critDamage": 1.75,
     },
     "skillOrder": [
       "Q",
@@ -2985,6 +3861,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "ap": 0.3,
         },
+        "cooldown": [
+          9,
+          8.5,
+          8,
+          7.5,
+          7,
+        ],
       },
       "W": {
         "name": "Parallel Convergence",
@@ -3000,6 +3883,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "ap": 1.5,
         },
+        "cooldown": [
+          22,
+          20,
+          18,
+          16,
+          14,
+        ],
       },
       "E": {
         "name": "Phase Dive",
@@ -3015,6 +3905,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "ap": 0.4,
         },
+        "cooldown": [
+          9,
+          8.5,
+          8,
+          7.5,
+          7,
+        ],
       },
       "R": {
         "name": "Chronobreak",
@@ -3028,6 +3925,11 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "ap": 1.75,
         },
+        "cooldown": [
+          110,
+          80,
+          50,
+        ],
       },
     },
     "shelf": [
@@ -3055,6 +3957,11 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "armorPerLevel": 4.5,
       "mr": 30,
       "mrPerLevel": 1.3,
+      "attackSpeed": 0.625,
+      "attackSpeedRatio": 0.625,
+      "attackSpeedPerLevel": 0.0175,
+      "attackRange": 550,
+      "critDamage": 1.75,
     },
     "skillOrder": [
       "Q",
@@ -3089,6 +3996,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           160,
         ],
         "ratios": {},
+        "cooldown": [
+          6,
+          6,
+          6,
+          6,
+          6,
+        ],
       },
       "W": {
         "name": "Volatile Spiderling",
@@ -3104,6 +4018,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "ap": 0.75,
         },
+        "cooldown": [
+          12,
+          12,
+          12,
+          12,
+          12,
+        ],
       },
       "E": {
         "name": "Cocoon",
@@ -3113,6 +4034,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           0,
         ],
         "ratios": {},
+        "cooldown": [
+          12,
+          11.5,
+          11,
+          10.5,
+          10,
+        ],
       },
       "R": {
         "name": "Spider Form / Human Form",
@@ -3122,6 +4050,11 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           0,
         ],
         "ratios": {},
+        "cooldown": [
+          3,
+          3,
+          3,
+        ],
       },
     },
     "shelf": [
@@ -3149,6 +4082,11 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "armorPerLevel": 4.7,
       "mr": 32,
       "mrPerLevel": 2.05,
+      "attackSpeed": 0.667,
+      "attackSpeedRatio": 0.667,
+      "attackSpeedPerLevel": 0.021,
+      "attackRange": 125,
+      "critDamage": 1.75,
     },
     "skillOrder": [
       "Q",
@@ -3185,6 +4123,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "ap": 0.25,
         },
+        "cooldown": [
+          4,
+          4,
+          4,
+          4,
+          4,
+        ],
       },
       "W": {
         "name": "Allure",
@@ -3200,6 +4145,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "ap": 0.6,
         },
+        "cooldown": [
+          15,
+          14,
+          13,
+          12,
+          11,
+        ],
       },
       "E": {
         "name": "Whiplash",
@@ -3213,6 +4165,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           180,
         ],
         "ratios": {},
+        "cooldown": [
+          8,
+          8,
+          8,
+          8,
+          8,
+        ],
       },
       "R": {
         "name": "Last Caress",
@@ -3226,6 +4185,11 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "ap": 0.75,
         },
+        "cooldown": [
+          120,
+          100,
+          80,
+        ],
       },
     },
     "shelf": [
@@ -3253,6 +4217,11 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "armorPerLevel": 4.2,
       "mr": 33,
       "mrPerLevel": 1.1,
+      "attackSpeed": 0.625,
+      "attackSpeedRatio": 0.625,
+      "attackSpeedPerLevel": 0.025,
+      "attackRange": 550,
+      "critDamage": 1.75,
     },
     "skillOrder": [
       "Q",
@@ -3290,6 +4259,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           "totalAd": 1.3,
           "ap": 0.15,
         },
+        "cooldown": [
+          5.5,
+          5.25,
+          5,
+          4.75,
+          4.5,
+        ],
       },
       "W": {
         "name": "Essence Flux",
@@ -3306,6 +4282,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           "bonusAd": 1,
           "ap": 0.7,
         },
+        "cooldown": [
+          8,
+          8,
+          8,
+          8,
+          8,
+        ],
       },
       "E": {
         "name": "Arcane Shift",
@@ -3322,6 +4305,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           "bonusAd": 0.5,
           "ap": 0.75,
         },
+        "cooldown": [
+          26,
+          23,
+          20,
+          17,
+          14,
+        ],
       },
       "R": {
         "name": "Trueshot Barrage",
@@ -3336,6 +4326,11 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           "bonusAd": 1,
           "ap": 0.9,
         },
+        "cooldown": [
+          120,
+          105,
+          90,
+        ],
       },
     },
     "shelf": [
@@ -3363,6 +4358,11 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "armorPerLevel": 4.7,
       "mr": 30,
       "mrPerLevel": 1.3,
+      "attackSpeed": 0.625,
+      "attackSpeedRatio": 0.625,
+      "attackSpeedPerLevel": 0.0211,
+      "attackRange": 480,
+      "critDamage": 1.75,
     },
     "skillOrder": [
       "Q",
@@ -3393,6 +4393,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           0,
         ],
         "ratios": {},
+        "cooldown": [
+          15,
+          14.5,
+          14,
+          13.5,
+          13,
+        ],
       },
       "W": {
         "name": "Bountiful Harvest",
@@ -3408,6 +4415,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "ap": 0.088,
         },
+        "cooldown": [
+          10,
+          9.5,
+          9,
+          8.5,
+          8,
+        ],
       },
       "E": {
         "name": "Reap",
@@ -3423,6 +4437,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "ap": 0.5,
         },
+        "cooldown": [
+          10,
+          9,
+          8,
+          7,
+          6,
+        ],
       },
       "R": {
         "name": "Crowstorm",
@@ -3436,6 +4457,11 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "ap": 0.125,
         },
+        "cooldown": [
+          140,
+          110,
+          80,
+        ],
       },
     },
     "shelf": [
@@ -3463,6 +4489,11 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "armorPerLevel": 4.7,
       "mr": 32,
       "mrPerLevel": 2.05,
+      "attackSpeed": 0.69,
+      "attackSpeedRatio": 0.69,
+      "attackSpeedPerLevel": 0.032,
+      "attackRange": 150,
+      "critDamage": 1.75,
     },
     "skillOrder": [
       "Q",
@@ -3499,6 +4530,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "bonusAd": 0.9,
         },
+        "cooldown": [
+          13,
+          11.25,
+          9.5,
+          7.75,
+          6,
+        ],
       },
       "W": {
         "name": "Riposte",
@@ -3514,6 +4552,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "ap": 1,
         },
+        "cooldown": [
+          24,
+          22,
+          20,
+          18,
+          16,
+        ],
       },
       "E": {
         "name": "Bladework",
@@ -3523,6 +4568,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           0,
         ],
         "ratios": {},
+        "cooldown": [
+          11,
+          10,
+          9,
+          8,
+          7,
+        ],
       },
       "R": {
         "name": "Grand Challenge",
@@ -3532,6 +4584,11 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           0,
         ],
         "ratios": {},
+        "cooldown": [
+          110,
+          90,
+          70,
+        ],
       },
     },
     "shelf": [
@@ -3559,6 +4616,11 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "armorPerLevel": 4.6,
       "mr": 32,
       "mrPerLevel": 2.05,
+      "attackSpeed": 0.658,
+      "attackSpeedRatio": 0.658,
+      "attackSpeedPerLevel": 0.031,
+      "attackRange": 175,
+      "critDamage": 1.75,
     },
     "skillOrder": [
       "Q",
@@ -3595,6 +4657,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "ap": 0.55,
         },
+        "cooldown": [
+          8,
+          7.5,
+          7,
+          6.5,
+          6,
+        ],
       },
       "W": {
         "name": "Seastone Trident",
@@ -3610,6 +4679,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "ap": 0.05,
         },
+        "cooldown": [
+          7,
+          6.5,
+          6,
+          5.5,
+          5,
+        ],
       },
       "E": {
         "name": "Playful",
@@ -3625,6 +4701,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "ap": 0.9,
         },
+        "cooldown": [
+          16,
+          14,
+          12,
+          10,
+          8,
+        ],
       },
       "R": {
         "name": "Chum the Waters",
@@ -3638,6 +4721,11 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "ap": 0.8,
         },
+        "cooldown": [
+          100,
+          85,
+          70,
+        ],
       },
     },
     "shelf": [
@@ -3665,6 +4753,11 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "armorPerLevel": 4.7,
       "mr": 32,
       "mrPerLevel": 2.05,
+      "attackSpeed": 0.625,
+      "attackSpeedRatio": 0.625,
+      "attackSpeedPerLevel": 0.015,
+      "attackRange": 150,
+      "critDamage": 1.75,
     },
     "skillOrder": [
       "Q",
@@ -3701,6 +4794,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "ap": 0.7,
         },
+        "cooldown": [
+          11,
+          10,
+          9,
+          8,
+          7,
+        ],
       },
       "W": {
         "name": "Shield of Durand",
@@ -3710,6 +4810,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           0,
         ],
         "ratios": {},
+        "cooldown": [
+          18,
+          17,
+          16,
+          15,
+          14,
+        ],
       },
       "E": {
         "name": "Justice Punch",
@@ -3725,6 +4832,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "ap": 0.9,
         },
+        "cooldown": [
+          11,
+          10,
+          9,
+          8,
+          7,
+        ],
       },
       "R": {
         "name": "Hero's Entrance",
@@ -3738,6 +4852,11 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "ap": 0.7,
         },
+        "cooldown": [
+          180,
+          160,
+          140,
+        ],
       },
     },
     "shelf": [
@@ -3765,6 +4884,11 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "armorPerLevel": 4.7,
       "mr": 32,
       "mrPerLevel": 2.05,
+      "attackSpeed": 0.658,
+      "attackSpeedRatio": 0.69,
+      "attackSpeedPerLevel": 0.032,
+      "attackRange": 125,
+      "critDamage": 1.75,
     },
     "skillOrder": [
       "Q",
@@ -3801,6 +4925,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "totalAd": 1,
         },
+        "cooldown": [
+          4.5,
+          4.5,
+          4.5,
+          4.5,
+          4.5,
+        ],
       },
       "W": {
         "name": "Remove Scurvy",
@@ -3816,6 +4947,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "ap": 0.9,
         },
+        "cooldown": [
+          22,
+          20,
+          18,
+          16,
+          14,
+        ],
       },
       "E": {
         "name": "Powder Keg",
@@ -3829,6 +4967,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           195,
         ],
         "ratios": {},
+        "cooldown": [
+          0.5,
+          0.5,
+          0.5,
+          0.5,
+          0.5,
+        ],
       },
       "R": {
         "name": "Cannon Barrage",
@@ -3842,6 +4987,11 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "ap": 0.1,
         },
+        "cooldown": [
+          170,
+          150,
+          130,
+        ],
       },
     },
     "shelf": [
@@ -3869,6 +5019,11 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "armorPerLevel": 4.2,
       "mr": 32,
       "mrPerLevel": 1.55,
+      "attackSpeed": 0.625,
+      "attackSpeedRatio": 0.625,
+      "attackSpeedPerLevel": 0.0365,
+      "attackRange": 175,
+      "critDamage": 1.75,
     },
     "skillOrder": [
       "Q",
@@ -3905,6 +5060,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "totalAd": 0.5,
         },
+        "cooldown": [
+          8,
+          8,
+          8,
+          8,
+          8,
+        ],
       },
       "W": {
         "name": "Courage",
@@ -3918,6 +5080,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           145,
         ],
         "ratios": {},
+        "cooldown": [
+          23,
+          21,
+          19,
+          17,
+          15,
+        ],
       },
       "E": {
         "name": "Judgment",
@@ -3933,6 +5102,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "totalAd": 0.36,
         },
+        "cooldown": [
+          9,
+          9,
+          9,
+          9,
+          9,
+        ],
       },
       "R": {
         "name": "Demacian Justice",
@@ -3944,6 +5120,11 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           450,
         ],
         "ratios": {},
+        "cooldown": [
+          120,
+          100,
+          80,
+        ],
       },
     },
     "shelf": [
@@ -3971,6 +5152,11 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "armorPerLevel": 3.7,
       "mr": 30,
       "mrPerLevel": 1.3,
+      "attackSpeed": 0.625,
+      "attackSpeedRatio": 0.625,
+      "attackSpeedPerLevel": 0.06,
+      "attackRange": 175,
+      "critDamage": 1.75,
     },
     "skillOrder": [
       "Q",
@@ -4007,6 +5193,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "totalAd": 1.25,
         },
+        "cooldown": [
+          20,
+          17.5,
+          15,
+          12.5,
+          10,
+        ],
       },
       "W": {
         "name": "Hyper",
@@ -4035,6 +5228,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           190,
         ],
         "ratios": {},
+        "cooldown": [
+          22,
+          19.5,
+          17,
+          14.5,
+          12,
+        ],
       },
       "R": {
         "name": "GNAR!",
@@ -4049,6 +5249,11 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           "bonusAd": 0.5,
           "ap": 1,
         },
+        "cooldown": [
+          90,
+          60,
+          30,
+        ],
       },
     },
     "shelf": [
@@ -4076,6 +5281,11 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "armorPerLevel": 5,
       "mr": 32,
       "mrPerLevel": 2.05,
+      "attackSpeed": 0.675,
+      "attackSpeedRatio": 0.625,
+      "attackSpeedPerLevel": 0.0205,
+      "attackRange": 125,
+      "critDamage": 1.75,
     },
     "skillOrder": [
       "Q",
@@ -4112,6 +5322,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "ap": 0.8,
         },
+        "cooldown": [
+          10,
+          9,
+          8,
+          7,
+          6,
+        ],
       },
       "W": {
         "name": "Drunken Rage",
@@ -4121,6 +5338,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           0,
         ],
         "ratios": {},
+        "cooldown": [
+          5,
+          5,
+          5,
+          5,
+          5,
+        ],
       },
       "E": {
         "name": "Body Slam",
@@ -4136,6 +5360,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "ap": 0.6,
         },
+        "cooldown": [
+          14,
+          13.5,
+          13,
+          12.5,
+          12,
+        ],
       },
       "R": {
         "name": "Explosive Cask",
@@ -4149,6 +5380,11 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "ap": 0.8,
         },
+        "cooldown": [
+          100,
+          85,
+          70,
+        ],
       },
     },
     "shelf": [
@@ -4176,6 +5412,11 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "armorPerLevel": 4.6,
       "mr": 33,
       "mrPerLevel": 1.1,
+      "attackSpeed": 0.475,
+      "attackSpeedRatio": 0.49,
+      "attackSpeedPerLevel": 0.03,
+      "attackRange": 425,
+      "critDamage": 1.75,
     },
     "skillOrder": [
       "Q",
@@ -4212,6 +5453,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "bonusAd": 0.8,
         },
+        "cooldown": [
+          13,
+          11.25,
+          9.5,
+          7.75,
+          6,
+        ],
       },
       "W": {
         "name": "Smoke Screen",
@@ -4227,6 +5475,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "ap": 0.6,
         },
+        "cooldown": [
+          26,
+          24,
+          22,
+          20,
+          18,
+        ],
       },
       "E": {
         "name": "Quickdraw",
@@ -4240,6 +5495,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           16,
         ],
         "ratios": {},
+        "cooldown": [
+          16,
+          15,
+          14,
+          13,
+          12,
+        ],
       },
       "R": {
         "name": "Collateral Damage",
@@ -4253,6 +5515,11 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "bonusAd": 1.5,
         },
+        "cooldown": [
+          100,
+          80,
+          60,
+        ],
       },
     },
     "shelf": [
@@ -4280,6 +5547,11 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "armorPerLevel": 4.9,
       "mr": 32,
       "mrPerLevel": 2.05,
+      "attackSpeed": 0.69,
+      "attackSpeedRatio": 0.69,
+      "attackSpeedPerLevel": 0.0225,
+      "attackRange": 150,
+      "critDamage": 1.75,
     },
     "skillOrder": [
       "Q",
@@ -4316,6 +5588,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "ap": 0.02,
         },
+        "cooldown": [
+          6.5,
+          5.75,
+          5,
+          4.25,
+          3.5,
+        ],
       },
       "W": {
         "name": "Hallowed Mist",
@@ -4325,6 +5604,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           0,
         ],
         "ratios": {},
+        "cooldown": [
+          22,
+          21,
+          20,
+          19,
+          18,
+        ],
       },
       "E": {
         "name": "Skip 'n Slash",
@@ -4340,6 +5626,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "ap": 0.25,
         },
+        "cooldown": [
+          12,
+          11,
+          10,
+          9,
+          8,
+        ],
       },
       "R": {
         "name": "Needlework",
@@ -4353,6 +5646,11 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "ap": 0.08,
         },
+        "cooldown": [
+          120,
+          100,
+          80,
+        ],
       },
     },
     "shelf": [
@@ -4380,6 +5678,11 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "armorPerLevel": 5.45,
       "mr": 32,
       "mrPerLevel": 2.05,
+      "attackSpeed": 0.67,
+      "attackSpeedRatio": 0.67,
+      "attackSpeedPerLevel": 0.025,
+      "attackRange": 175,
+      "critDamage": 1.75,
     },
     "skillOrder": [
       "Q",
@@ -4416,6 +5719,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "bonusAd": 0.9,
         },
+        "cooldown": [
+          4,
+          4,
+          4,
+          4,
+          4,
+        ],
       },
       "W": {
         "name": "Spirit of Dread",
@@ -4431,6 +5741,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "ap": 0.2,
         },
+        "cooldown": [
+          14,
+          14,
+          14,
+          14,
+          14,
+        ],
       },
       "E": {
         "name": "Devastating Charge",
@@ -4446,6 +5763,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "bonusAd": 0.5,
         },
+        "cooldown": [
+          20,
+          19,
+          18,
+          17,
+          16,
+        ],
       },
       "R": {
         "name": "Onslaught of Shadows",
@@ -4459,6 +5783,11 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "ap": 1,
         },
+        "cooldown": [
+          140,
+          120,
+          100,
+        ],
       },
     },
     "shelf": [
@@ -4486,6 +5815,11 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "armorPerLevel": 4.2,
       "mr": 30,
       "mrPerLevel": 1.3,
+      "attackSpeed": 0.658,
+      "attackSpeedRatio": 0.625,
+      "attackSpeedPerLevel": 0.0136,
+      "attackRange": 550,
+      "critDamage": 1.75,
     },
     "skillOrder": [
       "Q",
@@ -4516,6 +5850,9 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           0,
         ],
         "ratios": {},
+        "cooldown": [
+          1,
+        ],
       },
       "W": {
         "name": "Hextech Micro-Rockets",
@@ -4531,6 +5868,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "ap": 0.55,
         },
+        "cooldown": [
+          11,
+          10,
+          9,
+          8,
+          7,
+        ],
       },
       "E": {
         "name": "CH-2 Electron Storm Grenade",
@@ -4546,6 +5890,9 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "ap": 0.6,
         },
+        "cooldown": [
+          11,
+        ],
       },
       "R": {
         "name": "UPGRADE!!!",
@@ -4555,6 +5902,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           0,
         ],
         "ratios": {},
+        "cooldown": [
+          100,
+          92.5,
+          85,
+          77.5,
+          70,
+        ],
       },
     },
     "shelf": [
@@ -4582,6 +5936,11 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "armorPerLevel": 4.7,
       "mr": 30,
       "mrPerLevel": 1.3,
+      "attackSpeed": 0.69,
+      "attackSpeedRatio": 0.658,
+      "attackSpeedPerLevel": 0.025,
+      "attackRange": 550,
+      "critDamage": 1.75,
     },
     "skillOrder": [
       "Q",
@@ -4612,6 +5971,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           0,
         ],
         "ratios": {},
+        "cooldown": [
+          10,
+          9,
+          8,
+          7,
+          6,
+        ],
       },
       "W": {
         "name": "Subject: Serenity",
@@ -4621,6 +5987,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           0,
         ],
         "ratios": {},
+        "cooldown": [
+          18,
+          17.5,
+          17,
+          16.5,
+          16,
+        ],
       },
       "E": {
         "name": "Subject: Torment",
@@ -4630,6 +6003,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           0,
         ],
         "ratios": {},
+        "cooldown": [
+          13,
+          12.5,
+          12,
+          11.5,
+          11,
+        ],
       },
       "R": {
         "name": "Spiraling Despair",
@@ -4643,6 +6023,11 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "ap": 0.013,
         },
+        "cooldown": [
+          140,
+          115,
+          80,
+        ],
       },
     },
     "shelf": [
@@ -4670,6 +6055,11 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "armorPerLevel": 5,
       "mr": 32,
       "mrPerLevel": 2.05,
+      "attackSpeed": 0.625,
+      "attackSpeedRatio": 0.625,
+      "attackSpeedPerLevel": 0.025,
+      "attackRange": 125,
+      "critDamage": 1.75,
     },
     "skillOrder": [
       "Q",
@@ -4700,6 +6090,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           0,
         ],
         "ratios": {},
+        "cooldown": [
+          10,
+          9,
+          8,
+          7,
+          6,
+        ],
       },
       "W": {
         "name": "Harsh Lesson",
@@ -4709,6 +6106,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           0,
         ],
         "ratios": {},
+        "cooldown": [
+          4,
+          4,
+          4,
+          4,
+          4,
+        ],
       },
       "E": {
         "name": "Test of Spirit",
@@ -4718,6 +6122,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           0,
         ],
         "ratios": {},
+        "cooldown": [
+          16,
+          15,
+          14,
+          13,
+          12,
+        ],
       },
       "R": {
         "name": "Leap of Faith",
@@ -4731,6 +6142,11 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "bonusAd": 0.5,
         },
+        "cooldown": [
+          120,
+          95,
+          70,
+        ],
       },
     },
     "shelf": [
@@ -4758,6 +6174,11 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "armorPerLevel": 4.7,
       "mr": 30,
       "mrPerLevel": 2.05,
+      "attackSpeed": 0.656,
+      "attackSpeedRatio": 0.656,
+      "attackSpeedPerLevel": 0.025,
+      "attackRange": 200,
+      "critDamage": 1.75,
     },
     "skillOrder": [
       "Q",
@@ -4794,6 +6215,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "totalAd": 0.7,
         },
+        "cooldown": [
+          10,
+          9,
+          8,
+          7,
+          6,
+        ],
       },
       "W": {
         "name": "Defiant Dance",
@@ -4810,6 +6238,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           "totalAd": 0.4,
           "ap": 0.4,
         },
+        "cooldown": [
+          20,
+          18,
+          16,
+          14,
+          12,
+        ],
       },
       "E": {
         "name": "Flawless Duet",
@@ -4825,6 +6260,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "ap": 0.8,
         },
+        "cooldown": [
+          16,
+          15,
+          14,
+          13,
+          12,
+        ],
       },
       "R": {
         "name": "Vanguard's Edge",
@@ -4838,6 +6280,11 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "ap": 0.7,
         },
+        "cooldown": [
+          125,
+          105,
+          85,
+        ],
       },
     },
     "shelf": [
@@ -4865,6 +6312,11 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "armorPerLevel": 4.7,
       "mr": 30,
       "mrPerLevel": 1.3,
+      "attackSpeed": 0.644,
+      "attackSpeedRatio": 0.644,
+      "attackSpeedPerLevel": 0.034,
+      "attackRange": 475,
+      "critDamage": 1.75,
     },
     "skillOrder": [
       "Q",
@@ -4901,6 +6353,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "ap": 0.7,
         },
+        "cooldown": [
+          14,
+          13,
+          12,
+          11,
+          10,
+        ],
       },
       "W": {
         "name": "Brushmaker",
@@ -4916,6 +6375,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "ap": 0.2,
         },
+        "cooldown": [
+          0.5,
+          0.5,
+          0.5,
+          0.5,
+          0.5,
+        ],
       },
       "E": {
         "name": "Triggerseed",
@@ -4931,6 +6397,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "ap": 0.8,
         },
+        "cooldown": [
+          11,
+          10,
+          9,
+          8,
+          7,
+        ],
       },
       "R": {
         "name": "Daisy!",
@@ -4940,6 +6413,11 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           0,
         ],
         "ratios": {},
+        "cooldown": [
+          140,
+          130,
+          120,
+        ],
       },
     },
     "shelf": [
@@ -4967,6 +6445,11 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "armorPerLevel": 4.5,
       "mr": 30,
       "mrPerLevel": 1.3,
+      "attackSpeed": 0.625,
+      "attackSpeedRatio": 0.625,
+      "attackSpeedPerLevel": 0.03,
+      "attackRange": 550,
+      "critDamage": 1.75,
     },
     "skillOrder": [
       "Q",
@@ -5003,6 +6486,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "ap": 0.5,
         },
+        "cooldown": [
+          14,
+          14,
+          14,
+          14,
+          14,
+        ],
       },
       "W": {
         "name": "Zephyr",
@@ -5018,6 +6508,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "ap": 0.5,
         },
+        "cooldown": [
+          8,
+          7.5,
+          7,
+          6.5,
+          6,
+        ],
       },
       "E": {
         "name": "Eye of the Storm",
@@ -5033,6 +6530,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "ap": 0.1,
         },
+        "cooldown": [
+          16,
+          15,
+          14,
+          13,
+          12,
+        ],
       },
       "R": {
         "name": "Monsoon",
@@ -5046,6 +6550,11 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "ap": 0.125,
         },
+        "cooldown": [
+          130,
+          115,
+          100,
+        ],
       },
     },
     "shelf": [
@@ -5073,6 +6582,11 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "armorPerLevel": 4.6,
       "mr": 32,
       "mrPerLevel": 2.05,
+      "attackSpeed": 0.658,
+      "attackSpeedRatio": 0.658,
+      "attackSpeedPerLevel": 0.025,
+      "attackRange": 175,
+      "critDamage": 1.75,
     },
     "skillOrder": [
       "Q",
@@ -5109,6 +6623,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "bonusAd": 1.45,
         },
+        "cooldown": [
+          10,
+          9,
+          8,
+          7,
+          6,
+        ],
       },
       "W": {
         "name": "Golden Aegis",
@@ -5118,6 +6639,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           0,
         ],
         "ratios": {},
+        "cooldown": [
+          9,
+          9,
+          9,
+          9,
+          9,
+        ],
       },
       "E": {
         "name": "Demacian Standard",
@@ -5133,6 +6661,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "ap": 0.8,
         },
+        "cooldown": [
+          12,
+          11.5,
+          11,
+          10.5,
+          10,
+        ],
       },
       "R": {
         "name": "Cataclysm",
@@ -5146,6 +6681,11 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "bonusAd": 1.8,
         },
+        "cooldown": [
+          120,
+          105,
+          90,
+        ],
       },
     },
     "shelf": [
@@ -5173,6 +6713,11 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "armorPerLevel": 4.2,
       "mr": 32,
       "mrPerLevel": 2.05,
+      "attackSpeed": 0.638,
+      "attackSpeedRatio": 0.638,
+      "attackSpeedPerLevel": 0.034,
+      "attackRange": 125,
+      "critDamage": 1.75,
     },
     "skillOrder": [
       "Q",
@@ -5209,6 +6754,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "bonusAd": 1,
         },
+        "cooldown": [
+          8,
+          7.5,
+          7,
+          6.5,
+          6,
+        ],
       },
       "W": {
         "name": "Empower",
@@ -5224,6 +6776,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "ap": 0.6,
         },
+        "cooldown": [
+          7,
+          6,
+          5,
+          4,
+          3,
+        ],
       },
       "E": {
         "name": "Counter Strike",
@@ -5239,6 +6798,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "ap": 0.7,
         },
+        "cooldown": [
+          17,
+          15,
+          13,
+          11,
+          9,
+        ],
       },
       "R": {
         "name": "Grandmaster-At-Arms",
@@ -5252,6 +6818,11 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "ap": 1,
         },
+        "cooldown": [
+          110,
+          100,
+          90,
+        ],
       },
     },
     "shelf": [
@@ -5279,6 +6850,11 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "armorPerLevel": 5,
       "mr": 30,
       "mrPerLevel": 1.3,
+      "attackSpeed": 0.658,
+      "attackSpeedRatio": 0.658,
+      "attackSpeedPerLevel": 0.03,
+      "attackRange": 125,
+      "critDamage": 1.75,
     },
     "skillOrder": [
       "Q",
@@ -5316,6 +6892,14 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "bonusAd": 1.35,
         },
+        "cooldown": [
+          16,
+          14,
+          12,
+          10,
+          8,
+          6,
+        ],
       },
       "W": {
         "name": "Lightning Field",
@@ -5332,6 +6916,14 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "ap": 0.25,
         },
+        "cooldown": [
+          10,
+          10,
+          10,
+          10,
+          10,
+          10,
+        ],
       },
       "E": {
         "name": "Thundering Blow",
@@ -5343,6 +6935,14 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "bonusAd": 1,
         },
+        "cooldown": [
+          20,
+          18,
+          16,
+          14,
+          12,
+          10,
+        ],
       },
       "R": {
         "name": "Transform Mercury Cannon",
@@ -5352,6 +6952,14 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           0,
         ],
         "ratios": {},
+        "cooldown": [
+          6,
+          6,
+          6,
+          6,
+          6,
+          6,
+        ],
       },
     },
     "shelf": [
@@ -5379,6 +6987,11 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "armorPerLevel": 4.7,
       "mr": 33,
       "mrPerLevel": 1.1,
+      "attackSpeed": 0.625,
+      "attackSpeedRatio": 0.625,
+      "attackSpeedPerLevel": 0.03,
+      "attackRange": 550,
+      "critDamage": 1.75,
     },
     "skillOrder": [
       "Q",
@@ -5416,6 +7029,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           "totalAd": 0.44,
           "ap": 0.6,
         },
+        "cooldown": [
+          7,
+          6.5,
+          6,
+          5.5,
+          5,
+        ],
       },
       "W": {
         "name": "Deadly Flourish",
@@ -5431,6 +7051,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "totalAd": 0.5,
         },
+        "cooldown": [
+          12,
+          12,
+          12,
+          12,
+          12,
+        ],
       },
       "E": {
         "name": "Captive Audience",
@@ -5447,6 +7074,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           "totalAd": 1.2,
           "ap": 1,
         },
+        "cooldown": [
+          2,
+          2,
+          2,
+          2,
+          2,
+        ],
       },
       "R": {
         "name": "Curtain Call",
@@ -5460,6 +7094,11 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "totalAd": 0.25,
         },
+        "cooldown": [
+          120,
+          105,
+          90,
+        ],
       },
     },
     "shelf": [
@@ -5487,6 +7126,11 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "armorPerLevel": 4.2,
       "mr": 33,
       "mrPerLevel": 1.1,
+      "attackSpeed": 0.625,
+      "attackSpeedRatio": 0.625,
+      "attackSpeedPerLevel": 0.01,
+      "attackRange": 525,
+      "critDamage": 1.75,
     },
     "skillOrder": [
       "Q",
@@ -5517,6 +7161,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           0,
         ],
         "ratios": {},
+        "cooldown": [
+          0.9,
+          0.9,
+          0.9,
+          0.9,
+          0.9,
+        ],
       },
       "W": {
         "name": "Zap!",
@@ -5532,6 +7183,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "totalAd": 1.4,
         },
+        "cooldown": [
+          8,
+          7,
+          6,
+          5,
+          4,
+        ],
       },
       "E": {
         "name": "Flame Chompers!",
@@ -5547,6 +7205,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "ap": 1,
         },
+        "cooldown": [
+          24,
+          20.5,
+          17,
+          13.5,
+          10,
+        ],
       },
       "R": {
         "name": "Super Mega Death Rocket!",
@@ -5560,6 +7225,11 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "bonusAd": 1.55,
         },
+        "cooldown": [
+          85,
+          65,
+          45,
+        ],
       },
     },
     "shelf": [
@@ -5587,6 +7257,11 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "armorPerLevel": 5.2,
       "mr": 30,
       "mrPerLevel": 2.1,
+      "attackSpeed": 0.688,
+      "attackSpeedRatio": 0.625,
+      "attackSpeedPerLevel": 0.025,
+      "attackRange": 150,
+      "critDamage": 1.75,
     },
     "skillOrder": [
       "Q",
@@ -5621,6 +7296,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           190,
         ],
         "ratios": {},
+        "cooldown": [
+          3.5,
+          3.5,
+          3.5,
+          3.5,
+          3.5,
+        ],
       },
       "W": {
         "name": "Path Maker",
@@ -5634,6 +7316,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           165,
         ],
         "ratios": {},
+        "cooldown": [
+          14,
+          13,
+          12,
+          11,
+          10,
+        ],
       },
       "E": {
         "name": "Footwork",
@@ -5647,6 +7336,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           240,
         ],
         "ratios": {},
+        "cooldown": [
+          10,
+          9.5,
+          9,
+          8.5,
+          8,
+        ],
       },
       "R": {
         "name": "All Out",
@@ -5658,6 +7354,11 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           150,
         ],
         "ratios": {},
+        "cooldown": [
+          120,
+          100,
+          80,
+        ],
       },
     },
     "shelf": [
@@ -5685,6 +7386,11 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "armorPerLevel": 4.2,
       "mr": 33,
       "mrPerLevel": 1.1,
+      "attackSpeed": 0.644,
+      "attackSpeedRatio": 0.644,
+      "attackSpeedPerLevel": 0.018,
+      "attackRange": 525,
+      "critDamage": 1.75,
     },
     "skillOrder": [
       "Q",
@@ -5722,6 +7428,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           "bonusAd": 0.55,
           "ap": 0.2,
         },
+        "cooldown": [
+          10,
+          9,
+          8,
+          7,
+          6,
+        ],
       },
       "W": {
         "name": "Void Seeker",
@@ -5738,6 +7451,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           "totalAd": 1.3,
           "ap": 0.45,
         },
+        "cooldown": [
+          22,
+          20,
+          18,
+          16,
+          14,
+        ],
       },
       "E": {
         "name": "Supercharge",
@@ -5747,6 +7467,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           0,
         ],
         "ratios": {},
+        "cooldown": [
+          16,
+          14.5,
+          13,
+          11.5,
+          10,
+        ],
       },
       "R": {
         "name": "Killer Instinct",
@@ -5761,6 +7488,11 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           "totalAd": 0.9,
           "ap": 1.2,
         },
+        "cooldown": [
+          120,
+          90,
+          60,
+        ],
       },
     },
     "shelf": [
@@ -5788,6 +7520,11 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "armorPerLevel": 5.2,
       "mr": 33,
       "mrPerLevel": 1.1,
+      "attackSpeed": 0.694,
+      "attackSpeedRatio": 0.694,
+      "attackSpeedPerLevel": 0.045,
+      "attackRange": 525,
+      "critDamage": 1.75,
     },
     "skillOrder": [
       "Q",
@@ -5824,6 +7561,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "totalAd": 1.05,
         },
+        "cooldown": [
+          8,
+          8,
+          8,
+          8,
+          8,
+        ],
       },
       "W": {
         "name": "Sentinel",
@@ -5833,6 +7577,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           0,
         ],
         "ratios": {},
+        "cooldown": [
+          30,
+          30,
+          30,
+          30,
+          30,
+        ],
       },
       "E": {
         "name": "Rend",
@@ -5849,6 +7600,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           "totalAd": 0.7,
           "ap": 0.2,
         },
+        "cooldown": [
+          10,
+          9.5,
+          9,
+          8.5,
+          8,
+        ],
       },
       "R": {
         "name": "Fate's Call",
@@ -5858,6 +7616,11 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           0,
         ],
         "ratios": {},
+        "cooldown": [
+          160,
+          140,
+          120,
+        ],
       },
     },
     "shelf": [
@@ -5885,6 +7648,11 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "armorPerLevel": 5,
       "mr": 30,
       "mrPerLevel": 1.3,
+      "attackSpeed": 0.625,
+      "attackSpeedRatio": 0.625,
+      "attackSpeedPerLevel": 0.023,
+      "attackRange": 525,
+      "critDamage": 1.75,
     },
     "skillOrder": [
       "Q",
@@ -5921,6 +7689,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "ap": 0.7,
         },
+        "cooldown": [
+          9,
+          8,
+          7,
+          6,
+          5,
+        ],
       },
       "W": {
         "name": "Focused Resolve",
@@ -5936,6 +7711,9 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "ap": 0.45,
         },
+        "cooldown": [
+          12,
+        ],
       },
       "E": {
         "name": "Inspire",
@@ -5951,6 +7729,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "ap": 0.6,
         },
+        "cooldown": [
+          10,
+          9.5,
+          9,
+          8.5,
+          8,
+        ],
       },
       "R": {
         "name": "Mantra",
@@ -5960,6 +7745,12 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           0,
         ],
         "ratios": {},
+        "cooldown": [
+          40,
+          38,
+          36,
+          34,
+        ],
       },
     },
     "shelf": [
@@ -5987,6 +7778,11 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "armorPerLevel": 4.7,
       "mr": 30,
       "mrPerLevel": 1.3,
+      "attackSpeed": 0.625,
+      "attackSpeedRatio": 0.625,
+      "attackSpeedPerLevel": 0.0211,
+      "attackRange": 450,
+      "critDamage": 1.75,
     },
     "skillOrder": [
       "Q",
@@ -6023,6 +7819,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "ap": 0.35,
         },
+        "cooldown": [
+          1,
+          1,
+          1,
+          1,
+          1,
+        ],
       },
       "W": {
         "name": "Wall of Pain",
@@ -6036,6 +7839,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           1200,
         ],
         "ratios": {},
+        "cooldown": [
+          15,
+          15,
+          15,
+          15,
+          15,
+        ],
       },
       "E": {
         "name": "Defile",
@@ -6051,6 +7861,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "ap": 0.05,
         },
+        "cooldown": [
+          0.5,
+          0.5,
+          0.5,
+          0.5,
+          0.5,
+        ],
       },
       "R": {
         "name": "Requiem",
@@ -6064,6 +7881,11 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "ap": 0.7,
         },
+        "cooldown": [
+          200,
+          180,
+          160,
+        ],
       },
     },
     "shelf": [
@@ -6091,6 +7913,11 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "armorPerLevel": 4,
       "mr": 30,
       "mrPerLevel": 1.3,
+      "attackSpeed": 0.64,
+      "attackSpeedRatio": 0.64,
+      "attackSpeedPerLevel": 0.037,
+      "attackRange": 150,
+      "critDamage": 1.75,
     },
     "skillOrder": [
       "Q",
@@ -6127,6 +7954,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "ap": 0.6,
         },
+        "cooldown": [
+          10,
+          9.5,
+          9,
+          8.5,
+          8,
+        ],
       },
       "W": {
         "name": "Nether Blade",
@@ -6142,6 +7976,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "ap": 0.8,
         },
+        "cooldown": [
+          7,
+          7,
+          7,
+          7,
+          7,
+        ],
       },
       "E": {
         "name": "Force Pulse",
@@ -6157,6 +7998,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "ap": 0.65,
         },
+        "cooldown": [
+          21,
+          20,
+          19,
+          18,
+          17,
+        ],
       },
       "R": {
         "name": "Riftwalk",
@@ -6170,6 +8018,11 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "ap": 0.5,
         },
+        "cooldown": [
+          5,
+          3.5,
+          2,
+        ],
       },
     },
     "shelf": [
@@ -6197,6 +8050,11 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "armorPerLevel": 4.7,
       "mr": 32,
       "mrPerLevel": 2.05,
+      "attackSpeed": 0.658,
+      "attackSpeedRatio": 0.658,
+      "attackSpeedPerLevel": 0.0274,
+      "attackRange": 125,
+      "critDamage": 1.75,
     },
     "skillOrder": [
       "Q",
@@ -6233,6 +8091,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "ap": 0.4,
         },
+        "cooldown": [
+          11,
+          10,
+          9,
+          8,
+          7,
+        ],
       },
       "W": {
         "name": "Preparation",
@@ -6242,6 +8107,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           0,
         ],
         "ratios": {},
+        "cooldown": [
+          15,
+          14,
+          13,
+          12,
+          11,
+        ],
       },
       "E": {
         "name": "Shunpo",
@@ -6258,6 +8130,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           "totalAd": 0.4,
           "ap": 0.25,
         },
+        "cooldown": [
+          12,
+          11,
+          10,
+          9,
+          8,
+        ],
       },
       "R": {
         "name": "Death Lotus",
@@ -6267,6 +8146,11 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           0,
         ],
         "ratios": {},
+        "cooldown": [
+          75,
+          60,
+          45,
+        ],
       },
     },
     "shelf": [
@@ -6294,6 +8178,11 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "armorPerLevel": 4.2,
       "mr": 22,
       "mrPerLevel": 1.3,
+      "attackSpeed": 0.625,
+      "attackSpeedRatio": 0.667,
+      "attackSpeedPerLevel": 0.015,
+      "attackRange": 175,
+      "critDamage": 1.75,
     },
     "skillOrder": [
       "Q",
@@ -6331,6 +8220,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           "bonusAd": 0.6,
           "ap": 0.5,
         },
+        "cooldown": [
+          12,
+          11,
+          10,
+          9,
+          8,
+        ],
       },
       "W": {
         "name": "Celestial Blessing",
@@ -6346,6 +8242,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "ap": 0.25,
         },
+        "cooldown": [
+          15,
+          15,
+          15,
+          15,
+          15,
+        ],
       },
       "E": {
         "name": "Starfire Spellblade",
@@ -6362,6 +8265,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           "bonusAd": 0.1,
           "ap": 0.2,
         },
+        "cooldown": [
+          8,
+          7.5,
+          7,
+          6.5,
+          6,
+        ],
       },
       "R": {
         "name": "Divine Judgment",
@@ -6376,6 +8286,11 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           "bonusAd": 1,
           "ap": 0.7,
         },
+        "cooldown": [
+          160,
+          120,
+          80,
+        ],
       },
     },
     "shelf": [
@@ -6403,6 +8318,11 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "armorPerLevel": 4.5,
       "mr": 32,
       "mrPerLevel": 2.05,
+      "attackSpeed": 0.669,
+      "attackSpeedRatio": 0.669,
+      "attackSpeedPerLevel": 0.027,
+      "attackRange": 175,
+      "critDamage": 1.75,
     },
     "skillOrder": [
       "Q",
@@ -6439,6 +8359,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "bonusAd": 0.85,
         },
+        "cooldown": [
+          7,
+          6.5,
+          6,
+          5.5,
+          5,
+        ],
       },
       "W": {
         "name": "Blade's Reach",
@@ -6454,6 +8381,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "bonusAd": 1.1,
         },
+        "cooldown": [
+          13,
+          12,
+          11,
+          10,
+          9,
+        ],
       },
       "E": {
         "name": "Shadow Step",
@@ -6463,6 +8397,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           0,
         ],
         "ratios": {},
+        "cooldown": [
+          21,
+          19,
+          17,
+          15,
+          13,
+        ],
       },
       "R": {
         "name": "Umbral Trespass",
@@ -6476,6 +8417,11 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "bonusAd": 1.5,
         },
+        "cooldown": [
+          120,
+          100,
+          80,
+        ],
       },
     },
     "shelf": [
@@ -6503,6 +8449,11 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "armorPerLevel": 4.95,
       "mr": 30,
       "mrPerLevel": 1.3,
+      "attackSpeed": 0.625,
+      "attackSpeedRatio": 0.69,
+      "attackSpeedPerLevel": 0.034,
+      "attackRange": 550,
+      "critDamage": 1.75,
     },
     "skillOrder": [
       "Q",
@@ -6539,6 +8490,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "ap": 0.75,
         },
+        "cooldown": [
+          7,
+          6.25,
+          5.5,
+          4.75,
+          4,
+        ],
       },
       "W": {
         "name": "Electrical Surge",
@@ -6554,6 +8512,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "ap": 0.8,
         },
+        "cooldown": [
+          13,
+          11.25,
+          9.5,
+          7.75,
+          6,
+        ],
       },
       "E": {
         "name": "Lightning Rush",
@@ -6569,6 +8534,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "ap": 0.8,
         },
+        "cooldown": [
+          10,
+          9,
+          8,
+          7,
+          6,
+        ],
       },
       "R": {
         "name": "Slicing Maelstrom",
@@ -6582,6 +8554,11 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "ap": 0.225,
         },
+        "cooldown": [
+          120,
+          100,
+          80,
+        ],
       },
     },
     "shelf": [
@@ -6609,6 +8586,11 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "armorPerLevel": 4.2,
       "mr": 32,
       "mrPerLevel": 2.05,
+      "attackSpeed": 0.668,
+      "attackSpeedRatio": 0.668,
+      "attackSpeedPerLevel": 0.027,
+      "attackRange": 125,
+      "critDamage": 1.75,
     },
     "skillOrder": [
       "Q",
@@ -6645,6 +8627,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "bonusAd": 1.1,
         },
+        "cooldown": [
+          4,
+          4,
+          4,
+          4,
+          4,
+        ],
       },
       "W": {
         "name": "Void Spike",
@@ -6660,6 +8649,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "bonusAd": 1,
         },
+        "cooldown": [
+          9,
+          9,
+          9,
+          9,
+          9,
+        ],
       },
       "E": {
         "name": "Leap",
@@ -6675,6 +8671,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "bonusAd": 0.4,
         },
+        "cooldown": [
+          20,
+          18,
+          16,
+          14,
+          12,
+        ],
       },
       "R": {
         "name": "Void Assault",
@@ -6684,6 +8687,11 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           0,
         ],
         "ratios": {},
+        "cooldown": [
+          100,
+          85,
+          70,
+        ],
       },
     },
     "shelf": [
@@ -6711,6 +8719,11 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "armorPerLevel": 4.7,
       "mr": 33,
       "mrPerLevel": 1.1,
+      "attackSpeed": 0.625,
+      "attackSpeedRatio": 0.625,
+      "attackSpeedPerLevel": 0.035,
+      "attackRange": 500,
+      "critDamage": 1.75,
     },
     "skillOrder": [
       "Q",
@@ -6747,6 +8760,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "bonusAd": 0.75,
         },
+        "cooldown": [
+          9,
+          9,
+          9,
+          9,
+          9,
+        ],
       },
       "W": {
         "name": "Wolf's Frenzy",
@@ -6763,6 +8783,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           "bonusAd": 0.2,
           "ap": 0.2,
         },
+        "cooldown": [
+          18,
+          17,
+          16,
+          15,
+          14,
+        ],
       },
       "E": {
         "name": "Mounting Dread",
@@ -6778,6 +8805,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "bonusAd": 1,
         },
+        "cooldown": [
+          14,
+          12.5,
+          11,
+          9.5,
+          8,
+        ],
       },
       "R": {
         "name": "Lamb's Respite",
@@ -6789,6 +8823,11 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           375,
         ],
         "ratios": {},
+        "cooldown": [
+          180,
+          150,
+          120,
+        ],
       },
     },
     "shelf": [
@@ -6816,6 +8855,11 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "armorPerLevel": 5.2,
       "mr": 28,
       "mrPerLevel": 2.05,
+      "attackSpeed": 0.625,
+      "attackSpeedRatio": 0.625,
+      "attackSpeedPerLevel": 0.035,
+      "attackRange": 125,
+      "critDamage": 1.75,
     },
     "skillOrder": [
       "Q",
@@ -6852,6 +8896,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "bonusAd": 0.65,
         },
+        "cooldown": [
+          11,
+          10,
+          9,
+          8,
+          7,
+        ],
       },
       "W": {
         "name": "Violent Tendencies",
@@ -6865,6 +8916,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           60,
         ],
         "ratios": {},
+        "cooldown": [
+          11,
+          9.5,
+          8,
+          6.5,
+          5,
+        ],
       },
       "E": {
         "name": "Jousting",
@@ -6880,6 +8938,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "bonusAd": 0.65,
         },
+        "cooldown": [
+          13,
+          12,
+          11,
+          10,
+          9,
+        ],
       },
       "R": {
         "name": "Chaaaaaaaarge!!!",
@@ -6889,6 +8954,11 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           0,
         ],
         "ratios": {},
+        "cooldown": [
+          140,
+          125,
+          110,
+        ],
       },
     },
     "shelf": [
@@ -6916,6 +8986,11 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "armorPerLevel": 4.45,
       "mr": 33,
       "mrPerLevel": 1.1,
+      "attackSpeed": 0.665,
+      "attackSpeedRatio": 0.665,
+      "attackSpeedPerLevel": 0.0265,
+      "attackRange": 500,
+      "critDamage": 1.75,
     },
     "skillOrder": [
       "Q",
@@ -6952,6 +9027,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "ap": 0.8,
         },
+        "cooldown": [
+          7,
+          7,
+          7,
+          7,
+          7,
+        ],
       },
       "W": {
         "name": "Bio-Arcane Barrage",
@@ -6961,6 +9043,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           0,
         ],
         "ratios": {},
+        "cooldown": [
+          17,
+          17,
+          17,
+          17,
+          17,
+        ],
       },
       "E": {
         "name": "Void Ooze",
@@ -6976,6 +9065,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "ap": 0.65,
         },
+        "cooldown": [
+          12,
+          12,
+          12,
+          12,
+          12,
+        ],
       },
       "R": {
         "name": "Living Artillery",
@@ -6990,6 +9086,11 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           "bonusAd": 0.75,
           "ap": 0.35,
         },
+        "cooldown": [
+          2,
+          1.5,
+          1,
+        ],
       },
     },
     "shelf": [
@@ -7017,6 +9118,11 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "armorPerLevel": 4.2,
       "mr": 30,
       "mrPerLevel": 1.3,
+      "attackSpeed": 0.658,
+      "attackSpeedRatio": 0.4,
+      "attackSpeedPerLevel": 0.015,
+      "attackRange": 525,
+      "critDamage": 1.75,
     },
     "skillOrder": [
       "Q",
@@ -7053,6 +9159,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "ap": 0.4,
         },
+        "cooldown": [
+          6,
+          6,
+          6,
+          6,
+          6,
+        ],
       },
       "W": {
         "name": "Distortion",
@@ -7068,6 +9181,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "ap": 0.7,
         },
+        "cooldown": [
+          15,
+          13.75,
+          12.5,
+          11.25,
+          10,
+        ],
       },
       "E": {
         "name": "Ethereal Chains",
@@ -7083,6 +9203,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "ap": 0.4,
         },
+        "cooldown": [
+          14,
+          13.25,
+          12.5,
+          11.75,
+          11,
+        ],
       },
       "R": {
         "name": "Mimic",
@@ -7096,6 +9223,11 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "ap": 0.4,
         },
+        "cooldown": [
+          50,
+          40,
+          30,
+        ],
       },
     },
     "shelf": [
@@ -7123,6 +9255,11 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "armorPerLevel": 4.5,
       "mr": 32,
       "mrPerLevel": 2.05,
+      "attackSpeed": 0.651,
+      "attackSpeedRatio": 0.651,
+      "attackSpeedPerLevel": 0.03,
+      "attackRange": 125,
+      "critDamage": 1.75,
     },
     "skillOrder": [
       "Q",
@@ -7159,6 +9296,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "bonusAd": 1.15,
         },
+        "cooldown": [
+          10,
+          9,
+          8,
+          7,
+          6,
+        ],
       },
       "W": {
         "name": "Safeguard",
@@ -7174,6 +9318,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "ap": 0.8,
         },
+        "cooldown": [
+          12,
+          12,
+          12,
+          12,
+          12,
+        ],
       },
       "E": {
         "name": "Tempest",
@@ -7189,6 +9340,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "totalAd": 1,
         },
+        "cooldown": [
+          9,
+          9,
+          9,
+          9,
+          9,
+        ],
       },
       "R": {
         "name": "Dragon's Rage",
@@ -7202,6 +9360,11 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "bonusAd": 2,
         },
+        "cooldown": [
+          110,
+          85,
+          60,
+        ],
       },
     },
     "shelf": [
@@ -7229,6 +9392,11 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "armorPerLevel": 4.8,
       "mr": 32,
       "mrPerLevel": 2.05,
+      "attackSpeed": 0.625,
+      "attackSpeedRatio": 0.625,
+      "attackSpeedPerLevel": 0.029,
+      "attackRange": 125,
+      "critDamage": 1.75,
     },
     "skillOrder": [
       "Q",
@@ -7265,6 +9433,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "ap": 0.3,
         },
+        "cooldown": [
+          5,
+          5,
+          5,
+          5,
+          5,
+        ],
       },
       "W": {
         "name": "Eclipse",
@@ -7278,6 +9453,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           24,
         ],
         "ratios": {},
+        "cooldown": [
+          14,
+          13,
+          12,
+          11,
+          10,
+        ],
       },
       "E": {
         "name": "Zenith Blade",
@@ -7293,6 +9475,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "ap": 0.4,
         },
+        "cooldown": [
+          12,
+          10.5,
+          9,
+          7.5,
+          6,
+        ],
       },
       "R": {
         "name": "Solar Flare",
@@ -7306,6 +9495,11 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "ap": 0.8,
         },
+        "cooldown": [
+          90,
+          75,
+          60,
+        ],
       },
     },
     "shelf": [
@@ -7333,6 +9527,11 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "armorPerLevel": 4.5,
       "mr": 32,
       "mrPerLevel": 1.55,
+      "attackSpeed": 0.625,
+      "attackSpeedRatio": 0.625,
+      "attackSpeedPerLevel": 0.027,
+      "attackRange": 325,
+      "critDamage": 1.75,
     },
     "skillOrder": [
       "Q",
@@ -7369,6 +9568,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "ap": 0.35,
         },
+        "cooldown": [
+          6,
+          5.5,
+          5,
+          4.5,
+          4,
+        ],
       },
       "W": {
         "name": "Watch Out! Eep!",
@@ -7384,6 +9590,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "ap": 0.35,
         },
+        "cooldown": [
+          14,
+          13,
+          12,
+          11,
+          10,
+        ],
       },
       "E": {
         "name": "Swirlseed",
@@ -7399,6 +9612,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "ap": 0.5,
         },
+        "cooldown": [
+          12,
+          12,
+          12,
+          12,
+          12,
+        ],
       },
       "R": {
         "name": "Lilting Lullaby",
@@ -7412,6 +9632,11 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "ap": 0.4,
         },
+        "cooldown": [
+          150,
+          130,
+          110,
+        ],
       },
     },
     "shelf": [
@@ -7439,6 +9664,11 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "armorPerLevel": 4.2,
       "mr": 30,
       "mrPerLevel": 1.3,
+      "attackSpeed": 0.656,
+      "attackSpeedRatio": 0.625,
+      "attackSpeedPerLevel": 0.015,
+      "attackRange": 550,
+      "critDamage": 1.75,
     },
     "skillOrder": [
       "Q",
@@ -7475,6 +9705,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "ap": 0.75,
         },
+        "cooldown": [
+          8,
+          7,
+          6,
+          5,
+          4,
+        ],
       },
       "W": {
         "name": "Ring of Frost",
@@ -7490,6 +9727,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "ap": 0.7,
         },
+        "cooldown": [
+          10,
+          9.5,
+          9,
+          8.5,
+          8,
+        ],
       },
       "E": {
         "name": "Glacial Path",
@@ -7505,6 +9749,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "ap": 0.6,
         },
+        "cooldown": [
+          24,
+          21,
+          18,
+          15,
+          12,
+        ],
       },
       "R": {
         "name": "Frozen Tomb",
@@ -7518,6 +9769,11 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "ap": 0.75,
         },
+        "cooldown": [
+          120,
+          100,
+          80,
+        ],
       },
     },
     "shelf": [
@@ -7545,6 +9801,11 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "armorPerLevel": 4.2,
       "mr": 33,
       "mrPerLevel": 1.1,
+      "attackSpeed": 0.638,
+      "attackSpeedRatio": 0.638,
+      "attackSpeedPerLevel": 0.025,
+      "attackRange": 500,
+      "critDamage": 1.75,
     },
     "skillOrder": [
       "Q",
@@ -7581,6 +9842,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "bonusAd": 0.6,
         },
+        "cooldown": [
+          9,
+          8,
+          7,
+          6,
+          5,
+        ],
       },
       "W": {
         "name": "Ardent Blaze",
@@ -7596,6 +9864,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "ap": 0.9,
         },
+        "cooldown": [
+          14,
+          13,
+          12,
+          11,
+          10,
+        ],
       },
       "E": {
         "name": "Relentless Pursuit",
@@ -7605,6 +9880,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           0,
         ],
         "ratios": {},
+        "cooldown": [
+          16,
+          15.5,
+          15,
+          14.5,
+          14,
+        ],
       },
       "R": {
         "name": "The Culling",
@@ -7619,6 +9901,11 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           "totalAd": 0.25,
           "ap": 0.15,
         },
+        "cooldown": [
+          110,
+          100,
+          90,
+        ],
       },
     },
     "shelf": [
@@ -7646,6 +9933,11 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "armorPerLevel": 4.6,
       "mr": 30,
       "mrPerLevel": 1.3,
+      "attackSpeed": 0.625,
+      "attackSpeedRatio": 0.625,
+      "attackSpeedPerLevel": 0.0225,
+      "attackRange": 550,
+      "critDamage": 1.75,
     },
     "skillOrder": [
       "Q",
@@ -7682,6 +9974,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "ap": 0.5,
         },
+        "cooldown": [
+          7,
+          7,
+          7,
+          7,
+          7,
+        ],
       },
       "W": {
         "name": "Whimsy",
@@ -7691,6 +9990,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           0,
         ],
         "ratios": {},
+        "cooldown": [
+          18,
+          18,
+          18,
+          18,
+          18,
+        ],
       },
       "E": {
         "name": "Help, Pix!",
@@ -7706,6 +10012,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "ap": 0.5,
         },
+        "cooldown": [
+          8,
+          8,
+          8,
+          8,
+          8,
+        ],
       },
       "R": {
         "name": "Wild Growth",
@@ -7719,6 +10032,11 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "ap": 0.55,
         },
+        "cooldown": [
+          100,
+          90,
+          80,
+        ],
       },
     },
     "shelf": [
@@ -7746,6 +10064,11 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "armorPerLevel": 5.2,
       "mr": 30,
       "mrPerLevel": 1.3,
+      "attackSpeed": 0.669,
+      "attackSpeedRatio": 0.625,
+      "attackSpeedPerLevel": 0.03,
+      "attackRange": 550,
+      "critDamage": 1.75,
     },
     "skillOrder": [
       "Q",
@@ -7782,6 +10105,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "ap": 0.65,
         },
+        "cooldown": [
+          11,
+          10.5,
+          10,
+          9.5,
+          9,
+        ],
       },
       "W": {
         "name": "Prismatic Barrier",
@@ -7797,6 +10127,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "ap": 0.4,
         },
+        "cooldown": [
+          14,
+          13,
+          12,
+          11,
+          10,
+        ],
       },
       "E": {
         "name": "Lucent Singularity",
@@ -7812,6 +10149,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "ap": 0.8,
         },
+        "cooldown": [
+          10,
+          9.5,
+          9,
+          8.5,
+          8,
+        ],
       },
       "R": {
         "name": "Final Spark",
@@ -7825,6 +10169,11 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "ap": 1.2,
         },
+        "cooldown": [
+          60,
+          50,
+          40,
+        ],
       },
     },
     "shelf": [
@@ -7852,6 +10201,11 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "armorPerLevel": 4.95,
       "mr": 28,
       "mrPerLevel": 2.05,
+      "attackSpeed": 0.736,
+      "attackSpeedRatio": 0.638,
+      "attackSpeedPerLevel": 0.034,
+      "attackRange": 125,
+      "critDamage": 1.75,
     },
     "skillOrder": [
       "Q",
@@ -7888,6 +10242,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "ap": 0.6,
         },
+        "cooldown": [
+          8,
+          8,
+          8,
+          8,
+          8,
+        ],
       },
       "W": {
         "name": "Thunderclap",
@@ -7903,6 +10264,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "ap": 0.3,
         },
+        "cooldown": [
+          10,
+          9.5,
+          9,
+          8.5,
+          8,
+        ],
       },
       "E": {
         "name": "Ground Slam",
@@ -7918,6 +10286,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "ap": 0.6,
         },
+        "cooldown": [
+          7,
+          7,
+          7,
+          7,
+          7,
+        ],
       },
       "R": {
         "name": "Unstoppable Force",
@@ -7931,6 +10306,11 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "ap": 0.9,
         },
+        "cooldown": [
+          130,
+          105,
+          80,
+        ],
       },
     },
     "shelf": [
@@ -7958,6 +10338,11 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "armorPerLevel": 4.7,
       "mr": 30,
       "mrPerLevel": 1.3,
+      "attackSpeed": 0.625,
+      "attackSpeedRatio": 0.625,
+      "attackSpeedPerLevel": 0.015,
+      "attackRange": 500,
+      "critDamage": 1.75,
     },
     "skillOrder": [
       "Q",
@@ -7994,6 +10379,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "ap": 0.55,
         },
+        "cooldown": [
+          6,
+          6,
+          6,
+          6,
+          6,
+        ],
       },
       "W": {
         "name": "Void Swarm",
@@ -8023,6 +10415,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           "bonusAd": 0.4,
           "ap": 0.2,
         },
+        "cooldown": [
+          8,
+          8,
+          8,
+          8,
+          8,
+        ],
       },
       "E": {
         "name": "Malefic Visions",
@@ -8038,6 +10437,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "ap": 0.05,
         },
+        "cooldown": [
+          11,
+          10,
+          9,
+          8,
+          7,
+        ],
       },
       "R": {
         "name": "Nether Grasp",
@@ -8051,6 +10457,11 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "ap": 0.08,
         },
+        "cooldown": [
+          140,
+          110,
+          80,
+        ],
       },
     },
     "shelf": [
@@ -8078,6 +10489,11 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "armorPerLevel": 5.2,
       "mr": 32,
       "mrPerLevel": 2.05,
+      "attackSpeed": 0.8,
+      "attackSpeedRatio": 0.695,
+      "attackSpeedPerLevel": 0.0213,
+      "attackRange": 125,
+      "critDamage": 1.75,
     },
     "skillOrder": [
       "Q",
@@ -8114,6 +10530,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "ap": 0.4,
         },
+        "cooldown": [
+          7,
+          6.5,
+          6,
+          5.5,
+          5,
+        ],
       },
       "W": {
         "name": "Twisted Advance",
@@ -8129,6 +10552,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "ap": 0.4,
         },
+        "cooldown": [
+          14,
+          13,
+          12,
+          11,
+          10,
+        ],
       },
       "E": {
         "name": "Sapling Toss",
@@ -8144,6 +10574,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "ap": 0.25,
         },
+        "cooldown": [
+          18,
+          17,
+          16,
+          15,
+          14,
+        ],
       },
       "R": {
         "name": "Nature's Grasp",
@@ -8157,6 +10594,11 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "ap": 0.75,
         },
+        "cooldown": [
+          130,
+          110,
+          90,
+        ],
       },
     },
     "shelf": [
@@ -8184,6 +10626,11 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "armorPerLevel": 5,
       "mr": 32,
       "mrPerLevel": 2.05,
+      "attackSpeed": 0.679,
+      "attackSpeedRatio": 0.679,
+      "attackSpeedPerLevel": 0.025,
+      "attackRange": 175,
+      "critDamage": 1.75,
     },
     "skillOrder": [
       "Q",
@@ -8220,6 +10667,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "totalAd": 0.5,
         },
+        "cooldown": [
+          20,
+          19.5,
+          19,
+          18.5,
+          18,
+        ],
       },
       "W": {
         "name": "Meditate",
@@ -8229,6 +10683,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           0,
         ],
         "ratios": {},
+        "cooldown": [
+          10,
+          10,
+          10,
+          10,
+          10,
+        ],
       },
       "E": {
         "name": "Wuju Style",
@@ -8244,6 +10705,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "bonusAd": 0.35,
         },
+        "cooldown": [
+          14,
+          14,
+          14,
+          14,
+          14,
+        ],
       },
       "R": {
         "name": "Highlander",
@@ -8253,6 +10721,11 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           0,
         ],
         "ratios": {},
+        "cooldown": [
+          85,
+          85,
+          85,
+        ],
       },
     },
     "shelf": [
@@ -8280,6 +10753,11 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "armorPerLevel": 5.2,
       "mr": 30,
       "mrPerLevel": 1.3,
+      "attackSpeed": 0.625,
+      "attackSpeedRatio": 0.4,
+      "attackSpeedPerLevel": 0.025,
+      "attackRange": 550,
+      "critDamage": 1.75,
     },
     "skillOrder": [
       "Q",
@@ -8316,6 +10794,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "ap": 0.085,
         },
+        "cooldown": [
+          10,
+          9,
+          8,
+          7,
+          6,
+        ],
       },
       "W": {
         "name": "Rebuttal",
@@ -8325,6 +10810,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           0,
         ],
         "ratios": {},
+        "cooldown": [
+          35,
+          32,
+          29,
+          26,
+          23,
+        ],
       },
       "E": {
         "name": "Solar Snare",
@@ -8340,6 +10832,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "ap": 0.6,
         },
+        "cooldown": [
+          12,
+          11.5,
+          11,
+          10.5,
+          10,
+        ],
       },
       "R": {
         "name": "Golden Eclipse",
@@ -8351,6 +10850,11 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           30,
         ],
         "ratios": {},
+        "cooldown": [
+          120,
+          100,
+          80,
+        ],
       },
     },
     "shelf": [
@@ -8378,6 +10882,11 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "armorPerLevel": 4.6,
       "mr": 30,
       "mrPerLevel": 1.3,
+      "attackSpeed": 0.625,
+      "attackSpeedRatio": 0.625,
+      "attackSpeedPerLevel": 0.03,
+      "attackRange": 525,
+      "critDamage": 1.75,
     },
     "skillOrder": [
       "Q",
@@ -8414,6 +10923,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "ap": 1.2,
         },
+        "cooldown": [
+          10,
+          10,
+          10,
+          10,
+          10,
+        ],
       },
       "W": {
         "name": "Cozy Campfire",
@@ -8423,6 +10939,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           0,
         ],
         "ratios": {},
+        "cooldown": [
+          29,
+          27,
+          25,
+          23,
+          21,
+        ],
       },
       "E": {
         "name": "Warm Hugs",
@@ -8438,6 +10961,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "ap": 0.45,
         },
+        "cooldown": [
+          0.5,
+          0.5,
+          0.5,
+          0.5,
+          0.5,
+        ],
       },
       "R": {
         "name": "Breath of Life",
@@ -8451,6 +10981,11 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "ap": 0.5,
         },
+        "cooldown": [
+          160,
+          145,
+          130,
+        ],
       },
     },
     "shelf": [
@@ -8478,6 +11013,11 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "armorPerLevel": 4,
       "mr": 33,
       "mrPerLevel": 1.1,
+      "attackSpeed": 0.656,
+      "attackSpeedRatio": 0.656,
+      "attackSpeedPerLevel": 0.03,
+      "attackRange": 550,
+      "critDamage": 1.75,
     },
     "skillOrder": [
       "Q",
@@ -8515,6 +11055,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           "totalAd": 1,
           "ap": 0.35,
         },
+        "cooldown": [
+          7,
+          6,
+          5,
+          4,
+          3,
+        ],
       },
       "W": {
         "name": "Strut",
@@ -8528,6 +11075,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           50,
         ],
         "ratios": {},
+        "cooldown": [
+          12,
+          12,
+          12,
+          12,
+          12,
+        ],
       },
       "E": {
         "name": "Make It Rain",
@@ -8543,6 +11097,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "ap": 0.15,
         },
+        "cooldown": [
+          18,
+          17,
+          16,
+          15,
+          14,
+        ],
       },
       "R": {
         "name": "Bullet Time",
@@ -8555,6 +11116,11 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           "totalAd": 10.5,
           "ap": 3.5,
         },
+        "cooldown": [
+          120,
+          110,
+          100,
+        ],
       },
     },
     "shelf": [
@@ -8582,6 +11148,11 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "armorPerLevel": 4.2,
       "mr": 32,
       "mrPerLevel": 2.05,
+      "attackSpeed": 0.625,
+      "attackSpeedRatio": 0.625,
+      "attackSpeedPerLevel": 0.01,
+      "attackRange": 175,
+      "critDamage": 1.75,
     },
     "skillOrder": [
       "Q",
@@ -8631,6 +11202,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "ap": 0.7,
         },
+        "cooldown": [
+          8,
+          7,
+          6,
+          5,
+          4,
+        ],
       },
       "W": {
         "name": "Indestructible",
@@ -8640,6 +11218,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           0,
         ],
         "ratios": {},
+        "cooldown": [
+          12,
+          11,
+          10,
+          9,
+          8,
+        ],
       },
       "E": {
         "name": "Death's Grasp",
@@ -8655,6 +11240,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "ap": 0.4,
         },
+        "cooldown": [
+          18,
+          16,
+          14,
+          12,
+          10,
+        ],
       },
       "R": {
         "name": "Realm of Death",
@@ -8664,6 +11256,11 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           0,
         ],
         "ratios": {},
+        "cooldown": [
+          140,
+          120,
+          100,
+        ],
       },
     },
     "shelf": [
@@ -8691,6 +11288,11 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "armorPerLevel": 4.2,
       "mr": 30,
       "mrPerLevel": 1.3,
+      "attackSpeed": 0.625,
+      "attackSpeedRatio": 0.625,
+      "attackSpeedPerLevel": 0.0153,
+      "attackRange": 450,
+      "critDamage": 1.75,
     },
     "skillOrder": [
       "Q",
@@ -8727,6 +11329,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "ap": 0.9,
         },
+        "cooldown": [
+          10,
+          10,
+          10,
+          10,
+          10,
+        ],
       },
       "W": {
         "name": "Tormented Shadow",
@@ -8742,6 +11351,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "ap": 0.085,
         },
+        "cooldown": [
+          12,
+          12,
+          12,
+          12,
+          12,
+        ],
       },
       "E": {
         "name": "Black Shield",
@@ -8757,6 +11373,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "ap": 0.7,
         },
+        "cooldown": [
+          26,
+          23.5,
+          21,
+          18.5,
+          16,
+        ],
       },
       "R": {
         "name": "Soul Shackles",
@@ -8770,6 +11393,11 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "ap": 0.8,
         },
+        "cooldown": [
+          120,
+          110,
+          100,
+        ],
       },
     },
     "shelf": [
@@ -8797,6 +11425,11 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "armorPerLevel": 4.2,
       "mr": 32,
       "mrPerLevel": 2.05,
+      "attackSpeed": 0.663,
+      "attackSpeedRatio": 0.625,
+      "attackSpeedPerLevel": 0.021,
+      "attackRange": 125,
+      "critDamage": 1.75,
     },
     "skillOrder": [
       "Q",
@@ -8833,6 +11466,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "bonusAd": 0.2,
         },
+        "cooldown": [
+          9,
+          8.5,
+          8,
+          7.5,
+          7,
+        ],
       },
       "W": {
         "name": "The Call of the Pack",
@@ -8842,6 +11482,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           0,
         ],
         "ratios": {},
+        "cooldown": [
+          26,
+          24,
+          22,
+          20,
+          18,
+        ],
       },
       "E": {
         "name": "Eviscerate",
@@ -8857,6 +11504,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "bonusAd": 0.4,
         },
+        "cooldown": [
+          11,
+          10,
+          9,
+          8,
+          7,
+        ],
       },
       "R": {
         "name": "Hounds' Pursuit",
@@ -8870,6 +11524,11 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "bonusAd": 1.2,
         },
+        "cooldown": [
+          110,
+          95,
+          80,
+        ],
       },
     },
     "shelf": [
@@ -8897,6 +11556,11 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "armorPerLevel": 5.2,
       "mr": 30,
       "mrPerLevel": 1.3,
+      "attackSpeed": 0.644,
+      "attackSpeedRatio": 0.644,
+      "attackSpeedPerLevel": 0.0261,
+      "attackRange": 550,
+      "critDamage": 1.75,
     },
     "skillOrder": [
       "Q",
@@ -8933,6 +11597,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "ap": 0.5,
         },
+        "cooldown": [
+          12,
+          11,
+          10,
+          9,
+          8,
+        ],
       },
       "W": {
         "name": "Ebb and Flow",
@@ -8948,6 +11619,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "ap": 0.5,
         },
+        "cooldown": [
+          10,
+          10,
+          10,
+          10,
+          10,
+        ],
       },
       "E": {
         "name": "Tidecaller's Blessing",
@@ -8963,6 +11641,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "ap": 0.2,
         },
+        "cooldown": [
+          11,
+          11,
+          11,
+          11,
+          11,
+        ],
       },
       "R": {
         "name": "Tidal Wave",
@@ -8976,6 +11661,11 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "ap": 0.6,
         },
+        "cooldown": [
+          120,
+          110,
+          100,
+        ],
       },
     },
     "shelf": [
@@ -9003,6 +11693,11 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "armorPerLevel": 4.7,
       "mr": 32,
       "mrPerLevel": 2.05,
+      "attackSpeed": 0.638,
+      "attackSpeedRatio": 0.638,
+      "attackSpeedPerLevel": 0.0348,
+      "attackRange": 125,
+      "critDamage": 1.75,
     },
     "skillOrder": [
       "Q",
@@ -9037,6 +11732,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           115,
         ],
         "ratios": {},
+        "cooldown": [
+          7.5,
+          6.5,
+          5.5,
+          4.5,
+          3.5,
+        ],
       },
       "W": {
         "name": "Wither",
@@ -9046,6 +11748,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           0,
         ],
         "ratios": {},
+        "cooldown": [
+          15,
+          14,
+          13,
+          12,
+          11,
+        ],
       },
       "E": {
         "name": "Spirit Fire",
@@ -9061,6 +11770,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "ap": 0.6,
         },
+        "cooldown": [
+          12,
+          12,
+          12,
+          12,
+          12,
+        ],
       },
       "R": {
         "name": "Fury of the Sands",
@@ -9070,6 +11786,11 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           0,
         ],
         "ratios": {},
+        "cooldown": [
+          120,
+          100,
+          80,
+        ],
       },
     },
     "shelf": [
@@ -9097,6 +11818,11 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "armorPerLevel": 4.95,
       "mr": 32,
       "mrPerLevel": 2.05,
+      "attackSpeed": 0.706,
+      "attackSpeedRatio": 0.612,
+      "attackSpeedPerLevel": 0.01,
+      "attackRange": 175,
+      "critDamage": 1.75,
     },
     "skillOrder": [
       "Q",
@@ -9133,6 +11859,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "ap": 0.9,
         },
+        "cooldown": [
+          14,
+          13,
+          12,
+          11,
+          10,
+        ],
       },
       "W": {
         "name": "Titan's Wrath",
@@ -9148,6 +11881,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "ap": 0.4,
         },
+        "cooldown": [
+          12,
+          12,
+          12,
+          12,
+          12,
+        ],
       },
       "E": {
         "name": "Riptide",
@@ -9163,6 +11903,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "ap": 0.5,
         },
+        "cooldown": [
+          7,
+          6.5,
+          6,
+          5.5,
+          5,
+        ],
       },
       "R": {
         "name": "Depth Charge",
@@ -9176,6 +11923,11 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "ap": 0.4,
         },
+        "cooldown": [
+          120,
+          100,
+          80,
+        ],
       },
     },
     "shelf": [
@@ -9203,6 +11955,11 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "armorPerLevel": 5.2,
       "mr": 30,
       "mrPerLevel": 1.3,
+      "attackSpeed": 0.625,
+      "attackSpeedRatio": 0.67,
+      "attackSpeedPerLevel": 0.035,
+      "attackRange": 550,
+      "critDamage": 1.75,
     },
     "skillOrder": [
       "Q",
@@ -9239,6 +11996,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "ap": 0.5,
         },
+        "cooldown": [
+          9,
+          8.5,
+          8,
+          7.5,
+          7,
+        ],
       },
       "W": {
         "name": "Shapesplitter",
@@ -9254,6 +12018,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "ap": 0.6,
         },
+        "cooldown": [
+          16,
+          15,
+          14,
+          13,
+          12,
+        ],
       },
       "E": {
         "name": "Tangle-Barbs",
@@ -9269,6 +12040,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "ap": 0.65,
         },
+        "cooldown": [
+          12,
+          11.5,
+          11,
+          10.5,
+          10,
+        ],
       },
       "R": {
         "name": "Pop Blossom",
@@ -9282,6 +12060,11 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "ap": 1.2,
         },
+        "cooldown": [
+          120,
+          105,
+          90,
+        ],
       },
     },
     "shelf": [
@@ -9309,6 +12092,11 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "armorPerLevel": 5,
       "mr": 30,
       "mrPerLevel": 1.45,
+      "attackSpeed": 0.638,
+      "attackSpeedRatio": 0.638,
+      "attackSpeedPerLevel": 0.0322,
+      "attackRange": 525,
+      "critDamage": 1.75,
     },
     "skillOrder": [
       "Q",
@@ -9345,6 +12133,9 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "ap": 0.5,
         },
+        "cooldown": [
+          6,
+        ],
       },
       "W": {
         "name": "Bushwhack",
@@ -9360,6 +12151,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "ap": 0.05,
         },
+        "cooldown": [
+          13,
+          12,
+          11,
+          10,
+          9,
+        ],
       },
       "E": {
         "name": "Primal Surge",
@@ -9369,6 +12167,9 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           0,
         ],
         "ratios": {},
+        "cooldown": [
+          12,
+        ],
       },
       "R": {
         "name": "Aspect of the Cougar",
@@ -9378,6 +12179,9 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           0,
         ],
         "ratios": {},
+        "cooldown": [
+          3,
+        ],
       },
     },
     "shelf": [
@@ -9405,6 +12209,11 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "armorPerLevel": 4.2,
       "mr": 32,
       "mrPerLevel": 2.05,
+      "attackSpeed": 0.697,
+      "attackSpeedRatio": 0.67,
+      "attackSpeedPerLevel": 0.0125,
+      "attackRange": 225,
+      "critDamage": 1.75,
     },
     "skillOrder": [
       "Q",
@@ -9441,6 +12250,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "totalAd": 0.9,
         },
+        "cooldown": [
+          4,
+          4,
+          4,
+          4,
+          4,
+        ],
       },
       "W": {
         "name": "Jubilant Veil",
@@ -9450,6 +12266,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           0,
         ],
         "ratios": {},
+        "cooldown": [
+          26,
+          25,
+          24,
+          23,
+          22,
+        ],
       },
       "E": {
         "name": "Slipstream",
@@ -9465,6 +12288,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "bonusAd": 0.2,
         },
+        "cooldown": [
+          0.5,
+          0.5,
+          0.5,
+          0.5,
+          0.5,
+        ],
       },
       "R": {
         "name": "Apotheosis",
@@ -9478,6 +12308,11 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "bonusAd": 0.1,
         },
+        "cooldown": [
+          110,
+          95,
+          80,
+        ],
       },
     },
     "shelf": [
@@ -9505,6 +12340,11 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "armorPerLevel": 4.2,
       "mr": 32,
       "mrPerLevel": 1.55,
+      "attackSpeed": 0.721,
+      "attackSpeedRatio": 0.721,
+      "attackSpeedPerLevel": 0.027,
+      "attackRange": 125,
+      "critDamage": 1.75,
     },
     "skillOrder": [
       "Q",
@@ -9541,6 +12381,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "bonusAd": 0.85,
         },
+        "cooldown": [
+          8,
+          8,
+          8,
+          8,
+          8,
+        ],
       },
       "W": {
         "name": "Shroud of Darkness",
@@ -9550,6 +12397,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           0,
         ],
         "ratios": {},
+        "cooldown": [
+          20,
+          18,
+          16,
+          14,
+          12,
+        ],
       },
       "E": {
         "name": "Unspeakable Horror",
@@ -9565,6 +12419,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "ap": 0.25,
         },
+        "cooldown": [
+          15,
+          14,
+          13,
+          12,
+          11,
+        ],
       },
       "R": {
         "name": "Paranoia",
@@ -9578,6 +12439,11 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "bonusAd": 1.2,
         },
+        "cooldown": [
+          140,
+          115,
+          90,
+        ],
       },
     },
     "shelf": [
@@ -9605,6 +12471,11 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "armorPerLevel": 4.2,
       "mr": 32,
       "mrPerLevel": 2.05,
+      "attackSpeed": 0.625,
+      "attackSpeedRatio": 0.625,
+      "attackSpeedPerLevel": 0.0225,
+      "attackRange": 125,
+      "critDamage": 1.75,
     },
     "skillOrder": [
       "Q",
@@ -9639,6 +12510,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           1200,
         ],
         "ratios": {},
+        "cooldown": [
+          12,
+          11,
+          10,
+          9,
+          8,
+        ],
       },
       "W": {
         "name": "Biggest Snowball Ever!",
@@ -9654,6 +12532,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "ap": 0.3,
         },
+        "cooldown": [
+          14,
+          14,
+          14,
+          14,
+          14,
+        ],
       },
       "E": {
         "name": "Snowball Barrage",
@@ -9669,6 +12554,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "ap": 0.15,
         },
+        "cooldown": [
+          14,
+          13,
+          12,
+          11,
+          10,
+        ],
       },
       "R": {
         "name": "Absolute Zero",
@@ -9682,6 +12574,11 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "ap": 3,
         },
+        "cooldown": [
+          110,
+          100,
+          90,
+        ],
       },
     },
     "shelf": [
@@ -9709,6 +12606,11 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "armorPerLevel": 4.2,
       "mr": 32,
       "mrPerLevel": 2.05,
+      "attackSpeed": 0.72,
+      "attackSpeedRatio": 0.694,
+      "attackSpeedPerLevel": 0.027,
+      "attackRange": 125,
+      "critDamage": 1.75,
     },
     "skillOrder": [
       "Q",
@@ -9745,6 +12647,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "bonusAd": 1,
         },
+        "cooldown": [
+          9,
+          9,
+          9,
+          9,
+          9,
+        ],
       },
       "W": {
         "name": "Tough It Out",
@@ -9754,6 +12663,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           0,
         ],
         "ratios": {},
+        "cooldown": [
+          16,
+          15,
+          14,
+          13,
+          12,
+        ],
       },
       "E": {
         "name": "Reckless Swing",
@@ -9769,6 +12685,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "totalAd": 0.5,
         },
+        "cooldown": [
+          11,
+          10,
+          9,
+          8,
+          7,
+        ],
       },
       "R": {
         "name": "Ragnarok",
@@ -9782,6 +12705,11 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "totalAd": 0.25,
         },
+        "cooldown": [
+          100,
+          90,
+          80,
+        ],
       },
     },
     "shelf": [
@@ -9809,6 +12737,11 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "armorPerLevel": 4.2,
       "mr": 26,
       "mrPerLevel": 1.3,
+      "attackSpeed": 0.658,
+      "attackSpeedRatio": 0.658,
+      "attackSpeedPerLevel": 0.035,
+      "attackRange": 525,
+      "critDamage": 1.75,
     },
     "skillOrder": [
       "Q",
@@ -9845,6 +12778,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "ap": 0.55,
         },
+        "cooldown": [
+          6,
+          5.25,
+          4.5,
+          3.75,
+          3,
+        ],
       },
       "W": {
         "name": "Command: Dissonance",
@@ -9860,6 +12800,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "ap": 0.7,
         },
+        "cooldown": [
+          7,
+          7,
+          7,
+          7,
+          7,
+        ],
       },
       "E": {
         "name": "Command: Protect",
@@ -9875,6 +12822,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "ap": 0.3,
         },
+        "cooldown": [
+          9,
+          9,
+          9,
+          9,
+          9,
+        ],
       },
       "R": {
         "name": "Command: Shockwave",
@@ -9888,6 +12842,11 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "ap": 0.95,
         },
+        "cooldown": [
+          110,
+          95,
+          80,
+        ],
       },
     },
     "shelf": [
@@ -9915,6 +12874,11 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "armorPerLevel": 5.2,
       "mr": 32,
       "mrPerLevel": 2.05,
+      "attackSpeed": 0.625,
+      "attackSpeedRatio": 0.625,
+      "attackSpeedPerLevel": 0.02,
+      "attackRange": 175,
+      "critDamage": 1.75,
     },
     "skillOrder": [
       "Q",
@@ -9951,6 +12915,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "totalAd": 1.1,
         },
+        "cooldown": [
+          9,
+          8.5,
+          8,
+          7.5,
+          7,
+        ],
       },
       "W": {
         "name": "Bellows Breath",
@@ -9960,6 +12931,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           0,
         ],
         "ratios": {},
+        "cooldown": [
+          12,
+          11.5,
+          11,
+          10.5,
+          10,
+        ],
       },
       "E": {
         "name": "Searing Charge",
@@ -9973,6 +12951,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           260,
         ],
         "ratios": {},
+        "cooldown": [
+          14,
+          13.5,
+          13,
+          12.5,
+          12,
+        ],
       },
       "R": {
         "name": "Call of the Forge God",
@@ -9986,6 +12971,11 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "ap": 0.2,
         },
+        "cooldown": [
+          140,
+          120,
+          100,
+        ],
       },
     },
     "shelf": [
@@ -10013,6 +13003,11 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "armorPerLevel": 4.95,
       "mr": 28,
       "mrPerLevel": 2.05,
+      "attackSpeed": 0.658,
+      "attackSpeedRatio": 0.658,
+      "attackSpeedPerLevel": 0.0295,
+      "attackRange": 175,
+      "critDamage": 1.75,
     },
     "skillOrder": [
       "Q",
@@ -10050,6 +13045,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           "bonusAd": 1.15,
           "ap": 0.5,
         },
+        "cooldown": [
+          11,
+          10.25,
+          9.5,
+          8.75,
+          8,
+        ],
       },
       "W": {
         "name": "Shield Vault",
@@ -10059,6 +13061,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           0,
         ],
         "ratios": {},
+        "cooldown": [
+          13,
+          12,
+          11,
+          10,
+          9,
+        ],
       },
       "E": {
         "name": "Aegis Assault",
@@ -10074,6 +13083,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "bonusAd": 1.5,
         },
+        "cooldown": [
+          22,
+          21,
+          20,
+          19,
+          18,
+        ],
       },
       "R": {
         "name": "Grand Starfall",
@@ -10087,6 +13103,11 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "ap": 1,
         },
+        "cooldown": [
+          180,
+          165,
+          150,
+        ],
       },
     },
     "shelf": [
@@ -10114,6 +13135,11 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "armorPerLevel": 5,
       "mr": 32,
       "mrPerLevel": 2.05,
+      "attackSpeed": 0.658,
+      "attackSpeedRatio": 0.625,
+      "attackSpeedPerLevel": 0.025,
+      "attackRange": 125,
+      "critDamage": 1.75,
     },
     "skillOrder": [
       "Q",
@@ -10150,6 +13176,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "bonusAd": 1,
         },
+        "cooldown": [
+          8,
+          7,
+          6,
+          5,
+          4,
+        ],
       },
       "W": {
         "name": "Steadfast Presence",
@@ -10165,6 +13198,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "ap": 0.7,
         },
+        "cooldown": [
+          20,
+          18,
+          16,
+          14,
+          12,
+        ],
       },
       "E": {
         "name": "Heroic Charge",
@@ -10180,6 +13220,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "bonusAd": 0.6,
         },
+        "cooldown": [
+          14,
+          13,
+          12,
+          11,
+          10,
+        ],
       },
       "R": {
         "name": "Keeper's Verdict",
@@ -10193,6 +13240,11 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "bonusAd": 0.45,
         },
+        "cooldown": [
+          140,
+          120,
+          100,
+        ],
       },
     },
     "shelf": [
@@ -10220,6 +13272,11 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "armorPerLevel": 4.7,
       "mr": 32,
       "mrPerLevel": 2.05,
+      "attackSpeed": 0.667,
+      "attackSpeedRatio": 0.667,
+      "attackSpeedPerLevel": 0.025,
+      "attackRange": 150,
+      "critDamage": 1.75,
     },
     "skillOrder": [
       "Q",
@@ -10256,6 +13313,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "bonusAd": 0.75,
         },
+        "cooldown": [
+          10,
+          9.5,
+          9,
+          8.5,
+          8,
+        ],
       },
       "W": {
         "name": "Ghostwater Dive",
@@ -10265,6 +13329,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           0,
         ],
         "ratios": {},
+        "cooldown": [
+          14,
+          13,
+          12,
+          11,
+          10,
+        ],
       },
       "E": {
         "name": "Phantom Undertow",
@@ -10280,6 +13351,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "bonusAd": 1,
         },
+        "cooldown": [
+          14,
+          13,
+          12,
+          11,
+          10,
+        ],
       },
       "R": {
         "name": "Death from Below",
@@ -10289,6 +13367,11 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           0,
         ],
         "ratios": {},
+        "cooldown": [
+          100,
+          85,
+          70,
+        ],
       },
     },
     "shelf": [
@@ -10316,6 +13399,11 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "armorPerLevel": 4.5,
       "mr": 32,
       "mrPerLevel": 2.05,
+      "attackSpeed": 0.688,
+      "attackSpeedRatio": 0.625,
+      "attackSpeedPerLevel": 0.021,
+      "attackRange": 150,
+      "critDamage": 1.75,
     },
     "skillOrder": [
       "Q",
@@ -10352,6 +13440,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "bonusAd": 0.9,
         },
+        "cooldown": [
+          7,
+          7,
+          7,
+          7,
+          7,
+        ],
       },
       "W": {
         "name": "Terrashape",
@@ -10368,6 +13463,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           "bonusAd": 0.2,
           "ap": 0.45,
         },
+        "cooldown": [
+          7,
+          7,
+          7,
+          7,
+          7,
+        ],
       },
       "E": {
         "name": "Audacity",
@@ -10383,6 +13485,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "bonusAd": 0.5,
         },
+        "cooldown": [
+          11,
+          10,
+          9,
+          8,
+          7,
+        ],
       },
       "R": {
         "name": "Supreme Display of Talent",
@@ -10396,6 +13505,11 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "bonusAd": 1.25,
         },
+        "cooldown": [
+          120,
+          120,
+          120,
+        ],
       },
     },
     "shelf": [
@@ -10423,6 +13537,11 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "armorPerLevel": 4.7,
       "mr": 33,
       "mrPerLevel": 1.1,
+      "attackSpeed": 0.668,
+      "attackSpeedRatio": 0.668,
+      "attackSpeedPerLevel": 0.031,
+      "attackRange": 525,
+      "critDamage": 1.75,
     },
     "skillOrder": [
       "Q",
@@ -10460,6 +13579,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           "totalAd": 0.8,
           "ap": 0.5,
         },
+        "cooldown": [
+          11,
+          10.5,
+          10,
+          9.5,
+          9,
+        ],
       },
       "W": {
         "name": "Heightened Senses",
@@ -10469,6 +13595,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           0,
         ],
         "ratios": {},
+        "cooldown": [
+          50,
+          45,
+          40,
+          35,
+          30,
+        ],
       },
       "E": {
         "name": "Vault",
@@ -10484,6 +13617,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "bonusAd": 0.2,
         },
+        "cooldown": [
+          12,
+          11,
+          10,
+          9,
+          8,
+        ],
       },
       "R": {
         "name": "Behind Enemy Lines",
@@ -10493,6 +13633,11 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           0,
         ],
         "ratios": {},
+        "cooldown": [
+          3,
+          3,
+          3,
+        ],
       },
     },
     "shelf": [
@@ -10520,6 +13665,11 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "armorPerLevel": 4.9,
       "mr": 32,
       "mrPerLevel": 2.05,
+      "attackSpeed": 0.635,
+      "attackSpeedRatio": 0.635,
+      "attackSpeedPerLevel": 0.03,
+      "attackRange": 300,
+      "critDamage": 1.75,
     },
     "skillOrder": [
       "Q",
@@ -10556,6 +13706,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "ap": 0.7,
         },
+        "cooldown": [
+          11,
+          10,
+          9,
+          8,
+          7,
+        ],
       },
       "W": {
         "name": "Grand Entrance",
@@ -10571,6 +13728,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "ap": 0.8,
         },
+        "cooldown": [
+          14,
+          13,
+          12,
+          11,
+          10,
+        ],
       },
       "E": {
         "name": "Battle Dance",
@@ -10586,6 +13750,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "ap": 0.7,
         },
+        "cooldown": [
+          20,
+          18,
+          16,
+          14,
+          12,
+        ],
       },
       "R": {
         "name": "The Quickness",
@@ -10599,6 +13770,11 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "ap": 0.5,
         },
+        "cooldown": [
+          130,
+          110,
+          90,
+        ],
       },
     },
     "shelf": [
@@ -10626,6 +13802,11 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "armorPerLevel": 4.5,
       "mr": 32,
       "mrPerLevel": 2.05,
+      "attackSpeed": 0.7,
+      "attackSpeedRatio": 0.625,
+      "attackSpeedPerLevel": 0.0222,
+      "attackRange": 125,
+      "critDamage": 1.75,
     },
     "skillOrder": [
       "Q",
@@ -10662,6 +13843,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "ap": 1,
         },
+        "cooldown": [
+          12,
+          10.5,
+          9,
+          7.5,
+          6,
+        ],
       },
       "W": {
         "name": "Defensive Ball Curl",
@@ -10675,6 +13863,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           40,
         ],
         "ratios": {},
+        "cooldown": [
+          7,
+          7,
+          7,
+          7,
+          7,
+        ],
       },
       "E": {
         "name": "Frenzying Taunt",
@@ -10684,6 +13879,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           0,
         ],
         "ratios": {},
+        "cooldown": [
+          12,
+          12,
+          12,
+          12,
+          12,
+        ],
       },
       "R": {
         "name": "Soaring Slam",
@@ -10697,6 +13899,11 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "ap": 0.6,
         },
+        "cooldown": [
+          90,
+          90,
+          90,
+        ],
       },
     },
     "shelf": [
@@ -10724,6 +13931,11 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "armorPerLevel": 4.5,
       "mr": 32,
       "mrPerLevel": 2.05,
+      "attackSpeed": 0.667,
+      "attackSpeedRatio": 0.667,
+      "attackSpeedPerLevel": 0.02,
+      "attackRange": 175,
+      "critDamage": 1.75,
     },
     "skillOrder": [
       "Q",
@@ -10756,6 +13968,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "totalAd": 0.3,
         },
+        "cooldown": [
+          4,
+          3.5,
+          3,
+          2.5,
+          2,
+        ],
       },
       "W": {
         "name": "Burrow",
@@ -10769,6 +13988,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           25,
         ],
         "ratios": {},
+        "cooldown": [
+          4,
+          4,
+          4,
+          4,
+          4,
+        ],
       },
       "E": {
         "name": "Furious Bite",
@@ -10778,6 +14004,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           0,
         ],
         "ratios": {},
+        "cooldown": [
+          10,
+          10,
+          10,
+          10,
+          10,
+        ],
       },
       "R": {
         "name": "Void Rush",
@@ -10791,6 +14024,11 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "bonusAd": 1,
         },
+        "cooldown": [
+          100,
+          90,
+          80,
+        ],
       },
     },
     "shelf": [
@@ -10818,6 +14056,11 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "armorPerLevel": 4,
       "mr": 28,
       "mrPerLevel": 1.8,
+      "attackSpeed": 0.625,
+      "attackSpeedRatio": 0.625,
+      "attackSpeedPerLevel": 0.02,
+      "attackRange": 175,
+      "critDamage": 1.75,
     },
     "skillOrder": [
       "Q",
@@ -10854,6 +14097,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "ap": 0.6,
         },
+        "cooldown": [
+          11,
+          10.5,
+          10,
+          9.5,
+          9,
+        ],
       },
       "W": {
         "name": "Ferromancy: Crash Down",
@@ -10869,6 +14119,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "ap": 0.6,
         },
+        "cooldown": [
+          10,
+          10,
+          10,
+          10,
+          10,
+        ],
       },
       "E": {
         "name": "Full Tilt",
@@ -10878,6 +14135,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           0,
         ],
         "ratios": {},
+        "cooldown": [
+          14,
+          13,
+          12,
+          11,
+          10,
+        ],
       },
       "R": {
         "name": "Magnet Storm",
@@ -10891,6 +14155,11 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "ap": 0.138,
         },
+        "cooldown": [
+          120,
+          100,
+          80,
+        ],
       },
     },
     "shelf": [
@@ -10918,6 +14187,11 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "armorPerLevel": 4.7,
       "mr": 30,
       "mrPerLevel": 1.3,
+      "attackSpeed": 0.625,
+      "attackSpeedRatio": 0.625,
+      "attackSpeedPerLevel": 0.0211,
+      "attackRange": 550,
+      "critDamage": 1.75,
     },
     "skillOrder": [
       "Q",
@@ -10954,6 +14228,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "ap": 0.8,
         },
+        "cooldown": [
+          16,
+          16,
+          16,
+          16,
+          16,
+        ],
       },
       "W": {
         "name": "Bailout",
@@ -10963,6 +14244,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           0,
         ],
         "ratios": {},
+        "cooldown": [
+          28,
+          27,
+          26,
+          25,
+          24,
+        ],
       },
       "E": {
         "name": "Loyalty Program",
@@ -10978,6 +14266,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "ap": 0.55,
         },
+        "cooldown": [
+          14,
+          13,
+          12,
+          11,
+          10,
+        ],
       },
       "R": {
         "name": "Hostile Takeover",
@@ -10987,6 +14282,11 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           0,
         ],
         "ratios": {},
+        "cooldown": [
+          150,
+          130,
+          110,
+        ],
       },
     },
     "shelf": [
@@ -11014,6 +14314,11 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "armorPerLevel": 5.2,
       "mr": 28,
       "mrPerLevel": 2.05,
+      "attackSpeed": 0.665,
+      "attackSpeedRatio": 0.665,
+      "attackSpeedPerLevel": 0.0275,
+      "attackRange": 125,
+      "critDamage": 1.75,
     },
     "skillOrder": [
       "Q",
@@ -11050,6 +14355,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "bonusAd": 1,
         },
+        "cooldown": [
+          7,
+          7,
+          7,
+          7,
+          7,
+        ],
       },
       "W": {
         "name": "Ruthless Predator",
@@ -11065,6 +14377,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "totalAd": 0.75,
         },
+        "cooldown": [
+          16,
+          14,
+          12,
+          10,
+          8,
+        ],
       },
       "E": {
         "name": "Slice",
@@ -11080,6 +14399,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "bonusAd": 0.9,
         },
+        "cooldown": [
+          16,
+          14.5,
+          13,
+          11.5,
+          10,
+        ],
       },
       "R": {
         "name": "Dominus",
@@ -11094,6 +14420,11 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           "bonusAd": 0.05,
           "ap": 0.05,
         },
+        "cooldown": [
+          120,
+          100,
+          80,
+        ],
       },
     },
     "shelf": [
@@ -11121,6 +14452,11 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "armorPerLevel": 4.2,
       "mr": 32,
       "mrPerLevel": 2.05,
+      "attackSpeed": 0.667,
+      "attackSpeedRatio": 0.667,
+      "attackSpeedPerLevel": 0.03,
+      "attackRange": 125,
+      "critDamage": 1.75,
     },
     "skillOrder": [
       "Q",
@@ -11157,6 +14493,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "totalAd": 0,
         },
+        "cooldown": [
+          6,
+          5.5,
+          5,
+          4.5,
+          4,
+        ],
       },
       "W": {
         "name": "Battle Roar",
@@ -11172,6 +14515,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "ap": 0.8,
         },
+        "cooldown": [
+          16,
+          14.5,
+          13,
+          11.5,
+          10,
+        ],
       },
       "E": {
         "name": "Bola Strike",
@@ -11187,6 +14537,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "bonusAd": 0.8,
         },
+        "cooldown": [
+          10,
+          10,
+          10,
+          10,
+          10,
+        ],
       },
       "R": {
         "name": "Thrill of the Hunt",
@@ -11196,6 +14553,11 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           0,
         ],
         "ratios": {},
+        "cooldown": [
+          110,
+          100,
+          90,
+        ],
       },
     },
     "shelf": [
@@ -11223,6 +14585,11 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "armorPerLevel": 4.4,
       "mr": 32,
       "mrPerLevel": 2.05,
+      "attackSpeed": 0.625,
+      "attackSpeedRatio": 0.625,
+      "attackSpeedPerLevel": 0.035,
+      "attackRange": 125,
+      "critDamage": 1.75,
     },
     "skillOrder": [
       "Q",
@@ -11259,6 +14626,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "bonusAd": 0.65,
         },
+        "cooldown": [
+          13,
+          13,
+          13,
+          13,
+          13,
+        ],
       },
       "W": {
         "name": "Ki Burst",
@@ -11274,6 +14648,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "bonusAd": 1,
         },
+        "cooldown": [
+          11,
+          10,
+          9,
+          8,
+          7,
+        ],
       },
       "E": {
         "name": "Valor",
@@ -11289,6 +14670,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "bonusAd": 1.1,
         },
+        "cooldown": [
+          10,
+          9,
+          8,
+          7,
+          6,
+        ],
       },
       "R": {
         "name": "Blade of the Exile",
@@ -11298,6 +14686,11 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           0,
         ],
         "ratios": {},
+        "cooldown": [
+          120,
+          90,
+          60,
+        ],
       },
     },
     "shelf": [
@@ -11325,6 +14718,11 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "armorPerLevel": 4.7,
       "mr": 28,
       "mrPerLevel": 1.55,
+      "attackSpeed": 0.644,
+      "attackSpeedRatio": 0.644,
+      "attackSpeedPerLevel": 0.0185,
+      "attackRange": 125,
+      "critDamage": 1.75,
     },
     "skillOrder": [
       "Q",
@@ -11361,6 +14759,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "ap": 0.092,
         },
+        "cooldown": [
+          10,
+          9,
+          8,
+          7,
+          6,
+        ],
       },
       "W": {
         "name": "Scrap Shield",
@@ -11376,6 +14781,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "ap": 0.3,
         },
+        "cooldown": [
+          6,
+          6,
+          6,
+          6,
+          6,
+        ],
       },
       "E": {
         "name": "Electro Harpoon",
@@ -11391,6 +14803,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "ap": 0.5,
         },
+        "cooldown": [
+          0.5,
+          0.5,
+          0.5,
+          0.5,
+          0.5,
+        ],
       },
       "R": {
         "name": "The Equalizer",
@@ -11404,6 +14823,11 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "ap": 0.175,
         },
+        "cooldown": [
+          130,
+          105,
+          80,
+        ],
       },
     },
     "shelf": [
@@ -11431,6 +14855,11 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "armorPerLevel": 4.7,
       "mr": 32,
       "mrPerLevel": 1.3,
+      "attackSpeed": 0.658,
+      "attackSpeedRatio": 0.625,
+      "attackSpeedPerLevel": 0.0211,
+      "attackRange": 550,
+      "critDamage": 1.75,
     },
     "skillOrder": [
       "Q",
@@ -11467,6 +14896,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "ap": 0.55,
         },
+        "cooldown": [
+          5,
+          5,
+          5,
+          5,
+          5,
+        ],
       },
       "W": {
         "name": "Rune Prison",
@@ -11482,6 +14918,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "ap": 0.7,
         },
+        "cooldown": [
+          11,
+          10.5,
+          10,
+          9.5,
+          9,
+        ],
       },
       "E": {
         "name": "Spell Flux",
@@ -11497,6 +14940,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "ap": 0.5,
         },
+        "cooldown": [
+          3.5,
+          3.25,
+          3,
+          2.75,
+          2.5,
+        ],
       },
       "R": {
         "name": "Realm Warp",
@@ -11506,6 +14956,11 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           0,
         ],
         "ratios": {},
+        "cooldown": [
+          180,
+          160,
+          140,
+        ],
       },
     },
     "shelf": [
@@ -11533,6 +14988,11 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "armorPerLevel": 4.7,
       "mr": 33,
       "mrPerLevel": 1.1,
+      "attackSpeed": 0.658,
+      "attackSpeedRatio": 0.658,
+      "attackSpeedPerLevel": 0.033,
+      "attackRange": 500,
+      "critDamage": 1.75,
     },
     "skillOrder": [
       "Q",
@@ -11569,6 +15029,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "totalAd": 0.95,
         },
+        "cooldown": [
+          6,
+          5,
+          4,
+          3,
+          2,
+        ],
       },
       "W": {
         "name": "Blade Whirl",
@@ -11584,6 +15051,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "bonusAd": 0.6,
         },
+        "cooldown": [
+          30,
+          28,
+          26,
+          24,
+          22,
+        ],
       },
       "E": {
         "name": "Wild Rush",
@@ -11599,6 +15073,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "bonusAd": 0.2,
         },
+        "cooldown": [
+          20,
+          18,
+          16,
+          14,
+          12,
+        ],
       },
       "R": {
         "name": "Inferno Trigger",
@@ -11612,6 +15093,11 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "totalAd": 0.45,
         },
+        "cooldown": [
+          5,
+          5,
+          5,
+        ],
       },
     },
     "shelf": [
@@ -11639,6 +15125,11 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "armorPerLevel": 5.45,
       "mr": 32,
       "mrPerLevel": 2.05,
+      "attackSpeed": 0.688,
+      "attackSpeedRatio": 0.625,
+      "attackSpeedPerLevel": 0.035,
+      "attackRange": 150,
+      "critDamage": 1.75,
     },
     "skillOrder": [
       "Q",
@@ -11675,6 +15166,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "ap": 0.6,
         },
+        "cooldown": [
+          19,
+          17.5,
+          16,
+          14.5,
+          13,
+        ],
       },
       "W": {
         "name": "Winter's Wrath",
@@ -11690,6 +15188,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "ap": 0.2,
         },
+        "cooldown": [
+          9,
+          8,
+          7,
+          6,
+          5,
+        ],
       },
       "E": {
         "name": "Permafrost",
@@ -11705,6 +15210,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "ap": 0.6,
         },
+        "cooldown": [
+          1.5,
+          1.5,
+          1.5,
+          1.5,
+          1.5,
+        ],
       },
       "R": {
         "name": "Glacial Prison",
@@ -11718,6 +15230,11 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "ap": 0.4,
         },
+        "cooldown": [
+          130,
+          110,
+          90,
+        ],
       },
     },
     "shelf": [
@@ -11745,6 +15262,11 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "armorPerLevel": 4,
       "mr": 33,
       "mrPerLevel": 1.1,
+      "attackSpeed": 0.625,
+      "attackSpeedRatio": 0.4,
+      "attackSpeedPerLevel": 0.026,
+      "attackRange": 600,
+      "critDamage": 1.75,
     },
     "skillOrder": [
       "Q",
@@ -11781,6 +15303,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "bonusAd": 0.4,
         },
+        "cooldown": [
+          15,
+          15,
+          15,
+          15,
+          15,
+        ],
       },
       "W": {
         "name": "Last Embrace",
@@ -11796,6 +15325,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "bonusAd": 0.7,
         },
+        "cooldown": [
+          11,
+          11,
+          11,
+          11,
+          11,
+        ],
       },
       "E": {
         "name": "Curse of the Black Mist",
@@ -11805,6 +15341,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           0,
         ],
         "ratios": {},
+        "cooldown": [
+          26,
+          24.5,
+          23,
+          21.5,
+          20,
+        ],
       },
       "R": {
         "name": "Dawning Shadow",
@@ -11819,6 +15362,11 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           "bonusAd": 1.15,
           "ap": 0.7,
         },
+        "cooldown": [
+          140,
+          120,
+          100,
+        ],
       },
     },
     "shelf": [
@@ -11846,6 +15394,11 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "armorPerLevel": 4.2,
       "mr": 30,
       "mrPerLevel": 1.3,
+      "attackSpeed": 0.669,
+      "attackSpeedRatio": 0.625,
+      "attackSpeedPerLevel": 0.02,
+      "attackRange": 525,
+      "critDamage": 1.75,
     },
     "skillOrder": [
       "Q",
@@ -11882,6 +15435,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "ap": 0.5,
         },
+        "cooldown": [
+          8,
+          7.5,
+          7,
+          6.5,
+          6,
+        ],
       },
       "W": {
         "name": "Surround Sound",
@@ -11897,6 +15457,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "ap": 0.2,
         },
+        "cooldown": [
+          22,
+          22,
+          22,
+          22,
+          22,
+        ],
       },
       "E": {
         "name": "Beat Drop",
@@ -11912,6 +15479,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "ap": 0.5,
         },
+        "cooldown": [
+          11,
+          10.5,
+          10,
+          9.5,
+          9,
+        ],
       },
       "R": {
         "name": "Encore",
@@ -11925,6 +15499,11 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "ap": 0.4,
         },
+        "cooldown": [
+          160,
+          140,
+          120,
+        ],
       },
     },
     "shelf": [
@@ -11952,6 +15531,11 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "armorPerLevel": 4.7,
       "mr": 28,
       "mrPerLevel": 2.05,
+      "attackSpeed": 0.625,
+      "attackSpeedRatio": 0.625,
+      "attackSpeedPerLevel": 0.0175,
+      "attackRange": 125,
+      "critDamage": 1.75,
     },
     "skillOrder": [
       "Q",
@@ -11986,6 +15570,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           50,
         ],
         "ratios": {},
+        "cooldown": [
+          9,
+          8,
+          7,
+          6,
+          5,
+        ],
       },
       "W": {
         "name": "Haymaker",
@@ -11999,6 +15590,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           160,
         ],
         "ratios": {},
+        "cooldown": [
+          18,
+          16.5,
+          15,
+          13.5,
+          12,
+        ],
       },
       "E": {
         "name": "Facebreaker",
@@ -12014,6 +15612,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "totalAd": 0.6,
         },
+        "cooldown": [
+          16,
+          14.5,
+          13,
+          11.5,
+          10,
+        ],
       },
       "R": {
         "name": "The Show Stopper",
@@ -12027,6 +15632,11 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "bonusAd": 1.2,
         },
+        "cooldown": [
+          120,
+          100,
+          80,
+        ],
       },
     },
     "shelf": [
@@ -12054,6 +15664,11 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "armorPerLevel": 4,
       "mr": 32,
       "mrPerLevel": 2.05,
+      "attackSpeed": 0.694,
+      "attackSpeedRatio": 0.694,
+      "attackSpeedPerLevel": 0.03,
+      "attackRange": 125,
+      "critDamage": 1.75,
     },
     "skillOrder": [
       "Q",
@@ -12090,6 +15705,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "bonusAd": 0.65,
         },
+        "cooldown": [
+          12,
+          11.5,
+          11,
+          10.5,
+          10,
+        ],
       },
       "W": {
         "name": "Jack in the Box",
@@ -12105,6 +15727,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "ap": 0.12,
         },
+        "cooldown": [
+          15,
+          15,
+          15,
+          15,
+          15,
+        ],
       },
       "E": {
         "name": "Two-Shiv Poison",
@@ -12121,6 +15750,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           "bonusAd": 0.8,
           "ap": 0.6,
         },
+        "cooldown": [
+          8,
+          8,
+          8,
+          8,
+          8,
+        ],
       },
       "R": {
         "name": "Hallucinate",
@@ -12134,6 +15770,11 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "ap": 0.7,
         },
+        "cooldown": [
+          100,
+          90,
+          80,
+        ],
       },
     },
     "shelf": [
@@ -12161,6 +15802,11 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "armorPerLevel": 4.2,
       "mr": 32,
       "mrPerLevel": 2.05,
+      "attackSpeed": 0.751,
+      "attackSpeedRatio": 0.651,
+      "attackSpeedPerLevel": 0.03,
+      "attackRange": 125,
+      "critDamage": 1.75,
     },
     "skillOrder": [
       "Q",
@@ -12208,6 +15854,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           40,
         ],
         "ratios": {},
+        "cooldown": [
+          8,
+          7.25,
+          6.5,
+          5.75,
+          5,
+        ],
       },
       "W": {
         "name": "Spirit's Refuge",
@@ -12217,6 +15870,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           0,
         ],
         "ratios": {},
+        "cooldown": [
+          16,
+          14.5,
+          13,
+          11.5,
+          10,
+        ],
       },
       "E": {
         "name": "Shadow Dash",
@@ -12230,6 +15890,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           160,
         ],
         "ratios": {},
+        "cooldown": [
+          18,
+          16,
+          14,
+          12,
+          10,
+        ],
       },
       "R": {
         "name": "Stand United",
@@ -12243,6 +15910,11 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "ap": 1.35,
         },
+        "cooldown": [
+          200,
+          180,
+          160,
+        ],
       },
     },
     "shelf": [
@@ -12270,6 +15942,11 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "armorPerLevel": 4,
       "mr": 32,
       "mrPerLevel": 2.05,
+      "attackSpeed": 0.638,
+      "attackSpeedRatio": 0.658,
+      "attackSpeedPerLevel": 0.02,
+      "attackRange": 150,
+      "critDamage": 1.75,
     },
     "skillOrder": [
       "Q",
@@ -12303,6 +15980,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           "totalAd": 0.2,
           "ap": 0.25,
         },
+        "cooldown": [
+          8,
+          7.5,
+          7,
+          6.5,
+          6,
+        ],
       },
       "W": {
         "name": "Burnout",
@@ -12318,6 +16002,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "bonusAd": 0.1,
         },
+        "cooldown": [
+          12,
+          12,
+          12,
+          12,
+          12,
+        ],
       },
       "E": {
         "name": "Flame Breath",
@@ -12334,6 +16025,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           "bonusAd": 0.5,
           "ap": 0.7,
         },
+        "cooldown": [
+          12,
+          11,
+          10,
+          9,
+          8,
+        ],
       },
       "R": {
         "name": "Dragon's Descent",
@@ -12374,6 +16072,11 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "armorPerLevel": 4.2,
       "mr": 32,
       "mrPerLevel": 2.05,
+      "attackSpeed": 0.7,
+      "attackSpeedRatio": 0.625,
+      "attackSpeedPerLevel": 0.019,
+      "attackRange": 125,
+      "critDamage": 1.75,
     },
     "skillOrder": [
       "Q",
@@ -12410,6 +16113,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "ap": 0.106,
         },
+        "cooldown": [
+          1,
+          1,
+          1,
+          1,
+          1,
+        ],
       },
       "W": {
         "name": "Mega Adhesive",
@@ -12419,6 +16129,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           0,
         ],
         "ratios": {},
+        "cooldown": [
+          17,
+          16,
+          15,
+          14,
+          13,
+        ],
       },
       "E": {
         "name": "Fling",
@@ -12434,6 +16151,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "ap": 0.55,
         },
+        "cooldown": [
+          10,
+          9.5,
+          9,
+          8.5,
+          8,
+        ],
       },
       "R": {
         "name": "Insanity Potion",
@@ -12445,6 +16169,11 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           95,
         ],
         "ratios": {},
+        "cooldown": [
+          100,
+          100,
+          100,
+        ],
       },
     },
     "shelf": [
@@ -12472,6 +16201,11 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "armorPerLevel": 4.2,
       "mr": 32,
       "mrPerLevel": 2.05,
+      "attackSpeed": 0.679,
+      "attackSpeedRatio": 0.679,
+      "attackSpeedPerLevel": 0.013,
+      "attackRange": 175,
+      "critDamage": 1.75,
     },
     "skillOrder": [
       "Q",
@@ -12502,6 +16236,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           0,
         ],
         "ratios": {},
+        "cooldown": [
+          10,
+          9,
+          8,
+          7,
+          6,
+        ],
       },
       "W": {
         "name": "Soul Furnace",
@@ -12517,6 +16258,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "ap": 0.4,
         },
+        "cooldown": [
+          15,
+          14,
+          13,
+          12,
+          11,
+        ],
       },
       "E": {
         "name": "Roar of the Slayer",
@@ -12532,6 +16280,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "ap": 0.55,
         },
+        "cooldown": [
+          12,
+          11,
+          10,
+          9,
+          8,
+        ],
       },
       "R": {
         "name": "Unstoppable Onslaught",
@@ -12545,6 +16300,11 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "bonusAd": 0.4,
         },
+        "cooldown": [
+          140,
+          100,
+          60,
+        ],
       },
     },
     "shelf": [
@@ -12572,6 +16332,11 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "armorPerLevel": 4,
       "mr": 33,
       "mrPerLevel": 1.1,
+      "attackSpeed": 0.625,
+      "attackSpeedRatio": 0.625,
+      "attackSpeedPerLevel": 0.016,
+      "attackRange": 500,
+      "critDamage": 1.75,
     },
     "skillOrder": [
       "Q",
@@ -12609,6 +16374,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           "bonusAd": 1,
           "ap": 0.6,
         },
+        "cooldown": [
+          10,
+          9.5,
+          9,
+          8.5,
+          8,
+        ],
       },
       "W": {
         "name": "Ricochet",
@@ -12620,6 +16392,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "totalAd": 0.3,
         },
+        "cooldown": [
+          12,
+          12,
+          12,
+          12,
+          12,
+        ],
       },
       "E": {
         "name": "Spell Shield",
@@ -12632,6 +16411,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           "totalAd": 0.6,
           "ap": 0.5,
         },
+        "cooldown": [
+          24,
+          22.5,
+          21,
+          19.5,
+          18,
+        ],
       },
       "R": {
         "name": "On the Hunt",
@@ -12641,6 +16427,11 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           0,
         ],
         "ratios": {},
+        "cooldown": [
+          120,
+          100,
+          80,
+        ],
       },
     },
     "shelf": [
@@ -12668,6 +16459,11 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "armorPerLevel": 4.5,
       "mr": 32,
       "mrPerLevel": 2.05,
+      "attackSpeed": 0.625,
+      "attackSpeedRatio": 0.625,
+      "attackSpeedPerLevel": 0.02,
+      "attackRange": 150,
+      "critDamage": 1.75,
     },
     "skillOrder": [
       "Q",
@@ -12704,6 +16500,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "bonusAd": 0.8,
         },
+        "cooldown": [
+          13,
+          11.5,
+          10,
+          8.5,
+          7,
+        ],
       },
       "W": {
         "name": "Seismic Bastion",
@@ -12719,6 +16522,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "ap": 0.8,
         },
+        "cooldown": [
+          10,
+          9,
+          8,
+          7,
+          6,
+        ],
       },
       "E": {
         "name": "Ixtal's Impact",
@@ -12732,6 +16542,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           150,
         ],
         "ratios": {},
+        "cooldown": [
+          22,
+          21,
+          20,
+          19,
+          18,
+        ],
       },
       "R": {
         "name": "Impale",
@@ -12745,6 +16562,11 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "ap": 1,
         },
+        "cooldown": [
+          120,
+          105,
+          90,
+        ],
       },
     },
     "shelf": [
@@ -12772,6 +16594,11 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "armorPerLevel": 4,
       "mr": 33,
       "mrPerLevel": 1.1,
+      "attackSpeed": 0.638,
+      "attackSpeedRatio": 0.638,
+      "attackSpeedPerLevel": 0.04,
+      "attackRange": 550,
+      "critDamage": 1.75,
     },
     "skillOrder": [
       "Q",
@@ -12808,6 +16635,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "bonusAd": 1.3,
         },
+        "cooldown": [
+          5.5,
+          5,
+          4.5,
+          4,
+          3.5,
+        ],
       },
       "W": {
         "name": "Achooo!",
@@ -12823,6 +16657,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "bonusAd": 0.6,
         },
+        "cooldown": [
+          14,
+          13,
+          12,
+          11,
+          10,
+        ],
       },
       "E": {
         "name": "Flap, Flap, Flap",
@@ -12838,6 +16679,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "totalAd": 0.3,
         },
+        "cooldown": [
+          24,
+          22,
+          20,
+          18,
+          16,
+        ],
       },
       "R": {
         "name": "MMOOOMMMM!",
@@ -12852,6 +16700,11 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           "bonusAd": 1.1,
           "ap": 1,
         },
+        "cooldown": [
+          120,
+          110,
+          100,
+        ],
       },
     },
     "shelf": [
@@ -12879,6 +16732,11 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "armorPerLevel": 4.2,
       "mr": 30,
       "mrPerLevel": 1.3,
+      "attackSpeed": 0.644,
+      "attackSpeedRatio": 0.644,
+      "attackSpeedPerLevel": 0.023,
+      "attackRange": 550,
+      "critDamage": 1.75,
     },
     "skillOrder": [
       "Q",
@@ -12915,6 +16773,9 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "ap": 0.4,
         },
+        "cooldown": [
+          8,
+        ],
       },
       "W": {
         "name": "Aria of Perseverance",
@@ -12928,6 +16789,9 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           105,
         ],
         "ratios": {},
+        "cooldown": [
+          10,
+        ],
       },
       "E": {
         "name": "Song of Celerity",
@@ -12937,6 +16801,9 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           0,
         ],
         "ratios": {},
+        "cooldown": [
+          14,
+        ],
       },
       "R": {
         "name": "Crescendo",
@@ -12950,6 +16817,11 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "ap": 0.5,
         },
+        "cooldown": [
+          140,
+          120,
+          100,
+        ],
       },
     },
     "shelf": [
@@ -12977,6 +16849,11 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "armorPerLevel": 5,
       "mr": 30,
       "mrPerLevel": 1.3,
+      "attackSpeed": 0.625,
+      "attackSpeedRatio": 0.625,
+      "attackSpeedPerLevel": 0.0214,
+      "attackRange": 550,
+      "critDamage": 1.75,
     },
     "skillOrder": [
       "Q",
@@ -13013,6 +16890,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "ap": 0.35,
         },
+        "cooldown": [
+          8,
+          7,
+          6,
+          5,
+          4,
+        ],
       },
       "W": {
         "name": "Astral Infusion",
@@ -13028,6 +16912,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "ap": 0.5,
         },
+        "cooldown": [
+          6,
+          5,
+          4,
+          3,
+          2,
+        ],
       },
       "E": {
         "name": "Equinox",
@@ -13043,6 +16934,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "ap": 0.4,
         },
+        "cooldown": [
+          20,
+          19,
+          18,
+          17,
+          16,
+        ],
       },
       "R": {
         "name": "Wish",
@@ -13056,6 +16954,11 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "ap": 0.5,
         },
+        "cooldown": [
+          150,
+          135,
+          120,
+        ],
       },
     },
     "shelf": [
@@ -13083,6 +16986,11 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "armorPerLevel": 4.7,
       "mr": 34,
       "mrPerLevel": 1.55,
+      "attackSpeed": 0.625,
+      "attackSpeedRatio": 0.625,
+      "attackSpeedPerLevel": 0.0211,
+      "attackRange": 525,
+      "critDamage": 1.75,
     },
     "skillOrder": [
       "Q",
@@ -13119,6 +17027,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "ap": 0.45,
         },
+        "cooldown": [
+          7,
+          6,
+          5,
+          4,
+          3,
+        ],
       },
       "W": {
         "name": "Vision of Empire",
@@ -13134,6 +17049,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "ap": 0.6,
         },
+        "cooldown": [
+          22,
+          21,
+          20,
+          19,
+          18,
+        ],
       },
       "E": {
         "name": "Nevermove",
@@ -13149,6 +17071,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "ap": 0.7,
         },
+        "cooldown": [
+          12,
+          11.5,
+          11,
+          10.5,
+          10,
+        ],
       },
       "R": {
         "name": "Demonic Ascension",
@@ -13162,6 +17091,11 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "ap": 0.025,
         },
+        "cooldown": [
+          120,
+          120,
+          120,
+        ],
       },
     },
     "shelf": [
@@ -13189,6 +17123,11 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "armorPerLevel": 5.2,
       "mr": 32,
       "mrPerLevel": 2.55,
+      "attackSpeed": 0.645,
+      "attackSpeedRatio": 0.645,
+      "attackSpeedPerLevel": 0.035,
+      "attackRange": 175,
+      "critDamage": 1.75,
     },
     "skillOrder": [
       "Q",
@@ -13225,6 +17164,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "ap": 0.4,
         },
+        "cooldown": [
+          10,
+          9,
+          8,
+          7,
+          6,
+        ],
       },
       "W": {
         "name": "Kingslayer",
@@ -13240,6 +17186,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "ap": 0.6,
         },
+        "cooldown": [
+          12,
+          10.5,
+          9,
+          7.5,
+          6,
+        ],
       },
       "E": {
         "name": "Abscond",
@@ -13249,6 +17202,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           0,
         ],
         "ratios": {},
+        "cooldown": [
+          13,
+          12,
+          11,
+          10,
+          9,
+        ],
       },
       "R": {
         "name": "Hijack",
@@ -13258,6 +17218,11 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           0,
         ],
         "ratios": {},
+        "cooldown": [
+          80,
+          55,
+          30,
+        ],
       },
     },
     "shelf": [
@@ -13285,6 +17250,11 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "armorPerLevel": 4,
       "mr": 30,
       "mrPerLevel": 1.3,
+      "attackSpeed": 0.658,
+      "attackSpeedRatio": 0.625,
+      "attackSpeedPerLevel": 0.02,
+      "attackRange": 550,
+      "critDamage": 1.75,
     },
     "skillOrder": [
       "Q",
@@ -13321,6 +17291,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "ap": 0.6,
         },
+        "cooldown": [
+          7,
+          7,
+          7,
+          7,
+          7,
+        ],
       },
       "W": {
         "name": "Force of Will",
@@ -13336,6 +17313,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "ap": 0.65,
         },
+        "cooldown": [
+          12,
+          11,
+          10,
+          9,
+          8,
+        ],
       },
       "E": {
         "name": "Scatter the Weak",
@@ -13351,6 +17335,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "ap": 0.6,
         },
+        "cooldown": [
+          17,
+          17,
+          17,
+          17,
+          17,
+        ],
       },
       "R": {
         "name": "Unleashed Power",
@@ -13364,6 +17355,11 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "ap": 0.2,
         },
+        "cooldown": [
+          120,
+          100,
+          80,
+        ],
       },
     },
     "shelf": [
@@ -13391,6 +17387,11 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "armorPerLevel": 4.7,
       "mr": 32,
       "mrPerLevel": 2.05,
+      "attackSpeed": 0.658,
+      "attackSpeedRatio": 0.658,
+      "attackSpeedPerLevel": 0.025,
+      "attackRange": 175,
+      "critDamage": 1.75,
     },
     "skillOrder": [
       "Q",
@@ -13427,6 +17428,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "ap": 1,
         },
+        "cooldown": [
+          7,
+          6.5,
+          6,
+          5.5,
+          5,
+        ],
       },
       "W": {
         "name": "Abyssal Dive",
@@ -13442,6 +17450,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "ap": 1.5,
         },
+        "cooldown": [
+          21,
+          20,
+          19,
+          18,
+          17,
+        ],
       },
       "E": {
         "name": "Thick Skin",
@@ -13451,6 +17466,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           0,
         ],
         "ratios": {},
+        "cooldown": [
+          3,
+          3,
+          3,
+          3,
+          3,
+        ],
       },
       "R": {
         "name": "Devour",
@@ -13464,6 +17486,11 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "ap": 1,
         },
+        "cooldown": [
+          120,
+          100,
+          80,
+        ],
       },
     },
     "shelf": [
@@ -13491,6 +17518,11 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "armorPerLevel": 4.7,
       "mr": 28,
       "mrPerLevel": 1.3,
+      "attackSpeed": 0.658,
+      "attackSpeedRatio": 0.625,
+      "attackSpeedPerLevel": 0.0136,
+      "attackRange": 525,
+      "critDamage": 1.75,
     },
     "skillOrder": [
       "Q",
@@ -13527,6 +17559,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "ap": 0.5,
         },
+        "cooldown": [
+          7,
+          6,
+          5,
+          4,
+          3,
+        ],
       },
       "W": {
         "name": "Seismic Shove",
@@ -13536,6 +17575,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           0,
         ],
         "ratios": {},
+        "cooldown": [
+          14,
+          12.5,
+          11,
+          9.5,
+          8,
+        ],
       },
       "E": {
         "name": "Unraveled Earth",
@@ -13551,6 +17597,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "ap": 0.6,
         },
+        "cooldown": [
+          14,
+          14,
+          14,
+          14,
+          14,
+        ],
       },
       "R": {
         "name": "Weaver's Wall",
@@ -13560,6 +17613,11 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           0,
         ],
         "ratios": {},
+        "cooldown": [
+          180,
+          150,
+          120,
+        ],
       },
     },
     "shelf": [
@@ -13587,6 +17645,11 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "armorPerLevel": 4.7,
       "mr": 36,
       "mrPerLevel": 2.05,
+      "attackSpeed": 0.625,
+      "attackSpeedRatio": 0.625,
+      "attackSpeedPerLevel": 0.029,
+      "attackRange": 125,
+      "critDamage": 1.75,
     },
     "skillOrder": [
       "Q",
@@ -13623,6 +17686,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "bonusAd": 1,
         },
+        "cooldown": [
+          8,
+          7.5,
+          7,
+          6.5,
+          6,
+        ],
       },
       "W": {
         "name": "Rake",
@@ -13638,6 +17708,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "bonusAd": 0.4,
         },
+        "cooldown": [
+          9,
+          8.5,
+          8,
+          7.5,
+          7,
+        ],
       },
       "E": {
         "name": "Assassin's Path",
@@ -13647,6 +17724,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           0,
         ],
         "ratios": {},
+        "cooldown": [
+          2,
+          2,
+          2,
+          2,
+          2,
+        ],
       },
       "R": {
         "name": "Shadow Assault",
@@ -13660,6 +17744,11 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "bonusAd": 1,
         },
+        "cooldown": [
+          100,
+          80,
+          60,
+        ],
       },
     },
     "shelf": [
@@ -13687,6 +17776,11 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "armorPerLevel": 4.3,
       "mr": 28,
       "mrPerLevel": 2.05,
+      "attackSpeed": 0.625,
+      "attackSpeedRatio": 0.625,
+      "attackSpeedPerLevel": 0.02,
+      "attackRange": 150,
+      "critDamage": 1.75,
     },
     "skillOrder": [
       "Q",
@@ -13721,6 +17815,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           5,
         ],
         "ratios": {},
+        "cooldown": [
+          3,
+          3,
+          3,
+          3,
+          3,
+        ],
       },
       "W": {
         "name": "Bastion",
@@ -13730,6 +17831,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           0,
         ],
         "ratios": {},
+        "cooldown": [
+          15,
+          15,
+          15,
+          15,
+          15,
+        ],
       },
       "E": {
         "name": "Dazzle",
@@ -13745,6 +17853,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "ap": 0.5,
         },
+        "cooldown": [
+          16,
+          15,
+          14,
+          13,
+          12,
+        ],
       },
       "R": {
         "name": "Cosmic Radiance",
@@ -13754,6 +17869,11 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           0,
         ],
         "ratios": {},
+        "cooldown": [
+          180,
+          150,
+          120,
+        ],
       },
     },
     "shelf": [
@@ -13781,6 +17901,11 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "armorPerLevel": 4.5,
       "mr": 30,
       "mrPerLevel": 1.3,
+      "attackSpeed": 0.69,
+      "attackSpeedRatio": 0.69,
+      "attackSpeedPerLevel": 0.0338,
+      "attackRange": 500,
+      "critDamage": 1.75,
     },
     "skillOrder": [
       "Q",
@@ -13817,6 +17942,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "ap": 0.7,
         },
+        "cooldown": [
+          7,
+          7,
+          7,
+          7,
+          7,
+        ],
       },
       "W": {
         "name": "Move Quick",
@@ -13826,6 +17958,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           0,
         ],
         "ratios": {},
+        "cooldown": [
+          14,
+          14,
+          14,
+          14,
+          14,
+        ],
       },
       "E": {
         "name": "Toxic Shot",
@@ -13854,6 +17993,11 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "ap": 0.125,
         },
+        "cooldown": [
+          0.25,
+          0.25,
+          0.25,
+        ],
       },
     },
     "shelf": [
@@ -13881,6 +18025,11 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "armorPerLevel": 0,
       "mr": 30,
       "mrPerLevel": 1.55,
+      "attackSpeed": 0.625,
+      "attackSpeedRatio": 0.625,
+      "attackSpeedPerLevel": 0.035,
+      "attackRange": 450,
+      "critDamage": 1.75,
     },
     "skillOrder": [
       "Q",
@@ -13917,6 +18066,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "ap": 0.9,
         },
+        "cooldown": [
+          19,
+          16.5,
+          14,
+          11.5,
+          9,
+        ],
       },
       "W": {
         "name": "Dark Passage",
@@ -13930,6 +18086,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           130,
         ],
         "ratios": {},
+        "cooldown": [
+          21,
+          20,
+          19,
+          18,
+          17,
+        ],
       },
       "E": {
         "name": "Flay",
@@ -13945,6 +18108,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "ap": 0.7,
         },
+        "cooldown": [
+          13,
+          12.25,
+          11.5,
+          10.75,
+          10,
+        ],
       },
       "R": {
         "name": "The Box",
@@ -13958,6 +18128,11 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "ap": 1,
         },
+        "cooldown": [
+          120,
+          100,
+          80,
+        ],
       },
     },
     "shelf": [
@@ -13985,6 +18160,11 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "armorPerLevel": 4,
       "mr": 33,
       "mrPerLevel": 1.1,
+      "attackSpeed": 0.656,
+      "attackSpeedRatio": 0.694,
+      "attackSpeedPerLevel": 0.015,
+      "attackRange": 550,
+      "critDamage": 1.75,
     },
     "skillOrder": [
       "Q",
@@ -14015,6 +18195,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           0,
         ],
         "ratios": {},
+        "cooldown": [
+          20,
+          19,
+          18,
+          17,
+          16,
+        ],
       },
       "W": {
         "name": "Rocket Jump",
@@ -14031,6 +18218,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           "bonusAd": 1,
           "ap": 0.5,
         },
+        "cooldown": [
+          22,
+          20,
+          18,
+          16,
+          14,
+        ],
       },
       "E": {
         "name": "Explosive Charge",
@@ -14046,6 +18240,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "ap": 0.25,
         },
+        "cooldown": [
+          16,
+          15.5,
+          15,
+          14.5,
+          14,
+        ],
       },
       "R": {
         "name": "Buster Shot",
@@ -14060,6 +18261,11 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           "bonusAd": 0.7,
           "ap": 1,
         },
+        "cooldown": [
+          100,
+          100,
+          100,
+        ],
       },
     },
     "shelf": [
@@ -14087,6 +18293,11 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "armorPerLevel": 4.5,
       "mr": 32,
       "mrPerLevel": 2.05,
+      "attackSpeed": 0.67,
+      "attackSpeedRatio": 0.67,
+      "attackSpeedPerLevel": 0.029,
+      "attackRange": 175,
+      "critDamage": 1.75,
     },
     "skillOrder": [
       "Q",
@@ -14121,6 +18332,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           20,
         ],
         "ratios": {},
+        "cooldown": [
+          3.5,
+          3.5,
+          3.5,
+          3.5,
+          3.5,
+        ],
       },
       "W": {
         "name": "Frozen Domain",
@@ -14130,6 +18348,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           0,
         ],
         "ratios": {},
+        "cooldown": [
+          16,
+          15,
+          14,
+          13,
+          12,
+        ],
       },
       "E": {
         "name": "Pillar of Ice",
@@ -14139,6 +18364,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           0,
         ],
         "ratios": {},
+        "cooldown": [
+          21,
+          19.5,
+          18,
+          16.5,
+          15,
+        ],
       },
       "R": {
         "name": "Subjugate",
@@ -14148,6 +18380,11 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           0,
         ],
         "ratios": {},
+        "cooldown": [
+          120,
+          100,
+          80,
+        ],
       },
     },
     "shelf": [
@@ -14175,6 +18412,11 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "armorPerLevel": 4.8,
       "mr": 32,
       "mrPerLevel": 2.05,
+      "attackSpeed": 0.67,
+      "attackSpeedRatio": 0.694,
+      "attackSpeedPerLevel": 0.034,
+      "attackRange": 175,
+      "critDamage": 1.75,
     },
     "skillOrder": [
       "Q",
@@ -14209,6 +18451,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           25,
         ],
         "ratios": {},
+        "cooldown": [
+          12,
+          12,
+          12,
+          12,
+          12,
+        ],
       },
       "W": {
         "name": "Mocking Shout",
@@ -14222,6 +18471,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           80,
         ],
         "ratios": {},
+        "cooldown": [
+          14,
+          14,
+          14,
+          14,
+          14,
+        ],
       },
       "E": {
         "name": "Spinning Slash",
@@ -14238,6 +18494,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           "bonusAd": 1.3,
           "ap": 0.8,
         },
+        "cooldown": [
+          12,
+          11,
+          10,
+          9,
+          8,
+        ],
       },
       "R": {
         "name": "Undying Rage",
@@ -14249,6 +18512,11 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           100,
         ],
         "ratios": {},
+        "cooldown": [
+          120,
+          100,
+          80,
+        ],
       },
     },
     "shelf": [
@@ -14276,6 +18544,11 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "armorPerLevel": 4.35,
       "mr": 30,
       "mrPerLevel": 1.3,
+      "attackSpeed": 0.625,
+      "attackSpeedRatio": 0.651,
+      "attackSpeedPerLevel": 0.025,
+      "attackRange": 525,
+      "critDamage": 1.75,
     },
     "skillOrder": [
       "Q",
@@ -14313,6 +18586,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           "bonusAd": 0.5,
           "ap": 0.85,
         },
+        "cooldown": [
+          6,
+          5.75,
+          5.5,
+          5.25,
+          5,
+        ],
       },
       "W": {
         "name": "Pick a Card",
@@ -14329,6 +18609,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           "totalAd": 1,
           "ap": 1,
         },
+        "cooldown": [
+          6,
+          6,
+          6,
+          6,
+          6,
+        ],
       },
       "E": {
         "name": "Stacked Deck",
@@ -14354,6 +18641,11 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           0,
         ],
         "ratios": {},
+        "cooldown": [
+          180,
+          150,
+          120,
+        ],
       },
     },
     "shelf": [
@@ -14381,6 +18673,11 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "armorPerLevel": 4,
       "mr": 33,
       "mrPerLevel": 1.1,
+      "attackSpeed": 0.679,
+      "attackSpeedRatio": 0.679,
+      "attackSpeedPerLevel": 0.03,
+      "attackRange": 550,
+      "critDamage": 1.75,
     },
     "skillOrder": [
       "Q",
@@ -14411,6 +18708,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           0,
         ],
         "ratios": {},
+        "cooldown": [
+          16,
+          16,
+          16,
+          16,
+          16,
+        ],
       },
       "W": {
         "name": "Venom Cask",
@@ -14420,6 +18724,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           0,
         ],
         "ratios": {},
+        "cooldown": [
+          13,
+          12,
+          11,
+          10,
+          9,
+        ],
       },
       "E": {
         "name": "Contaminate",
@@ -14433,6 +18744,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           60,
         ],
         "ratios": {},
+        "cooldown": [
+          12,
+          11,
+          10,
+          9,
+          8,
+        ],
       },
       "R": {
         "name": "Spray and Pray",
@@ -14444,6 +18762,11 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           60,
         ],
         "ratios": {},
+        "cooldown": [
+          90,
+          90,
+          90,
+        ],
       },
     },
     "shelf": [
@@ -14471,6 +18794,11 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "armorPerLevel": 4.7,
       "mr": 32,
       "mrPerLevel": 2.05,
+      "attackSpeed": 0.65,
+      "attackSpeedRatio": 0.65,
+      "attackSpeedPerLevel": 0.03,
+      "attackRange": 125,
+      "critDamage": 1.75,
     },
     "skillOrder": [
       "Q",
@@ -14501,6 +18829,14 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           0,
         ],
         "ratios": {},
+        "cooldown": [
+          6,
+          6,
+          6,
+          6,
+          6,
+          6,
+        ],
       },
       "W": {
         "name": "Iron Mantle",
@@ -14510,6 +18846,14 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           0,
         ],
         "ratios": {},
+        "cooldown": [
+          6,
+          6,
+          6,
+          6,
+          6,
+          6,
+        ],
       },
       "E": {
         "name": "Blazing Stampede",
@@ -14519,6 +18863,14 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           0,
         ],
         "ratios": {},
+        "cooldown": [
+          6,
+          6,
+          6,
+          6,
+          6,
+          6,
+        ],
       },
       "R": {
         "name": "Wingborne Storm",
@@ -14535,6 +18887,14 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "ap": 0.175,
         },
+        "cooldown": [
+          6,
+          6,
+          6,
+          6,
+          6,
+          6,
+        ],
       },
     },
     "shelf": [
@@ -14562,6 +18922,11 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "armorPerLevel": 5,
       "mr": 32,
       "mrPerLevel": 2.05,
+      "attackSpeed": 0.625,
+      "attackSpeedRatio": 0.625,
+      "attackSpeedPerLevel": 0.0375,
+      "attackRange": 350,
+      "critDamage": 1.75,
     },
     "skillOrder": [
       "Q",
@@ -14598,6 +18963,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "totalAd": 0.7,
         },
+        "cooldown": [
+          10,
+          9.5,
+          9,
+          8.5,
+          8,
+        ],
       },
       "W": {
         "name": "Purge",
@@ -14613,6 +18985,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "totalAd": 0.2,
         },
+        "cooldown": [
+          12,
+          9,
+          6,
+          3,
+          0,
+        ],
       },
       "E": {
         "name": "Disdain",
@@ -14628,6 +19007,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "bonusAd": 1,
         },
+        "cooldown": [
+          16,
+          15.5,
+          15,
+          14.5,
+          14,
+        ],
       },
       "R": {
         "name": "Fear Beyond Death",
@@ -14641,6 +19027,11 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "bonusAd": 0.5,
         },
+        "cooldown": [
+          100,
+          85,
+          70,
+        ],
       },
     },
     "shelf": [
@@ -14668,6 +19059,11 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "armorPerLevel": 4,
       "mr": 33,
       "mrPerLevel": 1.1,
+      "attackSpeed": 0.658,
+      "attackSpeedRatio": 0.658,
+      "attackSpeedPerLevel": 0.035,
+      "attackRange": 575,
+      "critDamage": 1.75,
     },
     "skillOrder": [
       "Q",
@@ -14704,6 +19100,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "bonusAd": 0.867,
         },
+        "cooldown": [
+          16,
+          15,
+          14,
+          13,
+          12,
+        ],
       },
       "W": {
         "name": "Blighted Quiver",
@@ -14719,6 +19122,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "ap": 0.35,
         },
+        "cooldown": [
+          40,
+          40,
+          40,
+          40,
+          40,
+        ],
       },
       "E": {
         "name": "Hail of Arrows",
@@ -14734,6 +19144,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "bonusAd": 1,
         },
+        "cooldown": [
+          18,
+          16,
+          14,
+          12,
+          10,
+        ],
       },
       "R": {
         "name": "Chain of Corruption",
@@ -14747,6 +19164,11 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "ap": 1,
         },
+        "cooldown": [
+          100,
+          80,
+          60,
+        ],
       },
     },
     "shelf": [
@@ -14774,6 +19196,11 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "armorPerLevel": 4.6,
       "mr": 33,
       "mrPerLevel": 1.1,
+      "attackSpeed": 0.658,
+      "attackSpeedRatio": 0.658,
+      "attackSpeedPerLevel": 0.028,
+      "attackRange": 550,
+      "critDamage": 1.75,
     },
     "skillOrder": [
       "Q",
@@ -14807,6 +19234,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           "totalAd": 0.75,
           "ap": 0.5,
         },
+        "cooldown": [
+          6,
+          5,
+          4,
+          3,
+          2,
+        ],
       },
       "W": {
         "name": "Silver Bolts",
@@ -14831,6 +19265,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "bonusAd": 0.5,
         },
+        "cooldown": [
+          20,
+          18,
+          16,
+          14,
+          12,
+        ],
       },
       "R": {
         "name": "Final Hour",
@@ -14842,6 +19283,11 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           65,
         ],
         "ratios": {},
+        "cooldown": [
+          100,
+          85,
+          70,
+        ],
       },
     },
     "shelf": [
@@ -14869,6 +19315,11 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "armorPerLevel": 5.2,
       "mr": 32,
       "mrPerLevel": 1.3,
+      "attackSpeed": 0.625,
+      "attackSpeedRatio": 0.625,
+      "attackSpeedPerLevel": 0.0224,
+      "attackRange": 550,
+      "critDamage": 1.75,
     },
     "skillOrder": [
       "Q",
@@ -14905,6 +19356,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "ap": 0.5,
         },
+        "cooldown": [
+          6,
+          5.5,
+          5,
+          4.5,
+          4,
+        ],
       },
       "W": {
         "name": "Dark Matter",
@@ -14920,6 +19378,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "ap": 0.6,
         },
+        "cooldown": [
+          8,
+          8,
+          8,
+          8,
+          8,
+        ],
       },
       "E": {
         "name": "Event Horizon",
@@ -14929,6 +19394,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           0,
         ],
         "ratios": {},
+        "cooldown": [
+          20,
+          18.5,
+          17,
+          15.5,
+          14,
+        ],
       },
       "R": {
         "name": "Primordial Burst",
@@ -14942,6 +19414,11 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "ap": 0.65,
         },
+        "cooldown": [
+          100,
+          80,
+          60,
+        ],
       },
     },
     "shelf": [
@@ -14969,6 +19446,11 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "armorPerLevel": 4.7,
       "mr": 30,
       "mrPerLevel": 1.3,
+      "attackSpeed": 0.643,
+      "attackSpeedRatio": 0.625,
+      "attackSpeedPerLevel": 0.0159,
+      "attackRange": 525,
+      "critDamage": 1.75,
     },
     "skillOrder": [
       "Q",
@@ -15005,6 +19487,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "ap": 0.9,
         },
+        "cooldown": [
+          7,
+          7,
+          7,
+          7,
+          7,
+        ],
       },
       "W": {
         "name": "Void Rift",
@@ -15020,6 +19509,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "ap": 0.2,
         },
+        "cooldown": [
+          1.5,
+          1.5,
+          1.5,
+          1.5,
+          1.5,
+        ],
       },
       "E": {
         "name": "Tectonic Disruption",
@@ -15035,6 +19531,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "ap": 0.3,
         },
+        "cooldown": [
+          14,
+          13.5,
+          13,
+          12.5,
+          12,
+        ],
       },
       "R": {
         "name": "Life Form Disintegration Ray",
@@ -15048,6 +19551,11 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "ap": 0.096,
         },
+        "cooldown": [
+          100,
+          90,
+          80,
+        ],
       },
     },
     "shelf": [
@@ -15075,6 +19583,11 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "armorPerLevel": 4.45,
       "mr": 28,
       "mrPerLevel": 1.3,
+      "attackSpeed": 0.669,
+      "attackSpeedRatio": 0.625,
+      "attackSpeedPerLevel": 0.01,
+      "attackRange": 550,
+      "critDamage": 1.75,
     },
     "skillOrder": [
       "Q",
@@ -15111,6 +19624,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "ap": 0.7,
         },
+        "cooldown": [
+          8,
+          7,
+          6,
+          5,
+          4,
+        ],
       },
       "W": {
         "name": "Personal Space",
@@ -15126,6 +19646,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "ap": 0.3,
         },
+        "cooldown": [
+          16,
+          15,
+          14,
+          13,
+          12,
+        ],
       },
       "E": {
         "name": "Looming Darkness",
@@ -15141,6 +19668,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "ap": 0.4,
         },
+        "cooldown": [
+          13,
+          13,
+          13,
+          13,
+          13,
+        ],
       },
       "R": {
         "name": "Shadow Surge",
@@ -15154,6 +19688,11 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "ap": 0.2,
         },
+        "cooldown": [
+          140,
+          120,
+          100,
+        ],
       },
     },
     "shelf": [
@@ -15181,6 +19720,11 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "armorPerLevel": 4.7,
       "mr": 32,
       "mrPerLevel": 2.05,
+      "attackSpeed": 0.644,
+      "attackSpeedRatio": 0.644,
+      "attackSpeedPerLevel": 0.02,
+      "attackRange": 125,
+      "critDamage": 1.75,
     },
     "skillOrder": [
       "Q",
@@ -15217,6 +19761,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "bonusAd": 0.8,
         },
+        "cooldown": [
+          12,
+          10.5,
+          9,
+          7.5,
+          6,
+        ],
       },
       "W": {
         "name": "Denting Blows",
@@ -15242,6 +19793,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           "totalAd": 1.2,
           "ap": 1,
         },
+        "cooldown": [
+          1,
+          1,
+          1,
+          1,
+          1,
+        ],
       },
       "R": {
         "name": "Cease and Desist",
@@ -15255,6 +19813,11 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "bonusAd": 0.9,
         },
+        "cooldown": [
+          140,
+          115,
+          90,
+        ],
       },
     },
     "shelf": [
@@ -15282,6 +19845,11 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "armorPerLevel": 4.6,
       "mr": 32,
       "mrPerLevel": 2.05,
+      "attackSpeed": 0.658,
+      "attackSpeedRatio": 0.658,
+      "attackSpeedPerLevel": 0.0275,
+      "attackRange": 200,
+      "critDamage": 1.75,
     },
     "skillOrder": [
       "Q",
@@ -15312,6 +19880,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           0,
         ],
         "ratios": {},
+        "cooldown": [
+          5,
+          4.5,
+          4,
+          3.5,
+          3,
+        ],
       },
       "W": {
         "name": "Spectral Maw",
@@ -15327,6 +19902,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "ap": 1,
         },
+        "cooldown": [
+          8,
+          8,
+          8,
+          8,
+          8,
+        ],
       },
       "E": {
         "name": "Harrowed Path",
@@ -15336,6 +19918,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           0,
         ],
         "ratios": {},
+        "cooldown": [
+          14,
+          12,
+          10,
+          8,
+          6,
+        ],
       },
       "R": {
         "name": "Heartbreaker",
@@ -15345,6 +19934,11 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           0,
         ],
         "ratios": {},
+        "cooldown": [
+          120,
+          100,
+          80,
+        ],
       },
     },
     "shelf": [
@@ -15372,6 +19966,11 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "armorPerLevel": 4.4,
       "mr": 30,
       "mrPerLevel": 1.3,
+      "attackSpeed": 0.658,
+      "attackSpeedRatio": 0.658,
+      "attackSpeedPerLevel": 0.0211,
+      "attackRange": 525,
+      "critDamage": 1.75,
     },
     "skillOrder": [
       "Q",
@@ -15408,6 +20007,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "ap": 0.4,
         },
+        "cooldown": [
+          9,
+          8,
+          7,
+          6,
+          5,
+        ],
       },
       "W": {
         "name": "Gravity Field",
@@ -15417,6 +20023,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           0,
         ],
         "ratios": {},
+        "cooldown": [
+          17,
+          16,
+          15,
+          14,
+          13,
+        ],
       },
       "E": {
         "name": "Hextech Ray",
@@ -15432,6 +20045,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "ap": 0.5,
         },
+        "cooldown": [
+          12,
+          11,
+          10,
+          9,
+          8,
+        ],
       },
       "R": {
         "name": "Arcane Storm",
@@ -15445,6 +20065,11 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "ap": 0.5,
         },
+        "cooldown": [
+          120,
+          100,
+          80,
+        ],
       },
     },
     "shelf": [
@@ -15472,6 +20097,11 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "armorPerLevel": 4.5,
       "mr": 30,
       "mrPerLevel": 1.3,
+      "attackSpeed": 0.658,
+      "attackSpeedRatio": 0.658,
+      "attackSpeedPerLevel": 0.02,
+      "attackRange": 450,
+      "critDamage": 1.75,
     },
     "skillOrder": [
       "Q",
@@ -15508,6 +20138,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "ap": 0.6,
         },
+        "cooldown": [
+          9,
+          7.9,
+          6.8,
+          5.7,
+          4.6,
+        ],
       },
       "W": {
         "name": "Sanguine Pool",
@@ -15521,6 +20158,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           75,
         ],
         "ratios": {},
+        "cooldown": [
+          28,
+          25,
+          22,
+          19,
+          16,
+        ],
       },
       "E": {
         "name": "Tides of Blood",
@@ -15536,6 +20180,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "ap": 0.35,
         },
+        "cooldown": [
+          13,
+          11,
+          9,
+          7,
+          5,
+        ],
       },
       "R": {
         "name": "Hemoplague",
@@ -15549,6 +20200,11 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "ap": 0.7,
         },
+        "cooldown": [
+          120,
+          120,
+          120,
+        ],
       },
     },
     "shelf": [
@@ -15576,6 +20232,11 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "armorPerLevel": 5.2,
       "mr": 32,
       "mrPerLevel": 2.05,
+      "attackSpeed": 0.625,
+      "attackSpeedRatio": 0.7,
+      "attackSpeedPerLevel": 0.02,
+      "attackRange": 150,
+      "critDamage": 1.75,
     },
     "skillOrder": [
       "Q",
@@ -15612,6 +20273,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "bonusAd": 1.2,
         },
+        "cooldown": [
+          14,
+          13,
+          12,
+          11,
+          10,
+        ],
       },
       "W": {
         "name": "Frenzied Maul",
@@ -15627,6 +20295,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "totalAd": 1,
         },
+        "cooldown": [
+          5,
+          5,
+          5,
+          5,
+          5,
+        ],
       },
       "E": {
         "name": "Sky Splitter",
@@ -15642,6 +20317,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "ap": 0.8,
         },
+        "cooldown": [
+          14,
+          14,
+          14,
+          14,
+          14,
+        ],
       },
       "R": {
         "name": "Stormbringer",
@@ -15656,6 +20338,11 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           "bonusAd": 2.5,
           "ap": 1.25,
         },
+        "cooldown": [
+          160,
+          135,
+          110,
+        ],
       },
     },
     "shelf": [
@@ -15683,6 +20370,11 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "armorPerLevel": 4.4,
       "mr": 32,
       "mrPerLevel": 2.05,
+      "attackSpeed": 0.638,
+      "attackSpeedRatio": 0.638,
+      "attackSpeedPerLevel": 0.02,
+      "attackRange": 125,
+      "critDamage": 1.75,
     },
     "skillOrder": [
       "Q",
@@ -15716,6 +20408,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           "totalAd": 1.2,
           "ap": 1,
         },
+        "cooldown": [
+          8,
+          7.5,
+          7,
+          6.5,
+          6,
+        ],
       },
       "W": {
         "name": "Blood Hunt",
@@ -15725,6 +20424,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           0,
         ],
         "ratios": {},
+        "cooldown": [
+          80,
+          70,
+          60,
+          50,
+          40,
+        ],
       },
       "E": {
         "name": "Primal Howl",
@@ -15734,6 +20440,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           0,
         ],
         "ratios": {},
+        "cooldown": [
+          15,
+          14,
+          13,
+          12,
+          11,
+        ],
       },
       "R": {
         "name": "Infinite Duress",
@@ -15747,6 +20460,11 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "bonusAd": 1.67,
         },
+        "cooldown": [
+          110,
+          90,
+          70,
+        ],
       },
     },
     "shelf": [
@@ -15774,6 +20492,11 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "armorPerLevel": 4.7,
       "mr": 28,
       "mrPerLevel": 2.05,
+      "attackSpeed": 0.69,
+      "attackSpeedRatio": 0.658,
+      "attackSpeedPerLevel": 0.03,
+      "attackRange": 175,
+      "critDamage": 1.75,
     },
     "skillOrder": [
       "Q",
@@ -15810,6 +20533,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "bonusAd": 0.55,
         },
+        "cooldown": [
+          8,
+          7.5,
+          7,
+          6.5,
+          6,
+        ],
       },
       "W": {
         "name": "Warrior Trickster",
@@ -15819,6 +20549,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           0,
         ],
         "ratios": {},
+        "cooldown": [
+          20,
+          19,
+          18,
+          17,
+          16,
+        ],
       },
       "E": {
         "name": "Nimbus Strike",
@@ -15834,6 +20571,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "ap": 1,
         },
+        "cooldown": [
+          10,
+          9.25,
+          8.5,
+          7.75,
+          7,
+        ],
       },
       "R": {
         "name": "Cyclone",
@@ -15845,6 +20589,11 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "totalAd": 0.344,
         },
+        "cooldown": [
+          130,
+          110,
+          90,
+        ],
       },
     },
     "shelf": [
@@ -15872,6 +20621,11 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "armorPerLevel": 4.2,
       "mr": 33,
       "mrPerLevel": 1.1,
+      "attackSpeed": 0.658,
+      "attackSpeedRatio": 0.658,
+      "attackSpeedPerLevel": 0.039,
+      "attackRange": 525,
+      "critDamage": 1.75,
     },
     "skillOrder": [
       "Q",
@@ -15908,6 +20662,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "bonusAd": 0.5,
         },
+        "cooldown": [
+          10,
+          9.5,
+          9,
+          8.5,
+          8,
+        ],
       },
       "W": {
         "name": "Deadly Plumage",
@@ -15917,6 +20678,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           0,
         ],
         "ratios": {},
+        "cooldown": [
+          20,
+          19,
+          18,
+          17,
+          16,
+        ],
       },
       "E": {
         "name": "Bladecaller",
@@ -15932,6 +20700,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "bonusAd": 0.6,
         },
+        "cooldown": [
+          12,
+          11,
+          10,
+          9,
+          8,
+        ],
       },
       "R": {
         "name": "Featherstorm",
@@ -15945,6 +20720,11 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "bonusAd": 1,
         },
+        "cooldown": [
+          140,
+          120,
+          100,
+        ],
       },
     },
     "shelf": [
@@ -15972,6 +20752,11 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "armorPerLevel": 4.7,
       "mr": 30,
       "mrPerLevel": 1.3,
+      "attackSpeed": 0.658,
+      "attackSpeedRatio": 0.625,
+      "attackSpeedPerLevel": 0.0136,
+      "attackRange": 525,
+      "critDamage": 1.75,
     },
     "skillOrder": [
       "Q",
@@ -16008,6 +20793,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "ap": 0.9,
         },
+        "cooldown": [
+          9,
+          8,
+          7,
+          6,
+          5,
+        ],
       },
       "W": {
         "name": "Eye of Destruction",
@@ -16023,6 +20815,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "ap": 0.65,
         },
+        "cooldown": [
+          14,
+          13,
+          12,
+          11,
+          10,
+        ],
       },
       "E": {
         "name": "Shocking Orb",
@@ -16038,6 +20837,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "ap": 0.45,
         },
+        "cooldown": [
+          13,
+          12.5,
+          12,
+          11.5,
+          11,
+        ],
       },
       "R": {
         "name": "Rite of the Arcane",
@@ -16051,6 +20857,11 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "ap": 0.45,
         },
+        "cooldown": [
+          130,
+          115,
+          100,
+        ],
       },
     },
     "shelf": [
@@ -16078,6 +20889,11 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "armorPerLevel": 4.4,
       "mr": 32,
       "mrPerLevel": 2.05,
+      "attackSpeed": 0.645,
+      "attackSpeedRatio": 0.645,
+      "attackSpeedPerLevel": 0.035,
+      "attackRange": 175,
+      "critDamage": 1.75,
     },
     "skillOrder": [
       "Q",
@@ -16114,6 +20930,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "bonusAd": 0.4,
         },
+        "cooldown": [
+          7,
+          6.5,
+          6,
+          5.5,
+          5,
+        ],
       },
       "W": {
         "name": "Wind Becomes Lightning",
@@ -16129,6 +20952,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "totalAd": 0.3,
         },
+        "cooldown": [
+          12,
+          11,
+          10,
+          9,
+          8,
+        ],
       },
       "E": {
         "name": "Audacious Charge",
@@ -16144,6 +20974,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "ap": 0.6,
         },
+        "cooldown": [
+          11,
+          11,
+          11,
+          11,
+          11,
+        ],
       },
       "R": {
         "name": "Crescent Guard",
@@ -16158,6 +20995,11 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           "bonusAd": 1,
           "ap": 1.1,
         },
+        "cooldown": [
+          120,
+          110,
+          100,
+        ],
       },
     },
     "shelf": [
@@ -16185,6 +21027,11 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "armorPerLevel": 4.6,
       "mr": 32,
       "mrPerLevel": 2.05,
+      "attackSpeed": 0.697,
+      "attackSpeedRatio": 0.67,
+      "attackSpeedPerLevel": 0.035,
+      "attackRange": 175,
+      "critDamage": 1.75,
     },
     "skillOrder": [
       "Q",
@@ -16221,6 +21068,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "totalAd": 1.05,
         },
+        "cooldown": [
+          4,
+          4,
+          4,
+          4,
+          4,
+        ],
       },
       "W": {
         "name": "Wind Wall",
@@ -16234,6 +21088,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           600,
         ],
         "ratios": {},
+        "cooldown": [
+          25,
+          23,
+          21,
+          19,
+          17,
+        ],
       },
       "E": {
         "name": "Sweeping Blade",
@@ -16250,6 +21111,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           "bonusAd": 0.2,
           "ap": 0.6,
         },
+        "cooldown": [
+          0.5,
+          0.4,
+          0.3,
+          0.2,
+          0.1,
+        ],
       },
       "R": {
         "name": "Last Breath",
@@ -16263,6 +21131,11 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "bonusAd": 1.5,
         },
+        "cooldown": [
+          70,
+          50,
+          30,
+        ],
       },
     },
     "shelf": [
@@ -16290,6 +21163,11 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "armorPerLevel": 4.6,
       "mr": 32,
       "mrPerLevel": 2.05,
+      "attackSpeed": 0.625,
+      "attackSpeedRatio": 0.625,
+      "attackSpeedPerLevel": 0.035,
+      "attackRange": 175,
+      "critDamage": 1.75,
     },
     "skillOrder": [
       "Q",
@@ -16326,6 +21204,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "totalAd": 1.05,
         },
+        "cooldown": [
+          4,
+          4,
+          4,
+          4,
+          4,
+        ],
       },
       "W": {
         "name": "Spirit Cleave",
@@ -16339,6 +21224,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           25,
         ],
         "ratios": {},
+        "cooldown": [
+          14,
+          14,
+          14,
+          14,
+          14,
+        ],
       },
       "E": {
         "name": "Soul Unbound",
@@ -16348,6 +21240,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           0,
         ],
         "ratios": {},
+        "cooldown": [
+          22,
+          19,
+          16,
+          13,
+          10,
+        ],
       },
       "R": {
         "name": "Fate Sealed",
@@ -16361,6 +21260,11 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "bonusAd": 0.4,
         },
+        "cooldown": [
+          120,
+          100,
+          80,
+        ],
       },
     },
     "shelf": [
@@ -16388,6 +21292,11 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "armorPerLevel": 4.5,
       "mr": 32,
       "mrPerLevel": 2.05,
+      "attackSpeed": 0.625,
+      "attackSpeedRatio": 0.625,
+      "attackSpeedPerLevel": 0.02,
+      "attackRange": 175,
+      "critDamage": 1.75,
     },
     "skillOrder": [
       "Q",
@@ -16424,6 +21333,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "totalAd": 0.5,
         },
+        "cooldown": [
+          6,
+          5.5,
+          5,
+          4.5,
+          4,
+        ],
       },
       "W": {
         "name": "Dark Procession",
@@ -16437,6 +21353,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           4,
         ],
         "ratios": {},
+        "cooldown": [
+          20,
+          18,
+          16,
+          14,
+          12,
+        ],
       },
       "E": {
         "name": "Mourning Mist",
@@ -16446,6 +21369,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           0,
         ],
         "ratios": {},
+        "cooldown": [
+          12,
+          11,
+          10,
+          9,
+          8,
+        ],
       },
       "R": {
         "name": "Eulogy of the Isles",
@@ -16457,6 +21387,11 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           4,
         ],
         "ratios": {},
+        "cooldown": [
+          160,
+          130,
+          100,
+        ],
       },
     },
     "shelf": [
@@ -16484,6 +21419,11 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "armorPerLevel": 4.2,
       "mr": 25,
       "mrPerLevel": 1.1,
+      "attackSpeed": 0.625,
+      "attackSpeedRatio": 0.625,
+      "attackSpeedPerLevel": 0.01,
+      "attackRange": 425,
+      "critDamage": 1.75,
     },
     "skillOrder": [
       "Q",
@@ -16521,6 +21461,14 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "ap": 0.2,
         },
+        "cooldown": [
+          6.5,
+          6.5,
+          6.5,
+          6.5,
+          6.5,
+          6.5,
+        ],
       },
       "W": {
         "name": "You and Me!",
@@ -16530,6 +21478,11 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           0,
         ],
         "ratios": {},
+        "cooldown": [
+          10,
+          5,
+          0,
+        ],
       },
       "E": {
         "name": "Zoomies",
@@ -16545,6 +21498,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "ap": 0.3,
         },
+        "cooldown": [
+          10,
+          10,
+          10,
+          10,
+          10,
+        ],
       },
       "R": {
         "name": "Final Chapter",
@@ -16558,6 +21518,11 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "ap": 0.25,
         },
+        "cooldown": [
+          120,
+          110,
+          100,
+        ],
       },
     },
     "shelf": [
@@ -16585,6 +21550,11 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "armorPerLevel": 5.2,
       "mr": 32,
       "mrPerLevel": 2.05,
+      "attackSpeed": 0.736,
+      "attackSpeedRatio": 0.638,
+      "attackSpeedPerLevel": 0.016,
+      "attackRange": 175,
+      "critDamage": 1.75,
     },
     "skillOrder": [
       "Q",
@@ -16621,6 +21591,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "ap": 0.3,
         },
+        "cooldown": [
+          14,
+          12.5,
+          11,
+          9.5,
+          8,
+        ],
       },
       "W": {
         "name": "Unstable Matter",
@@ -16634,6 +21611,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           80,
         ],
         "ratios": {},
+        "cooldown": [
+          5,
+          5,
+          5,
+          5,
+          5,
+        ],
       },
       "E": {
         "name": "Elastic Slingshot",
@@ -16649,6 +21633,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "ap": 0.8,
         },
+        "cooldown": [
+          22,
+          19,
+          16,
+          13,
+          10,
+        ],
       },
       "R": {
         "name": "Let's Bounce!",
@@ -16662,6 +21653,11 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "ap": 0.4,
         },
+        "cooldown": [
+          120,
+          105,
+          90,
+        ],
       },
     },
     "shelf": [
@@ -16689,6 +21685,11 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "armorPerLevel": 4.7,
       "mr": 29,
       "mrPerLevel": 2.05,
+      "attackSpeed": 0.651,
+      "attackSpeedRatio": 0.651,
+      "attackSpeedPerLevel": 0.033,
+      "attackRange": 125,
+      "critDamage": 1.75,
     },
     "skillOrder": [
       "Q",
@@ -16725,6 +21726,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "bonusAd": 1,
         },
+        "cooldown": [
+          6,
+          6,
+          6,
+          6,
+          6,
+        ],
       },
       "W": {
         "name": "Living Shadow",
@@ -16738,6 +21746,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           50,
         ],
         "ratios": {},
+        "cooldown": [
+          20,
+          19,
+          18,
+          17,
+          16,
+        ],
       },
       "E": {
         "name": "Shadow Slash",
@@ -16753,6 +21768,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "bonusAd": 0.8,
         },
+        "cooldown": [
+          5,
+          4.5,
+          4,
+          3.5,
+          3,
+        ],
       },
       "R": {
         "name": "Death Mark",
@@ -16764,6 +21786,11 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "totalAd": 1,
         },
+        "cooldown": [
+          120,
+          110,
+          100,
+        ],
       },
     },
     "shelf": [
@@ -16791,6 +21818,11 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "armorPerLevel": 4.2,
       "mr": 33,
       "mrPerLevel": 1.1,
+      "attackSpeed": 0.658,
+      "attackSpeedRatio": 0.625,
+      "attackSpeedPerLevel": 0.02,
+      "attackRange": 550,
+      "critDamage": 1.75,
     },
     "skillOrder": [
       "Q",
@@ -16827,6 +21859,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "totalAd": 0.149,
         },
+        "cooldown": [
+          1,
+          1,
+          1,
+          1,
+          1,
+        ],
       },
       "W": {
         "name": "Ultrashock Laser",
@@ -16843,6 +21882,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           "totalAd": 1.3,
           "ap": 0.25,
         },
+        "cooldown": [
+          12,
+          11,
+          10,
+          9,
+          8,
+        ],
       },
       "E": {
         "name": "Spark Surge",
@@ -16852,6 +21898,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           0,
         ],
         "ratios": {},
+        "cooldown": [
+          22,
+          21,
+          20,
+          19,
+          18,
+        ],
       },
       "R": {
         "name": "Lightning Crash",
@@ -16866,6 +21919,11 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           "bonusAd": 0.85,
           "ap": 1.1,
         },
+        "cooldown": [
+          80,
+          75,
+          70,
+        ],
       },
     },
     "shelf": [
@@ -16893,6 +21951,11 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "armorPerLevel": 4.7,
       "mr": 30,
       "mrPerLevel": 1.3,
+      "attackSpeed": 0.656,
+      "attackSpeedRatio": 0.656,
+      "attackSpeedPerLevel": 0.02,
+      "attackRange": 550,
+      "critDamage": 1.75,
     },
     "skillOrder": [
       "Q",
@@ -16929,6 +21992,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "ap": 0.65,
         },
+        "cooldown": [
+          6,
+          5.5,
+          5,
+          4.5,
+          4,
+        ],
       },
       "W": {
         "name": "Satchel Charge",
@@ -16944,6 +22014,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "ap": 0.5,
         },
+        "cooldown": [
+          20,
+          18,
+          16,
+          14,
+          12,
+        ],
       },
       "E": {
         "name": "Hexplosive Minefield",
@@ -16959,6 +22036,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "ap": 0.3,
         },
+        "cooldown": [
+          16,
+          16,
+          16,
+          16,
+          16,
+        ],
       },
       "R": {
         "name": "Mega Inferno Bomb",
@@ -16972,6 +22056,11 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "ap": 0.733,
         },
+        "cooldown": [
+          120,
+          95,
+          70,
+        ],
       },
     },
     "shelf": [
@@ -16999,6 +22088,11 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "armorPerLevel": 5,
       "mr": 30,
       "mrPerLevel": 1.3,
+      "attackSpeed": 0.658,
+      "attackSpeedRatio": 0.625,
+      "attackSpeedPerLevel": 0.0213,
+      "attackRange": 550,
+      "critDamage": 1.75,
     },
     "skillOrder": [
       "Q",
@@ -17035,6 +22129,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "ap": 0.9,
         },
+        "cooldown": [
+          10,
+          9.5,
+          9,
+          8.5,
+          8,
+        ],
       },
       "W": {
         "name": "Rewind",
@@ -17044,6 +22145,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           0,
         ],
         "ratios": {},
+        "cooldown": [
+          14,
+          12,
+          10,
+          8,
+          6,
+        ],
       },
       "E": {
         "name": "Time Warp",
@@ -17053,6 +22161,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           0,
         ],
         "ratios": {},
+        "cooldown": [
+          15,
+          15,
+          15,
+          15,
+          15,
+        ],
       },
       "R": {
         "name": "Chronoshift",
@@ -17066,6 +22181,11 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "ap": 2,
         },
+        "cooldown": [
+          120,
+          90,
+          60,
+        ],
       },
     },
     "shelf": [
@@ -17093,6 +22213,11 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "armorPerLevel": 4.7,
       "mr": 30,
       "mrPerLevel": 1.3,
+      "attackSpeed": 0.658,
+      "attackSpeedRatio": 0.625,
+      "attackSpeedPerLevel": 0.025,
+      "attackRange": 550,
+      "critDamage": 1.75,
     },
     "skillOrder": [
       "Q",
@@ -17142,6 +22267,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "ap": 0.6,
         },
+        "cooldown": [
+          8.5,
+          8,
+          7.5,
+          7,
+          6.5,
+        ],
       },
       "W": {
         "name": "Spell Thief",
@@ -17157,6 +22289,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "ap": 0.133,
         },
+        "cooldown": [
+          0.25,
+          0.25,
+          0.25,
+          0.25,
+          0.25,
+        ],
       },
       "E": {
         "name": "Sleepy Trouble Bubble",
@@ -17172,6 +22311,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "ap": 0.45,
         },
+        "cooldown": [
+          16,
+          15,
+          14,
+          13,
+          12,
+        ],
       },
       "R": {
         "name": "Portal Jump",
@@ -17181,6 +22327,11 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           0,
         ],
         "ratios": {},
+        "cooldown": [
+          11,
+          8,
+          5,
+        ],
       },
     },
     "shelf": [
@@ -17208,6 +22359,11 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "armorPerLevel": 4.2,
       "mr": 30,
       "mrPerLevel": 1.3,
+      "attackSpeed": 0.681,
+      "attackSpeedRatio": 0.625,
+      "attackSpeedPerLevel": 0.0211,
+      "attackRange": 575,
+      "critDamage": 1.75,
     },
     "skillOrder": [
       "Q",
@@ -17244,6 +22400,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "ap": 0.65,
         },
+        "cooldown": [
+          7,
+          6.5,
+          6,
+          5.5,
+          5,
+        ],
       },
       "W": {
         "name": "Rampant Growth",
@@ -17268,6 +22431,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "ap": 0.6,
         },
+        "cooldown": [
+          12,
+          12,
+          12,
+          12,
+          12,
+        ],
       },
       "R": {
         "name": "Stranglethorns",
@@ -17281,6 +22451,11 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "ap": 0.7,
         },
+        "cooldown": [
+          110,
+          100,
+          90,
+        ],
       },
     },
     "shelf": [
