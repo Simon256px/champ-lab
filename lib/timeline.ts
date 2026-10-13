@@ -118,7 +118,7 @@ export function inventoryAt(plan: PurchaseStep[], gold: number, items: Record<st
  * profil, premier légendaire, bottes, puis le reste de l'étagère.
  */
 export function defaultBuildOrder(champion: Champion, items: Record<string, Item>): string[] {
-  const starter = champion.adaptive === "AD" ? "doransblade" : "doransring";
+  const starter = champion.starter ?? (champion.adaptive === "AD" ? "doransblade" : "doransring");
   const shelf = champion.shelf.filter((id) => items[id]);
   const boots = shelf.filter((id) => items[id].tier === "boots").slice(0, 1);
   const rest = shelf.filter((id) => items[id].tier !== "boots");

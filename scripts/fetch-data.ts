@@ -39,6 +39,7 @@ import type {
   ItemRef,
   ItemStats,
   ItemTier,
+  KitSheet,
   Mechanic,
   ScaledValue,
   StatRef,
@@ -52,6 +53,7 @@ import {
   type CcKind,
   ccPick,
   cdragonVersion,
+  characterBaseStat,
   cooldowns,
   fetchChampionBin,
   fetchItemsBin,
@@ -59,6 +61,7 @@ import {
   isAimed,
   isPercentCalc,
   itemExtraStats,
+  kitSpell,
   parseTooltip,
   resolveItemRef,
   resolveRef,
@@ -386,6 +389,7 @@ function mapChampion(m: MChampion, dd?: DDChampStats): Champion {
     abilities: applyAbilityOverrides(id, abilities),
     shelf: ov.shelf ?? defaultShelf,
     keystone: ov.keystone ?? defaultKeystone,
+    ...(ov.starter ? { starter: ov.starter } : {}),
   };
 }
 
@@ -588,6 +592,18 @@ ${body}
 };
 `;
 }
+
+function renderKits(kits: Record<string, KitSheet>, patch: string): string {
+  return `${header(patch)}
+// Fiches de kit complètes (infobulles, valeurs et calculs du jeu) pour les pages dédiées.
+import type { KitSheet } from "../types.ts";
+
+export const GENERATED_KITS: Record<string, KitSheet> = ${JSON.stringify(kits, null, 2)};
+`;
+}
+
+/** Champions qui ont une page dédiée : on génère leur fiche de kit complète. */
+const KIT_SHEETS = ["ivern"];
 
 function renderMechanics(mechanics: Record<string, Mechanic[]>, patch: string): string {
   const body = Object.entries(mechanics)
@@ -854,11 +870,27 @@ function championFromGame(
   };
 }
 
-function resolveMechanics(
+async function resolveMechanics(
   champions: Champion[],
   slotsById: Map<string, SpellSlots>,
-): Record<string, Mechanic[]> {
+  cdVersion: string,
+): Promise<Record<string, Mechanic[]>> {
   const out: Record<string, Mechanic[]> = {};
+  // Fichiers d'autres personnages cités (familiers : Daisy = « ivernminion »).
+  const characters = new Map<string, unknown>();
+  for (const list of Object.values(MECHANICS)) {
+    for (const m of list) {
+      for (const v of Object.values(m)) {
+        const c = (v as GameRef | undefined)?.character;
+        if (c && !characters.has(c)) {
+          characters.set(
+            c,
+            await fetchChampionBin(cdVersion, c).catch(() => null),
+          );
+        }
+      }
+    }
+  }
   let ok = 0;
   for (const [id, list] of Object.entries(MECHANICS)) {
     const champ = champions.find((c) => c.id === id);
@@ -874,8 +906,12 @@ function resolveMechanics(
       for (const [k, v] of Object.entries(m)) {
         if (v && typeof v === "object" && "slot" in v) {
           const ref = v as GameRef;
-          const f: Formula | null = resolveRef(slots, ref, maxRank(ref));
-          if (!f) failed = `${ref.slot}/${ref.calc ?? ref.value}`;
+          let f: Formula | null;
+          if (ref.character && ref.field) {
+            const n = characterBaseStat(characters.get(ref.character), ref.field);
+            f = n === null ? null : { op: "num", n: n * (ref.times ?? 1) };
+          } else f = resolveRef(slots, ref, maxRank(ref));
+          if (!f) failed = `${ref.character ?? ref.slot}/${ref.calc ?? ref.value ?? ref.field}`;
           resolved[k] = f;
         } else resolved[k] = v;
       }
@@ -1017,13 +1053,14 @@ async function main() {
 
   // Infobulles du client : types de dégâts, contrôles conditionnels, mobilité.
   const tooltips = await fetchTooltips(cdVersion);
+  const nameById = new Map(Object.values(dd.data).map((c) => [slugify(c.id), c.name]));
   console.log(`  infobulles : ${tooltips.size} champions.`);
   const factsCache = new Map<string, TooltipFacts | null>();
   const factsOf = (id: string, key: AbilityKey): TooltipFacts | null => {
     const k = `${id}/${key}`;
     if (!factsCache.has(k)) {
       const t = tooltips.get(id)?.[key];
-      factsCache.set(k, t ? parseTooltip(t.text) : null);
+      factsCache.set(k, t ? parseTooltip(t.text, nameById.get(id)) : null);
     }
     return factsCache.get(k)!;
   };
@@ -1085,7 +1122,27 @@ async function main() {
   console.log(`  contrôles conditionnels : ${conditional.join(", ")}`);
 
   // Passifs (data/mechanics.ts) : références résolues en formules du patch.
-  const mechanics = resolveMechanics(champions, slotsById);
+  const mechanics = await resolveMechanics(champions, slotsById, cdVersion);
+
+  // Fiches de kit complètes (page dédiée) : infobulles + valeurs + calculs du jeu.
+  const kits: Record<string, KitSheet> = {};
+  for (const id of KIT_SHEETS) {
+    const slots = slotsById.get(id);
+    const tips = tooltips.get(id);
+    const champ = champions.find((c) => c.id === id);
+    if (!slots || !tips || !champ) {
+      console.warn(`  ⚠ fiche de kit ${id} : données du jeu introuvables.`);
+      continue;
+    }
+    const spells: KitSheet["spells"] = {};
+    for (const key of ["P", ...ABILITY_KEYS] as const) {
+      const tip = tips[key];
+      if (!slots[key] || !tip) continue;
+      spells[key] = kitSpell(slots[key], tip, key === "P" ? 1 : champ.abilities[key].maxRank);
+    }
+    kits[id] = { patch, spells };
+  }
+  console.log(`  fiches de kit : ${Object.keys(kits).join(", ")}.`);
 
   // Dégâts, boucliers et soins des sorts : formules du jeu quand elles concordent.
   const gameFormulas = applyGameFormulas(champions, slotsById, factsOf);
@@ -1247,6 +1304,7 @@ async function main() {
   await Deno.writeTextFile(new URL("items.gen.ts", OUT_DIR), renderItems(items, patch));
   await Deno.writeTextFile(new URL("runes.gen.ts", OUT_DIR), renderRunes(runes, patch));
   await Deno.writeTextFile(new URL("mechanics.gen.ts", OUT_DIR), renderMechanics(mechanics, patch));
+  await Deno.writeTextFile(new URL("kits.gen.ts", OUT_DIR), renderKits(kits, patch));
   await Deno.writeTextFile(
     new URL("meta.gen.ts", OUT_DIR),
     renderMeta(patch, {

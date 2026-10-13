@@ -152,6 +152,12 @@ export interface GameRef {
   calc?: string;
   value?: string;
   times?: number;
+  /**
+   * Lire une stat de base dans le fichier d'un AUTRE personnage (familier : Daisy =
+   * « ivernminion ») : `field` est le nom du champ (« attackSpeedModifiable »).
+   */
+  character?: string;
+  field?: string;
 }
 
 /**
@@ -216,6 +222,27 @@ export type Mechanic<A = Formula> =
     type: DamageType;
     damage: A;
     scale?: HpScale;
+  }
+  | {
+    /**
+     * Familier invoqué par `key` (Daisy) : il attaque de son côté à partir du lancer.
+     * Vitesse d'attaque = base × (1 + bonus). Tous les `slamEvery` coups, une onde de
+     * choc (dégâts + contrôle), au plus une fois par `slamCooldown`.
+     */
+    kind: "pet";
+    key: AbilityKey;
+    name: string;
+    type: DamageType;
+    ad: A;
+    baseAttackSpeed: A;
+    bonusAttackSpeed: A;
+    hp: A;
+    duration: A;
+    slamEvery?: number;
+    slamType?: DamageType;
+    slamDamage?: A;
+    slamCooldown?: A;
+    slamCc?: A;
   };
 
 export interface Champion {
@@ -235,6 +262,8 @@ export interface Champion {
   shelf: string[];
   /** rune keystone par défaut (id référençant data/runes.ts) */
   keystone: string;
+  /** objet de départ de la timeline (data/overrides.ts) ; défaut : Doran selon le profil */
+  starter?: string;
   /** passifs et effets de kit modélisés à la main (data/mechanics.ts) */
   mechanics?: Mechanic[];
 }
@@ -268,6 +297,8 @@ export interface ItemStats {
   critDamage?: number;
   /** ténacité en fraction (réduit la durée des contrôles, sauf projections et suppressions) */
   tenacity?: number;
+  /** soins et boucliers renforcés, en fraction (Bâton aqueux 0,1) */
+  healShieldPower?: number;
 }
 
 /** Référence à une valeur du fichier d'un objet (CommunityDragon), résolue par le pipeline. */
@@ -321,6 +352,27 @@ export type ItemMechanic<A = Formula> =
     scale?: HpScale;
     duration: A;
   };
+
+/** Un sort tel que le jeu le décrit : infobulle, valeurs brutes et calculs (fiche de kit). */
+export interface KitSpell {
+  name: string;
+  /** infobulle du client, avec ses @placeholders@ (valeurs et calculs ci-dessous) */
+  text: string;
+  maxRank: number;
+  /** valeurs brutes par rang (index 0 = rang 1) */
+  values: Record<string, number[]>;
+  /** calculs du jeu convertis ; null = brique non reconnue */
+  calcs: Record<string, Formula | null>;
+  cooldown?: number[];
+  /** charges (W d'Ivern : 3 buissons, une charge toutes les 20 s) */
+  ammo?: { max: number; recharge: number };
+}
+
+/** Fiche complète d'un champion, générée depuis les fichiers du jeu (data/generated/kits.gen.ts). */
+export interface KitSheet {
+  patch: string;
+  spells: Partial<Record<"P" | AbilityKey, KitSpell>>;
+}
 
 /** Place d'un objet dans l'arbre de craft. Les composants servent à la timeline de build. */
 export type ItemTier = "starter" | "basic" | "epic" | "legendary" | "boots";

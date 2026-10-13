@@ -137,6 +137,126 @@ export const GENERATED_MECHANICS: Record<string, Mechanic[]> = {
       "every": 3,
     },
   ],
+  "ivern": [
+    {
+      "kind": "abilityOnHit",
+      "key": "W",
+      "every": 1,
+    },
+    {
+      "kind": "pet",
+      "key": "R",
+      "name": "Daisy",
+      "type": "physical",
+      "ad": {
+        "op": "sum",
+        "of": [
+          {
+            "op": "rank",
+            "v": [
+              70,
+              100,
+              130,
+            ],
+          },
+          {
+            "op": "stat",
+            "stat": "ap",
+            "f": {
+              "op": "num",
+              "n": 0.15,
+            },
+          },
+        ],
+      },
+      "baseAttackSpeed": {
+        "op": "num",
+        "n": 0.75,
+      },
+      "bonusAttackSpeed": {
+        "op": "mul",
+        "of": [
+          {
+            "op": "rank",
+            "v": [
+              30,
+              45,
+              60,
+            ],
+          },
+          {
+            "op": "num",
+            "n": 0.01,
+          },
+        ],
+      },
+      "hp": {
+        "op": "sum",
+        "of": [
+          {
+            "op": "steps",
+            "l1": 1000,
+            "perLevel": 0,
+            "bp": [
+              {
+                "level": 7,
+                "add": 0,
+                "perLevel": 50,
+              },
+              {
+                "level": 11,
+                "add": 0,
+                "perLevel": 400,
+              },
+            ],
+          },
+          {
+            "op": "stat",
+            "stat": "ap",
+            "f": {
+              "op": "num",
+              "n": 0.5,
+            },
+          },
+        ],
+      },
+      "duration": {
+        "op": "num",
+        "n": 45,
+      },
+      "slamEvery": 3,
+      "slamType": "magic",
+      "slamDamage": {
+        "op": "sum",
+        "of": [
+          {
+            "op": "rank",
+            "v": [
+              90,
+              140,
+              190,
+            ],
+          },
+          {
+            "op": "stat",
+            "stat": "ap",
+            "f": {
+              "op": "num",
+              "n": 0.5,
+            },
+          },
+        ],
+      },
+      "slamCooldown": {
+        "op": "num",
+        "n": 3,
+      },
+      "slamCc": {
+        "op": "num",
+        "n": 1,
+      },
+    },
+  ],
   "darius": [
     {
       "kind": "missingHpHeal",

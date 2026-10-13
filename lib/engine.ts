@@ -103,6 +103,8 @@ export interface DerivedStats {
   critDamage: number;
   /** ténacité (fraction), objets cumulés multiplicativement */
   tenacity: number;
+  /** soins et boucliers renforcés (fraction), objets cumulés */
+  healShieldPower: number;
   abilityHaste: number;
   /** VA bonus des objets seuls (fraction), pour recalculer la VA avec un buff */
   itemAttackSpeed: number;
@@ -165,6 +167,7 @@ export function computeStats(
     critChance: Math.min(1, sum((s) => s.critChance)),
     critDamage: (champion.base.critDamage ?? 1.75) + sum((s) => s.critDamage),
     tenacity: stackPercent(stats.map((s) => s.tenacity)),
+    healShieldPower: sum((s) => s.healShieldPower),
     abilityHaste: sum((s) => s.abilityHaste),
     itemAttackSpeed,
     maxHp: growth(champion.base.hp, champion.base.hpPerLevel, level) + bonusHp,
@@ -523,6 +526,56 @@ export function computeCombo(input: ComboInput): ComboResult {
     }
   }
 
+  // Familier (Daisy) : invoqué au lancer de son sort, il attaque de son côté pendant la
+  // fenêtre (ou sa durée de vie si plus courte). En burst, pas d'attaque : rien.
+  let petCc = 0;
+  let petCcLongest = 0;
+  for (const m of mechanics) {
+    if (m.kind !== "pet" || window === undefined) continue;
+    const { rank, casts } = castsOf(m.key);
+    if (casts < 1) continue;
+    const alive = Math.min(window, formulaAt(m.duration, rank, level, stats));
+    const attackSpeed = Math.min(
+      ATTACK_SPEED_CAP,
+      formulaAt(m.baseAttackSpeed, rank, level, stats) *
+        (1 + formulaAt(m.bonusAttackSpeed, rank, level, stats)),
+    );
+    const attacks = autosIn(alive, attackSpeed);
+    // Le familier n'a ni pénétration ni létalité : résistances pleines de la cible.
+    const petStats = { ...stats, armorPenPct: 0, lethality: 0, magicPenFlat: 0, magicPenPct: 0 };
+    const ad = formulaAt(m.ad, rank, level, stats);
+    lines.push({
+      key: m.key,
+      name: `${m.name} — attaques ×${attacks}`,
+      type: m.type,
+      damage: attacks * ad * damageMultiplier(m.type, petStats, target),
+      hits: attacks,
+    });
+    if (m.slamEvery && m.slamDamage && m.slamCooldown) {
+      const cd = formulaAt(m.slamCooldown, rank, level, stats);
+      const procs = Math.min(
+        Math.floor(attacks / m.slamEvery),
+        1 + Math.floor(Math.max(0, alive) / Math.max(0.1, cd) + 1e-9),
+      );
+      if (procs >= 1) {
+        const type = m.slamType ?? m.type;
+        lines.push({
+          key: m.key,
+          name: `${m.name} — onde de choc ×${procs}`,
+          type,
+          damage: procs * formulaAt(m.slamDamage, rank, level, stats) *
+            damageMultiplier(type, petStats, target),
+          hits: procs,
+        });
+        if (m.slamCc) {
+          const d = formulaAt(m.slamCc, rank, level, stats);
+          petCc += procs * d;
+          petCcLongest = Math.max(petCcLongest, d);
+        }
+      }
+    }
+  }
+
   // Saignement (Hémorragie) : 13–30 selon le niveau (+30 % AD bonus) de dégâts
   // physiques PAR stack, sur 5 s.
   if (champion.hasBleed && include.bleed && bleedStacks > 0) {
@@ -609,14 +662,16 @@ export function computeCombo(input: ComboInput): ComboResult {
     const casts = window === undefined
       ? 1
       : castsIn(window, cooldownOf(champion, key, rank, stats.abilityHaste));
+    // Soins et boucliers renforcés (objets d'enchanteur) : sur les boucliers et soins des sorts.
+    const power = 1 + stats.healShieldPower;
     if (ability.shield) {
-      shield += casts *
+      shield += casts * power *
         (ability.shieldFormula
           ? formulaAt(ability.shieldFormula, rank, level, stats)
           : scaledAt(ability.shield, rank, stats));
     }
     if (ability.heal) {
-      heal += casts *
+      heal += casts * power *
         (ability.healFormula
           ? formulaAt(ability.healFormula, rank, level, stats)
           : scaledAt(ability.heal, rank, stats));
@@ -649,9 +704,12 @@ export function computeCombo(input: ComboInput): ComboResult {
   let ccIrreducible = 0;
   let parries = 0;
   let dodgeAutosSeconds = 0;
+  // Un sort dont le contrôle passe par un familier (onde de choc de Daisy) est compté
+  // via le familier, au rythme de ses coups — pas une fois de plus au lancer.
+  const petCcKeys = new Set(mechanics.flatMap((m) => (m.kind === "pet" && m.slamCc ? [m.key] : [])));
   for (const key of keys) {
     const cc = champion.abilities[key].cc;
-    if (!cc) continue;
+    if (!cc || petCcKeys.has(key)) continue;
     const { rank, casts } = castsOf(key);
     if (casts < 1) continue;
     const d = formulaAt(cc, rank, level, stats);
@@ -662,6 +720,10 @@ export function computeCombo(input: ComboInput): ComboResult {
     else ccReducible += total;
     ccLongest = Math.max(ccLongest, d);
   }
+  // Onde de choc du familier : projection, donc insensible à la ténacité.
+  ccDuration += petCc;
+  ccIrreducible += petCc;
+  ccLongest = Math.max(ccLongest, petCcLongest);
   for (const m of mechanics) {
     if (m.kind === "parry") parries += castsOf(m.key).casts;
     if (m.kind === "dodgeAutos") {

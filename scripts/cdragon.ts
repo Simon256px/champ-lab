@@ -316,15 +316,16 @@ export interface SpellTooltip {
   name: string;
   maxLevel?: number;
   text: string;
+  ammo?: { max: number; recharge: number };
 }
 
 /** Infobulles de Q/W/E/R pour chaque champion, indexées par alias en minuscules (« monkeyking »). */
 export async function fetchTooltips(
   version: string,
-): Promise<Map<string, Partial<Record<AbilityKey, SpellTooltip>>>> {
+): Promise<Map<string, Partial<Record<"P" | AbilityKey, SpellTooltip>>>> {
   const base = `${CDRAGON}/${version}/plugins/rcp-be-lol-game-data/global/default/v1`;
   const summary: Json[] = await (await fetch(`${base}/champion-summary.json`)).json();
-  const out = new Map<string, Partial<Record<AbilityKey, SpellTooltip>>>();
+  const out = new Map<string, Partial<Record<"P" | AbilityKey, SpellTooltip>>>();
   const queue = summary.filter((c) => c.id > 0);
   const worker = async () => {
     while (queue.length) {
@@ -335,16 +336,19 @@ export async function fetchTooltips(
         continue;
       }
       const data = await res.json();
-      const spells: Partial<Record<AbilityKey, SpellTooltip>> = {};
+      const spells: Partial<Record<"P" | AbilityKey, SpellTooltip>> = {};
       for (const s of data.spells ?? []) {
         const key = String(s.spellKey ?? "").toUpperCase() as AbilityKey;
         if (!["Q", "W", "E", "R"].includes(key)) continue;
+        const max = s.ammo?.maxAmmo?.[0] ?? 0;
         spells[key] = {
           name: s.name,
           maxLevel: s.maxLevel,
           text: s.dynamicDescription ?? s.description ?? "",
+          ...(max > 0 ? { ammo: { max, recharge: s.ammo.ammoRechargeTime?.[0] ?? 0 } } : {}),
         };
       }
+      if (data.passive) spells.P = { name: data.passive.name, text: data.passive.description ?? "" };
       out.set(String(c.alias).toLowerCase(), spells);
     }
   };
@@ -363,7 +367,7 @@ const CC_STATUS =
 const CONDITION = /\bif\b/i;
 /** Verbes de rapprochement : le sort permet de combler la distance. */
 const MOBILITY =
-  /\b(dash|dashes|dashing|leap|leaps|lunge|lunges|blink|blinks|teleport|teleports|charges? (?:forward|toward))\b/i;
+  /\b(dash|dashes|dashing|leap|leaps|lunge|lunges|blink|blinks|teleport|teleports|(?:charges?|rams?) (?:forward|toward))\b/i;
 
 export interface TooltipFacts {
   /** type de dégâts de chaque calcul cité dans une balise de dégâts */
@@ -379,7 +383,7 @@ export interface TooltipFacts {
 }
 
 /** Lit une infobulle : types de dégâts par calcul, contrôles (conditionnels ou non), mobilité. */
-export function parseTooltip(text: string): TooltipFacts {
+export function parseTooltip(text: string, championName?: string): TooltipFacts {
   const damageTypes = new Map<string, "magic" | "physical" | "true">();
   const damageCalcs: string[] = [];
   for (const m of text.matchAll(/<(magic|physical|true)Damage>([\s\S]*?)<\/\1Damage>/gi)) {
@@ -405,6 +409,34 @@ export function parseTooltip(text: string): TooltipFacts {
       if (kind) (conditional ? ccConditional : ccUnconditional).add(kind);
     }
   }
+  // Mobilité : le verbe doit avoir le champion pour sujet (« Ivern dashes onto… »), pas
+  // un familier (« Daisy to leap into the fray ») ni les alliés (« Allies … dash »).
+  // Nom complet et premier mot (« Nunu & Willump » → « Nunu »), plus les pronoms.
+  const escape = (n: string) => n.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+  const names = championName ? [championName, championName.split(/[\s&']/)[0]].map(escape) : [];
+  const subject = championName ? new RegExp(`\\b(${names.join("|")}|he|she|they)\\b`, "i") : null;
+  const mobile = sentences.some((s) => {
+    const p = s.replace(/<[^>]+>/g, " ");
+    const m = MOBILITY.exec(p);
+    if (!m) return false;
+    if (!subject) return true;
+    // Impératif en tête de phrase (« Recast: Dash to the marked champion », « Leap in a direction »).
+    const before = p.slice(0, m.index).replace(/^.*:\s*/, "").trim();
+    if (before === "") return true;
+    // Sinon, le sujet le plus proche du verbe décide : le champion (ou un pronom) oui,
+    // un familier, un clone ou les alliés non (« Zed's Shadow dashes », « Daisy to leap »).
+    const lastChampion = Math.max(
+      -1,
+      ...[...before.matchAll(new RegExp(subject.source, "gi"))].map((x) => x.index!),
+    );
+    const lastOther = Math.max(
+      -1,
+      ...[...before.matchAll(/\b(allies|ally|daisy|tibbers|pet|clone|shadow|minion|ghoul|maiden)\b/gi)].map((
+        x,
+      ) => x.index!),
+    );
+    return lastChampion >= 0 && lastChampion > lastOther;
+  });
   const plain = text.replace(/<[^>]+>/g, " ");
   // Un sort qui attire la cible (<status>Pulling</status> : Darius E, Blitzcrank Q) comble
   // l'écart autant qu'un dash. « pulls back her orb » (Ahri Q) n'est pas une attraction.
@@ -414,7 +446,7 @@ export function parseTooltip(text: string): TooltipFacts {
     damageCalcs,
     ccUnconditional,
     ccConditional,
-    mobility: MOBILITY.test(plain) || pulls,
+    mobility: (subject ? mobile : MOBILITY.test(plain)) || pulls,
   };
 }
 
@@ -457,11 +489,22 @@ export function itemAsSpell(item: Json): Json {
 }
 
 /** Stats d'objet que Data Dragon et Meraki n'exposent pas : dégâts critiques bonus, ténacité. */
-export function itemExtraStats(item: Json): { critDamage?: number; tenacity?: number } {
-  const out: { critDamage?: number; tenacity?: number } = {};
+export function itemExtraStats(
+  item: Json,
+): { critDamage?: number; tenacity?: number; healShieldPower?: number } {
+  const out: { critDamage?: number; tenacity?: number; healShieldPower?: number } = {};
   if (item?.mFlatCritDamageMod) out.critDamage = clean(item.mFlatCritDamageMod);
   if (item?.mPercentTenacityItemMod) out.tenacity = clean(item.mPercentTenacityItemMod);
+  if (item?.mPercentHealingAmountMod) out.healShieldPower = clean(item.mPercentHealingAmountMod);
   return out;
+}
+
+/** Stat de base d'un personnage (« attackSpeedModifiable » → 0,75 pour Daisy). */
+export function characterBaseStat(bin: Json, field: string): number | null {
+  const root = Object.entries<Json>(bin ?? {}).find(([k]) => /\/CharacterRecords\/Root$/.test(k))?.[1];
+  const v = root?.[field];
+  const n = typeof v === "number" ? v : v?.baseValue;
+  return typeof n === "number" ? clean(n) : null;
 }
 
 /** Résout une ItemRef sur un objet (mêlée, ou à distance si `ranged`). */
@@ -475,6 +518,44 @@ export function resolveItemRef(item: Json, ref: ItemRef, ranged = false): Formul
   }
   if (!f) return null;
   return ref.times === undefined ? f : mul([f, { op: "num", n: ref.times }]);
+}
+
+/**
+ * Fiche d'un sort : toutes ses valeurs brutes (par rang) et tous ses calculs convertis,
+ * pour rendre l'infobulle du jeu avec des nombres calculés.
+ */
+export function kitSpell(spell: Json, tooltip: SpellTooltip, maxRank: number): {
+  name: string;
+  text: string;
+  maxRank: number;
+  values: Record<string, number[]>;
+  calcs: Record<string, Formula | null>;
+  cooldown?: number[];
+  ammo?: { max: number; recharge: number };
+} {
+  const values: Record<string, number[]> = {};
+  for (const d of spell?.DataValues ?? []) {
+    const v: number[] = d.values ?? [];
+    values[d.name] = (v.length > 1 ? v.slice(1, 1 + maxRank) : v).map(clean);
+  }
+  const calcs: Record<string, Formula | null> = {};
+  for (const name of Object.keys(spell?.mSpellCalculations ?? {})) {
+    try {
+      calcs[name] = toFormula(spell, name, maxRank);
+    } catch {
+      calcs[name] = null;
+    }
+  }
+  const cd = cooldowns(spell, maxRank);
+  return {
+    name: tooltip.name,
+    text: tooltip.text,
+    maxRank,
+    values,
+    calcs,
+    ...(cd ? { cooldown: cd } : {}),
+    ...(tooltip.ammo ? { ammo: tooltip.ammo } : {}),
+  };
 }
 
 /** Résout une GameRef sur les sorts d'un champion. Null si introuvable ou non convertible. */

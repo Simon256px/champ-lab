@@ -79,8 +79,15 @@ dans `data/mechanics.ts`, appliqué par le moteur en mode trade / all-in :
 | `stackingAttackSpeed` | VA bonus qui s'empile à chaque auto                   | Jax                        |
 | `missingHpHeal`       | soin en % des PV manquants à chaque lancer            | Darius Q                   |
 | `abilityDamage`       | dégâts d'un sort que Meraki laisse utilitaire         | Fiora R                    |
-| `parry`               | bloque le plus gros coup et le plus long contrôle     | Fiora W                    |
-| `dodgeAutos`          | esquive les autos adverses pendant X secondes         | Jax E                      |
+| `pet`                 | familier : attaques, onde de choc tous les N coups    | Daisy (Ivern R)            |
+
+Un familier lit ses stats dans le sort qui l'invoque (`{ slot: "R", calc: "TotalDaisyAD" }`) et, si besoin,
+dans son propre fichier : `{ slot: "R", character: "ivernminion", field: "attackSpeedModifiable" }`.
+
+**Page dédiée.** Ajouter un champion à `KIT_SHEETS` (`scripts/fetch-data.ts`) génère sa fiche de kit complète
+(infobulles, valeurs, calculs) ; `islands/KitSheet.tsx` la rend telle quelle. Voir `routes/ivern/index.tsx`. |
+`parry` | bloque le plus gros coup et le plus long contrôle | Fiora W | | `dodgeAutos` | esquive les autos
+adverses pendant X secondes | Jax E |
 
 **Contrôles.** Leur durée est lue automatiquement dans les fichiers du jeu (`StunDuration`, `KnockupDuration`,
 `CharmDuration`…) : seuls ceux qui empêchent d'agir comptent, pas les enracinements ni les variantes (sbires,
