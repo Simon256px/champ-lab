@@ -1,5 +1,5 @@
 // ⚠ FICHIER GÉNÉRÉ — ne pas éditer à la main.
-// Source : Meraki (lolstaticdata) + Data Dragon.
+// Sources : wiki officiel (wiki.leagueoflegends.com), fichiers du jeu (CommunityDragon), Data Dragon.
 // Régénérer : deno task data
 // Patch de référence : 16.20.1
 // Généré le : 2026-10-13

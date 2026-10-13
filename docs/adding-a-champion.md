@@ -1,8 +1,8 @@
 # Ajouter / affiner un champion
 
-Le roster de base (≈ 170 champions) est **généré** depuis Meraki + Data Dragon par `deno task data` et vit
-dans `data/generated/` — **on ne l'édite pas à la main**. La contribution consiste donc surtout à **affiner**
-un champion dont une mécanique n'est pas bien couverte par le modèle générique.
+Le roster de base (≈ 170 champions) est **généré** depuis le wiki officiel, les fichiers du jeu et Data Dragon
+par `deno task data` et vit dans `data/generated/` — **on ne l'édite pas à la main**. La contribution consiste
+donc surtout à **affiner** un champion dont une mécanique n'est pas bien couverte par le modèle générique.
 
 Trois niveaux, du plus simple au plus profond.
 
@@ -26,7 +26,7 @@ export const CHAMPION_OVERRIDES: Record<string, ChampionOverride> = {
   // …existant…
 
   monchamp: {
-    // adaptive: "AP",          // force AP/AD si Meraki se trompe
+    // adaptive: "AP",          // force AP/AD si le pipeline se trompe
     // hasBleed: true,          // active un DoT/exécution type Darius
     keystone: "electrocute", // rune keystone par défaut (id de data/runes.ts)
     // ordre de montée des sorts (18 entrées) : déduit le rang au niveau N
@@ -54,40 +54,46 @@ Si l'objet voulu n'existe pas encore dans `data/generated/items.gen.ts`, c'est q
 ne garde que les légendaires/bottes portant une stat modélisée). Deux leviers dans `data/overrides.ts` :
 
 - `ITEM_WHITELIST` — force l'inclusion d'un objet même sans stat plate exploitable.
-- `ITEM_OVERRIDES` — réinjecte un passif que le moteur sait modéliser mais que Meraki ne donne pas en stat
+- `ITEM_OVERRIDES` — réinjecte un passif que le moteur sait modéliser mais que le wiki ne donne pas en stat
   plate (ex. Rabadon `apAmp: 0.30`, Fendoir noir `armorPenPercent: 0.30`) et fige un libellé court.
 
-## 2 bis. Champion trop récent pour Meraki
+## 2 bis. Champion pas encore sur le wiki
 
-Certains champions sortent dans le jeu avant d'être dans Meraki (Locke, Yunara, Zaahen). Le pipeline les
-**génère depuis les fichiers du jeu** : stats de base (Data Dragon), sorts et cooldowns (CommunityDragon),
-type de dégâts et calcul principal (infobulle : premier calcul cité dans une balise de dégâts), profil AD/AP
-d'après ce sur quoi scalent les sorts. `data/manual.ts` ne sert plus que de secours si les fichiers du jeu
-manquent.
+Un champion qui sortirait dans le jeu avant d'être sur le wiki serait **généré depuis les fichiers du jeu** :
+stats de base (Data Dragon), sorts et cooldowns (CommunityDragon), type de dégâts et calcul principal
+(infobulle : premier calcul cité dans une balise de dégâts), profil AD/AP d'après ce sur quoi scalent les
+sorts. `data/manual.ts` ne sert plus que de secours si les fichiers du jeu manquent.
 
-## 2 ter. Passifs → `data/mechanics.ts`
+## 2 ter. Passifs : wiki d'abord, `data/mechanics.ts` pour aller plus loin
 
-Le pipeline extrait déjà les dégâts en % des PV (cible ou lanceur), les ratios qui changent avec le rang, les
-boucliers et les soins des sorts. Ce que Meraki n'expose pas en chiffres — surtout les **passifs** — se décrit
-dans `data/mechanics.ts`, appliqué par le moteur en mode trade / all-in :
+Le pipeline lit le passif de **chaque** champion sur le wiki (`scripts/passives.ts`) : dégâts à chaque coup,
+tous les N coups (« At 2 stacks, … next basic attack »), sur l'auto qui suit un sort, dernière balle d'un
+chargeur. Un passif sous condition (PV bas, cible isolée ou marquée, une fois par cible, recharge réduite par
+les coups, palier de niveau…) n'est **pas joué** : son statut et la phrase du wiki qui l'explique sont dans
+`data/generated/passives.gen.ts`, affichés sur /methode et sous le labo.
+
+Pour modéliser un passif plus finement, on le décrit dans `data/mechanics.ts` par des références aux fichiers
+du jeu — il l'emporte alors sur la lecture du wiki (un test vérifie que les deux concordent quand le wiki le
+lit aussi). Le moteur l'applique en mode trade / all-in :
 
 | `kind`                | Pour                                                  | Exemple                    |
 | --------------------- | ----------------------------------------------------- | -------------------------- |
 | `onHit`               | dégâts en plus tous les N coups d'auto                | passif à l'impact          |
+| `afterAbility`        | auto renforcée après chaque sort (`hits` : combien)   | Riven, Lux, Taric (2)      |
 | `abilityOnHit`        | un sort qui frappe sur les autos au lieu d'être lancé | Vayne W (tous les 3 coups) |
 | `periodic`            | dégâts (et soin) toutes les X secondes                | points vitaux de Fiora     |
 | `stackingAttackSpeed` | VA bonus qui s'empile à chaque auto                   | Jax                        |
 | `missingHpHeal`       | soin en % des PV manquants à chaque lancer            | Darius Q                   |
-| `abilityDamage`       | dégâts d'un sort que Meraki laisse utilitaire         | Fiora R                    |
+| `abilityDamage`       | dégâts d'un sort que le wiki laisse utilitaire        | Fiora R                    |
+| `parry`               | bloque le plus gros coup et le plus long contrôle     | Fiora W                    |
+| `dodgeAutos`          | esquive les autos adverses pendant X secondes         | Jax E                      |
 | `pet`                 | familier : attaques, onde de choc tous les N coups    | Daisy (Ivern R)            |
 
 Un familier lit ses stats dans le sort qui l'invoque (`{ slot: "R", calc: "TotalDaisyAD" }`) et, si besoin,
 dans son propre fichier : `{ slot: "R", character: "ivernminion", field: "attackSpeedModifiable" }`.
 
 **Page dédiée.** Ajouter un champion à `KIT_SHEETS` (`scripts/fetch-data.ts`) génère sa fiche de kit complète
-(infobulles, valeurs, calculs) ; `islands/KitSheet.tsx` la rend telle quelle. Voir `routes/ivern/index.tsx`. |
-`parry` | bloque le plus gros coup et le plus long contrôle | Fiora W | | `dodgeAutos` | esquive les autos
-adverses pendant X secondes | Jax E |
+(infobulles, valeurs, calculs) ; `islands/KitSheet.tsx` la rend telle quelle. Voir `routes/ivern/index.tsx`.
 
 **Contrôles.** Leur durée est lue automatiquement dans les fichiers du jeu (`StunDuration`, `KnockupDuration`,
 `CharmDuration`…) : seuls ceux qui empêchent d'agir comptent, pas les enracinements ni les variantes (sbires,

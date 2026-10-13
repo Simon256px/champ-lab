@@ -4,35 +4,24 @@ Deux évaluations automatiques, lancées à la demande.
 
 ## 1. Exactitude des stats (`deno task audit`)
 
-Le script `scripts/audit-stats.ts` croise les **3 sources** pour évaluer ce que l'app utilise réellement
-(généré depuis Meraki) contre une source indépendante (Data Dragon), et vérifie les assets.
+Le script `scripts/audit-stats.ts` croise ce que l'app utilise réellement (généré depuis le wiki officiel et
+les fichiers du jeu) avec une source indépendante (Data Dragon), et vérifie les assets.
 
-| Source               | Rôle                                           | Ce qu'on en vérifie                         |
-| -------------------- | ---------------------------------------------- | ------------------------------------------- |
-| **Data Dragon**      | liste, stats plates, runes, icônes officielles | source de référence du croisement           |
-| **Community Dragon** | assets graphiques                              | présence des icônes                         |
-| **Meraki**           | compétences détaillées + calculs               | ce que l'app utilise (via `data/generated`) |
+| Source               | Rôle                                                  | Ce qu'on en vérifie                         |
+| -------------------- | ----------------------------------------------------- | ------------------------------------------- |
+| **Data Dragon**      | liste, stats plates, runes, icônes officielles        | source de référence du croisement           |
+| **Community Dragon** | fichiers du jeu (formules), assets graphiques         | présence des icônes                         |
+| **Wiki officiel**    | stats de base, sorts rendus, passifs, objets (à jour) | ce que l'app utilise (via `data/generated`) |
 
-### Résultat de la dernière passe (patch DD 16.13.1)
+### Résultat de la dernière passe (patch DD 16.20.1, wiki au patch 26.20)
 
-- **Concordance ≈ 87 %** sur les stats de base croisables (1183/1357).
-- **Cause principale des écarts : décalage de patch.** Le CDN Meraki `latest` est **en retard** sur le patch
-  live (échantillon Lee Sin : `patchLastChanged` = 14.20 ; AD Meraki 69 vs Data Dragon 66). La majorité des
-  ~170 écarts en découlent — ce sont des valeurs d'un patch antérieur, pas des erreurs de mapping. Le champ
-  `DATA_META.statsPatch` expose désormais honnêtement ce patch.
-- **Faux positif écarté :** Data Dragon renvoie `attackdamageperlevel = 0` pour **tous** les champions (bug DD
-  connu). C'est précisément pourquoi le projet tire ses stats de Meraki. Ce champ est donc exclu du croisement
-  (sinon 170 faux positifs).
-- **Ratios de sorts :** non recroisables (Data Dragon ne les expose pas proprement) — ils restent «
-  illustratifs à raffiner », comme annoncé.
-- **Icônes :** l'échantillon testé répond `200` (Data Dragon opérationnel).
-
-### Interprétation
-
-Le mapping est **correct** ; l'exactitude est plafonnée par la **fraîcheur de Meraki**, pas par le code. Deux
-pistes d'amélioration si on veut coller au patch live : pinner Meraki sur un patch précis quand il rattrape,
-ou compléter les stats plates depuis Data Dragon (fiable) tout en gardant Meraki pour les ratios. En l'état,
-la provenance est affichée honnêtement dans `/methode`.
+- **Concordance 100 %** sur les stats de base croisables (1433/1433).
+- Avant (source Meraki, abandonnée au patch 25.08) : ≈ 87 %, les écarts venant tous du décalage de patch. Le
+  passage au wiki officiel les a supprimés.
+- **Non recroisé :** `attackdamageperlevel`, que Data Dragon renvoie à 0 pour **tous** les champions (bug DD
+  connu) — le wiki fait foi.
+- **Ratios de sorts :** Data Dragon ne les expose pas ; le pipeline les recoupe avec les **formules des
+  fichiers du jeu** (voir `/methode` : sorts dont la formule du jeu concorde avec le wiki à ×/÷ 1,3 près).
 
 ## 2. Optimisation du code
 

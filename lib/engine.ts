@@ -440,10 +440,22 @@ export function ratioSum(r: AbilityRatios, s: DerivedStats, target?: TargetProfi
     (r.targetMissingHp ?? 0) * Math.max(0, t.hpMax - t.hpCur);
 }
 
-/** Valeur d'un effet chiffré (dégâts, bouclier, soin) au rang donné. */
-export function scaledAt(v: ScaledValue, rank: number, s: DerivedStats, target?: TargetProfile): number {
+/** Base d'un effet : part par rang + part par niveau du champion (si le sort en a une). */
+export function baseAt(v: ScaledValue, rank: number, level: number): number {
+  const byLevel = v.levelBase?.length ? v.levelBase[Math.min(Math.max(level, 1), v.levelBase.length) - 1] : 0;
+  return (v.base[Math.min(rank, v.base.length) - 1] ?? 0) + byLevel;
+}
+
+/** Valeur d'un effet chiffré (dégâts, bouclier, soin) au rang et au niveau donnés. */
+export function scaledAt(
+  v: ScaledValue,
+  rank: number,
+  s: DerivedStats,
+  target?: TargetProfile,
+  level = 1,
+): number {
   if (rank < 1) return 0;
-  return (v.base[Math.min(rank, v.base.length) - 1] ?? 0) + ratioSum(ratiosAt(v, rank), s, target);
+  return baseAt(v, rank, level) + ratioSum(ratiosAt(v, rank), s, target);
 }
 
 /**
@@ -462,11 +474,11 @@ export function abilityRaw(
   if (ability.type === "util") return 0;
   const rank = resolveRank(champion, key, level, ranks);
   if (rank < 1) return 0; // sort pas encore appris
-  // Formule des fichiers du jeu si on l'a (à jour au patch), sinon base + ratios Meraki.
+  // Formule des fichiers du jeu si on l'a (à jour au patch), sinon base + ratios du wiki.
   if (ability.formula) {
     return hpScaled(formulaAt(ability.formula, rank, level, s), ability.formulaScale, target);
   }
-  return scaledAt(ability, rank, s, target);
+  return scaledAt(ability, rank, s, target, level);
 }
 
 export interface ComboInput {
@@ -696,12 +708,12 @@ export function computeCombo(input: ComboInput): ComboResult {
         damage: procs * raw * damageMultiplier(m.type, stats, target),
       });
     } else if (m.kind === "afterAbility") {
-      // Une auto chargée par sort lancé (et touché), dans la limite des autos portées.
+      // `hits` autos chargées par sort lancé (et touché), dans la limite des autos portées.
       const casts = lines.filter((l) => ["Q", "W", "E", "R"].includes(l.key)).reduce(
         (a, l) => a + (l.hits ?? 1),
         0,
       );
-      const procs = Math.min(casts, autos);
+      const procs = Math.min(casts * (m.hits ?? 1), autos);
       if (procs < 1 || m.type === "util") continue;
       const raw = hpScaled(formulaAt(m.damage, 1, level, stats), m.scale, target);
       lines.push({
@@ -1024,13 +1036,13 @@ export function computeCombo(input: ComboInput): ComboResult {
       shield += casts * power *
         (ability.shieldFormula
           ? formulaAt(ability.shieldFormula, rank, level, stats)
-          : scaledAt(ability.shield, rank, stats));
+          : scaledAt(ability.shield, rank, stats, undefined, level));
     }
     if (ability.heal) {
       heal += casts * power *
         (ability.healFormula
           ? formulaAt(ability.healFormula, rank, level, stats)
-          : scaledAt(ability.heal, rank, stats));
+          : scaledAt(ability.heal, rank, stats, undefined, level));
     }
   }
   const autoDamage = lines.find((l) => l.key === "AA")?.damage ?? 0;

@@ -8,7 +8,8 @@ import { ITEMS } from "@/data/items.ts";
 import { RUNES } from "@/data/runes.ts";
 import { MECHANICS } from "@/data/mechanics.ts";
 import type { IncludeMap } from "@/data/types.ts";
-import { computeCombo, computeStats, formulaAt } from "@/lib/engine.ts";
+import { abilityRaw, computeCombo, computeStats, formulaAt } from "@/lib/engine.ts";
+import { GENERATED_PASSIVES } from "@/data/generated/passives.gen.ts";
 import { evalFormula } from "@/lib/formula.ts";
 
 const ALL_IN: IncludeMap = { Q: true, W: true, E: true, R: true, bleed: true, rune: true };
@@ -78,4 +79,62 @@ Deno.test("passifs : Lux 20 → 190 selon le niveau (table du jeu), Locke 5 → 
   assertEquals(formulaAt(locke.damage, 1, 1, s), 5);
   assertEquals(formulaAt(locke.damage, 1, 18, s), 40);
   assertEquals(evalFormula({ op: "byLevel", v: [1, 2, 3] }, { rank: 1, level: 30, stats: {} as never }), 3);
+});
+
+Deno.test("passifs : chaque champion a un statut (modélisé, conditionnel, sans dégâts) et sa raison", () => {
+  for (const id of Object.keys(CHAMPIONS)) {
+    const p = GENERATED_PASSIVES[id];
+    assert(p, `${id} : passif sans statut`);
+    assert(p.note.length > 0, `${id} : statut sans explication`);
+    if (p.verdict === "modeled") assert(CHAMPIONS[id].mechanics?.length, `${id} : modélisé sans mécanique`);
+  }
+});
+
+Deno.test("passifs : le wiki et les fichiers du jeu donnent les mêmes valeurs (niveaux 1, 11, 18)", () => {
+  const stats = {
+    ...computeStats(CHAMPIONS.ahri, 11, [], ITEMS, RUNES, false),
+    ap: 150,
+    totalAD: 180,
+    bonusAD: 60,
+  };
+  let compared = 0;
+  for (const [id, p] of Object.entries(GENERATED_PASSIVES)) {
+    if (!p.wiki) continue;
+    const wiki = p.wiki[0];
+    const game = CHAMPIONS[id].mechanics!.find((m) => m.kind === wiki.kind);
+    if (!game || !("damage" in game) || !("damage" in wiki)) continue;
+    for (const level of [1, 11, 18]) {
+      const w = formulaAt(wiki.damage, 1, level, stats);
+      const g = formulaAt(game.damage, 1, level, stats);
+      assert(
+        Math.abs(w - g) <= Math.max(0.01, Math.abs(g) * 0.005),
+        `${id} niveau ${level} : wiki ${w} / jeu ${g}`,
+      );
+    }
+    compared++;
+  }
+  assert(compared >= 5, `seulement ${compared} passifs comparés`);
+});
+
+Deno.test("passifs : chaque passif lu sur le wiki produit une ligne en trade", () => {
+  let n = 0;
+  for (const [id, p] of Object.entries(GENERATED_PASSIVES)) {
+    if (p.verdict !== "modeled" || p.source !== "wiki") continue;
+    const r = trade(id);
+    assert(r.lines.some((l) => l.key === "P"), `${id} : passif absent du combo`);
+    n++;
+  }
+  assert(n >= 10, `seulement ${n} passifs du wiki`);
+});
+
+Deno.test("sorts : part de base qui suit le niveau (Mordekaiser Q, à rang égal)", () => {
+  const q = CHAMPIONS.mordekaiser.abilities.Q;
+  const ranks = { Q: 5, W: 0, E: 0, R: 0 };
+  const s = { ...computeStats(CHAMPIONS.mordekaiser, 1, [], ITEMS, RUNES, false), ap: 0, bonusAD: 0 };
+  const dmg = (level: number) => abilityRaw(CHAMPIONS.mordekaiser, "Q", level, s, ranks);
+  if (q.formula) assert(dmg(18) > dmg(9), "formule du jeu : la base suit le niveau");
+  else {
+    assert(q.levelBase, "Mordekaiser Q : part par niveau lue sur le wiki");
+    assertEquals(dmg(18) - dmg(9), q.levelBase![17] - q.levelBase![8]);
+  }
 });

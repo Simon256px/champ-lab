@@ -422,8 +422,9 @@ Deno.test("pipeline : un sort sans ligne de dégâts reste utilitaire (Garen W =
   assert(w.shield && w.shield.base[0] > 0, "le bouclier de Garen W doit être extrait");
 });
 
-Deno.test("override : le Q d'Ahri compte l'aller ET le retour", () => {
-  assertEquals(CHAMPIONS.ahri.abilities.Q.base[0], 80);
+Deno.test("override : le Q d'Ahri compte l'aller ET le retour (ligne « Total » du wiki)", () => {
+  // 35 → 135 (+ 50 % AP) par passage, deux passages : 70 → 270 (+ 100 % AP).
+  assertEquals(CHAMPIONS.ahri.abilities.Q.base, [70, 120, 170, 220, 270]);
   assertEquals(CHAMPIONS.ahri.abilities.Q.ratios.ap, 1);
 });
 
@@ -520,7 +521,7 @@ Deno.test("soin en % des PV manquants : Darius Q soigne sur une fenêtre, pas en
   assert(effectiveHp(1000, own, 800) > 1000);
 });
 
-// --- Sorts : nombres tirés des fichiers du jeu quand ils concordent avec Meraki ---
+// --- Sorts : nombres tirés des fichiers du jeu quand ils concordent avec le wiki ---
 
 Deno.test("fichiers du jeu : une large part du roster a ses dégâts au patch près", () => {
   const all = Object.values(CHAMPIONS).flatMap((c) => Object.values(c.abilities));
@@ -528,7 +529,7 @@ Deno.test("fichiers du jeu : une large part du roster a ses dégâts au patch pr
   assert(fromGame > 200, `seulement ${fromGame} sorts avec une formule du jeu`);
 });
 
-Deno.test("fichiers du jeu : la formule l'emporte sur base + ratios Meraki", () => {
+Deno.test("fichiers du jeu : la formule l'emporte sur base + ratios du wiki", () => {
   const darius = CHAMPIONS.darius;
   const fake = {
     ...darius,
@@ -537,9 +538,10 @@ Deno.test("fichiers du jeu : la formule l'emporte sur base + ratios Meraki", () 
   assertEquals(abilityRaw(fake, "Q", 11, stats11("darius")), 999);
 });
 
-Deno.test("fichiers du jeu : une correction manuelle (Ahri Q) n'est pas écrasée", () => {
+Deno.test("fichiers du jeu : une ligne imposée (Ahri Q) n'est pas remplacée par un seul passage", () => {
+  // Le jeu ne calcule qu'un passage : aucune formule du jeu ne doit remplacer le total.
   assertEquals(CHAMPIONS.ahri.abilities.Q.formula, undefined);
-  assertEquals(CHAMPIONS.ahri.abilities.Q.base[0], 80);
+  assertEquals(CHAMPIONS.ahri.abilities.Q.base[0], 70);
 });
 
 Deno.test("fichiers du jeu : le bouclier de Garen W suit la formule du jeu", () => {
@@ -614,7 +616,7 @@ Deno.test("parade et esquive : rien à bloquer sans le sort", () => {
   assertEquals(blockedDamage(attacker, defender), 0);
 });
 
-// --- Infobulles : contrôles conditionnels, champions absents de Meraki ---
+// --- Infobulles : contrôles conditionnels, champions générés depuis le jeu ---
 
 Deno.test("infobulles : contrôles conditionnels écartés, choix et durées gardés", () => {
   assertEquals(CHAMPIONS.vayne.abilities.E.cc, undefined, "Vayne E : étourdit seulement contre un mur");
@@ -785,4 +787,13 @@ Deno.test("précision : seuls les sorts à viser sont pondérés", () => {
     assertAlmostEquals(other.damage, aimed ? l.damage / 2 : l.damage, 1e-6, l.name);
   }
   assertAlmostEquals(half.ccDuration, full.ccDuration / 2, 1e-9, "le charme d'Ahri E se vise");
+});
+
+Deno.test("étagères par défaut : un tireur achète des objets de tireur, un combattant non", () => {
+  for (const id of ["jhin", "caitlyn", "ashe"]) {
+    assert(CHAMPIONS[id].shelf.includes("infinityedge"), `${id} : pas d'objet de tireur`);
+    assert(!CHAMPIONS[id].shelf.includes("stridebreaker"), `${id} : objet de combattant`);
+    assertEquals(CHAMPIONS[id].keystone, "lethaltempo");
+  }
+  assert(CHAMPIONS.garen.shelf.includes("stridebreaker") || CHAMPIONS.garen.shelf.includes("blackcleaver"));
 });

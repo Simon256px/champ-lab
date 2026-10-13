@@ -1,5 +1,5 @@
 // ⚠ FICHIER GÉNÉRÉ — ne pas éditer à la main.
-// Source : Meraki (lolstaticdata) + Data Dragon.
+// Sources : wiki officiel (wiki.leagueoflegends.com), fichiers du jeu (CommunityDragon), Data Dragon.
 // Régénérer : deno task data
 // Patch de référence : 16.20.1
 // Généré le : 2026-10-13
@@ -10,7 +10,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
   "aatrox": {
     "id": "aatrox",
     "name": "Aatrox",
-    "title": "the Darkin Blade",
+    "title": "The Darkin Blade",
     "initial": "A",
     "adaptive": "AD",
     "base": {
@@ -210,7 +210,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
   "ahri": {
     "id": "ahri",
     "name": "Ahri",
-    "title": "the Nine-Tailed Fox",
+    "title": "The Nine-Tailed Fox",
     "initial": "A",
     "adaptive": "AP",
     "base": {
@@ -257,11 +257,11 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "type": "magic",
         "maxRank": 5,
         "base": [
-          80,
-          130,
-          180,
-          230,
-          280,
+          70,
+          120,
+          170,
+          220,
+          270,
         ],
         "ratios": {
           "ap": 1,
@@ -381,9 +381,9 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "type": "magic",
         "maxRank": 3,
         "base": [
-          60,
-          90,
-          120,
+          75,
+          125,
+          175,
         ],
         "ratios": {
           "ap": 0.35,
@@ -410,7 +410,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
   "akali": {
     "id": "akali",
     "name": "Akali",
-    "title": "the Rogue Assassin",
+    "title": "The Rogue Assassin",
     "initial": "A",
     "adaptive": "AD",
     "base": {
@@ -652,7 +652,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
   "akshan": {
     "id": "akshan",
     "name": "Akshan",
-    "title": "the Rogue Sentinel",
+    "title": "The Rogue Sentinel",
     "initial": "A",
     "adaptive": "AD",
     "base": {
@@ -699,14 +699,14 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "type": "physical",
         "maxRank": 5,
         "base": [
-          5,
-          25,
           45,
-          65,
-          85,
+          75,
+          105,
+          135,
+          165,
         ],
         "ratios": {
-          "totalAd": 0.8,
+          "bonusAd": 0.7,
         },
         "cooldown": [
           9,
@@ -716,6 +716,29 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           5,
         ],
         "aimed": true,
+        "formula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                45,
+                75,
+                105,
+                135,
+                165,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "bonusAd",
+              "f": {
+                "op": "num",
+                "n": 0.7,
+              },
+            },
+          ],
+        },
       },
       "W": {
         "name": "Going Rogue",
@@ -741,7 +764,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           0,
         ],
         "ratios": {
-          "totalAd": 0.15,
+          "totalAd": 0.25,
         },
         "cooldown": [
           18,
@@ -757,7 +780,9 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "type": "physical",
         "maxRank": 3,
         "base": [
-          0,
+          375,
+          630,
+          945,
         ],
         "ratios": {
           "totalAd": 2.25,
@@ -777,19 +802,19 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       },
     },
     "shelf": [
-      "ionianbootsoflucidity",
-      "stridebreaker",
-      "blackcleaver",
-      "trinityforce",
-      "deathsdance",
-      "steraksgage",
+      "berserkersgreaves",
+      "krakenslayer",
+      "infinityedge",
+      "phantomdancer",
+      "lorddominiksregards",
+      "bloodthirster",
     ],
-    "keystone": "conqueror",
+    "keystone": "lethaltempo",
   },
   "alistar": {
     "id": "alistar",
     "name": "Alistar",
-    "title": "the Minotaur",
+    "title": "The Minotaur",
     "initial": "A",
     "adaptive": "AP",
     "base": {
@@ -935,14 +960,14 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "type": "magic",
         "maxRank": 5,
         "base": [
-          8,
-          11,
-          14,
-          17,
-          20,
+          80,
+          110,
+          140,
+          170,
+          200,
         ],
         "ratios": {
-          "ap": 0.07,
+          "ap": 0.7,
         },
         "cooldown": [
           12,
@@ -954,6 +979,29 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "cc": {
           "op": "num",
           "n": 1,
+        },
+        "formula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                80,
+                110,
+                140,
+                170,
+                200,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "ap",
+              "f": {
+                "op": "num",
+                "n": 0.7,
+              },
+            },
+          ],
         },
       },
       "R": {
@@ -1039,14 +1087,14 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         ],
         "ratios": {
           "bonusAd": 0.3,
-          "targetMaxHp": 0.01,
+          "targetMaxHp": 0.02,
         },
         "rankRatios": {
           "targetMaxHp": [
-            0.01,
-            0.015,
             0.02,
+            0.0225,
             0.025,
+            0.0275,
             0.03,
           ],
         },
@@ -1116,16 +1164,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           120,
         ],
         "ratios": {
-          "bonusAd": 0.4,
-        },
-        "rankRatios": {
-          "bonusAd": [
-            0.4,
-            0.45,
-            0.5,
-            0.55,
-            0.6,
-          ],
+          "bonusAd": 0.5,
         },
         "cooldown": [
           13,
@@ -1219,7 +1258,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
   "amumu": {
     "id": "amumu",
     "name": "Amumu",
-    "title": "the Sad Mummy",
+    "title": "The Sad Mummy",
     "initial": "A",
     "adaptive": "AP",
     "base": {
@@ -1316,10 +1355,6 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "type": "magic",
         "maxRank": 5,
         "base": [
-          5,
-          5,
-          5,
-          5,
           5,
         ],
         "ratios": {
@@ -1440,7 +1475,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
   "anivia": {
     "id": "anivia",
     "name": "Anivia",
-    "title": "the Cryophoenix",
+    "title": "The Cryophoenix",
     "initial": "A",
     "adaptive": "AP",
     "base": {
@@ -1560,11 +1595,11 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "type": "magic",
         "maxRank": 5,
         "base": [
-          50,
-          75,
-          100,
-          125,
-          150,
+          55,
+          80,
+          105,
+          130,
+          155,
         ],
         "ratios": {
           "ap": 0.55,
@@ -1633,7 +1668,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
   "annie": {
     "id": "annie",
     "name": "Annie",
-    "title": "the Dark Child",
+    "title": "The Dark Child",
     "initial": "A",
     "adaptive": "AP",
     "base": {
@@ -1681,10 +1716,10 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "maxRank": 5,
         "base": [
           80,
-          120,
-          160,
-          200,
-          240,
+          125,
+          170,
+          215,
+          260,
         ],
         "ratios": {
           "ap": 0.8,
@@ -1726,13 +1761,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "maxRank": 5,
         "base": [
           70,
-          120,
-          170,
-          220,
-          270,
+          110,
+          150,
+          190,
+          230,
         ],
         "ratios": {
-          "ap": 0.85,
+          "ap": 0.8,
         },
         "cooldown": [
           7,
@@ -1781,10 +1816,6 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           "ap": 0.4,
         },
         "cooldown": [
-          12,
-          11.5,
-          11,
-          10.5,
           10,
         ],
         "shield": {
@@ -1900,7 +1931,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
   "aphelios": {
     "id": "aphelios",
     "name": "Aphelios",
-    "title": "the Weapon of the Faithful",
+    "title": "The Weapon of the Faithful",
     "initial": "A",
     "adaptive": "AD",
     "base": {
@@ -1986,7 +2017,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       },
       "R": {
         "name": "Moonlight Vigil",
-        "type": "util",
+        "type": "physical",
         "maxRank": 3,
         "base": [
           0,
@@ -2002,27 +2033,56 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           "op": "num",
           "n": 1.35,
         },
+        "formula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                125,
+                175,
+                225,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "bonusAd",
+              "f": {
+                "op": "num",
+                "n": 0.2,
+              },
+            },
+            {
+              "op": "stat",
+              "stat": "ap",
+              "f": {
+                "op": "num",
+                "n": 1,
+              },
+            },
+          ],
+        },
       },
     },
     "shelf": [
-      "ionianbootsoflucidity",
-      "stridebreaker",
-      "blackcleaver",
-      "trinityforce",
-      "deathsdance",
-      "steraksgage",
+      "berserkersgreaves",
+      "krakenslayer",
+      "infinityedge",
+      "phantomdancer",
+      "lorddominiksregards",
+      "bloodthirster",
     ],
-    "keystone": "conqueror",
+    "keystone": "lethaltempo",
   },
   "ashe": {
     "id": "ashe",
     "name": "Ashe",
-    "title": "the Frost Archer",
+    "title": "The Frost Archer",
     "initial": "A",
     "adaptive": "AD",
     "base": {
       "ad": 59,
-      "adPerLevel": 2.95,
+      "adPerLevel": 3,
       "hp": 610,
       "hpPerLevel": 101,
       "armor": 26,
@@ -2072,10 +2132,10 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "rankRatios": {
           "totalAd": [
             0.22,
-            0.235,
+            0.23,
+            0.24,
             0.25,
-            0.265,
-            0.28,
+            0.26,
           ],
         },
       },
@@ -2091,7 +2151,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           200,
         ],
         "ratios": {
-          "bonusAd": 1.1,
+          "bonusAd": 1,
         },
         "cooldown": [
           18,
@@ -2188,14 +2248,14 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       },
     },
     "shelf": [
-      "ionianbootsoflucidity",
-      "stridebreaker",
-      "blackcleaver",
-      "trinityforce",
-      "deathsdance",
-      "steraksgage",
+      "berserkersgreaves",
+      "krakenslayer",
+      "infinityedge",
+      "phantomdancer",
+      "lorddominiksregards",
+      "bloodthirster",
     ],
-    "keystone": "conqueror",
+    "keystone": "lethaltempo",
   },
   "aurelionsol": {
     "id": "aurelionsol",
@@ -2247,14 +2307,14 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "type": "magic",
         "maxRank": 5,
         "base": [
-          5.63,
-          7.5,
-          9.38,
-          11.25,
-          13.13,
+          45,
+          60,
+          75,
+          90,
+          105,
         ],
         "ratios": {
-          "ap": 0.0688,
+          "ap": 0.55,
         },
         "cooldown": [
           3,
@@ -2264,6 +2324,29 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           3,
         ],
         "aimed": true,
+        "formula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                60,
+                70,
+                80,
+                90,
+                100,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "ap",
+              "f": {
+                "op": "num",
+                "n": 0.3,
+              },
+            },
+          ],
+        },
       },
       "W": {
         "name": "Astral Flight",
@@ -2372,7 +2455,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
   "aurora": {
     "id": "aurora",
     "name": "Aurora",
-    "title": "the Witch Between Worlds",
+    "title": "The Witch Between Worlds",
     "initial": "A",
     "adaptive": "AP",
     "base": {
@@ -2482,11 +2565,11 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "type": "magic",
         "maxRank": 5,
         "base": [
-          70,
-          110,
-          150,
-          190,
-          230,
+          80,
+          120,
+          160,
+          200,
+          240,
         ],
         "ratios": {
           "ap": 0.7,
@@ -2543,7 +2626,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           375,
         ],
         "ratios": {
-          "ap": 0.6,
+          "ap": 0.7,
         },
         "cooldown": [
           140,
@@ -2596,7 +2679,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
   "azir": {
     "id": "azir",
     "name": "Azir",
-    "title": "the Emperor of the Sands",
+    "title": "The Emperor of the Sands",
     "initial": "A",
     "adaptive": "AP",
     "base": {
@@ -2643,14 +2726,23 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "type": "magic",
         "maxRank": 5,
         "base": [
-          60,
-          80,
-          100,
-          120,
-          140,
+          75,
+          95,
+          115,
+          135,
+          155,
         ],
         "ratios": {
           "ap": 0.35,
+        },
+        "rankRatios": {
+          "ap": [
+            0.35,
+            0.4,
+            0.45,
+            0.5,
+            0.55,
+          ],
         },
         "cooldown": [
           14,
@@ -2695,37 +2787,44 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "type": "magic",
         "maxRank": 5,
         "base": [
-          0,
-          2.65,
-          5.29,
-          7.94,
-          10.59,
-          13.24,
-          15.88,
-          18.53,
-          21.18,
-          23.82,
-          26.47,
-          29.12,
-          31.76,
-          34.41,
-          37.06,
-          39.71,
-          42.35,
-          45,
+          50,
+          65,
+          80,
+          95,
+          110,
         ],
         "ratios": {
-          "ap": 0.4,
+          "ap": 0.35,
         },
         "rankRatios": {
           "ap": [
-            0.4,
-            0.45,
+            0.35,
+            0.425,
             0.5,
-            0.55,
-            0.6,
+            0.575,
+            0.65,
           ],
         },
+        "levelBase": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          8,
+          16,
+          24,
+          32,
+          40,
+          48,
+          56,
+          64,
+          72,
+        ],
         "cooldown": [
           1.5,
           1.5,
@@ -2733,20 +2832,61 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           1.5,
           1.5,
         ],
+        "formula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                50,
+                65,
+                80,
+                95,
+                110,
+              ],
+            },
+            {
+              "op": "steps",
+              "l1": 0,
+              "perLevel": 0,
+              "bp": [
+                {
+                  "level": 10,
+                  "add": 0,
+                  "perLevel": 8,
+                },
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "ap",
+              "f": {
+                "op": "rank",
+                "v": [
+                  0.35,
+                  0.425,
+                  0.5,
+                  0.575,
+                  0.65,
+                ],
+              },
+            },
+          ],
+        },
       },
       "E": {
         "name": "Shifting Sands",
         "type": "magic",
         "maxRank": 5,
         "base": [
-          60,
-          100,
-          140,
-          180,
-          220,
+          70,
+          110,
+          150,
+          190,
+          230,
         ],
         "ratios": {
-          "ap": 0.4,
+          "ap": 0.6,
         },
         "cooldown": [
           22,
@@ -2769,6 +2909,29 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         },
         "aimed": true,
         "mobility": true,
+        "formula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                70,
+                110,
+                150,
+                190,
+                230,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "ap",
+              "f": {
+                "op": "num",
+                "n": 0.6,
+              },
+            },
+          ],
+        },
         "shieldFormula": {
           "op": "sum",
           "of": [
@@ -2848,7 +3011,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
   "bard": {
     "id": "bard",
     "name": "Bard",
-    "title": "the Wandering Caretaker",
+    "title": "The Wandering Caretaker",
     "initial": "B",
     "adaptive": "AP",
     "base": {
@@ -2953,7 +3116,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
             125,
           ],
           "ratios": {
-            "ap": 0.3,
+            "ap": 0.4,
           },
         },
         "healFormula": {
@@ -3025,7 +3188,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
   "belveth": {
     "id": "belveth",
     "name": "Bel'Veth",
-    "title": "the Empress of the Void",
+    "title": "The Empress of the Void",
     "initial": "B",
     "adaptive": "AD",
     "base": {
@@ -3038,7 +3201,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "mr": 32,
       "mrPerLevel": 2.05,
       "attackSpeed": 0.67,
-      "attackSpeedRatio": 0.85,
+      "attackSpeedRatio": 0.67,
       "attackSpeedPerLevel": 0,
       "attackRange": 150,
       "moveSpeed": 340,
@@ -3072,14 +3235,14 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "type": "physical",
         "maxRank": 5,
         "base": [
-          10,
-          15,
+          12,
+          14,
+          16,
+          18,
           20,
-          25,
-          30,
         ],
         "ratios": {
-          "totalAd": 1,
+          "totalAd": 1.05,
         },
         "cooldown": [
           4,
@@ -3119,15 +3282,14 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "type": "magic",
         "maxRank": 5,
         "base": [
-          70,
-          110,
-          150,
-          190,
-          230,
+          80,
+          140,
+          200,
+          260,
+          320,
         ],
         "ratios": {
-          "bonusAd": 1,
-          "ap": 1.25,
+          "ap": 1.5,
         },
         "cooldown": [
           12,
@@ -3176,14 +3338,14 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "type": "physical",
         "maxRank": 5,
         "base": [
-          6,
-          7,
-          8,
-          9,
           10,
+          12,
+          14,
+          16,
+          18,
         ],
         "ratios": {
-          "totalAd": 0.08,
+          "totalAd": 0.12,
         },
         "cooldown": [
           24,
@@ -3192,19 +3354,41 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           15,
           12,
         ],
+        "formula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                10,
+                12,
+                14,
+                16,
+                18,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "ad",
+              "f": {
+                "op": "num",
+                "n": 0.12,
+              },
+            },
+          ],
+        },
       },
       "R": {
         "name": "Endless Banquet",
         "type": "true",
         "maxRank": 3,
         "base": [
-          150,
-          200,
-          250,
+          2,
+          4,
+          6,
         ],
         "ratios": {
-          "ap": 1,
-          "targetMissingHp": 0.25,
+          "bonusAd": 0.03,
         },
         "cooldown": [
           1,
@@ -3214,13 +3398,34 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "heal": {
           "base": [
             100,
-            150,
-            200,
+            250,
+            400,
           ],
           "ratios": {
-            "bonusAd": 1.2,
-            "ap": 0.9,
+            "bonusAd": 1.5,
+            "ap": 1.5,
           },
+        },
+        "formula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                2,
+                4,
+                6,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "bonusAd",
+              "f": {
+                "op": "num",
+                "n": 0.03,
+              },
+            },
+          ],
         },
       },
     },
@@ -3237,9 +3442,9 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
   "blitzcrank": {
     "id": "blitzcrank",
     "name": "Blitzcrank",
-    "title": "the Great Steam Golem",
+    "title": "The Great Steam Golem",
     "initial": "B",
-    "adaptive": "AP",
+    "adaptive": "AD",
     "base": {
       "ad": 62,
       "adPerLevel": 3.5,
@@ -3344,7 +3549,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       },
       "E": {
         "name": "Power Fist",
-        "type": "util",
+        "type": "physical",
         "maxRank": 5,
         "base": [
           0,
@@ -3360,6 +3565,27 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "cc": {
           "op": "num",
           "n": 1,
+        },
+        "formula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "stat",
+              "stat": "ad",
+              "f": {
+                "op": "num",
+                "n": 2,
+              },
+            },
+            {
+              "op": "stat",
+              "stat": "ap",
+              "f": {
+                "op": "num",
+                "n": 0.25,
+              },
+            },
+          ],
         },
       },
       "R": {
@@ -3422,19 +3648,19 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       },
     },
     "shelf": [
-      "sorcerersshoes",
-      "ludensecho",
-      "shadowflame",
-      "rabadonsdeathcap",
-      "voidstaff",
-      "zhonyashourglass",
+      "ionianbootsoflucidity",
+      "stridebreaker",
+      "blackcleaver",
+      "trinityforce",
+      "deathsdance",
+      "steraksgage",
     ],
-    "keystone": "electrocute",
+    "keystone": "conqueror",
   },
   "brand": {
     "id": "brand",
     "name": "Brand",
-    "title": "the Burning Vengeance",
+    "title": "The Burning Vengeance",
     "initial": "B",
     "adaptive": "AP",
     "base": {
@@ -3534,7 +3760,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           255,
         ],
         "ratios": {
-          "ap": 0.6,
+          "ap": 0.7,
         },
         "cooldown": [
           10,
@@ -3623,7 +3849,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           250,
         ],
         "ratios": {
-          "ap": 0.25,
+          "ap": 0.3,
         },
         "cooldown": [
           100,
@@ -3680,7 +3906,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
   "braum": {
     "id": "braum",
     "name": "Braum",
-    "title": "the Heart of the Freljord",
+    "title": "The Heart of the Freljord",
     "initial": "B",
     "adaptive": "AP",
     "base": {
@@ -3728,10 +3954,10 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "maxRank": 5,
         "base": [
           75,
-          125,
-          175,
-          225,
-          275,
+          120,
+          165,
+          210,
+          255,
         ],
         "ratios": {},
         "cooldown": [
@@ -3783,8 +4009,8 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "maxRank": 3,
         "base": [
           150,
-          300,
-          450,
+          250,
+          350,
         ],
         "ratios": {
           "ap": 0.6,
@@ -3840,12 +4066,12 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
   "briar": {
     "id": "briar",
     "name": "Briar",
-    "title": "the Restrained Hunger",
+    "title": "The Restrained Hunger",
     "initial": "B",
     "adaptive": "AD",
     "base": {
       "ad": 60,
-      "adPerLevel": 3,
+      "adPerLevel": 2.5,
       "hp": 625,
       "hpPerLevel": 95,
       "armor": 30,
@@ -3888,10 +4114,10 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "maxRank": 5,
         "base": [
           60,
-          90,
-          120,
-          150,
-          180,
+          85,
+          110,
+          135,
+          160,
         ],
         "ratios": {
           "bonusAd": 0.8,
@@ -4081,8 +4307,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           350,
         ],
         "ratios": {
-          "bonusAd": 0.5,
-          "ap": 1.2,
+          "ap": 1.3,
         },
         "cooldown": [
           120,
@@ -4130,7 +4355,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
   "caitlyn": {
     "id": "caitlyn",
     "name": "Caitlyn",
-    "title": "the Sheriff of Piltover",
+    "title": "The Sheriff of Piltover",
     "initial": "C",
     "adaptive": "AD",
     "base": {
@@ -4401,19 +4626,19 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       },
     },
     "shelf": [
-      "ionianbootsoflucidity",
-      "stridebreaker",
-      "blackcleaver",
-      "trinityforce",
-      "deathsdance",
-      "steraksgage",
+      "berserkersgreaves",
+      "krakenslayer",
+      "infinityedge",
+      "phantomdancer",
+      "lorddominiksregards",
+      "bloodthirster",
     ],
-    "keystone": "conqueror",
+    "keystone": "lethaltempo",
   },
   "camille": {
     "id": "camille",
     "name": "Camille",
-    "title": "the Steel Shadow",
+    "title": "The Steel Shadow",
     "initial": "C",
     "adaptive": "AD",
     "base": {
@@ -4487,11 +4712,11 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "type": "physical",
         "maxRank": 5,
         "base": [
-          50,
-          75,
-          100,
-          125,
-          150,
+          60,
+          85,
+          110,
+          135,
+          160,
         ],
         "ratios": {
           "bonusAd": 0.6,
@@ -4530,7 +4755,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       },
       "E": {
         "name": "Hookshot",
-        "type": "util",
+        "type": "physical",
         "maxRank": 5,
         "base": [
           0,
@@ -4550,6 +4775,29 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           "n": 0.75,
         },
         "ccIgnoresTenacity": true,
+        "formula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                60,
+                90,
+                120,
+                150,
+                180,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "bonusAd",
+              "f": {
+                "op": "num",
+                "n": 0.75,
+              },
+            },
+          ],
+        },
       },
       "R": {
         "name": "The Hextech Ultimatum",
@@ -4589,7 +4837,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
   "cassiopeia": {
     "id": "cassiopeia",
     "name": "Cassiopeia",
-    "title": "the Serpent's Embrace",
+    "title": "The Serpent's Embrace",
     "initial": "C",
     "adaptive": "AP",
     "base": {
@@ -4636,14 +4884,14 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "type": "magic",
         "maxRank": 5,
         "base": [
-          10.71,
-          15.71,
-          20.71,
-          25.71,
-          30.71,
+          9.29,
+          14.29,
+          19.29,
+          24.29,
+          29.29,
         ],
         "ratios": {
-          "ap": 0.0929,
+          "ap": 0.1071,
         },
         "cooldown": [
           3.5,
@@ -4683,13 +4931,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "maxRank": 5,
         "base": [
           20,
-          40,
-          60,
-          80,
-          100,
+          45,
+          70,
+          95,
+          120,
         ],
         "ratios": {
-          "ap": 0.55,
+          "ap": 0.45,
         },
         "cooldown": [
           0.75,
@@ -4735,12 +4983,12 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "type": "magic",
         "maxRank": 3,
         "base": [
-          150,
-          250,
-          350,
+          125,
+          225,
+          325,
         ],
         "ratios": {
-          "ap": 0.5,
+          "ap": 0.75,
         },
         "cooldown": [
           120,
@@ -4788,7 +5036,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
   "chogath": {
     "id": "chogath",
     "name": "Cho'Gath",
-    "title": "the Terror of the Void",
+    "title": "The Terror of the Void",
     "initial": "C",
     "adaptive": "AP",
     "base": {
@@ -4836,10 +5084,10 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "maxRank": 5,
         "base": [
           80,
-          140,
-          200,
-          260,
-          320,
+          135,
+          190,
+          245,
+          300,
         ],
         "ratios": {
           "ap": 1,
@@ -4881,11 +5129,11 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "type": "magic",
         "maxRank": 5,
         "base": [
-          20,
-          40,
-          60,
-          80,
-          100,
+          30,
+          50,
+          70,
+          90,
+          110,
         ],
         "ratios": {
           "ap": 0.3,
@@ -4894,10 +5142,10 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "rankRatios": {
           "targetMaxHp": [
             0.025,
-            0.0275,
-            0.03,
-            0.0325,
-            0.035,
+            0.0285,
+            0.032,
+            0.0355,
+            0.039,
           ],
         },
         "cooldown": [
@@ -4978,12 +5226,12 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
   "corki": {
     "id": "corki",
     "name": "Corki",
-    "title": "the Daring Bombardier",
+    "title": "The Daring Bombardier",
     "initial": "C",
     "adaptive": "AD",
     "base": {
       "ad": 52,
-      "adPerLevel": 2,
+      "adPerLevel": 2.5,
       "hp": 610,
       "hpPerLevel": 100,
       "armor": 27,
@@ -5025,14 +5273,14 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "type": "magic",
         "maxRank": 5,
         "base": [
-          70,
-          120,
-          170,
-          220,
-          270,
+          60,
+          105,
+          150,
+          195,
+          240,
         ],
         "ratios": {
-          "bonusAd": 1.2,
+          "bonusAd": 1.25,
           "ap": 1,
         },
         "cooldown": [
@@ -5080,11 +5328,11 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "type": "magic",
         "maxRank": 5,
         "base": [
-          40,
-          55,
-          70,
-          85,
-          100,
+          30,
+          45,
+          60,
+          75,
+          90,
         ],
         "ratios": {
           "bonusAd": 0.4,
@@ -5104,14 +5352,14 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "type": "physical",
         "maxRank": 5,
         "base": [
-          5,
-          8.13,
-          11.25,
-          14.38,
-          17.5,
+          80,
+          130,
+          180,
+          230,
+          280,
         ],
         "ratios": {
-          "bonusAd": 0.15,
+          "bonusAd": 2.4,
         },
         "cooldown": [
           12,
@@ -5121,6 +5369,29 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           12,
         ],
         "aimed": true,
+        "formula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                80,
+                130,
+                180,
+                230,
+                280,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "bonusAd",
+              "f": {
+                "op": "num",
+                "n": 2.4,
+              },
+            },
+          ],
+        },
       },
       "R": {
         "name": "Missile Barrage",
@@ -5132,7 +5403,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           250,
         ],
         "ratios": {
-          "bonusAd": 0.8,
+          "bonusAd": 0.85,
         },
         "cooldown": [
           2,
@@ -5164,19 +5435,19 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       },
     },
     "shelf": [
-      "ionianbootsoflucidity",
-      "stridebreaker",
-      "blackcleaver",
-      "trinityforce",
-      "deathsdance",
-      "steraksgage",
+      "berserkersgreaves",
+      "krakenslayer",
+      "infinityedge",
+      "phantomdancer",
+      "lorddominiksregards",
+      "bloodthirster",
     ],
-    "keystone": "conqueror",
+    "keystone": "lethaltempo",
   },
   "darius": {
     "id": "darius",
     "name": "Darius",
-    "title": "the Hand of Noxus",
+    "title": "The Hand of Noxus",
     "initial": "D",
     "adaptive": "AD",
     "hasBleed": true,
@@ -5526,7 +5797,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           ],
           "ratios": {
             "ap": 0.3,
-            "bonusHp": 0.09,
+            "bonusHp": 0.14,
           },
         },
         "formula": {
@@ -5684,7 +5955,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
   "drmundo": {
     "id": "drmundo",
     "name": "Dr. Mundo",
-    "title": "the Madman of Zaun",
+    "title": "The Madman of Zaun",
     "initial": "D",
     "adaptive": "AD",
     "base": {
@@ -5769,13 +6040,15 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "type": "magic",
         "maxRank": 5,
         "base": [
-          5,
-          8.75,
-          12.5,
-          16.25,
           20,
+          35,
+          50,
+          65,
+          80,
         ],
-        "ratios": {},
+        "ratios": {
+          "bonusHp": 0.07,
+        },
         "cooldown": [
           17,
           16.5,
@@ -5783,6 +6056,29 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           15.5,
           15,
         ],
+        "formula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                20,
+                35,
+                50,
+                65,
+                80,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "bonusHp",
+              "f": {
+                "op": "num",
+                "n": 0.07,
+              },
+            },
+          ],
+        },
       },
       "E": {
         "name": "Blunt Force Trauma",
@@ -5796,7 +6092,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           45,
         ],
         "ratios": {
-          "bonusHp": 0.07,
+          "bonusHp": 0.05,
         },
         "cooldown": [
           9,
@@ -5805,6 +6101,29 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           6.75,
           6,
         ],
+        "formula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                5,
+                15,
+                25,
+                35,
+                45,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "bonusHp",
+              "f": {
+                "op": "num",
+                "n": 0.05,
+              },
+            },
+          ],
+        },
       },
       "R": {
         "name": "Maximum Dosage",
@@ -5849,12 +6168,12 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
   "draven": {
     "id": "draven",
     "name": "Draven",
-    "title": "the Glorious Executioner",
+    "title": "The Glorious Executioner",
     "initial": "D",
     "adaptive": "AD",
     "base": {
       "ad": 64,
-      "adPerLevel": 3.6,
+      "adPerLevel": 3.4,
       "hp": 675,
       "hpPerLevel": 104,
       "armor": 29,
@@ -6039,9 +6358,9 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "type": "physical",
         "maxRank": 3,
         "base": [
-          175,
-          275,
-          375,
+          200,
+          300,
+          400,
         ],
         "ratios": {
           "bonusAd": 1.1,
@@ -6087,19 +6406,19 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       },
     },
     "shelf": [
-      "ionianbootsoflucidity",
-      "stridebreaker",
-      "blackcleaver",
-      "trinityforce",
-      "deathsdance",
-      "steraksgage",
+      "berserkersgreaves",
+      "krakenslayer",
+      "infinityedge",
+      "phantomdancer",
+      "lorddominiksregards",
+      "bloodthirster",
     ],
-    "keystone": "conqueror",
+    "keystone": "lethaltempo",
   },
   "ekko": {
     "id": "ekko",
     "name": "Ekko",
-    "title": "the Boy Who Shattered Time",
+    "title": "The Boy Who Shattered Time",
     "initial": "E",
     "adaptive": "AP",
     "base": {
@@ -6370,7 +6689,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
   "elise": {
     "id": "elise",
     "name": "Elise",
-    "title": "the Spider Queen",
+    "title": "The Spider Queen",
     "initial": "E",
     "adaptive": "AP",
     "base": {
@@ -6742,12 +7061,12 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
   "ezreal": {
     "id": "ezreal",
     "name": "Ezreal",
-    "title": "the Prodigal Explorer",
+    "title": "The Prodigal Explorer",
     "initial": "E",
     "adaptive": "AD",
     "base": {
       "ad": 60,
-      "adPerLevel": 2.75,
+      "adPerLevel": 3.75,
       "hp": 600,
       "hpPerLevel": 102,
       "armor": 24,
@@ -6797,7 +7116,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         ],
         "ratios": {
           "totalAd": 1.3,
-          "ap": 0.15,
+          "ap": 0.4,
         },
         "cooldown": [
           5.5,
@@ -6852,16 +7171,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         ],
         "ratios": {
           "bonusAd": 1,
-          "ap": 0.7,
-        },
-        "rankRatios": {
-          "ap": [
-            0.7,
-            0.75,
-            0.8,
-            0.85,
-            0.9,
-          ],
+          "ap": 0.9,
         },
         "cooldown": [
           8,
@@ -6915,7 +7225,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           280,
         ],
         "ratios": {
-          "bonusAd": 0.5,
+          "bonusAd": 0.6,
           "ap": 0.75,
         },
         "cooldown": [
@@ -6970,7 +7280,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         ],
         "ratios": {
           "bonusAd": 1,
-          "ap": 0.9,
+          "ap": 1.1,
         },
         "cooldown": [
           120,
@@ -7010,19 +7320,19 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       },
     },
     "shelf": [
-      "ionianbootsoflucidity",
-      "stridebreaker",
-      "blackcleaver",
-      "trinityforce",
-      "deathsdance",
-      "steraksgage",
+      "berserkersgreaves",
+      "krakenslayer",
+      "infinityedge",
+      "phantomdancer",
+      "lorddominiksregards",
+      "bloodthirster",
     ],
-    "keystone": "conqueror",
+    "keystone": "lethaltempo",
   },
   "fiddlesticks": {
     "id": "fiddlesticks",
     "name": "Fiddlesticks",
-    "title": "the Ancient Fear",
+    "title": "The Ancient Fear",
     "initial": "F",
     "adaptive": "AP",
     "base": {
@@ -7072,15 +7382,15 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           0,
         ],
         "ratios": {
-          "targetCurrentHp": 0.05,
+          "targetCurrentHp": 0.04,
         },
         "rankRatios": {
           "targetCurrentHp": [
+            0.04,
+            0.045,
             0.05,
+            0.055,
             0.06,
-            0.07,
-            0.08,
-            0.09,
           ],
         },
         "cooldown": [
@@ -7103,7 +7413,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           45,
         ],
         "ratios": {
-          "ap": 0.0875,
+          "ap": 0.1125,
         },
         "cooldown": [
           10,
@@ -7168,7 +7478,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
   "fiora": {
     "id": "fiora",
     "name": "Fiora",
-    "title": "the Grand Duelist",
+    "title": "The Grand Duelist",
     "initial": "F",
     "adaptive": "AD",
     "base": {
@@ -7330,12 +7640,12 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         ],
         "heal": {
           "base": [
-            75,
-            100,
-            125,
+            20,
+            26.25,
+            32.5,
           ],
           "ratios": {
-            "bonusAd": 0.6,
+            "bonusAd": 0.175,
           },
         },
       },
@@ -7353,7 +7663,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
   "fizz": {
     "id": "fizz",
     "name": "Fizz",
-    "title": "the Tidal Trickster",
+    "title": "The Tidal Trickster",
     "initial": "F",
     "adaptive": "AP",
     "base": {
@@ -7446,14 +7756,14 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "type": "magic",
         "maxRank": 5,
         "base": [
-          3.33,
-          5,
-          6.67,
-          8.33,
-          10,
+          30,
+          45,
+          60,
+          75,
+          90,
         ],
         "ratios": {
-          "ap": 0.05,
+          "ap": 0.25,
         },
         "cooldown": [
           7,
@@ -7462,6 +7772,29 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           4,
           3,
         ],
+        "formula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                30,
+                45,
+                60,
+                75,
+                90,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "ap",
+              "f": {
+                "op": "num",
+                "n": 0.25,
+              },
+            },
+          ],
+        },
       },
       "E": {
         "name": "Playful",
@@ -7475,7 +7808,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           280,
         ],
         "ratios": {
-          "ap": 0.9,
+          "ap": 0.95,
         },
         "cooldown": [
           16,
@@ -7531,12 +7864,12 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "type": "magic",
         "maxRank": 3,
         "base": [
-          150,
-          250,
-          350,
+          180,
+          300,
+          420,
         ],
         "ratios": {
-          "ap": 0.8,
+          "ap": 0.6,
         },
         "cooldown": [
           120,
@@ -7590,7 +7923,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
   "galio": {
     "id": "galio",
     "name": "Galio",
-    "title": "the Colossus",
+    "title": "The Colossus",
     "initial": "G",
     "adaptive": "AP",
     "base": {
@@ -7709,14 +8042,14 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "type": "magic",
         "maxRank": 5,
         "base": [
-          90,
-          130,
+          100,
+          135,
           170,
-          210,
-          250,
+          205,
+          240,
         ],
         "ratios": {
-          "ap": 0.9,
+          "ap": 1,
         },
         "cooldown": [
           11,
@@ -7817,7 +8150,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
   "gangplank": {
     "id": "gangplank",
     "name": "Gangplank",
-    "title": "the Saltwater Scourge",
+    "title": "The Saltwater Scourge",
     "initial": "G",
     "adaptive": "AD",
     "base": {
@@ -7961,19 +8294,12 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "maxRank": 5,
         "base": [
           75,
-          105,
+          95,
+          115,
           135,
-          165,
-          195,
+          155,
         ],
         "ratios": {},
-        "cooldown": [
-          0.5,
-          0.5,
-          0.5,
-          0.5,
-          0.5,
-        ],
         "aimed": true,
       },
       "R": {
@@ -8161,21 +8487,21 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "maxRank": 5,
         "base": [
           4,
-          8,
-          12,
+          7,
+          10,
+          13,
           16,
-          20,
         ],
         "ratios": {
-          "totalAd": 0.36,
+          "totalAd": 0.4,
         },
         "rankRatios": {
           "totalAd": [
-            0.36,
-            0.37,
-            0.38,
-            0.39,
             0.4,
+            0.43,
+            0.46,
+            0.49,
+            0.52,
           ],
         },
         "cooldown": [
@@ -8220,9 +8546,9 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "type": "true",
         "maxRank": 3,
         "base": [
-          150,
-          300,
-          450,
+          125,
+          200,
+          275,
         ],
         "ratios": {
           "targetMissingHp": 0.25,
@@ -8254,7 +8580,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
   "gnar": {
     "id": "gnar",
     "name": "Gnar",
-    "title": "the Missing Link",
+    "title": "The Missing Link",
     "initial": "G",
     "adaptive": "AD",
     "base": {
@@ -8512,7 +8838,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
   "gragas": {
     "id": "gragas",
     "name": "Gragas",
-    "title": "the Rabble Rouser",
+    "title": "The Rabble Rouser",
     "initial": "G",
     "adaptive": "AP",
     "base": {
@@ -8721,7 +9047,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
   "graves": {
     "id": "graves",
     "name": "Graves",
-    "title": "the Outlaw",
+    "title": "The Outlaw",
     "initial": "G",
     "adaptive": "AD",
     "base": {
@@ -8768,14 +9094,14 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "type": "physical",
         "maxRank": 5,
         "base": [
-          45,
-          65,
-          85,
-          105,
+          50,
+          75,
+          100,
           125,
+          150,
         ],
         "ratios": {
-          "bonusAd": 0.8,
+          "bonusAd": 0.55,
         },
         "cooldown": [
           13,
@@ -8925,14 +9251,14 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       },
     },
     "shelf": [
-      "ionianbootsoflucidity",
-      "stridebreaker",
-      "blackcleaver",
-      "trinityforce",
-      "deathsdance",
-      "steraksgage",
+      "berserkersgreaves",
+      "krakenslayer",
+      "infinityedge",
+      "phantomdancer",
+      "lorddominiksregards",
+      "bloodthirster",
     ],
-    "keystone": "conqueror",
+    "keystone": "lethaltempo",
   },
   "gwen": {
     "id": "gwen",
@@ -8984,14 +9310,14 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "type": "magic",
         "maxRank": 5,
         "base": [
-          10,
-          15,
-          20,
-          25,
-          30,
+          60,
+          85,
+          110,
+          135,
+          160,
         ],
         "ratios": {
-          "ap": 0.02,
+          "ap": 0.35,
         },
         "cooldown": [
           6.5,
@@ -9001,6 +9327,29 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           3.5,
         ],
         "aimed": true,
+        "formula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                60,
+                85,
+                110,
+                135,
+                160,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "ap",
+              "f": {
+                "op": "num",
+                "n": 0.35,
+              },
+            },
+          ],
+        },
       },
       "W": {
         "name": "Hallowed Mist",
@@ -9023,15 +9372,9 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "type": "magic",
         "maxRank": 5,
         "base": [
-          8,
-          11,
-          14,
-          17,
-          20,
+          0,
         ],
-        "ratios": {
-          "ap": 0.25,
-        },
+        "ratios": {},
         "cooldown": [
           13,
           12.5,
@@ -9065,11 +9408,11 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "maxRank": 3,
         "base": [
           30,
-          60,
-          90,
+          50,
+          70,
         ],
         "ratios": {
-          "ap": 0.08,
+          "ap": 0.1,
         },
         "cooldown": [
           120,
@@ -9113,7 +9456,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
   "hecarim": {
     "id": "hecarim",
     "name": "Hecarim",
-    "title": "the Shadow of War",
+    "title": "The Shadow of War",
     "initial": "H",
     "adaptive": "AD",
     "base": {
@@ -9161,10 +9504,10 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "maxRank": 5,
         "base": [
           60,
-          85,
-          110,
-          135,
-          160,
+          90,
+          120,
+          150,
+          180,
         ],
         "ratios": {
           "bonusAd": 0.9,
@@ -9205,14 +9548,14 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "type": "magic",
         "maxRank": 5,
         "base": [
-          20,
-          30,
-          40,
-          50,
-          60,
+          80,
+          120,
+          160,
+          200,
+          240,
         ],
         "ratios": {
-          "ap": 0.2,
+          "ap": 0.8,
         },
         "cooldown": [
           14,
@@ -9230,6 +9573,29 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
             240,
           ],
           "ratios": {},
+        },
+        "formula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                80,
+                120,
+                160,
+                200,
+                240,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "ap",
+              "f": {
+                "op": "num",
+                "n": 0.8,
+              },
+            },
+          ],
         },
       },
       "E": {
@@ -9313,7 +9679,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
   "heimerdinger": {
     "id": "heimerdinger",
     "name": "Heimerdinger",
-    "title": "the Revered Inventor",
+    "title": "The Revered Inventor",
     "initial": "H",
     "adaptive": "AP",
     "base": {
@@ -9377,11 +9743,11 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "type": "magic",
         "maxRank": 5,
         "base": [
-          40,
-          65,
-          90,
-          115,
-          140,
+          50,
+          75,
+          100,
+          125,
+          150,
         ],
         "ratios": {
           "ap": 0.55,
@@ -9480,7 +9846,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       },
       "R": {
         "name": "UPGRADE!!!",
-        "type": "util",
+        "type": "magic",
         "maxRank": 3,
         "base": [
           0,
@@ -9491,6 +9857,27 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           85,
           70,
         ],
+        "formula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                80,
+                100,
+                120,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "ap",
+              "f": {
+                "op": "num",
+                "n": 0.35,
+              },
+            },
+          ],
+        },
       },
     },
     "shelf": [
@@ -9506,7 +9893,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
   "hwei": {
     "id": "hwei",
     "name": "Hwei",
-    "title": "the Visionary",
+    "title": "The Visionary",
     "initial": "H",
     "adaptive": "AP",
     "base": {
@@ -9550,7 +9937,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
     "abilities": {
       "Q": {
         "name": "Subject: Disaster",
-        "type": "util",
+        "type": "magic",
         "maxRank": 5,
         "base": [
           0,
@@ -9563,10 +9950,33 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           7,
           6,
         ],
+        "formula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                50,
+                80,
+                110,
+                140,
+                170,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "ap",
+              "f": {
+                "op": "num",
+                "n": 0.8,
+              },
+            },
+          ],
+        },
       },
       "W": {
         "name": "Subject: Serenity",
-        "type": "util",
+        "type": "magic",
         "maxRank": 5,
         "base": [
           0,
@@ -9579,10 +9989,33 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           16.5,
           16,
         ],
+        "formula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                20,
+                30,
+                40,
+                50,
+                60,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "ap",
+              "f": {
+                "op": "num",
+                "n": 0.15,
+              },
+            },
+          ],
+        },
       },
       "E": {
         "name": "Subject: Torment",
-        "type": "util",
+        "type": "magic",
         "maxRank": 5,
         "base": [
           0,
@@ -9615,18 +10048,41 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
             1.5,
           ],
         },
+        "formula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                70,
+                110,
+                150,
+                190,
+                230,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "ap",
+              "f": {
+                "op": "num",
+                "n": 0.65,
+              },
+            },
+          ],
+        },
       },
       "R": {
         "name": "Spiraling Despair",
         "type": "magic",
         "maxRank": 3,
         "base": [
-          2.5,
-          5,
-          7.5,
+          200,
+          325,
+          450,
         ],
         "ratios": {
-          "ap": 0.0125,
+          "ap": 0.8,
         },
         "cooldown": [
           120,
@@ -9634,6 +10090,27 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           80,
         ],
         "aimed": true,
+        "formula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                200,
+                325,
+                450,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "ap",
+              "f": {
+                "op": "num",
+                "n": 0.8,
+              },
+            },
+          ],
+        },
       },
     },
     "shelf": [
@@ -9649,7 +10126,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
   "illaoi": {
     "id": "illaoi",
     "name": "Illaoi",
-    "title": "the Kraken Priestess",
+    "title": "The Kraken Priestess",
     "initial": "I",
     "adaptive": "AD",
     "base": {
@@ -9816,7 +10293,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
   "irelia": {
     "id": "irelia",
     "name": "Irelia",
-    "title": "the Blade Dancer",
+    "title": "The Blade Dancer",
     "initial": "I",
     "adaptive": "AD",
     "base": {
@@ -9870,7 +10347,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           85,
         ],
         "ratios": {
-          "totalAd": 0.7,
+          "totalAd": 0.8,
         },
         "cooldown": [
           10,
@@ -9925,7 +10402,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         ],
         "ratios": {
           "totalAd": 0.4,
-          "ap": 0.4,
+          "ap": 0.5,
         },
         "cooldown": [
           20,
@@ -9948,7 +10425,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           230,
         ],
         "ratios": {
-          "ap": 0.8,
+          "ap": 1,
         },
         "cooldown": [
           16,
@@ -9996,7 +10473,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           275,
         ],
         "ratios": {
-          "ap": 0.7,
+          "ap": 1,
         },
         "cooldown": [
           125,
@@ -10044,7 +10521,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
   "ivern": {
     "id": "ivern",
     "name": "Ivern",
-    "title": "the Green Father",
+    "title": "The Green Father",
     "initial": "I",
     "adaptive": "AP",
     "base": {
@@ -10318,7 +10795,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
   "janna": {
     "id": "janna",
     "name": "Janna",
-    "title": "the Storm's Fury",
+    "title": "The Storm's Fury",
     "initial": "J",
     "adaptive": "AP",
     "base": {
@@ -10538,7 +11015,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
   "jarvaniv": {
     "id": "jarvaniv",
     "name": "Jarvan IV",
-    "title": "the Exemplar of Demacia",
+    "title": "The Exemplar of Demacia",
     "initial": "J",
     "adaptive": "AD",
     "base": {
@@ -10924,7 +11401,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         ],
         "ratios": {
           "ap": 0.7,
-          "targetMaxHp": 0.035,
+          "targetMaxHp": 0.04,
         },
         "cooldown": [
           17,
@@ -10939,16 +11416,16 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         },
       },
       "R": {
-        "name": "Grandmaster-At-Arms",
+        "name": "Grandmaster-at-Arms",
         "type": "magic",
         "maxRank": 3,
         "base": [
-          100,
-          175,
-          250,
+          75,
+          130,
+          185,
         ],
         "ratios": {
-          "ap": 1,
+          "ap": 0.6,
         },
         "cooldown": [
           110,
@@ -10961,9 +11438,9 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
             {
               "op": "rank",
               "v": [
-                100,
-                175,
-                250,
+                75,
+                130,
+                185,
               ],
             },
             {
@@ -10971,7 +11448,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
               "stat": "ap",
               "f": {
                 "op": "num",
-                "n": 1,
+                "n": 0.6,
               },
             },
           ],
@@ -10991,7 +11468,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
   "jayce": {
     "id": "jayce",
     "name": "Jayce",
-    "title": "the Defender of Tomorrow",
+    "title": "The Defender of Tomorrow",
     "initial": "J",
     "adaptive": "AD",
     "base": {
@@ -11039,11 +11516,11 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "maxRank": 5,
         "base": [
           60,
-          105,
-          150,
-          195,
-          240,
-          285,
+          110,
+          160,
+          210,
+          260,
+          310,
         ],
         "ratios": {
           "bonusAd": 1.35,
@@ -11101,24 +11578,42 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "type": "magic",
         "maxRank": 5,
         "base": [
-          35,
-          50,
-          65,
-          80,
-          95,
-          110,
+          140,
+          200,
+          260,
+          320,
+          380,
+          440,
         ],
         "ratios": {
-          "ap": 0.25,
+          "ap": 1,
         },
         "cooldown": [
           10,
-          10,
-          10,
-          10,
-          10,
-          10,
         ],
+        "formula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                140,
+                200,
+                260,
+                320,
+                380,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "ap",
+              "f": {
+                "op": "num",
+                "n": 1,
+              },
+            },
+          ],
+        },
       },
       "E": {
         "name": "Thundering Blow",
@@ -11182,7 +11677,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
   "jhin": {
     "id": "jhin",
     "name": "Jhin",
-    "title": "the Virtuoso",
+    "title": "The Virtuoso",
     "initial": "J",
     "adaptive": "AD",
     "base": {
@@ -11298,11 +11793,11 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "type": "physical",
         "maxRank": 5,
         "base": [
-          60,
-          95,
-          130,
-          165,
-          200,
+          70,
+          105,
+          140,
+          175,
+          210,
         ],
         "ratios": {
           "totalAd": 0.5,
@@ -11456,19 +11951,19 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       },
     },
     "shelf": [
-      "ionianbootsoflucidity",
-      "stridebreaker",
-      "blackcleaver",
-      "trinityforce",
-      "deathsdance",
-      "steraksgage",
+      "berserkersgreaves",
+      "krakenslayer",
+      "infinityedge",
+      "phantomdancer",
+      "lorddominiksregards",
+      "bloodthirster",
     ],
-    "keystone": "conqueror",
+    "keystone": "lethaltempo",
   },
   "jinx": {
     "id": "jinx",
     "name": "Jinx",
-    "title": "the Loose Cannon",
+    "title": "The Loose Cannon",
     "initial": "J",
     "adaptive": "AD",
     "base": {
@@ -11512,7 +12007,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
     "abilities": {
       "Q": {
         "name": "Switcheroo!",
-        "type": "util",
+        "type": "physical",
         "maxRank": 5,
         "base": [
           0,
@@ -11525,6 +12020,14 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           0.9,
           0.9,
         ],
+        "formula": {
+          "op": "stat",
+          "stat": "ad",
+          "f": {
+            "op": "num",
+            "n": 1.1,
+          },
+        },
       },
       "W": {
         "name": "Zap!",
@@ -11593,11 +12096,11 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "type": "magic",
         "maxRank": 5,
         "base": [
-          70,
-          120,
-          170,
-          220,
-          270,
+          90,
+          140,
+          190,
+          240,
+          290,
         ],
         "ratios": {
           "ap": 1,
@@ -11643,12 +12146,12 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "type": "physical",
         "maxRank": 3,
         "base": [
-          300,
-          450,
-          600,
+          200,
+          350,
+          500,
         ],
         "ratios": {
-          "bonusAd": 1.55,
+          "bonusAd": 1.2,
           "targetMissingHp": 0.25,
         },
         "rankRatios": {
@@ -11667,19 +12170,19 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       },
     },
     "shelf": [
-      "ionianbootsoflucidity",
-      "stridebreaker",
-      "blackcleaver",
-      "trinityforce",
-      "deathsdance",
-      "steraksgage",
+      "berserkersgreaves",
+      "krakenslayer",
+      "infinityedge",
+      "phantomdancer",
+      "lorddominiksregards",
+      "bloodthirster",
     ],
-    "keystone": "conqueror",
+    "keystone": "lethaltempo",
   },
   "ksante": {
     "id": "ksante",
     "name": "K'Sante",
-    "title": "the Pride of Nazumah",
+    "title": "The Pride of Nazumah",
     "initial": "K",
     "adaptive": "AD",
     "base": {
@@ -11834,14 +12337,14 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         ],
         "shield": {
           "base": [
-            80,
-            120,
-            160,
-            200,
+            70,
+            112.5,
+            155,
+            197.5,
             240,
           ],
           "ratios": {
-            "bonusHp": 0.15,
+            "bonusHp": 0.135,
           },
         },
         "mobility": true,
@@ -12103,9 +12606,9 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         ],
         "shield": {
           "base": [
-            70,
-            90,
-            110,
+            100,
+            150,
+            200,
           ],
           "ratios": {
             "totalAd": 0.9,
@@ -12168,12 +12671,12 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
   "kalista": {
     "id": "kalista",
     "name": "Kalista",
-    "title": "the Spear of Vengeance",
+    "title": "The Spear of Vengeance",
     "initial": "K",
     "adaptive": "AD",
     "base": {
       "ad": 57,
-      "adPerLevel": 3.25,
+      "adPerLevel": 4.75,
       "hp": 560,
       "hpPerLevel": 114,
       "armor": 24,
@@ -12298,7 +12801,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         ],
         "ratios": {
           "totalAd": 0.7,
-          "ap": 0.2,
+          "ap": 0.65,
         },
         "cooldown": [
           10,
@@ -12322,6 +12825,37 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
             "op": "num",
             "n": 2,
           },
+        },
+        "formula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                5,
+                15,
+                25,
+                35,
+                45,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "ad",
+              "f": {
+                "op": "num",
+                "n": 0.7,
+              },
+            },
+            {
+              "op": "stat",
+              "stat": "ap",
+              "f": {
+                "op": "num",
+                "n": 0.65,
+              },
+            },
+          ],
         },
       },
       "R": {
@@ -12349,24 +12883,24 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       },
     },
     "shelf": [
-      "ionianbootsoflucidity",
-      "stridebreaker",
-      "blackcleaver",
-      "trinityforce",
-      "deathsdance",
-      "steraksgage",
+      "berserkersgreaves",
+      "krakenslayer",
+      "infinityedge",
+      "phantomdancer",
+      "lorddominiksregards",
+      "bloodthirster",
     ],
-    "keystone": "conqueror",
+    "keystone": "lethaltempo",
   },
   "karma": {
     "id": "karma",
     "name": "Karma",
-    "title": "the Enlightened One",
+    "title": "The Enlightened One",
     "initial": "K",
     "adaptive": "AP",
     "base": {
       "ad": 49,
-      "adPerLevel": 3.3,
+      "adPerLevel": 3,
       "hp": 630,
       "hpPerLevel": 109,
       "armor": 28,
@@ -12567,7 +13101,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       },
       "R": {
         "name": "Mantra",
-        "type": "util",
+        "type": "magic",
         "maxRank": 3,
         "base": [
           0,
@@ -12578,6 +13112,27 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           38,
           36,
         ],
+        "formula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                40,
+                100,
+                160,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "ap",
+              "f": {
+                "op": "num",
+                "n": 0.3,
+              },
+            },
+          ],
+        },
       },
     },
     "shelf": [
@@ -12593,7 +13148,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
   "karthus": {
     "id": "karthus",
     "name": "Karthus",
-    "title": "the Deathsinger",
+    "title": "The Deathsinger",
     "initial": "K",
     "adaptive": "AP",
     "base": {
@@ -12650,10 +13205,6 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           "ap": 0.35,
         },
         "cooldown": [
-          1,
-          1,
-          1,
-          1,
           1,
         ],
         "aimed": true,
@@ -12773,7 +13324,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
   "kassadin": {
     "id": "kassadin",
     "name": "Kassadin",
-    "title": "the Void Walker",
+    "title": "The Void Walker",
     "initial": "K",
     "adaptive": "AP",
     "base": {
@@ -12827,7 +13378,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           185,
         ],
         "ratios": {
-          "ap": 0.6,
+          "ap": 0.8,
         },
         "cooldown": [
           9,
@@ -12945,14 +13496,14 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "type": "magic",
         "maxRank": 5,
         "base": [
-          60,
-          90,
-          120,
-          150,
-          180,
+          70,
+          100,
+          130,
+          160,
+          190,
         ],
         "ratios": {
-          "ap": 0.65,
+          "ap": 0.7,
         },
         "cooldown": [
           21,
@@ -13007,8 +13558,8 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "type": "magic",
         "maxRank": 3,
         "base": [
-          70,
-          90,
+          80,
+          95,
           110,
         ],
         "ratios": {
@@ -13065,7 +13616,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
   "katarina": {
     "id": "katarina",
     "name": "Katarina",
-    "title": "the Sinister Blade",
+    "title": "The Sinister Blade",
     "initial": "K",
     "adaptive": "AP",
     "base": {
@@ -13229,16 +13780,39 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "type": "magic",
         "maxRank": 3,
         "base": [
-          0,
+          25,
+          37.5,
+          50,
         ],
         "ratios": {
-          "bonusAd": 0.16,
+          "ap": 0.19,
         },
         "cooldown": [
           75,
           60,
           45,
         ],
+        "formula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                25,
+                37.5,
+                50,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "ap",
+              "f": {
+                "op": "num",
+                "n": 0.19,
+              },
+            },
+          ],
+        },
       },
     },
     "shelf": [
@@ -13254,7 +13828,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
   "kayle": {
     "id": "kayle",
     "name": "Kayle",
-    "title": "the Righteous",
+    "title": "The Righteous",
     "initial": "K",
     "adaptive": "AD",
     "base": {
@@ -13302,10 +13876,10 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "maxRank": 5,
         "base": [
           60,
-          100,
-          140,
+          90,
+          120,
+          150,
           180,
-          220,
         ],
         "ratios": {
           "bonusAd": 0.6,
@@ -13533,7 +14107,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
   "kayn": {
     "id": "kayn",
     "name": "Kayn",
-    "title": "the Shadow Reaper",
+    "title": "The Shadow Reaper",
     "initial": "K",
     "adaptive": "AD",
     "base": {
@@ -13581,10 +14155,10 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "maxRank": 5,
         "base": [
           75,
-          100,
-          125,
-          150,
-          175,
+          105,
+          135,
+          165,
+          195,
         ],
         "ratios": {
           "bonusAd": 0.85,
@@ -13776,7 +14350,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
   "kennen": {
     "id": "kennen",
     "name": "Kennen",
-    "title": "the Heart of the Tempest",
+    "title": "The Heart of the Tempest",
     "initial": "K",
     "adaptive": "AP",
     "base": {
@@ -13960,11 +14534,11 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "maxRank": 3,
         "base": [
           40,
-          75,
-          110,
+          80,
+          120,
         ],
         "ratios": {
-          "ap": 0.225,
+          "ap": 0.25,
         },
         "cooldown": [
           120,
@@ -13986,7 +14560,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
   "khazix": {
     "id": "khazix",
     "name": "Kha'Zix",
-    "title": "the Voidreaver",
+    "title": "The Voidreaver",
     "initial": "K",
     "adaptive": "AD",
     "base": {
@@ -14040,7 +14614,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           180,
         ],
         "ratios": {
-          "bonusAd": 1.1,
+          "bonusAd": 1.05,
         },
         "cooldown": [
           4,
@@ -14078,11 +14652,11 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "type": "physical",
         "maxRank": 5,
         "base": [
-          85,
-          115,
-          145,
-          175,
-          205,
+          75,
+          105,
+          135,
+          165,
+          195,
         ],
         "ratios": {
           "bonusAd": 1,
@@ -14399,19 +14973,19 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       },
     },
     "shelf": [
-      "ionianbootsoflucidity",
-      "stridebreaker",
-      "blackcleaver",
-      "trinityforce",
-      "deathsdance",
-      "steraksgage",
+      "berserkersgreaves",
+      "krakenslayer",
+      "infinityedge",
+      "phantomdancer",
+      "lorddominiksregards",
+      "bloodthirster",
     ],
-    "keystone": "conqueror",
+    "keystone": "lethaltempo",
   },
   "kled": {
     "id": "kled",
     "name": "Kled",
-    "title": "the Cantankerous Cavalier",
+    "title": "The Cantankerous Cavalier",
     "initial": "K",
     "adaptive": "AD",
     "base": {
@@ -14465,7 +15039,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           130,
         ],
         "ratios": {
-          "bonusAd": 0.65,
+          "bonusAd": 0.6,
         },
         "cooldown": [
           11,
@@ -14518,7 +15092,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       },
       "W": {
         "name": "Violent Tendencies",
-        "type": "physical",
+        "type": "magic",
         "maxRank": 5,
         "base": [
           20,
@@ -14559,7 +15133,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           135,
         ],
         "ratios": {
-          "bonusAd": 0.65,
+          "bonusAd": 0.55,
         },
         "cooldown": [
           13,
@@ -14596,7 +15170,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       },
       "R": {
         "name": "Chaaaaaaaarge!!!",
-        "type": "physical",
+        "type": "magic",
         "maxRank": 3,
         "base": [
           0,
@@ -14607,8 +15181,8 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "rankRatios": {
           "targetMaxHp": [
             0.04,
-            0.05,
             0.06,
+            0.08,
           ],
         },
         "cooldown": [
@@ -14618,12 +15192,12 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         ],
         "shield": {
           "base": [
-            20,
-            30,
             40,
+            60,
+            80,
           ],
           "ratios": {
-            "bonusAd": 0.3,
+            "bonusAd": 0.6,
           },
         },
         "aimed": true,
@@ -14643,7 +15217,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
   "kogmaw": {
     "id": "kogmaw",
     "name": "Kog'Maw",
-    "title": "the Mouth of the Abyss",
+    "title": "The Mouth of the Abyss",
     "initial": "K",
     "adaptive": "AD",
     "base": {
@@ -14697,7 +15271,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           260,
         ],
         "ratios": {
-          "ap": 0.8,
+          "ap": 0.9,
         },
         "cooldown": [
           7,
@@ -14833,6 +15407,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           "bonusAd": 0.75,
           "ap": 0.35,
         },
+        "rankRatios": {
+          "ap": [
+            0.35,
+            0.4,
+            0.45,
+          ],
+        },
         "cooldown": [
           2,
           1.5,
@@ -14875,19 +15456,19 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       },
     },
     "shelf": [
-      "ionianbootsoflucidity",
-      "stridebreaker",
-      "blackcleaver",
-      "trinityforce",
-      "deathsdance",
-      "steraksgage",
+      "berserkersgreaves",
+      "krakenslayer",
+      "infinityedge",
+      "phantomdancer",
+      "lorddominiksregards",
+      "bloodthirster",
     ],
-    "keystone": "conqueror",
+    "keystone": "lethaltempo",
   },
   "leblanc": {
     "id": "leblanc",
     "name": "LeBlanc",
-    "title": "the Deceiver",
+    "title": "The Deceiver",
     "initial": "L",
     "adaptive": "AP",
     "base": {
@@ -14900,7 +15481,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "mr": 30,
       "mrPerLevel": 1.3,
       "attackSpeed": 0.658,
-      "attackSpeedRatio": 0.4,
+      "attackSpeedRatio": 0.625,
       "attackSpeedPerLevel": 0.015,
       "attackRange": 525,
       "moveSpeed": 340,
@@ -14986,7 +15567,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           235,
         ],
         "ratios": {
-          "ap": 0.7,
+          "ap": 0.9,
         },
         "cooldown": [
           15,
@@ -15077,8 +15658,8 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "maxRank": 3,
         "base": [
           70,
-          140,
-          210,
+          150,
+          230,
         ],
         "ratios": {
           "ap": 0.4,
@@ -15125,12 +15706,12 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
   "leesin": {
     "id": "leesin",
     "name": "Lee Sin",
-    "title": "the Blind Monk",
+    "title": "The Blind Monk",
     "initial": "L",
     "adaptive": "AD",
     "base": {
       "ad": 66,
-      "adPerLevel": 3.7,
+      "adPerLevel": 3.4,
       "hp": 645,
       "hpPerLevel": 108,
       "armor": 36,
@@ -15172,14 +15753,14 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "type": "physical",
         "maxRank": 5,
         "base": [
-          55,
-          80,
-          105,
-          130,
-          155,
+          60,
+          90,
+          120,
+          150,
+          180,
         ],
         "ratios": {
-          "bonusAd": 1.15,
+          "bonusAd": 0.9,
         },
         "cooldown": [
           10,
@@ -15231,11 +15812,11 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         ],
         "shield": {
           "base": [
-            70,
-            115,
-            160,
-            205,
-            250,
+            60,
+            105,
+            150,
+            195,
+            240,
           ],
           "ratios": {
             "ap": 0.8,
@@ -15278,7 +15859,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           135,
         ],
         "ratios": {
-          "totalAd": 1,
+          "totalAd": 0.9,
         },
         "cooldown": [
           8,
@@ -15380,7 +15961,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
   "leona": {
     "id": "leona",
     "name": "Leona",
-    "title": "the Radiant Dawn",
+    "title": "The Radiant Dawn",
     "initial": "L",
     "adaptive": "AD",
     "base": {
@@ -15556,7 +16137,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
   "lillia": {
     "id": "lillia",
     "name": "Lillia",
-    "title": "the Bashful Bloom",
+    "title": "The Bashful Bloom",
     "initial": "L",
     "adaptive": "AP",
     "base": {
@@ -15806,7 +16387,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
   "lissandra": {
     "id": "lissandra",
     "name": "Lissandra",
-    "title": "the Ice Witch",
+    "title": "The Ice Witch",
     "initial": "L",
     "adaptive": "AP",
     "base": {
@@ -16050,12 +16631,12 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
   "locke": {
     "id": "locke",
     "name": "Locke",
-    "title": "the Ashen Exorcist",
+    "title": "The Ashen Exorcist",
     "initial": "L",
     "adaptive": "AP",
     "base": {
       "ad": 58,
-      "adPerLevel": 0,
+      "adPerLevel": 3,
       "hp": 620,
       "hpPerLevel": 109,
       "armor": 32,
@@ -16063,12 +16644,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "mr": 32,
       "mrPerLevel": 2.05,
       "attackSpeed": 0.688,
-      "attackSpeedRatio": 0.688,
+      "attackSpeedRatio": 0.625,
       "attackSpeedPerLevel": 0.033,
       "attackRange": 125,
       "moveSpeed": 340,
       "mana": 280,
       "manaPerLevel": 70,
+      "critDamage": 1.75,
     },
     "skillOrder": [
       "Q",
@@ -16096,31 +16678,14 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "type": "magic",
         "maxRank": 5,
         "base": [
-          0,
+          40,
+          48,
+          56,
+          64,
+          72,
         ],
-        "ratios": {},
-        "formula": {
-          "op": "sum",
-          "of": [
-            {
-              "op": "rank",
-              "v": [
-                40,
-                48,
-                56,
-                64,
-                72,
-              ],
-            },
-            {
-              "op": "stat",
-              "stat": "ap",
-              "f": {
-                "op": "num",
-                "n": 0.2,
-              },
-            },
-          ],
+        "ratios": {
+          "ap": 0.2,
         },
         "cooldown": [
           10,
@@ -16130,6 +16695,35 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           6,
         ],
         "aimed": true,
+        "formula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "stat",
+              "stat": "ap",
+              "f": {
+                "op": "rank",
+                "v": [
+                  0.25,
+                  0.275,
+                  0.3,
+                  0.325,
+                  0.35,
+                ],
+              },
+            },
+            {
+              "op": "rank",
+              "v": [
+                18,
+                26,
+                34,
+                42,
+                50,
+              ],
+            },
+          ],
+        },
       },
       "W": {
         "name": "Soul Ignition",
@@ -16146,15 +16740,38 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           14,
           12,
         ],
+        "heal": {
+          "base": [
+            40,
+            60,
+            80,
+            100,
+            120,
+          ],
+          "ratios": {
+            "ap": 1,
+          },
+        },
       },
       "E": {
         "name": "Ashen Pursuit",
         "type": "magic",
         "maxRank": 5,
         "base": [
-          0,
+          40,
+          50,
+          60,
+          70,
+          80,
         ],
-        "ratios": {},
+        "ratios": {
+          "ap": 0.4,
+        },
+        "cooldown": [
+          10,
+        ],
+        "aimed": true,
+        "mobility": true,
         "formula": {
           "op": "sum",
           "of": [
@@ -16162,10 +16779,10 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
               "op": "rank",
               "v": [
                 40,
-                50,
                 60,
-                70,
                 80,
+                100,
+                120,
               ],
             },
             {
@@ -16178,17 +16795,35 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
             },
           ],
         },
-        "aimed": true,
-        "mobility": true,
       },
       "R": {
         "name": "Purgatory",
         "type": "magic",
         "maxRank": 3,
         "base": [
-          0,
+          150,
+          225,
+          300,
         ],
-        "ratios": {},
+        "ratios": {
+          "ap": 0.6,
+        },
+        "cooldown": [
+          120,
+          100,
+          80,
+        ],
+        "aimed": true,
+        "slow": {
+          "amount": {
+            "op": "num",
+            "n": 0.99,
+          },
+          "duration": {
+            "op": "num",
+            "n": 2,
+          },
+        },
         "formula": {
           "op": "sum",
           "of": [
@@ -16210,22 +16845,6 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
             },
           ],
         },
-        "cooldown": [
-          120,
-          100,
-          80,
-        ],
-        "aimed": true,
-        "slow": {
-          "amount": {
-            "op": "num",
-            "n": 0.99,
-          },
-          "duration": {
-            "op": "num",
-            "n": 2,
-          },
-        },
       },
     },
     "shelf": [
@@ -16241,7 +16860,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
   "lucian": {
     "id": "lucian",
     "name": "Lucian",
-    "title": "the Purifier",
+    "title": "The Purifier",
     "initial": "L",
     "adaptive": "AD",
     "base": {
@@ -16288,23 +16907,14 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "type": "physical",
         "maxRank": 5,
         "base": [
-          85,
-          115,
-          145,
-          175,
-          205,
+          90,
+          130,
+          170,
+          210,
+          250,
         ],
         "ratios": {
-          "bonusAd": 0.6,
-        },
-        "rankRatios": {
-          "bonusAd": [
-            0.6,
-            0.75,
-            0.9,
-            1.05,
-            1.2,
-          ],
+          "bonusAd": 1,
         },
         "cooldown": [
           9,
@@ -16452,19 +17062,19 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       },
     },
     "shelf": [
-      "ionianbootsoflucidity",
-      "stridebreaker",
-      "blackcleaver",
-      "trinityforce",
-      "deathsdance",
-      "steraksgage",
+      "berserkersgreaves",
+      "krakenslayer",
+      "infinityedge",
+      "phantomdancer",
+      "lorddominiksregards",
+      "bloodthirster",
     ],
-    "keystone": "conqueror",
+    "keystone": "lethaltempo",
   },
   "lulu": {
     "id": "lulu",
     "name": "Lulu",
-    "title": "the Fae Sorceress",
+    "title": "The Fae Sorceress",
     "initial": "L",
     "adaptive": "AP",
     "base": {
@@ -16593,11 +17203,11 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "type": "magic",
         "maxRank": 5,
         "base": [
-          80,
-          120,
-          160,
-          200,
-          240,
+          70,
+          110,
+          150,
+          190,
+          230,
         ],
         "ratios": {
           "ap": 0.5,
@@ -16611,14 +17221,14 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         ],
         "shield": {
           "base": [
-            80,
-            120,
-            160,
-            200,
-            240,
+            70,
+            110,
+            150,
+            190,
+            230,
           ],
           "ratios": {
-            "ap": 0.55,
+            "ap": 0.5,
           },
         },
         "formula": {
@@ -16711,7 +17321,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
   "lux": {
     "id": "lux",
     "name": "Lux",
-    "title": "the Lady of Luminosity",
+    "title": "The Lady of Luminosity",
     "initial": "L",
     "adaptive": "AP",
     "base": {
@@ -16765,14 +17375,10 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           240,
         ],
         "ratios": {
-          "ap": 0.65,
+          "ap": 0.75,
         },
         "cooldown": [
-          11,
-          10.5,
           10,
-          9.5,
-          9,
         ],
         "aimed": true,
         "root": {
@@ -17047,14 +17653,14 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "type": "physical",
         "maxRank": 5,
         "base": [
-          15,
-          25,
-          35,
-          45,
-          55,
+          30,
+          40,
+          50,
+          60,
+          70,
         ],
         "ratios": {
-          "ap": 0.3,
+          "ap": 0.2,
         },
         "cooldown": [
           10,
@@ -17069,11 +17675,11 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "type": "magic",
         "maxRank": 5,
         "base": [
-          70,
-          110,
-          150,
-          190,
-          230,
+          60,
+          95,
+          130,
+          165,
+          200,
         ],
         "ratios": {
           "ap": 0.6,
@@ -17177,7 +17783,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
   "malzahar": {
     "id": "malzahar",
     "name": "Malzahar",
-    "title": "the Prophet of the Void",
+    "title": "The Prophet of the Void",
     "initial": "M",
     "adaptive": "AP",
     "base": {
@@ -17247,29 +17853,36 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "type": "magic",
         "maxRank": 5,
         "base": [
-          5,
-          8.5,
           12,
-          15.5,
-          19,
-          22.5,
-          26,
-          29.5,
-          33,
-          36.5,
-          40,
-          43.5,
-          47,
-          50.5,
-          54,
-          57.5,
-          61,
-          64.5,
+          14,
+          16,
+          18,
+          20,
         ],
         "ratios": {
           "bonusAd": 0.4,
           "ap": 0.2,
         },
+        "levelBase": [
+          5,
+          7.52,
+          10.16,
+          12.93,
+          15.82,
+          18.83,
+          21.96,
+          25.21,
+          28.59,
+          32.09,
+          35.71,
+          39.46,
+          43.33,
+          47.32,
+          51.43,
+          55.66,
+          60.02,
+          64.5,
+        ],
         "cooldown": [
           8,
           8,
@@ -17283,14 +17896,14 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "type": "magic",
         "maxRank": 5,
         "base": [
-          5,
-          7.19,
-          9.38,
-          11.56,
-          13.75,
+          80,
+          115,
+          150,
+          185,
+          220,
         ],
         "ratios": {
-          "ap": 0.05,
+          "ap": 0.8,
         },
         "cooldown": [
           11,
@@ -17299,6 +17912,29 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           8,
           7,
         ],
+        "formula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                80,
+                115,
+                150,
+                185,
+                220,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "ap",
+              "f": {
+                "op": "num",
+                "n": 0.8,
+              },
+            },
+          ],
+        },
       },
       "R": {
         "name": "Nether Grasp",
@@ -17337,7 +17973,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
   "maokai": {
     "id": "maokai",
     "name": "Maokai",
-    "title": "the Twisted Treant",
+    "title": "The Twisted Treant",
     "initial": "M",
     "adaptive": "AP",
     "base": {
@@ -17384,15 +18020,15 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "type": "magic",
         "maxRank": 5,
         "base": [
-          65,
-          110,
-          155,
-          200,
-          245,
+          75,
+          120,
+          165,
+          210,
+          255,
         ],
         "ratios": {
           "targetMaxHp": 0.02,
-          "ap": 0.4,
+          "ap": 0.5,
         },
         "rankRatios": {
           "targetMaxHp": [
@@ -17483,15 +18119,15 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "type": "magic",
         "maxRank": 5,
         "base": [
+          33.33,
           50,
-          75,
+          66.67,
+          83.33,
           100,
-          125,
-          150,
         ],
         "ratios": {
-          "bonusHp": 0.05,
-          "ap": 0.25,
+          "bonusHp": 0.0333,
+          "ap": 0.1667,
         },
         "cooldown": [
           18,
@@ -17510,6 +18146,29 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
             "op": "num",
             "n": 2,
           },
+        },
+        "formula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                50,
+                75,
+                100,
+                125,
+                150,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "bonusHp",
+              "f": {
+                "op": "num",
+                "n": 0.05,
+              },
+            },
+          ],
         },
       },
       "R": {
@@ -17570,12 +18229,12 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
   "masteryi": {
     "id": "masteryi",
     "name": "Master Yi",
-    "title": "the Wuju Bladesman",
+    "title": "The Wuju Bladesman",
     "initial": "M",
     "adaptive": "AD",
     "base": {
       "ad": 65,
-      "adPerLevel": 2.8,
+      "adPerLevel": 2.5,
       "hp": 640,
       "hpPerLevel": 105,
       "armor": 33,
@@ -17617,14 +18276,14 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "type": "physical",
         "maxRank": 5,
         "base": [
-          30,
+          20,
+          40,
           60,
-          90,
-          120,
-          150,
+          80,
+          100,
         ],
         "ratios": {
-          "totalAd": 0.5,
+          "totalAd": 0.7,
         },
         "cooldown": [
           20,
@@ -17667,10 +18326,6 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         ],
         "ratios": {},
         "cooldown": [
-          10,
-          10,
-          10,
-          10,
           10,
         ],
         "heal": {
@@ -17759,7 +18414,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
   "mel": {
     "id": "mel",
     "name": "Mel",
-    "title": "the Soul's Reflection",
+    "title": "The Soul's Reflection",
     "initial": "M",
     "adaptive": "AP",
     "base": {
@@ -17772,7 +18427,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "mr": 30,
       "mrPerLevel": 1.3,
       "attackSpeed": 0.625,
-      "attackSpeedRatio": 0.4,
+      "attackSpeedRatio": 0.625,
       "attackSpeedPerLevel": 0.025,
       "attackRange": 550,
       "moveSpeed": 330,
@@ -17806,14 +18461,14 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "type": "magic",
         "maxRank": 5,
         "base": [
-          13,
-          15.5,
-          18,
-          20.5,
-          23,
+          60,
+          85,
+          110,
+          135,
+          160,
         ],
         "ratios": {
-          "ap": 0.085,
+          "ap": 0.55,
         },
         "cooldown": [
           10,
@@ -17823,6 +18478,29 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           6,
         ],
         "aimed": true,
+        "formula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                60,
+                85,
+                110,
+                135,
+                160,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "ap",
+              "f": {
+                "op": "num",
+                "n": 0.55,
+              },
+            },
+          ],
+        },
       },
       "W": {
         "name": "Rebuttal",
@@ -17839,6 +18517,41 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           29,
           26,
         ],
+        "shield": {
+          "base": [
+            80,
+            110,
+            140,
+            170,
+            200,
+          ],
+          "ratios": {
+            "ap": 0.7,
+          },
+        },
+        "shieldFormula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                80,
+                110,
+                140,
+                170,
+                200,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "ap",
+              "f": {
+                "op": "num",
+                "n": 0.7,
+              },
+            },
+          ],
+        },
       },
       "E": {
         "name": "Solar Snare",
@@ -17852,7 +18565,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           240,
         ],
         "ratios": {
-          "ap": 0.6,
+          "ap": 0.7,
         },
         "cooldown": [
           11,
@@ -17895,9 +18608,9 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "type": "magic",
         "maxRank": 3,
         "base": [
-          100,
-          150,
+          125,
           200,
+          275,
         ],
         "ratios": {
           "ap": 0.3,
@@ -17907,6 +18620,27 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           100,
           80,
         ],
+        "formula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                125,
+                200,
+                275,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "ap",
+              "f": {
+                "op": "num",
+                "n": 0.3,
+              },
+            },
+          ],
+        },
       },
     },
     "shelf": [
@@ -17979,10 +18713,6 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           "ap": 1.2,
         },
         "cooldown": [
-          10,
-          10,
-          10,
-          10,
           10,
         ],
         "aimed": true,
@@ -18062,13 +18792,6 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           0,
         ],
         "ratios": {},
-        "cooldown": [
-          0.5,
-          0.5,
-          0.5,
-          0.5,
-          0.5,
-        ],
         "shield": {
           "base": [
             45,
@@ -18081,6 +18804,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
             "ap": 0.45,
           },
         },
+        "cooldown": [
+          0.5,
+          0.5,
+          0.5,
+          0.5,
+          0.5,
+        ],
         "shieldFormula": {
           "op": "sum",
           "of": [
@@ -18164,7 +18894,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
   "missfortune": {
     "id": "missfortune",
     "name": "Miss Fortune",
-    "title": "the Bounty Hunter",
+    "title": "The Bounty Hunter",
     "initial": "M",
     "adaptive": "AD",
     "base": {
@@ -18250,14 +18980,14 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "type": "magic",
         "maxRank": 5,
         "base": [
-          8.75,
-          12.5,
-          16.25,
-          20,
-          23.75,
+          70,
+          100,
+          130,
+          160,
+          190,
         ],
         "ratios": {
-          "ap": 0.15,
+          "ap": 1.2,
         },
         "cooldown": [
           18,
@@ -18266,36 +18996,6 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           15,
           14,
         ],
-      },
-      "R": {
-        "name": "Bullet Time",
-        "type": "physical",
-        "maxRank": 3,
-        "base": [
-          0,
-        ],
-        "ratios": {
-          "totalAd": 10.5,
-          "ap": 3.5,
-        },
-        "rankRatios": {
-          "totalAd": [
-            10.5,
-            12,
-            13.5,
-          ],
-          "ap": [
-            3.5,
-            4,
-            4.5,
-          ],
-        },
-        "cooldown": [
-          120,
-          110,
-          100,
-        ],
-        "aimed": true,
         "formula": {
           "op": "mul",
           "of": [
@@ -18305,55 +19005,94 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
                 {
                   "op": "rank",
                   "v": [
-                    20,
-                    30,
-                    40,
+                    35,
+                    50,
+                    65,
+                    80,
+                    95,
                   ],
-                },
-                {
-                  "op": "stat",
-                  "stat": "ad",
-                  "f": {
-                    "op": "num",
-                    "n": 0.6,
-                  },
                 },
                 {
                   "op": "stat",
                   "stat": "ap",
                   "f": {
                     "op": "num",
-                    "n": 0.25,
+                    "n": 0.6,
                   },
                 },
               ],
             },
             {
+              "op": "num",
+              "n": 2,
+            },
+          ],
+        },
+      },
+      "R": {
+        "name": "Bullet Time",
+        "type": "physical",
+        "maxRank": 3,
+        "base": [
+          20,
+          30,
+          40,
+        ],
+        "ratios": {
+          "totalAd": 0.6,
+          "ap": 0.25,
+        },
+        "cooldown": [
+          120,
+          110,
+          100,
+        ],
+        "aimed": true,
+        "formula": {
+          "op": "sum",
+          "of": [
+            {
               "op": "rank",
               "v": [
-                14,
-                16,
-                18,
+                20,
+                30,
+                40,
               ],
+            },
+            {
+              "op": "stat",
+              "stat": "ad",
+              "f": {
+                "op": "num",
+                "n": 0.6,
+              },
+            },
+            {
+              "op": "stat",
+              "stat": "ap",
+              "f": {
+                "op": "num",
+                "n": 0.25,
+              },
             },
           ],
         },
       },
     },
     "shelf": [
-      "ionianbootsoflucidity",
-      "stridebreaker",
-      "blackcleaver",
-      "trinityforce",
-      "deathsdance",
-      "steraksgage",
+      "berserkersgreaves",
+      "krakenslayer",
+      "infinityedge",
+      "phantomdancer",
+      "lorddominiksregards",
+      "bloodthirster",
     ],
-    "keystone": "conqueror",
+    "keystone": "lethaltempo",
   },
   "mordekaiser": {
     "id": "mordekaiser",
     "name": "Mordekaiser",
-    "title": "the Iron Revenant",
+    "title": "The Iron Revenant",
     "initial": "M",
     "adaptive": "AP",
     "base": {
@@ -18400,28 +19139,36 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "type": "magic",
         "maxRank": 5,
         "base": [
-          0,
-          2.65,
-          5.29,
-          7.94,
-          10.59,
-          13.24,
-          15.88,
-          18.53,
-          21.18,
-          23.82,
-          26.47,
-          29.12,
-          31.76,
-          34.41,
-          37.06,
-          39.71,
-          42.35,
-          45,
+          80,
+          115,
+          150,
+          185,
+          220,
         ],
         "ratios": {
+          "bonusAd": 1.2,
           "ap": 0.7,
         },
+        "levelBase": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          7,
+          14,
+          21,
+          28,
+          35,
+          42,
+          49,
+          56,
+          63,
+        ],
         "cooldown": [
           8,
           7,
@@ -18430,6 +19177,49 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           4,
         ],
         "aimed": true,
+        "formula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                80,
+                115,
+                150,
+                185,
+                220,
+              ],
+            },
+            {
+              "op": "steps",
+              "l1": 0,
+              "perLevel": 0,
+              "bp": [
+                {
+                  "level": 10,
+                  "add": 0,
+                  "perLevel": 7,
+                },
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "bonusAd",
+              "f": {
+                "op": "num",
+                "n": 1.2,
+              },
+            },
+            {
+              "op": "stat",
+              "stat": "ap",
+              "f": {
+                "op": "num",
+                "n": 0.7,
+              },
+            },
+          ],
+        },
       },
       "W": {
         "name": "Indestructible",
@@ -18453,13 +19243,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "maxRank": 5,
         "base": [
           60,
-          75,
-          90,
-          105,
+          80,
+          100,
           120,
+          140,
         ],
         "ratios": {
-          "ap": 0.4,
+          "ap": 0.45,
         },
         "cooldown": [
           18,
@@ -18521,7 +19311,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
   "morgana": {
     "id": "morgana",
     "name": "Morgana",
-    "title": "the Fallen",
+    "title": "The Fallen",
     "initial": "M",
     "adaptive": "AP",
     "base": {
@@ -18579,10 +19369,6 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         },
         "cooldown": [
           10,
-          10,
-          10,
-          10,
-          10,
         ],
         "aimed": true,
         "root": {
@@ -18624,14 +19410,14 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "type": "magic",
         "maxRank": 5,
         "base": [
-          6,
-          11.5,
-          17,
-          22.5,
-          28,
+          9,
+          15.5,
+          22,
+          28.5,
+          35,
         ],
         "ratios": {
-          "ap": 0.085,
+          "ap": 0.1,
         },
         "cooldown": [
           12,
@@ -18754,7 +19540,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
   "naafiri": {
     "id": "naafiri",
     "name": "Naafiri",
-    "title": "the Hound of a Hundred Bites",
+    "title": "The Hound of a Hundred Bites",
     "initial": "N",
     "adaptive": "AD",
     "base": {
@@ -18856,7 +19642,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       },
       "W": {
         "name": "The Call of the Pack",
-        "type": "util",
+        "type": "physical",
         "maxRank": 5,
         "base": [
           0,
@@ -18869,6 +19655,14 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           20,
           18,
         ],
+        "formula": {
+          "op": "stat",
+          "stat": "ad",
+          "f": {
+            "op": "num",
+            "n": 0.2,
+          },
+        },
       },
       "E": {
         "name": "Eviscerate",
@@ -18921,12 +19715,12 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "type": "physical",
         "maxRank": 3,
         "base": [
-          150,
-          250,
-          350,
+          125,
+          200,
+          275,
         ],
         "ratios": {
-          "bonusAd": 1.2,
+          "bonusAd": 1,
         },
         "cooldown": [
           110,
@@ -18959,7 +19753,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
   "nami": {
     "id": "nami",
     "name": "Nami",
-    "title": "the Tidecaller",
+    "title": "The Tidecaller",
     "initial": "N",
     "adaptive": "AP",
     "base": {
@@ -19067,10 +19861,6 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         },
         "cooldown": [
           10,
-          10,
-          10,
-          10,
-          10,
         ],
         "heal": {
           "base": [
@@ -19137,10 +19927,10 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "maxRank": 5,
         "base": [
           20,
-          30,
-          40,
+          35,
           50,
-          60,
+          65,
+          80,
         ],
         "ratios": {
           "ap": 0.2,
@@ -19235,7 +20025,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
   "nasus": {
     "id": "nasus",
     "name": "Nasus",
-    "title": "the Curator of the Sands",
+    "title": "The Curator of the Sands",
     "initial": "N",
     "adaptive": "AD",
     "base": {
@@ -19282,11 +20072,11 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "type": "physical",
         "maxRank": 5,
         "base": [
-          35,
-          55,
-          75,
-          95,
-          115,
+          30,
+          50,
+          70,
+          90,
+          110,
         ],
         "ratios": {},
         "cooldown": [
@@ -19404,7 +20194,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
   "nautilus": {
     "id": "nautilus",
     "name": "Nautilus",
-    "title": "the Titan of the Depths",
+    "title": "The Titan of the Depths",
     "initial": "N",
     "adaptive": "AP",
     "base": {
@@ -19452,10 +20242,10 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "maxRank": 5,
         "base": [
           85,
-          130,
-          175,
-          220,
-          265,
+          125,
+          165,
+          205,
+          245,
         ],
         "ratios": {
           "ap": 0.9,
@@ -19653,12 +20443,12 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "type": "magic",
         "maxRank": 3,
         "base": [
-          125,
-          175,
-          225,
+          150,
+          275,
+          400,
         ],
         "ratios": {
-          "ap": 0.4,
+          "ap": 0.8,
         },
         "cooldown": [
           120,
@@ -19671,6 +20461,27 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
             1,
             1.5,
             2,
+          ],
+        },
+        "formula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                150,
+                275,
+                400,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "ap",
+              "f": {
+                "op": "num",
+                "n": 0.8,
+              },
+            },
           ],
         },
       },
@@ -19688,7 +20499,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
   "neeko": {
     "id": "neeko",
     "name": "Neeko",
-    "title": "the Curious Chameleon",
+    "title": "The Curious Chameleon",
     "initial": "N",
     "adaptive": "AP",
     "base": {
@@ -19735,14 +20546,14 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "type": "magic",
         "maxRank": 5,
         "base": [
-          80,
-          125,
-          170,
-          215,
+          60,
+          110,
+          160,
+          210,
           260,
         ],
         "ratios": {
-          "ap": 0.5,
+          "ap": 0.6,
         },
         "cooldown": [
           9,
@@ -19791,11 +20602,11 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "type": "magic",
         "maxRank": 5,
         "base": [
-          40,
-          75,
-          110,
-          145,
-          180,
+          30,
+          65,
+          100,
+          135,
+          170,
         ],
         "ratios": {
           "ap": 0.6,
@@ -19814,11 +20625,11 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "type": "magic",
         "maxRank": 5,
         "base": [
-          70,
-          105,
-          140,
-          175,
-          210,
+          80,
+          115,
+          150,
+          185,
+          220,
         ],
         "ratios": {
           "ap": 0.65,
@@ -19923,7 +20734,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
   "nidalee": {
     "id": "nidalee",
     "name": "Nidalee",
-    "title": "the Bestial Huntress",
+    "title": "The Bestial Huntress",
     "initial": "N",
     "adaptive": "AP",
     "base": {
@@ -20090,7 +20901,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
   "nilah": {
     "id": "nilah",
     "name": "Nilah",
-    "title": "the Joy Unbound",
+    "title": "The Joy Unbound",
     "initial": "N",
     "adaptive": "AD",
     "base": {
@@ -20137,23 +20948,14 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "type": "physical",
         "maxRank": 5,
         "base": [
-          5,
+          0,
           10,
-          15,
           20,
-          25,
+          30,
+          40,
         ],
         "ratios": {
-          "totalAd": 0.9,
-        },
-        "rankRatios": {
-          "totalAd": [
-            0.9,
-            0.95,
-            1,
-            1.05,
-            1.1,
-          ],
+          "totalAd": 1,
         },
         "cooldown": [
           4,
@@ -20298,12 +21100,12 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "type": "physical",
         "maxRank": 3,
         "base": [
-          15,
-          25,
-          35,
+          125,
+          225,
+          325,
         ],
         "ratios": {
-          "bonusAd": 0.1,
+          "bonusAd": 1,
         },
         "cooldown": [
           110,
@@ -20311,6 +21113,27 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           80,
         ],
         "mobility": true,
+        "formula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                125,
+                225,
+                325,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "bonusAd",
+              "f": {
+                "op": "num",
+                "n": 1,
+              },
+            },
+          ],
+        },
       },
     },
     "shelf": [
@@ -20326,7 +21149,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
   "nocturne": {
     "id": "nocturne",
     "name": "Nocturne",
-    "title": "the Eternal Nightmare",
+    "title": "The Eternal Nightmare",
     "initial": "N",
     "adaptive": "AD",
     "base": {
@@ -20374,10 +21197,10 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "maxRank": 5,
         "base": [
           65,
-          110,
-          155,
-          200,
-          245,
+          105,
+          145,
+          185,
+          225,
         ],
         "ratios": {
           "bonusAd": 0.85,
@@ -20435,14 +21258,14 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "type": "magic",
         "maxRank": 5,
         "base": [
-          20,
-          31.25,
-          42.5,
-          53.75,
-          65,
+          80,
+          125,
+          170,
+          215,
+          260,
         ],
         "ratios": {
-          "ap": 0.25,
+          "ap": 1,
         },
         "cooldown": [
           15,
@@ -20459,6 +21282,29 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
             1.75,
             2,
             2.25,
+          ],
+        },
+        "formula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                80,
+                125,
+                170,
+                215,
+                260,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "ap",
+              "f": {
+                "op": "num",
+                "n": 1,
+              },
+            },
           ],
         },
       },
@@ -20515,7 +21361,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
   "nunu": {
     "id": "nunu",
     "name": "Nunu & Willump",
-    "title": "the Boy and His Yeti",
+    "title": "The Boy and His Yeti",
     "initial": "N",
     "adaptive": "AP",
     "base": {
@@ -20632,14 +21478,14 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "type": "magic",
         "maxRank": 5,
         "base": [
-          16,
-          24,
-          32,
-          40,
-          48,
+          15,
+          22.5,
+          30,
+          37.5,
+          45,
         ],
         "ratios": {
-          "ap": 0.15,
+          "ap": 0.12,
         },
         "cooldown": [
           14,
@@ -20772,7 +21618,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
   "olaf": {
     "id": "olaf",
     "name": "Olaf",
-    "title": "the Berserker",
+    "title": "The Berserker",
     "initial": "O",
     "adaptive": "AD",
     "base": {
@@ -20819,11 +21665,11 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "type": "physical",
         "maxRank": 5,
         "base": [
-          60,
-          110,
-          160,
-          210,
-          260,
+          70,
+          120,
+          170,
+          220,
+          270,
         ],
         "ratios": {
           "bonusAd": 1,
@@ -20959,7 +21805,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
   "orianna": {
     "id": "orianna",
     "name": "Orianna",
-    "title": "the Lady of Clockwork",
+    "title": "The Lady of Clockwork",
     "initial": "O",
     "adaptive": "AP",
     "base": {
@@ -21030,13 +21876,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "maxRank": 5,
         "base": [
           70,
-          120,
-          170,
-          220,
-          270,
+          110,
+          150,
+          190,
+          230,
         ],
         "ratios": {
-          "ap": 0.7,
+          "ap": 0.8,
         },
         "cooldown": [
           7,
@@ -21108,12 +21954,12 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "type": "magic",
         "maxRank": 3,
         "base": [
-          250,
-          400,
-          550,
+          225,
+          350,
+          475,
         ],
         "ratios": {
-          "ap": 0.95,
+          "ap": 1.1,
         },
         "cooldown": [
           110,
@@ -21393,7 +22239,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
   "pantheon": {
     "id": "pantheon",
     "name": "Pantheon",
-    "title": "the Unbreakable Spear",
+    "title": "The Unbreakable Spear",
     "initial": "P",
     "adaptive": "AD",
     "base": {
@@ -21676,8 +22522,17 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           130,
         ],
         "ratios": {
-          "bonusAd": 1,
-          "targetMaxHp": 0.09,
+          "bonusAd": 0.75,
+          "targetMaxHp": 0.07,
+        },
+        "rankRatios": {
+          "targetMaxHp": [
+            0.07,
+            0.075,
+            0.08,
+            0.085,
+            0.09,
+          ],
         },
         "cooldown": [
           8,
@@ -21688,11 +22543,11 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         ],
         "heal": {
           "base": [
-            75,
+            70,
             105,
-            135,
-            165,
-            195,
+            140,
+            175,
+            210,
           ],
           "ratios": {},
         },
@@ -21862,7 +22717,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
   "pyke": {
     "id": "pyke",
     "name": "Pyke",
-    "title": "the Bloodharbor Ripper",
+    "title": "The Bloodharbor Ripper",
     "initial": "P",
     "adaptive": "AD",
     "base": {
@@ -22030,7 +22885,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       },
       "R": {
         "name": "Death from Below",
-        "type": "util",
+        "type": "physical",
         "maxRank": 3,
         "base": [
           0,
@@ -22042,6 +22897,63 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           70,
         ],
         "aimed": true,
+        "formula": {
+          "op": "mul",
+          "of": [
+            {
+              "op": "sum",
+              "of": [
+                {
+                  "op": "steps",
+                  "l1": 250,
+                  "perLevel": 0,
+                  "bp": [
+                    {
+                      "level": 7,
+                      "add": 0,
+                      "perLevel": 40,
+                    },
+                    {
+                      "level": 10,
+                      "add": 0,
+                      "perLevel": 30,
+                    },
+                    {
+                      "level": 12,
+                      "add": 0,
+                      "perLevel": 20,
+                    },
+                    {
+                      "level": 17,
+                      "add": 0,
+                      "perLevel": 10,
+                    },
+                  ],
+                },
+                {
+                  "op": "stat",
+                  "stat": "bonusAd",
+                  "f": {
+                    "op": "num",
+                    "n": 0.8,
+                  },
+                },
+                {
+                  "op": "stat",
+                  "stat": "lethality",
+                  "f": {
+                    "op": "num",
+                    "n": 1.5,
+                  },
+                },
+              ],
+            },
+            {
+              "op": "num",
+              "n": 0.5,
+            },
+          ],
+        },
       },
     },
     "shelf": [
@@ -22104,11 +23016,11 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "type": "physical",
         "maxRank": 5,
         "base": [
-          60,
-          90,
-          120,
-          150,
-          180,
+          80,
+          110,
+          140,
+          170,
+          200,
         ],
         "ratios": {
           "bonusAd": 0.9,
@@ -22321,7 +23233,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
     "adaptive": "AD",
     "base": {
       "ad": 59,
-      "adPerLevel": 2.7,
+      "adPerLevel": 3.2,
       "hp": 565,
       "hpPerLevel": 107,
       "armor": 28,
@@ -22363,23 +23275,23 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "type": "physical",
         "maxRank": 5,
         "base": [
-          20,
-          40,
-          60,
-          80,
+          65,
           100,
+          135,
+          170,
+          205,
         ],
         "ratios": {
-          "totalAd": 0.8,
+          "bonusAd": 0.8,
           "ap": 0.5,
         },
         "rankRatios": {
-          "totalAd": [
+          "bonusAd": [
             0.8,
+            0.85,
             0.9,
+            0.95,
             1,
-            1.1,
-            1.2,
           ],
         },
         "cooldown": [
@@ -22492,7 +23404,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       },
       "R": {
         "name": "Behind Enemy Lines",
-        "type": "util",
+        "type": "physical",
         "maxRank": 3,
         "base": [
           0,
@@ -22503,17 +23415,38 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           3,
           3,
         ],
+        "formula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                60,
+                90,
+                120,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "bonusAd",
+              "f": {
+                "op": "num",
+                "n": 0.35,
+              },
+            },
+          ],
+        },
       },
     },
     "shelf": [
-      "ionianbootsoflucidity",
-      "stridebreaker",
-      "blackcleaver",
-      "trinityforce",
-      "deathsdance",
-      "steraksgage",
+      "berserkersgreaves",
+      "krakenslayer",
+      "infinityedge",
+      "phantomdancer",
+      "lorddominiksregards",
+      "bloodthirster",
     ],
-    "keystone": "conqueror",
+    "keystone": "lethaltempo",
   },
   "rakan": {
     "id": "rakan",
@@ -22750,7 +23683,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
   "rammus": {
     "id": "rammus",
     "name": "Rammus",
-    "title": "the Armordillo",
+    "title": "The Armordillo",
     "initial": "R",
     "adaptive": "AD",
     "base": {
@@ -22798,10 +23731,10 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "maxRank": 5,
         "base": [
           80,
-          110,
-          140,
-          170,
+          120,
+          160,
           200,
+          240,
         ],
         "ratios": {
           "ap": 1,
@@ -22859,7 +23792,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       },
       "W": {
         "name": "Defensive Ball Curl",
-        "type": "util",
+        "type": "magic",
         "maxRank": 5,
         "base": [
           0,
@@ -22872,15 +23805,46 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           7,
           7,
         ],
+        "formula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "num",
+              "n": 15,
+            },
+            {
+              "op": "stat",
+              "stat": "armor",
+              "f": {
+                "op": "num",
+                "n": 0.1,
+              },
+            },
+            {
+              "op": "stat",
+              "stat": "mr",
+              "f": {
+                "op": "num",
+                "n": 0.1,
+              },
+            },
+          ],
+        },
       },
       "E": {
         "name": "Frenzying Taunt",
-        "type": "util",
+        "type": "magic",
         "maxRank": 5,
         "base": [
-          0,
+          80,
+          100,
+          120,
+          140,
+          160,
         ],
-        "ratios": {},
+        "ratios": {
+          "ap": 0.7,
+        },
         "cooldown": [
           12,
           12,
@@ -22894,9 +23858,9 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "type": "magic",
         "maxRank": 3,
         "base": [
-          100,
-          175,
+          150,
           250,
+          350,
         ],
         "ratios": {
           "ap": 0.6,
@@ -22962,7 +23926,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
   "reksai": {
     "id": "reksai",
     "name": "Rek'Sai",
-    "title": "the Void Burrower",
+    "title": "The Void Burrower",
     "initial": "R",
     "adaptive": "AD",
     "base": {
@@ -23073,19 +24037,14 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "type": "physical",
         "maxRank": 5,
         "base": [
-          0,
+          70,
+          95,
+          120,
+          145,
+          170,
         ],
         "ratios": {
-          "targetMaxHp": 0.08,
-        },
-        "rankRatios": {
-          "targetMaxHp": [
-            0.08,
-            0.095,
-            0.11,
-            0.125,
-            0.14,
-          ],
+          "bonusAd": 0.6,
         },
         "cooldown": [
           6,
@@ -23094,6 +24053,29 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           6,
           6,
         ],
+        "formula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                70,
+                95,
+                120,
+                145,
+                170,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "bonusAd",
+              "f": {
+                "op": "num",
+                "n": 0.6,
+              },
+            },
+          ],
+        },
       },
       "R": {
         "name": "Void Rush",
@@ -23101,18 +24083,18 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "maxRank": 3,
         "base": [
           150,
-          300,
-          450,
+          250,
+          350,
         ],
         "ratios": {
           "bonusAd": 1,
-          "targetMissingHp": 0.25,
+          "targetMaxHp": 0.15,
         },
         "rankRatios": {
-          "targetMissingHp": [
+          "targetMaxHp": [
+            0.15,
+            0.2,
             0.25,
-            0.3,
-            0.35,
           ],
         },
         "cooldown": [
@@ -23136,7 +24118,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
   "rell": {
     "id": "rell",
     "name": "Rell",
-    "title": "the Iron Maiden",
+    "title": "The Iron Maiden",
     "initial": "R",
     "adaptive": "AP",
     "base": {
@@ -23244,20 +24226,18 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         },
         "cooldown": [
           10,
-          10,
-          10,
-          10,
-          10,
         ],
         "shield": {
           "base": [
-            25,
-            50,
-            75,
+            20,
+            40,
+            60,
+            80,
             100,
-            125,
           ],
-          "ratios": {},
+          "ratios": {
+            "maxHp": 0.11,
+          },
         },
         "mobility": true,
         "cc": {
@@ -23283,6 +24263,29 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
               "f": {
                 "op": "num",
                 "n": 0.6,
+              },
+            },
+          ],
+        },
+        "shieldFormula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                20,
+                40,
+                60,
+                80,
+                100,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "maxHp",
+              "f": {
+                "op": "num",
+                "n": 0.11,
               },
             },
           ],
@@ -23320,12 +24323,12 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "type": "magic",
         "maxRank": 3,
         "base": [
-          15,
-          25,
-          35,
+          150,
+          250,
+          350,
         ],
         "ratios": {
-          "ap": 0.1375,
+          "ap": 1.1,
         },
         "cooldown": [
           120,
@@ -23333,6 +24336,36 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           80,
         ],
         "mobility": true,
+        "formula": {
+          "op": "mul",
+          "of": [
+            {
+              "op": "sum",
+              "of": [
+                {
+                  "op": "rank",
+                  "v": [
+                    75,
+                    125,
+                    175,
+                  ],
+                },
+                {
+                  "op": "stat",
+                  "stat": "ap",
+                  "f": {
+                    "op": "num",
+                    "n": 0.55,
+                  },
+                },
+              ],
+            },
+            {
+              "op": "num",
+              "n": 2,
+            },
+          ],
+        },
       },
     },
     "shelf": [
@@ -23348,7 +24381,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
   "renata": {
     "id": "renata",
     "name": "Renata Glasc",
-    "title": "the Chem-Baroness",
+    "title": "The Chem-Baroness",
     "initial": "R",
     "adaptive": "AP",
     "base": {
@@ -23577,7 +24610,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
   "renekton": {
     "id": "renekton",
     "name": "Renekton",
-    "title": "the Butcher of the Sands",
+    "title": "The Butcher of the Sands",
     "initial": "R",
     "adaptive": "AD",
     "base": {
@@ -23724,7 +24757,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         },
       },
       "E": {
-        "name": "Slice",
+        "name": "Slice and Dice",
         "type": "physical",
         "maxRank": 5,
         "base": [
@@ -23811,7 +24844,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
   "rengar": {
     "id": "rengar",
     "name": "Rengar",
-    "title": "the Pridestalker",
+    "title": "The Pridestalker",
     "initial": "R",
     "adaptive": "AD",
     "base": {
@@ -23858,23 +24891,14 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "type": "physical",
         "maxRank": 5,
         "base": [
-          30,
-          60,
+          20,
+          55,
           90,
-          120,
-          150,
+          125,
+          160,
         ],
         "ratios": {
-          "totalAd": 0,
-        },
-        "rankRatios": {
-          "totalAd": [
-            0,
-            0.0375,
-            0.075,
-            0.1125,
-            0.15,
-          ],
+          "totalAd": 0.05,
         },
         "cooldown": [
           0.25,
@@ -23985,7 +25009,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       },
       "R": {
         "name": "Thrill of the Hunt",
-        "type": "util",
+        "type": "physical",
         "maxRank": 3,
         "base": [
           0,
@@ -23997,6 +25021,14 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           80,
         ],
         "mobility": true,
+        "formula": {
+          "op": "stat",
+          "stat": "ad",
+          "f": {
+            "op": "num",
+            "n": 1,
+          },
+        },
       },
     },
     "shelf": [
@@ -24012,7 +25044,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
   "riven": {
     "id": "riven",
     "name": "Riven",
-    "title": "the Exile",
+    "title": "The Exile",
     "initial": "R",
     "adaptive": "AD",
     "base": {
@@ -24066,15 +25098,15 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           165,
         ],
         "ratios": {
-          "bonusAd": 0.65,
+          "bonusAd": 0.6,
         },
         "rankRatios": {
           "bonusAd": [
+            0.6,
             0.65,
             0.7,
             0.75,
             0.8,
-            0.85,
           ],
         },
         "cooldown": [
@@ -24218,7 +25250,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       },
       "R": {
         "name": "Blade of the Exile",
-        "type": "util",
+        "type": "physical",
         "maxRank": 3,
         "base": [
           0,
@@ -24229,6 +25261,14 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           90,
           60,
         ],
+        "formula": {
+          "op": "stat",
+          "stat": "ad",
+          "f": {
+            "op": "num",
+            "n": 0.2,
+          },
+        },
       },
     },
     "shelf": [
@@ -24244,7 +25284,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
   "rumble": {
     "id": "rumble",
     "name": "Rumble",
-    "title": "the Mechanized Menace",
+    "title": "The Mechanized Menace",
     "initial": "R",
     "adaptive": "AP",
     "base": {
@@ -24291,23 +25331,23 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "type": "magic",
         "maxRank": 5,
         "base": [
-          5,
-          7.5,
-          10,
+          4.17,
+          6.25,
+          8.33,
+          10.42,
           12.5,
-          15,
         ],
         "ratios": {
-          "ap": 0.0917,
+          "ap": 0.0875,
           "targetMaxHp": 0.005,
         },
         "rankRatios": {
           "targetMaxHp": [
             0.005,
+            0.0054,
             0.0058,
+            0.0063,
             0.0067,
-            0.0075,
-            0.0083,
           ],
         },
         "cooldown": [
@@ -24398,18 +25438,48 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "type": "magic",
         "maxRank": 3,
         "base": [
-          70,
-          105,
-          140,
+          600,
+          1000,
+          1400,
         ],
         "ratios": {
-          "ap": 0.175,
+          "ap": 1.75,
         },
         "cooldown": [
           130,
           105,
           80,
         ],
+        "formula": {
+          "op": "mul",
+          "of": [
+            {
+              "op": "sum",
+              "of": [
+                {
+                  "op": "rank",
+                  "v": [
+                    120,
+                    200,
+                    280,
+                  ],
+                },
+                {
+                  "op": "stat",
+                  "stat": "ap",
+                  "f": {
+                    "op": "num",
+                    "n": 0.35,
+                  },
+                },
+              ],
+            },
+            {
+              "op": "num",
+              "n": 4.5,
+            },
+          ],
+        },
       },
     },
     "shelf": [
@@ -24425,7 +25495,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
   "ryze": {
     "id": "ryze",
     "name": "Ryze",
-    "title": "the Rune Mage",
+    "title": "The Rune Mage",
     "initial": "R",
     "adaptive": "AP",
     "base": {
@@ -24526,14 +25596,14 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "type": "magic",
         "maxRank": 5,
         "base": [
-          80,
-          110,
-          140,
-          170,
-          200,
+          60,
+          90,
+          120,
+          150,
+          180,
         ],
         "ratios": {
-          "ap": 0.7,
+          "ap": 0.6,
         },
         "cooldown": [
           11,
@@ -24660,7 +25730,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
   "samira": {
     "id": "samira",
     "name": "Samira",
-    "title": "the Desert Rose",
+    "title": "The Desert Rose",
     "initial": "S",
     "adaptive": "AD",
     "base": {
@@ -24714,16 +25784,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           20,
         ],
         "ratios": {
-          "totalAd": 0.95,
-        },
-        "rankRatios": {
-          "totalAd": [
-            0.95,
-            1.025,
-            1.1,
-            1.175,
-            1.25,
-          ],
+          "totalAd": 1.1,
         },
         "cooldown": [
           6,
@@ -24769,7 +25830,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           80,
         ],
         "ratios": {
-          "bonusAd": 0.6,
+          "bonusAd": 0.5,
         },
         "cooldown": [
           30,
@@ -24853,12 +25914,12 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "type": "physical",
         "maxRank": 3,
         "base": [
-          5,
-          15,
-          25,
+          20,
+          40,
+          60,
         ],
         "ratios": {
-          "totalAd": 0.45,
+          "totalAd": 0.3,
         },
         "cooldown": [
           5,
@@ -24889,14 +25950,14 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       },
     },
     "shelf": [
-      "ionianbootsoflucidity",
-      "stridebreaker",
-      "blackcleaver",
-      "trinityforce",
-      "deathsdance",
-      "steraksgage",
+      "berserkersgreaves",
+      "krakenslayer",
+      "infinityedge",
+      "phantomdancer",
+      "lorddominiksregards",
+      "bloodthirster",
     ],
-    "keystone": "conqueror",
+    "keystone": "lethaltempo",
   },
   "sejuani": {
     "id": "sejuani",
@@ -24955,7 +26016,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           290,
         ],
         "ratios": {
-          "ap": 0.6,
+          "ap": 0.75,
         },
         "cooldown": [
           18,
@@ -24983,7 +26044,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           45,
         ],
         "ratios": {
-          "ap": 0.2,
+          "ap": 0.3,
           "maxHp": 0.04,
         },
         "cooldown": [
@@ -25017,7 +26078,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           255,
         ],
         "ratios": {
-          "ap": 0.6,
+          "ap": 0.7,
         },
         "cooldown": [
           1.5,
@@ -25091,7 +26152,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
   "senna": {
     "id": "senna",
     "name": "Senna",
-    "title": "the Redeemer",
+    "title": "The Redeemer",
     "initial": "S",
     "adaptive": "AD",
     "base": {
@@ -25139,13 +26200,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "maxRank": 5,
         "base": [
           30,
-          60,
-          90,
-          120,
-          150,
+          55,
+          80,
+          105,
+          130,
         ],
         "ratios": {
-          "bonusAd": 0.4,
+          "bonusAd": 0.6,
         },
         "cooldown": [
           15,
@@ -25157,14 +26218,14 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "heal": {
           "base": [
             40,
-            55,
-            70,
-            85,
+            60,
+            80,
             100,
+            120,
           ],
           "ratios": {
             "bonusAd": 0.4,
-            "ap": 0.6,
+            "ap": 0.35,
           },
         },
         "formula": {
@@ -25190,6 +26251,37 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
             },
           ],
         },
+        "healFormula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                40,
+                60,
+                80,
+                100,
+                120,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "ap",
+              "f": {
+                "op": "num",
+                "n": 0.35,
+              },
+            },
+            {
+              "op": "stat",
+              "stat": "bonusAd",
+              "f": {
+                "op": "num",
+                "n": 0.4,
+              },
+            },
+          ],
+        },
       },
       "W": {
         "name": "Last Embrace",
@@ -25197,13 +26289,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "maxRank": 5,
         "base": [
           70,
-          115,
-          160,
-          205,
-          250,
+          110,
+          150,
+          190,
+          230,
         ],
         "ratios": {
-          "bonusAd": 0.7,
+          "bonusAd": 0.9,
         },
         "cooldown": [
           11,
@@ -25324,19 +26416,19 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       },
     },
     "shelf": [
-      "ionianbootsoflucidity",
-      "stridebreaker",
-      "blackcleaver",
-      "trinityforce",
-      "deathsdance",
-      "steraksgage",
+      "berserkersgreaves",
+      "krakenslayer",
+      "infinityedge",
+      "phantomdancer",
+      "lorddominiksregards",
+      "bloodthirster",
     ],
-    "keystone": "conqueror",
+    "keystone": "lethaltempo",
   },
   "seraphine": {
     "id": "seraphine",
     "name": "Seraphine",
-    "title": "the Starry-Eyed Songstress",
+    "title": "The Starry-Eyed Songstress",
     "initial": "S",
     "adaptive": "AP",
     "base": {
@@ -25390,7 +26482,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           160,
         ],
         "ratios": {
-          "ap": 0.5,
+          "ap": 0.4,
         },
         "cooldown": [
           8,
@@ -25456,15 +26548,15 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
             0,
           ],
           "ratios": {
-            "targetMissingHp": 0.03,
+            "targetMissingHp": 0.08,
           },
           "rankRatios": {
             "targetMissingHp": [
-              0.03,
-              0.035,
-              0.04,
-              0.045,
-              0.05,
+              0.08,
+              0.1,
+              0.12,
+              0.14,
+              0.16,
             ],
           },
         },
@@ -25592,7 +26684,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
   "sett": {
     "id": "sett",
     "name": "Sett",
-    "title": "the Boss",
+    "title": "The Boss",
     "initial": "S",
     "adaptive": "AD",
     "base": {
@@ -25806,7 +26898,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
   "shaco": {
     "id": "shaco",
     "name": "Shaco",
-    "title": "the Demon Jester",
+    "title": "The Demon Jester",
     "initial": "S",
     "adaptive": "AD",
     "base": {
@@ -25860,7 +26952,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           65,
         ],
         "ratios": {
-          "bonusAd": 0.65,
+          "bonusAd": 0.6,
         },
         "cooldown": [
           13,
@@ -26059,7 +27151,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
   "shen": {
     "id": "shen",
     "name": "Shen",
-    "title": "the Eye of Twilight",
+    "title": "The Eye of Twilight",
     "initial": "S",
     "adaptive": "AD",
     "base": {
@@ -26106,24 +27198,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "type": "magic",
         "maxRank": 5,
         "base": [
-          10,
-          11.76,
-          13.53,
-          15.29,
-          17.06,
-          18.82,
-          20.59,
-          22.35,
-          24.12,
-          25.88,
-          27.65,
-          29.41,
-          31.18,
-          32.94,
-          34.71,
-          36.47,
-          38.24,
-          40,
+          0,
         ],
         "ratios": {
           "targetMaxHp": 0.02,
@@ -26137,6 +27212,26 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
             0.04,
           ],
         },
+        "levelBase": [
+          10,
+          10,
+          10,
+          16,
+          16,
+          16,
+          22,
+          22,
+          22,
+          28,
+          28,
+          28,
+          34,
+          34,
+          34,
+          40,
+          40,
+          40,
+        ],
         "cooldown": [
           8,
           7.25,
@@ -26189,7 +27284,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           160,
         ],
         "ratios": {
-          "bonusHp": 0.15,
+          "bonusHp": 0.11,
         },
         "cooldown": [
           18,
@@ -26297,12 +27392,12 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
   "shyvana": {
     "id": "shyvana",
     "name": "Shyvana",
-    "title": "the Half-Dragon",
+    "title": "The Half-Dragon",
     "initial": "S",
     "adaptive": "AD",
     "base": {
       "ad": 62,
-      "adPerLevel": 3,
+      "adPerLevel": 4,
       "hp": 625,
       "hpPerLevel": 95,
       "armor": 35,
@@ -26310,7 +27405,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "mr": 32,
       "mrPerLevel": 2.05,
       "attackSpeed": 0.638,
-      "attackSpeedRatio": 0.658,
+      "attackSpeedRatio": 0.638,
       "attackSpeedPerLevel": 0.02,
       "attackRange": 150,
       "moveSpeed": 350,
@@ -26340,36 +27435,8 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
     ],
     "abilities": {
       "Q": {
-        "name": "Twin Bite",
+        "name": "Emberstrike",
         "type": "physical",
-        "maxRank": 5,
-        "base": [
-          0,
-        ],
-        "ratios": {
-          "totalAd": 0.2,
-          "ap": 0.25,
-        },
-        "rankRatios": {
-          "totalAd": [
-            0.2,
-            0.4,
-            0.6,
-            0.8,
-            1,
-          ],
-        },
-        "cooldown": [
-          10,
-          9,
-          8,
-          7,
-          6,
-        ],
-      },
-      "W": {
-        "name": "Burnout",
-        "type": "magic",
         "maxRank": 5,
         "base": [
           10,
@@ -26379,7 +27446,51 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           30,
         ],
         "ratios": {
-          "bonusAd": 0.1,
+          "totalAd": 1.1,
+          "ap": 0.3,
+        },
+        "cooldown": [
+          10,
+          9,
+          8,
+          7,
+          6,
+        ],
+        "formula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "stat",
+              "stat": "ad",
+              "f": {
+                "op": "num",
+                "n": 1.1,
+              },
+            },
+            {
+              "op": "stat",
+              "stat": "ap",
+              "f": {
+                "op": "num",
+                "n": 0.3,
+              },
+            },
+          ],
+        },
+      },
+      "W": {
+        "name": "Inferno Aegis",
+        "type": "magic",
+        "maxRank": 5,
+        "base": [
+          80,
+          100,
+          120,
+          140,
+          160,
+        ],
+        "ratios": {
+          "ap": 0.65,
         },
         "cooldown": [
           13,
@@ -26388,21 +27499,88 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           10.75,
           10,
         ],
+        "shield": {
+          "base": [
+            60,
+            80,
+            100,
+            120,
+            140,
+          ],
+          "ratios": {
+            "bonusHp": 0.12,
+          },
+        },
+        "formula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                80,
+                100,
+                120,
+                140,
+                160,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "ap",
+              "f": {
+                "op": "num",
+                "n": 0.65,
+              },
+            },
+          ],
+        },
+        "shieldFormula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                60,
+                80,
+                100,
+                120,
+                140,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "bonusHp",
+              "f": {
+                "op": "num",
+                "n": 0.12,
+              },
+            },
+          ],
+        },
       },
       "E": {
-        "name": "Flame Breath",
+        "name": "Molten Burst",
         "type": "magic",
         "maxRank": 5,
         "base": [
-          85,
-          125,
-          165,
-          205,
-          245,
+          50,
+          65,
+          80,
+          95,
+          110,
         ],
         "ratios": {
-          "bonusAd": 0.5,
-          "ap": 0.7,
+          "ap": 0.6,
+          "targetMaxHp": 0.05,
+        },
+        "rankRatios": {
+          "ap": [
+            0.6,
+            0.65,
+            0.7,
+            0.75,
+            0.8,
+          ],
         },
         "cooldown": [
           12,
@@ -26484,7 +27662,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
   "singed": {
     "id": "singed",
     "name": "Singed",
-    "title": "the Mad Chemist",
+    "title": "The Mad Chemist",
     "initial": "S",
     "adaptive": "AP",
     "base": {
@@ -26497,7 +27675,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "mr": 32,
       "mrPerLevel": 2.05,
       "attackSpeed": 0.7,
-      "attackSpeedRatio": 0.625,
+      "attackSpeedRatio": 0.69,
       "attackSpeedPerLevel": 0.019,
       "attackRange": 125,
       "moveSpeed": 345,
@@ -26540,13 +27718,6 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {
           "ap": 0.1063,
         },
-        "cooldown": [
-          1,
-          1,
-          1,
-          1,
-          1,
-        ],
       },
       "W": {
         "name": "Mega Adhesive",
@@ -26679,7 +27850,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
     "abilities": {
       "Q": {
         "name": "Decimating Smash",
-        "type": "util",
+        "type": "physical",
         "maxRank": 5,
         "base": [
           0,
@@ -26693,6 +27864,35 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           6,
         ],
         "aimed": true,
+        "formula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                30,
+                45,
+                60,
+                75,
+                90,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "ad",
+              "f": {
+                "op": "rank",
+                "v": [
+                  0.4,
+                  0.5,
+                  0.6,
+                  0.7,
+                  0.8,
+                ],
+              },
+            },
+          ],
+        },
       },
       "W": {
         "name": "Soul Furnace",
@@ -26848,7 +28048,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           450,
         ],
         "ratios": {
-          "bonusAd": 0.4,
+          "bonusAd": 0.6,
         },
         "cooldown": [
           140,
@@ -26875,7 +28075,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
   "sivir": {
     "id": "sivir",
     "name": "Sivir",
-    "title": "the Battle Mistress",
+    "title": "The Battle Mistress",
     "initial": "S",
     "adaptive": "AD",
     "base": {
@@ -26929,7 +28129,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           160,
         ],
         "ratios": {
-          "bonusAd": 1,
+          "bonusAd": 0.7,
           "ap": 0.6,
         },
         "cooldown": [
@@ -27024,14 +28224,14 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           0,
         ],
         "ratios": {
-          "totalAd": 0.3,
+          "totalAd": 0.4,
         },
         "rankRatios": {
           "totalAd": [
-            0.3,
-            0.35,
             0.4,
+            0.425,
             0.45,
+            0.475,
             0.5,
           ],
         },
@@ -27042,6 +28242,20 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           12,
           12,
         ],
+        "formula": {
+          "op": "stat",
+          "stat": "ad",
+          "f": {
+            "op": "rank",
+            "v": [
+              0.4,
+              0.425,
+              0.45,
+              0.475,
+              0.5,
+            ],
+          },
+        },
       },
       "E": {
         "name": "Spell Shield",
@@ -27120,24 +28334,24 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       },
     },
     "shelf": [
-      "ionianbootsoflucidity",
-      "stridebreaker",
-      "blackcleaver",
-      "trinityforce",
-      "deathsdance",
-      "steraksgage",
+      "berserkersgreaves",
+      "krakenslayer",
+      "infinityedge",
+      "phantomdancer",
+      "lorddominiksregards",
+      "bloodthirster",
     ],
-    "keystone": "conqueror",
+    "keystone": "lethaltempo",
   },
   "skarner": {
     "id": "skarner",
     "name": "Skarner",
-    "title": "the Primordial Sovereign",
+    "title": "The Primordial Sovereign",
     "initial": "S",
     "adaptive": "AD",
     "base": {
       "ad": 63,
-      "adPerLevel": 3,
+      "adPerLevel": 5,
       "hp": 630,
       "hpPerLevel": 110,
       "armor": 33,
@@ -27186,7 +28400,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           50,
         ],
         "ratios": {
-          "bonusAd": 0.8,
+          "bonusAd": 0.9,
           "bonusHp": 0.03,
         },
         "cooldown": [
@@ -27306,6 +28520,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           150,
         ],
         "ratios": {
+          "bonusAd": 1.2,
           "maxHp": 0.06,
         },
         "cooldown": [
@@ -27320,6 +28535,37 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "cc": {
           "op": "num",
           "n": 1.1,
+        },
+        "formula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                30,
+                60,
+                90,
+                120,
+                150,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "bonusAd",
+              "f": {
+                "op": "num",
+                "n": 1.2,
+              },
+            },
+            {
+              "op": "stat",
+              "stat": "maxHp",
+              "f": {
+                "op": "num",
+                "n": 0.06,
+              },
+            },
+          ],
         },
       },
       "R": {
@@ -27376,7 +28622,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
   "smolder": {
     "id": "smolder",
     "name": "Smolder",
-    "title": "the Fiery Fledgling",
+    "title": "The Fiery Fledgling",
     "initial": "S",
     "adaptive": "AD",
     "base": {
@@ -27423,11 +28669,11 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "type": "physical",
         "maxRank": 5,
         "base": [
-          65,
+          60,
+          70,
           80,
-          95,
-          110,
-          125,
+          90,
+          100,
         ],
         "ratios": {
           "bonusAd": 1.3,
@@ -27613,12 +28859,12 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "type": "physical",
         "maxRank": 3,
         "base": [
-          200,
-          300,
-          400,
+          150,
+          250,
+          350,
         ],
         "ratios": {
-          "bonusAd": 1.1,
+          "bonusAd": 1,
           "ap": 1,
         },
         "cooldown": [
@@ -27629,11 +28875,11 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "heal": {
           "base": [
             100,
-            135,
-            170,
+            175,
+            250,
           ],
           "ratios": {
-            "bonusAd": 0.5,
+            "bonusAd": 0.75,
             "ap": 0.75,
           },
         },
@@ -27677,17 +28923,46 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
             },
           ],
         },
+        "healFormula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                100,
+                175,
+                250,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "bonusAd",
+              "f": {
+                "op": "num",
+                "n": 0.75,
+              },
+            },
+            {
+              "op": "stat",
+              "stat": "ap",
+              "f": {
+                "op": "num",
+                "n": 0.75,
+              },
+            },
+          ],
+        },
       },
     },
     "shelf": [
-      "ionianbootsoflucidity",
-      "stridebreaker",
-      "blackcleaver",
-      "trinityforce",
-      "deathsdance",
-      "steraksgage",
+      "berserkersgreaves",
+      "krakenslayer",
+      "infinityedge",
+      "phantomdancer",
+      "lorddominiksregards",
+      "bloodthirster",
     ],
-    "keystone": "conqueror",
+    "keystone": "lethaltempo",
   },
   "sona": {
     "id": "sona",
@@ -27914,7 +29189,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
   "soraka": {
     "id": "soraka",
     "name": "Soraka",
-    "title": "the Starchild",
+    "title": "The Starchild",
     "initial": "S",
     "adaptive": "AP",
     "base": {
@@ -27979,14 +29254,14 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         ],
         "heal": {
           "base": [
-            12,
-            15,
-            18,
-            21,
-            24,
+            5,
+            6.25,
+            7.5,
+            8.75,
+            10,
           ],
           "ratios": {
-            "ap": 0.06,
+            "ap": 0.025,
           },
         },
         "aimed": true,
@@ -28180,7 +29455,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
   "swain": {
     "id": "swain",
     "name": "Swain",
-    "title": "the Noxian Grand General",
+    "title": "The Noxian Grand General",
     "initial": "S",
     "adaptive": "AP",
     "base": {
@@ -28274,10 +29549,10 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "maxRank": 5,
         "base": [
           70,
-          105,
-          140,
-          175,
-          210,
+          115,
+          160,
+          205,
+          250,
         ],
         "ratios": {
           "ap": 0.6,
@@ -28329,11 +29604,11 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "type": "magic",
         "maxRank": 5,
         "base": [
-          80,
-          120,
-          160,
-          200,
-          240,
+          90,
+          130,
+          170,
+          210,
+          250,
         ],
         "ratios": {
           "ap": 0.7,
@@ -28361,7 +29636,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           17.5,
         ],
         "ratios": {
-          "ap": 0.025,
+          "ap": 0.02,
         },
         "cooldown": [
           120,
@@ -28394,7 +29669,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
   "sylas": {
     "id": "sylas",
     "name": "Sylas",
-    "title": "the Unshackled",
+    "title": "The Unshackled",
     "initial": "S",
     "adaptive": "AP",
     "base": {
@@ -28528,7 +29803,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
             100,
           ],
           "ratios": {
-            "ap": 0.2,
+            "ap": 0.3,
             "bonusHp": 0.05,
           },
         },
@@ -28536,7 +29811,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       },
       "E": {
         "name": "Abscond",
-        "type": "util",
+        "type": "magic",
         "maxRank": 5,
         "base": [
           0,
@@ -28556,6 +29831,29 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           "n": 0.5,
         },
         "ccIgnoresTenacity": true,
+        "formula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                80,
+                130,
+                180,
+                230,
+                280,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "ap",
+              "f": {
+                "op": "num",
+                "n": 0.8,
+              },
+            },
+          ],
+        },
       },
       "R": {
         "name": "Hijack",
@@ -28585,7 +29883,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
   "syndra": {
     "id": "syndra",
     "name": "Syndra",
-    "title": "the Dark Sovereign",
+    "title": "The Dark Sovereign",
     "initial": "S",
     "adaptive": "AP",
     "base": {
@@ -28632,14 +29930,14 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "type": "magic",
         "maxRank": 5,
         "base": [
-          75,
-          110,
-          145,
-          180,
-          215,
+          90,
+          125,
+          160,
+          195,
+          230,
         ],
         "ratios": {
-          "ap": 0.6,
+          "ap": 0.7,
         },
         "cooldown": [
           7,
@@ -28678,10 +29976,10 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "maxRank": 5,
         "base": [
           70,
-          105,
-          140,
-          175,
-          210,
+          100,
+          130,
+          160,
+          190,
         ],
         "ratios": {
           "ap": 0.65,
@@ -28773,9 +30071,9 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "type": "magic",
         "maxRank": 3,
         "base": [
-          90,
-          130,
-          170,
+          80,
+          120,
+          160,
         ],
         "ratios": {
           "ap": 0.2,
@@ -28888,10 +30186,10 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "heal": {
           "base": [
             10,
-            15,
             20,
-            25,
             30,
+            40,
+            50,
           ],
           "ratios": {},
         },
@@ -29056,7 +30354,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
   "taliyah": {
     "id": "taliyah",
     "name": "Taliyah",
-    "title": "the Stoneweaver",
+    "title": "The Stoneweaver",
     "initial": "T",
     "adaptive": "AP",
     "base": {
@@ -29103,11 +30401,11 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "type": "magic",
         "maxRank": 5,
         "base": [
-          56,
-          74.5,
-          93,
-          111.5,
-          130,
+          55,
+          72.5,
+          90,
+          107.5,
+          125,
         ],
         "ratios": {
           "ap": 0.5,
@@ -29255,7 +30553,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
   "talon": {
     "id": "talon",
     "name": "Talon",
-    "title": "the Blade's Shadow",
+    "title": "The Blade's Shadow",
     "initial": "T",
     "adaptive": "AD",
     "base": {
@@ -29399,10 +30697,6 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {},
         "cooldown": [
           2,
-          2,
-          2,
-          2,
-          2,
         ],
         "aimed": true,
         "mobility": true,
@@ -29460,7 +30754,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
   "taric": {
     "id": "taric",
     "name": "Taric",
-    "title": "the Shield of Valoran",
+    "title": "The Shield of Valoran",
     "initial": "T",
     "adaptive": "AD",
     "base": {
@@ -29637,7 +30931,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
   "teemo": {
     "id": "teemo",
     "name": "Teemo",
-    "title": "the Swift Scout",
+    "title": "The Swift Scout",
     "initial": "T",
     "adaptive": "AP",
     "base": {
@@ -29752,6 +31046,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           65,
         ],
         "ratios": {
+          "bonusAd": 0.05,
           "ap": 0.3,
         },
         "formula": {
@@ -29791,12 +31086,12 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "type": "magic",
         "maxRank": 3,
         "base": [
-          50,
-          81.25,
-          112.5,
+          200,
+          325,
+          450,
         ],
         "ratios": {
-          "ap": 0.125,
+          "ap": 0.5,
         },
         "cooldown": [
           0.25,
@@ -29804,6 +31099,27 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           0.25,
         ],
         "aimed": true,
+        "formula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                200,
+                325,
+                450,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "ap",
+              "f": {
+                "op": "num",
+                "n": 0.5,
+              },
+            },
+          ],
+        },
       },
     },
     "shelf": [
@@ -29819,7 +31135,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
   "thresh": {
     "id": "thresh",
     "name": "Thresh",
-    "title": "the Chain Warden",
+    "title": "The Chain Warden",
     "initial": "T",
     "adaptive": "AD",
     "base": {
@@ -29940,14 +31256,14 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "type": "magic",
         "maxRank": 5,
         "base": [
-          75,
-          120,
-          165,
-          210,
-          255,
+          65,
+          110,
+          155,
+          200,
+          245,
         ],
         "ratios": {
-          "ap": 0.7,
+          "ap": 0.6,
         },
         "cooldown": [
           13,
@@ -30033,24 +31349,24 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       },
     },
     "shelf": [
-      "ionianbootsoflucidity",
-      "stridebreaker",
-      "blackcleaver",
-      "trinityforce",
-      "deathsdance",
-      "steraksgage",
+      "berserkersgreaves",
+      "krakenslayer",
+      "infinityedge",
+      "phantomdancer",
+      "lorddominiksregards",
+      "bloodthirster",
     ],
-    "keystone": "conqueror",
+    "keystone": "lethaltempo",
   },
   "tristana": {
     "id": "tristana",
     "name": "Tristana",
-    "title": "the Yordle Gunner",
+    "title": "The Yordle Gunner",
     "initial": "T",
     "adaptive": "AD",
     "base": {
       "ad": 60,
-      "adPerLevel": 2.5,
+      "adPerLevel": 3.4,
       "hp": 640,
       "hpPerLevel": 102,
       "armor": 30,
@@ -30271,24 +31587,24 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       },
     },
     "shelf": [
-      "ionianbootsoflucidity",
-      "stridebreaker",
-      "blackcleaver",
-      "trinityforce",
-      "deathsdance",
-      "steraksgage",
+      "berserkersgreaves",
+      "krakenslayer",
+      "infinityedge",
+      "phantomdancer",
+      "lorddominiksregards",
+      "bloodthirster",
     ],
-    "keystone": "conqueror",
+    "keystone": "lethaltempo",
   },
   "trundle": {
     "id": "trundle",
     "name": "Trundle",
-    "title": "the Troll King",
+    "title": "The Troll King",
     "initial": "T",
     "adaptive": "AD",
     "base": {
       "ad": 68,
-      "adPerLevel": 4,
+      "adPerLevel": 4.5,
       "hp": 650,
       "hpPerLevel": 110,
       "armor": 37,
@@ -30422,6 +31738,21 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           100,
           80,
         ],
+        "heal": {
+          "base": [
+            0,
+          ],
+          "ratios": {
+            "targetMaxHp": 0.1,
+          },
+          "rankRatios": {
+            "targetMaxHp": [
+              0.1,
+              0.125,
+              0.15,
+            ],
+          },
+        },
       },
     },
     "shelf": [
@@ -30437,12 +31768,12 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
   "tryndamere": {
     "id": "tryndamere",
     "name": "Tryndamere",
-    "title": "the Barbarian King",
+    "title": "The Barbarian King",
     "initial": "T",
     "adaptive": "AD",
     "base": {
       "ad": 66,
-      "adPerLevel": 4,
+      "adPerLevel": 4.5,
       "hp": 696,
       "hpPerLevel": 108,
       "armor": 33,
@@ -30450,7 +31781,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "mr": 32,
       "mrPerLevel": 2.05,
       "attackSpeed": 0.67,
-      "attackSpeedRatio": 0.694,
+      "attackSpeedRatio": 0.725,
       "attackSpeedPerLevel": 0.034,
       "attackRange": 175,
       "moveSpeed": 345,
@@ -30551,14 +31882,14 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "type": "physical",
         "maxRank": 5,
         "base": [
-          75,
-          105,
-          135,
-          165,
-          195,
+          80,
+          120,
+          160,
+          200,
+          240,
         ],
         "ratios": {
-          "bonusAd": 1.3,
+          "bonusAd": 1,
           "ap": 0.8,
         },
         "cooldown": [
@@ -30637,7 +31968,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
   "twistedfate": {
     "id": "twistedfate",
     "name": "Twisted Fate",
-    "title": "the Card Master",
+    "title": "The Card Master",
     "initial": "T",
     "adaptive": "AP",
     "base": {
@@ -30877,12 +32208,12 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
   "twitch": {
     "id": "twitch",
     "name": "Twitch",
-    "title": "the Plague Rat",
+    "title": "The Plague Rat",
     "initial": "T",
     "adaptive": "AD",
     "base": {
       "ad": 59,
-      "adPerLevel": 3.1,
+      "adPerLevel": 3,
       "hp": 630,
       "hpPerLevel": 98,
       "armor": 27,
@@ -30988,19 +32319,19 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       },
     },
     "shelf": [
-      "ionianbootsoflucidity",
-      "stridebreaker",
-      "blackcleaver",
-      "trinityforce",
-      "deathsdance",
-      "steraksgage",
+      "berserkersgreaves",
+      "krakenslayer",
+      "infinityedge",
+      "phantomdancer",
+      "lorddominiksregards",
+      "bloodthirster",
     ],
-    "keystone": "conqueror",
+    "keystone": "lethaltempo",
   },
   "udyr": {
     "id": "udyr",
     "name": "Udyr",
-    "title": "the Spirit Walker",
+    "title": "The Spirit Walker",
     "initial": "U",
     "adaptive": "AD",
     "base": {
@@ -31044,22 +32375,28 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
     "abilities": {
       "Q": {
         "name": "Wilding Claw",
-        "type": "magic",
+        "type": "physical",
         "maxRank": 5,
         "base": [
-          0,
+          6,
+          12,
+          18,
+          24,
+          30,
+          36,
         ],
         "ratios": {
-          "targetMaxHp": 0.03,
+          "bonusAd": 0.2,
+          "bonusHp": 0.01,
         },
         "rankRatios": {
-          "targetMaxHp": [
-            0.03,
-            0.04,
-            0.05,
-            0.06,
-            0.07,
-            0.08,
+          "bonusHp": [
+            0.01,
+            0.012,
+            0.014,
+            0.016,
+            0.018,
+            0.02,
           ],
         },
         "cooldown": [
@@ -31069,6 +32406,43 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           6,
           6,
         ],
+        "formula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                6,
+                12,
+                18,
+                24,
+                30,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "bonusAd",
+              "f": {
+                "op": "num",
+                "n": 0.2,
+              },
+            },
+            {
+              "op": "stat",
+              "stat": "bonusHp",
+              "f": {
+                "op": "rank",
+                "v": [
+                  0.01,
+                  0.012,
+                  0.014,
+                  0.016,
+                  0.018,
+                ],
+              },
+            },
+          ],
+        },
       },
       "W": {
         "name": "Iron Mantle",
@@ -31088,13 +32462,14 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "shield": {
           "base": [
             45,
-            60,
-            75,
-            90,
+            65,
+            85,
             105,
-            120,
+            125,
+            145,
           ],
           "ratios": {
+            "bonusAd": 0.5,
             "ap": 0.4,
             "maxHp": 0.02,
           },
@@ -31111,29 +32486,38 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         },
         "heal": {
           "base": [
+            1.41,
+            2.03,
+            2.66,
+            3.28,
+            3.91,
+            4.53,
+          ],
+          "ratios": {
+            "bonusAd": 0.0313,
+            "ap": 0.0203,
+            "maxHp": 0.0025,
+          },
+          "levelBase": [
             0.63,
-            0.87,
-            1.11,
-            1.35,
-            1.59,
+            0.86,
+            1.1,
+            1.34,
+            1.58,
             1.82,
             2.06,
             2.3,
             2.54,
             2.78,
-            3.02,
-            3.26,
-            3.5,
+            3.01,
+            3.25,
+            3.49,
             3.73,
             3.97,
             4.21,
             4.45,
             4.69,
           ],
-          "ratios": {
-            "ap": 0.0203,
-            "maxHp": 0.0025,
-          },
         },
         "shieldFormula": {
           "op": "sum",
@@ -31208,11 +32592,11 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "maxRank": 3,
         "base": [
           10,
-          17,
-          24,
-          31,
-          38,
-          45,
+          18,
+          26,
+          34,
+          42,
+          50,
         ],
         "ratios": {
           "ap": 0.175,
@@ -31237,7 +32621,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
   "urgot": {
     "id": "urgot",
     "name": "Urgot",
-    "title": "the Dreadnought",
+    "title": "The Dreadnought",
     "initial": "U",
     "adaptive": "AD",
     "base": {
@@ -31346,10 +32730,6 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "type": "physical",
         "maxRank": 5,
         "base": [
-          12,
-          12,
-          12,
-          12,
           12,
         ],
         "ratios": {
@@ -31548,7 +32928,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
   "varus": {
     "id": "varus",
     "name": "Varus",
-    "title": "the Arrow of Retribution",
+    "title": "The Arrow of Retribution",
     "initial": "V",
     "adaptive": "AD",
     "base": {
@@ -31595,23 +32975,14 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "type": "physical",
         "maxRank": 5,
         "base": [
-          60,
-          106.67,
-          153.33,
-          200,
-          246.67,
+          80,
+          150,
+          220,
+          290,
+          360,
         ],
         "ratios": {
-          "bonusAd": 0.8667,
-        },
-        "rankRatios": {
-          "bonusAd": [
-            0.8667,
-            0.9333,
-            1,
-            1.0667,
-            1.1333,
-          ],
+          "bonusAd": 1.2,
         },
         "cooldown": [
           16,
@@ -31621,20 +32992,44 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           12,
         ],
         "aimed": true,
+        "formula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                80,
+                150,
+                220,
+                290,
+                360,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "bonusAd",
+              "f": {
+                "op": "num",
+                "n": 1.2,
+              },
+            },
+          ],
+        },
       },
       "W": {
         "name": "Blighted Quiver",
         "type": "magic",
         "maxRank": 5,
         "base": [
-          6,
-          12,
-          18,
-          24,
-          30,
+          4,
+          13,
+          22,
+          31,
+          40,
         ],
         "ratios": {
-          "ap": 0.35,
+          "bonusAd": 0.15,
+          "ap": 0.25,
         },
         "cooldown": [
           40,
@@ -31681,13 +33076,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "maxRank": 5,
         "base": [
           60,
-          100,
-          140,
+          90,
+          120,
+          150,
           180,
-          220,
         ],
         "ratios": {
-          "bonusAd": 1,
+          "bonusAd": 0.9,
         },
         "cooldown": [
           18,
@@ -31766,19 +33161,19 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       },
     },
     "shelf": [
-      "ionianbootsoflucidity",
-      "stridebreaker",
-      "blackcleaver",
-      "trinityforce",
-      "deathsdance",
-      "steraksgage",
+      "berserkersgreaves",
+      "krakenslayer",
+      "infinityedge",
+      "phantomdancer",
+      "lorddominiksregards",
+      "bloodthirster",
     ],
-    "keystone": "conqueror",
+    "keystone": "lethaltempo",
   },
   "vayne": {
     "id": "vayne",
     "name": "Vayne",
-    "title": "the Night Hunter",
+    "title": "The Night Hunter",
     "initial": "V",
     "adaptive": "AD",
     "base": {
@@ -31857,14 +33252,14 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           0,
         ],
         "ratios": {
-          "targetMaxHp": 0.06,
+          "targetMaxHp": 0.04,
         },
         "rankRatios": {
           "targetMaxHp": [
-            0.06,
+            0.04,
+            0.055,
             0.07,
-            0.08,
-            0.09,
+            0.085,
             0.1,
           ],
         },
@@ -31930,19 +33325,19 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       },
     },
     "shelf": [
-      "ionianbootsoflucidity",
-      "stridebreaker",
-      "blackcleaver",
-      "trinityforce",
-      "deathsdance",
-      "steraksgage",
+      "berserkersgreaves",
+      "krakenslayer",
+      "infinityedge",
+      "phantomdancer",
+      "lorddominiksregards",
+      "bloodthirster",
     ],
-    "keystone": "conqueror",
+    "keystone": "lethaltempo",
   },
   "veigar": {
     "id": "veigar",
     "name": "Veigar",
-    "title": "the Tiny Master of Evil",
+    "title": "The Tiny Master of Evil",
     "initial": "V",
     "adaptive": "AP",
     "base": {
@@ -32057,24 +33452,17 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           305,
         ],
         "ratios": {
-          "ap": 0.6,
+          "ap": 0.7,
         },
         "rankRatios": {
           "ap": [
-            0.6,
             0.7,
             0.8,
             0.9,
             1,
+            1.1,
           ],
         },
-        "cooldown": [
-          8,
-          8,
-          8,
-          8,
-          8,
-        ],
         "aimed": true,
         "formula": {
           "op": "sum",
@@ -32172,7 +33560,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
   "velkoz": {
     "id": "velkoz",
     "name": "Vel'Koz",
-    "title": "the Eye of the Void",
+    "title": "The Eye of the Void",
     "initial": "V",
     "adaptive": "AP",
     "base": {
@@ -32377,12 +33765,12 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "type": "magic",
         "maxRank": 3,
         "base": [
-          34.62,
-          48.08,
-          61.54,
+          450,
+          700,
+          925,
         ],
         "ratios": {
-          "ap": 0.0962,
+          "ap": 1.25,
         },
         "cooldown": [
           100,
@@ -32390,6 +33778,27 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           80,
         ],
         "aimed": true,
+        "formula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                450,
+                700,
+                925,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "ap",
+              "f": {
+                "op": "num",
+                "n": 1.25,
+              },
+            },
+          ],
+        },
       },
     },
     "shelf": [
@@ -32405,7 +33814,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
   "vex": {
     "id": "vex",
     "name": "Vex",
-    "title": "the Gloomist",
+    "title": "The Gloomist",
     "initial": "V",
     "adaptive": "AP",
     "base": {
@@ -32705,12 +34114,12 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
   "vi": {
     "id": "vi",
     "name": "Vi",
-    "title": "the Piltover Enforcer",
+    "title": "The Piltover Enforcer",
     "initial": "V",
     "adaptive": "AD",
     "base": {
       "ad": 61,
-      "adPerLevel": 3,
+      "adPerLevel": 3.5,
       "hp": 655,
       "hpPerLevel": 105,
       "armor": 30,
@@ -32752,14 +34161,14 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "type": "physical",
         "maxRank": 5,
         "base": [
-          45,
-          70,
-          95,
+          40,
+          60,
+          80,
+          100,
           120,
-          145,
         ],
         "ratios": {
-          "bonusAd": 0.8,
+          "bonusAd": 0.6,
         },
         "cooldown": [
           12,
@@ -32812,10 +34221,10 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "rankRatios": {
           "targetMaxHp": [
             0.04,
-            0.055,
+            0.05,
+            0.06,
             0.07,
-            0.085,
-            0.1,
+            0.08,
           ],
         },
       },
@@ -32824,14 +34233,14 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "type": "physical",
         "maxRank": 5,
         "base": [
-          0,
-          15,
+          10,
           30,
-          45,
-          60,
+          50,
+          70,
+          90,
         ],
         "ratios": {
-          "totalAd": 1.2,
+          "totalAd": 1.1,
           "ap": 1,
         },
         "cooldown": [
@@ -32848,8 +34257,8 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "maxRank": 3,
         "base": [
           150,
-          275,
-          400,
+          250,
+          350,
         ],
         "ratios": {
           "bonusAd": 0.9,
@@ -32905,7 +34314,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
     "adaptive": "AD",
     "base": {
       "ad": 57,
-      "adPerLevel": 3.5,
+      "adPerLevel": 4,
       "hp": 630,
       "hpPerLevel": 109,
       "armor": 34,
@@ -32947,19 +34356,14 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "type": "physical",
         "maxRank": 5,
         "base": [
-          0,
+          25,
+          40,
+          55,
+          70,
+          85,
         ],
         "ratios": {
-          "targetCurrentHp": 0.02,
-        },
-        "rankRatios": {
-          "targetCurrentHp": [
-            0.02,
-            0.03,
-            0.04,
-            0.05,
-            0.06,
-          ],
+          "totalAd": 0.7,
         },
         "cooldown": [
           5,
@@ -32969,6 +34373,73 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           3,
         ],
         "aimed": true,
+        "formula": {
+          "op": "mul",
+          "of": [
+            {
+              "op": "sum",
+              "of": [
+                {
+                  "op": "rank",
+                  "v": [
+                    25,
+                    40,
+                    55,
+                    70,
+                    85,
+                  ],
+                },
+                {
+                  "op": "stat",
+                  "stat": "ad",
+                  "f": {
+                    "op": "num",
+                    "n": 0.7,
+                  },
+                },
+              ],
+            },
+            {
+              "op": "sum",
+              "of": [
+                {
+                  "op": "num",
+                  "n": 1,
+                },
+                {
+                  "op": "mul",
+                  "of": [
+                    {
+                      "op": "stat",
+                      "stat": "critChance",
+                      "f": {
+                        "op": "num",
+                        "n": 0.6,
+                      },
+                    },
+                    {
+                      "op": "sum",
+                      "of": [
+                        {
+                          "op": "stat",
+                          "stat": "critDamage",
+                          "f": {
+                            "op": "num",
+                            "n": 1,
+                          },
+                        },
+                        {
+                          "op": "num",
+                          "n": -1,
+                        },
+                      ],
+                    },
+                  ],
+                },
+              ],
+            },
+          ],
+        },
       },
       "W": {
         "name": "Spectral Maw",
@@ -33087,7 +34558,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
   "viktor": {
     "id": "viktor",
     "name": "Viktor",
-    "title": "the Herald of the Arcane",
+    "title": "The Herald of the Arcane",
     "initial": "V",
     "adaptive": "AP",
     "base": {
@@ -33294,7 +34765,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
   "vladimir": {
     "id": "vladimir",
     "name": "Vladimir",
-    "title": "the Crimson Reaper",
+    "title": "The Crimson Reaper",
     "initial": "V",
     "adaptive": "AP",
     "base": {
@@ -33375,14 +34846,14 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "type": "magic",
         "maxRank": 5,
         "base": [
-          20,
-          33.75,
-          47.5,
-          61.25,
-          75,
+          80,
+          135,
+          190,
+          245,
+          300,
         ],
         "ratios": {
-          "bonusHp": 0.0375,
+          "bonusHp": 0.15,
         },
         "cooldown": [
           28,
@@ -33391,6 +34862,29 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           19,
           16,
         ],
+        "formula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                80,
+                135,
+                190,
+                245,
+                300,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "bonusHp",
+              "f": {
+                "op": "num",
+                "n": 0.15,
+              },
+            },
+          ],
+        },
       },
       "E": {
         "name": "Tides of Blood",
@@ -33479,7 +34973,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
   "volibear": {
     "id": "volibear",
     "name": "Volibear",
-    "title": "the Relentless Storm",
+    "title": "The Relentless Storm",
     "initial": "V",
     "adaptive": "AD",
     "base": {
@@ -33527,13 +35021,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "maxRank": 5,
         "base": [
           10,
+          20,
           30,
+          40,
           50,
-          70,
-          90,
         ],
         "ratios": {
-          "bonusAd": 1.2,
+          "bonusAd": 1.6,
         },
         "cooldown": [
           14,
@@ -33559,7 +35053,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           105,
         ],
         "ratios": {
-          "totalAd": 1,
+          "totalAd": 1.1,
           "bonusHp": 0.06,
         },
         "cooldown": [
@@ -33623,7 +35117,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           200,
         ],
         "ratios": {
-          "ap": 0.8,
+          "ap": 0.7,
           "targetMaxHp": 0.11,
         },
         "rankRatios": {
@@ -33707,12 +35201,12 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
   "warwick": {
     "id": "warwick",
     "name": "Warwick",
-    "title": "the Uncaged Wrath of Zaun",
+    "title": "The Uncaged Wrath of Zaun",
     "initial": "W",
     "adaptive": "AD",
     "base": {
       "ad": 65,
-      "adPerLevel": 2.75,
+      "adPerLevel": 2.5,
       "hp": 620,
       "hpPerLevel": 99,
       "armor": 33,
@@ -33870,7 +35364,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
   "monkeyking": {
     "id": "monkeyking",
     "name": "Wukong",
-    "title": "the Monkey King",
+    "title": "The Monkey King",
     "initial": "W",
     "adaptive": "AD",
     "base": {
@@ -33924,7 +35418,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           120,
         ],
         "ratios": {
-          "bonusAd": 0.55,
+          "bonusAd": 0.5,
         },
         "cooldown": [
           8,
@@ -33981,10 +35475,10 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "maxRank": 5,
         "base": [
           80,
-          110,
-          140,
-          170,
+          120,
+          160,
           200,
+          240,
         ],
         "ratios": {
           "ap": 1,
@@ -34064,7 +35558,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
   "xayah": {
     "id": "xayah",
     "name": "Xayah",
-    "title": "the Rebel",
+    "title": "The Rebel",
     "initial": "X",
     "adaptive": "AD",
     "base": {
@@ -34173,14 +35667,14 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "type": "physical",
         "maxRank": 5,
         "base": [
-          55,
+          50,
           65,
-          75,
-          85,
+          80,
           95,
+          110,
         ],
         "ratios": {
-          "bonusAd": 0.6,
+          "bonusAd": 0.4,
         },
         "cooldown": [
           12,
@@ -34237,19 +35731,19 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       },
     },
     "shelf": [
-      "ionianbootsoflucidity",
-      "stridebreaker",
-      "blackcleaver",
-      "trinityforce",
-      "deathsdance",
-      "steraksgage",
+      "berserkersgreaves",
+      "krakenslayer",
+      "infinityedge",
+      "phantomdancer",
+      "lorddominiksregards",
+      "bloodthirster",
     ],
-    "keystone": "conqueror",
+    "keystone": "lethaltempo",
   },
   "xerath": {
     "id": "xerath",
     "name": "Xerath",
-    "title": "the Magus Ascendant",
+    "title": "The Magus Ascendant",
     "initial": "X",
     "adaptive": "AP",
     "base": {
@@ -34296,11 +35790,11 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "type": "magic",
         "maxRank": 5,
         "base": [
-          75,
-          115,
-          155,
-          195,
-          235,
+          70,
+          110,
+          150,
+          190,
+          230,
         ],
         "ratios": {
           "ap": 0.9,
@@ -34430,7 +35924,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
   "xinzhao": {
     "id": "xinzhao",
     "name": "Xin Zhao",
-    "title": "the Seneschal of Demacia",
+    "title": "The Seneschal of Demacia",
     "initial": "X",
     "adaptive": "AD",
     "base": {
@@ -34477,11 +35971,11 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "type": "physical",
         "maxRank": 5,
         "base": [
-          20,
-          35,
-          50,
-          65,
-          80,
+          15,
+          30,
+          45,
+          60,
+          75,
         ],
         "ratios": {
           "bonusAd": 0.4,
@@ -34557,7 +36051,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           150,
         ],
         "ratios": {
-          "ap": 0.6,
+          "ap": 1.2,
         },
         "cooldown": [
           11,
@@ -34575,6 +36069,29 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
             "op": "num",
             "n": 0.5,
           },
+        },
+        "formula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                50,
+                75,
+                100,
+                125,
+                150,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "ap",
+              "f": {
+                "op": "num",
+                "n": 1.2,
+              },
+            },
+          ],
         },
       },
       "R": {
@@ -34611,12 +36128,12 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
   "yasuo": {
     "id": "yasuo",
     "name": "Yasuo",
-    "title": "the Unforgiven",
+    "title": "The Unforgiven",
     "initial": "Y",
     "adaptive": "AD",
     "base": {
       "ad": 60,
-      "adPerLevel": 3,
+      "adPerLevel": 2.5,
       "hp": 590,
       "hpPerLevel": 110,
       "armor": 32,
@@ -34831,7 +36348,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
   "yone": {
     "id": "yone",
     "name": "Yone",
-    "title": "the Unforgotten",
+    "title": "The Unforgotten",
     "initial": "Y",
     "adaptive": "AD",
     "base": {
@@ -34878,14 +36395,14 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "type": "physical",
         "maxRank": 5,
         "base": [
-          20,
-          45,
-          70,
-          95,
-          120,
+          25,
+          50,
+          75,
+          100,
+          125,
         ],
         "ratios": {
-          "totalAd": 1.05,
+          "totalAd": 1.1,
         },
         "cooldown": [
           4,
@@ -34979,12 +36496,12 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "type": "magic",
         "maxRank": 3,
         "base": [
-          100,
           200,
-          300,
+          400,
+          600,
         ],
         "ratios": {
-          "bonusAd": 0.4,
+          "bonusAd": 0.8,
         },
         "cooldown": [
           120,
@@ -34997,6 +36514,27 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           "n": 0.75,
         },
         "ccIgnoresTenacity": true,
+        "formula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                200,
+                400,
+                600,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "bonusAd",
+              "f": {
+                "op": "num",
+                "n": 0.8,
+              },
+            },
+          ],
+        },
       },
     },
     "shelf": [
@@ -35060,10 +36598,10 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "maxRank": 5,
         "base": [
           30,
-          55,
-          80,
-          105,
-          130,
+          50,
+          70,
+          90,
+          110,
         ],
         "ratios": {
           "totalAd": 0.5,
@@ -35077,26 +36615,46 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         ],
         "heal": {
           "base": [
-            10,
-            13.41,
-            16.82,
-            20.24,
-            23.65,
-            27.06,
-            30.47,
-            33.88,
-            37.29,
-            40.71,
-            44.12,
-            47.53,
-            50.94,
-            54.35,
-            57.76,
-            61.18,
-            64.59,
-            68,
+            0,
           ],
           "ratios": {},
+          "levelBase": [
+            10,
+            12,
+            14,
+            16,
+            18,
+            20,
+            23,
+            26,
+            29,
+            32,
+            35,
+            38,
+            43,
+            48,
+            53,
+            58,
+            63,
+            68,
+          ],
+        },
+        "healFormula": {
+          "op": "steps",
+          "l1": 10,
+          "perLevel": 2,
+          "bp": [
+            {
+              "level": 7,
+              "add": 0,
+              "perLevel": 3,
+            },
+            {
+              "level": 13,
+              "add": 0,
+              "perLevel": 5,
+            },
+          ],
         },
       },
       "W": {
@@ -35166,7 +36724,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       },
       "R": {
         "name": "Eulogy of the Isles",
-        "type": "util",
+        "type": "magic",
         "maxRank": 3,
         "base": [
           0,
@@ -35177,6 +36735,27 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           130,
           100,
         ],
+        "formula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                50,
+                75,
+                100,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "bonusAd",
+              "f": {
+                "op": "num",
+                "n": 0.3,
+              },
+            },
+          ],
+        },
       },
     },
     "shelf": [
@@ -35192,12 +36771,12 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
   "yunara": {
     "id": "yunara",
     "name": "Yunara",
-    "title": "the Unbroken Faith",
+    "title": "The Unbroken Faith",
     "initial": "Y",
     "adaptive": "AD",
     "base": {
       "ad": 55,
-      "adPerLevel": 0,
+      "adPerLevel": 3,
       "hp": 590,
       "hpPerLevel": 110,
       "armor": 25,
@@ -35211,6 +36790,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "moveSpeed": 325,
       "mana": 275,
       "manaPerLevel": 45,
+      "critDamage": 1.75,
     },
     "skillOrder": [
       "Q",
@@ -35238,9 +36818,15 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "type": "magic",
         "maxRank": 5,
         "base": [
-          0,
+          3,
+          8,
+          13,
+          18,
+          23,
         ],
-        "ratios": {},
+        "ratios": {
+          "ap": 0.2,
+        },
         "formula": {
           "op": "sum",
           "of": [
@@ -35266,13 +36852,24 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         },
       },
       "W": {
-        "name": "Arc of Judgment | Arc of Ruin",
+        "name": "Arc of Judgment",
         "type": "magic",
         "maxRank": 5,
         "base": [
-          0,
+          55,
+          95,
+          135,
+          175,
+          215,
         ],
-        "ratios": {},
+        "ratios": {
+          "bonusAd": 0.85,
+          "ap": 0.5,
+        },
+        "cooldown": [
+          10,
+        ],
+        "aimed": true,
         "formula": {
           "op": "sum",
           "of": [
@@ -35304,10 +36901,9 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
             },
           ],
         },
-        "aimed": true,
       },
       "E": {
-        "name": "Kanmei's Steps | Untouchable Shadow",
+        "name": "Kanmei's Steps",
         "type": "util",
         "maxRank": 5,
         "base": [
@@ -35325,10 +36921,12 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       },
       "R": {
         "name": "Transcend One's Self",
-        "type": "util",
+        "type": "magic",
         "maxRank": 3,
         "base": [
-          0,
+          160,
+          320,
+          480,
         ],
         "ratios": {},
         "cooldown": [
@@ -35339,19 +36937,19 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       },
     },
     "shelf": [
-      "ionianbootsoflucidity",
-      "stridebreaker",
-      "blackcleaver",
-      "trinityforce",
-      "deathsdance",
-      "steraksgage",
+      "berserkersgreaves",
+      "krakenslayer",
+      "infinityedge",
+      "phantomdancer",
+      "lorddominiksregards",
+      "bloodthirster",
     ],
-    "keystone": "conqueror",
+    "keystone": "lethaltempo",
   },
   "yuumi": {
     "id": "yuumi",
     "name": "Yuumi",
-    "title": "the Magical Cat",
+    "title": "The Magical Cat",
     "initial": "Y",
     "adaptive": "AP",
     "base": {
@@ -35458,11 +37056,6 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           0,
         ],
         "ratios": {},
-        "cooldown": [
-          10,
-          5,
-          0,
-        ],
         "mobility": true,
       },
       "E": {
@@ -35475,10 +37068,6 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "ratios": {},
         "cooldown": [
           10,
-          10,
-          10,
-          10,
-          10,
         ],
         "shield": {
           "base": [
@@ -35489,7 +37078,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
             165,
           ],
           "ratios": {
-            "ap": 0.3,
+            "ap": 0.4,
           },
         },
         "shieldFormula": {
@@ -35535,12 +37124,12 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         ],
         "heal": {
           "base": [
-            35,
+            30,
             50,
-            65,
+            70,
           ],
           "ratios": {
-            "ap": 0.15,
+            "ap": 0.12,
           },
         },
         "aimed": true,
@@ -35610,7 +37199,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
     "adaptive": "AD",
     "base": {
       "ad": 63,
-      "adPerLevel": 0,
+      "adPerLevel": 4,
       "hp": 640,
       "hpPerLevel": 114,
       "armor": 36,
@@ -35624,6 +37213,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "moveSpeed": 345,
       "mana": 350,
       "manaPerLevel": 55,
+      "critDamage": 1.75,
     },
     "skillOrder": [
       "Q",
@@ -35651,36 +37241,23 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "type": "physical",
         "maxRank": 5,
         "base": [
-          0,
+          7.5,
+          15,
+          22.5,
+          30,
+          37.5,
         ],
-        "ratios": {},
-        "formula": {
-          "op": "sum",
-          "of": [
-            {
-              "op": "rank",
-              "v": [
-                15,
-                30,
-                45,
-                60,
-                75,
-              ],
-            },
-            {
-              "op": "stat",
-              "stat": "bonusAd",
-              "f": {
-                "op": "rank",
-                "v": [
-                  0.2,
-                  0.25,
-                  0.3,
-                  0.35,
-                  0.4,
-                ],
-              },
-            },
+        "ratios": {
+          "totalAd": 0.5,
+          "bonusAd": 0.1,
+        },
+        "rankRatios": {
+          "bonusAd": [
+            0.1,
+            0.125,
+            0.15,
+            0.175,
+            0.2,
           ],
         },
         "cooldown": [
@@ -35690,6 +37267,23 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           7,
           6,
         ],
+        "heal": {
+          "base": [
+            0,
+          ],
+          "ratios": {
+            "maxHp": 0.05,
+          },
+          "rankRatios": {
+            "maxHp": [
+              0.05,
+              0.06,
+              0.07,
+              0.08,
+              0.09,
+            ],
+          },
+        },
         "cc": {
           "op": "num",
           "n": 0.75,
@@ -35701,31 +37295,14 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "type": "physical",
         "maxRank": 5,
         "base": [
-          0,
+          40,
+          60,
+          80,
+          100,
+          120,
         ],
-        "ratios": {},
-        "formula": {
-          "op": "sum",
-          "of": [
-            {
-              "op": "rank",
-              "v": [
-                40,
-                60,
-                80,
-                100,
-                120,
-              ],
-            },
-            {
-              "op": "stat",
-              "stat": "bonusAd",
-              "f": {
-                "op": "num",
-                "n": 0.5,
-              },
-            },
-          ],
+        "ratios": {
+          "bonusAd": 0.5,
         },
         "cooldown": [
           16,
@@ -35736,15 +37313,6 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         ],
         "aimed": true,
         "mobility": true,
-      },
-      "E": {
-        "name": "Aureate Rush",
-        "type": "physical",
-        "maxRank": 5,
-        "base": [
-          0,
-        ],
-        "ratios": {},
         "formula": {
           "op": "sum",
           "of": [
@@ -35768,6 +37336,21 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
             },
           ],
         },
+      },
+      "E": {
+        "name": "Aureate Rush",
+        "type": "physical",
+        "maxRank": 5,
+        "base": [
+          40,
+          60,
+          80,
+          100,
+          120,
+        ],
+        "ratios": {
+          "bonusAd": 0.5,
+        },
         "cooldown": [
           10,
           9.5,
@@ -35777,15 +37360,58 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         ],
         "aimed": true,
         "mobility": true,
+        "formula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                40,
+                60,
+                80,
+                100,
+                120,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "bonusAd",
+              "f": {
+                "op": "num",
+                "n": 0.5,
+              },
+            },
+          ],
+        },
       },
       "R": {
         "name": "Grim Deliverance",
         "type": "physical",
         "maxRank": 3,
         "base": [
-          0,
+          250,
+          400,
+          550,
         ],
-        "ratios": {},
+        "ratios": {
+          "bonusAd": 2,
+        },
+        "cooldown": [
+          110,
+          95,
+          80,
+        ],
+        "heal": {
+          "base": [
+            82.5,
+            132,
+            181.5,
+          ],
+          "ratios": {
+            "bonusAd": 0.66,
+          },
+        },
+        "aimed": true,
         "formula": {
           "op": "sum",
           "of": [
@@ -35807,12 +37433,6 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
             },
           ],
         },
-        "cooldown": [
-          110,
-          95,
-          80,
-        ],
-        "aimed": true,
       },
     },
     "shelf": [
@@ -35828,7 +37448,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
   "zac": {
     "id": "zac",
     "name": "Zac",
-    "title": "the Secret Weapon",
+    "title": "The Secret Weapon",
     "initial": "Z",
     "adaptive": "AP",
     "base": {
@@ -35875,11 +37495,11 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "type": "magic",
         "maxRank": 5,
         "base": [
-          40,
-          55,
-          70,
-          85,
-          100,
+          60,
+          90,
+          120,
+          150,
+          180,
         ],
         "ratios": {
           "ap": 0.3,
@@ -35901,6 +37521,37 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
             "op": "num",
             "n": 0.5,
           },
+        },
+        "formula": {
+          "op": "sum",
+          "of": [
+            {
+              "op": "rank",
+              "v": [
+                60,
+                90,
+                120,
+                150,
+                180,
+              ],
+            },
+            {
+              "op": "stat",
+              "stat": "ap",
+              "f": {
+                "op": "num",
+                "n": 0.3,
+              },
+            },
+            {
+              "op": "stat",
+              "stat": "bonusHp",
+              "f": {
+                "op": "num",
+                "n": 0.03,
+              },
+            },
+          ],
         },
       },
       "W": {
@@ -35986,9 +37637,9 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "type": "magic",
         "maxRank": 3,
         "base": [
-          140,
-          210,
-          280,
+          120,
+          190,
+          260,
         ],
         "ratios": {
           "ap": 0.4,
@@ -36050,7 +37701,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
   "zed": {
     "id": "zed",
     "name": "Zed",
-    "title": "the Master of Shadows",
+    "title": "The Master of Shadows",
     "initial": "Z",
     "adaptive": "AD",
     "base": {
@@ -36161,13 +37812,13 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "maxRank": 5,
         "base": [
           70,
-          95,
-          120,
-          145,
-          170,
+          92.5,
+          115,
+          137.5,
+          160,
         ],
         "ratios": {
-          "bonusAd": 0.8,
+          "bonusAd": 0.7,
         },
         "cooldown": [
           5,
@@ -36286,31 +37937,24 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "type": "physical",
         "maxRank": 5,
         "base": [
-          2.14,
-          2.43,
-          2.71,
-          3,
-          3.29,
+          3.14,
+          3.71,
+          4.29,
+          4.86,
+          5.43,
         ],
         "ratios": {
-          "totalAd": 0.1486,
+          "totalAd": 0.1457,
         },
         "rankRatios": {
           "totalAd": [
+            0.1457,
             0.1486,
+            0.1514,
             0.1543,
-            0.16,
-            0.1657,
-            0.1714,
+            0.1571,
           ],
         },
-        "cooldown": [
-          1,
-          1,
-          1,
-          1,
-          1,
-        ],
         "aimed": true,
         "slow": {
           "amount": {
@@ -36335,8 +37979,8 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           190,
         ],
         "ratios": {
-          "totalAd": 1.3,
-          "ap": 0.25,
+          "totalAd": 1,
+          "ap": 0.5,
         },
         "cooldown": [
           12,
@@ -36395,7 +38039,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       },
       "E": {
         "name": "Spark Surge",
-        "type": "util",
+        "type": "magic",
         "maxRank": 5,
         "base": [
           0,
@@ -36409,18 +38053,85 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           18,
         ],
         "mobility": true,
+        "formula": {
+          "op": "mul",
+          "of": [
+            {
+              "op": "sum",
+              "of": [
+                {
+                  "op": "rank",
+                  "v": [
+                    22,
+                    24,
+                    26,
+                    28,
+                    30,
+                  ],
+                },
+                {
+                  "op": "stat",
+                  "stat": "ap",
+                  "f": {
+                    "op": "num",
+                    "n": 0.2,
+                  },
+                },
+              ],
+            },
+            {
+              "op": "sum",
+              "of": [
+                {
+                  "op": "num",
+                  "n": 1,
+                },
+                {
+                  "op": "mul",
+                  "of": [
+                    {
+                      "op": "stat",
+                      "stat": "critChance",
+                      "f": {
+                        "op": "num",
+                        "n": 1,
+                      },
+                    },
+                    {
+                      "op": "sum",
+                      "of": [
+                        {
+                          "op": "stat",
+                          "stat": "critDamage",
+                          "f": {
+                            "op": "num",
+                            "n": 1,
+                          },
+                        },
+                        {
+                          "op": "num",
+                          "n": -1,
+                        },
+                      ],
+                    },
+                  ],
+                },
+              ],
+            },
+          ],
+        },
       },
       "R": {
         "name": "Lightning Crash",
         "type": "magic",
         "maxRank": 3,
         "base": [
-          175,
-          275,
-          375,
+          150,
+          250,
+          350,
         ],
         "ratios": {
-          "bonusAd": 0.85,
+          "bonusAd": 0.6,
           "ap": 1.1,
         },
         "cooldown": [
@@ -36460,19 +38171,19 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       },
     },
     "shelf": [
-      "ionianbootsoflucidity",
-      "stridebreaker",
-      "blackcleaver",
-      "trinityforce",
-      "deathsdance",
-      "steraksgage",
+      "berserkersgreaves",
+      "krakenslayer",
+      "infinityedge",
+      "phantomdancer",
+      "lorddominiksregards",
+      "bloodthirster",
     ],
-    "keystone": "conqueror",
+    "keystone": "lethaltempo",
   },
   "ziggs": {
     "id": "ziggs",
     "name": "Ziggs",
-    "title": "the Hexplosives Expert",
+    "title": "The Hexplosives Expert",
     "initial": "Z",
     "adaptive": "AP",
     "base": {
@@ -36519,14 +38230,23 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "type": "magic",
         "maxRank": 5,
         "base": [
-          85,
-          135,
-          185,
-          235,
-          285,
+          80,
+          130,
+          180,
+          230,
+          280,
         ],
         "ratios": {
-          "ap": 0.65,
+          "ap": 0.6,
+        },
+        "rankRatios": {
+          "ap": [
+            0.6,
+            0.65,
+            0.7,
+            0.75,
+            0.8,
+          ],
         },
         "cooldown": [
           6,
@@ -36624,7 +38344,16 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           190,
         ],
         "ratios": {
-          "ap": 0.3,
+          "ap": 0.25,
+        },
+        "rankRatios": {
+          "ap": [
+            0.25,
+            0.3,
+            0.35,
+            0.4,
+            0.45,
+          ],
         },
         "cooldown": [
           16,
@@ -36685,12 +38414,12 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "type": "magic",
         "maxRank": 3,
         "base": [
-          200,
-          300,
-          400,
+          195,
+          325,
+          455,
         ],
         "ratios": {
-          "ap": 0.7333,
+          "ap": 0.65,
         },
         "cooldown": [
           120,
@@ -36743,7 +38472,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
   "zilean": {
     "id": "zilean",
     "name": "Zilean",
-    "title": "the Chronokeeper",
+    "title": "The Chronokeeper",
     "initial": "Z",
     "adaptive": "AP",
     "base": {
@@ -36932,7 +38661,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
   "zoe": {
     "id": "zoe",
     "name": "Zoe",
-    "title": "the Aspect of Twilight",
+    "title": "The Aspect of Twilight",
     "initial": "Z",
     "adaptive": "AP",
     "base": {
@@ -36975,32 +38704,39 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
     ],
     "abilities": {
       "Q": {
-        "name": "Paddle Star",
+        "name": "Paddle Star!",
         "type": "magic",
         "maxRank": 5,
         "base": [
-          7,
-          9.53,
-          12.06,
-          14.59,
-          17.12,
-          19.65,
-          22.18,
-          24.71,
-          27.24,
-          29.76,
-          32.29,
-          34.82,
-          37.35,
-          39.88,
-          42.41,
-          44.94,
-          47.47,
           50,
+          80,
+          110,
+          140,
+          170,
         ],
         "ratios": {
           "ap": 0.6,
         },
+        "levelBase": [
+          2,
+          4,
+          6,
+          8,
+          10,
+          12,
+          14,
+          16,
+          18,
+          21,
+          24,
+          27,
+          30,
+          34,
+          38,
+          42,
+          46,
+          50,
+        ],
         "cooldown": [
           8.5,
           8,
@@ -37015,14 +38751,14 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "type": "magic",
         "maxRank": 5,
         "base": [
+          15,
           25,
           35,
           45,
           55,
-          65,
         ],
         "ratios": {
-          "ap": 0.133,
+          "ap": 0.1,
         },
         "cooldown": [
           0.25,
@@ -37248,9 +38984,9 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
         "type": "magic",
         "maxRank": 3,
         "base": [
-          180,
-          265,
-          350,
+          200,
+          300,
+          400,
         ],
         "ratios": {
           "ap": 0.7,

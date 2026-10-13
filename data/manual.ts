@@ -3,12 +3,12 @@ import type { Champion } from "@/data/types.ts";
 /**
  * Champions saisis À LA MAIN — SECOURS uniquement.
  *
- * Les champions absents de Meraki (Locke…) sont désormais générés depuis les
+ * Les champions absents du wiki seraient générés depuis les
  * fichiers du jeu (scripts/fetch-data.ts, championFromGame) et l'emportent sur
  * cette saisie. Elle ne sert que si les fichiers du jeu sont indisponibles.
  *
- * Dès qu'un champion arrive dans Meraki, on peut retirer son entrée ici : le
- * roster généré le reprendra (les données Meraki étant plus fiables). En
+ * Le roster généré l'emporte toujours sur cette saisie (les données du wiki et du
+ * jeu étant plus fiables). En
  * attendant, on le câble avec ce qui est confirmé (stats de base, noms de
  * sorts, types de dégâts, adaptatif) et des valeurs de dégâts ILLUSTRATIVES,
  * à raffiner par patch — dans l'esprit du reste du repo.
@@ -39,7 +39,7 @@ export const MANUAL_CHAMPIONS: Record<string, Champion> = {
     // Ordre type mage : max Q > E > W, ult 6/11/16.
     skillOrder: ["Q", "E", "W", "Q", "Q", "R", "Q", "E", "Q", "E", "R", "E", "E", "W", "W", "R", "W", "W"],
     // Noms de sorts et types de dégâts : confirmés (Data Dragon). Valeurs de base
-    // et ratios : ILLUSTRATIFS (Meraki ne l'expose pas encore) — à raffiner.
+    // et ratios : ILLUSTRATIFS (saisie de secours) — à raffiner.
     abilities: {
       Q: {
         name: "Clous rituels",

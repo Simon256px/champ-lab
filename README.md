@@ -20,13 +20,13 @@ précis, contre une cible précise.
 ## ⚠ Statut
 
 Version **0.2**. Le **pipeline de données est branché** : tout le roster (≈ 170 champions + objets) est
-**généré** depuis **Meraki (lolstaticdata) + Data Dragon**, versionné par patch — voir
-[Sources de données](#sources-de-données). Portraits réels via Community Dragon.
+**généré** depuis le **wiki officiel League of Legends**, les **fichiers du jeu** (CommunityDragon) et **Data
+Dragon**, à jour au patch — voir [Sources de données](#sources-de-données). Portraits réels via Community
+Dragon.
 
-Le pipeline n'extrait que ce que le moteur sait modéliser (stats de base, ratios AP / AD / AD bonus, stats
-plates d'objets). Les mécaniques vraiment complexes (dégâts en % des PV, passifs conditionnels, cumuls) ne
-sont **pas inventées** : elles restent à modéliser à la main dans `lib/engine.ts` et affinées via
-`data/overrides.ts`, champion par champion — c'est le travail continu de la communauté.
+Chaque champion a ses sorts complets et un **statut de passif** : modélisé (dégâts à chaque coup, tous les N
+coups, sur l'auto qui suit un sort), conditionnel (non joué, avec la raison) ou sans dégâts. Rien n'est
+inventé : un passif sous condition (PV bas, cible isolée, une fois par cible…) n'est pas deviné.
 
 ---
 
@@ -40,7 +40,7 @@ deno task check    # deno fmt --check && deno lint && deno check
 deno task test     # tests du moteur (+ invariants sur tout le roster)
 deno task build    # build de production (génère _fresh/)
 deno task start    # lance le build de production
-deno task data     # (re)génère data/generated/ depuis Meraki + Data Dragon
+deno task data     # (re)génère data/generated/ : wiki officiel + fichiers du jeu + Data Dragon
 ```
 
 Le roster généré (`data/generated/`) est **versionné dans le repo** : l'app tourne sans lancer
@@ -68,7 +68,8 @@ champ-lab/
 │   ├── generated/        #   >>> GÉNÉRÉ par `deno task data` (ne pas éditer)
 │   │   ├── champions.gen.ts
 │   │   ├── items.gen.ts
-│   │   ├── mechanics.gen.ts #   passifs résolus depuis les fichiers du jeu
+│   │   ├── mechanics.gen.ts #   passifs : fichiers du jeu, sinon lus sur le wiki
+│   │   ├── passives.gen.ts  #   statut du passif de chaque champion (et sa raison)
 │   │   └── meta.gen.ts   #     patch + compteurs
 │   ├── overrides.ts      #   >>> réglages à la main : étagères, runes, passifs
 │   ├── mechanics.ts      #   >>> passifs de kit : références aux fichiers du jeu (Fiora, Jax…)
@@ -77,7 +78,9 @@ champ-lab/
 │   ├── items.ts          #   ré-exporte le généré + itemStatLine
 │   └── runes.ts          #   runes keystone (kinds modélisés dans le moteur)
 ├── scripts/
-│   ├── fetch-data.ts     # PIPELINE Meraki + Data Dragon + CommunityDragon → data/generated/
+│   ├── fetch-data.ts     # PIPELINE wiki + CommunityDragon + Data Dragon → data/generated/
+│   ├── wiki.ts           # lecture du wiki officiel (API MediaWiki, rendu des sorts, tables Lua)
+│   ├── passives.ts       # passifs du wiki → mécaniques du moteur (ou raison de l'exclusion)
 │   └── cdragon.ts        #   fichiers du jeu : sorts, cooldowns, formules → Formula
 ├── lib/
 │   ├── engine.ts         # MOTEUR pur & typé (aucune donnée en dur)
@@ -149,8 +152,7 @@ Trois façons de faire l'échange :
 
 Kits et survie : dégâts en % des PV (cible ou lanceur), ratios par rang, boucliers et soins des sorts, vol de
 vie et omnivampirisme, qui s'ajoutent aux PV effectifs du camp qui les porte (un soin ne rend que ce qui a été
-perdu). Les passifs absents de Meraki se décrivent dans `data/mechanics.ts` (voir
-`docs/adding-a-champion.md`).
+perdu). Les passifs viennent du wiki ou de `data/mechanics.ts` (voir `docs/adding-a-champion.md`).
 
 Effets d'objets (`data/item-mechanics.ts`, valeurs du fichier des objets du jeu) : à l'impact (Kraken, Lame du
 roi déchu, Nashor, Fin de l'esprit), Lame enchantée (Brillance, Trinité, Lich Bane, Faucheuse d'essence),
@@ -179,9 +181,11 @@ Visage spirituel, Présage de Randuin, Rédemption, mana et objets à mana (Arch
 âges, qui grandit avec le temps porté dans la timeline). Familiers : l'adversaire peut tuer le familier
 d'abord si ça l'arrange.
 
-Passifs : saisis champion par champion dans `data/mechanics.ts` par références aux fichiers du jeu (la liste à
-jour est sur la page Méthode). Indicateur théorique : autos et sorts s'enchaînent sans temps mort, sans kite
-après l'approche ni animations : c'est un plafond de dégâts, pas un replay de partie.
+Passifs : lus sur le wiki pour tout le roster (`scripts/passives.ts`) ; ceux saisis dans `data/mechanics.ts`
+par références aux fichiers du jeu l'emportent, et les deux sources concordent là où elles se recoupent
+(testé). Statut et raison de chaque champion sur la page Méthode et sous chaque labo. Indicateur théorique :
+autos et sorts s'enchaînent sans temps mort, sans kite après l'approche ni animations : c'est un plafond de
+dégâts, pas un replay de partie.
 
 ## Ajouter / affiner un champion
 
@@ -198,20 +202,24 @@ maintenance du patch se répartit.
 
 Le pipeline (`scripts/fetch-data.ts`, lancé par `deno task data`) combine trois sources :
 
-- **[Data Dragon](https://developer.riotgames.com/docs/lol#data-dragon)** (Riot) — résolution du patch et
-  liste des champions ; portraits carrés via **Community Dragon**.
-- **[Meraki / lolstaticdata](https://github.com/meraki-analytics/lolstaticdata)** — stats de base, ratios de
-  sorts (AP / AD / AD bonus) et stats plates d'objets, parsés du wiki. Peut avoir plusieurs patchs de retard.
+- **[Wiki officiel League of Legends](https://wiki.leagueoflegends.com/)** — API MediaWiki publique
+  (`scripts/wiki.ts`). `Module:ChampionData/data` (stats de base), `Module:ItemData/data` (stats d'objets), et
+  chaque sort **rendu par le wiki lui-même** (`Template:Data <Champion>/<Q>`) : valeurs par rang et par
+  niveau, ratios, descriptions des passifs. Remplace Meraki, abandonné (bloqué au patch 25.08).
 - **[CommunityDragon](https://raw.communitydragon.org/)** — les fichiers du jeu convertis en JSON, au patch
   près (`scripts/cdragon.ts`). Font foi pour les **cooldowns**, les **passifs** de `data/mechanics.ts`, et les
-  **nombres des sorts** (dégâts, boucliers, soins) quand la formule du jeu concorde avec Meraki à ×/÷ 1,3
-  près. Meraki garde la structure (type de dégâts, effets présents) ; au-delà de l'écart toléré, on soupçonne
-  un autre calcul (deux passages, charge max, par seconde…) et on garde Meraki en le signalant. Les formules
-  sont converties en `Formula` et évaluées par le moteur (`lib/formula.ts`).
+  **nombres des sorts** (dégâts, boucliers, soins) quand la formule du jeu concorde avec une ligne du wiki à
+  ×/÷ 1,3 près. Sinon on garde la valeur du wiki en le signalant. Les formules sont converties en `Formula` et
+  évaluées par le moteur (`lib/formula.ts`).
+- **[Data Dragon](https://developer.riotgames.com/docs/lol#data-dragon)** (Riot) — résolution du patch, liste
+  des champions, objets disponibles en classé, prix et recettes ; portraits via **Community Dragon**.
+
+En développement, `WIKI_CACHE=<dossier> deno task data` garde les réponses du wiki sur disque pour ne pas le
+solliciter à chaque essai.
 
 Les objets sont filtrés sur la **Faille de l'invocateur** (classé) via Data Dragon (`maps["11"]`) : objets
-complets et bottes (y compris améliorées), pas de composants ni d'objets ARAM/Arena. Les champions absents de
-Meraki (Locke, Yunara, Zaahen) sont générés depuis les fichiers du jeu ; `data/manual.ts` reste en secours.
+complets et bottes (y compris améliorées), pas de composants ni d'objets ARAM/Arena. Un champion pas encore
+sur le wiki serait généré depuis les fichiers du jeu ; `data/manual.ts` reste en secours.
 
 Les **infobulles** du client (CommunityDragon) donnent le sens que les formules n'ont pas : type de dégâts de
 chaque calcul, contrôles posés seulement sous condition (« If the target collides with terrain… », écartés),
@@ -220,8 +228,9 @@ visent.
 
 **Honnêteté :** le pipeline n'extrait que ce que le moteur sait déjà modéliser. Une formule de jeu qui utilise
 une brique non reconnue (cumul de buff, condition, stat au sens non vérifié) n'est **pas devinée** : elle est
-écartée et signalée. Les passifs se décrivent dans `data/mechanics.ts` par des références aux fichiers du jeu,
-sans chiffre saisi à la main. C'est un travail continu, idéal pour contribuer.
+écartée et signalée. Un passif dont la description du wiki pose une condition qu'un duel ne reproduit pas
+n'est pas joué ; sa raison est affichée. Pour en modéliser un, on le décrit dans `data/mechanics.ts` par des
+références aux fichiers du jeu, sans chiffre saisi à la main.
 
 Régénérer un patch précis :
 

@@ -11,10 +11,10 @@ export default define.page(function Champions() {
 
       <p class="page-lede">
         Choisis un champion pour ouvrir son labo. Le roster complet est généré depuis{" "}
-        <a href="/methode">Meraki + Data Dragon</a> (patch {DATA_META.patch}) — {DATA_META.champions}{" "}
-        champions. Les stats plates et ratios sont réels ; les mécaniques de kit vraiment complexes s'affinent
-        {" "}
-        <a href="/methode">fichier par fichier</a>.
+        <a href="/methode">wiki officiel + fichiers du jeu</a> (patch {DATA_META.patch}) —{" "}
+        {DATA_META.champions}{" "}
+        champions. Stats, sorts et passifs sont réels ; un passif conditionnel n'est pas joué, et{" "}
+        <a href="/methode">la page Méthode</a> dit pourquoi.
       </p>
 
       <section class="roster">

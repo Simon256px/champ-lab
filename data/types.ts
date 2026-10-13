@@ -82,6 +82,11 @@ export interface ScaledValue {
   base: number[];
   ratios: AbilityRatios;
   rankRatios?: Partial<Record<keyof AbilityRatios, number[]>>;
+  /**
+   * Part de base qui dépend du niveau du champion et non du rang (Mordekaiser Q,
+   * Shen Q…) : une valeur par niveau (index 0 = niveau 1), ajoutée à `base`.
+   */
+  levelBase?: number[];
 }
 
 export interface Ability {
@@ -97,6 +102,8 @@ export interface Ability {
    * Prioritaire sur `ratios` pour les clés présentes. Index 0 = rang 1.
    */
   rankRatios?: Partial<Record<keyof AbilityRatios, number[]>>;
+  /** part de base qui suit le niveau du champion (une valeur par niveau), ajoutée à `base` */
+  levelBase?: number[];
   /** temps de recharge par rang, en secondes (avant ability haste). Absent = inconnu. */
   cooldown?: number[];
   /**
@@ -177,7 +184,7 @@ export interface GameRef {
 }
 
 /**
- * Mécanique de kit absente de Meraki (passifs surtout). Saisie dans
+ * Mécanique de kit (passifs surtout), saisie par références au jeu ou lue sur le wiki. Saisie dans
  * data/mechanics.ts avec des GameRef, résolue en Formula dans
  * data/generated/mechanics.gen.ts, appliquée par le moteur en mode trade / all-in.
  */
@@ -197,6 +204,8 @@ export type Mechanic<A = Formula> =
     name: string;
     type: DamageType;
     damage: A;
+    /** autos chargées par sort (Taric : 2) ; 1 par défaut */
+    hits?: number;
     scale?: HpScale;
   }
   | {
@@ -240,7 +249,7 @@ export type Mechanic<A = Formula> =
     duration: A;
   }
   | {
-    /** donne des dégâts à un sort que Meraki laisse utilitaire (Fiora R : 4 points vitaux) */
+    /** donne des dégâts à un sort que le wiki laisse utilitaire (Fiora R : 4 points vitaux) */
     kind: "abilityDamage";
     key: AbilityKey;
     type: DamageType;
@@ -270,6 +279,18 @@ export type Mechanic<A = Formula> =
     slamCooldown?: A;
     slamCc?: A;
   };
+
+/** Ce que le site sait du passif d'un champion (affiché sur /methode et dans le labo). */
+export interface PassiveStatus {
+  /** modeled : dégâts joués par le moteur ; conditional : dégâts sous condition non reproduite ; utility : sans dégâts */
+  verdict: "modeled" | "conditional" | "utility";
+  /** d'où viennent les valeurs : fichiers du jeu (data/mechanics.ts) ou description du wiki */
+  source: "game" | "wiki";
+  /** phrase du wiki qui décrit l'effet retenu, ou la raison de l'exclusion */
+  note: string;
+  /** lecture du wiki pour un passif saisi depuis le jeu : sert à vérifier que les deux concordent */
+  wiki?: Mechanic[];
+}
 
 export interface Champion {
   id: string;

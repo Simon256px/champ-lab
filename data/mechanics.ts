@@ -1,7 +1,8 @@
 import type { GameRef, Mechanic } from "./types.ts";
 
 /**
- * Mécaniques de kit absentes de Meraki — passifs surtout.
+ * Mécaniques de kit saisies par références aux fichiers du jeu — passifs surtout.
+ * Elles l'emportent sur la lecture automatique du wiki (scripts/passives.ts).
  *
  * On ne saisit PAS de chiffres ici : chaque valeur est une référence (`GameRef`)
  * vers les fichiers du jeu (CommunityDragon), que `deno task data` résout au
@@ -15,7 +16,7 @@ import type { GameRef, Mechanic } from "./types.ts";
  *   periodic             dégâts (et soin) toutes les X secondes
  *   stackingAttackSpeed  VA bonus qui s'empile à chaque auto
  *   missingHpHeal        soin en % des PV manquants à chaque lancer d'un sort
- *   abilityDamage        donne des dégâts à un sort que Meraki laisse utilitaire
+ *   abilityDamage        donne des dégâts à un sort que le wiki laisse utilitaire
  *   pet                  familier invoqué (Daisy) : attaques, onde de choc, PV
  *   afterAbility         chaque sort charge la prochaine auto (Riven, Lux)
  *   parry                parade : bloque le plus gros coup et le plus long contrôle adverses
