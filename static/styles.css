@@ -1772,3 +1772,12 @@ text.mu-b {
     animation: none !important;
   }
 }
+
+/* Statut du passif sous le labo */
+.passive-status {
+  margin-top: 16px;
+}
+.passive-status .phead .small {
+  margin-left: auto;
+  opacity: .8;
+}

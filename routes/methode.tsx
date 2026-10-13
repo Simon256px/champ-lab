@@ -1,11 +1,15 @@
 import { define } from "@/utils.ts";
 import { DATA_META } from "@/data/generated/meta.gen.ts";
+import { GENERATED_PASSIVES } from "@/data/generated/passives.gen.ts";
 import { CHAMPION_LIST } from "@/data/champions.ts";
 import { RUNE_LIST } from "@/data/runes.ts";
 
-/** Champions dont le passif (ou une mécanique de kit) est modélisé. */
-const PASSIVES = CHAMPION_LIST.filter((c) => c.mechanics?.length || c.hasBleed).map((c) => c.name);
 const RUNES_MODELED = RUNE_LIST.filter((r) => r.kind !== "none").length;
+const byVerdict = (v: "modeled" | "conditional" | "utility") =>
+  CHAMPION_LIST.filter((c) => GENERATED_PASSIVES[c.id]?.verdict === v);
+const MODELED = byVerdict("modeled");
+const CONDITIONAL = byVerdict("conditional");
+const UTILITY = byVerdict("utility");
 
 export default define.page(function Methode() {
   return (
@@ -20,68 +24,69 @@ export default define.page(function Methode() {
             <span class="tag">DONNÉES</span>
           </div>
           <div class="pbody">
-            <h3>D'où viennent les chiffres — 3 sources</h3>
+            <h3>D'où viennent les chiffres — 3 sources, toutes à jour au patch</h3>
             <ul>
               <li>
-                <b>Data Dragon</b> (Riot) — liste des champions, objets, runes, disponibilité en classé et
+                <b>Wiki officiel League of Legends</b> (<code>wiki.leagueoflegends.com</code>, API publique)
                 {" "}
-                <b>images officielles</b>. Fiable pour les stats plates.
+                — stats de base de chaque champion, sorts rendus par le wiki lui-même (valeurs par rang et par
+                niveau, ratios), descriptions des passifs et stats des objets. Dernier changement de champion
+                noté : patch <b>{DATA_META.statsPatch}</b>.
               </li>
               <li>
                 <b>Community Dragon</b>{" "}
-                — les fichiers du jeu convertis en JSON, au patch près : cooldowns et valeurs des passifs
-                (formules du jeu évaluées par le moteur), plus des assets graphiques.
+                — les fichiers du jeu convertis en JSON, au patch près : formules exactes des sorts,
+                cooldowns, contrôles, runes, effets d'objets et passifs saisis par référence.
               </li>
               <li>
-                <b>Meraki (lolstaticdata)</b>{" "}
-                — données détaillées des compétences et calculs (ratios AP / AD), que Data Dragon n'expose pas
-                proprement.
+                <b>Data Dragon</b>{" "}
+                (Riot) — liste des champions, objets disponibles en classé, prix, recettes et{" "}
+                <b>images officielles</b>.
               </li>
             </ul>
             <p>
               Le pipeline est <b>branché</b> : <code>deno task data</code> récupère tout le roster et génère
               {" "}
               <code>data/generated/</code>. Roster actuel : <b>{DATA_META.champions} champions</b>,{" "}
-              <b>{DATA_META.items} objets</b> et <b>{DATA_META.runes} runes</b> (généré le{" "}
-              {DATA_META.generatedAt}).
+              <b>{DATA_META.items} objets</b> et <b>{DATA_META.runes} runes</b> (patch{" "}
+              {DATA_META.patch}, généré le {DATA_META.generatedAt}).
             </p>
             <p>
-              <b>Provenance honnête.</b> Liste, runes et icônes : Data Dragon{" "}
-              <b>{DATA_META.patch}</b>. Stats & ratios champions : Meraki, patch <b>{DATA_META.statsPatch}</b>
-              {" "}
-              — Meraki peut être en retard sur le patch courant. Un audit croisé (<code>
-                deno task audit
-              </code>) mesure la concordance avec Data Dragon et signale les écarts.
-            </p>
-            <p>
-              <b>Couverture des kits.</b> Passifs modélisés (valeurs du jeu) pour{" "}
-              <b>{PASSIVES.length} champions sur {CHAMPION_LIST.length}</b> :{" "}
-              {PASSIVES.join(", ")}. Les autres ont leurs sorts complets mais pas encore leur passif — à
-              ajouter dans <code>data/mechanics.ts</code> (voir{" "}
-              <code>docs/adding-a-champion.md</code>). Runes :{" "}
-              <b>{RUNES_MODELED} keystones sur {RUNE_LIST.length}</b>{" "}
-              ont un effet dans le duel, les autres n'en ont pas dans un 1 contre 1 immobile.
-            </p>
-            <p>
-              <b>Valeurs du jeu.</b>{" "}
-              Pour rattraper ce retard, les nombres des sorts viennent des fichiers du jeu (CommunityDragon,
-              patch {DATA_META.patch}) quand leur formule concorde avec Meraki à ×/÷ 1,3 près :{" "}
-              <b>{DATA_META.gameFormulas.damage} sorts de dégâts</b> (dont {DATA_META.gameFormulas.changed}
-              {" "}
-              qui avaient bougé depuis Meraki), {DATA_META.gameFormulas.shield} boucliers et{" "}
-              {DATA_META.gameFormulas.heal} soins. Restent sur Meraki : {DATA_META.gameFormulas.keptPercent}
-              {" "}
-              sorts en % des PV (le sens du pourcentage n'est pas dans la formule),{" "}
-              {DATA_META.gameFormulas.keptNone} sans calcul exploitable et{" "}
+              <b>Double vérification.</b>{" "}
+              Les nombres des sorts viennent des fichiers du jeu quand leur formule concorde avec le wiki à
+              ×/÷ 1,3 près : <b>{DATA_META.gameFormulas.damage} sorts de dégâts</b>,{" "}
+              {DATA_META.gameFormulas.shield} boucliers et {DATA_META.gameFormulas.heal}{" "}
+              soins. Les autres gardent la valeur du wiki : {DATA_META.gameFormulas.keptPercent}{" "}
+              en % des PV (le sens du pourcentage n'est pas dans la formule du jeu),{" "}
+              {DATA_META.gameFormulas.keptNone} sans calcul exploitable dans le jeu et{" "}
               {DATA_META.gameFormulas.keptMismatch}{" "}
-              dont l'écart trahit un autre calcul (deux passages, charge max, par seconde…).
+              dont le calcul du jeu ne correspond à aucune ligne du wiki.
             </p>
             <p>
-              ⚠ Le pipeline n'extrait que ce que le moteur sait modéliser : stats de base, ratios AP / AD / AD
-              bonus et par rang, dégâts en % des PV, boucliers et soins des sorts, cooldowns, stats plates
-              d'objets (dont VA, crit, vol de vie). Les passifs et mécaniques conditionnelles ne sont{" "}
-              <b>pas inventés</b> — ils se saisissent à la main dans <code>data/mechanics.ts</code>{" "}
-              (Fiora, Jax, Vayne pour l'instant) ou <code>lib/engine.ts</code>, champion par champion.
+              <b>Passifs — les {CHAMPION_LIST.length} champions ont un statut.</b>{" "}
+              <b>{MODELED.length} modélisés</b>{" "}
+              (dégâts à chaque coup, tous les N coups ou sur l'auto qui suit un sort) :{" "}
+              {MODELED.map((c) => c.name).join(", ")}. Valeurs des fichiers du jeu quand le passif est saisi
+              dans{" "}
+              <code>data/mechanics.ts</code>, sinon lues sur le wiki — les deux concordent là où elles se
+              recoupent (testé). <b>{CONDITIONAL.length} conditionnels</b>{" "}
+              (PV bas, cible isolée ou marquée, une fois par cible, recharge réduite par les coups…) : non
+              joués, pour ne rien inventer. <b>{UTILITY.length} sans dégâts</b>{" "}
+              (vitesse, furtivité, ressource, soin…). Runes :{" "}
+              <b>{RUNES_MODELED} keystones sur {RUNE_LIST.length}</b> ont un effet dans le duel.
+            </p>
+            <details>
+              <summary>Pourquoi chaque passif conditionnel n'est pas joué</summary>
+              <ul class="small">
+                {CONDITIONAL.map((c) => (
+                  <li key={c.id}>
+                    <b>{c.name}</b> — <i>{GENERATED_PASSIVES[c.id].note}</i>
+                  </li>
+                ))}
+              </ul>
+            </details>
+            <p class="small">
+              Textes des passifs cités depuis le wiki League of Legends (CC BY-SA).
             </p>
           </div>
         </section>

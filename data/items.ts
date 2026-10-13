@@ -2,9 +2,9 @@ import type { Item } from "@/data/types.ts";
 import { GENERATED_ITEMS } from "@/data/generated/items.gen.ts";
 
 /**
- * Objets — générés depuis Meraki à chaque patch (`deno task data`).
+ * Objets — générés depuis le wiki officiel et Data Dragon à chaque patch (`deno task data`).
  *
- * Les stats plates viennent de Meraki ; les passifs que le moteur sait modéliser
+ * Les stats plates viennent du wiki et de Data Dragon ; les passifs que le moteur sait modéliser
  * (Rabadon %AP, Fendoir %pén.) sont réinjectés via data/overrides.ts. On garde
  * les légendaires + bottes portant une stat exploitable, plus les starters,
  * composants et objets épiques (prix + recette) pour la timeline de build.

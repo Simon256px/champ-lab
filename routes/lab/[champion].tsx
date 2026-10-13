@@ -1,6 +1,13 @@
 import { define } from "@/utils.ts";
 import { CHAMPION_LIST, CHAMPIONS } from "@/data/champions.ts";
+import { GENERATED_PASSIVES } from "@/data/generated/passives.gen.ts";
 import ChampLab from "@/islands/ChampLab.tsx";
+
+const VERDICT = {
+  modeled: "MODÉLISÉ",
+  conditional: "NON JOUÉ — CONDITIONNEL",
+  utility: "SANS DÉGÂTS",
+} as const;
 
 export default define.page(function LabPage(ctx) {
   const id = ctx.params.champion;
@@ -28,6 +35,8 @@ export default define.page(function LabPage(ctx) {
     );
   }
 
+  const passive = GENERATED_PASSIVES[champion.id];
+
   return (
     <main>
       <div class="divider">
@@ -49,6 +58,28 @@ export default define.page(function LabPage(ctx) {
 
       {/* Tout l'interactif est dans cet unique îlot : c'est le seul JS hydraté de la page. */}
       <ChampLab champion={champion} />
+
+      {passive && (
+        <section class="panel passive-status">
+          <div class="phead">
+            <span class="tag">PASSIF</span>
+            <span class="small">
+              {VERDICT[passive.verdict]} · {passive.source === "game" ? "valeurs du jeu" : "wiki officiel"}
+            </span>
+          </div>
+          <div class="pbody">
+            <p class="small">
+              <i>{passive.note}</i>
+            </p>
+            {passive.verdict === "conditional" && (
+              <p class="small">
+                Ce passif inflige des dégâts sous une condition qu'un duel immobile ne reproduit pas
+                fidèlement : il n'est pas compté dans le combo plutôt que deviné.
+              </p>
+            )}
+          </div>
+        </section>
+      )}
     </main>
   );
 });

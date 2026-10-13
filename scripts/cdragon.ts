@@ -4,13 +4,13 @@
  *   https://raw.communitydragon.org/<patch>/game/data/characters/<id>/<id>.bin.json
  *
  * C'est la source la plus à jour pour les valeurs de sorts (cooldowns, ratios,
- * passifs) : elle suit chaque patch, là où Meraki peut avoir des mois de retard.
+ * passifs) : elle suit chaque patch, là où une source tierce peut prendre du retard.
  * Ce module lit un fichier de champion et convertit ses formules (« GameCalculation »)
  * en `Formula` (data/types.ts), que le moteur évalue (lib/formula.ts).
  *
  * Honnêteté : on ne convertit que les briques dont le sens est vérifié. Une
  * formule qui utilise une brique inconnue (cumul de buff, condition, stat non
- * identifiée…) renvoie null — l'appelant retombe alors sur Meraki et le signale.
+ * identifiée…) renvoie null — l'appelant retombe alors sur le wiki et le signale.
  */
 
 import type { AbilityKey, Formula, GameRef, ItemRef, StatRef } from "../data/types.ts";
@@ -68,7 +68,7 @@ export function cooldowns(spell: Json, maxRank: number): number[] | undefined {
 }
 
 /**
- * Stats vérifiées sur des sorts connus, recoupées avec les unités Meraki :
+ * Stats vérifiées sur des sorts connus, recoupées avec les unités du wiki :
  *   0 AP (Ahri) · 1 armure (Malphite E) · 2 AD · 4 VA (Akshan E « par 100 % de VA
  *   bonus », passif de Jhin) · 6 RM (Sejuani) · 8 chance de crit (passif de Jhin,
  *   Caitlyn) · 9 dégâts critiques (Aphelios R) · 12 PV (Garen W, Malphite) ·
@@ -560,7 +560,7 @@ export function itemAsSpell(item: Json): Json {
   };
 }
 
-/** Stats d'objet que Data Dragon et Meraki n'exposent pas : dégâts critiques bonus, ténacité. */
+/** Stats d'objet que Data Dragon et le wiki n'exposent pas : dégâts critiques bonus, ténacité. */
 export function itemExtraStats(
   item: Json,
 ): { critDamage?: number; tenacity?: number; healShieldPower?: number } {

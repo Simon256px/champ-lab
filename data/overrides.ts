@@ -6,7 +6,7 @@
  * dérivent PAS d'une API :
  *
  *   1. Les PASSIFS complexes que le moteur modélise déjà (Rabadon %AP,
- *      Fendoir %pén.) : Meraki les met en texte, pas en stat plate. On les
+ *      Fendoir %pén.) : le wiki les met en texte, pas en stat plate. On les
  *      réinjecte ici, exactement comme la donnée était saisie avant.
  *   2. Les CHOIX de théorycraft : quels objets proposer sur l'étagère d'un
  *      champion, quelle rune keystone par défaut, l'ordre de compétences, et
@@ -31,6 +31,16 @@ export const DEFAULT_AP_SHELF = [
   "zhonyashourglass",
 ];
 
+/** Tireurs (AD à distance) : bottes de VA, critique et à l'impact. */
+export const DEFAULT_MARKSMAN_SHELF = [
+  "berserkersgreaves",
+  "krakenslayer",
+  "infinityedge",
+  "phantomdancer",
+  "lorddominiksregards",
+  "bloodthirster",
+];
+
 export const DEFAULT_AD_SHELF = [
   "ionianbootsoflucidity",
   "stridebreaker",
@@ -52,7 +62,7 @@ export const ITEM_WHITELIST: string[] = [
 ];
 
 // ---------------------------------------------------------------------------
-// Overrides d'objets : passifs que le moteur sait modéliser mais que Meraki
+// Overrides d'objets : passifs que le moteur sait modéliser mais que le wiki
 // n'expose pas en stat plate.
 // ---------------------------------------------------------------------------
 
@@ -66,7 +76,7 @@ interface ItemOverride {
 export const ITEM_OVERRIDES: Record<string, ItemOverride> = {
   // Coiffe de Rabadon : +30% de puissance (passif « Opus magique »).
   rabadonsdeathcap: { short: "RABADON", stats: { apAmp: 0.30 } },
-  // Bâton du Vide : la %pén.M est déjà une stat plate côté Meraki — rien à ajouter,
+  // Bâton du Vide : la %pén.M est déjà une stat plate côté wiki — rien à ajouter,
   // mais on fige le libellé court.
   voidstaff: { short: "VOID" },
   // Fendoir noir : le shred d'armure en % est un passif (pas une stat) → modélisé.
@@ -94,6 +104,12 @@ interface AbilityOverride {
    * le contrôle, false = le compter malgré l'infobulle.
    */
   conditionalCc?: boolean;
+  /**
+   * Ligne de progression du wiki à retenir comme dégâts du sort (« Total Mixed
+   * Damage ») quand celle choisie par défaut n'est qu'une partie du sort. Aucun
+   * chiffre saisi : les valeurs restent celles du patch.
+   */
+  line?: string;
   type?: "magic" | "physical" | "true" | "util";
   base?: number[];
   ratios?: AbilityRatios;
@@ -126,10 +142,10 @@ export const CHAMPION_OVERRIDES: Record<string, ChampionOverride> = {
     keystone: "electrocute",
     skillOrder: ["Q", "W", "E", "Q", "Q", "R", "Q", "E", "Q", "E", "R", "E", "E", "W", "W", "R", "W", "W"],
     abilities: {
-      // L'orbe frappe à l'aller ET au retour. Meraki expose « Damage Per Pass » (retenu
+      // L'orbe frappe à l'aller ET au retour. Le wiki expose « Damage Per Pass » (retenu
       // par défaut) et « Total Mixed Damage » : on prend le total des deux passages
       // (le retour est en vrai dégât ; approximé en magique).
-      Q: { base: [80, 130, 180, 230, 280], ratios: { ap: 1 } },
+      Q: { line: "Total Mixed Damage" },
     },
     shelf: [
       "sorcerersshoes",
@@ -165,7 +181,7 @@ export const CHAMPION_OVERRIDES: Record<string, ChampionOverride> = {
     skillOrder: ["Q", "E", "W", "Q", "Q", "R", "Q", "W", "Q", "W", "R", "W", "W", "E", "E", "R", "E", "E"],
     shelf: ["stridebreaker", "blackcleaver", "trinityforce", "deathsdance"],
     abilities: {
-      // La guillotine noxienne est du vrai dégât exécutant — Meraki l'encode bien,
+      // La guillotine noxienne est du vrai dégât exécutant — le wiki l'encode bien,
       // mais on verrouille le type pour l'invariant d'exécution du moteur.
       R: { type: "true" },
     },

@@ -3,16 +3,16 @@
  *
  *   deno task audit
  *
- * Le pipeline (fetch-data.ts) tire les stats de Meraki. Cet audit les recroise
+ * Le pipeline (fetch-data.ts) tire les stats du wiki officiel. Cet audit les recroise
  * avec une source INDÉPENDANTE (Data Dragon) pour détecter les écarts :
  *
  *   - Data Dragon  → stats de base des champions (source de vérité "plate"),
  *                    stats plates d'objets.
  *   - Community Dragon → présence des assets (icônes) référencés.
- *   - Meraki (via data/generated) → ce que l'app utilise réellement.
+ *   - Wiki officiel (via data/generated) → ce que l'app utilise réellement.
  *
  * On ne prétend pas re-vérifier les ratios de sorts (Data Dragon ne les donne
- * pas proprement — c'est justement pourquoi on utilise Meraki). On vérifie ce
+ * pas proprement — c'est justement pourquoi on lit le wiki et les fichiers du jeu). On vérifie ce
  * qui est vérifiable de façon croisée, et on liste le reste comme "non vérifié".
  *
  * Sortie : un rapport lisible + un code de sortie non nul si des écarts au-delà
@@ -27,7 +27,7 @@ import { DATA_META } from "../data/generated/meta.gen.ts";
 const DDRAGON = "https://ddragon.leagueoflegends.com";
 const PATCH = DATA_META.patch;
 
-// Tolérance relative sur les stats numériques (arrondis Meraki vs DD).
+// Tolérance relative sur les stats numériques (arrondis wiki vs DD).
 const TOL = 0.02;
 
 interface Issue {
@@ -48,29 +48,14 @@ async function fetchJson<T>(url: string): Promise<T> {
   return r.json() as Promise<T>;
 }
 
-// --- 0. Provenance : sur quel patch Meraki "latest" est-il réellement ? ---
-async function auditProvenance() {
-  const m = await fetchJson<{ patchLastChanged?: string }>(
-    "https://cdn.merakianalytics.com/riot/lol/resources/latest/en-US/champions/LeeSin.json",
-  );
-  const merakiPatch = m.patchLastChanged ?? "?";
-  const ddMajor = PATCH.split(".").slice(0, 2).join(".");
+// --- 0. Provenance : fraîcheur de la source (dernier patch noté par le wiki) ---
+function auditProvenance() {
   console.log(`  Data Dragon : ${PATCH}`);
-  console.log(`  Meraki latest (échantillon Lee Sin) : patch ${merakiPatch}`);
-  if (merakiPatch !== "?" && !PATCH.startsWith(merakiPatch.split(".")[0])) {
-    issues.push({
-      severity: "info",
-      entity: "PIPELINE",
-      field: "provenance",
-      detail: `Meraki 'latest' est sur ${merakiPatch}, Data Dragon sur ${ddMajor}. Les stats plates ` +
-        `(champions & objets) sont recroisées avec Data Dragon par le pipeline ; seuls les ratios de ` +
-        `sorts et l'AD/niveau restent tributaires de Meraki.`,
-    });
-  }
+  console.log(`  Wiki officiel : dernier changement de champion noté au patch ${DATA_META.statsPatch}`);
   console.log();
 }
 
-// --- 1. Stats de base des champions : généré (Meraki) vs Data Dragon ---
+// --- 1. Stats de base des champions : généré (wiki) vs Data Dragon ---
 async function auditChampions() {
   const dd = await fetchJson<{ data: Record<string, { id: string }> }>(
     `${DDRAGON}/cdn/${PATCH}/data/en_US/champion.json`,
@@ -97,7 +82,7 @@ async function auditChampions() {
     const s = full.data[ddId].stats;
     // NB : Data Dragon renvoie systématiquement `attackdamageperlevel = 0`
     // (bug connu de longue date). C'est exactement pourquoi le projet tire ses
-    // stats de Meraki et non de DD. On EXCLUT donc ce champ du croisement (le
+    // stats du wiki et non de DD. On EXCLUT donc ce champ du croisement (le
     // comparer donnerait 170 faux positifs). Les autres champs DD sont fiables.
     const pairs: Array<[string, number, number]> = [
       ["ad", champ.base.ad, s.attackdamage],
@@ -125,14 +110,14 @@ async function auditChampions() {
   }
 }
 
-// --- 2. Stats plates d'objets : généré (Meraki) vs Data Dragon ---
+// --- 2. Stats plates d'objets : généré (wiki) vs Data Dragon ---
 async function auditItems() {
   const dd = await fetchJson<
     { data: Record<string, { name: string; description?: string } & Record<string, unknown>> }
   >(
     `${DDRAGON}/cdn/${PATCH}/data/en_US/item.json`,
   );
-  // DD ne structure pas les stats aussi proprement que Meraki ; on vérifie via
+  // DD ne structure pas les stats aussi proprement que le wiki ; on vérifie via
   // le bloc `stats` de DD quand il existe (clés type FlatPhysicalDamageMod…).
   // ⚠ Un même nom existe en plusieurs variantes (ids 22XXXX = équilibrage ARAM,
   // hors Faille) : on croise par id numérique (celui de l'URL d'icône) et le
@@ -200,9 +185,9 @@ async function auditIcons() {
 
 async function main() {
   console.log(`▶ Audit des stats — patch ${PATCH}`);
-  console.log("  Croisement Meraki (généré) ↔ Data Dragon ↔ Community Dragon…\n");
+  console.log("  Croisement wiki (généré) ↔ Data Dragon ↔ Community Dragon…\n");
 
-  await auditProvenance();
+  auditProvenance();
   await auditChampions();
   await auditItems();
   await auditIcons();
@@ -234,9 +219,9 @@ async function main() {
   console.log(`Taux de concordance : ${rate}% (${checked - ecarts.length}/${checked})`);
   console.log(
     `\nNon recroisés par choix :\n` +
-      `  · ${infoAdPerLevel}× base.adPerLevel — Data Dragon renvoie 0 (bug connu) ; Meraki fait foi.\n` +
-      `  · ratios de sorts — Data Dragon ne les expose pas proprement (raison d'être de Meraki).\n` +
-      `    Ils restent 'illustratifs à raffiner'.`,
+      `  · ${infoAdPerLevel}× base.adPerLevel — Data Dragon renvoie 0 (bug connu) ; le wiki fait foi.\n` +
+      `  · ratios de sorts — Data Dragon ne les expose pas proprement (lus sur le wiki et dans le jeu).\n` +
+      `    Ils sont recoupés avec les formules du jeu dans le pipeline (${DATA_META.gameFormulas.damage} sorts concordent).`,
   );
 
   if (ecarts.length) Deno.exit(1);

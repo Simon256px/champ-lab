@@ -1,5 +1,5 @@
 /**
- * PIPELINE DE DONNÉES — Meraki (lolstaticdata) + Data Dragon → data/generated/
+ * PIPELINE DE DONNÉES — wiki officiel + fichiers du jeu + Data Dragon → data/generated/
  *
  * C'est LE chantier annoncé dans le README : brancher un vrai pipeline versionné
  * par patch au lieu de saisir les champions à la main.
@@ -9,7 +9,8 @@
  *
  * Ce que fait le script :
  *   1. résout le patch (Data Dragon /api/versions.json) ;
- *   2. récupère TOUS les champions + objets depuis Meraki ;
+ *   2. récupère TOUS les champions + objets depuis le wiki officiel
+ *      (wiki.leagueoflegends.com, à jour au patch : stats, sorts rendus, objets) ;
  *   3. les projette sur les types du domaine (data/types.ts) — on n'extrait que
  *      ce que le moteur sait modéliser (stats plates, ratios AP / AD / bonus AD) ;
  *   4. fusionne des "overrides" écrits à la main (data/overrides.ts) pour les
@@ -41,6 +42,7 @@ import type {
   ItemTier,
   KitSheet,
   Mechanic,
+  PassiveStatus,
   RuneKind,
   ScaledValue,
   StatRef,
@@ -80,17 +82,31 @@ import {
   CHAMPION_OVERRIDES,
   DEFAULT_AD_SHELF,
   DEFAULT_AP_SHELF,
+  DEFAULT_MARKSMAN_SHELF,
   ITEM_OVERRIDES,
   ITEM_WHITELIST,
 } from "../data/overrides.ts";
+import {
+  fetchChampionData,
+  fetchDamageTypes,
+  fetchItemData,
+  fetchWikiAbilities,
+  numberList,
+  pool,
+  type WikiAbility,
+  type WikiChampionData,
+  type WikiItem,
+  type WikiKey,
+} from "./wiki.ts";
+import { readPassive } from "./passives.ts";
 
-const MERAKI = "https://cdn.merakianalytics.com/riot/lol/resources/latest/en-US";
 const DDRAGON = "https://ddragon.leagueoflegends.com";
 
 const OUT_DIR = new URL("../data/generated/", import.meta.url);
 
 // ---------------------------------------------------------------------------
-// Types bruts (partiels) des réponses Meraki — juste ce qu'on consomme.
+// Format intermédiaire (hérité de Meraki, que le wiki remplace) : le wiki est
+// projeté dessus dans championFromWiki / itemFromWiki.
 // ---------------------------------------------------------------------------
 
 interface MStat {
@@ -133,7 +149,7 @@ interface MChampion {
   key: string;
   name: string;
   title: string;
-  /** dernier patch où Meraki a mis à jour ce champion (peut être ancien) */
+  /** dernier patch où le wiki a noté un changement pour ce champion (« 26.16 ») */
   patchLastChanged?: string;
   adaptiveType?: string;
   attackType?: string;
@@ -202,7 +218,7 @@ function slugify(id: string): string {
 
 const round = (n: number, p = 2) => Math.round(n * 10 ** p) / 10 ** p;
 
-/** Type de dégâts d'un sort, déduit du champ Meraki (fallback : magique/util). */
+/** Type de dégâts d'un sort, déduit du champ du wiki (fallback : magique/util). */
 function damageType(m: string | undefined, hasDamage: boolean): DamageType {
   if (!hasDamage) return "util";
   switch (m) {
@@ -220,7 +236,7 @@ function damageType(m: string | undefined, hasDamage: boolean): DamageType {
 }
 
 /**
- * Convertit une unité Meraki en clé de ratio du domaine (ou null si non modélisé).
+ * Convertit une unité du wiki en clé de ratio du domaine (ou null si non modélisé).
  * Les unités composées (« 3 % (+ 0,55 % par 100 AP) des PV max de la cible »)
  * gardent leur part fixe : le bonus par 100 AP est ignoré.
  */
@@ -240,7 +256,7 @@ function ratioKeyFromUnit(unit: string): keyof AbilityRatios | null {
 
 /**
  * Choisit la ligne de dégâts "principale" d'un sort parmi les entrées de
- * leveling de Meraki. Heuristique : on privilégie un attribut dont le nom
+ * progression du wiki. Heuristique : on privilégie un attribut dont le nom
  * contient "Damage", en écartant les "Total"/"Maximum"/"Reduced"/"Minimum"/
  * "Per Stack" qui sont des variantes/plafonds. À défaut, une variante ; sinon rien.
  */
@@ -265,14 +281,20 @@ function pickDamageLeveling(ability: MAbility): MLeveling | null {
   return levelings.find((l) => isDamage(l.attribute)) ?? null;
 }
 
-/** Projette une ligne de leveling Meraki sur base[] par rang + ratios (fixes ou par rang). */
+/** Projette une ligne de progression du wiki sur base[] par rang + ratios (fixes ou par rang). */
 function scaledFromLeveling(lv: MLeveling): ScaledValue | null {
   let base: number[] = [];
   const ratios: AbilityRatios = {};
   const rankRatios: Partial<Record<keyof AbilityRatios, number[]>> = {};
 
+  let levelBase: number[] | undefined;
   for (const mod of lv.modifiers) {
     const units = mod.units;
+    // Base qui suit le niveau du champion (infobulle « based on level » du wiki).
+    if (units[0] === "by level" && !levelBase) {
+      levelBase = mod.values.map((v) => round(v));
+      continue;
+    }
     // Un modifier "flat" a ses unités vides ("").
     if (units.every((u) => u.trim() === "")) {
       if (base.length === 0) base = mod.values.map((v) => round(v));
@@ -286,16 +308,39 @@ function scaledFromLeveling(lv: MLeveling): ScaledValue | null {
     if (values.some((v) => v !== values[0])) rankRatios[key] = values;
   }
 
-  if (base.length === 0 && Object.keys(ratios).length === 0) return null;
+  if (base.length === 0 && !levelBase && Object.keys(ratios).length === 0) return null;
   if (base.length === 0) base = [0];
-  return Object.keys(rankRatios).length ? { base, ratios, rankRatios } : { base, ratios };
+  return {
+    base,
+    ratios,
+    ...(Object.keys(rankRatios).length ? { rankRatios } : {}),
+    ...(levelBase ? { levelBase } : {}),
+  };
 }
 
-/** Extrait base[] par rang + ratios depuis la ligne de dégâts choisie. */
-function extractAbilityDamage(ability: MAbility): ScaledValue | null {
-  const lv = pickDamageLeveling(ability);
-  return lv ? scaledFromLeveling(lv) : null;
+/**
+ * Autres lignes de dégâts du sort (« Total Damage », « Epicenter Damage »…) : si la
+ * ligne choisie ne correspond à aucun calcul du jeu, celle qui correspond l'emporte.
+ */
+function alternativeDamages(ability: MAbility, chosen: MLeveling | null): ScaledValue[] {
+  const out: ScaledValue[] = [];
+  for (const eff of ability.effects) {
+    for (const lv of eff.leveling ?? []) {
+      if (lv === chosen) continue;
+      if (!/damage/i.test(lv.attribute)) continue;
+      if (
+        /(attack damage|reduction|amplif|taken|stored|absorbed|blocked|minion|monster|structure|turret)/i
+          .test(lv.attribute)
+      ) continue;
+      const v = scaledFromLeveling(lv);
+      if (v) out.push(v);
+    }
+  }
+  return out;
 }
+
+/** Lignes de dégâts alternatives par sort (`id/Q`), consultées par applyGameFormulas. */
+const DAMAGE_ALTERNATIVES = new Map<string, ScaledValue[]>();
 
 /**
  * Bouclier ou soin d'un sort : première ligne dont l'attribut correspond, en
@@ -314,8 +359,125 @@ function extractEffect(ability: MAbility, match: RegExp, exclude: RegExp): Scale
 }
 
 // ---------------------------------------------------------------------------
+// Wiki officiel → format intermédiaire
+// ---------------------------------------------------------------------------
+
+/** « Magic », « Physical True »… (champ `damagetype` du wiki) → type du format intermédiaire. */
+function wikiDamageType(t: string | undefined): string | undefined {
+  if (!t) return undefined;
+  const kinds = new Set(t.toLowerCase().match(/magic|physical|true/g) ?? []);
+  if (kinds.size > 1) return "MIXED_DAMAGE";
+  const [k] = kinds;
+  return k === "magic"
+    ? "MAGIC_DAMAGE"
+    : k === "physical"
+    ? "PHYSICAL_DAMAGE"
+    : k === "true"
+    ? "TRUE_DAMAGE"
+    : undefined;
+}
+
+function abilityFromWiki(box: WikiAbility, damageType: string | undefined): MAbility {
+  const cd = numberList(box.stats["COOLDOWN"] ?? "");
+  return {
+    name: box.name,
+    damageType: wikiDamageType(damageType),
+    effects: box.rows.map((r) => ({ description: r.text, leveling: r.leveling })),
+    cooldown: cd ? { modifiers: [{ units: [""], values: cd }] } : null,
+  };
+}
+
+/** Champion du wiki (stats de Module:ChampionData, sorts rendus) au format intermédiaire. */
+function championFromWiki(
+  w: WikiChampionData,
+  abilities: Partial<Record<WikiKey, WikiAbility[]>>,
+  types: Partial<Record<WikiKey, string>> | undefined,
+): MChampion {
+  const s = w.stats;
+  const stat = (base: string, lvl: string): MStat => ({ flat: s[base] ?? 0, perLevel: s[lvl] ?? 0 });
+  return {
+    id: w.id,
+    key: w.apiname,
+    name: w.name,
+    title: w.title,
+    patchLastChanged: w.changes?.replace(/^V/i, ""),
+    adaptiveType: w.adaptivetype === "Physical" ? "PHYSICAL_DAMAGE" : "MAGIC_DAMAGE",
+    attackType: w.rangetype,
+    stats: {
+      attackDamage: stat("dam_base", "dam_lvl"),
+      attackSpeed: stat("as_base", "as_lvl"),
+      attackSpeedRatio: { flat: s.as_ratio ?? 0, perLevel: 0 },
+      attackRange: { flat: s.range ?? 0, perLevel: 0 },
+      // Dégâts critiques propres au champion : lus dans les fichiers du jeu plus loin.
+      criticalStrikeDamage: { flat: 175, perLevel: 0 },
+      health: stat("hp_base", "hp_lvl"),
+      armor: stat("arm_base", "arm_lvl"),
+      magicResistance: stat("mr_base", "mr_lvl"),
+    },
+    abilities: Object.fromEntries(
+      (["Q", "W", "E", "R"] as const).map((
+        k,
+      ) => [k, (abilities[k] ?? []).map((b) => abilityFromWiki(b, types?.[k]))]),
+    ),
+  };
+}
+
+/** Clés de stats du wiki (Module:ItemData) → noms lus par mapItemStats. */
+const WIKI_ITEM_STATS: Record<string, [string, "flat" | "percent"]> = {
+  ad: ["attackDamage", "flat"],
+  ap: ["abilityPower", "flat"],
+  hp: ["health", "flat"],
+  armor: ["armor", "flat"],
+  mr: ["magicResistance", "flat"],
+  ah: ["abilityHaste", "flat"],
+  mpenflat: ["magicPenetration", "flat"],
+  mpen: ["magicPenetration", "percent"],
+  armpen: ["armorPenetration", "percent"],
+  lethality: ["lethality", "flat"],
+  as: ["attackSpeed", "percent"],
+  crit: ["criticalStrikeChance", "percent"],
+  lifesteal: ["lifesteal", "percent"],
+  omnivamp: ["omnivamp", "percent"],
+  mana: ["mana", "flat"],
+};
+
+/** Objet du wiki au format intermédiaire ; achetable = Data Dragon le dit et le wiki le range en boutique. */
+function itemFromWiki(w: WikiItem, purchasable: boolean): MItem {
+  const stats: Record<string, MItemStat> = {};
+  for (const [k, v] of Object.entries(w.stats)) {
+    const target = WIKI_ITEM_STATS[k];
+    if (!target) continue;
+    stats[target[0]] = { ...stats[target[0]], [target[1]]: v };
+  }
+  const special = w.type.some((t) => /distributed|special|turret|minion|consumable|trinket/i.test(t));
+  return {
+    id: w.id,
+    name: w.name,
+    rank: w.type.map((t) => t.toUpperCase()),
+    removed: false,
+    ...(w.champion ? { requiredChampion: w.champion } : {}),
+    shop: { purchasable: purchasable && !special },
+    stats,
+  };
+}
+
+// ---------------------------------------------------------------------------
 // Mapping champion
 // ---------------------------------------------------------------------------
+
+/** Un champion AD qui attaque à distance (≥ 425) joue en tireur : objets et rune de tireur. */
+const isMarksman = (adaptive: Adaptive, range: number | undefined) =>
+  adaptive === "AD" && (range ?? 0) >= 425;
+
+function defaultShelfFor(adaptive: Adaptive, range: number | undefined): string[] {
+  if (isMarksman(adaptive, range)) return DEFAULT_MARKSMAN_SHELF;
+  return adaptive === "AD" ? DEFAULT_AD_SHELF : DEFAULT_AP_SHELF;
+}
+
+function defaultKeystoneFor(adaptive: Adaptive, range: number | undefined): string {
+  if (isMarksman(adaptive, range)) return "lethaltempo";
+  return adaptive === "AD" ? "conqueror" : "electrocute";
+}
 
 const ABILITY_KEYS: AbilityKey[] = ["Q", "W", "E", "R"];
 
@@ -323,9 +485,8 @@ function mapChampion(m: MChampion, dd?: DDChampStats): Champion {
   const id = slugify(m.key);
   const ov = CHAMPION_OVERRIDES[id] ?? {};
 
-  // Stats plates : Data Dragon (versionné par patch) fait foi — Meraki "latest"
-  // peut être en retard d'un ou plusieurs patchs. Exception : adPerLevel, que
-  // Data Dragon renvoie à 0 (bug connu) → Meraki fait foi.
+  // Stats plates : Data Dragon (versionné par patch) fait foi. Exception :
+  // adPerLevel, que Data Dragon renvoie à 0 (bug connu) → le wiki fait foi.
   const pick = (ddv: number | undefined, mv: number) => (ddv && ddv > 0 ? ddv : mv);
   const base: ChampionBaseStats = {
     ad: round(pick(dd?.attackdamage, m.stats.attackDamage.flat)),
@@ -337,7 +498,7 @@ function mapChampion(m: MChampion, dd?: DDChampStats): Champion {
     mr: round(pick(dd?.spellblock, m.stats.magicResistance.flat)),
     mrPerLevel: round(pick(dd?.spellblockperlevel, m.stats.magicResistance.perLevel)),
     attackSpeed: round(pick(dd?.attackspeed, m.stats.attackSpeed?.flat ?? 0), 3),
-    // Le ratio n'existe que côté Meraki ; à défaut, il vaut la VA de base.
+    // Le ratio n'existe que côté wiki ; à défaut, il vaut la VA de base.
     attackSpeedRatio: round(
       m.stats.attackSpeedRatio?.flat || pick(dd?.attackspeed, m.stats.attackSpeed?.flat ?? 0.625),
       3,
@@ -360,7 +521,15 @@ function mapChampion(m: MChampion, dd?: DDChampStats): Champion {
       abilities[key] = { name: key, type: "util", maxRank: key === "R" ? 3 : 5, base: [0], ratios: {} };
       continue;
     }
-    const dmg = extractAbilityDamage(ma);
+    // Ligne imposée par data/overrides.ts (« Total Mixed Damage »), sinon choix par défaut.
+    const forced = ov.abilities?.[key]?.line;
+    const chosen = forced
+      ? ma.effects.flatMap((e) => e.leveling ?? []).find((l) => l.attribute === forced) ?? null
+      : pickDamageLeveling(ma);
+    if (forced && !chosen) console.warn(`  ⚠ ${id} ${key} : ligne « ${forced} » absente du wiki.`);
+    const dmg = chosen ? scaledFromLeveling(chosen) : null;
+    // Pas d'alternative quand la ligne est imposée : c'est elle qui fait foi.
+    DAMAGE_ALTERNATIVES.set(`${id}/${key}`, forced ? [] : alternativeDamages(ma, chosen));
     const type = damageType(ma.damageType, !!dmg);
     const maxRank = key === "R" ? 3 : 5;
     const cooldown = ma.cooldown?.modifiers?.[0]?.values?.map((v) => round(v));
@@ -373,15 +542,16 @@ function mapChampion(m: MChampion, dd?: DDChampStats): Champion {
       base: dmg?.base ?? [0],
       ratios: dmg?.ratios ?? {},
       ...(dmg?.rankRatios ? { rankRatios: dmg.rankRatios } : {}),
+      ...(dmg?.levelBase ? { levelBase: dmg.levelBase } : {}),
       ...(cooldown?.length ? { cooldown } : {}),
       ...(shield ? { shield } : {}),
       ...(heal ? { heal } : {}),
     };
   }
 
-  const defaultShelf = adaptive === "AD" ? DEFAULT_AD_SHELF : DEFAULT_AP_SHELF;
+  const defaultShelf = defaultShelfFor(adaptive, base.attackRange);
   // ids Data Dragon (slugifiés) des runes modélisées.
-  const defaultKeystone = adaptive === "AD" ? "conqueror" : "electrocute";
+  const defaultKeystone = defaultKeystoneFor(adaptive, base.attackRange);
 
   return {
     id,
@@ -391,7 +561,7 @@ function mapChampion(m: MChampion, dd?: DDChampStats): Champion {
     adaptive,
     hasBleed: ov.hasBleed,
     base,
-    // Ordre de compétences non fourni par Meraki (dépend du build). On applique
+    // Ordre de compétences non fourni par les sources (dépend du build). On applique
     // un ordre par défaut raisonnable : max Q > W > E, ult aux niv 6/11/16 ;
     // un override par champion peut l'affiner.
     skillOrder: ov.skillOrder ?? defaultSkillOrder(),
@@ -414,7 +584,7 @@ function applyAbilityOverrides(id: string, abilities: Record<AbilityKey, Ability
   for (const key of ABILITY_KEYS) {
     const o = ov[key];
     if (!o) continue;
-    const { conditionalCc: _conditional, ...patch } = o;
+    const { conditionalCc: _conditional, line: _line, ...patch } = o;
     const merged = { ...abilities[key], ...patch };
     // Un ratio corrigé à la main remplace aussi sa série par rang générée.
     if (o.ratios && merged.rankRatios) {
@@ -448,7 +618,8 @@ function mapItemStats(m: MItem, dd?: Record<string, number>): ItemStats {
   if (pct("magicPenetration")) stats.magicPenPercent = round(pct("magicPenetration") / 100, 3);
   if (pct("armorPenetration")) stats.armorPenPercent = round(pct("armorPenetration") / 100, 3);
   if (flat("lethality")) stats.lethality = round(flat("lethality"));
-  // Meraki range la VA bonus et le crit en « flat » ou en « percent » selon l'objet.
+  if (flat("mana")) stats.mana = round(flat("mana"));
+  // La VA bonus et le crit arrivent en « flat » ou en « percent » selon la source.
   const asPct = flat("attackSpeed") || pct("attackSpeed");
   if (asPct) stats.attackSpeed = round(asPct / 100, 3);
   const critPct = flat("criticalStrikeChance") || pct("criticalStrikeChance");
@@ -459,8 +630,7 @@ function mapItemStats(m: MItem, dd?: Record<string, number>): ItemStats {
   if (omnivamp) stats.omnivamp = round(omnivamp / 100, 3);
 
   // Stats plates : Data Dragon (versionné par patch) fait foi quand il les
-  // expose — Meraki "latest" peut retarder d'un ou plusieurs patchs. L'AH, la
-  // létalité et les %pén n'existent pas côté DD : Meraki fait foi.
+  // expose. L'AH, la létalité et les %pén n'existent pas côté DD : le wiki fait foi.
   if (dd) {
     if (dd.FlatPhysicalDamageMod) stats.ad = round(dd.FlatPhysicalDamageMod);
     if (dd.FlatMPPoolMod) stats.mana = round(dd.FlatMPPoolMod);
@@ -475,7 +645,7 @@ function mapItemStats(m: MItem, dd?: Record<string, number>): ItemStats {
   return stats;
 }
 
-/** Tier d'un objet d'après le rang Meraki. Undefined = non achetable en partie (conso, trinket…). */
+/** Tier d'un objet d'après son type sur le wiki. Undefined = non achetable en partie (conso, trinket…). */
 function itemTier(rank: string[]): ItemTier | undefined {
   if (rank.includes("BOOTS")) return "boots";
   if (rank.includes("LEGENDARY")) return "legendary";
@@ -499,7 +669,7 @@ function itemShort(name: string, ov?: { short?: string }): string {
 
 function header(patch: string): string {
   return `// ⚠ FICHIER GÉNÉRÉ — ne pas éditer à la main.
-// Source : Meraki (lolstaticdata) + Data Dragon.
+// Sources : wiki officiel (wiki.leagueoflegends.com), fichiers du jeu (CommunityDragon), Data Dragon.
 // Régénérer : deno task data
 // Patch de référence : ${patch}
 // Généré le : ${new Date().toISOString().slice(0, 10)}
@@ -656,7 +826,7 @@ function renderMechanics(mechanics: Record<string, Mechanic[]>, patch: string): 
     .map(([id, list]) => `  ${JSON.stringify(id)}: ${JSON.stringify(list, null, 2).replace(/\n/g, "\n  ")},`)
     .join("\n");
   return `${header(patch)}
-// Passifs décrits dans data/mechanics.ts, valeurs résolues depuis les fichiers du jeu.
+// Passifs : data/mechanics.ts (valeurs des fichiers du jeu), sinon lus sur le wiki officiel.
 import type { Mechanic } from "../types.ts";
 
 export const GENERATED_MECHANICS: Record<string, Mechanic[]> = {
@@ -665,14 +835,25 @@ ${body}
 `;
 }
 
+function renderPassives(passives: Record<string, PassiveStatus>, patch: string): string {
+  return `${header(patch)}
+// Statut du passif de chaque champion : fichiers du jeu (data/mechanics.ts) ou wiki officiel.
+import type { PassiveStatus } from "../types.ts";
+
+export const GENERATED_PASSIVES: Record<string, PassiveStatus> = ${JSON.stringify(passives, null, 2)};
+`;
+}
+
 /**
  * Résout les GameRef de data/mechanics.ts en formules. Une mécanique dont une
  * référence est introuvable (sort renommé, calcul non convertible) est écartée
  * et signalée — on n'invente pas de valeur.
  */
-/** Écart maximal toléré entre Meraki et le jeu pour adopter la formule du jeu (×/÷). */
+/** Écart maximal toléré entre le wiki et le jeu pour adopter la formule du jeu (×/÷). */
 const MAX_GAP = 1.3;
 
+/** Niveau auquel on compare la source lisible et les formules du jeu. */
+const NOMINAL_LEVEL = 11;
 /** Stats nominales (niveau ~11, build moyen) pour comparer deux formules d'un même sort. */
 const NOMINAL: Record<StatRef, number> = {
   ap: 150,
@@ -705,9 +886,9 @@ const META_STATS: Record<keyof AbilityRatios, StatRef | null> = {
   targetCurrentHp: null,
 };
 
-/** Valeur Meraki d'un effet au rang donné, avec les stats nominales. Null si elle dépend de la cible. */
-function merakiAt(v: ScaledValue, rank: number): number | null {
-  let total = v.base[Math.min(rank, v.base.length) - 1] ?? 0;
+/** Valeur du wiki d'un effet au rang donné, avec les stats nominales. Null si elle dépend de la cible. */
+function sourceAt(v: ScaledValue, rank: number): number | null {
+  let total = (v.levelBase?.[NOMINAL_LEVEL - 1] ?? 0) + (v.base[Math.min(rank, v.base.length) - 1] ?? 0);
   for (const [k, value] of Object.entries(v.ratios) as [keyof AbilityRatios, number][]) {
     const stat = META_STATS[k];
     if (!stat) return null; // % PV de la cible : sens absent des formules du jeu
@@ -717,13 +898,13 @@ function merakiAt(v: ScaledValue, rank: number): number | null {
   return total;
 }
 
-/** Écart relatif le plus fort entre Meraki et le jeu, tous rangs confondus (0 = identique). */
-function worstGap(meraki: ScaledValue, game: Formula, maxRank: number): number | null {
+/** Écart relatif le plus fort entre le wiki et le jeu, tous rangs confondus (0 = identique). */
+function worstGap(source: ScaledValue, game: Formula, maxRank: number): number | null {
   let worst = 0;
   for (let rank = 1; rank <= maxRank; rank++) {
-    const m = merakiAt(meraki, rank);
+    const m = sourceAt(source, rank);
     if (m === null) return null;
-    const g = evalFormula(game, { rank, level: 11, stats: NOMINAL });
+    const g = evalFormula(game, { rank, level: NOMINAL_LEVEL, stats: NOMINAL });
     if (m <= 0 && g <= 0) continue;
     if (m <= 0 || g <= 0) return Infinity;
     worst = Math.max(worst, Math.abs(Math.log(g / m)));
@@ -732,15 +913,15 @@ function worstGap(meraki: ScaledValue, game: Formula, maxRank: number): number |
 }
 
 /**
- * Formule du jeu d'un effet si elle concorde avec Meraki : même ordre de grandeur
+ * Formule du jeu d'un effet si elle concorde avec le wiki : même ordre de grandeur
  * à tous les rangs (×/÷ 1,3 au plus). Au-delà, on soupçonne un autre calcul
- * (variante, deux passages, cible isolée, charge max, par tick…) : on garde Meraki
+ * (variante, deux passages, cible isolée, charge max, par tick…) : on garde le wiki
  * et on le signale. Un équilibrage de patch dépasse rarement 30 % au rang max.
  */
 function matchGameFormula(
   spell: unknown,
   effect: "damage" | "shield" | "heal",
-  meraki: ScaledValue,
+  source: ScaledValue,
   maxRank: number,
 ): { formula: Formula; gap: number; calc: string } | "percent" | "mismatch" | "none" {
   let sawPercent = false;
@@ -752,7 +933,7 @@ function matchGameFormula(
     }
     const f = toFormulaSafe(spell, name, maxRank);
     if (!f) continue;
-    const gap = worstGap(meraki, f, maxRank);
+    const gap = worstGap(source, f, maxRank);
     if (gap === null) return "percent";
     if (gap <= Math.log(MAX_GAP)) return { formula: f, gap, calc: name };
     sawMismatch = true;
@@ -770,7 +951,7 @@ function toFormulaSafe(spell: unknown, name: string, maxRank: number): Formula |
 
 /**
  * Applique les formules du jeu aux sorts : dégâts (`formula`), boucliers et soins
- * (`shieldFormula`, `healFormula`). Meraki reste la référence de STRUCTURE (type de
+ * (`shieldFormula`, `healFormula`). Le wiki reste la référence de STRUCTURE (type de
  * dégâts, quel effet existe) ; le jeu fournit les NOMBRES au patch près. Un sort
  * corrigé à la main (data/overrides.ts) garde sa correction.
  */
@@ -779,7 +960,18 @@ function applyGameFormulas(
   slotsById: Map<string, SpellSlots>,
   factsOf: (id: string, key: AbilityKey) => TooltipFacts | null,
 ) {
-  const stats = { damage: 0, shield: 0, heal: 0, percent: 0, mismatch: 0, none: 0, changed: 0, retyped: 0 };
+  const stats = {
+    damage: 0,
+    shield: 0,
+    heal: 0,
+    percent: 0,
+    mismatch: 0,
+    none: 0,
+    changed: 0,
+    retyped: 0,
+    alternative: 0,
+    fromTooltip: 0,
+  };
   const mismatches: string[] = [];
   for (const c of champions) {
     const slots = slotsById.get(c.id);
@@ -789,13 +981,47 @@ function applyGameFormulas(
       const spell = slots[key];
       if (!spell) continue;
       const overridden = CHAMPION_OVERRIDES[c.id]?.abilities?.[key];
-      if (ability.type !== "util" && !overridden?.base && !overridden?.ratios) {
-        const m = matchGameFormula(spell, "damage", ability, ability.maxRank);
+      // Un sort qui invoque un familier modélisé (Daisy) reste utilitaire : ses
+      // dégâts sont ceux du familier, déjà joués par le moteur.
+      const summons = MECHANICS[c.id]?.some((m) => m.kind === "pet" && m.key === key);
+      if (ability.type === "util" && !overridden && !summons) {
+        // Pas de ligne de dégâts sur le wiki (dégâts décrits dans le texte, ex. Gwen E) :
+        // le calcul que l'infobulle du jeu cite dans une balise de dégâts fait foi.
+        const facts = factsOf(c.id, key);
+        for (const calc of facts?.damageCalcs ?? []) {
+          if (isPercentCalc(spell, calc)) continue;
+          const f = toFormulaSafe(spell, calc, ability.maxRank);
+          const type = facts!.damageTypes.get(calc);
+          if (f && type) {
+            ability.formula = f;
+            ability.type = type;
+            stats.fromTooltip++;
+            break;
+          }
+        }
+      } else if (ability.type !== "util" && !overridden?.base && !overridden?.ratios) {
+        let m = matchGameFormula(spell, "damage", ability, ability.maxRank);
+        if (typeof m !== "object") {
+          for (const alt of DAMAGE_ALTERNATIVES.get(`${c.id}/${key}`) ?? []) {
+            const a = matchGameFormula(spell, "damage", alt, ability.maxRank);
+            if (typeof a !== "object") continue;
+            // La ligne qui concorde avec le jeu devient la référence affichée.
+            ability.base = alt.base;
+            ability.ratios = alt.ratios;
+            if (alt.rankRatios) ability.rankRatios = alt.rankRatios;
+            else delete ability.rankRatios;
+            if (alt.levelBase) ability.levelBase = alt.levelBase;
+            else delete ability.levelBase;
+            m = a;
+            stats.alternative++;
+            break;
+          }
+        }
         if (typeof m === "object") {
           ability.formula = m.formula;
           stats.damage++;
           if (m.gap > 0.05) stats.changed++;
-          // L'infobulle dit le type de dégâts du calcul retenu (Meraki range les mixtes en magique).
+          // L'infobulle dit le type de dégâts du calcul retenu (les mixtes sont rangés en magique).
           const type = factsOf(c.id, key)?.damageTypes.get(m.calc);
           if (type && type !== ability.type && !overridden?.type) {
             ability.type = type;
@@ -818,16 +1044,17 @@ function applyGameFormulas(
     }
   }
   console.log(
-    `  formules du jeu : ${stats.damage} sorts de dégâts (dont ${stats.changed} à plus de 5 % de Meraki), ` +
+    `  formules du jeu : ${stats.damage} sorts de dégâts (dont ${stats.changed} à plus de 5 % du wiki, ` +
+      `${stats.alternative} via une autre ligne du wiki, ${stats.fromTooltip} décrits seulement dans le texte), ` +
       `${stats.shield} boucliers, ${stats.heal} soins ; ${stats.retyped} types de dégâts corrigés par l'infobulle.`,
   );
   console.log(
-    `  gardés sur Meraki : ${stats.percent} en % des PV, ${stats.none} sans calcul exploitable, ` +
-      `${stats.mismatch} écarts suspects (×/÷ > ${MAX_GAP}).`,
+    `  gardés sur le wiki : ${stats.percent} en % des PV, ${stats.none} sans calcul exploitable, ` +
+      `${stats.mismatch} sans calcul du jeu concordant (×/÷ > ${MAX_GAP}).`,
   );
-  if (mismatches.length) console.log(`  écarts suspects : ${mismatches.join(", ")}`);
+  if (mismatches.length) console.log(`  sans calcul du jeu concordant : ${mismatches.join(", ")}`);
   return {
-    damage: stats.damage,
+    damage: stats.damage + stats.fromTooltip,
     changed: stats.changed,
     shield: stats.shield,
     heal: stats.heal,
@@ -838,7 +1065,7 @@ function applyGameFormulas(
 }
 
 /**
- * Champion construit entièrement depuis le jeu, pour ceux que Meraki n'a pas encore :
+ * Champion construit entièrement depuis le jeu, pour ceux que le wiki n'a pas encore :
  * stats de base (Data Dragon), sorts (fichiers du jeu), type de dégâts et choix du
  * calcul principal (infobulle : premier calcul cité dans une balise de dégâts).
  */
@@ -915,8 +1142,8 @@ function championFromGame(
     },
     skillOrder: ov.skillOrder ?? defaultSkillOrder(),
     abilities: applyAbilityOverrides(id, abilities),
-    shelf: ov.shelf ?? (adaptive === "AD" ? DEFAULT_AD_SHELF : DEFAULT_AP_SHELF),
-    keystone: ov.keystone ?? (adaptive === "AD" ? "conqueror" : "electrocute"),
+    shelf: ov.shelf ?? defaultShelfFor(adaptive, s.attackrange),
+    keystone: ov.keystone ?? defaultKeystoneFor(adaptive, s.attackrange),
   };
 }
 
@@ -985,6 +1212,7 @@ function renderMeta(
     runes: number;
     statsPatch: string;
     gameFormulas: ReturnType<typeof applyGameFormulas>;
+    passives: { modeled: number; conditional: number; utility: number };
   },
 ): string {
   return `${header(patch)}
@@ -992,7 +1220,7 @@ function renderMeta(
 export const DATA_META = {
   /** patch Data Dragon (liste champions, runes, icônes, disponibilité SR) */
   patch: ${JSON.stringify(patch)},
-  /** patch réel des stats/ratios champions côté Meraki (peut être plus ancien) */
+  /** dernier patch noté par le wiki pour les champions (fraîcheur de la source) */
   statsPatch: ${JSON.stringify(counts.statsPatch)},
   generatedAt: ${JSON.stringify(new Date().toISOString().slice(0, 10))},
   champions: ${counts.champions},
@@ -1000,17 +1228,10 @@ export const DATA_META = {
   runes: ${counts.runes},
   /** sorts dont les nombres viennent des fichiers du jeu (CommunityDragon) au patch près */
   gameFormulas: ${JSON.stringify(counts.gameFormulas)},
+  /** passifs : modélisés (jeu ou wiki), dégâts conditionnels non reproduits, sans dégâts */
+  passives: ${JSON.stringify(counts.passives)},
 } as const;
 `;
-}
-
-/** Patch le plus fréquent parmi les champions Meraki (leur vraie fraîcheur). */
-function mostCommonPatch(patches: string[]): string {
-  const count = new Map<string, number>();
-  for (const p of patches) count.set(p, (count.get(p) ?? 0) + 1);
-  let best = "?", n = 0;
-  for (const [p, c] of count) if (c > n) [best, n] = [p, c];
-  return best;
 }
 
 // ---------------------------------------------------------------------------
@@ -1029,48 +1250,52 @@ async function main() {
     `${DDRAGON}/cdn/${patch}/data/en_US/champion.json`,
   );
   const championIds = Object.values(dd.data).map((c) => c.id).sort();
-  // Stats de base par slug — croisées avec Meraki dans mapChampion.
+  // Stats de base par slug — croisées avec le wiki dans mapChampion.
   const ddStatsBySlug = new Map<string, DDChampStats>();
   for (const c of Object.values(dd.data)) ddStatsBySlug.set(slugify(c.id), c.stats);
   console.log(`  ${championIds.length} champions à traiter.`);
 
+  // --- Wiki officiel : stats de base, sorts rendus, types de dégâts ---
+  console.log("▶ Champions (wiki officiel)…");
+  const wikiChampions = await fetchChampionData();
+  const wikiByApi = new Map(wikiChampions.map((w) => [slugify(w.apiname), w]));
+  const listed = championIds.map((id) => wikiByApi.get(slugify(id))).filter((w): w is WikiChampionData =>
+    !!w
+  );
+  const damageTypes = await fetchDamageTypes(listed.map((w) => w.name));
+  let rendered = 0;
+  const wikiAbilities = await pool(listed, 4, async (w) => {
+    const a: Partial<Record<WikiKey, WikiAbility[]>> = await fetchWikiAbilities(w.name).catch((e) => {
+      console.warn(`  ⚠ sorts du wiki illisibles pour ${w.name} : ${(e as Error).message}`);
+      return {};
+    });
+    if (++rendered % 25 === 0) console.log(`  …${rendered}/${listed.length}`);
+    return a;
+  });
   const champions: Champion[] = [];
-  const merakiPatches: string[] = [];
-  let done = 0;
-  // Petites vagues pour ne pas marteler le CDN.
-  const BATCH = 12;
-  for (let i = 0; i < championIds.length; i += BATCH) {
-    const slice = championIds.slice(i, i + BATCH);
-    const results = await Promise.allSettled(
-      slice.map((id) => fetchJson<MChampion>(`${MERAKI}/champions/${id}.json`)),
-    );
-    for (let j = 0; j < results.length; j++) {
-      const r = results[j];
-      if (r.status === "fulfilled") {
-        try {
-          champions.push(mapChampion(r.value, ddStatsBySlug.get(slugify(r.value.key))));
-          if (r.value.patchLastChanged) merakiPatches.push(r.value.patchLastChanged);
-        } catch (e) {
-          console.warn(`  ⚠ mapping échoué pour ${slice[j]} : ${(e as Error).message}`);
-        }
-      } else {
-        console.warn(`  ⚠ fetch échoué pour ${slice[j]} : ${r.reason}`);
-      }
+  const wikiPassives = new Map<string, WikiAbility[]>();
+  const wikiPatches: string[] = [];
+  listed.forEach((w, i) => {
+    try {
+      champions.push(
+        mapChampion(
+          championFromWiki(w, wikiAbilities[i], damageTypes.get(w.name)),
+          ddStatsBySlug.get(slugify(w.apiname)),
+        ),
+      );
+      if (wikiAbilities[i].I) wikiPassives.set(slugify(w.apiname), wikiAbilities[i].I!);
+      if (w.changes) wikiPatches.push(w.changes.replace(/^V/i, ""));
+    } catch (e) {
+      console.warn(`  ⚠ mapping échoué pour ${w.name} : ${(e as Error).message}`);
     }
-    done += slice.length;
-    console.log(`  …${done}/${championIds.length}`);
-  }
+  });
   champions.sort((a, b) => a.name.localeCompare(b.name, "fr"));
+  console.log(`  ${champions.length}/${championIds.length} champions lus sur le wiki.`);
+  // Dernier patch noté par le wiki (la fraîcheur réelle de la source).
+  const statsPatch = wikiPatches.sort((a, b) => a.localeCompare(b, "en", { numeric: true })).at(-1) ?? "?";
 
-  const statsPatch = mostCommonPatch(merakiPatches);
-  if (statsPatch !== "?" && !patch.startsWith(statsPatch.split(".")[0])) {
-    console.log(
-      `  ⚠ Meraki est sur le patch ${statsPatch}, Data Dragon sur ${patch} : ` +
-        `les stats champions peuvent être en retard (voir deno task audit).`,
-    );
-  }
-
-  // --- Fichiers du jeu (CommunityDragon) : à jour au patch, contrairement à Meraki ---
+  // --- Fichiers du jeu (CommunityDragon) : les nombres exacts du patch ---
+  const BATCH = 12;
   const cdVersion = cdragonVersion(patch);
   console.log(`▶ Fichiers du jeu (CommunityDragon ${cdVersion})…`);
   const slotsById = new Map<string, SpellSlots>();
@@ -1078,7 +1303,12 @@ async function main() {
     const slice = champions.slice(i, i + BATCH);
     const bins = await Promise.all(slice.map((c) => fetchChampionBin(cdVersion, c.id).catch(() => null)));
     slice.forEach((c, j) => {
-      if (bins[j]) slotsById.set(c.id, spellSlots(bins[j]));
+      if (!bins[j]) return;
+      slotsById.set(c.id, spellSlots(bins[j]));
+      // Dégâts critiques propres au champion : le jeu fait foi (Ashe 1 = pas de bonus ;
+      // 2 = valeur par défaut, 175 %). Le « crit_mod » du wiki n'a pas ce sens.
+      const crit = characterBaseStat(bins[j], "critDamageMultiplier");
+      if (crit !== null && crit < 2) c.base.critDamage = crit;
     });
   }
   console.log(`  ${slotsById.size}/${champions.length} champions trouvés.`);
@@ -1098,7 +1328,7 @@ async function main() {
     }
   }
   console.log(
-    `  cooldowns : ${cdTotal} sorts au patch ${cdVersion}, dont ${cdChanged} différents de Meraki.`,
+    `  cooldowns : ${cdTotal} sorts au patch ${cdVersion}, dont ${cdChanged} différents du wiki.`,
   );
 
   // Infobulles du client : types de dégâts, contrôles conditionnels, mobilité.
@@ -1115,7 +1345,7 @@ async function main() {
     return factsCache.get(k)!;
   };
 
-  // Champions présents dans le jeu mais pas dans Meraki (Locke, Yunara…) : générés
+  // Champions présents dans le jeu mais pas encore sur le wiki : générés
   // entièrement depuis les fichiers du jeu et les infobulles.
   for (const id of championIds) {
     const slug = slugify(id);
@@ -1123,12 +1353,12 @@ async function main() {
     const bin = await fetchChampionBin(cdVersion, slug).catch(() => null);
     const tips = tooltips.get(slug);
     if (!bin || !tips) {
-      console.warn(`  ⚠ ${id} : ni Meraki ni fichiers du jeu, ignoré.`);
+      console.warn(`  ⚠ ${id} : ni wiki ni fichiers du jeu, ignoré.`);
       continue;
     }
     slotsById.set(slug, spellSlots(bin));
     champions.push(championFromGame(dd.data[id], slotsById.get(slug)!, tips, factsOf));
-    console.log(`  + ${id} généré depuis les fichiers du jeu (absent de Meraki).`);
+    console.log(`  + ${id} généré depuis les fichiers du jeu (absent du wiki).`);
   }
   champions.sort((a, b) => a.name.localeCompare(b.name, "fr"));
 
@@ -1189,6 +1419,32 @@ async function main() {
 
   // Passifs (data/mechanics.ts) : références résolues en formules du patch.
   const mechanics = await resolveMechanics(champions, slotsById, cdVersion);
+  // Tous les autres : description du wiki, lue par scripts/passives.ts. Chaque
+  // champion reçoit un statut (modélisé, conditionnel, sans dégâts) et sa raison.
+  const passives: Record<string, PassiveStatus> = {};
+  for (const c of champions) {
+    const rows = (wikiPassives.get(c.id) ?? []).flatMap((b) =>
+      b.rows.map((r) => ({ name: b.name, text: r.text, pp: r.pp }))
+    );
+    const reading = readPassive(rows, c.name);
+    if (mechanics[c.id]?.length) {
+      passives[c.id] = {
+        verdict: "modeled",
+        source: "game",
+        note: reading.note,
+        ...(reading.mechanics.length ? { wiki: reading.mechanics } : {}),
+      };
+      continue;
+    }
+    if (reading.mechanics.length) mechanics[c.id] = reading.mechanics;
+    passives[c.id] = { verdict: reading.verdict, source: "wiki", note: reading.note };
+  }
+  const passiveCount = { modeled: 0, conditional: 0, utility: 0 };
+  for (const p of Object.values(passives)) passiveCount[p.verdict]++;
+  console.log(
+    `  passifs : ${passiveCount.modeled} modélisés, ${passiveCount.conditional} conditionnels, ` +
+      `${passiveCount.utility} sans dégâts (sur ${champions.length}).`,
+  );
 
   // Fiches de kit complètes (page dédiée) : infobulles + valeurs + calculs du jeu.
   const kits: Record<string, KitSheet> = {};
@@ -1215,8 +1471,8 @@ async function main() {
 
   // --- Objets ---
   // Disponibilité sur la Faille de l'invocateur (classé) : Data Dragon expose
-  // `maps["11"]` (SR). Meraki ne l'a pas, mais la clé numérique d'un item est
-  // commune aux deux → on croise.
+  // `maps["11"]` (SR) et `gold.purchasable` ; la clé numérique d'un objet est
+  // commune avec le wiki → on croise.
   console.log("▶ Récupération de la disponibilité SR (Data Dragon)…");
   const ddItems = await fetchJson<
     {
@@ -1224,7 +1480,7 @@ async function main() {
         maps?: Record<string, boolean>;
         stats?: Record<string, number>;
         description?: string;
-        gold?: { total: number };
+        gold?: { total: number; purchasable?: boolean };
         from?: string[];
       }>;
     }
@@ -1236,8 +1492,10 @@ async function main() {
     if (it.maps?.["11"]) srItemIds.add(id);
   }
 
-  console.log("▶ Récupération des objets (Meraki)…");
-  const rawItems = await fetchJson<Record<string, MItem>>(`${MERAKI}/items.json`);
+  console.log("▶ Objets (wiki officiel)…");
+  const rawItems = (await fetchItemData()).map((w) =>
+    itemFromWiki(w, ddItems.data[String(w.id)]?.gold?.purchasable ?? false)
+  );
   const items: Item[] = [];
   const wanted = new Set(ITEM_WHITELIST);
   // id numérique Riot → slug, pour traduire les recettes Data Dragon.
@@ -1283,7 +1541,9 @@ async function main() {
       continue;
     }
     const slugs = it.from.map((rid) => slugByRiotId.get(rid));
-    const missing = it.from.filter((_, i) => !slugs[i]);
+    // Un composant hors boutique (quête de support : Bounty of Worlds → Bloodsong…)
+    // ne se paie pas : il sort de la recette sans être une erreur.
+    const missing = it.from.filter((rid, i) => !slugs[i] && ddItems.data[rid]?.gold?.purchasable !== false);
     if (missing.length) brokenRecipes.push(`${it.id} (${missing.join(", ")})`);
     it.from = slugs.filter((s): s is string => !!s);
   }
@@ -1355,7 +1615,7 @@ async function main() {
   for (const c of champions) {
     const clean = c.shelf.filter((id) => itemIds.has(id));
     dropped += c.shelf.length - clean.length;
-    const fallback = c.adaptive === "AD" ? DEFAULT_AD_SHELF : DEFAULT_AP_SHELF;
+    const fallback = defaultShelfFor(c.adaptive, c.base.attackRange);
     for (const id of fallback) {
       if (clean.length >= 6) break;
       if (itemIds.has(id) && !clean.includes(id)) clean.push(id);
@@ -1385,6 +1645,7 @@ async function main() {
   await Deno.writeTextFile(new URL("items.gen.ts", OUT_DIR), renderItems(items, patch));
   await Deno.writeTextFile(new URL("runes.gen.ts", OUT_DIR), renderRunes(runes, patch));
   await Deno.writeTextFile(new URL("mechanics.gen.ts", OUT_DIR), renderMechanics(mechanics, patch));
+  await Deno.writeTextFile(new URL("passives.gen.ts", OUT_DIR), renderPassives(passives, patch));
   await Deno.writeTextFile(new URL("kits.gen.ts", OUT_DIR), renderKits(kits, patch));
   await Deno.writeTextFile(
     new URL("meta.gen.ts", OUT_DIR),
@@ -1394,6 +1655,7 @@ async function main() {
       runes: runes.length,
       statsPatch,
       gameFormulas,
+      passives: passiveCount,
     }),
   );
 

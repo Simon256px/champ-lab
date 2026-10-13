@@ -4,13 +4,13 @@ import { MANUAL_CHAMPIONS } from "@/data/manual.ts";
 import { GENERATED_MECHANICS } from "@/data/generated/mechanics.gen.ts";
 
 /**
- * Champions — roster complet généré depuis Meraki + Data Dragon, complété par
- * quelques champions saisis à la main (trop récents pour Meraki).
+ * Champions — roster complet généré depuis le wiki officiel, les fichiers du jeu
+ * et Data Dragon, complété en secours par quelques champions saisis à la main.
  *
  * >>> ON N'ÉDITE PAS data/generated/. <<<
  * Les données brutes sont régénérées par `deno task data`. Les réglages de
  * théorycraft (étagères, rune, ordre de compétences, corrections de ratios)
- * vivent dans data/overrides.ts. Les champions non encore dans Meraki sont dans
+ * vivent dans data/overrides.ts. Les champions de secours (sources indisponibles) sont dans
  * data/manual.ts. Voir docs/adding-a-champion.md.
  */
 export const CHAMPIONS: Record<string, Champion> = withMechanics({
@@ -19,8 +19,8 @@ export const CHAMPIONS: Record<string, Champion> = withMechanics({
 });
 
 /**
- * Greffe les passifs (data/mechanics.ts, valeurs résolues depuis les fichiers du
- * jeu dans data/generated/mechanics.gen.ts). Un `abilityDamage` donne directement
+ * Greffe les passifs (data/generated/mechanics.gen.ts : data/mechanics.ts résolu
+ * depuis les fichiers du jeu, sinon passifs lus sur le wiki). Un `abilityDamage` donne directement
  * sa formule au sort concerné (Fiora R) : le moteur le traite comme un sort normal.
  */
 function withMechanics(roster: Record<string, Champion>): Record<string, Champion> {

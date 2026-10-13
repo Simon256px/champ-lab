@@ -1,10 +1,10 @@
 // ⚠ FICHIER GÉNÉRÉ — ne pas éditer à la main.
-// Source : Meraki (lolstaticdata) + Data Dragon.
+// Sources : wiki officiel (wiki.leagueoflegends.com), fichiers du jeu (CommunityDragon), Data Dragon.
 // Régénérer : deno task data
 // Patch de référence : 16.20.1
 // Généré le : 2026-10-13
 
-// Passifs décrits dans data/mechanics.ts, valeurs résolues depuis les fichiers du jeu.
+// Passifs : data/mechanics.ts (valeurs des fichiers du jeu), sinon lus sur le wiki officiel.
 import type { Mechanic } from "../types.ts";
 
 export const GENERATED_MECHANICS: Record<string, Mechanic[]> = {
@@ -687,6 +687,500 @@ export const GENERATED_MECHANICS: Record<string, Mechanic[]> = {
       "pct": {
         "op": "num",
         "n": 0.17,
+      },
+    },
+  ],
+  "ambessa": [
+    {
+      "kind": "afterAbility",
+      "name": "Drakehound's Step",
+      "type": "physical",
+      "damage": {
+        "op": "sum",
+        "of": [
+          {
+            "op": "byLevel",
+            "v": [
+              5,
+              6.18,
+              7.35,
+              8.53,
+              9.71,
+              10.88,
+              12.06,
+              13.24,
+              14.41,
+              15.59,
+              16.76,
+              17.94,
+              19.12,
+              20.29,
+              21.47,
+              22.65,
+              23.82,
+              25,
+            ],
+          },
+          {
+            "op": "stat",
+            "stat": "bonusAd",
+            "f": {
+              "op": "num",
+              "n": 0.2,
+            },
+          },
+        ],
+      },
+    },
+  ],
+  "corki": [
+    {
+      "kind": "onHit",
+      "name": "Hextech Munitions",
+      "type": "true",
+      "damage": {
+        "op": "stat",
+        "stat": "ad",
+        "f": {
+          "op": "num",
+          "n": 0.2,
+        },
+      },
+    },
+  ],
+  "jhin": [
+    {
+      "kind": "onHit",
+      "name": "Whisper",
+      "type": "physical",
+      "damage": {
+        "op": "byLevel",
+        "v": [
+          0.15,
+          0.15,
+          0.15,
+          0.15,
+          0.15,
+          0.2,
+          0.2,
+          0.2,
+          0.2,
+          0.2,
+          0.25,
+          0.25,
+          0.25,
+          0.25,
+          0.25,
+          0.25,
+          0.25,
+          0.25,
+        ],
+      },
+      "every": {
+        "op": "num",
+        "n": 4,
+      },
+      "scale": "targetMissingHp",
+    },
+  ],
+  "lucian": [
+    {
+      "kind": "afterAbility",
+      "name": "Lightslinger",
+      "type": "physical",
+      "damage": {
+        "op": "stat",
+        "stat": "ad",
+        "f": {
+          "op": "byLevel",
+          "v": [
+            0.5,
+            0.5,
+            0.5,
+            0.5,
+            0.5,
+            0.5,
+            0.55,
+            0.55,
+            0.55,
+            0.55,
+            0.55,
+            0.55,
+            0.6,
+            0.6,
+            0.6,
+            0.6,
+            0.6,
+            0.6,
+          ],
+        },
+      },
+    },
+  ],
+  "mel": [
+    {
+      "kind": "afterAbility",
+      "name": "Searing Brilliance",
+      "type": "magic",
+      "damage": {
+        "op": "mul",
+        "of": [
+          {
+            "op": "num",
+            "n": 3,
+          },
+          {
+            "op": "sum",
+            "of": [
+              {
+                "op": "byLevel",
+                "v": [
+                  8,
+                  9.29,
+                  10.59,
+                  11.88,
+                  13.18,
+                  14.47,
+                  15.76,
+                  17.06,
+                  18.35,
+                  19.65,
+                  20.94,
+                  22.24,
+                  23.53,
+                  24.82,
+                  26.12,
+                  27.41,
+                  28.71,
+                  30,
+                ],
+              },
+              {
+                "op": "stat",
+                "stat": "ap",
+                "f": {
+                  "op": "num",
+                  "n": 0.04,
+                },
+              },
+            ],
+          },
+        ],
+      },
+    },
+  ],
+  "senna": [
+    {
+      "kind": "onHit",
+      "name": "Absolution",
+      "type": "physical",
+      "damage": {
+        "op": "stat",
+        "stat": "ad",
+        "f": {
+          "op": "num",
+          "n": 0.2,
+        },
+      },
+    },
+  ],
+  "sylas": [
+    {
+      "kind": "afterAbility",
+      "name": "Petricite Burst",
+      "type": "magic",
+      "damage": {
+        "op": "sum",
+        "of": [
+          {
+            "op": "stat",
+            "stat": "ad",
+            "f": {
+              "op": "num",
+              "n": 1.3,
+            },
+          },
+          {
+            "op": "stat",
+            "stat": "ap",
+            "f": {
+              "op": "num",
+              "n": 0.3,
+            },
+          },
+        ],
+      },
+    },
+  ],
+  "tahmkench": [
+    {
+      "kind": "onHit",
+      "name": "An Acquired Taste",
+      "type": "magic",
+      "damage": {
+        "op": "sum",
+        "of": [
+          {
+            "op": "byLevel",
+            "v": [
+              5,
+              10,
+              15,
+              20,
+              25,
+              30,
+              35,
+              40,
+              45,
+              50,
+              55,
+              60,
+              60,
+              60,
+              60,
+              60,
+              60,
+              60,
+            ],
+          },
+          {
+            "op": "mul",
+            "of": [
+              {
+                "op": "stat",
+                "stat": "ap",
+                "f": {
+                  "op": "num",
+                  "n": 1,
+                },
+              },
+              {
+                "op": "stat",
+                "stat": "bonusHp",
+                "f": {
+                  "op": "num",
+                  "n": 0.000125,
+                },
+              },
+            ],
+          },
+          {
+            "op": "stat",
+            "stat": "bonusHp",
+            "f": {
+              "op": "num",
+              "n": 0.04,
+            },
+          },
+        ],
+      },
+    },
+  ],
+  "taric": [
+    {
+      "kind": "afterAbility",
+      "name": "Bravado",
+      "type": "magic",
+      "damage": {
+        "op": "sum",
+        "of": [
+          {
+            "op": "byLevel",
+            "v": [
+              25,
+              29,
+              33,
+              37,
+              41,
+              45,
+              49,
+              53,
+              57,
+              61,
+              65,
+              69,
+              73,
+              77,
+              81,
+              85,
+              89,
+              93,
+            ],
+          },
+          {
+            "op": "stat",
+            "stat": "bonusArmor",
+            "f": {
+              "op": "num",
+              "n": 0.15,
+            },
+          },
+        ],
+      },
+      "hits": 2,
+    },
+  ],
+  "warwick": [
+    {
+      "kind": "onHit",
+      "name": "Eternal Hunger",
+      "type": "magic",
+      "damage": {
+        "op": "sum",
+        "of": [
+          {
+            "op": "byLevel",
+            "v": [
+              6,
+              8.88,
+              11.76,
+              14.65,
+              17.53,
+              20.41,
+              23.29,
+              26.18,
+              29.06,
+              31.94,
+              34.82,
+              37.71,
+              40.59,
+              43.47,
+              46.35,
+              49.24,
+              52.12,
+              55,
+            ],
+          },
+          {
+            "op": "stat",
+            "stat": "bonusAd",
+            "f": {
+              "op": "num",
+              "n": 0.15,
+            },
+          },
+          {
+            "op": "stat",
+            "stat": "ap",
+            "f": {
+              "op": "num",
+              "n": 0.1,
+            },
+          },
+        ],
+      },
+    },
+  ],
+  "xinzhao": [
+    {
+      "kind": "onHit",
+      "name": "Determination",
+      "type": "physical",
+      "damage": {
+        "op": "sum",
+        "of": [
+          {
+            "op": "stat",
+            "stat": "ad",
+            "f": {
+              "op": "byLevel",
+              "v": [
+                0.15,
+                0.15,
+                0.15,
+                0.15,
+                0.15,
+                0.3,
+                0.3,
+                0.3,
+                0.3,
+                0.3,
+                0.45,
+                0.45,
+                0.45,
+                0.45,
+                0.45,
+                0.6,
+                0.6,
+                0.6,
+              ],
+            },
+          },
+          {
+            "op": "stat",
+            "stat": "ap",
+            "f": {
+              "op": "byLevel",
+              "v": [
+                0.05,
+                0.05,
+                0.05,
+                0.05,
+                0.05,
+                0.1,
+                0.1,
+                0.1,
+                0.1,
+                0.1,
+                0.15,
+                0.15,
+                0.15,
+                0.15,
+                0.15,
+                0.2,
+                0.2,
+                0.2,
+              ],
+            },
+          },
+        ],
+      },
+      "every": {
+        "op": "num",
+        "n": 3,
+      },
+    },
+  ],
+  "zoe": [
+    {
+      "kind": "afterAbility",
+      "name": "More Sparkles!",
+      "type": "magic",
+      "damage": {
+        "op": "sum",
+        "of": [
+          {
+            "op": "byLevel",
+            "v": [
+              16,
+              20,
+              24,
+              28,
+              32,
+              36,
+              42,
+              48,
+              54,
+              60,
+              66,
+              74,
+              82,
+              90,
+              100,
+              110,
+              120,
+              130,
+            ],
+          },
+          {
+            "op": "stat",
+            "stat": "ap",
+            "f": {
+              "op": "num",
+              "n": 0.2,
+            },
+          },
+        ],
       },
     },
   ],

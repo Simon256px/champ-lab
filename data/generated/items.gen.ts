@@ -1,5 +1,5 @@
 // ⚠ FICHIER GÉNÉRÉ — ne pas éditer à la main.
-// Source : Meraki (lolstaticdata) + Data Dragon.
+// Sources : wiki officiel (wiki.leagueoflegends.com), fichiers du jeu (CommunityDragon), Data Dragon.
 // Régénérer : deno task data
 // Patch de référence : 16.20.1
 // Généré le : 2026-10-13
@@ -762,6 +762,32 @@ export const GENERATED_ITEMS: Record<string, Item> = {
     "cost": 450,
     "icon": "https://ddragon.leagueoflegends.com/cdn/16.20.1/img/item/1055.png",
   },
+  "doransbow": {
+    "id": "doransbow",
+    "name": "Doran's Bow",
+    "short": "DORANS",
+    "stats": {
+      "ad": 8,
+      "attackSpeed": 0.15,
+      "omnivamp": 0.015,
+    },
+    "tier": "starter",
+    "cost": 400,
+    "icon": "https://ddragon.leagueoflegends.com/cdn/16.20.1/img/item/1086.png",
+  },
+  "doranshelm": {
+    "id": "doranshelm",
+    "name": "Doran's Helm",
+    "short": "DORANS",
+    "stats": {
+      "hp": 150,
+      "armor": 8,
+      "mr": 8,
+    },
+    "tier": "starter",
+    "cost": 450,
+    "icon": "https://ddragon.leagueoflegends.com/cdn/16.20.1/img/item/1120.png",
+  },
   "doransring": {
     "id": "doransring",
     "name": "Doran's Ring",
@@ -1123,6 +1149,20 @@ export const GENERATED_ITEMS: Record<string, Item> = {
     "cost": 250,
     "icon": "https://ddragon.leagueoflegends.com/cdn/16.20.1/img/item/2022.png",
   },
+  "gluttonousgreaves": {
+    "id": "gluttonousgreaves",
+    "name": "Gluttonous Greaves",
+    "short": "GLUTTONO",
+    "stats": {
+      "omnivamp": 0.04,
+    },
+    "tier": "boots",
+    "cost": 1000,
+    "from": [
+      "boots",
+    ],
+    "icon": "https://ddragon.leagueoflegends.com/cdn/16.20.1/img/item/3008.png",
+  },
   "guardianangel": {
     "id": "guardianangel",
     "name": "Guardian Angel",
@@ -1214,6 +1254,21 @@ export const GENERATED_ITEMS: Record<string, Item> = {
       "pickaxe",
     ],
     "icon": "https://ddragon.leagueoflegends.com/cdn/16.20.1/img/item/3124.png",
+  },
+  "gunmetalgreaves": {
+    "id": "gunmetalgreaves",
+    "name": "Gunmetal Greaves",
+    "short": "GUNMETAL",
+    "stats": {
+      "attackSpeed": 0.45,
+      "lifeSteal": 0.05,
+    },
+    "tier": "boots",
+    "cost": 1100,
+    "from": [
+      "berserkersgreaves",
+    ],
+    "icon": "https://ddragon.leagueoflegends.com/cdn/16.20.1/img/item/3172.png",
   },
   "gustwalkerhatchling": {
     "id": "gustwalkerhatchling",
@@ -1347,7 +1402,7 @@ export const GENERATED_ITEMS: Record<string, Item> = {
     "stats": {
       "ap": 60,
       "hp": 350,
-      "abilityHaste": 20,
+      "abilityHaste": 10,
     },
     "tier": "legendary",
     "cost": 2650,
@@ -1444,6 +1499,20 @@ export const GENERATED_ITEMS: Record<string, Item> = {
     ],
     "icon": "https://ddragon.leagueoflegends.com/cdn/16.20.1/img/item/6662.png",
   },
+  "immortalpath": {
+    "id": "immortalpath",
+    "name": "Immortal Path",
+    "short": "IMMORTAL",
+    "stats": {
+      "omnivamp": 0.04,
+    },
+    "tier": "boots",
+    "cost": 1000,
+    "from": [
+      "gluttonousgreaves",
+    ],
+    "icon": "https://ddragon.leagueoflegends.com/cdn/16.20.1/img/item/3168.png",
+  },
   "immortalshieldbow": {
     "id": "immortalshieldbow",
     "name": "Immortal Shieldbow",
@@ -1483,7 +1552,7 @@ export const GENERATED_ITEMS: Record<string, Item> = {
     "short": "IMPERIAL",
     "stats": {
       "ap": 60,
-      "abilityHaste": 20,
+      "abilityHaste": 15,
     },
     "tier": "legendary",
     "cost": 2400,
@@ -2264,23 +2333,6 @@ export const GENERATED_ITEMS: Record<string, Item> = {
       },
     ],
   },
-  "opportunity": {
-    "id": "opportunity",
-    "name": "Opportunity",
-    "short": "OPPORTUN",
-    "stats": {
-      "ad": 55,
-      "lethality": 18,
-    },
-    "tier": "legendary",
-    "cost": 2700,
-    "from": [
-      "pickaxe",
-      "serrateddirk",
-      "longsword",
-    ],
-    "icon": "https://ddragon.leagueoflegends.com/cdn/16.20.1/img/item/6701.png",
-  },
   "overlordsbloodmail": {
     "id": "overlordsbloodmail",
     "name": "Overlord's Bloodmail",
@@ -2951,7 +3003,7 @@ export const GENERATED_ITEMS: Record<string, Item> = {
     "name": "Spellslinger's Shoes",
     "short": "SPELLSLI",
     "stats": {
-      "magicPenFlat": 18,
+      "magicPenFlat": 20,
       "magicPenPercent": 0.08,
     },
     "tier": "boots",
@@ -2997,7 +3049,7 @@ export const GENERATED_ITEMS: Record<string, Item> = {
     "short": "STAFF",
     "stats": {
       "ap": 35,
-      "abilityHaste": 15,
+      "abilityHaste": 10,
       "healShieldPower": 0.1,
     },
     "tier": "legendary",
@@ -3014,8 +3066,8 @@ export const GENERATED_ITEMS: Record<string, Item> = {
     "short": "STATIKK",
     "stats": {
       "ad": 45,
-      "attackSpeed": 0.3,
       "ap": 45,
+      "attackSpeed": 0.3,
     },
     "tier": "legendary",
     "cost": 3000,
@@ -3084,6 +3136,24 @@ export const GENERATED_ITEMS: Record<string, Item> = {
         },
       },
     ],
+  },
+  "stormrazor": {
+    "id": "stormrazor",
+    "name": "Stormrazor",
+    "short": "STORMRAZ",
+    "stats": {
+      "ad": 50,
+      "attackSpeed": 0.25,
+      "critChance": 0.25,
+    },
+    "tier": "legendary",
+    "cost": 3200,
+    "from": [
+      "bfsword",
+      "cloakofagility",
+      "scoutsslingshot",
+    ],
+    "icon": "https://ddragon.leagueoflegends.com/cdn/16.20.1/img/item/3095.png",
   },
   "stormsurge": {
     "id": "stormsurge",
@@ -3326,22 +3396,6 @@ export const GENERATED_ITEMS: Record<string, Item> = {
     ],
     "icon": "https://ddragon.leagueoflegends.com/cdn/16.20.1/img/item/3748.png",
   },
-  "trailblazer": {
-    "id": "trailblazer",
-    "name": "Trailblazer",
-    "short": "TRAILBLA",
-    "stats": {
-      "hp": 250,
-      "armor": 40,
-    },
-    "tier": "legendary",
-    "cost": 2400,
-    "from": [
-      "wingedmoonplate",
-      "chainvest",
-    ],
-    "icon": "https://ddragon.leagueoflegends.com/cdn/16.20.1/img/item/3002.png",
-  },
   "trinityforce": {
     "id": "trinityforce",
     "name": "Trinity Force",
@@ -3486,7 +3540,7 @@ export const GENERATED_ITEMS: Record<string, Item> = {
     "stats": {
       "ad": 55,
       "abilityHaste": 10,
-      "lethality": 18,
+      "lethality": 10,
     },
     "tier": "legendary",
     "cost": 3000,
@@ -3610,9 +3664,7 @@ export const GENERATED_ITEMS: Record<string, Item> = {
     "id": "worldatlas",
     "name": "World Atlas",
     "short": "WORLD",
-    "stats": {
-      "hp": 30,
-    },
+    "stats": {},
     "tier": "starter",
     "cost": 400,
     "icon": "https://ddragon.leagueoflegends.com/cdn/16.20.1/img/item/3865.png",
@@ -3697,22 +3749,6 @@ export const GENERATED_ITEMS: Record<string, Item> = {
       "nullmagicmantle",
     ],
     "icon": "https://ddragon.leagueoflegends.com/cdn/16.20.1/img/item/3050.png",
-  },
-  "zephyr": {
-    "id": "zephyr",
-    "name": "Zephyr",
-    "short": "ZEPHYR",
-    "stats": {
-      "abilityHaste": 30,
-      "attackSpeed": 0.45,
-      "lifeSteal": 0.05,
-    },
-    "tier": "legendary",
-    "cost": 1100,
-    "from": [
-      "berserkersgreaves",
-    ],
-    "icon": "https://ddragon.leagueoflegends.com/cdn/16.20.1/img/item/3172.png",
   },
   "zhonyashourglass": {
     "id": "zhonyashourglass",
