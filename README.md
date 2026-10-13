@@ -70,6 +70,7 @@ champ-lab/
 │   │   ├── items.gen.ts
 │   │   └── meta.gen.ts   #     patch + compteurs
 │   ├── overrides.ts      #   >>> réglages à la main : étagères, runes, passifs
+│   ├── mechanics.ts      #   >>> passifs de kit saisis à la main (Fiora, Jax, Vayne…)
 │   ├── champions.ts      #   ré-exporte le généré
 │   ├── items.ts          #   ré-exporte le généré + itemStatLine
 │   └── runes.ts          #   runes keystone (kinds modélisés dans le moteur)
@@ -132,8 +133,13 @@ Trois façons de faire l'échange :
 - **all-in** (`allIn: true`) : le trade prolongé jusqu'au premier mort. `timeToKill()` donne le temps pour
   tuer de chaque camp, et l'edge se lit à l'instant du premier kill (PV retirés plafonnés à 100 %).
 
-Indicateur théorique : ni passifs (sauf Darius), ni effets à l'impact, soins, boucliers, portée, déplacements,
-contrôles ou animations. Autos et sorts s'enchaînent sans temps mort : c'est un plafond de dégâts.
+Kits et survie : dégâts en % des PV (cible ou lanceur), ratios par rang, boucliers et soins des sorts, vol de
+vie et omnivampirisme, qui s'ajoutent aux PV effectifs du camp qui les porte (un soin ne rend que ce qui a été
+perdu). Les passifs absents de Meraki se décrivent dans `data/mechanics.ts` (voir
+`docs/adding-a-champion.md`).
+
+Indicateur théorique : pas d'effets d'objets, de portée, de déplacements, de contrôles, d'esquives ni
+d'animations. Autos et sorts s'enchaînent sans temps mort : c'est un plafond de dégâts.
 
 ## Ajouter / affiner un champion
 

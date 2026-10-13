@@ -64,10 +64,27 @@ côté Meraki). En attendant, ajoute-les **à la main** dans `data/manual.ts` : 
 confirmés (Data Dragon), valeurs de dégâts illustratives à raffiner. Ils sont fusionnés au roster et remplacés
 automatiquement dès que Meraki les publie (retire alors l'entrée).
 
+## 2 ter. Passifs → `data/mechanics.ts`
+
+Le pipeline extrait déjà les dégâts en % des PV (cible ou lanceur), les ratios qui changent avec le rang, les
+boucliers et les soins des sorts. Ce que Meraki n'expose pas en chiffres — surtout les **passifs** — se décrit
+dans `data/mechanics.ts` avec quatre briques, appliquées par le moteur en mode trade / all-in :
+
+| `kind`                | Pour                                                  | Exemple                    |
+| --------------------- | ----------------------------------------------------- | -------------------------- |
+| `onHit`               | dégâts en plus tous les N coups d'auto                | passif à l'impact          |
+| `abilityOnHit`        | un sort qui frappe sur les autos au lieu d'être lancé | Vayne W (tous les 3 coups) |
+| `periodic`            | dégâts (et soin) toutes les X secondes                | points vitaux de Fiora     |
+| `stackingAttackSpeed` | VA bonus qui s'empile à chaque auto                   | Jax                        |
+
+Les valeurs « selon le niveau » s'écrivent `{ from, to }` (niveau 1 → 18). Reprends les chiffres de la
+description officielle du kit, cite-les en commentaire, et ajoute un test qui vérifie que la mécanique
+s'applique (voir les tests « passif » de `lib/engine_test.ts`).
+
 ## 3. Cas complexes → moteur
 
-Si le champion a une mécanique que le modèle générique ne couvre pas (passif conditionnel, dégâts % PV cible,
-cumul spécifique…), modélise-la dans `lib/engine.ts` :
+Si le champion a une mécanique que ni le modèle générique ni `data/mechanics.ts` ne couvrent (exécution, cumul
+conditionnel, transformation…), modélise-la dans `lib/engine.ts` :
 
 - ajoute un champ optionnel dans les types si nécessaire (ex. `hasBleed`),
 - gère le cas dans `computeCombo()`,

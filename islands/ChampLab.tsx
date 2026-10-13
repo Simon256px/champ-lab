@@ -153,7 +153,7 @@ export default function ChampLab({ champion }: { champion: Champion }) {
   const abDamage = (key: AbilityKey): number | null => {
     const ab = champion.abilities[key];
     if (ab.type === "util") return null;
-    let d = abilityRaw(champion, key, level, result.stats, ranks) *
+    let d = abilityRaw(champion, key, level, result.stats, ranks, target) *
       damageMultiplier(ab.type, result.stats, target);
     if (key === "R" && champion.hasBleed) d *= 1 + BLEED_ULT_AMP_PER_STACK * bleed;
     return d;
@@ -181,7 +181,8 @@ export default function ChampLab({ champion }: { champion: Champion }) {
   const remain = curHP - result.total;
   const kill = remain <= 0;
 
-  const includedAbilityKeys = AB_KEYS.filter((k) => champion.abilities[k].type !== "util" && include[k]);
+  // Sorts réellement présents dans le combo (un sort à l'impact, comme Vayne W, n'y est pas en burst).
+  const includedAbilityKeys = AB_KEYS.filter((k) => result.lines.some((l) => l.key === k));
 
   return (
     <div class="lab">
