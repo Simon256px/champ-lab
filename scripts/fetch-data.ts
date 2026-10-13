@@ -882,7 +882,12 @@ async function resolveMechanics(
     for (const m of list) {
       for (const v of Object.values(m)) {
         const c = (v as GameRef | undefined)?.character;
-        if (c && !characters.has(c)) characters.set(c, await fetchChampionBin(cdVersion, c).catch(() => null));
+        if (c && !characters.has(c)) {
+          characters.set(
+            c,
+            await fetchChampionBin(cdVersion, c).catch(() => null),
+          );
+        }
       }
     }
   }

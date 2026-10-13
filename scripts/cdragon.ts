@@ -425,12 +425,15 @@ export function parseTooltip(text: string, championName?: string): TooltipFacts 
     if (before === "") return true;
     // Sinon, le sujet le plus proche du verbe décide : le champion (ou un pronom) oui,
     // un familier, un clone ou les alliés non (« Zed's Shadow dashes », « Daisy to leap »).
-    const lastChampion = Math.max(-1, ...[...before.matchAll(new RegExp(subject.source, "gi"))].map((x) => x.index!));
+    const lastChampion = Math.max(
+      -1,
+      ...[...before.matchAll(new RegExp(subject.source, "gi"))].map((x) => x.index!),
+    );
     const lastOther = Math.max(
       -1,
-      ...[...before.matchAll(/\b(allies|ally|daisy|tibbers|pet|clone|shadow|minion|ghoul|maiden)\b/gi)].map((x) =>
-        x.index!
-      ),
+      ...[...before.matchAll(/\b(allies|ally|daisy|tibbers|pet|clone|shadow|minion|ghoul|maiden)\b/gi)].map((
+        x,
+      ) => x.index!),
     );
     return lastChampion >= 0 && lastChampion > lastOther;
   });
