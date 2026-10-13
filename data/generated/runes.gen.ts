@@ -1,8 +1,8 @@
 // ⚠ FICHIER GÉNÉRÉ — ne pas éditer à la main.
 // Source : Meraki (lolstaticdata) + Data Dragon.
 // Régénérer : deno task data
-// Patch de référence : 16.13.1
-// Généré le : 2026-07-08
+// Patch de référence : 16.20.1
+// Généré le : 2026-10-13
 
 import type { RuneDef } from "../types.ts";
 

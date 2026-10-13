@@ -25,6 +25,7 @@ export function itemStatLine(id: string): string {
   if (s.lethality) parts.push(`${s.lethality} létal.`);
   if (s.hp) parts.push(`${s.hp} PV`);
   if (s.armor) parts.push(`${s.armor} arm`);
+  if (s.mr) parts.push(`${s.mr} RM`);
   if (s.abilityHaste) parts.push(`${s.abilityHaste} AH`);
   return parts.join(" · ");
 }

@@ -316,6 +316,7 @@ function mapItemStats(m: MItem, dd?: Record<string, number>): ItemStats {
   if (flat("abilityPower")) stats.ap = round(flat("abilityPower"));
   if (flat("health")) stats.hp = round(flat("health"));
   if (flat("armor")) stats.armor = round(flat("armor"));
+  if (flat("magicResistance")) stats.mr = round(flat("magicResistance"));
   if (flat("abilityHaste")) stats.abilityHaste = round(flat("abilityHaste"));
   if (flat("magicPenetration")) stats.magicPenFlat = round(flat("magicPenetration"));
   if (pct("magicPenetration")) stats.magicPenPercent = round(pct("magicPenetration") / 100, 3);
@@ -330,6 +331,7 @@ function mapItemStats(m: MItem, dd?: Record<string, number>): ItemStats {
     if (dd.FlatMagicDamageMod) stats.ap = round(dd.FlatMagicDamageMod);
     if (dd.FlatHPPoolMod) stats.hp = round(dd.FlatHPPoolMod);
     if (dd.FlatArmorMod) stats.armor = round(dd.FlatArmorMod);
+    if (dd.FlatSpellBlockMod) stats.mr = round(dd.FlatSpellBlockMod);
   }
   return stats;
 }

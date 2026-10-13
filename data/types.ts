@@ -66,6 +66,8 @@ export interface ItemStats {
   apAmp?: number;
   hp?: number;
   armor?: number;
+  /** résistance magique */
+  mr?: number;
   abilityHaste?: number;
   magicPenFlat?: number;
   /** pénétration magique en %, ex. 0.40 */
