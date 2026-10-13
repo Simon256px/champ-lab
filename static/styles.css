@@ -1589,6 +1589,183 @@ text.mu-b {
   }
 }
 
+/* ---------- FICHE DE KIT (Ivern) ---------- */
+.kit {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+.kit-controls {
+  display: grid;
+  gap: 12px;
+}
+.kit-ranks {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 16px;
+}
+.kit-rank {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.kit-rank button {
+  border: 1px solid var(--line2);
+  width: 24px;
+  height: 24px;
+  color: var(--cream);
+}
+.kit-rank button:hover {
+  border-color: var(--green);
+}
+.kit-rank b {
+  color: var(--cream);
+}
+.kit-key {
+  display: inline-block;
+  min-width: 20px;
+  padding: 0 5px;
+  text-align: center;
+  color: var(--bg);
+  background: var(--green);
+  font-weight: bold;
+}
+.kit-warn {
+  color: var(--loss);
+}
+.kit-items {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 6px;
+}
+.kit-items select,
+.kit-duelbar select {
+  font-family: inherit;
+  font-size: 12px;
+  color: var(--cream);
+  background: var(--bg2);
+  border: 1px solid var(--line2);
+  padding: 5px 6px;
+  min-width: 0;
+}
+.kit-stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+  gap: 6px;
+}
+.kit-stat {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+  border: 1px solid var(--line);
+  padding: 4px 8px;
+}
+.kit-stat span {
+  color: var(--dim);
+}
+.kit-stat b {
+  color: var(--cream);
+}
+.kit-spells {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 14px;
+}
+.kit-tip p + p {
+  margin-top: 8px;
+}
+.kit-tip {
+  line-height: 1.6;
+}
+.tt-val {
+  font-weight: bold;
+}
+.tt-magic {
+  color: var(--magic);
+}
+.tt-phys {
+  color: var(--phys);
+}
+.tt-true {
+  color: var(--true);
+}
+.tt-shield,
+.tt-heal {
+  color: var(--green);
+}
+.tt-status {
+  color: var(--cream);
+  text-decoration: underline dotted;
+}
+.tt-key,
+.tt-spell {
+  color: var(--cream);
+}
+.tt-label {
+  color: var(--cream);
+  letter-spacing: 0.06em;
+}
+.tt-rules {
+  color: var(--dim);
+  font-style: italic;
+}
+.tt-stat {
+  color: var(--dim2);
+}
+.kit-duelbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px 16px;
+  margin-bottom: 10px;
+}
+.kit-modes {
+  flex: 1 1 260px;
+  border-top: 0;
+}
+.kit-toggle {
+  color: var(--cream);
+}
+.kit-duel {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 18px;
+}
+.kit-duel h4 {
+  margin: 0 0 6px;
+  color: var(--cream);
+  font-weight: normal;
+  letter-spacing: 0.08em;
+}
+.kit-duel p {
+  margin-top: 6px;
+}
+.kit-lines {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.kit-lines li {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 2px 0;
+  border-bottom: 1px dashed var(--line);
+}
+.kit-lines b {
+  color: var(--cream);
+}
+@media (max-width: 940px) {
+  .kit-items,
+  .kit-duel {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .kit-spells {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   * {
     transition: none !important;

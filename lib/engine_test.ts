@@ -90,6 +90,7 @@ Deno.test("mitigation: l'armure réduit les dégâts physiques", () => {
     critChance: 0,
     critDamage: 1.75,
     tenacity: 0,
+    healShieldPower: 0,
     abilityHaste: 0,
     itemAttackSpeed: 0,
     bonusAttackSpeed: 0,

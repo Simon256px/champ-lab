@@ -109,6 +109,8 @@ interface ChampionOverride {
   shelf?: string[];
   /** rune keystone par défaut (id de data/runes.ts) */
   keystone?: string;
+  /** objet de départ de la timeline (défaut : Doran adapté au profil) — un jungler part avec son compagnon */
+  starter?: string;
   /** corrections d'abilities par touche */
   abilities?: Partial<Record<AbilityKey, AbilityOverride>>;
 }
@@ -136,6 +138,24 @@ export const CHAMPION_OVERRIDES: Record<string, ChampionOverride> = {
       "rabadonsdeathcap",
       "voidstaff",
       "zhonyashourglass",
+    ],
+  },
+  ivern: {
+    adaptive: "AP",
+    // Aery (non modélisée : aucun effet de rune) plutôt qu'Électrocution, hors profil.
+    keystone: "summonaery",
+    // Ivern se joue en jungle : il part avec un compagnon de jungle, pas un Doran.
+    starter: "gustwalkerhatchling",
+    // Ordre type : Q niv 1, E niv 2, W niv 3, E au max, puis Q, ultime 6/11/16.
+    skillOrder: ["Q", "E", "W", "E", "E", "R", "E", "Q", "E", "Q", "R", "Q", "Q", "W", "W", "R", "W", "W"],
+    // Build d'enchanteur : bottes, objets de soutien (puissance, accélération, soins et boucliers).
+    shelf: [
+      "ionianbootsoflucidity",
+      "moonstonerenewer",
+      "shurelyasbattlesong",
+      "redemption",
+      "staffofflowingwater",
+      "imperialmandate",
     ],
   },
   darius: {

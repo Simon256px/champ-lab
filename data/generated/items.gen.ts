@@ -88,6 +88,7 @@ export const GENERATED_ITEMS: Record<string, Item> = {
     "short": "ARDENT",
     "stats": {
       "ap": 45,
+      "healShieldPower": 0.1,
     },
     "tier": "legendary",
     "cost": 2200,
@@ -648,6 +649,7 @@ export const GENERATED_ITEMS: Record<string, Item> = {
     "short": "DAWNCORE",
     "stats": {
       "ap": 45,
+      "healShieldPower": 0.16,
     },
     "tier": "legendary",
     "cost": 2500,
@@ -971,7 +973,9 @@ export const GENERATED_ITEMS: Record<string, Item> = {
     "id": "forbiddenidol",
     "name": "Forbidden Idol",
     "short": "FORBIDDE",
-    "stats": {},
+    "stats": {
+      "healShieldPower": 0.08,
+    },
     "tier": "epic",
     "cost": 600,
     "from": [
@@ -1879,6 +1883,7 @@ export const GENERATED_ITEMS: Record<string, Item> = {
     "stats": {
       "hp": 250,
       "abilityHaste": 15,
+      "healShieldPower": 0.12,
     },
     "tier": "legendary",
     "cost": 2300,
@@ -2314,6 +2319,7 @@ export const GENERATED_ITEMS: Record<string, Item> = {
     "stats": {
       "ap": 30,
       "abilityHaste": 15,
+      "healShieldPower": 0.1,
     },
     "tier": "legendary",
     "cost": 2300,
@@ -2689,6 +2695,7 @@ export const GENERATED_ITEMS: Record<string, Item> = {
     "stats": {
       "ap": 35,
       "abilityHaste": 15,
+      "healShieldPower": 0.1,
     },
     "tier": "legendary",
     "cost": 2250,
@@ -3166,6 +3173,7 @@ export const GENERATED_ITEMS: Record<string, Item> = {
     "short": "WHISPERI",
     "stats": {
       "hp": 200,
+      "healShieldPower": 0.08,
     },
     "tier": "legendary",
     "cost": 2250,

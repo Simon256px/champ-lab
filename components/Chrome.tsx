@@ -12,6 +12,7 @@ const NAV: NavItem[] = [
   { href: "/", label: "ACCUEIL" },
   { href: "/champions", label: "CHAMPIONS" },
   { href: "/matchup", label: "MATCHUP" },
+  { href: "/ivern", label: "IVERN" },
   { href: "/methode", label: "MÉTHODE" },
 ];
 

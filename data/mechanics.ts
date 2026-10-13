@@ -16,6 +16,7 @@ import type { GameRef, Mechanic } from "./types.ts";
  *   stackingAttackSpeed  VA bonus qui s'empile à chaque auto
  *   missingHpHeal        soin en % des PV manquants à chaque lancer d'un sort
  *   abilityDamage        donne des dégâts à un sort que Meraki laisse utilitaire
+ *   pet                  familier invoqué (Daisy) : attaques, onde de choc, PV
  *   parry                parade : bloque le plus gros coup et le plus long contrôle adverses
  *   dodgeAutos           esquive les autos adverses pendant X secondes
  *
@@ -72,6 +73,35 @@ export const MECHANICS: Record<string, Mechanic<GameRef>[]> = {
       kind: "abilityOnHit",
       key: "W",
       every: 3,
+    },
+  ],
+  ivern: [
+    {
+      // Faiseur de buissons (passif) : dans un buisson et 3 s après en être sorti, chaque
+      // auto inflige des dégâts magiques en plus. Ivern crée ses buissons (3 charges) :
+      // on suppose qu'il se bat dans le sien.
+      kind: "abilityOnHit",
+      key: "W",
+      every: 1,
+    },
+    {
+      // Daisy ! : familier qui saute dans la mêlée. Stats tirées du sort R (AD, VA bonus,
+      // PV, durée) et du fichier de Daisy (VA de base). Son 3e coup consécutif lance une
+      // onde de choc (dégâts magiques + projection), au plus une fois toutes les 3 s.
+      kind: "pet",
+      key: "R",
+      name: "Daisy",
+      type: "physical",
+      ad: { slot: "R", calc: "TotalDaisyAD" },
+      baseAttackSpeed: { slot: "R", character: "ivernminion", field: "attackSpeedModifiable" },
+      bonusAttackSpeed: { slot: "R", value: "DaisyAS", times: 0.01 },
+      hp: { slot: "R", calc: "TotalDaisyHP" },
+      duration: { slot: "R", value: "DaisyDuration" },
+      slamEvery: 3,
+      slamType: "magic",
+      slamDamage: { slot: "R", calc: "TotalShockwaveDamage" },
+      slamCooldown: { slot: "R", value: "ShockwaveCD" },
+      slamCc: { slot: "R", value: "ShockwaveCCDuration" },
     },
   ],
   darius: [

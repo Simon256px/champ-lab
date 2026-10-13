@@ -9700,18 +9700,18 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
     },
     "skillOrder": [
       "Q",
+      "E",
       "W",
       "E",
-      "Q",
-      "Q",
-      "R",
-      "Q",
-      "E",
-      "Q",
       "E",
       "R",
       "E",
+      "Q",
       "E",
+      "Q",
+      "R",
+      "Q",
+      "Q",
       "W",
       "W",
       "R",
@@ -9905,7 +9905,6 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           120,
         ],
         "aimed": true,
-        "mobility": true,
         "cc": {
           "op": "num",
           "n": 1,
@@ -9913,14 +9912,15 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       },
     },
     "shelf": [
-      "sorcerersshoes",
-      "ludensecho",
-      "shadowflame",
-      "rabadonsdeathcap",
-      "voidstaff",
-      "zhonyashourglass",
+      "ionianbootsoflucidity",
+      "moonstonerenewer",
+      "shurelyasbattlesong",
+      "redemption",
+      "staffofflowingwater",
+      "imperialmandate",
     ],
-    "keystone": "electrocute",
+    "keystone": "summonaery",
+    "starter": "gustwalkerhatchling",
   },
   "janna": {
     "id": "janna",
@@ -17992,7 +17992,6 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           },
         },
         "aimed": true,
-        "mobility": true,
         "formula": {
           "op": "sum",
           "of": [
@@ -27824,7 +27823,6 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           14,
         ],
         "aimed": true,
-        "mobility": true,
         "cc": {
           "op": "num",
           "n": 0.75,
@@ -28553,7 +28551,6 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           "ratios": {},
         },
         "aimed": true,
-        "mobility": true,
       },
       "E": {
         "name": "Flay",
@@ -33113,7 +33110,6 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           4,
         ],
         "aimed": true,
-        "mobility": true,
         "formula": {
           "op": "sum",
           "of": [
@@ -33588,7 +33584,6 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           8,
         ],
         "aimed": true,
-        "mobility": true,
       },
       "R": {
         "name": "Eulogy of the Isles",
@@ -34540,7 +34535,6 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
           16,
         ],
         "aimed": true,
-        "mobility": true,
       },
       "E": {
         "name": "Shadow Slash",

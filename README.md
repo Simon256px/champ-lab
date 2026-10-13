@@ -98,6 +98,7 @@ champ-lab/
 │   ├── lab/[champion].tsx   # labo d'un champion
 │   ├── lab/index.tsx        # redirige vers le premier champion
 │   ├── matchup/index.tsx    # A vs B minute par minute (?a=…&b=…)
+│   ├── ivern/index.tsx      # page dédiée à Ivern : fiche de kit complète + matchup (?vs=…)
 │   └── methode.tsx          # sources, éco, légal
 ├── static/styles.css     # design system, 100% CSS
 ├── deno.json             # dépendances + tâches
@@ -118,6 +119,15 @@ effectif  = dégâts * 100 / (100 + résistance après pénétration)   // "vrai
 
 Les pénétrations en % s'empilent multiplicativement. La fonction signature est `itemImpact()` : la différence
 de dégâts totaux si on ajoutait un objet au build — c'est le **mode impact**.
+
+### Page Ivern (`/ivern`)
+
+Fiche complète, générée depuis les fichiers du jeu (`data/generated/kits.gen.ts`, champions listés dans
+`KIT_SHEETS` de `scripts/fetch-data.ts`) : les infobulles du client sont rendues avec chaque nombre calculé au
+niveau, aux rangs et au build choisis (`lib/tooltip.ts`) — aucun chiffre saisi à la main. S'y ajoutent les
+stats de Daisy (familier : PV, AD, VA, résistances, onde de choc), le combo face à une cible (burst / trade /
+all-in, avec ou sans Daisy) et la timeline de matchup. Les valeurs sont recoupées avec le wiki officiel et
+figées dans `lib/ivern_test.ts` : si Riot modifie Ivern, le test échoue pour forcer une re-vérification.
 
 ### Matchup
 
