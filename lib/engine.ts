@@ -9,6 +9,13 @@
  *   dégâts    = base[rang] + Σ(ratio * stat correspondante)
  *   effectif  = dégâts * 100 / (100 + résistance après pénétration)
  *   vrai      = ignore les résistances
+ *
+ * Deux modes de combo :
+ *   burst  (window absent) : une rotation Q/W/E/R + rune, sans auto-attaque ;
+ *   trade  (window = T s)  : chaque sort relancé selon son cooldown (ability
+ *                            haste comprise), auto-attaques à la vitesse
+ *                            d'attaque, crits en espérance. Pas d'animation,
+ *                            de déplacement ni de reset d'auto : c'est un plafond.
  */
 
 import type {
@@ -37,6 +44,15 @@ export function conquerorBonus(adaptive: Adaptive, level: number): { ad: number;
     ? { ad: 12.96 + (30.66 - 12.96) * t, ap: 0 }
     : { ad: 0, ap: 21.6 + (51.11 - 21.6) * t };
 }
+
+/** Vitesse d'attaque maximale. */
+export const ATTACK_SPEED_CAP = 2.5;
+
+/**
+ * En dessous de ce cooldown (s), un « sort » est une posture ou un toggle (Q de
+ * Jinx…) : on ne le compte qu'une fois au lieu de le relancer en boucle.
+ */
+export const MIN_REAL_COOLDOWN = 1;
 
 /** Croissance d'une stat par niveau (formule officielle de League). */
 export function growth(base: number, perLevel: number, level: number): number {
@@ -67,6 +83,13 @@ export interface DerivedStats {
   magicPenPct: number;
   lethality: number;
   armorPenPct: number;
+  /** attaques par seconde, plafonnées à 2,5 */
+  attackSpeed: number;
+  /** chance de coup critique, 0..1 */
+  critChance: number;
+  /** multiplicateur d'un coup critique (1,75 de base) */
+  critDamage: number;
+  abilityHaste: number;
 }
 
 export function computeStats(
@@ -103,7 +126,47 @@ export function computeStats(
     magicPenPct: stackPercent(stats.map((s) => s.magicPenPercent)),
     lethality: stats.reduce((a, s) => a + (s.lethality ?? 0), 0),
     armorPenPct: stackPercent(stats.map((s) => s.armorPenPercent)),
+    attackSpeed: attackSpeedOf(champion, level, stats.reduce((a, s) => a + (s.attackSpeed ?? 0), 0)),
+    critChance: Math.min(1, stats.reduce((a, s) => a + (s.critChance ?? 0), 0)),
+    critDamage: champion.base.critDamage ?? 1.75,
+    abilityHaste: stats.reduce((a, s) => a + (s.abilityHaste ?? 0), 0),
   };
+}
+
+/**
+ * Vitesse d'attaque : base + ratio × (VA bonus des objets + croissance par
+ * niveau). Les champions saisis sans VA prennent le profil standard 0,625.
+ */
+export function attackSpeedOf(champion: Champion, level: number, bonusFromItems: number): number {
+  const b = champion.base;
+  const base = b.attackSpeed ?? 0.625;
+  const ratio = b.attackSpeedRatio ?? base;
+  const bonus = bonusFromItems + growth(0, b.attackSpeedPerLevel ?? 0.02, level);
+  return Math.min(ATTACK_SPEED_CAP, base + ratio * bonus);
+}
+
+/** Cooldown effectif d'un sort au rang donné, ability haste comprise (s). Undefined = inconnu. */
+export function cooldownOf(
+  champion: Champion,
+  key: AbilityKey,
+  rank: number,
+  haste: number,
+): number | undefined {
+  const cds = champion.abilities[key].cooldown;
+  if (!cds?.length || rank < 1) return undefined;
+  const cd = cds[Math.min(rank, cds.length) - 1];
+  return (cd * 100) / (100 + haste);
+}
+
+/** Lancers d'un sort sur une fenêtre de `window` s, premier lancer à t = 0. */
+export function castsIn(window: number, cooldown: number | undefined): number {
+  if (cooldown === undefined || cooldown < MIN_REAL_COOLDOWN) return 1;
+  return 1 + Math.floor(window / cooldown + 1e-9);
+}
+
+/** Auto-attaques sur une fenêtre de `window` s, première à t = 0. */
+export function autosIn(window: number, attackSpeed: number): number {
+  return 1 + Math.floor(window * attackSpeed + 1e-9);
 }
 
 /** Multiplicateur de dégâts effectifs selon le type et les résistances de la cible. */
@@ -168,6 +231,11 @@ export interface ComboInput {
   ranks?: Partial<Record<AbilityKey, number>>;
   /** rune keystone active (id de data/runes.ts). Absent = champion.keystone. */
   keystoneId?: string;
+  /**
+   * Fenêtre de trade en secondes. Absent = burst (une rotation, sans auto). Présent :
+   * sorts relancés selon leur cooldown + auto-attaques.
+   */
+  window?: number;
 }
 
 export interface ComboResult {
@@ -181,7 +249,8 @@ export interface ComboResult {
 
 /** Calcule le combo complet : lignes de dégâts, total, seuil d'exécution. */
 export function computeCombo(input: ComboInput): ComboResult {
-  const { champion, level, itemIds, items, runes, runeOn, target, bleedStacks, include, ranks } = input;
+  const { champion, level, itemIds, items, runes, runeOn, target, bleedStacks, include, ranks, window } =
+    input;
   const keystoneId = input.keystoneId ?? champion.keystone;
   const stats = computeStats(champion, level, itemIds, items, runes, runeOn, keystoneId);
   const lines: DamageLine[] = [];
@@ -196,7 +265,24 @@ export function computeCombo(input: ComboInput): ComboResult {
     let dmg = raw * damageMultiplier(ability.type, stats, target);
     // L'ultime de Darius gagne +20 % de dégâts par stack d'hémorragie (max +100 %).
     if (key === "R" && champion.hasBleed) dmg *= 1 + BLEED_ULT_AMP_PER_STACK * bleedStacks;
-    lines.push({ key, name: ability.name, type: ability.type, damage: dmg });
+    const casts = window === undefined ? 1 : castsIn(
+      window,
+      cooldownOf(champion, key, resolveRank(champion, key, level, ranks), stats.abilityHaste),
+    );
+    const name = casts > 1 ? `${ability.name} ×${casts}` : ability.name;
+    lines.push({ key, name, type: ability.type, damage: dmg * casts });
+  }
+
+  // Auto-attaques (mode trade) : AD total, crits en espérance.
+  if (window !== undefined) {
+    const n = autosIn(window, stats.attackSpeed);
+    const perHit = stats.totalAD * (1 + stats.critChance * (stats.critDamage - 1));
+    lines.push({
+      key: "AA",
+      name: `Auto-attaques ×${n}`,
+      type: "physical",
+      damage: n * perHit * damageMultiplier("physical", stats, target),
+    });
   }
 
   // Saignement (Hémorragie) : 13–30 selon le niveau (+30 % AD bonus) de dégâts
@@ -316,6 +402,16 @@ export interface DuelSide {
   include?: IncludeMap;
 }
 
+export interface DuelOptions {
+  /** fenêtre de trade (s). Absent = burst. Ignoré si allIn. */
+  window?: number;
+  /**
+   * All-in jusqu'à la mort : le duel s'arrête au premier kill (ou à TTK_LIMIT).
+   * killPct est alors mesuré à cet instant et plafonné à 1.
+   */
+  allIn?: boolean;
+}
+
 export interface DuelResult {
   /** combo de A sur B, et de B sur A */
   aToB: ComboResult;
@@ -328,6 +424,12 @@ export interface DuelResult {
   killPctB: number;
   /** killPctA - killPctB : > 0 = A sort gagnant de l'échange de combos */
   edge: number;
+  /** mode trade / all-in : secondes pour que A tue B (Infinity = pas avant TTK_LIMIT) */
+  ttkA?: number;
+  /** mode trade / all-in : secondes pour que B tue A */
+  ttkB?: number;
+  /** fenêtre réellement simulée (s) : la fenêtre demandée, ou l'instant du premier kill en all-in */
+  window?: number;
 }
 
 const ALL_IN: IncludeMap = { Q: true, W: true, E: true, R: true, bleed: true, rune: true };
@@ -342,26 +444,61 @@ export function computeDuel(
   b: DuelSide,
   items: Record<string, Item>,
   runes: Record<string, RuneDef>,
+  opts: DuelOptions = {},
 ): DuelResult {
   const targetA = targetFromChampion(a.champion, a.level, a.itemIds, items);
   const targetB = targetFromChampion(b.champion, b.level, b.itemIds, items);
-  const combo = (atk: DuelSide, target: TargetProfile) =>
-    computeCombo({
-      champion: atk.champion,
-      level: atk.level,
-      itemIds: atk.itemIds,
-      items,
-      runes,
-      runeOn: atk.runeOn,
-      target,
-      bleedStacks: atk.bleedStacks ?? 5,
-      include: atk.include ?? ALL_IN,
-      ranks: atk.ranks,
-      keystoneId: atk.keystoneId,
-    });
-  const aToB = combo(a, targetB);
-  const bToA = combo(b, targetA);
-  const killPctA = aToB.total / targetB.hpMax;
-  const killPctB = bToA.total / targetA.hpMax;
-  return { aToB, bToA, targetA, targetB, killPctA, killPctB, edge: killPctA - killPctB };
+  const inputOf = (atk: DuelSide, target: TargetProfile): ComboInput => ({
+    champion: atk.champion,
+    level: atk.level,
+    itemIds: atk.itemIds,
+    items,
+    runes,
+    runeOn: atk.runeOn,
+    target,
+    bleedStacks: atk.bleedStacks ?? 5,
+    include: atk.include ?? ALL_IN,
+    ranks: atk.ranks,
+    keystoneId: atk.keystoneId,
+  });
+  const inA = inputOf(a, targetB);
+  const inB = inputOf(b, targetA);
+  const timed = opts.allIn || opts.window !== undefined;
+  const ttkA = timed
+    ? timeToKill((w) => computeCombo({ ...inA, window: w }).total, targetB.hpMax)
+    : undefined;
+  const ttkB = timed
+    ? timeToKill((w) => computeCombo({ ...inB, window: w }).total, targetA.hpMax)
+    : undefined;
+  // All-in : on s'arrête au premier mort — c'est lui qui décide du duel.
+  const window = opts.allIn ? Math.min(ttkA!, ttkB!, TTK_LIMIT) : opts.window;
+  const aToB = computeCombo({ ...inA, window });
+  const bToA = computeCombo({ ...inB, window });
+  const cap = (n: number) => (opts.allIn ? Math.min(1, n) : n);
+  const killPctA = cap(aToB.total / targetB.hpMax);
+  const killPctB = cap(bToA.total / targetA.hpMax);
+  const result: DuelResult = { aToB, bToA, targetA, targetB, killPctA, killPctB, edge: killPctA - killPctB };
+  if (timed) Object.assign(result, { ttkA, ttkB, window });
+  return result;
+}
+
+/** Limite de recherche du temps pour tuer (s). Au-delà, le duel est considéré sans kill. */
+export const TTK_LIMIT = 20;
+
+/**
+ * Plus petite fenêtre (s) dont les dégâts atteignent `hp`. `damageAt` doit être
+ * croissante en la fenêtre (c'est le cas : lancers et autos ne font que s'ajouter).
+ * 0 = le burst initial suffit ; Infinity = pas de kill avant `limit`.
+ */
+export function timeToKill(damageAt: (window: number) => number, hp: number, limit = TTK_LIMIT): number {
+  if (damageAt(0) >= hp) return 0;
+  if (damageAt(limit) < hp) return Infinity;
+  let lo = 0;
+  let hi = limit;
+  while (hi - lo > 0.01) {
+    const mid = (lo + hi) / 2;
+    if (damageAt(mid) >= hp) hi = mid;
+    else lo = mid;
+  }
+  return hi;
 }

@@ -159,12 +159,16 @@ export interface MatchupPoint {
   levelB: number;
   buildA: string[];
   buildB: string[];
-  /** part des PV de B retirée par un all-in de A (> 1 = overkill) */
+  /** part des PV de B retirée par A sur la fenêtre (> 1 = overkill ; plafonnée à 1 en all-in) */
   killPctA: number;
   /** l'inverse */
   killPctB: number;
   /** killPctA - killPctB (> 0 = A gagne l'échange) */
   edge: number;
+  /** mode trade : secondes pour que A tue B (Infinity = pas de kill) */
+  ttkA?: number;
+  /** mode trade : secondes pour que B tue A */
+  ttkB?: number;
 }
 
 export interface TimelineOptions {
@@ -172,6 +176,10 @@ export interface TimelineOptions {
   until?: number;
   /** pas en minutes. Défaut 1. */
   step?: number;
+  /** fenêtre de trade (s). Absent = burst (une rotation, sans auto). */
+  window?: number;
+  /** all-in jusqu'au premier kill (prioritaire sur window) */
+  allIn?: boolean;
 }
 
 export function matchupTimeline(
@@ -192,6 +200,7 @@ export function matchupTimeline(
       { ...b, level: sb.level, itemIds: sb.items, runeOn: b.runeOn ?? true },
       items,
       runes,
+      { window: opts.window, allIn: opts.allIn },
     );
     points.push({
       minute,
@@ -202,6 +211,7 @@ export function matchupTimeline(
       killPctA: duel.killPctA,
       killPctB: duel.killPctB,
       edge: duel.edge,
+      ...(duel.ttkA !== undefined ? { ttkA: duel.ttkA, ttkB: duel.ttkB } : {}),
     });
   }
   return points;

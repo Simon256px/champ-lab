@@ -10,10 +10,38 @@ import { CHAMPION_LIST, CHAMPIONS } from "@/data/champions.ts";
 import { ITEMS } from "@/data/items.ts";
 import { RUNES } from "@/data/runes.ts";
 import { DEFAULT_LANE, findSpikes, matchupTimeline } from "@/lib/timeline.ts";
-import type { MatchupPoint, Spike } from "@/lib/timeline.ts";
+import type { MatchupPoint, Spike, TimelineOptions } from "@/lib/timeline.ts";
 
 const pct = (n: number) => `${Math.round(n * 100)}%`;
 const signed = (n: number) => `${n > 0 ? "+" : ""}${Math.round(n * 100)}`;
+
+/** Temps pour tuer lisible : « 6,1 s », « — » au-delà de la limite. */
+const secs = (n?: number) =>
+  n === undefined || !Number.isFinite(n) ? "—" : `${n.toFixed(1).replace(".", ",")} s`;
+
+type Mode = "burst" | "trade" | "allin";
+
+/** Les trois façons de faire l'échange, et comment lire l'edge dans chacune. */
+const MODES: Record<Mode, { label: string; hint: string; edge: string; opts: TimelineOptions }> = {
+  burst: {
+    label: "BURST",
+    hint: "une rotation",
+    edge: "edge = % PV retirés par A − par B, une rotation de sorts",
+    opts: {},
+  },
+  trade: {
+    label: "TRADE 3 S",
+    hint: "sorts + autos",
+    edge: "edge = % PV retirés par A − par B sur 3 s (sorts selon cooldown + autos)",
+    opts: { window: 3 },
+  },
+  allin: {
+    label: "ALL-IN",
+    hint: "jusqu'au premier mort",
+    edge: "edge = % PV retirés par A − par B à l'instant du premier kill",
+    opts: { allIn: true },
+  },
+};
 
 /** Nom court d'un objet pour les listes de build. */
 const itemName = (id: string) => ITEMS[id]?.name ?? id;
@@ -39,6 +67,7 @@ export default function Matchup({ initialA, initialB }: Props) {
   const [csB, setCsB] = useState(DEFAULT_LANE.csPerMin);
   const [xpGapB, setXpGapB] = useState(0);
   const [hover, setHover] = useState<number | null>(null);
+  const [mode, setMode] = useState<Mode>("allin");
 
   const a = CHAMPIONS[aId];
   const b = CHAMPIONS[bId];
@@ -48,7 +77,9 @@ export default function Matchup({ initialA, initialB }: Props) {
     { champion: b, lane: { csPerMin: csB, xpPerMin: DEFAULT_LANE.xpPerMin * (1 - xpGapB / 100) } },
     ITEMS,
     RUNES,
+    MODES[mode].opts,
   );
+  const timed = mode !== "burst";
   const spikes = findSpikes(points, a, b, ITEMS);
 
   const pick = (side: "a" | "b", id: string) => {
@@ -80,6 +111,21 @@ export default function Matchup({ initialA, initialB }: Props) {
           <button type="button" class="cta small" onClick={swap} title="Inverser A et B">⇄</button>
           <SidePicker label="B" value={bId} onPick={(id) => pick("b", id)} />
         </div>
+        <div class="pbody mu-modes" role="radiogroup" aria-label="Type d'échange">
+          {(Object.keys(MODES) as Mode[]).map((m) => (
+            <button
+              type="button"
+              key={m}
+              role="radio"
+              aria-checked={mode === m}
+              class={mode === m ? "on" : ""}
+              onClick={() => setMode(m)}
+            >
+              <b>{MODES[m].label}</b>
+              <span>{MODES[m].hint}</span>
+            </button>
+          ))}
+        </div>
         <div class="pbody mu-lane">
           <Slider label={`CS/MIN · ${a.name}`} value={csA} min={3} max={11} step={0.5} onInput={setCsA} />
           <Slider label={`CS/MIN · ${b.name}`} value={csB} min={3} max={11} step={0.5} onInput={setCsB} />
@@ -98,7 +144,7 @@ export default function Matchup({ initialA, initialB }: Props) {
       <div class="panel">
         <div class="phead">
           <span class="tag">AVANTAGE · {a.name.toUpperCase()} vs {b.name.toUpperCase()}</span>
-          <span class="st">edge = % PV retirés par A − % PV retirés par B, all-in à PV pleins</span>
+          <span class="st">{MODES[mode].edge}</span>
         </div>
         <div class="pbody">
           <div class="mu-summary">
@@ -120,6 +166,11 @@ export default function Matchup({ initialA, initialB }: Props) {
                   <b>{focus.minute}'</b> · niv {focus.levelA}/{focus.levelB} · {a.name} retire{" "}
                   <b>{pct(focus.killPctA)}</b> · {b.name} retire <b>{pct(focus.killPctB)}</b> · edge{" "}
                   <b>{signed(focus.edge)}</b>
+                  {timed && (
+                    <>
+                      {" "}· tue en <b>{secs(focus.ttkA)}</b> / <b>{secs(focus.ttkB)}</b>
+                    </>
+                  )}
                 </>
               )
               : <span class="dim">Survole la courbe pour le détail d'une minute.</span>}
@@ -158,12 +209,14 @@ export default function Matchup({ initialA, initialB }: Props) {
               puis l'étagère du champion, composants achetés dès que l'or suffit (pas de timing de recall).
             </p>
             <p>
-              Chaque minute, chaque camp place son combo complet (Q/W/E/R + rune) sur l'autre, résistances et
-              PV du niveau et des objets compris.
+              Burst : une rotation Q/W/E/R + rune. Trade et all-in : sorts relancés selon leur cooldown
+              (ability haste comprise), auto-attaques à la vitesse d'attaque, crits en espérance. L'all-in
+              s'arrête au premier mort. Résistances et PV du niveau et des objets compris.
             </p>
             <p class="dim">
-              Pas encore modélisé : auto-attaques, cooldowns, soins, boucliers, portée, contrôles. Les
-              champions qui gagnent sur la durée (Fiora, Jax…) sont donc sous-évalués.
+              Pas encore modélisé : passifs (sauf Darius), effets à l'impact, soins, boucliers, portée,
+              déplacements, contrôles, animations. Les autos et les sorts s'enchaînent sans temps mort : c'est
+              un plafond de dégâts, pas un replay.
             </p>
           </div>
         </div>
@@ -183,6 +236,7 @@ export default function Matchup({ initialA, initialB }: Props) {
                 <th>{a.name}</th>
                 <th>{b.name}</th>
                 <th>edge</th>
+                {timed && <th>tue en</th>}
                 <th class="mu-build">build {a.name}</th>
                 <th class="mu-build">build {b.name}</th>
               </tr>
@@ -195,6 +249,7 @@ export default function Matchup({ initialA, initialB }: Props) {
                   <td>{pct(p.killPctA)}</td>
                   <td>{pct(p.killPctB)}</td>
                   <td class={p.edge > 0.02 ? "mu-a" : p.edge < -0.02 ? "mu-b" : ""}>{signed(p.edge)}</td>
+                  {timed && <td>{secs(p.ttkA)} / {secs(p.ttkB)}</td>}
                   <td class="mu-build">{p.buildA.map(itemName).join(", ")}</td>
                   <td class="mu-build">{p.buildB.map(itemName).join(", ")}</td>
                 </tr>

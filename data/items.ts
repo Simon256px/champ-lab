@@ -33,6 +33,8 @@ export function itemStatLine(id: string): string {
   if (s.magicPenPercent) parts.push(`${Math.round(s.magicPenPercent * 100)}% pén.M`);
   if (s.armorPenPercent) parts.push(`${Math.round(s.armorPenPercent * 100)}% pén.A`);
   if (s.lethality) parts.push(`${s.lethality} létal.`);
+  if (s.attackSpeed) parts.push(`${Math.round(s.attackSpeed * 100)}% VA`);
+  if (s.critChance) parts.push(`${Math.round(s.critChance * 100)}% crit`);
   if (s.hp) parts.push(`${s.hp} PV`);
   if (s.armor) parts.push(`${s.armor} arm`);
   if (s.mr) parts.push(`${s.mr} RM`);

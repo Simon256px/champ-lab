@@ -228,7 +228,9 @@ export const GENERATED_ITEMS: Record<string, Item> = {
     "id": "berserkersgreaves",
     "name": "Berserker's Greaves",
     "short": "BERSERKE",
-    "stats": {},
+    "stats": {
+      "attackSpeed": 0.3,
+    },
     "tier": "boots",
     "cost": 1100,
     "from": [
@@ -279,6 +281,7 @@ export const GENERATED_ITEMS: Record<string, Item> = {
     "short": "BLADE",
     "stats": {
       "ad": 40,
+      "attackSpeed": 0.25,
     },
     "tier": "legendary",
     "cost": 3200,
@@ -491,7 +494,9 @@ export const GENERATED_ITEMS: Record<string, Item> = {
     "id": "cloakofagility",
     "name": "Cloak of Agility",
     "short": "CLOAK",
-    "stats": {},
+    "stats": {
+      "critChance": 0.15,
+    },
     "tier": "basic",
     "cost": 600,
     "icon": "https://ddragon.leagueoflegends.com/cdn/16.20.1/img/item/1018.png",
@@ -587,7 +592,9 @@ export const GENERATED_ITEMS: Record<string, Item> = {
     "id": "dagger",
     "name": "Dagger",
     "short": "DAGGER",
-    "stats": {},
+    "stats": {
+      "attackSpeed": 0.1,
+    },
     "tier": "basic",
     "cost": 250,
     "icon": "https://ddragon.leagueoflegends.com/cdn/16.20.1/img/item/1042.png",
@@ -710,6 +717,7 @@ export const GENERATED_ITEMS: Record<string, Item> = {
       "ap": 60,
       "hp": 300,
       "abilityHaste": 20,
+      "attackSpeed": 0.2,
     },
     "tier": "legendary",
     "cost": 3100,
@@ -795,6 +803,7 @@ export const GENERATED_ITEMS: Record<string, Item> = {
     "stats": {
       "ad": 50,
       "abilityHaste": 20,
+      "critChance": 0.25,
     },
     "tier": "legendary",
     "cost": 3050,
@@ -826,6 +835,7 @@ export const GENERATED_ITEMS: Record<string, Item> = {
     "stats": {
       "ad": 40,
       "hp": 450,
+      "attackSpeed": 0.2,
     },
     "tier": "legendary",
     "cost": 3000,
@@ -858,6 +868,22 @@ export const GENERATED_ITEMS: Record<string, Item> = {
       "amplifyingtome",
     ],
     "icon": "https://ddragon.leagueoflegends.com/cdn/16.20.1/img/item/2508.png",
+  },
+  "fiendhunterbolts": {
+    "id": "fiendhunterbolts",
+    "name": "Fiendhunter Bolts",
+    "short": "FIENDHUN",
+    "stats": {
+      "attackSpeed": 0.45,
+      "critChance": 0.25,
+    },
+    "tier": "legendary",
+    "cost": 2650,
+    "from": [
+      "zeal",
+      "scoutsslingshot",
+    ],
+    "icon": "https://ddragon.leagueoflegends.com/cdn/16.20.1/img/item/2512.png",
   },
   "fiendishcodex": {
     "id": "fiendishcodex",
@@ -1033,6 +1059,7 @@ export const GENERATED_ITEMS: Record<string, Item> = {
     "stats": {
       "ad": 30,
       "ap": 30,
+      "attackSpeed": 0.25,
     },
     "tier": "legendary",
     "cost": 3000,
@@ -1074,6 +1101,7 @@ export const GENERATED_ITEMS: Record<string, Item> = {
     "short": "HEARTHBO",
     "stats": {
       "ad": 20,
+      "attackSpeed": 0.2,
     },
     "tier": "epic",
     "cost": 1200,
@@ -1123,6 +1151,7 @@ export const GENERATED_ITEMS: Record<string, Item> = {
     "short": "HEXOPTIC",
     "stats": {
       "ad": 55,
+      "critChance": 0.25,
     },
     "tier": "legendary",
     "cost": 2800,
@@ -1275,6 +1304,7 @@ export const GENERATED_ITEMS: Record<string, Item> = {
     "short": "IMMORTAL",
     "stats": {
       "ad": 55,
+      "critChance": 0.25,
     },
     "tier": "legendary",
     "cost": 3000,
@@ -1307,6 +1337,7 @@ export const GENERATED_ITEMS: Record<string, Item> = {
     "short": "INFINITY",
     "stats": {
       "ad": 75,
+      "critChance": 0.25,
     },
     "tier": "legendary",
     "cost": 3500,
@@ -1406,6 +1437,7 @@ export const GENERATED_ITEMS: Record<string, Item> = {
     "short": "KRAKEN",
     "stats": {
       "ad": 45,
+      "attackSpeed": 0.4,
     },
     "tier": "legendary",
     "cost": 3000,
@@ -1502,6 +1534,7 @@ export const GENERATED_ITEMS: Record<string, Item> = {
     "stats": {
       "ad": 35,
       "armorPenPercent": 0.35,
+      "critChance": 0.25,
     },
     "tier": "legendary",
     "cost": 3300,
@@ -1699,6 +1732,7 @@ export const GENERATED_ITEMS: Record<string, Item> = {
     "stats": {
       "ad": 35,
       "armorPenPercent": 0.3,
+      "critChance": 0.25,
     },
     "tier": "legendary",
     "cost": 3000,
@@ -1725,6 +1759,7 @@ export const GENERATED_ITEMS: Record<string, Item> = {
     "stats": {
       "ap": 80,
       "abilityHaste": 15,
+      "attackSpeed": 0.5,
     },
     "tier": "legendary",
     "cost": 2900,
@@ -1734,6 +1769,23 @@ export const GENERATED_ITEMS: Record<string, Item> = {
       "fiendishcodex",
     ],
     "icon": "https://ddragon.leagueoflegends.com/cdn/16.20.1/img/item/3115.png",
+  },
+  "navoriflickerblade": {
+    "id": "navoriflickerblade",
+    "name": "Navori Flickerblade",
+    "short": "NAVORI",
+    "stats": {
+      "attackSpeed": 0.4,
+      "critChance": 0.25,
+    },
+    "tier": "legendary",
+    "cost": 2650,
+    "from": [
+      "dagger",
+      "zeal",
+      "dagger",
+    ],
+    "icon": "https://ddragon.leagueoflegends.com/cdn/16.20.1/img/item/6675.png",
   },
   "needlesslylargerod": {
     "id": "needlesslylargerod",
@@ -1766,6 +1818,7 @@ export const GENERATED_ITEMS: Record<string, Item> = {
     "short": "NOONQUIV",
     "stats": {
       "ad": 15,
+      "critChance": 0.2,
     },
     "tier": "epic",
     "cost": 1300,
@@ -1848,6 +1901,23 @@ export const GENERATED_ITEMS: Record<string, Item> = {
       "longsword",
     ],
     "icon": "https://ddragon.leagueoflegends.com/cdn/16.20.1/img/item/3044.png",
+  },
+  "phantomdancer": {
+    "id": "phantomdancer",
+    "name": "Phantom Dancer",
+    "short": "PHANTOM",
+    "stats": {
+      "attackSpeed": 0.65,
+      "critChance": 0.25,
+    },
+    "tier": "legendary",
+    "cost": 2650,
+    "from": [
+      "dagger",
+      "zeal",
+      "dagger",
+    ],
+    "icon": "https://ddragon.leagueoflegends.com/cdn/16.20.1/img/item/3046.png",
   },
   "pickaxe": {
     "id": "pickaxe",
@@ -1954,6 +2024,22 @@ export const GENERATED_ITEMS: Record<string, Item> = {
     ],
     "icon": "https://ddragon.leagueoflegends.com/cdn/16.20.1/img/item/3143.png",
   },
+  "rapidfirecannon": {
+    "id": "rapidfirecannon",
+    "name": "Rapid Firecannon",
+    "short": "RAPID",
+    "stats": {
+      "attackSpeed": 0.35,
+      "critChance": 0.25,
+    },
+    "tier": "legendary",
+    "cost": 2650,
+    "from": [
+      "zeal",
+      "scoutsslingshot",
+    ],
+    "icon": "https://ddragon.leagueoflegends.com/cdn/16.20.1/img/item/3094.png",
+  },
   "ravenoushydra": {
     "id": "ravenoushydra",
     "name": "Ravenous Hydra",
@@ -1989,7 +2075,9 @@ export const GENERATED_ITEMS: Record<string, Item> = {
     "id": "recurvebow",
     "name": "Recurve Bow",
     "short": "RECURVE",
-    "stats": {},
+    "stats": {
+      "attackSpeed": 0.15,
+    },
     "tier": "epic",
     "cost": 700,
     "from": [
@@ -2066,6 +2154,22 @@ export const GENERATED_ITEMS: Record<string, Item> = {
     "cost": 400,
     "icon": "https://ddragon.leagueoflegends.com/cdn/16.20.1/img/item/1028.png",
   },
+  "runaanshurricane": {
+    "id": "runaanshurricane",
+    "name": "Runaan's Hurricane",
+    "short": "RUNAANS",
+    "stats": {
+      "attackSpeed": 0.4,
+      "critChance": 0.25,
+    },
+    "tier": "legendary",
+    "cost": 2650,
+    "from": [
+      "zeal",
+      "scoutsslingshot",
+    ],
+    "icon": "https://ddragon.leagueoflegends.com/cdn/16.20.1/img/item/3085.png",
+  },
   "rylaiscrystalscepter": {
     "id": "rylaiscrystalscepter",
     "name": "Rylai's Crystal Scepter",
@@ -2105,7 +2209,9 @@ export const GENERATED_ITEMS: Record<string, Item> = {
     "id": "scoutsslingshot",
     "name": "Scout's Slingshot",
     "short": "SCOUTS",
-    "stats": {},
+    "stats": {
+      "attackSpeed": 0.2,
+    },
     "tier": "epic",
     "cost": 600,
     "from": [
@@ -2357,6 +2463,7 @@ export const GENERATED_ITEMS: Record<string, Item> = {
     "short": "STATIKK",
     "stats": {
       "ad": 45,
+      "attackSpeed": 0.3,
       "ap": 45,
     },
     "tier": "legendary",
@@ -2424,6 +2531,7 @@ export const GENERATED_ITEMS: Record<string, Item> = {
     "stats": {
       "ad": 40,
       "hp": 450,
+      "attackSpeed": 0.25,
     },
     "tier": "legendary",
     "cost": 3300,
@@ -2496,6 +2604,7 @@ export const GENERATED_ITEMS: Record<string, Item> = {
     "short": "TERMINUS",
     "stats": {
       "ad": 30,
+      "attackSpeed": 0.35,
     },
     "tier": "legendary",
     "cost": 3000,
@@ -2529,6 +2638,7 @@ export const GENERATED_ITEMS: Record<string, Item> = {
     "stats": {
       "ad": 50,
       "lethality": 10,
+      "critChance": 0.25,
     },
     "tier": "legendary",
     "cost": 3000,
@@ -2612,6 +2722,7 @@ export const GENERATED_ITEMS: Record<string, Item> = {
       "ad": 36,
       "hp": 333,
       "abilityHaste": 15,
+      "attackSpeed": 0.3,
     },
     "tier": "legendary",
     "cost": 3333,
@@ -2822,6 +2933,7 @@ export const GENERATED_ITEMS: Record<string, Item> = {
     "short": "WITS",
     "stats": {
       "mr": 45,
+      "attackSpeed": 0.5,
     },
     "tier": "legendary",
     "cost": 2800,
@@ -2866,6 +2978,7 @@ export const GENERATED_ITEMS: Record<string, Item> = {
     "short": "YUNTALWI",
     "stats": {
       "ad": 50,
+      "attackSpeed": 0.45,
     },
     "tier": "legendary",
     "cost": 3000,
@@ -2892,7 +3005,10 @@ export const GENERATED_ITEMS: Record<string, Item> = {
     "id": "zeal",
     "name": "Zeal",
     "short": "ZEAL",
-    "stats": {},
+    "stats": {
+      "attackSpeed": 0.15,
+      "critChance": 0.15,
+    },
     "tier": "epic",
     "cost": 1200,
     "from": [
@@ -2926,6 +3042,7 @@ export const GENERATED_ITEMS: Record<string, Item> = {
     "short": "ZEPHYR",
     "stats": {
       "abilityHaste": 30,
+      "attackSpeed": 0.45,
     },
     "tier": "legendary",
     "cost": 1100,

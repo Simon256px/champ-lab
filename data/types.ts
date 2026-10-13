@@ -27,6 +27,8 @@ export interface Ability {
   /** dégâts de base par rang. base[0] = rang 1. Un sort utilitaire peut valoir [0]. */
   base: number[];
   ratios: AbilityRatios;
+  /** temps de recharge par rang, en secondes (avant ability haste). Absent = inconnu. */
+  cooldown?: number[];
 }
 
 export interface ChampionBaseStats {
@@ -38,6 +40,16 @@ export interface ChampionBaseStats {
   armorPerLevel: number;
   mr: number;
   mrPerLevel: number;
+  /** vitesse d'attaque de base (attaques/s). Absent = 0,625. */
+  attackSpeed?: number;
+  /** ratio appliqué à la vitesse d'attaque bonus. Absent = attackSpeed. */
+  attackSpeedRatio?: number;
+  /** vitesse d'attaque bonus par niveau, en fraction (0,02 = 2 %). */
+  attackSpeedPerLevel?: number;
+  /** portée d'auto-attaque (unités) */
+  attackRange?: number;
+  /** dégâts d'un coup critique, en multiplicateur (1,75 = 175 %). Absent = 1,75. */
+  critDamage?: number;
 }
 
 export interface Champion {
@@ -76,6 +88,10 @@ export interface ItemStats {
   armorPenPercent?: number;
   /** létalité ~ pénétration d'armure plate */
   lethality?: number;
+  /** vitesse d'attaque bonus en fraction, ex. 0.40 pour +40 % */
+  attackSpeed?: number;
+  /** chance de coup critique en fraction, ex. 0.25 */
+  critChance?: number;
 }
 
 /** Place d'un objet dans l'arbre de craft. Les composants servent à la timeline de build. */

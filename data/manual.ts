@@ -27,6 +27,11 @@ export const MANUAL_CHAMPIONS: Record<string, Champion> = {
       armorPerLevel: 4.2,
       mr: 32,
       mrPerLevel: 2.05,
+      // Profil type mage à distance (illustratif, à recroiser avec Data Dragon).
+      attackSpeed: 0.625,
+      attackSpeedRatio: 0.625,
+      attackSpeedPerLevel: 0.02,
+      attackRange: 525,
     },
     // Ordre type mage : max Q > E > W, ult 6/11/16.
     skillOrder: ["Q", "E", "W", "Q", "Q", "R", "Q", "E", "Q", "E", "R", "E", "E", "W", "W", "R", "W", "W"],
