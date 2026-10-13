@@ -1,7 +1,7 @@
 /** @jsxImportSource preact */
 import { useState } from "preact/hooks";
 import type { AbilityKey, Champion, DamageType, IncludeMap } from "@/data/types.ts";
-import { ITEMS, itemStatLine } from "@/data/items.ts";
+import { isLabItem, ITEMS, itemStatLine } from "@/data/items.ts";
 import { RUNE_LIST, RUNES } from "@/data/runes.ts";
 import {
   abilityRaw,
@@ -73,7 +73,9 @@ function initialRanks(champion: Champion, level: number): Record<AbilityKey, num
 const ULT_UNLOCK = [6, 11, 16];
 
 /** Catalogue d'items trié une fois (id + nom, pour la recherche). */
-const ITEM_CATALOG = Object.values(ITEMS).sort((a, b) => a.name.localeCompare(b.name, "fr"));
+const ITEM_CATALOG = Object.values(ITEMS).filter(isLabItem).sort((a, b) =>
+  a.name.localeCompare(b.name, "fr")
+);
 
 export default function ChampLab({ champion }: { champion: Champion }) {
   const [level, setLevel] = useState(11);

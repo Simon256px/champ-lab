@@ -32,6 +32,7 @@ import type {
   DamageType,
   Item,
   ItemStats,
+  ItemTier,
 } from "../data/types.ts";
 import {
   CHAMPION_OVERRIDES,
@@ -336,6 +337,16 @@ function mapItemStats(m: MItem, dd?: Record<string, number>): ItemStats {
   return stats;
 }
 
+/** Tier d'un objet d'après le rang Meraki. Undefined = non achetable en partie (conso, trinket…). */
+function itemTier(rank: string[]): ItemTier | undefined {
+  if (rank.includes("BOOTS")) return "boots";
+  if (rank.includes("LEGENDARY")) return "legendary";
+  if (rank.includes("EPIC")) return "epic";
+  if (rank.includes("BASIC")) return "basic";
+  if (rank.includes("STARTER")) return "starter";
+  return undefined;
+}
+
 /** Libellé court : reprend l'override s'il existe, sinon dérive du nom. */
 function itemShort(name: string, ov?: { short?: string }): string {
   if (ov?.short) return ov.short;
@@ -545,7 +556,14 @@ async function main() {
   // commune aux deux → on croise.
   console.log("▶ Récupération de la disponibilité SR (Data Dragon)…");
   const ddItems = await fetchJson<
-    { data: Record<string, { maps?: Record<string, boolean>; stats?: Record<string, number> }> }
+    {
+      data: Record<string, {
+        maps?: Record<string, boolean>;
+        stats?: Record<string, number>;
+        gold?: { total: number };
+        from?: string[];
+      }>;
+    }
   >(
     `${DDRAGON}/cdn/${patch}/data/en_US/item.json`,
   );
@@ -558,31 +576,55 @@ async function main() {
   const rawItems = await fetchJson<Record<string, MItem>>(`${MERAKI}/items.json`);
   const items: Item[] = [];
   const wanted = new Set(ITEM_WHITELIST);
+  // id numérique Riot → slug, pour traduire les recettes Data Dragon.
+  const slugByRiotId = new Map<string, string>();
   for (const m of Object.values(rawItems)) {
     if (m.removed || m.requiredChampion) continue;
     if (!m.shop?.purchasable) continue;
     // Faille de l'invocateur uniquement (exclut ARAM, Arena, etc.).
     if (!srItemIds.has(String(m.id)) && !wanted.has(slugify(m.name))) continue;
-    const rank = m.rank ?? [];
-    // Objets « complets » choisissables : légendaires (tier 3) + bottes (toutes
-    // tiers, y compris les bottes améliorées). On écarte composants/starters.
-    const isCompleteItem = rank.includes("LEGENDARY") || rank.includes("BOOTS");
+    const tier = itemTier(m.rank ?? []);
     const id = slugify(m.name);
-    if (!isCompleteItem && !wanted.has(id)) continue;
-    const stats = mapItemStats(m, ddItems.data[String(m.id)]?.stats);
+    // Objets complets (légendaires + bottes) pour le labo ; starters, objets de
+    // base et épiques pour la timeline de build (Long Sword, Doran, Brutalizer…).
+    if (!tier && !wanted.has(id)) continue;
+    const dd = ddItems.data[String(m.id)];
+    const stats = mapItemStats(m, dd?.stats);
     const ov = ITEM_OVERRIDES[id];
     const merged: ItemStats = { ...stats, ...(ov?.stats ?? {}) };
-    // Un objet sans aucune stat modélisée n'apporte rien au moteur : on l'écarte
-    // (sauf whitelist explicite).
-    if (Object.keys(merged).length === 0 && !wanted.has(id)) continue;
+    // Un légendaire sans aucune stat modélisée n'apporte rien au moteur : on
+    // l'écarte (sauf whitelist). Composants et bottes restent : les recettes en
+    // ont besoin (Bottes → Steelcaps, Greaves → Zephyr…).
+    if (tier === "legendary" && Object.keys(merged).length === 0 && !wanted.has(id)) continue;
+    slugByRiotId.set(String(m.id), id);
     items.push({
       id,
       name: ov?.name ?? m.name,
       short: itemShort(m.name, ov),
       stats: merged,
+      tier,
+      cost: dd?.gold?.total,
+      // Recette brute (ids Riot) — traduite en slugs une fois tous les objets connus.
+      from: dd?.from,
       // Icône officielle Data Dragon (clé = id numérique Riot).
       icon: `${DDRAGON}/cdn/${patch}/img/item/${m.id}.png`,
     });
+  }
+  // Recettes : ids Riot → slugs. Un composant absent (hors SR…) casse le calcul
+  // du coût de combinaison : on le signale.
+  const brokenRecipes: string[] = [];
+  for (const it of items) {
+    if (!it.from?.length) {
+      delete it.from;
+      continue;
+    }
+    const slugs = it.from.map((rid) => slugByRiotId.get(rid));
+    const missing = it.from.filter((_, i) => !slugs[i]);
+    if (missing.length) brokenRecipes.push(`${it.id} (${missing.join(", ")})`);
+    it.from = slugs.filter((s): s is string => !!s);
+  }
+  if (brokenRecipes.length) {
+    console.log(`  ⚠ Recettes avec un composant inconnu : ${brokenRecipes.join(" ; ")}`);
   }
   items.sort((a, b) => a.name.localeCompare(b.name, "fr"));
 

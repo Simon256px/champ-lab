@@ -12,6 +12,6 @@ export const DATA_META = {
   statsPatch: "25.08",
   generatedAt: "2026-10-13",
   champions: 170,
-  items: 117,
+  items: 194,
   runes: 17,
 } as const;
