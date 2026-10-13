@@ -1,8 +1,11 @@
 import type { Champion } from "@/data/types.ts";
 
 /**
- * Champions saisis À LA MAIN — pour ceux que le pipeline ne peut pas encore
- * générer (trop récents : présents dans Data Dragon mais pas dans Meraki).
+ * Champions saisis À LA MAIN — SECOURS uniquement.
+ *
+ * Les champions absents de Meraki (Locke…) sont désormais générés depuis les
+ * fichiers du jeu (scripts/fetch-data.ts, championFromGame) et l'emportent sur
+ * cette saisie. Elle ne sert que si les fichiers du jeu sont indisponibles.
  *
  * Dès qu'un champion arrive dans Meraki, on peut retirer son entrée ici : le
  * roster généré le reprendra (les données Meraki étant plus fiables). En

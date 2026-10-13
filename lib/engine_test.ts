@@ -607,3 +607,24 @@ Deno.test("parade et esquive : rien à bloquer sans le sort", () => {
   const defender = computeCombo(input("garen", [], { window: 6 }));
   assertEquals(blockedDamage(attacker, defender), 0);
 });
+
+// --- Infobulles : contrôles conditionnels, champions absents de Meraki ---
+
+Deno.test("infobulles : contrôles conditionnels écartés, choix et durées gardés", () => {
+  assertEquals(CHAMPIONS.vayne.abilities.E.cc, undefined, "Vayne E : étourdit seulement contre un mur");
+  assertEquals(CHAMPIONS.brand.abilities.Q.cc, undefined, "Brand Q : seulement une cible enflammée");
+  assert(CHAMPIONS.lulu.abilities.W.cc, "Lulu W : « When used on an enemy » est un choix");
+  assert(CHAMPIONS.volibear.abilities.Q.cc, "Volibear Q : « While active » est une durée");
+});
+
+Deno.test("fichiers du jeu : Locke, Yunara, Zaahen générés et calculables", () => {
+  for (const id of ["locke", "yunara", "zaahen"]) {
+    const c = CHAMPIONS[id];
+    assert(c, `${id} doit être au roster`);
+    assert(Object.values(c.abilities).some((a) => a.formula), `${id} : au moins un sort chiffré`);
+    const res = computeCombo(input(id, c.shelf.slice(0, 2)));
+    assert(res.total > 0, `${id} : le combo doit produire des dégâts`);
+  }
+  assertEquals(CHAMPIONS.locke.adaptive, "AP", "Locke scale sur l'AP");
+  assertEquals(CHAMPIONS.yunara.adaptive, "AD", "Yunara est une tireuse");
+});

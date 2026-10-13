@@ -4,7 +4,7 @@
  */
 
 import { assert, assertAlmostEquals, assertEquals } from "@std/assert";
-import { ccDuration, cooldowns, resolveRef, spellSlots, toFormula } from "./cdragon.ts";
+import { ccDuration, ccKind, cooldowns, parseTooltip, resolveRef, spellSlots, toFormula } from "./cdragon.ts";
 import { evalFormula } from "../lib/formula.ts";
 
 const stats = {
@@ -137,4 +137,50 @@ Deno.test("cdragon : stats VA, crit, létalité reconnues", () => {
   const v = evalFormula(f, { rank: 1, level: 1, stats: { ...stats, critChance: 0.25, lethality: 10 } });
   assertAlmostEquals(v, 45.12, 1e-9);
   assertEquals(toFormula(spell, "Y", 5), null, "vitesse de déplacement : non modélisée");
+});
+
+// --- Infobulles (extraits réels du client, 16.20) ---
+
+const VAYNE_E =
+  "Vayne fires a bolt that <status>Knocks Back</status> and deals <physicalDamage>@TotalDamage@ " +
+  "physical damage</physicalDamage>. If the target collides with terrain, they take <physicalDamage>" +
+  "@EmpoweredDamageTT@ bonus physical damage</physicalDamage> and become <status>Stunned</status> for " +
+  "@StunDuration@ seconds. @SpellModifierDescriptionAppend@";
+const LULU_W = "When used on an ally, Lulu grants @MS@ Move Speed.<br><br>When used on an enemy, Lulu " +
+  "<status>Polymorphs</status> them for @PolymorphDuration@ seconds.";
+const AHRI_Q =
+  "Ahri throws then pulls back her orb, dealing <magicDamage>@TotalDamage@ magic damage</magicDamage> " +
+  "on the way out and <trueDamage>@TotalDamage@ true damage</trueDamage> on the way back.";
+const LOCKE_E =
+  "Locke teleports to a location, dealing <magicDamage>@OnHitDamage@ magic damage</magicDamage>.";
+
+Deno.test("infobulle : contrôle conditionnel par famille (Vayne E : projection sûre, étourdissement au mur)", () => {
+  const f = parseTooltip(VAYNE_E);
+  assert(f.ccUnconditional.has("knock"));
+  assert(f.ccConditional.has("stun") && !f.ccUnconditional.has("stun"));
+});
+
+Deno.test("infobulle : « When used on an enemy » est un choix, pas une condition (Lulu W)", () => {
+  const f = parseTooltip(LULU_W);
+  assert(f.ccUnconditional.has("polymorph"));
+  assertEquals(f.ccConditional.size, 0);
+});
+
+Deno.test("infobulle : type de dégâts par calcul, premier cité retenu en premier", () => {
+  const f = parseTooltip(AHRI_Q);
+  assertEquals(f.damageCalcs, ["TotalDamage"]);
+  assertEquals(f.damageTypes.get("TotalDamage"), "magic");
+  assertEquals(parseTooltip(LOCKE_E).damageTypes.get("OnHitDamage"), "magic");
+});
+
+Deno.test("infobulle : mobilité (téléportation, dash)", () => {
+  assert(parseTooltip(LOCKE_E).mobility);
+  assert(!parseTooltip(AHRI_Q).mobility);
+});
+
+Deno.test("cdragon : familles de contrôle d'après les noms internes", () => {
+  assertEquals(ccKind("StunDuration"), "stun");
+  assertEquals(ccKind("KnockupDuration"), "knock");
+  assertEquals(ccKind("CharmDuration"), "charm");
+  assertEquals(ccKind("CCDuration"), null);
 });

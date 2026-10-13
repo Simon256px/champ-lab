@@ -11,7 +11,7 @@ export const DATA_META = {
   /** patch réel des stats/ratios champions côté Meraki (peut être plus ancien) */
   statsPatch: "25.08",
   generatedAt: "2026-10-13",
-  champions: 170,
+  champions: 173,
   items: 199,
   runes: 17,
   /** sorts dont les nombres viennent des fichiers du jeu (CommunityDragon) au patch près */
@@ -22,6 +22,6 @@ export const DATA_META = {
     "heal": 18,
     "keptPercent": 34,
     "keptNone": 84,
-    "keptMismatch": 56,
+    "keptMismatch": 65,
   },
 } as const;
