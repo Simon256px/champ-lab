@@ -264,3 +264,104 @@ export function itemImpactFrom(base: ComboInput, beforeTotal: number, itemId: st
   const after = computeCombo({ ...base, itemIds: [...base.itemIds, itemId] }).total;
   return after - beforeTotal;
 }
+
+// ---------------------------------------------------------------------------
+// Cible champion & duel symétrique
+// ---------------------------------------------------------------------------
+
+/** Stats défensives d'un champion : croissance par niveau + stats plates des objets. */
+export interface Defenses {
+  hp: number;
+  armor: number;
+  mr: number;
+}
+
+export function computeDefenses(
+  champion: Champion,
+  level: number,
+  itemIds: string[],
+  items: Record<string, Item>,
+): Defenses {
+  const stats = itemIds.map((id) => items[id].stats);
+  const b = champion.base;
+  return {
+    hp: growth(b.hp, b.hpPerLevel, level) + stats.reduce((a, s) => a + (s.hp ?? 0), 0),
+    armor: growth(b.armor, b.armorPerLevel, level) + stats.reduce((a, s) => a + (s.armor ?? 0), 0),
+    mr: growth(b.mr, b.mrPerLevel, level) + stats.reduce((a, s) => a + (s.mr ?? 0), 0),
+  };
+}
+
+/** Profil de cible tiré d'un vrai champion, PV pleins. Remplace les sliders manuels. */
+export function targetFromChampion(
+  champion: Champion,
+  level: number,
+  itemIds: string[],
+  items: Record<string, Item>,
+): TargetProfile {
+  const d = computeDefenses(champion, level, itemIds, items);
+  return { armor: d.armor, mr: d.mr, hpMax: d.hp, hpCur: d.hp };
+}
+
+/** Un camp du duel : tout ce qu'il faut pour calculer son combo, sauf la cible. */
+export interface DuelSide {
+  champion: Champion;
+  level: number;
+  itemIds: string[];
+  runeOn: boolean;
+  keystoneId?: string;
+  ranks?: Partial<Record<AbilityKey, number>>;
+  /** stacks d'hémorragie supposés (Darius). Défaut : 5, comme le labo. */
+  bleedStacks?: number;
+  /** Défaut : tout le kit (all-in). */
+  include?: IncludeMap;
+}
+
+export interface DuelResult {
+  /** combo de A sur B, et de B sur A */
+  aToB: ComboResult;
+  bToA: ComboResult;
+  targetA: TargetProfile;
+  targetB: TargetProfile;
+  /** part des PV max de B retirée par le combo de A (> 1 = overkill) */
+  killPctA: number;
+  /** part des PV max de A retirée par le combo de B */
+  killPctB: number;
+  /** killPctA - killPctB : > 0 = A sort gagnant de l'échange de combos */
+  edge: number;
+}
+
+const ALL_IN: IncludeMap = { Q: true, W: true, E: true, R: true, bleed: true, rune: true };
+
+/**
+ * Duel symétrique : chaque camp place son combo complet sur l'autre, PV pleins.
+ * Indicateur théorique de burst — ni auto-attaques, ni cooldowns, ni soins,
+ * boucliers, portée ou contrôles.
+ */
+export function computeDuel(
+  a: DuelSide,
+  b: DuelSide,
+  items: Record<string, Item>,
+  runes: Record<string, RuneDef>,
+): DuelResult {
+  const targetA = targetFromChampion(a.champion, a.level, a.itemIds, items);
+  const targetB = targetFromChampion(b.champion, b.level, b.itemIds, items);
+  const combo = (atk: DuelSide, target: TargetProfile) =>
+    computeCombo({
+      champion: atk.champion,
+      level: atk.level,
+      itemIds: atk.itemIds,
+      items,
+      runes,
+      runeOn: atk.runeOn,
+      target,
+      bleedStacks: atk.bleedStacks ?? 5,
+      include: atk.include ?? ALL_IN,
+      ranks: atk.ranks,
+      keystoneId: atk.keystoneId,
+    });
+  const aToB = combo(a, targetB);
+  const bToA = combo(b, targetA);
+  const killPctA = aToB.total / targetB.hpMax;
+  const killPctB = bToA.total / targetA.hpMax;
+  return { aToB, bToA, targetA, targetB, killPctA, killPctB, edge: killPctA - killPctB };
+}
